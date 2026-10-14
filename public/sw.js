@@ -1,0 +1,6 @@
+const CACHE='nusantara-v1';
+self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.add('/favicon.svg')));self.skipWaiting()});
+self.addEventListener('activate',event=>event.waitUntil(self.clients.claim()));
+const allowed=url=>url.origin===self.location.origin&&!/^\/(api|signin|signout|callback)/.test(url.pathname);
+self.addEventListener('message',event=>{if(event.data?.type==='WARM')event.waitUntil(caches.open(CACHE).then(async cache=>{for(const path of ['/',...(event.data.urls||[])]){try{const url=new URL(path,self.location.origin);if(!allowed(url))continue;const response=await fetch(url.href,{credentials:'same-origin'});if(response.ok&&!response.redirected)await cache.put(url.href,response)}catch{}}}))});
+self.addEventListener('fetch',event=>{const request=event.request,url=new URL(request.url);if(request.method!=='GET'||!allowed(url))return;if(request.mode==='navigate'){event.respondWith(fetch(request).then(response=>{if(response.ok&&!response.redirected)caches.open(CACHE).then(c=>c.put('/',response.clone()));return response}).catch(()=>caches.match('/')));return}if(/\.(js|css|woff2?|svg|png|webp)$/.test(url.pathname))event.respondWith(caches.match(request).then(cached=>cached||fetch(request).then(response=>{if(response.ok)caches.open(CACHE).then(c=>c.put(request,response.clone()));return response}))) });

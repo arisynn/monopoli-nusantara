@@ -1,0 +1,18 @@
+MONOPOLI NUSANTARA v1
+
+Paket berisi source modular, build produksi di dist/, tests/, dan dokumentasi.
+
+Menjalankan source:
+1. Pasang Node.js 22.13+ (disarankan Node.js 24) dan pnpm 11.
+2. Di folder proyek: pnpm install
+3. Jalankan: pnpm dev
+4. Buka alamat yang ditampilkan terminal.
+
+Ini aplikasi web dengan backend, bukan HTML mandiri yang dapat dibuka langsung.
+Mode room membutuhkan D1 dan header identitas platform yang tepercaya.
+Groq membutuhkan secret server GROQ_API_KEY. Tanpa key, gunakan bot lokal.
+
+Baca README.md, docs/RULEPACK.md, dan docs/QA.md untuk konfigurasi serta batas verifikasi.
+Untuk hosting sendiri, buat konfigurasi dan identitas proyek sendiri; jangan memakai project_id Sites yang tersimpan dalam manifest sebagai identitas baru.
+
+Source commit: 9de5df36f42ecffe4ec66e7cd4553d1d6fac2701
