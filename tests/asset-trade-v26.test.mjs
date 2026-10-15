@@ -35,8 +35,8 @@ test('properties in a developed color group cannot be bartered even if the chose
 });
 test('trade wizard keeps the specialty rules and does not allow empty offers or moving the counter recipient',()=>{
  const wizard=read('../components/game/TradeWizard.tsx');const game=read('../components/game/Game.tsx');const css=read('../app/globals.css');
- for(const text of ['!hasValue','invalid','Math.min(max','developed','mode!==\'counter\'||i>0','mode===\'counter\'?step>1:step>0'])assert(wizard.includes(text),text);
+ for(const text of ['!hasValue','invalid','boundedAmount','tradeChoices','changeTradeOpponent',"mode==='counter'"])assert(wizard.includes(text),text);
  assert(game.includes("if(await act('COUNTER',{trade:submitted}))setSheet(null)"));
  assert(css.includes('var(--gold)')&&css.includes('var(--bg)'));
- assert.equal(read('../public/sw.js').includes('nusantara-v28'),true);
+ assert.equal(read('../public/sw.js').includes('nusantara-v29'),true);
 });

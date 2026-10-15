@@ -1,10 +1,10 @@
-# Monopoli Nusantara v2.8 — Smart Gameplay Flow
+# Monopoli Nusantara v2.9 — Compact UI
 
 Web game properti 2D berbahasa Indonesia. Papan SVG vektor, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
 
-v2.8 menyatukan popup keputusan/event, notifikasi transaksi, urutan dadu–pion–kejadian, dan akses kembali ke kewajiban aktif. Pembelian, kartu, barter/counter, aset, sewa, penjara, lelang dan utang tetap memakai mesin/komponen lama. Tidak ada dependency atau gambar baru.
+v2.9 memadatkan home, setup, lobby, gameplay, aset, barter, riwayat, simpanan, pengaturan dan panduan. Barter memakai satu composer dua sisi dengan selector properti; navigasi Back menjaga draf. Toast khusus mengatasi konflik CSS top/bottom yang menyebabkan notifikasi mobile terlalu tinggi. Smart Gameplay Flow v2.8 dan fondasi permainan tetap dipertahankan.
 
-**Status verifikasi:** 100 tes aturan/storage/klien/presentasi/source UI dan 7 tes kamera lulus. TypeScript/TSX, build, lint, render React/browser dan multiplayer live belum diverifikasi karena dependency tidak tersedia; instalasi sebelumnya terhambat EPERM dan tidak diulang. Lihat [audit, perubahan, hasil QA dan checklist v2.8](docs/UPDATE_v2.8.md).
+**Status verifikasi:** 114 tes aturan/storage/klien/presentasi/source UI dan 7 tes kamera lulus. TypeScript/TSX, build, lint, DOM/browser dan multiplayer live belum diverifikasi karena dependency tidak tersedia; tidak dilakukan instalasi ulang. Lihat [audit, perubahan, hasil QA dan checklist v2.9](docs/UPDATE_v2.9.md).
 
 ## Fitur tersedia
 

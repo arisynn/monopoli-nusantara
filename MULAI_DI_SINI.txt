@@ -1,32 +1,30 @@
-MONOPOLI NUSANTARA v2.8 — SMART GAMEPLAY FLOW
+MONOPOLI NUSANTARA v2.9 — COMPACT UI
 
-Baca docs/UPDATE_v2.8.md untuk implementasi, daftar file, hasil tes dan checklist.
-Source berasal dari ZIP v2.7. Tidak ada commit, reset, push atau deployment.
+Baca docs/UPDATE_v2.9.md untuk perubahan global, perbaikan toast dan checklist.
+Basis v2.8 dipertahankan. Tidak ada commit, reset, push atau deployment.
 
 STATUS
-100 tes aturan/storage/klien/presentasi/source UI + 7 tes kamera lulus.
+114 tes aturan/storage/klien/presentasi/source UI + 7 tes kamera lulus.
 TypeScript/TSX, build, lint, DOM/browser dan multiplayer live belum diverifikasi.
-Dependency proyek belum tersedia; instalasi sebelumnya terhambat EPERM.
-Tidak ada dependency atau gambar baru; pnpm-lock.yaml dipertahankan.
+Tidak mengulang instalasi dependency yang sebelumnya terhambat EPERM.
+Dependency dan lockfile tetap; tidak menambah gambar.
 
-MENJALANKAN DI LINGKUNGAN DENGAN DEPENDENCY (Node 24)
-1. Folder yang berisi package.json adalah root proyek.
-2. pnpm install --frozen-lockfile (gunakan pnpm 11.25.0)
+PERUBAHAN
+Toast informasi khusus berukuran sesuai isi; konflik top/bottom mobile diperbaiki.
+Giliran biasa tidak membuka modal. Serah perangkat opt-in memakai prompt ringkas.
+Barter dua sisi, selector pencarian/multi-pilih dalam dialog yang sama.
+Home/setup/lobby, Aset, Riwayat, Save, Settings, panduan dan popup lebih padat.
+Android/browser Back menutup view sementara; draf tetap tersimpan selama sesi UI.
+Mesin permainan, papan, dadu/pion, transaksi, bot, room dan save dipertahankan.
+
+MENJALANKAN (Node 24, pnpm 11.25.0)
+1. Root proyek adalah folder yang berisi package.json.
+2. pnpm install --frozen-lockfile di lingkungan dengan akses dependency.
 3. pnpm exec tsc --noEmit
 4. npm test
 5. npm run build:vercel
 6. npm run dev:vercel
-Jalur Vinext/Cloudflare dan konfigurasi backend tetap mengikuti README.md.
+Jalur Vinext/Cloudflare tetap mengikuti README.md dan konfigurasi asli.
 
-FITUR v2.8
-Popup bersama untuk keputusan/event; toast transaksi dari log sah.
-Dadu selesai sebelum pion berjalan, lalu keputusan tampil setelah tiba.
-Keputusan yang diminimalkan dapat dibuka lagi dari dock/detail/panel.
-Restore/reconnect memulihkan kewajiban tanpa replay histori animasi.
-Ringkasan barter, dampak kartu, utang, status bangunan, penjara dan hasil akhir.
-Aturan sewa otomatis/manual, aset, barter/counter, bot, room dan save tetap ada.
-
-UJI MANUAL
-Ikuti checklist docs/UPDATE_v2.8.md setelah deployment, terutama pada HP,
-dua browser untuk room, ketukan berulang, animasi dan restore kewajiban aktif.
-Paket ini belum dinyatakan siap produksi.
+Uji notifikasi HP terlebih dahulu, lalu checklist docs/UPDATE_v2.9.md.
+Paket belum dinyatakan siap produksi tanpa verifikasi build/browser.
