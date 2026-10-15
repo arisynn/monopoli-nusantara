@@ -1,63 +1,65 @@
 {
-  "version": "2.9.0",
+  "version": "2.10.0",
   "snapshot": "local-source",
-  "source_archive": "Monopoli_Nusantara_v2.8.zip",
-  "source_archive_sha256": "8d474422387252f0b91f57cfd872b60443fbd636fdc7347b42b712f663d8d96e",
+  "source_archive": "Monopoli_Nusantara_v2.9.zip",
+  "source_archive_sha256": "198d02e77d40eeeeab35e3b5804b16c88ecaf3e7219879ec836043a5aa946f05",
   "remote_sync_completed": false,
+  "currency": {
+    "name": "Nusa",
+    "symbol": "N",
+    "units_per_nusa": 10,
+    "storage": "unchanged integer units; no migration or rounding"
+  },
   "verification": {
-    "node_tests_passed": 114,
+    "node_tests_passed": 133,
     "camera_tests_passed": 7,
-    "new_compact_and_notice_tests": 14,
-    "syntax_checks": "passed: compact/navigation/notice helpers, TS hooks via Node, service worker",
+    "new_v210_tests_passed": 19,
+    "economic_reference_matches": 4,
+    "identical_economic_transitions": 2398,
+    "syntax_checks": "passed: changed mjs modules, TS hooks via Node and service worker",
     "typescript_tsx": "not verified: dependencies/compiler unavailable",
     "next_vinext_build": "not run: dependencies unavailable",
     "lint": "not run: dependencies unavailable",
-    "browser_dom": "not run; source CSS tests are not rendered size measurements",
-    "multiplayer_live": "not tested",
-    "protected_files_identical": [
-      "lib/game.mjs",
-      "lib/game-v1.mjs",
-      "lib/content.mjs",
-      "lib/content-v1.mjs",
-      "lib/gameplay-presentation.mjs",
-      "lib/pawn-animation.mjs",
-      "lib/board-camera.mjs",
-      "components/game/Board.tsx",
-      "components/game/BoardMap.tsx",
-      "components/game/DiceRollFx.tsx",
-      "components/game/MobileDock.tsx",
-      "lib/storage.ts",
-      "lib/save-format.mjs",
-      "lib/room-client.mjs",
-      "app/api/game/route.ts",
-      "pnpm-lock.yaml"
-    ]
+    "browser_dom_android": "not run; identity/layout tests are not browser measurements",
+    "multiplayer_live": "not tested; unit snapshots, version guards and restore tested"
   },
   "changed_files": [
     "MULAI_DI_SINI.txt",
     "README.md",
     "app/globals.css",
-    "components/game/AssetActions.tsx",
-    "components/game/AssetManager.tsx",
+    "components/game/AuctionPanel.tsx",
+    "components/game/Board.tsx",
+    "components/game/BoardMap.tsx",
+    "components/game/DiceRollFx.tsx",
     "components/game/Game.tsx",
-    "components/game/GameNotice.tsx",
     "components/game/HistoryPanel.tsx",
+    "components/game/InlineFeedback.tsx",
+    "components/game/MobileDock.tsx",
+    "components/game/MoneyInput.tsx",
+    "components/game/PlayerCapsules.tsx",
     "components/game/RuleActions.tsx",
     "components/game/RulesPanel.tsx",
-    "components/game/SavePanel.tsx",
-    "components/game/SelectionView.tsx",
-    "components/game/TradeReview.tsx",
     "components/game/TradeWizard.tsx",
-    "components/game/useGameplayPresentation.ts",
-    "components/game/useLayerBack.ts",
-    "docs/UPDATE_v2.9.md",
+    "components/game/useAuctionPresentation.ts",
+    "docs/UPDATE_v2.10.md",
+    "lib/auction-presentation.mjs",
     "lib/compact-ui.mjs",
-    "lib/layer-navigation.mjs",
+    "lib/content.mjs",
+    "lib/currency.mjs",
+    "lib/dice-timing.mjs",
+    "lib/game-v1.mjs",
+    "lib/game.mjs",
+    "lib/gameplay-presentation.mjs",
     "lib/quick-notice.mjs",
+    "lib/save-format.mjs",
     "package.json",
     "public/sw.js",
     "tests/asset-trade-v26.test.mjs",
     "tests/compact-ui-v29.test.mjs",
+    "tests/fixtures/economy-v29.json",
+    "tests/gameplay-flow-v28.test.mjs",
+    "tests/gameplay-v210.test.mjs",
+    "tests/pawn-flow.test.mjs",
     "tests/ui-refinement.test.mjs",
     "SOURCE_SNAPSHOT.json"
   ],
@@ -79,12 +81,12 @@
       "bytes": 91
     },
     "MULAI_DI_SINI.txt": {
-      "sha256": "83aa496c6b37f43edf3bf079b302913949c4f8ae05466d3d5e4c32b067bd2a9a",
-      "bytes": 1431
+      "sha256": "ad6b6f51adb69faa880bd6d31309292fcb6b5dc27b568d73ed4d13aeb729265c",
+      "bytes": 1418
     },
     "README.md": {
-      "sha256": "860cba0529db910a2c382d3edfed45a68187302e09cc24f8119debce2830dffc",
-      "bytes": 8449
+      "sha256": "55feb1bbabe9f8438a946d1e7513a28968b7e23be53c9e3b7410f996d7ed505e",
+      "bytes": 8463
     },
     "app/api/game/route.ts": {
       "sha256": "5a4e2a300b8d3f7512bc0728d5bc85c5cba5589a0f93b8750c72833b579a65aa",
@@ -95,8 +97,8 @@
       "bytes": 2550
     },
     "app/globals.css": {
-      "sha256": "4135115ba419ca63c55dde7118af37b2382ddde6917fba32ac47495940667d1f",
-      "bytes": 103945
+      "sha256": "709d64c3efed7c2a20765ebdbee5a0a543cbb7e2abc2bcd4a305af6e509db609",
+      "bytes": 111978
     },
     "app/layout.tsx": {
       "sha256": "5fa8702e05542fd3c49926f7a660fa7bb99167835a5f1cad2cf5d37ba6f48764",
@@ -150,41 +152,57 @@
       "sha256": "6a3caceaaf02cdeab5e337b5a0565fe41be15caad4362927d488327078d30ca4",
       "bytes": 5244
     },
+    "components/game/AuctionPanel.tsx": {
+      "sha256": "e960bf81747854192ed2c67e60f7683fc440327228ed1db22b16445cd68d6171",
+      "bytes": 1372
+    },
     "components/game/Board.tsx": {
-      "sha256": "78a99cfb89c5596ca83a98293a8b34089e0f936ef56ede3c5c2d82fda1c8f1fe",
-      "bytes": 10158
+      "sha256": "1ac8bb1301cb8e9a865ea0a9a48f7e25b57d051ddd4508c62ce0e51e05a272dd",
+      "bytes": 10371
     },
     "components/game/BoardMap.tsx": {
-      "sha256": "f98693a85cd2cad20f5ac7079ccdb18aa5c3b837a835a4e4070e9c21a8dad86e",
-      "bytes": 7348
+      "sha256": "da2e35eb738ae14d58b79d280d0a6ee2aa0b4fc108186f907799e8a51705d072",
+      "bytes": 7346
     },
     "components/game/DiceRollFx.tsx": {
-      "sha256": "76cc20ee0e036663586eb77e2bf9a01d52da81a3813fd5e4ed006773d0201ac7",
-      "bytes": 1118
+      "sha256": "5b9d44a2bc8cbc0b5f6ddb77bc7cd3a9eb63e2552bd156de7a34bdd7285c1f2a",
+      "bytes": 1405
     },
     "components/game/Game.tsx": {
-      "sha256": "7167445c15dd7252325a920db81f8a8c3df2f6a237227ce877dc935b5eabc44d",
-      "bytes": 53029
+      "sha256": "984a7eec4b6a48a2ebeda56e1cae50b9658a54a201246a8a8ddb3779cdee5d4d",
+      "bytes": 55163
     },
     "components/game/GameNotice.tsx": {
       "sha256": "26d792df104c2f2f7765c85a8b14225c56bcc4a8e1f09523eb62b6cfbd29c300",
       "bytes": 926
     },
     "components/game/HistoryPanel.tsx": {
-      "sha256": "ea45c42b64dab0c04df64e2d8e570d75274c6899bb9f9739d3b67547dc1f9940",
-      "bytes": 2253
+      "sha256": "5deeabb4959f4cc5dd068d446c67abaeec51a04dfc197040434c8fe61cb1a390",
+      "bytes": 2363
+    },
+    "components/game/InlineFeedback.tsx": {
+      "sha256": "0d6a37f419bbc4a210fde8806f2b9defd20986a33b2566110f039eaace4654b4",
+      "bytes": 510
     },
     "components/game/MobileDock.tsx": {
-      "sha256": "725ee003854f073987e6344579bb9400d4d64520f47b3f013d5dd2614d3cdd20",
-      "bytes": 4501
+      "sha256": "efb52f2e42a9f2f5cb11de2e8f49f8300997e5f267f60493a6d3343090e7b26e",
+      "bytes": 4700
+    },
+    "components/game/MoneyInput.tsx": {
+      "sha256": "81b9592c79dab443152c3eea670614c3e49e3741af622db0c33998037c4443e2",
+      "bytes": 1045
+    },
+    "components/game/PlayerCapsules.tsx": {
+      "sha256": "d6a361a3dba8a51055de77693785880208bd8459dc0bba9b79ecfe7fc98fbcf1",
+      "bytes": 1435
     },
     "components/game/RuleActions.tsx": {
-      "sha256": "855ae000eb892ca6af3b5dca4df5189d6635e59d02f75a7e6e275a82b96b97ee",
-      "bytes": 5416
+      "sha256": "f90349451b8b8fd1fcb53ccbe85ad15daae42af59c316fd9d972c737b449d798",
+      "bytes": 5938
     },
     "components/game/RulesPanel.tsx": {
-      "sha256": "eb91299d034413b5ee153fb8a1aa5918963ff1a535150299a311e787d7ace23c",
-      "bytes": 2979
+      "sha256": "957e4ce6ea2afd54c5993931a2419c06ecfb38ac0161a00d59f5a1452e137e9f",
+      "bytes": 3087
     },
     "components/game/SavePanel.tsx": {
       "sha256": "270f0cb454dfa87b4b463783fb66dc168e976941cb70b20de05c1873a79dd2ba",
@@ -199,8 +217,12 @@
       "bytes": 2035
     },
     "components/game/TradeWizard.tsx": {
-      "sha256": "29c0766d16cb118b8a83a61d581d17483e56143c3ecf13d481de4f2a71beec85",
-      "bytes": 4623
+      "sha256": "70160cb5e55a9b881f3df3edcbbb8c3ba983dad014230d6e340af30ce9f70f15",
+      "bytes": 4590
+    },
+    "components/game/useAuctionPresentation.ts": {
+      "sha256": "ff5e9c028a9dc787b4f8be2899723686782d2b19dcab4b3872882b555485c32b",
+      "bytes": 1012
     },
     "components/game/useDialogFocus.ts": {
       "sha256": "17b2c02c14fbac9c36615e213afa970c2411eca0503d3fd6d39f4543befd5e70",
@@ -514,6 +536,10 @@
       "sha256": "557cf1514ba87cdefeebd9f5ffee47722bf6290e7e87184034f298d98cc1b07c",
       "bytes": 7268
     },
+    "docs/UPDATE_v2.10.md": {
+      "sha256": "226ef95b1c82462aaabe2281e53a85f0f9c8693c7f1978b9829946060c98ba86",
+      "bytes": 12766
+    },
     "docs/UPDATE_v2.4.md": {
       "sha256": "7b2342f6f440c3a3399d11a23934d4a4522a6dd34a2aeb945b85afa10eef01d9",
       "bytes": 1414
@@ -570,13 +596,17 @@
       "sha256": "ad0936f84f1df79d3697bfbff9c18f8ad58431c1cbaf2359c6a853b0fcc9f28b",
       "bytes": 565
     },
+    "lib/auction-presentation.mjs": {
+      "sha256": "6cd9b7531d9827d29c332410c7545b62cd9eeb33986eff8889136eea7c0abf7b",
+      "bytes": 1437
+    },
     "lib/board-camera.mjs": {
       "sha256": "5cc6dfb14f3f1d83cebb87520740f4ec89d757f8d0df2f2a997c9f38dc48a452",
       "bytes": 5431
     },
     "lib/compact-ui.mjs": {
-      "sha256": "6e1148c18efc4d14ef4ad38e12ec98922adc4a0235ea8b5b8fc679b065903f6b",
-      "bytes": 2276
+      "sha256": "60960514dee64de32651df44c10e9b2a8f316b7dae95351b3c549ca4538f53ed",
+      "bytes": 2263
     },
     "lib/connector-context.ts": {
       "sha256": "bbddff68689cb0f6926fecd4b8b96f12f2054277c296e97b0df07d4ad5ece24e",
@@ -603,20 +633,28 @@
       "bytes": 5422
     },
     "lib/content.mjs": {
-      "sha256": "77fc9f997ae70df5da1b16dacf134b94afb1c449000569b4cfe7be86edb8d9b5",
-      "bytes": 5525
+      "sha256": "2395ac90cd38c1a930b8074422f2ff078d0b2781275d581db775c87f38b46753",
+      "bytes": 5564
+    },
+    "lib/currency.mjs": {
+      "sha256": "b7c30a2ca47c827ad28582bb2aa8f487667bdb99eae6ccd31a3220f829818b53",
+      "bytes": 1099
+    },
+    "lib/dice-timing.mjs": {
+      "sha256": "ee50ea4f131f6da87fdb7e41e7b3322014af3c92ae548e391fcfb768dfb32f62",
+      "bytes": 212
     },
     "lib/game-v1.mjs": {
-      "sha256": "ee9ba0fc4b2ee1aff63d875fbaa0c75dfac76103e7d84bc2e3f600a6a8f912c5",
-      "bytes": 20467
+      "sha256": "33eadc5b0e4ab64c95c25fd858b11a44fa14f32e75c6a6748847f75307223c58",
+      "bytes": 20849
     },
     "lib/game.mjs": {
-      "sha256": "f8a5a768fc49058dbf0b599113f0506d71bd16ba369aec9a57c1e9c81303c6b9",
-      "bytes": 31472
+      "sha256": "a303246d42b8b92e65039c99500bbfd4c7b5985b33f89ee0d57e1886bae21556",
+      "bytes": 32168
     },
     "lib/gameplay-presentation.mjs": {
-      "sha256": "d7d87ba7212af42438e94bf86284de3001938906d54a95d3136f477a40301a6a",
-      "bytes": 4794
+      "sha256": "f413ad13eacb1f9281b5b93fcbc7498b7fe76e4c03c8a18f7cb0aefbc4cb75f0",
+      "bytes": 5016
     },
     "lib/groq.ts": {
       "sha256": "7432bd8966e82cf809e67816dc78d35b492ed381c3a47b15ef9c7619bb6b6088",
@@ -635,16 +673,16 @@
       "bytes": 759
     },
     "lib/quick-notice.mjs": {
-      "sha256": "0a66926e0c96d7395e6d00789dbf2cbf2c8581df6542db5bf3025f61151fac41",
-      "bytes": 878
+      "sha256": "1b187b121dbb7c87268537d88a5c4886981e26cc61bef4c1feceedd6194b06cf",
+      "bytes": 389
     },
     "lib/room-client.mjs": {
       "sha256": "dfc836d2b70b94f5e6a9c123ae99b98af1460d6a647e709acd07a15572a2885e",
       "bytes": 1242
     },
     "lib/save-format.mjs": {
-      "sha256": "5227493fb741892b007f921aef7c45b8a7ca99502e1d229151f8abd9a1f4f387",
-      "bytes": 7645
+      "sha256": "0fc24248775ea11f9a8a3f37e2524b3d550c29d44672ffcb45251714fd367774",
+      "bytes": 8025
     },
     "lib/server/d1-store.mjs": {
       "sha256": "e397b386b965b84ddca2cbb64d08c2c7f96daf198efb1863ef6a544503bbbb40",
@@ -675,8 +713,8 @@
       "bytes": 133
     },
     "package.json": {
-      "sha256": "cf2fd541a21a9ac76ace25665d090a93af7aefb3806c2c6923f4daaefc72b6f4",
-      "bytes": 2687
+      "sha256": "dcfa0f30d4db0bf126d170cd8f12eb98c8c9540232b74534fcf828d045242a4a",
+      "bytes": 2717
     },
     "pnpm-lock.yaml": {
       "sha256": "095ba6f301ba3997da2c251dfc4b805c220624bdf0921d905eaceee0d1fb29c9",
@@ -719,8 +757,8 @@
       "bytes": 1036
     },
     "public/sw.js": {
-      "sha256": "a85df9c8102ae32273e864d8341ae010816482dbae1044dda319da07af01f6ec",
-      "bytes": 1530
+      "sha256": "576f36fa5d98455436f9496aef69d487dcaa6cad482f7bd60837cc61543c8738",
+      "bytes": 1531
     },
     "public/window.svg": {
       "sha256": "decf1cf7bb22b5c99c4857cfcd5718ce5465c4454166317589c83fc73df74b66",
@@ -783,8 +821,8 @@
       "bytes": 5087
     },
     "tests/asset-trade-v26.test.mjs": {
-      "sha256": "6b037871f6f370cdd77da2f41cf9c30fe5d56470c748b83310e3e2f453f4861e",
-      "bytes": 2820
+      "sha256": "e4cb6aac14ec474148a0515ef245b4863839658b1ed2df474bf2cf276f9cda87",
+      "bytes": 2818
     },
     "tests/board-2d.test.mjs": {
       "sha256": "91711d4d1532f1c65377842870f799a737c4adb0a436faa6fac71eba4febbdf1",
@@ -795,8 +833,12 @@
       "bytes": 13401
     },
     "tests/compact-ui-v29.test.mjs": {
-      "sha256": "02a3acd130f15d6ce61faaf668330ab770a8cccd988adb6276a63735c7e61963",
-      "bytes": 9425
+      "sha256": "56f749cf6ca25a3855ac6e6206b0c2a13af76550491f09d456b6dd648c993c7b",
+      "bytes": 9264
+    },
+    "tests/fixtures/economy-v29.json": {
+      "sha256": "6e6e7e5e8b127c4dfc33d5fa708e61e90bbee1470b32de75e26148fbf0830924",
+      "bytes": 9138
     },
     "tests/fixtures/redis-lua.py": {
       "sha256": "33925101f3f24a6628e35f09a35e3361603dbb26c3ea21c134ed7c504872da49",
@@ -807,12 +849,16 @@
       "bytes": 11124
     },
     "tests/gameplay-flow-v28.test.mjs": {
-      "sha256": "7fac9da34b15807686330d806424cb037c0b9b3364de3eca65d3377d15cf467e",
-      "bytes": 9402
+      "sha256": "5414aec03fca1da870d9616369cc041d3c8e7836ba3d0ce4f53e8621601d9bf7",
+      "bytes": 9401
+    },
+    "tests/gameplay-v210.test.mjs": {
+      "sha256": "4d8d4e043fdbfc7b5605736be24ce5b586a3a17d3f0ab4112df0badc17772241",
+      "bytes": 12330
     },
     "tests/pawn-flow.test.mjs": {
-      "sha256": "36c176115e7d4e8169d464d3350584bf5b3be3d8dae3a3ed23ef2bdc74d41a64",
-      "bytes": 2978
+      "sha256": "35d47afcf5efa41226f04da9bb30a5de5366c6abd1ab6f596d84e3fdbe1cc6a9",
+      "bytes": 3003
     },
     "tests/portrait.test.mjs": {
       "sha256": "3ef0c220b8350e29e9b64ddddf3c3a237d3f03231882ad971a179f78539a418b",
@@ -839,8 +885,8 @@
       "bytes": 3539
     },
     "tests/ui-refinement.test.mjs": {
-      "sha256": "5bb8480a961a9f4614506f3dc1072887e295408ab08fe8e9762416ae79d774ea",
-      "bytes": 2425
+      "sha256": "820fe6633ceb85e0680ff2ec46853a17c8af248ae19db85ffbd6dfc1cb8cf7c1",
+      "bytes": 2421
     },
     "tests/vercel-build.test.mjs": {
       "sha256": "9e6f93c138e7b0938170cbcf470cdcd689b652d4da46f6e9248ffb0cd40f4beb",

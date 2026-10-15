@@ -32,7 +32,7 @@ test('rent auto pays once and produces payee/amount feedback after movement',()=
  const s=command(before,0,{type:'ROLL',id:'roll-one'},roll(1,2));
  assert.equal(s.players[0].cash,14960);assert.equal(s.players[1].cash,15040);
  const batch=collectPresentation(presentationCursor(before),s);
- assert(batch.notices.some(e=>e.text.includes('Rp40')&&e.text.includes('B')));
+ assert(batch.notices.some(e=>e.text.includes('N 4')&&e.text.includes('B')));
  assert.equal(selectGameplayPopup({ready:false,event:batch.events[0]}),null);
  assert.equal(command(s,0,{type:'ROLL',id:'roll-one'}),s);
  assert.equal(collectPresentation(batch.cursor,s).notices.length,0);

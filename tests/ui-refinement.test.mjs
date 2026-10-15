@@ -13,7 +13,7 @@ test('v2.4 keeps the 40-tile board clear of fixed zoom and minimap widgets',()=>
 });
 test('dice animation respects the actual dice result and cannot intercept pointer input',()=>{
  const fx=read('../components/game/DiceRollFx.tsx');const css=read('../app/globals.css');
- assert(fx.includes('(dice[i]||1)'));assert(fx.includes('reduced?150:200'));
+ assert(fx.includes('dice[i]||1'));assert(fx.includes('timing.settle'));
  assert(css.includes('.board-dice-effect{position:absolute;inset:0;z-index:3;display:grid;place-items:center;pointer-events:none'));
  assert(css.includes('@media(prefers-reduced-motion:reduce)'));
 });

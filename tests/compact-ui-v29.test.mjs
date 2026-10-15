@@ -94,22 +94,22 @@ test('ordinary turn notices stay plain, short and expire without creating a deci
  const s=game();s.phase='end';
  const next=command(s,0,{type:'END'}),batch=collectPresentation(presentationCursor(s),next);
  const notice=summarizeNotices(batch.notices);
- assert.equal(notice.text,'Giliran B.');assert.equal(notice.kind,'turn');assert.equal(notice.duration,2000);assert.equal(notice.detail,false);
+ assert.equal(notice,null); // routine turns are visible in HUD/History only
  assert.equal(gameplayDecision(next),null);assert.equal(selectGameplayPopup({ready:true,event:batch.events[0]}),null);
  assert.equal(next.phase,'roll');assert.equal(next.turn,1);
- assert.equal(summarizeNotices([{id:1,type:'turn',text:'Giliran A.'},{id:2,type:'turn',text:'Giliran B.'}]).text,'Giliran B.');
+ assert.equal(summarizeNotices([{id:1,type:'turn',text:'Giliran A.'},{id:2,type:'turn',text:'Giliran B.'}]),null);
 });
 test('large transaction feedback is summarized while History retains complete engine text',async()=>{
  const {summarizeNotices}=await import('../lib/quick-notice.mjs');
  const log=[{id:3,type:'trade',text:'Barter selesai: '+Array.from({length:28},(_,i)=>`Properti ${i}`).join(', ')}];
  const original=structuredClone(log),notice=summarizeNotices(log);
- assert.equal(notice.text,'Barter selesai.');assert.equal(notice.detail,true);assert.equal(notice.duration,3200);
+ assert.equal(notice,null); // successful trades stay in History
  assert.deepEqual(log,original);assert.equal(summarizeNotices([]),null);
 });
 test('rent notifications preserve payer/payee/amount and omit redundant turn text',async()=>{
  const {summarizeNotices}=await import('../lib/quick-notice.mjs');
  const notice=summarizeNotices([{id:3,type:'money',text:'A membayar Rp400 kepada B · sewa Bali.'},{id:4,type:'turn',text:'Giliran B.'}]);
- assert.equal(notice.text,'A membayar Rp400 kepada B · sewa Bali.');assert.equal(notice.detail,false);
+ assert.equal(notice,null); // ordinary rent is not transient feedback
 });
 test('notification layout explicitly prevents the former top/bottom stretching conflict',()=>{
  const css=read('../app/globals.css');

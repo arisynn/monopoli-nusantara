@@ -2,6 +2,7 @@
 import {useEffect,useLayoutEffect,useRef} from 'react';
 import {BoardArtwork,BoardTokens} from './BoardMap';
 import DiceRollFx from './DiceRollFx';
+import {diceTiming} from '@/lib/dice-timing.mjs';
 import {pawnRoute,samplePawnRoute} from '@/lib/pawn-animation.mjs';
 import {BoardGesture,fitCamera,closeCamera,centerCamera,resizeCamera,zoomCamera,panCamera,worldPoint,hitTile,tokenPoint,tileCenter,scaleLimits,keepPointVisible} from '@/lib/board-camera.mjs';
 
@@ -66,12 +67,12 @@ export default function Board({state,selected,onSelect,view='follow',cameraKey=0
       launchTimer=null;if(disposed||!animation||animation.id!==m.id)return;
       animation.start=performance.now();frame=requestAnimationFrame(tick);
      };
-     if(!props.current.rolling)launchTimer=setTimeout(launch,220);else animation.launch=launch;
+     if(!props.current.rolling)launchTimer=setTimeout(launch,diceTiming({fast:props.current.speed,reduced:props.current.reduced}).settle+20);else animation.launch=launch;
     }else{
      props.current.onMoveComplete?.(m.id);
     }
    }
-   if(animation?.launch&&!props.current.rolling){const launch=animation.launch;delete animation.launch;launchTimer=setTimeout(launch,220)}
+   if(animation?.launch&&!props.current.rolling){const launch=animation.launch;delete animation.launch;launchTimer=setTimeout(launch,diceTiming({fast:props.current.speed,reduced:props.current.reduced}).settle+20)}
    if(animation&&props.current.moveIdToAnimate!==animation.id){stopAnimation()}
    if(props.current.reduced&&animation){const id=animation.id;stopAnimation();props.current.onMoveComplete?.(id)}
    if(!animation)currentPoint=activePoint();follow();apply();
@@ -107,7 +108,7 @@ export default function Board({state,selected,onSelect,view='follow',cameraKey=0
  useEffect(()=>runtime.current?.setView(),[view,cameraKey]);
  return <div className="board-2d" ref={host} tabIndex={0} role="region" aria-label="Papan 2D Nusantara, 40 petak. Geser untuk menjelajah, cubit dua jari atau gulir untuk zoom. Tombol panah untuk menggeser. Tab untuk memilih petak.">
   <svg className="board-vector" width="100%" height="100%" aria-label="Peta permainan"><g ref={world}><BoardArtwork state={state} selected={selected}/><BoardTokens state={state}/></g></svg>
-  <DiceRollFx rolling={rolling} dice={state?.dice||[1,1]} reduced={reduced}/>
+  <DiceRollFx rolling={rolling} dice={state?.dice||[1,1]} reduced={reduced} fast={speed}/>
 
  </div>
 }

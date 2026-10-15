@@ -1,0 +1,611 @@
+{
+  "board": [
+    {
+      "id": 0,
+      "type": "start",
+      "group": -1,
+      "price": 0,
+      "mortgage": 0,
+      "tax": 1000
+    },
+    {
+      "id": 1,
+      "type": "city",
+      "group": 0,
+      "price": 600,
+      "rents": [
+        20,
+        100,
+        300,
+        900,
+        1600,
+        2500
+      ],
+      "build": 500,
+      "mortgage": 300
+    },
+    {
+      "id": 2,
+      "type": "community",
+      "group": -1,
+      "price": 0,
+      "mortgage": 0,
+      "tax": 1000
+    },
+    {
+      "id": 3,
+      "type": "city",
+      "group": 0,
+      "price": 600,
+      "rents": [
+        40,
+        200,
+        600,
+        1800,
+        3200,
+        4500
+      ],
+      "build": 500,
+      "mortgage": 300
+    },
+    {
+      "id": 4,
+      "type": "tax",
+      "group": -1,
+      "price": 0,
+      "mortgage": 0,
+      "tax": 2000
+    },
+    {
+      "id": 5,
+      "type": "station",
+      "group": -1,
+      "price": 2000,
+      "mortgage": 1000,
+      "tax": 1000
+    },
+    {
+      "id": 6,
+      "type": "city",
+      "group": 1,
+      "price": 1000,
+      "rents": [
+        60,
+        300,
+        900,
+        2700,
+        4000,
+        5500
+      ],
+      "build": 500,
+      "mortgage": 500
+    },
+    {
+      "id": 7,
+      "type": "chance",
+      "group": -1,
+      "price": 0,
+      "mortgage": 0,
+      "tax": 1000
+    },
+    {
+      "id": 8,
+      "type": "city",
+      "group": 1,
+      "price": 1000,
+      "rents": [
+        60,
+        300,
+        900,
+        2700,
+        4000,
+        5500
+      ],
+      "build": 500,
+      "mortgage": 500
+    },
+    {
+      "id": 9,
+      "type": "city",
+      "group": 1,
+      "price": 1200,
+      "rents": [
+        80,
+        400,
+        1000,
+        3000,
+        4500,
+        6000
+      ],
+      "build": 500,
+      "mortgage": 600
+    },
+    {
+      "id": 10,
+      "type": "jail",
+      "group": -1,
+      "price": 0,
+      "mortgage": 0,
+      "tax": 1000
+    },
+    {
+      "id": 11,
+      "type": "city",
+      "group": 2,
+      "price": 1400,
+      "rents": [
+        100,
+        500,
+        1500,
+        4500,
+        6250,
+        7500
+      ],
+      "build": 1000,
+      "mortgage": 700
+    },
+    {
+      "id": 12,
+      "type": "utility",
+      "group": -1,
+      "price": 1500,
+      "mortgage": 750,
+      "tax": 1000
+    },
+    {
+      "id": 13,
+      "type": "city",
+      "group": 2,
+      "price": 1400,
+      "rents": [
+        100,
+        500,
+        1500,
+        4500,
+        6250,
+        7500
+      ],
+      "build": 1000,
+      "mortgage": 700
+    },
+    {
+      "id": 14,
+      "type": "city",
+      "group": 2,
+      "price": 1600,
+      "rents": [
+        120,
+        600,
+        1800,
+        5000,
+        7000,
+        9000
+      ],
+      "build": 1000,
+      "mortgage": 800
+    },
+    {
+      "id": 15,
+      "type": "station",
+      "group": -1,
+      "price": 2000,
+      "mortgage": 1000,
+      "tax": 1000
+    },
+    {
+      "id": 16,
+      "type": "city",
+      "group": 3,
+      "price": 1800,
+      "rents": [
+        140,
+        700,
+        2000,
+        5500,
+        7500,
+        9500
+      ],
+      "build": 1000,
+      "mortgage": 900
+    },
+    {
+      "id": 17,
+      "type": "community",
+      "group": -1,
+      "price": 0,
+      "mortgage": 0,
+      "tax": 1000
+    },
+    {
+      "id": 18,
+      "type": "city",
+      "group": 3,
+      "price": 1800,
+      "rents": [
+        140,
+        700,
+        2000,
+        5500,
+        7500,
+        9500
+      ],
+      "build": 1000,
+      "mortgage": 900
+    },
+    {
+      "id": 19,
+      "type": "city",
+      "group": 3,
+      "price": 2000,
+      "rents": [
+        160,
+        800,
+        2200,
+        6000,
+        8000,
+        10000
+      ],
+      "build": 1000,
+      "mortgage": 1000
+    },
+    {
+      "id": 20,
+      "type": "parking",
+      "group": -1,
+      "price": 0,
+      "mortgage": 0,
+      "tax": 1000
+    },
+    {
+      "id": 21,
+      "type": "city",
+      "group": 4,
+      "price": 2200,
+      "rents": [
+        180,
+        900,
+        2500,
+        7000,
+        8750,
+        10500
+      ],
+      "build": 1500,
+      "mortgage": 1100
+    },
+    {
+      "id": 22,
+      "type": "chance",
+      "group": -1,
+      "price": 0,
+      "mortgage": 0,
+      "tax": 1000
+    },
+    {
+      "id": 23,
+      "type": "city",
+      "group": 4,
+      "price": 2200,
+      "rents": [
+        180,
+        900,
+        2500,
+        7000,
+        8750,
+        10500
+      ],
+      "build": 1500,
+      "mortgage": 1100
+    },
+    {
+      "id": 24,
+      "type": "city",
+      "group": 4,
+      "price": 2400,
+      "rents": [
+        200,
+        1000,
+        3000,
+        7500,
+        9250,
+        11000
+      ],
+      "build": 1500,
+      "mortgage": 1200
+    },
+    {
+      "id": 25,
+      "type": "station",
+      "group": -1,
+      "price": 2000,
+      "mortgage": 1000,
+      "tax": 1000
+    },
+    {
+      "id": 26,
+      "type": "city",
+      "group": 5,
+      "price": 2600,
+      "rents": [
+        220,
+        1100,
+        3300,
+        8000,
+        9750,
+        11500
+      ],
+      "build": 1500,
+      "mortgage": 1300
+    },
+    {
+      "id": 27,
+      "type": "city",
+      "group": 5,
+      "price": 2600,
+      "rents": [
+        220,
+        1100,
+        3300,
+        8000,
+        9750,
+        11500
+      ],
+      "build": 1500,
+      "mortgage": 1300
+    },
+    {
+      "id": 28,
+      "type": "utility",
+      "group": -1,
+      "price": 1500,
+      "mortgage": 750,
+      "tax": 1000
+    },
+    {
+      "id": 29,
+      "type": "city",
+      "group": 5,
+      "price": 2800,
+      "rents": [
+        240,
+        1200,
+        3600,
+        8500,
+        10250,
+        12000
+      ],
+      "build": 1500,
+      "mortgage": 1400
+    },
+    {
+      "id": 30,
+      "type": "gojail",
+      "group": -1,
+      "price": 0,
+      "mortgage": 0,
+      "tax": 1000
+    },
+    {
+      "id": 31,
+      "type": "city",
+      "group": 6,
+      "price": 3000,
+      "rents": [
+        260,
+        1300,
+        3900,
+        9000,
+        11000,
+        12750
+      ],
+      "build": 2000,
+      "mortgage": 1500
+    },
+    {
+      "id": 32,
+      "type": "city",
+      "group": 6,
+      "price": 3000,
+      "rents": [
+        260,
+        1300,
+        3900,
+        9000,
+        11000,
+        12750
+      ],
+      "build": 2000,
+      "mortgage": 1500
+    },
+    {
+      "id": 33,
+      "type": "community",
+      "group": -1,
+      "price": 0,
+      "mortgage": 0,
+      "tax": 1000
+    },
+    {
+      "id": 34,
+      "type": "city",
+      "group": 6,
+      "price": 3200,
+      "rents": [
+        280,
+        1500,
+        4500,
+        10000,
+        12000,
+        14000
+      ],
+      "build": 2000,
+      "mortgage": 1600
+    },
+    {
+      "id": 35,
+      "type": "station",
+      "group": -1,
+      "price": 2000,
+      "mortgage": 1000,
+      "tax": 1000
+    },
+    {
+      "id": 36,
+      "type": "chance",
+      "group": -1,
+      "price": 0,
+      "mortgage": 0,
+      "tax": 1000
+    },
+    {
+      "id": 37,
+      "type": "city",
+      "group": 7,
+      "price": 3500,
+      "rents": [
+        350,
+        1750,
+        5000,
+        11000,
+        13000,
+        15000
+      ],
+      "build": 2000,
+      "mortgage": 1750
+    },
+    {
+      "id": 38,
+      "type": "tax",
+      "group": -1,
+      "price": 0,
+      "mortgage": 0,
+      "tax": 1000
+    },
+    {
+      "id": 39,
+      "type": "city",
+      "group": 7,
+      "price": 4000,
+      "rents": [
+        500,
+        2000,
+        6000,
+        14000,
+        17000,
+        20000
+      ],
+      "build": 2000,
+      "mortgage": 2000
+    }
+  ],
+  "decks": {
+    "chance": [
+      {
+        "move": 39
+      },
+      {
+        "move": 0
+      },
+      {
+        "move": 24
+      },
+      {
+        "move": 11
+      },
+      {
+        "nearest": "station",
+        "rentFactor": 2
+      },
+      {
+        "nearest": "station",
+        "rentFactor": 2
+      },
+      {
+        "nearest": "utility",
+        "utilityRoll": true
+      },
+      {
+        "money": 500
+      },
+      {
+        "jailCard": true
+      },
+      {
+        "back": 3
+      },
+      {
+        "jail": true
+      },
+      {
+        "repair": [
+          250,
+          1000
+        ]
+      },
+      {
+        "money": -150
+      },
+      {
+        "move": 5
+      },
+      {
+        "each": -500
+      },
+      {
+        "money": 1500
+      }
+    ],
+    "community": [
+      {
+        "move": 0
+      },
+      {
+        "money": 2000
+      },
+      {
+        "money": -500
+      },
+      {
+        "money": 500
+      },
+      {
+        "jailCard": true
+      },
+      {
+        "jail": true
+      },
+      {
+        "money": 1000
+      },
+      {
+        "money": 200
+      },
+      {
+        "each": 100
+      },
+      {
+        "money": 1000
+      },
+      {
+        "money": -1000
+      },
+      {
+        "money": -500
+      },
+      {
+        "money": 250
+      },
+      {
+        "repair": [
+          400,
+          1150
+        ]
+      },
+      {
+        "money": 100
+      },
+      {
+        "money": 1000
+      }
+    ]
+  }
+}

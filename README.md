@@ -1,10 +1,10 @@
-# Monopoli Nusantara v2.9 — Compact UI
+# Monopoli Nusantara v2.10 — Lelang Persisten & Nusa
 
 Web game properti 2D berbahasa Indonesia. Papan SVG vektor, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
 
-v2.9 memadatkan home, setup, lobby, gameplay, aset, barter, riwayat, simpanan, pengaturan dan panduan. Barter memakai satu composer dua sisi dengan selector properti; navigasi Back menjaga draf. Toast khusus mengatasi konflik CSS top/bottom yang menyebabkan notifikasi mobile terlalu tinggi. Smart Gameplay Flow v2.8 dan fondasi permainan tetap dipertahankan.
+v2.10 menghapus toast gameplay rutin, memindahkan feedback penting ke HUD, mempertahankan satu modul lelang sampai hasil otoritatif tampil, dan memakai grid pemain adaptif serta timing dadu/pion bersama. Nusa (N) diterapkan dengan 10 unit integer tersimpan per Nusa; saldo, ekonomi dan payload lama tidak dimigrasikan atau dibulatkan.
 
-**Status verifikasi:** 114 tes aturan/storage/klien/presentasi/source UI dan 7 tes kamera lulus. TypeScript/TSX, build, lint, DOM/browser dan multiplayer live belum diverifikasi karena dependency tidak tersedia; tidak dilakukan instalasi ulang. Lihat [audit, perubahan, hasil QA dan checklist v2.9](docs/UPDATE_v2.9.md).
+**Status verifikasi:** 133 tes regresi dan 7 tes kamera lulus. Empat pertandingan referensi menghasilkan 2.398 transisi ekonomi identik dengan v2.9. TypeScript/TSX, build, lint, DOM/browser dan multiplayer live belum diverifikasi karena dependency tidak tersedia. Lihat [audit, perubahan, kompatibilitas Nusa dan QA v2.10](docs/UPDATE_v2.10.md).
 
 ## Fitur tersedia
 
