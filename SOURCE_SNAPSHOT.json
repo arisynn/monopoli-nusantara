@@ -1,8 +1,38 @@
 {
-  "version": "2.6.0",
+  "version": "2.7.0",
   "snapshot": "local-source",
-  "base_commit": "7b6dd6b40105e9a0facf4823ebd2e7246083ee41",
+  "source_archive": "1-Monopoli_Nusantara_v2.6_Simple_Assets_Barter.zip",
+  "source_archive_sha256": "a209f9d5c7d681aca018b9292f854fe302100624fb855f85c6a8e45d2356606a",
   "remote_sync_completed": false,
+  "verification": {
+    "node_tests_passed": 86,
+    "camera_tests_passed": 7,
+    "typescript": "blocked: missing typescript",
+    "next_build": "blocked: missing next",
+    "vinext_build": "blocked: missing vinext",
+    "browser": "blocked: Chromium sandbox EPERM",
+    "multiplayer_live": "not tested"
+  },
+  "changed_files": [
+    "MULAI_DI_SINI.txt",
+    "README.md",
+    "app/globals.css",
+    "components/game/AssetActions.tsx",
+    "components/game/AssetManager.tsx",
+    "components/game/Game.tsx",
+    "components/game/HistoryPanel.tsx",
+    "components/game/MobileDock.tsx",
+    "components/game/TradeReview.tsx",
+    "components/game/TradeWizard.tsx",
+    "components/game/useDialogFocus.ts",
+    "docs/UPDATE_v2.7.md",
+    "package.json",
+    "public/sw.js",
+    "tests/asset-trade-v26.test.mjs",
+    "tests/production.test.mjs",
+    "tests/ui-refinement.test.mjs",
+    "tests/vercel-build.test.mjs"
+  ],
   "files": {
     ".env.example": {
       "sha256": "412e3eabe30b75cd7961a57444e589d3f9af807c557f1a4d2c5963f0f0d25336",
@@ -21,12 +51,12 @@
       "bytes": 91
     },
     "MULAI_DI_SINI.txt": {
-      "sha256": "905cdfef1d78e17293bad56329f00d3cec545ba55a0a7ef4e7357316623af488",
-      "bytes": 1924
+      "sha256": "83f7d71a70e72986bc8d769d4d478309033cb710c74ebfc231a4a09fb05a05ab",
+      "bytes": 1407
     },
     "README.md": {
-      "sha256": "c5c4c1f38c55446f7d4c405410fd3918d5b57f1aafb47f1729551721906a0970",
-      "bytes": 7964
+      "sha256": "48b85bdfa138e29031831c5bfbceb4e7045833c56fdcce70da081709d8402277",
+      "bytes": 8400
     },
     "app/api/game/route.ts": {
       "sha256": "5a4e2a300b8d3f7512bc0728d5bc85c5cba5589a0f93b8750c72833b579a65aa",
@@ -37,8 +67,8 @@
       "bytes": 2550
     },
     "app/globals.css": {
-      "sha256": "3c0c01437dfc8ef45b0db4be1cdd83e497713ce0d5d97d947d009d13ae4bdf1b",
-      "bytes": 67248
+      "sha256": "544ffade1c94fe799424f24e6b6d96398852364038ef800122e427f2cf11cdec",
+      "bytes": 83234
     },
     "app/layout.tsx": {
       "sha256": "5fa8702e05542fd3c49926f7a660fa7bb99167835a5f1cad2cf5d37ba6f48764",
@@ -48,21 +78,49 @@
       "sha256": "6e6ce4aedae9a75ff041aaa6a53410d14b1834deacfb5beafede458d905ae745",
       "bytes": 90
     },
+    "build/connector-preview-plugin.mjs": {
+      "sha256": "a6a9fe2086e302f94a3f91e3c1a68a45bb3aa07d4a79faf01b14732191eb4e80",
+      "bytes": 7211
+    },
+    "build/connector-preview-worker.mjs": {
+      "sha256": "c1b6b2c420cb67d9e28f8f4ae440f578c0dfd4cb840a12cfe4b58076629a17ba",
+      "bytes": 594
+    },
+    "build/sites-vite-plugin.LICENSE": {
+      "sha256": "7de1e115d165f176e68f962acdb809b5ab8d8ae78d3981e0701392b2ac50c713",
+      "bytes": 1063
+    },
+    "build/sites-vite-plugin.ts": {
+      "sha256": "07af20e7097d9ed1d76f7c446d02997550b8fc5ca89668b249e25eabd62c6834",
+      "bytes": 7185
+    },
+    "build/sites-worker.ts": {
+      "sha256": "28a75f74adfc226a773d1c00d5779c26412eea40a104da5c77f7d0f0fc30f0e8",
+      "bytes": 1279
+    },
     "cloudflare-env.d.ts": {
       "sha256": "8b0eca84aa3364cc7ccc43cc3af6beb88dd34ebd410de08690bf094ce39fbcb0",
       "bytes": 99
     },
+    "components.json": {
+      "sha256": "31f4ca67a4a62572571003d3d5aac85ee6fbfca67a192924bac6b168d95e98fd",
+      "bytes": 420
+    },
     "components/connector-error.tsx": {
       "sha256": "2d0d04559952ce9c9a327cca499f4b99f35d885cccfce375230e116695d3f155",
       "bytes": 1082
+    },
+    "components/game/AssetActions.tsx": {
+      "sha256": "81b8cd5eb03a3eb3c43f5b922c78a1b8f23c5e6a0bdf298812970ea4d5391a08",
+      "bytes": 1961
     },
     "components/game/AssetArt.tsx": {
       "sha256": "621e3faf0cb521d3349bacdca3030c4c18fbd741732cd3e1b4077dc6cb3290ab",
       "bytes": 753
     },
     "components/game/AssetManager.tsx": {
-      "sha256": "ced71f6f228c45a55b06e8807f40658b367deeb988d518d76a5bcc4dfd6b5f33",
-      "bytes": 4404
+      "sha256": "1d18a3ace9c601c0e6cd4773e7432e0f99cef6eef79fc977da3f8f5f25b40f16",
+      "bytes": 4821
     },
     "components/game/Board.tsx": {
       "sha256": "daaef1dd1fcad8aaceb2b18cde5439d81841fda37d94a34a90f0fa39f30882a7",
@@ -77,12 +135,16 @@
       "bytes": 1119
     },
     "components/game/Game.tsx": {
-      "sha256": "65b25796c1b2a557bed9d4791a290adbbce0359353ebacead3dfa43a680edd47",
-      "bytes": 49381
+      "sha256": "f44646f4b0a92345930d2065c2fdfd22839d257a93148ffd38ec52c046c31771",
+      "bytes": 47855
+    },
+    "components/game/HistoryPanel.tsx": {
+      "sha256": "b7fee1230928edda5038c18f733ff728c21f19a3d6fc2da257aa3376143a1120",
+      "bytes": 2023
     },
     "components/game/MobileDock.tsx": {
-      "sha256": "d5e22117482e8b7c4ccc50477032ffa454e7d091dc363f0fefaa2bc479d9cb4f",
-      "bytes": 4354
+      "sha256": "44676b2fd13e1d83e61ef5d2536598949832718e5f8a7e8b45c0c4b74a87ace0",
+      "bytes": 4322
     },
     "components/game/RuleActions.tsx": {
       "sha256": "284ea6e51657d67f33e76d837c43a2c3e85141d614fa7c1c074292de9d3741bb",
@@ -93,12 +155,16 @@
       "bytes": 5305
     },
     "components/game/TradeReview.tsx": {
-      "sha256": "7d78f523ee6eb0e4b7653c09adde325ef10f5c43628cd0413f2623e711bb03d9",
-      "bytes": 1020
+      "sha256": "c15c304fb9d3139b566c55fcf2e8c24b939ab9ef7026e9fff45b2bb0ba331b87",
+      "bytes": 1614
     },
     "components/game/TradeWizard.tsx": {
-      "sha256": "6f824faf21bf0d02a2f145a77e14b21be7014515921f9822b4aa717a37a8d605",
-      "bytes": 6311
+      "sha256": "746a49bb6026d54828e7fd244fac0def7a19f2a6abda5f4f2190e36e8c0a0162",
+      "bytes": 7952
+    },
+    "components/game/useDialogFocus.ts": {
+      "sha256": "17b2c02c14fbac9c36615e213afa970c2411eca0503d3fd6d39f4543befd5e70",
+      "bytes": 1539
     },
     "components/game/useGameViewport.ts": {
       "sha256": "a6d58f531d1ee2e1363a9aac70ed2ac2b378bbca5b9e5ceb1a362c53378250f6",
@@ -348,10 +414,6 @@
       "sha256": "a0784eb77831a799fad7991df4f1b666f876201565a80175e1aa68733574a2e4",
       "bytes": 1830
     },
-    "components.json": {
-      "sha256": "31f4ca67a4a62572571003d3d5aac85ee6fbfca67a192924bac6b168d95e98fd",
-      "bytes": 420
-    },
     "db/index.ts": {
       "sha256": "dc7610b00b918e0ffff1360a63626f16655ced3064b2eaf96095a4101fb14bcd",
       "bytes": 423
@@ -416,6 +478,14 @@
       "sha256": "18bbdad8dcc019cb84c6503aaa20a0e8574e857aab0949899208a55756048631",
       "bytes": 2517
     },
+    "docs/UPDATE_v2.7.md": {
+      "sha256": "81e3dbe319df3099b45fef7ad35a2914892993b3aba5b6533a82a47331c461ea",
+      "bytes": 12403
+    },
+    "drizzle.config.ts": {
+      "sha256": "af081f7384aaeb0082cf422e29f139d137ca2f6a57c69b2c37b9fb1f8479867b",
+      "bytes": 148
+    },
     "drizzle/0000_green_paper_doll.sql": {
       "sha256": "a8d11a3d6a6d183cb9a5e9da2fcb8ae1d0257c3283ed76c0005056b9c220e6f0",
       "bytes": 314
@@ -427,10 +497,6 @@
     "drizzle/meta/_journal.json": {
       "sha256": "f1bbdcaae731a818bfb952afdb493e97a57a1c40f998214d989d803b9baa1366",
       "bytes": 206
-    },
-    "drizzle.config.ts": {
-      "sha256": "af081f7384aaeb0082cf422e29f139d137ca2f6a57c69b2c37b9fb1f8479867b",
-      "bytes": 148
     },
     "eslint.config.mjs": {
       "sha256": "f22a254df7d934bbf9be499d3c969a13abb7f7f64c03f5967d0095cad81dfe06",
@@ -537,7 +603,7 @@
       "bytes": 133
     },
     "package.json": {
-      "sha256": "391ca1a29df922e43641c4ab4235650c206fa5b7e98d888bb101381fd13aba1f",
+      "sha256": "69609f0d53c8aa2c6a660aa5216d7bc4b5ffe84ab60d8d0fc51285c601975f88",
       "bytes": 2624
     },
     "pnpm-lock.yaml": {
@@ -581,8 +647,8 @@
       "bytes": 1036
     },
     "public/sw.js": {
-      "sha256": "1a91a63b7a102dde173aeb21cd3419e415e7549ad15eccded23d2822c9c1a2a9",
-      "bytes": 1615
+      "sha256": "6c2346a2e3d8292ba515aedddfc5021e9ef6315f7e57a9e9c6893ec487fd0c12",
+      "bytes": 1530
     },
     "public/window.svg": {
       "sha256": "decf1cf7bb22b5c99c4857cfcd5718ce5465c4454166317589c83fc73df74b66",
@@ -645,7 +711,7 @@
       "bytes": 5087
     },
     "tests/asset-trade-v26.test.mjs": {
-      "sha256": "f56c1d4b949002c5b8d9d84107d5db83e6090b1e82441eb0261e960bbbe8d612",
+      "sha256": "67f28b13f76c5087b622e7b2e4069faafe2d36474bcb4c7c5d0660da956efba9",
       "bytes": 2836
     },
     "tests/board-2d.test.mjs": {
@@ -673,8 +739,8 @@
       "bytes": 3942
     },
     "tests/production.test.mjs": {
-      "sha256": "355eee61633a3d59fc597619af7669d590c84a67e62465b9195a2811a47671e5",
-      "bytes": 3181
+      "sha256": "bec509749f36adc9db1c1b97de0f6ce00b16cbe7af210072edf1a10fe840cfc9",
+      "bytes": 3226
     },
     "tests/redis.test.mjs": {
       "sha256": "b92f4d05bcf68e98a26ba57035c94be68a0f69e704ec9fde64e5c2c2da27d046",
@@ -693,12 +759,12 @@
       "bytes": 3539
     },
     "tests/ui-refinement.test.mjs": {
-      "sha256": "da7971170810304dd364e80426157c5cc5572fa0fa6f1afbdc90caf0d39d2f9e",
-      "bytes": 2322
+      "sha256": "e263d28d7751be2482485123c900b9bd1fa4f3e375caa9104d0c2aaf76101d85",
+      "bytes": 2419
     },
     "tests/vercel-build.test.mjs": {
-      "sha256": "c8701475954c081f0b9d75548afbfcfda7a4edbba2922b4dffcab373e7d37d8a",
-      "bytes": 1664
+      "sha256": "9e6f93c138e7b0938170cbcf470cdcd689b652d4da46f6e9248ffb0cd40f4beb",
+      "bytes": 1714
     },
     "tsconfig.json": {
       "sha256": "7199c6e4e400921e8049729840165a39f1476fa97901bed00239e7697bfe8da4",
@@ -720,6 +786,5 @@
       "sha256": "ebb0d53518634b261be83a3c02b3492c2d88746a18968293c06f5cecdb7cf0e1",
       "bytes": 3412
     }
-  },
-  "derived_from_version": "2.3.0"
+  }
 }

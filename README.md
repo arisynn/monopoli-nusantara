@@ -1,18 +1,20 @@
-# Monopoli Nusantara v2.6 — Aset & Barter Lebih Mudah
+# Monopoli Nusantara v2.7 — UI/UX Lebih Ringkas
 
 Web game properti 2D berbahasa Indonesia. Papan SVG vektor, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
 
-v2.6: Kelola Aset kini memakai daftar dengan pencarian, filter, dan aksi relevan; Barter memakai empat langkah dengan ringkasan, termasuk tawaran balik. Tema navy/emas, papan, pion, animasi dadu, dan mesin aturan tidak berubah. Lihat `docs/UPDATE_v2.6.md`.
+v2.7 merapikan beranda, HUD, aset, barter, dan riwayat tanpa mengganti papan atau mesin aturan. Tiga mode yang sudah ada langsung terlihat; draf barter bertahan saat berpindah tab; tindakan aset menampilkan biaya dan alasan; riwayat bisa dicari. Tidak ada dependency atau gambar baru.
+
+**Status verifikasi:** 93 tes yang dapat dijalankan lulus. Build Next.js/Vinext, TypeScript, lint, render React, dan tes browser belum terverifikasi karena dependensi tidak tersedia dan sandbox menolak proses Chromium. Jangan menganggap paket ini telah lolos QA produksi. Lihat [audit, perubahan, dan hasil QA v2.7](docs/UPDATE_v2.7.md).
 
 ## Fitur tersedia
 
-- Beranda dan gameplay HP portrait mengikuti tinggi layar aktif. Papan dan tombol aksi utama berada dalam satu layar; setup, aset, barter, riwayat, dan keputusan panjang memakai panel terpisah yang dapat digulir.
+- Gameplay HP portrait menggunakan tinggi layar aktif; daftar pemain dapat digeser mendatar. Setup, aset, barter, riwayat, dan keputusan panjang menggunakan panel yang dapat digulir. Beranda dapat digulir pada layar pendek.
 - Papan SVG 40 petak dengan empat sudut besar dan pita warna klasik. Dua tampilan: Seluruh papan dan Dekat/Ikuti pemain. Geser dan pinch zoom langsung pada papan tanpa tombol, minimap, atau label yang menutupi petak. Jelajah manual tetap aktif sampai tombol Ikuti pemain ditekan.
 - Lima slot save lokal, arsip permainan sebelumnya, ekspor/impor JSON tervalidasi, serta pengaturan yang diingat di perangkat.
 
 - Hotseat 2–6 manusia; duel bot lokal; duel melalui Groq saat secret terpasang.
 - Room privat 2–6 manusia, lobby siap, kursi bertoken, pemulihan sesi perangkat yang sama, state otoritatif di server.
-- Aset gambar orisinal untuk beranda, kartu pemain, kawasan, sertifikat, dan kartu.
+- Aset gambar orisinal tetap disertakan. Beranda, HUD, sertifikat, dan keputusan kartu kini memakai teks, CSS, dan ikon vektor yang telah tersedia.
 - Aturan dasar C1009: lempar awal, lelang terbuka, lelang stok bangunan langka, barter saat utang/di luar giliran, pilihan langsung tebus aset tergadai, dan opsi klaim sewa manual.
 - 40 petak, 28 sertifikat, 32 kartu, dadu kembar, penjara, sewa, pajak, lelang, gadai, bangunan merata, barter dan tawaran balik, utang/kebangkrutan/pemenang.
 - Papan tidak memakai WebGL, Three.js, atau tekstur gambar. Teks, ikon, bangunan, dan pion tetap vektor saat diperbesar. Efek suara, animasi cepat, reduced motion, serah giliran tetap tersedia.

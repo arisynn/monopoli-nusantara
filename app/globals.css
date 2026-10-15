@@ -333,3 +333,232 @@
 @media(max-width:390px){.trade-property-list{grid-template-columns:1fr}.trade-steps button small{font-size:8px}.trade-additions{grid-template-columns:1fr 1fr}.asset-simple-item{gap:7px;padding:8px}}
 @media(prefers-reduced-motion:reduce){.asset-simple *, .trade-simple *{scroll-behavior:auto!important}}
 .manage-choice{min-width:0}.manage-choice .secondary{margin:0}.manage-choice small{display:block;margin:5px 0 10px;color:var(--muted);font-size:10px;line-height:1.5}
+
+/* v2.7 — quieter chrome, readable controls, original board geometry untouched. */
+:root{--muted:#a6b5c3;--border:#a5b8ca29;--ui-font:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.app{background:var(--bg)}
+[hidden]{display:none!important}
+.topbar{height:68px;min-height:68px;max-width:1440px;margin:0 auto;padding:0 24px}
+.brand-mark{width:38px;height:38px;transform:none}
+.icon-button,.close-modal,.round-button{min-width:44px;min-height:44px}
+.primary,.secondary{min-height:48px;font-size:14px;border-radius:12px}
+.primary{background:#dfbe80;box-shadow:none}
+.primary:not(:disabled):hover{background:#ecd3a1}
+.secondary{color:#e6e9e8;background:#ffffff04}
+.fine,.simple-hint,.simple-help,.simple-empty,.modal-intro{font-size:13px;line-height:1.65}
+.field-label{font-size:13px}
+.field-label select,.field-label input{font-size:15px;min-height:46px}
+.section-heading{gap:12px;align-items:center}
+.section-heading h2,.trade-simple-head h3,.setup-heading h2,.modal>h2{font:600 23px/1.3 var(--ui-font);letter-spacing:-.5px}
+.section-heading small{font-size:10px;letter-spacing:.6px;white-space:nowrap}
+.home-layout{width:100%;max-width:540px;margin:auto;padding:44px 24px 32px}
+.home-menu{width:100%;min-width:0}
+.home-title{margin-bottom:28px;text-align:center}
+.home-title>span{font-size:15px;letter-spacing:6px;color:#f4eddf}
+.home-title h1{font:48px/1.25 var(--serif);letter-spacing:.3px;color:var(--gold);margin:4px 0 22px}
+.home-title p{font-size:14px;color:var(--muted)}
+.home-modes{display:grid;gap:12px}
+.home-mode{display:flex;align-items:center;gap:16px;padding:19px 20px;min-height:86px;border-radius:15px;background:#f4eddf;color:#15283b;text-align:left;border:1px solid #f4eddf}
+.home-mode.featured{background:var(--gold);border-color:var(--gold)}
+.home-mode>span{display:flex;flex:1;min-width:0;flex-direction:column;gap:6px}
+.home-mode b{font-size:18px;font-weight:650}
+.home-mode small{font-size:12px;color:#415162}
+.home-mode:hover{box-shadow:0 0 0 2px #dfbe8050}
+.home-save-note{color:var(--muted);font-size:12px;line-height:1.6;text-align:center;margin:22px 0 0}
+.home-menu .resume{margin:0 0 16px;min-height:68px;color:#f0ebdf;border-color:#dfbe8060;background:#dfbe8008}
+.home-menu .resume b{font-size:15px;font-weight:600}
+.home-menu .resume small{font-size:12px;color:var(--muted)}
+.setup-scrim{position:fixed;inset:0;background:#030b15bb;z-index:39;backdrop-filter:blur(3px)}
+.app.is-home .setup-panel.setup-open{display:block;position:fixed;z-index:40;top:50%;bottom:auto;left:16px;right:16px;transform:translateY(-50%);width:auto;max-width:480px;max-height:calc(var(--game-height,100dvh) - 32px);margin:0 auto;padding:20px 24px 24px;overflow:auto;overscroll-behavior:contain;background:var(--panel);border:1px solid #a5b8ca44;border-radius:18px;box-shadow:0 20px 60px #0005}
+.app.is-home .mobile-setup-close{display:grid;position:sticky;float:right;top:0;margin:0 -6px 0 0;width:44px;height:44px;background:var(--panel);z-index:2}
+.setup-heading{padding:6px 32px 0 0;margin-bottom:24px}
+.setup-heading h2{margin-top:0}
+.setup-heading p{font-size:13px;line-height:1.6}
+.count-row{gap:12px;flex-wrap:wrap}
+.count-row label{font-size:13px}
+.count-picker button{width:40px;height:44px}
+.player-input small{font-size:10px;letter-spacing:.5px}
+.player-input input{font-size:16px;min-height:38px}
+.player-input .pawn-name{font-size:11px}
+.player-inputs{margin-bottom:20px}
+.rule-preview{padding:16px 0;margin-top:12px}
+.rule-preview b{font-size:12px}
+.rule-preview small{font-size:11px;line-height:1.5}
+.rule-preview .text-link{min-height:44px;min-width:44px;font-size:12px}
+.save-note{font-size:11px;line-height:1.5}
+.bot-opponent small{font-size:12px}
+.game-layout{grid-template-columns:minmax(0,1fr) 360px;max-width:1440px;padding:16px 24px;gap:16px}
+.players-strip{gap:8px}
+.player-card{padding:10px 12px;gap:10px;min-height:60px;border-radius:12px;background:#182635}
+.player-card.active{background:#dfbe8010;border-color:var(--gold)}
+.player-card.active:after{display:none}
+.hud-pawn{display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;border-radius:50%;color:#122434;font-size:13px;font-weight:750;border:1px solid #fff5}
+.player-details strong{font-size:16px;font-variant-numeric:tabular-nums}
+.player-name{font-size:13px;color:var(--text)}
+.player-name small{font-size:9px}
+.table-area,.game-sidebar{background:var(--panel);border-radius:14px}
+.game-sidebar{min-height:0;max-height:750px}
+.sidebar-body{padding:20px}
+.game-tabs{height:64px;padding:0 6px}
+.game-tabs button{font-size:12px;color:#b2bec7;min-height:48px}
+.game-tabs button.active{background:#dfbe8007}
+.table-top{padding:4px 14px;min-height:44px}
+.table-top>div{font-size:12px;letter-spacing:0}
+.table-top small{font-size:11px;color:var(--muted)}
+.table-detail{min-height:44px;font-size:12px}
+.camera-tools button{height:44px;font-size:12px}
+.camera-tools{margin-bottom:12px;flex-shrink:0}
+.location-strip{padding:12px 16px}
+.location-strip small{font-size:10px;letter-spacing:.5px}
+.location-strip h3{font:600 18px/1.4 var(--ui-font)}
+.location-owner{font-size:12px}
+.turn-person h2{font:600 25px/1.3 var(--ui-font)}
+.turn-person p,.dice-area>span{font-size:12px;line-height:1.5}
+.turn-eyebrow,.turn-eyebrow>span:last-child{font-size:10px;letter-spacing:.3px}
+.dice-area{padding:12px 4px 20px;gap:18px}
+.tip{display:none}
+.waiting,.ai-comment p,.classic-panel p,.classic-panel>small,.hint p{font-size:12px;line-height:1.6}
+.classic-panel h3,.decision-property h3{font:600 22px/1.35 var(--ui-font)}
+.decision-property{margin:14px 0;padding:16px}
+.decision-property small{font-size:10px}
+.decision-property>div{font-size:12px}
+.event-card{min-height:0;padding:20px}
+.event-card h3{font:600 23px/1.4 var(--ui-font)}
+.event-card p{font-size:14px;line-height:1.7}
+.event-card small{font-size:11px}
+.simple-search{background:#102031;border-radius:10px;margin:14px 0}
+.simple-search input{font-size:14px;min-height:46px}
+.simple-filters{gap:6px}
+.simple-filters button{min-height:44px;padding:9px 12px;font-size:12px}
+.simple-filters button.active,.simple-filters button[aria-pressed=true]{color:#16283b;background:var(--gold);border-color:var(--gold)}
+.asset-stats{margin:14px 0;gap:12px}
+.asset-stats span{font-size:11px}
+.asset-stats b{font-size:14px}
+.asset-simple-count,.trade-selection{font-size:12px;line-height:1.5;margin:12px 0;color:#b7c3cd}
+.asset-simple-list{max-height:none;overflow:visible;gap:0;margin-bottom:16px;padding:0}
+.asset-simple-item{border:0;border-bottom:1px solid var(--border);border-radius:0;background:transparent;padding:12px 0;min-height:76px}
+.asset-color{min-height:44px;width:5px}
+.asset-simple-detail{min-height:48px;gap:5px}
+.asset-simple-detail b,.trade-property-list b{font-size:14px;white-space:normal;overflow-wrap:anywhere}
+.asset-simple-detail small,.trade-property-list small{font-size:12px;line-height:1.5}
+.asset-simple-action{min-height:48px;font-size:13px;max-width:110px;padding:8px 11px}
+.asset-simple-action span{display:grid;gap:3px}
+.asset-simple-action small{font-size:11px;font-weight:400}
+.asset-simple-more{width:44px;min-height:48px}
+.manage-actions{grid-template-columns:1fr;gap:8px;margin:18px 0}
+.manage-choice .secondary{min-height:58px}
+.manage-choice .secondary>span{display:grid;gap:4px;text-align:left}
+.manage-choice .secondary small{margin:0;font-size:12px;font-weight:400;color:#b9c6cf}
+.manage-choice>small{font-size:12px;line-height:1.5;margin:5px 2px}
+.manage-choice>small:empty{display:none}
+.manage-compact span{font-size:12px}
+.trade-simple-head>span{font-size:12px}
+.trade-steps{gap:2px;margin-bottom:12px}
+.trade-steps button{min-height:64px;padding:8px 2px;gap:6px}
+.trade-steps button small{font-size:11px}
+.trade-steps button span{width:28px;height:28px;font-size:12px}
+.trade-steps button:disabled{opacity:.65}
+.trade-parties{display:flex;align-items:center;gap:10px;font-size:13px;line-height:1.5;color:#dfbe80;margin:10px 0;overflow-wrap:anywhere}
+.trade-players button{min-height:64px;padding:12px}
+.trade-players b{font-size:15px;overflow-wrap:anywhere}
+.trade-players small{font-size:12px}
+.trade-step-caption{font-size:14px;line-height:1.5}
+.trade-step-caption small{font-size:12px}
+.trade-property-list{grid-template-columns:1fr;max-height:280px}
+.trade-property-list button{min-height:64px;padding:12px}
+.trade-property-list button:disabled{opacity:.65}
+.trade-additions{gap:12px}
+.trade-additions label{font-size:12px}
+.trade-additions input{min-height:48px;font-size:16px}
+.trade-simple-footer{position:sticky;bottom:-20px;padding:12px 0 2px;background:var(--panel);z-index:2}
+.trade-simple-footer button{font-size:13px;line-height:1.4}
+.trade-review{background:transparent;border:0;padding:0;gap:10px;margin:16px 0}
+.trade-review-title{font-size:14px;margin-bottom:4px}
+.trade-review-side{padding:14px;background:#ffffff04;border-radius:10px;gap:8px}
+.trade-review-side b{font-size:14px}
+.trade-review-side span,.trade-review-side small,.trade-review-note,.trade-warning{font-size:13px;line-height:1.6}
+.trade-review-note{color:var(--muted)}
+.trade-warning{margin:12px 0}
+.trade-warning p+p{margin-top:8px}
+.history-timeline{padding:0;margin:16px 0;list-style:none}
+.history-timeline h3{font:600 13px/1.5 var(--ui-font);color:var(--gold);padding:15px 0 6px}
+.history-entry{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.history-sequence{font-size:11px;min-width:30px;color:var(--muted);font-variant-numeric:tabular-nums;line-height:20px}
+.history-entry>div{min-width:0}
+.history-entry small{display:block;color:#b7c4ce;font-size:11px;margin-bottom:4px}
+.history-entry p{font-size:13px;line-height:1.65;overflow-wrap:anywhere}
+.modal-backdrop{z-index:60;background:#030b15bb;backdrop-filter:blur(3px)}
+.modal{background:var(--panel);border-radius:18px;padding:28px;max-height:calc(var(--game-height,100dvh) - 32px);overscroll-behavior:contain}
+.modal-intro{margin:16px 0 20px}
+.close-modal{background:var(--panel)}
+.modal .fine,.rent-table>div,.deed-meta>div,.special-description{font-size:13px;line-height:1.65}
+.setting-row b{font-size:14px}
+.setting-row small{font-size:12px;line-height:1.5}
+.setting-row input[type=checkbox]{min-width:44px;min-height:44px;accent-color:var(--gold)}
+.rules-list p{font-size:13px;line-height:1.7}
+.rules-list h3{font:600 16px/1.5 var(--ui-font)}
+.all-tiles button{min-height:52px}
+.toast,.error-toast{z-index:80;font-size:13px;line-height:1.5}
+.error-toast button{min-width:44px;min-height:44px}
+.pawn-is-active,.pawn-active-ring{animation:none}
+@media(min-width:801px){.app.is-home{min-height:100dvh}.home-layout{padding-top:56px}.game-board{min-height:400px}.modal{max-width:520px}.modal.wide{max-width:740px}}
+@media(max-width:800px){
+ .app.is-home .topbar,.app.is-room .topbar,.app.is-playing .topbar{padding:0 4px;margin:0 10px;height:52px;min-height:52px;gap:6px}
+ .app .header-actions .icon-button{width:44px;height:44px}
+ .brand{gap:8px}.brand-mark{width:30px;height:30px}.brand b{font-size:21px}.brand small{font-size:7px;letter-spacing:2.5px}
+ .app.is-home .home-layout{min-height:0;flex:1;overflow:auto;padding:24px 20px;display:flex;align-items:center;max-width:480px}
+ .home-title{margin-bottom:22px}.home-title h1{font-size:42px;margin-bottom:18px}.home-title>span{font-size:12px;letter-spacing:5px}
+ .home-mode{min-height:78px;padding:16px;gap:14px}.home-mode b{font-size:17px}.home-mode small{font-size:12px}
+ .app.is-home .setup-panel.setup-open{top:auto;bottom:8px;left:8px;right:8px;transform:none;max-height:calc(var(--game-height,100dvh) - 24px - env(safe-area-inset-bottom,0px));padding:14px 20px 24px;border-radius:18px}
+ .app.is-playing .game-layout{grid-template-columns:minmax(0,1fr);grid-template-rows:64px minmax(0,1fr) 112px 56px;padding:4px 8px 0;gap:6px}
+ .app.is-playing .players-strip{display:flex;overflow-x:auto;overscroll-behavior-x:contain;gap:6px;scrollbar-width:thin;scroll-snap-type:x proximity}
+ .app.is-playing .players-strip .player-card{flex:1 0 138px;min-width:0;height:58px;padding:8px;gap:8px;scroll-snap-align:start}
+ .app.is-playing .player-name{font-size:12px;line-height:16px}
+ .app.is-playing .players-strip .player-details strong{font-size:14px;line-height:18px;margin:2px 0 0}
+ .app.is-playing .table-area{grid-template-rows:44px minmax(0,1fr) 46px}
+ .app.is-playing .table-top{padding:0 8px;min-height:44px}
+ .app.is-playing .table-detail{min-height:44px;font-size:11px}
+ .app.is-playing .table-top small{font-size:10px;color:#b3c0cb}
+ .app.is-playing .camera-tools,.app.is-playing .camera-tools button{height:44px;min-height:44px;margin:0}
+ .app.is-playing .camera-tools{justify-self:center;border:0;background:transparent}
+ .app.is-playing .camera-tools button{font-size:12px;min-width:130px;padding:0 10px}
+ .app.is-playing .mobile-dock{padding:7px 10px;background:var(--panel);border-color:#dfbe8040;justify-content:space-between}
+ .app.is-playing .dock-heading h2{font:600 16px/1.4 var(--ui-font)}
+ .app.is-playing .dock-heading small{font-size:11px;line-height:1.5}
+ .dock-heading .icon-button{min-width:44px;min-height:44px}
+ .dock-emblem{display:none}
+ .dock-reason{font-size:10px;color:#f0cf98;line-height:1.4}
+ .dock-actions .primary,.dock-actions .secondary{height:44px;min-height:44px;font-size:13px;border-radius:10px}
+ .app.is-playing .game-tabs{height:56px;min-height:56px;background:var(--bg)}
+ .app.is-playing .game-tabs button{font-size:11px;gap:4px}
+ .app.is-playing .mobile-panel-open .sidebar-body{top:calc(58px + env(safe-area-inset-top,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));max-height:calc(var(--game-height,100dvh) - 126px);padding:0 18px 20px;background:var(--panel);border-color:#a5b8ca44}
+ .app.is-playing .mobile-panel-heading{background:var(--panel);font-size:14px;margin-bottom:16px;min-height:52px}
+ .app.is-playing .sidebar-body>.asset-simple>.section-heading,.app.is-playing .sidebar-body>.history-panel>.section-heading{display:none}
+ .app.is-playing .modal{padding:52px 20px 24px;background:var(--panel)}
+ .app.is-playing .close-modal{top:-44px;margin-top:-44px;background:var(--panel)}
+ .asset-simple-list{max-height:none;overflow:visible}
+ .trade-property-list{max-height:30dvh}
+ .trade-simple-footer{bottom:-20px}
+ .travel-progress{margin:2px 0;height:3px}
+ .history-entry{padding:11px 0}
+}
+@media(max-width:800px) and (max-height:660px){
+ .app.is-home .home-layout{align-items:flex-start;padding:16px 20px}
+ .home-title{margin-bottom:14px}.home-title h1{font-size:32px;margin:0 0 10px}
+ .home-mode{min-height:70px;padding:12px 16px}.home-modes{gap:10px}.home-save-note{margin-top:16px}
+ .app.is-playing .game-layout{grid-template-rows:58px minmax(0,1fr) 108px 52px;gap:4px}
+ .app.is-playing .players-strip .player-card{height:54px}
+ .app.is-playing .game-tabs{height:52px;min-height:52px}
+}
+@media(max-width:360px){.app.is-playing .players-strip .player-card{flex-basis:132px}.home-mode{gap:12px}.count-row{gap:8px}.count-picker button{width:36px}.trade-additions{grid-template-columns:1fr}.asset-simple-item{gap:8px}.asset-simple-detail small{font-size:11px}.trade-steps button small{font-size:10px}}
+@media(max-width:800px) and (max-height:450px) and (orientation:landscape){
+ .app.is-playing .game-layout{grid-template-columns:minmax(0,1fr) 250px;grid-template-rows:58px minmax(0,1fr) 52px}
+ .app.is-playing .table-area{grid-column:1;grid-row:1/4}
+ .app.is-playing .players-strip{grid-column:2;grid-row:1}
+ .app.is-playing .mobile-dock{grid-column:2;grid-row:2;height:108px;align-self:end}
+ .app.is-playing .game-tabs{grid-column:2;grid-row:3}
+}
+@media(prefers-reduced-motion:reduce){button,.travel-progress span{transition:none}}
+.reduced button,.reduced .travel-progress span{transition:none}
+.trade-chosen{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.trade-chosen button{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 10px;background:#dfbe8012;border:1px solid #dfbe8055;border-radius:8px;font-size:12px;color:var(--gold)}

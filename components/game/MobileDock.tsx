@@ -1,5 +1,5 @@
 'use client';
-import {ArrowRight,ChevronRight,Dice5,Info,Play,Trophy} from 'lucide-react';
+import {ArrowRight,ChevronRight,Dice5,Play,Trophy} from 'lucide-react';
 import {BOARD,money} from '@/lib/content.mjs';
 
 /** A bounded action area: long decisions open the full, existing turn panel. */
@@ -8,9 +8,9 @@ export default function MobileDock({s,actor,human,busy,rolling,paused,traveling,
  let title='',subtitle='',label='Buka keputusan',type='';
  switch(s.phase){
   case 'starting':title='Siapa mulai dahulu?';subtitle=`Lempar awal · ${who.name} · pion belum berjalan`;label='Lempar penentu giliran';type='START_ROLL';break;
-  case 'roll':title=s.extra?'Dadu kembar!':'Saatnya melangkah';subtitle=`Giliran ${who.name}`;label=s.extra?'Lempar lagi':'Kocok dadu';type='ROLL';break;
+  case 'roll':title=s.extra?'Dadu kembar!':'Saatnya melangkah';subtitle=`Giliran ${who.name}`;label=s.extra?'Lempar lagi':'Lempar dadu';type='ROLL';break;
   case 'end':title=BOARD[s.players[s.turn].pos].name;subtitle=`${s.dice.join(' + ')} = ${s.dice[0]+s.dice[1]} · Giliran ${who.name}`;label='Akhiri giliran';type='END';break;
-  case 'buy':title=BOARD[s.buy].name;subtitle=`Belum dimiliki · ${money(BOARD[s.buy].price)}`;break;
+  case 'buy':title=BOARD[s.buy].name;subtitle=who.cash<BOARD[s.buy].price?`Kas kurang ${money(BOARD[s.buy].price-who.cash)} · pilih lelang`:`Belum dimiliki · ${money(BOARD[s.buy].price)}`;break;
   case 'card':title=s.card.title;subtitle=s.card.deck==='chance'?'Kartu Kesempatan':'Kartu Dana Umum';label='Baca kartu';break;
   case 'auction':title=s.auction.kind==='building'?'Lelang bangunan':BOARD[s.auction.tile].name;subtitle=`Tawaran tertinggi ${money(s.auction.amount)}`;label='Buka lelang';break;
   case 'jail':title='Singgah di penjara';subtitle=`Percobaan ke-${who.jail+1} · ${who.name}`;label='Pilih cara keluar';break;
@@ -22,7 +22,7 @@ export default function MobileDock({s,actor,human,busy,rolling,paused,traveling,
  }
  if(traveling){title=`${s.players[traveling.player]?.name||'Pion'} sedang berjalan`;subtitle=`${traveling.step} dari ${traveling.total} petak`;label='Pion bergerak…'}
  return <section className="mobile-dock" aria-label="Aksi giliran">
-  <div className="dock-heading"><span className="dock-emblem">{s.phase==='won'?<Trophy size={25}/>:<Dice5 size={25}/>}</span><div><small>{subtitle}</small><h2 title={title}>{title}</h2></div><button className="icon-button" aria-label="Detail giliran dan tagihan sewa" onClick={onDetails}><Info size={20}/></button></div>
+  <div className="dock-heading"><span className="dock-emblem">{s.phase==='won'?<Trophy size={25}/>:<Dice5 size={25}/>}</span><div><small>{subtitle}</small><h2 title={title}>{title}</h2></div></div>
   {traveling&&<div className="travel-progress" role="progressbar" aria-label="Perjalanan pion" aria-valuemin={0} aria-valuemax={traveling.total} aria-valuenow={traveling.step}><span style={{width:`${Math.round(traveling.step/Math.max(1,traveling.total)*100)}%`}}/></div>}
   <div className="dock-actions">
    {traveling?<button className="secondary" disabled>Pion menuju {BOARD[s.players[traveling.player].pos].name}…</button>:

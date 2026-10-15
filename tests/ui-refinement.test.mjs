@@ -28,7 +28,8 @@ test('v2.6 uses a compact asset manager and a guided barter without changing boa
  assert(game.includes("act('OFFER',{trade:submitted},myId)"));
  assert(game.includes("act('COUNTER',{trade:submitted})"));
  assert(game.includes("sheet==='manage'"));
- assert(game.includes('managementError(s,myId,selected,type)'));
+ assert(read('../components/game/AssetActions.tsx').includes('managementError(game,player,tile,type)'));
+ assert(game.includes('onAction={requestAssetAction}'));
  for(const label of ['Cari kota atau properti','Bisa bangun','Digadai','Set lengkap','onAction'])assert(assets.includes(label),label);
  for(const label of ['Pilih lawan','Aset kamu','Aset lawan','Konfirmasi','trade.giveCards','trade.takeCards','GROUPS[t.group].ids.some'])assert(wizard.includes(label),label);
  assert(review.includes('Ringkasan pertukaran'));

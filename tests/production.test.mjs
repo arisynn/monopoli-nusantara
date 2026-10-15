@@ -29,9 +29,9 @@ try{
   const html=await response.text();
   assert.equal(response.status,200,html.slice(0,500));
   assert(html.includes('Nusantara'));
-  assert(html.includes('Mulai petualangan'));
+  for(const label of ['Main lokal','Lawan bot','Room online'])assert(html.includes(label));
   assert(!html.includes('Starter Project'));
-  assert(html.includes('/assets/nusantara-scene.webp'));
+  assert(!html.includes('<img class="lobby-illustration"'));
   for(const asset of ['nusantara-scene','pawn-atlas','region-atlas','card-atlas']){
     const bytes=await readFile(`dist/client/assets/${asset}.webp`);
     assert.equal(bytes.subarray(0,4).toString(),'RIFF',asset);
@@ -44,7 +44,7 @@ try{
     if(script.startsWith('/'))assert((await readFile(path.resolve('dist/client','.'+script))).length>0,script);
   }
   console.log(`PASS production SSR homepage, title, primary button and ${scripts.length} script reference(s).`);
-  console.log('PASS illustrated hero reference and all four bundled WebP assets.');
+  console.log('PASS direct mode choices and all four preserved WebP assets.');
   const db=await mf.getD1Database('DB');
   const migration=await readFile('drizzle/0000_green_paper_doll.sql','utf8');
   for(const sql of migration.split('--> statement-breakpoint'))if(sql.trim())await db.prepare(sql.trim()).run();

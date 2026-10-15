@@ -1,41 +1,30 @@
-MONOPOLI NUSANTARA v2.6 — PAPAN 2D / VERCEL READY
+MONOPOLI NUSANTARA v2.7 — PENYEMPURNAAN UI/UX
 
-Update v2.6: Kelola Aset dengan cari/filter dan Barter empat langkah. Desain asli dipertahankan. Detail: docs/UPDATE_v2.6.md.
+Baca docs/UPDATE_v2.7.md untuk audit, perubahan, file terkait, dan batas pengujian.
+Source dikerjakan dari ZIP v2.6; tidak ada deployment, push, atau perubahan riwayat Git.
 
-1. Ekstrak ZIP. Folder yang berisi package.json dan vercel.json adalah root proyek.
-2. Upload/push isi folder tersebut ke repository GitHub Anda.
-3. Import repository di Vercel atau redeploy proyek lama.
-4. Framework: Next.js. Node: 24.x.
-5. Install: npx --yes pnpm@11.25.0 install --frozen-lockfile
-6. Build: npm run build:vercel
-7. Output: .next (bukan dist).
+STATUS
+93 tes yang tersedia lulus (86 aturan/storage/klien/source UI + 7 kamera).
+Build, TypeScript, lint, render React, browser, dan multiplayer live belum
+terverifikasi: dependensi proyek tidak tersedia dan sandbox membatasi eksekusi.
+Dependency dan pnpm-lock.yaml tidak diganti untuk mengatasi masalah lingkungan.
 
-vercel.json sudah menyimpan pengaturan instalasi/build tersebut.
-Panduan lengkap, environment variables, dan solusi error:
-  docs/DEPLOY_VERCEL.md
+MENJALANKAN DI LINGKUNGAN DENGAN AKSES REGISTRY (Node 24)
+1. Ekstrak ZIP; folder berisi package.json adalah root proyek.
+2. npx --yes pnpm@11.25.0 install --frozen-lockfile
+3. npm run dev:vercel
+4. pnpm exec tsc --noEmit
+5. npm test
+6. npm run build:vercel
 
-Hotseat 2–6 pemain dan bot lokal tidak memerlukan database.
-Room online: isi UPSTASH_REDIS_REST_URL dan UPSTASH_REDIS_REST_TOKEN
-pada Environment Variables Vercel, lalu redeploy.
-Groq: tambahkan GROQ_API_KEY di server; Redis juga harus aktif.
-Jangan mengubah secret menjadi NEXT_PUBLIC_ atau mengunggah .env.local.
+Jangan mengulang instalasi jika registry tetap ditolak. Periksa akses jaringan.
+Untuk jalur Vinext/Cloudflare, lihat README.md dan konfigurasi aslinya.
 
-Menjalankan lokal (Node 24):
-  npx --yes pnpm@11.25.0 install --frozen-lockfile
-  npm run dev:vercel
+FITUR
+Main lokal 2–6 pemain, duel bot, room online, aturan sewa otomatis/manual,
+aset dan bangunan, barter + tawaran balik, penyimpanan dan ekspor/impor tetap ada.
+Papan asli 40 petak, kamera, pion, dan efek dadu dipertahankan.
 
-Baru di v2.2:
-- Beranda dan gameplay HP mengikuti tinggi layar tanpa scroll halaman.
-- Papan 2.5D tetap 40 petak; tombol aksi selalu berada di bawah.
-- Aset, barter, riwayat, setup, dan keputusan panjang dibuka dalam panel.
-  Isi panel yang panjang dapat digulir tanpa menggeser halaman/papan.
-- Lima slot lokal, ekspor/impor JSON, arsip permainan sebelumnya.
-- Pengaturan tersimpan dan penanganan koneksi room diperbaiki.
-
-Build produksi v2.2 pernah diuji; build v2.6 belum bisa diverifikasi di lingkungan ini. Hasil uji dan batas v2.2:
-  docs/QA_PORTRAIT.md
-Riwayat verifikasi v2.1: docs/QA_VERCEL.md.
-Deployment Vercel, Upstash live, Groq live, dan browser nyata belum diuji.
-
-Source modular dan aset gambar lengkap ada dalam ZIP. Dependency dan
-folder build tidak disertakan; Vercel membangunnya saat deploy.
+Room online memerlukan backend yang dikonfigurasi. Vercel menggunakan Upstash
+Redis; Groq opsional dan hanya di server. Panduan: docs/DEPLOY_VERCEL.md.
+Jalankan checklist browser dalam docs/UPDATE_v2.7.md sebelum publikasi.
