@@ -34,7 +34,7 @@ Tambahkan database **Upstash Redis** lewat Storage/Marketplace Vercel atau gunak
 |---|---|
 | `UPSTASH_REDIS_REST_URL` | Wajib untuk room; URL HTTPS REST database |
 | `UPSTASH_REDIS_REST_TOKEN` | Wajib untuk room; token baca/tulis, bukan token read-only |
-| `GROQ_API_KEY` | Opsional; mengaktifkan duel Groq jika Redis juga aktif |
+| `GROQ_API_KEY` | Opsional; mengaktifkan keputusan Groq pada VS Bot tanpa mewajibkan Redis |
 | `GROQ_MODEL` | Opsional; default `openai/gpt-oss-20b` |
 | `ROOM_NAMESPACE` | Opsional; pemisah database untuk beberapa proyek |
 | `ROOM_TTL_SECONDS` | Opsional; default `604800` (7 hari), rentang 1 jam–30 hari |
@@ -50,7 +50,7 @@ Akses bermain memakai nama tamu, kode room, dan token kursi pada perangkat. Tida
 ## 3. Cek deployment
 
 - Buka beranda, pastikan diorama dan pion muncul, lalu mulai permainan lokal.
-- Buka `/api/game?status=1`: tanpa Redis, `online` dan `groq` bernilai `false`. Dengan pasangan konfigurasi Redis, `online: true`; dengan Redis dan kunci Groq, `groq: true`. Status ini memeriksa konfigurasi, bukan koneksi langsung ke penyedia.
+- Buka `/api/game?status=1`: tanpa Redis, `online: false` (room tidak aktif). Dengan pasangan konfigurasi Redis, `online: true`; dengan API key Groq yang terpasang di server, `groq: true` meskipun `online: false`. Status ini memeriksa konfigurasi, bukan koneksi langsung ke penyedia.
 - Buat room untuk menguji koneksi Redis sebenarnya; gabung dari perangkat/browser kedua, siap, dan mulai.
 - Tutup/buka kembali pada perangkat yang sama untuk memeriksa pemulihan kursi.
 - Jika konfigurasi penyimpanan gagal, mode lokal tetap tersedia. Lihat Runtime Logs Vercel dan periksa REST URL/token pada environment yang sedang dideploy.
@@ -81,7 +81,7 @@ Node.js 24 disarankan dan dipilih lewat `engines` pada `package.json`. pnpm diku
 | Versi pnpm/lockfile tidak cocok | Pertahankan `pnpm-lock.yaml` dan Install Command yang tercantum |
 | Room belum aktif | Pasangan URL/token Redis belum diisi pada environment deployment |
 | Penyimpanan tidak dapat dihubungi | Token salah/read-only, URL bukan REST HTTPS, database tidak aktif, atau kuota penyedia habis |
-| Bot tetap lokal | Redis dan `GROQ_API_KEY` belum sama-sama aktif; periksa environment lalu redeploy |
+| Bot tetap lokal | Periksa `GROQ_API_KEY` di environment deployment, redeploy, lalu klik Periksa ulang Groq di setup VS Bot. Status `groq:true` belum memastikan provider sukses. |
 
 ## Referensi primer
 
