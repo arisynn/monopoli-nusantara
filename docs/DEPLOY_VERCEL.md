@@ -1,4 +1,4 @@
-# Deploy Monopoli Nusantara v2.1 ke Vercel
+# Deploy Monopoli Nusantara v2.2 ke Vercel
 
 Paket ini menambahkan jalur Next.js asli untuk Vercel. Source, tampilan 2.5D, gambar, aturan v2, dan dukungan save v1 tetap disertakan.
 
@@ -76,7 +76,7 @@ Node.js 24 disarankan dan dipilih lewat `engines` pada `package.json`. pnpm diku
 
 | Gejala log | Yang diperiksa |
 |---|---|
-| `cloudflare:workers`, Worker, atau `.next` tidak ditemukan | Gunakan source v2.1 utuh, preset Next.js, build `npm run build:vercel`, output `.next` |
+| `cloudflare:workers`, Worker, atau `.next` tidak ditemukan | Gunakan source v2.2 utuh, preset Next.js, build `npm run build:vercel`, output `.next` |
 | `package.json` tidak ditemukan | Root Directory salah atau ZIP dimasukkan sebagai folder bertingkat |
 | Versi pnpm/lockfile tidak cocok | Pertahankan `pnpm-lock.yaml` dan Install Command yang tercantum |
 | Room belum aktif | Pasangan URL/token Redis belum diisi pada environment deployment |
@@ -95,4 +95,4 @@ Diperiksa 15 Oktober 2026:
 - Upstash REST: https://upstash.com/docs/redis/features/restapi
 - Lua EVAL: https://upstash.com/docs/redis/sdks/ts/commands/scripts/eval
 
-Build dan uji lokal tidak sama dengan deployment ke akun Vercel Anda. Tidak ada kredensial Vercel/Upstash/Groq pengguna yang dipakai dalam verifikasi paket ini. Hasil aktual tercantum pada `QA_VERCEL.md`.
+Build dan uji lokal tidak sama dengan deployment ke akun Vercel Anda. Tidak ada kredensial Vercel/Upstash/Groq pengguna yang dipakai dalam verifikasi paket ini. Hasil v2.2 tercantum pada `QA_PORTRAIT.md`; riwayat v2.1 pada `QA_VERCEL.md`.

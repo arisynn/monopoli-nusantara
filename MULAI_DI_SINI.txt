@@ -1,4 +1,4 @@
-MONOPOLI NUSANTARA v2.1 — VERCEL READY
+MONOPOLI NUSANTARA v2.2 — PORTRAIT 2.5D / VERCEL READY
 
 1. Ekstrak ZIP. Folder yang berisi package.json dan vercel.json adalah root proyek.
 2. Upload/push isi folder tersebut ke repository GitHub Anda.
@@ -22,8 +22,17 @@ Menjalankan lokal (Node 24):
   npx --yes pnpm@11.25.0 install --frozen-lockfile
   npm run dev:vercel
 
-Build produksi telah lolos pemeriksaan pada salinan source bersih.
-Hasil uji dan batas: docs/QA_VERCEL.md.
+Baru di v2.2:
+- Beranda dan gameplay HP mengikuti tinggi layar tanpa scroll halaman.
+- Papan 2.5D tetap 40 petak; tombol aksi selalu berada di bawah.
+- Aset, barter, riwayat, setup, dan keputusan panjang dibuka dalam panel.
+  Isi panel yang panjang dapat digulir tanpa menggeser halaman/papan.
+- Lima slot lokal, ekspor/impor JSON, arsip permainan sebelumnya.
+- Pengaturan tersimpan dan penanganan koneksi room diperbaiki.
+
+Build produksi Next.js/Vercel lulus. Hasil uji dan batas v2.2:
+  docs/QA_PORTRAIT.md
+Riwayat verifikasi v2.1: docs/QA_VERCEL.md.
 Deployment Vercel, Upstash live, Groq live, dan browser nyata belum diuji.
 
 Source modular dan aset gambar lengkap ada dalam ZIP. Dependency dan

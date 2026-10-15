@@ -1,4 +1,4 @@
-const CACHE='nusantara-v21';
+const CACHE='nusantara-v22';
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.add('/favicon.svg')));self.skipWaiting()});
 self.addEventListener('activate',event=>event.waitUntil(Promise.all([self.clients.claim(),caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('nusantara-')&&key!==CACHE).map(key=>caches.delete(key))))])));
 const allowed=url=>url.origin===self.location.origin&&!/^\/(api|signin|signout|callback)/.test(url.pathname);

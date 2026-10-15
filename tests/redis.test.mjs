@@ -45,10 +45,10 @@ try{
  Object.assign(process.env,{UPSTASH_REDIS_REST_URL:config.url,UPSTASH_REDIS_REST_TOKEN:config.token,ROOM_NAMESPACE:'test:api',VERCEL:'1',VERCEL_ENV:'production'});
  globalThis.fetch=transport;
  async function call(body,token='',extra={}){const result=await POST(new Request('https://game.test/api/game',{method:'POST',headers:{'Content-Type':'application/json','X-Room-Token':token,'x-vercel-forwarded-for':'192.0.2.1',Origin:'https://game.test',...extra},body:JSON.stringify(body)}));return {status:result.status,data:await result.json()}}
- const a=(await call({type:'CREATE',name:'Jovan',rules:'classic'})).data;assert(a.token,a.error);assert.equal(a.online,true);assert.equal(a.rules,'classic');assert(!a.seats[0].token);
- const b=(await call({type:'JOIN',code:a.code,name:'Raka'})).data;assert(b.token,b.error);
+ const a=(await call({type:'CREATE',name:'Jovan',rules:'classic'})).data;assert(a.token,a.error);assert.equal(a.roomRevision,0);assert.equal(a.online,true);assert.equal(a.rules,'classic');assert(!a.seats[0].token);
+ const b=(await call({type:'JOIN',code:a.code,name:'Raka'})).data;assert(b.token,b.error);assert.equal(b.roomRevision,1);
  assert.equal((await call({type:'START',code:a.code},a.token)).status,400);assert.equal((await call({type:'READY',code:a.code,ready:true},b.token)).status,200);
- let result=await call({type:'START',code:a.code},a.token);assert.equal(result.status,200);let state=result.data.state;assert(!state.decks);assert.equal(state.phase,'starting');const tokens=[a.token,b.token];
+ let result=await call({type:'START',code:a.code},a.token);assert.equal(result.status,200);assert.equal(result.data.roomRevision,3);let state=result.data.state;assert(!state.decks);assert.equal(state.phase,'starting');const tokens=[a.token,b.token];
  assert.equal((await call({type:'ACTION',code:a.code,action:{type:'START_ROLL',id:'wrong-seat',expectedVersion:state.version}},b.token)).status,400);
  while(state.phase==='starting'){const who=state.starting.pending[0];result=await call({type:'ACTION',code:a.code,action:{type:'START_ROLL',id:crypto.randomUUID(),expectedVersion:state.version}},tokens[who]);assert.equal(result.status,200,JSON.stringify(result.data));state=result.data.state}
  console.log('PASS Vercel guest room, token redaction, join, ready gate, hidden decks and seat authorization');
