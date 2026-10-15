@@ -16,6 +16,7 @@ async function loadBotRoute(){
 const game=()=>{
  const s=createGame({players:[{name:'Jovan',controller:'human'},{name:'Raka',controller:'bot'}],startingRoll:false},()=>.45);
  s.turn=1;s.phase='buy';s.buy=1;
+ assert.equal(s.aiComment,null,'The game factory must initialize aiComment for the typed Game.tsx startup path');
  assert.equal(decisionActor(s),1);
  assert(botCandidates(s,1).length>1);
  validateLocalState(s);

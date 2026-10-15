@@ -1,3 +1,8 @@
+HOTFIX v2.11.3 — TypeScript build TS2339
+Perbaikan: createGame() sekarang menginisialisasi aiComment:null; Groq bot v2.11.2 dipertahankan.
+Cara cek: npm test dan npm run build:vercel (memerlukan dependencies).
+Catatan: docs/HOTFIX_v2.11.3.md.
+
 MONOPOLI NUSANTARA v2.11.1 — BOARD VISUAL & PAWN IDENTITY
 
 Baca docs/UPDATE_v2.11.md untuk daftar berkas, kompatibilitas dan checklist.
