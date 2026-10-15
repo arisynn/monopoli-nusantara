@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {createGame,command,BOARD,GROUPS,DECKS,stock,rent,assets,managementError,chooseBot,decisionActor,publicState,alive} from '../lib/game.mjs';
+import {createGame,command,BOARD,GROUPS,DECKS,stock,rent,assets,managementError,chooseBot,decisionActor,publicState,alive} from '../lib/game-v1.mjs';
 const setup=(n=2)=>createGame({players:Array.from({length:n},(_,i)=>({name:'P'+i,controller:'bot'}))},()=>.3);
 const cmd=(s,actor,type,data={},rng=()=>.2)=>command(s,actor,{type,...data},rng);
 const dice=(a,b)=>{let arr=[(a-.5)/6,(b-.5)/6];return()=>arr.shift()??.3};

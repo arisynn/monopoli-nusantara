@@ -61,6 +61,15 @@ export default defineConfig(async ({ command }) => {
         : {}),
     },
     plugins: [
+      {
+        name: "nusantara-sites-runtime",
+        enforce: "pre",
+        load(id: string) {
+          if (id.split("?")[0] === new URL("./lib/server/runtime.ts", import.meta.url).pathname) {
+            return 'export {getRuntime} from "./runtime-sites";';
+          }
+        },
+      },
       vinext(),
       sites({ mockAuth: !managedLinux }),
       connectorPreview(),

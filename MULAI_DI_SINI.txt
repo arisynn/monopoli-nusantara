@@ -1,18 +1,30 @@
-MONOPOLI NUSANTARA v1
+MONOPOLI NUSANTARA v2.1 — VERCEL READY
 
-Paket berisi source modular, build produksi di dist/, tests/, dan dokumentasi.
+1. Ekstrak ZIP. Folder yang berisi package.json dan vercel.json adalah root proyek.
+2. Upload/push isi folder tersebut ke repository GitHub Anda.
+3. Import repository di Vercel atau redeploy proyek lama.
+4. Framework: Next.js. Node: 24.x.
+5. Install: npx --yes pnpm@11.25.0 install --frozen-lockfile
+6. Build: npm run build:vercel
+7. Output: .next (bukan dist).
 
-Menjalankan source:
-1. Pasang Node.js 22.13+ (disarankan Node.js 24) dan pnpm 11.
-2. Di folder proyek: pnpm install
-3. Jalankan: pnpm dev
-4. Buka alamat yang ditampilkan terminal.
+vercel.json sudah menyimpan pengaturan instalasi/build tersebut.
+Panduan lengkap, environment variables, dan solusi error:
+  docs/DEPLOY_VERCEL.md
 
-Ini aplikasi web dengan backend, bukan HTML mandiri yang dapat dibuka langsung.
-Mode room membutuhkan D1 dan header identitas platform yang tepercaya.
-Groq membutuhkan secret server GROQ_API_KEY. Tanpa key, gunakan bot lokal.
+Hotseat 2–6 pemain dan bot lokal tidak memerlukan database.
+Room online: isi UPSTASH_REDIS_REST_URL dan UPSTASH_REDIS_REST_TOKEN
+pada Environment Variables Vercel, lalu redeploy.
+Groq: tambahkan GROQ_API_KEY di server; Redis juga harus aktif.
+Jangan mengubah secret menjadi NEXT_PUBLIC_ atau mengunggah .env.local.
 
-Baca README.md, docs/RULEPACK.md, dan docs/QA.md untuk konfigurasi serta batas verifikasi.
-Untuk hosting sendiri, buat konfigurasi dan identitas proyek sendiri; jangan memakai project_id Sites yang tersimpan dalam manifest sebagai identitas baru.
+Menjalankan lokal (Node 24):
+  npx --yes pnpm@11.25.0 install --frozen-lockfile
+  npm run dev:vercel
 
-Source commit: 9de5df36f42ecffe4ec66e7cd4553d1d6fac2701
+Build produksi telah lolos pemeriksaan pada salinan source bersih.
+Hasil uji dan batas: docs/QA_VERCEL.md.
+Deployment Vercel, Upstash live, Groq live, dan browser nyata belum diuji.
+
+Source modular dan aset gambar lengkap ada dalam ZIP. Dependency dan
+folder build tidak disertakan; Vercel membangunnya saat deploy.

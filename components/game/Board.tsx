@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {BOARD,PAWNS} from '@/lib/content.mjs';
 export function coords(i:number){if(i<=10)return [5-i,5];if(i<=20)return [-5,15-i];if(i<=30)return [i-25,-5];return [5,i-35]}
+const offset=(id:number)=>({x:(id%3-1)*.24,z:id>=3?.17:-.17});
 const symbols:any={start:'↖',chance:'?',community:'✦',tax:'◇',station:'▰',utility:'⌁',jail:'▥',parking:'P',gojail:'→'};
 export default function Board({state,selected,onSelect,view='overview',cameraKey=0,reduced=false,speed=false}:{state:any,selected:number,onSelect:(n:number)=>void,view?:string,cameraKey?:number,reduced?:boolean,speed?:boolean}){
  const host=useRef<HTMLDivElement>(null),engine=useRef<any>(null),props=useRef({state,selected,onSelect,view,cameraKey,reduced,speed});props.current={state,selected,onSelect,view,cameraKey,reduced,speed};const [fallback,setFallback]=useState(false);
@@ -23,23 +24,22 @@ export default function Board({state,selected,onSelect,view='overview',cameraKey
  let owner=box(scene,x,.3,z+.41,.75,.04,.065,'#d6cdb6');owners[t.id]=owner;
  }
  const centerCanvas=document.createElement('canvas');centerCanvas.width=1024;centerCanvas.height=1024;const ctx=centerCanvas.getContext('2d')!;ctx.fillStyle='#d8bd7d';ctx.textAlign='center';ctx.font='28px Arial';ctx.letterSpacing='8px';ctx.fillText('JELAJAHI · MILIKI · MENANGKAN',512,730);ctx.font='bold 110px Georgia';ctx.letterSpacing='0px';ctx.fillText('NUSANTARA',512,850);ctx.font='24px Arial';ctx.letterSpacing='8px';ctx.fillStyle='#93aaa8';ctx.fillText('SEBUAH PERJALANAN PROPERTI',512,910);const tex=new THREE.CanvasTexture(centerCanvas);tex.colorSpace=THREE.SRGBColorSpace;const centerLabel=new THREE.Mesh(new THREE.PlaneGeometry(8.3,8.3),new THREE.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false}));centerLabel.rotation.x=-Math.PI/2;centerLabel.position.y=.226;scene.add(centerLabel);
- // A miniature archipelago, authored as low-poly geometry.
- const archipelago=new THREE.Group();archipelago.position.set(0,.24,-.8);scene.add(archipelago);
- function island(points:number[][]){const shape=new THREE.Shape();points.forEach(([x,z],i)=>i?shape.lineTo(x,-z):shape.moveTo(x,-z));shape.closePath();const mesh=new THREE.Mesh(new THREE.ExtrudeGeometry(shape,{depth:.19,bevelEnabled:true,bevelSegments:1,steps:1,bevelSize:.07,bevelThickness:.06}),mat('#829b78'));mesh.rotation.x=-Math.PI/2;mesh.receiveShadow=true;mesh.castShadow=true;archipelago.add(mesh)}
- island([[-3.4,-1.2],[-2.9,-1.5],[-1.6,.3],[-1.8,.7],[-2.3,.3],[-2.8,-.3]]);island([[-1.8,1],[-1.2,.8],[.6,1.2],[.9,1.45],[-.6,1.4]]);island([[-.9,-1.8],[.3,-2],[1,-1.1],[.5,-.3],[-.3,-.1],[-.8,-.8]]);island([[1.2,-1.5],[1.6,-1.3],[1.65,-.6],[2.1,-1.1],[2.35,-.85],[1.9,-.3],[2.15,.35],[1.85,.5],[1.4,-.2]]);island([[2.7,-.5],[3.1,-.8],[3.6,-.4],[3.8,.25],[3.3,.5],[2.9,.1]]);
- for(let i=0;i<5;i++)sphere(archipelago,.9+i*.36,.16,1.4+i*.025,.12,'#819a77');
- const tree=(x:number,z:number)=>{box(archipelago,x,.37,z,.07,.45,.07,'#9e8561');const leaves=cone(archipelago,x,.67,z,.28,.3,'#5c8068',5);leaves.rotation.y=.4;sphere(archipelago,x,.76,z,.14,'#89a878')};[[-2.8,-.9],[-2.2,-.1],[-.7,-1.25],[.55,-1.1],[1.7,-.6],[3.3,-.2]].forEach(([x,z])=>tree(x,z));
- // Monument and tiered roofs give the islands a distinct tabletop silhouette.
- box(archipelago,-1.1,.45,1.04,.12,.55,.12,'#e5d9bf');cone(archipelago,-1.1,.8,1.04,.1,.17,'#d6b16a',4);
- for(let i=0;i<3;i++){box(archipelago,-.2+i*.24,.35,1.07,.18,.27+i*.2,.2,i===1?'#9fb5c0':'#d6c9a9')}
- for(let i=0;i<3;i++)cone(archipelago,1.25,.27+i*.16,1.2,.24-i*.05,.22,'#a57950',4);
+ // Generated artwork is a texture on the physical board, separate from rules and labels.
+ const refreshTextures=()=>{scene.traverse((o:any)=>{if(o.material?.map)o.material.map.needsUpdate=true});invalidate()};
+ const imageLoader=new THREE.TextureLoader();
+ const panorama=imageLoader.load('/assets/nusantara-scene.webp',refreshTextures);panorama.colorSpace=THREE.SRGBColorSpace;
+ const artwork=new THREE.Mesh(new THREE.PlaneGeometry(8.55,5.7),new THREE.MeshBasicMaterial({map:panorama}));artwork.rotation.x=-Math.PI/2;artwork.position.set(0,.23,-1);scene.add(artwork);
  const deck=(x:number,z:number,c:string)=>{let g=new THREE.Group();for(let i=0;i<4;i++)box(g,0,.25+i*.025,0,.85,.025,1.15,i===3?c:'#dfd3b4');g.rotation.y=-.18;g.position.set(x,0,z);scene.add(g)};deck(-2.5,2.2,'#bf9c64');deck(2.5,2.2,'#719f97');
+ const deckAtlas=imageLoader.load('/assets/card-atlas.webp',refreshTextures);deckAtlas.colorSpace=THREE.SRGBColorSpace;
+ for(let i=0;i<2;i++){const texture=deckAtlas.clone();texture.repeat.set(.5,1);texture.offset.set(i*.5,0);texture.needsUpdate=true;const art=new THREE.Mesh(new THREE.PlaneGeometry(.82,1.12),new THREE.MeshBasicMaterial({map:texture}));art.rotation.x=-Math.PI/2;art.rotation.z=.18;art.position.set(i===0?-2.5:2.5,.34,2.2);scene.add(art)}
+ const tokenAtlas=imageLoader.load('/assets/pawn-atlas.webp',refreshTextures);tokenAtlas.colorSpace=THREE.SRGBColorSpace;
  const tokenGroups:THREE.Group[]=[];
- for(let id=0;id<4;id++){let g=new THREE.Group(),color=PAWNS[id].color;scene.add(g);let base=new THREE.Mesh(new THREE.CylinderGeometry(.23,.27,.1,20),mat(color));base.position.y=.36;g.add(base);
- if(id===0){box(g,0,.49,0,.42,.16,.2,color);box(g,0,.73,0,.035,.43,.035,'#e9dbc1');let sail=cone(g,.07,.7,0,.17,.36,'#f4e5c7',3);sail.rotation.z=-.25}
- if(id===1){sphere(g,0,.49,0,.17,color);sphere(g,0,.57,-.18,.13,color);let tail=cone(g,0,.46,.26,.09,.32,color,4);tail.rotation.x=Math.PI/2;[-1,1].forEach(sign=>{box(g,sign*.17,.43,.05,.12,.08,.1,color)})}
- if(id===2){box(g,0,.5,0,.32,.22,.3,color);cone(g,0,.73,0,.28,.2,'#e4caab',4);[-1,1].forEach(sign=>{sphere(g,sign*.19,.43,0,.08,'#253546')})}
- if(id===3){sphere(g,0,.53,0,.15,color);sphere(g,0,.72,-.05,.1,color);[-1,1].forEach(sign=>{let wing=cone(g,sign*.19,.63,0,.12,.37,color,3);wing.rotation.z=sign*1.1})}tokenGroups.push(g)}
+ for(let id=0;id<6;id++){
+  const g=new THREE.Group(),color=PAWNS[id].color;scene.add(g);
+  const base=new THREE.Mesh(new THREE.CylinderGeometry(.19,.22,.06,20),mat(color));base.position.y=.34;g.add(base);
+  const variant=id%4,texture=tokenAtlas.clone();texture.repeat.set(.5,.5);texture.offset.set(variant%2*.5,variant>1?0:.5);texture.needsUpdate=true;
+  const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,transparent:true,alphaTest:.06,depthWrite:false,color:id>=4?color:'#ffffff'}));sprite.scale.set(.7,.53,1);sprite.position.set(0,.63,0);g.add(sprite);tokenGroups.push(g);
+ }
  const ring=new THREE.Mesh(new THREE.RingGeometry(.43,.49,40),new THREE.MeshBasicMaterial({color:'#e8bc69',side:THREE.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.y=.306;scene.add(ring);
  let raf=0,frames=0,disposed=false,moveKey='',movement:any=null,manual=false,lastCameraKey=-1;controls.addEventListener('start',()=>{manual=true});const ray=new THREE.Raycaster(),pointer=new THREE.Vector2();let down={x:0,y:0};
  function render(){if(disposed)return;raf=0;controls.update();if(movement){const elapsed=performance.now()-movement.start,step=props.current.speed?60:140,idx=Math.floor(elapsed/step);if(idx>=movement.path.length){const [x,z]=coords(movement.path.at(-1));tokenGroups[movement.player].position.set(x+movement.ox,0,z+movement.oz);movement=null}else{const [x,z]=coords(movement.path[idx]);const g=tokenGroups[movement.player];g.position.lerp(new THREE.Vector3(x+movement.ox,Math.sin(elapsed/step*Math.PI)*.09,z+movement.oz),.38);frames=3}}
@@ -53,8 +53,8 @@ export default function Board({state,selected,onSelect,view='overview',cameraKey
  engine.current={update(){const {state:s,selected:n,view:v,reduced}=props.current;ring.position.x=coords(n)[0];ring.position.z=coords(n)[1];
  while(houses.children.length){const obj=houses.children[0] as THREE.Mesh;houses.remove(obj);obj.geometry.dispose()}
  for(const tile of BOARD){const a=s?.assets[tile.id];owners[tile.id].material=mat(a?.owner!=null?PAWNS[a.owner].color:'#d6cdb6');if(a?.mortgaged)owners[tile.id].material=mat('#7b6e88');if(a?.level){const [x,z]=coords(tile.id);if(a.level===5)box(houses,x,.48,z-.23,.36,.37,.25,'#cc765e');else for(let i=0;i<a.level;i++)box(houses,x-.27+i*.18,.4,z-.24,.13,.19,.14,'#55866b')}}
- tokenGroups.forEach((g,i)=>{let p=s?.players[i];g.visible=!!p&&!p.out;if(p){let [x,z]=coords(p.pos);g.position.set(x+(i%2? .17:-.17),0,z+(i>1?.17:-.17))}});
- if(s?.lastMove&&moveKey!==`${s.matchId}:${s.lastMove.id}`){moveKey=`${s.matchId}:${s.lastMove.id}`;if(!reduced&&!s.lastMove.jump&&s.lastMove.path.length>1){const id=s.lastMove.player;movement={...s.lastMove,start:performance.now(),ox:id%2?.17:-.17,oz:id>1?.17:-.17};const [fx,fz]=coords(s.lastMove.from??s.lastMove.path[0]);tokenGroups[id].position.set(fx+movement.ox,0,fz+movement.oz)}}
+ tokenGroups.forEach((g,i)=>{let p=s?.players[i];g.visible=!!p&&!p.out;if(p){let [x,z]=coords(p.pos);g.position.set(x+offset(i).x,0,z+offset(i).z)}});
+ if(s?.lastMove&&moveKey!==`${s.matchId}:${s.lastMove.id}`){moveKey=`${s.matchId}:${s.lastMove.id}`;if(!reduced&&!s.lastMove.jump&&s.lastMove.path.length>1){const id=s.lastMove.player;movement={...s.lastMove,start:performance.now(),ox:offset(id).x,oz:offset(id).z};const [fx,fz]=coords(s.lastMove.from??s.lastMove.path[0]);tokenGroups[id].position.set(fx+movement.ox,0,fz+movement.oz)}}
  controls.enabled=v!=='locked';if(lastCameraKey!==props.current.cameraKey){manual=false;lastCameraKey=props.current.cameraKey}if(!manual&&v==='follow'){const [x,z]=coords(s?.players[s.turn]?.pos||0);controls.target.set(x*.55,0,z*.55);camera.zoom=1.35}else if(!manual&&v==='top'){camera.position.set(0,25,.01);controls.target.set(0,0,0);camera.zoom=1}else if(!manual&&v==='overview'){camera.position.set(12,20,19);controls.target.set(0,0,0);camera.zoom=1}camera.updateProjectionMatrix();invalidate();},dispose(){}};engine.current.update();resize();
  return()=>{disposed=true;cancelAnimationFrame(raf);observer.disconnect();controls.dispose();renderer.domElement.removeEventListener('pointerdown',start);renderer.domElement.removeEventListener('pointerup',up);scene.traverse(o=>{const m=o as THREE.Mesh;if(m.geometry)m.geometry.dispose();if(m.material){const arr=Array.isArray(m.material)?m.material:[m.material];for(let mat of arr){(mat as any).map?.dispose();mat.dispose()}}});renderer.dispose();renderer.domElement.remove();engine.current=null};
  },[]);

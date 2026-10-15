@@ -31,12 +31,20 @@ try{
   assert(html.includes('Nusantara'));
   assert(html.includes('Mulai petualangan'));
   assert(!html.includes('Starter Project'));
+  assert(html.includes('/assets/nusantara-scene.webp'));
+  for(const asset of ['nusantara-scene','pawn-atlas','region-atlas','card-atlas']){
+    const bytes=await readFile(`dist/client/assets/${asset}.webp`);
+    assert.equal(bytes.subarray(0,4).toString(),'RIFF',asset);
+    assert.equal(bytes.subarray(8,12).toString(),'WEBP',asset);
+    assert(bytes.length>1000,asset);
+  }
   const scripts=[...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map(m=>m[1]);
   assert(scripts.length>0);
   for(const script of scripts){
     if(script.startsWith('/'))assert((await readFile(path.resolve('dist/client','.'+script))).length>0,script);
   }
   console.log(`PASS production SSR homepage, title, primary button and ${scripts.length} script reference(s).`);
+  console.log('PASS illustrated hero reference and all four bundled WebP assets.');
   const db=await mf.getD1Database('DB');
   const migration=await readFile('drizzle/0000_green_paper_doll.sql','utf8');
   for(const sql of migration.split('--> statement-breakpoint'))if(sql.trim())await db.prepare(sql.trim()).run();
