@@ -110,3 +110,14 @@ test('room API keeps pawn selection exclusive through CAS, reconnect and START',
  const reconnected=await route.GET(new Request(`https://game.test/api/game?code=${host.code}`,{headers:{'X-Room-Token':guest.token}}));const snapshot=await reconnected.json();assert.equal(reconnected.status,200);assert.deepEqual(snapshot.state.players.map(p=>p.pawn),started.state.players.map(p=>p.pawn));assert(!snapshot.seats.some(p=>p.token));
  const rejected=await post({type:'READY',code:host.code,ready:true,pawn:2},host.token);assert.equal(rejected.status,400);assert.match(rejected.error,/sudah dimulai/);
 });
+
+test('notification messages remain strings while Nusa artwork is rendered inside the notice',async()=>{
+ const game=read('components/game/Game.tsx'),notice=read('components/game/GameNotice.tsx');
+ // The title attribute and accessibility message need the original text, never a React element.
+ const calls=[...game.matchAll(/<GameNotice\b[^\n]*?message=([^>]*?)(?:\s+tone=|\s*\/>)/g)];
+ assert.equal(calls.length,2);assert(game.includes('message={nusaText(err)}'));assert(game.includes('message={nusaText(toast)}'));
+ assert(!game.includes('message=<NusaText'));assert(!game.includes('message={<NusaText'));
+ assert(notice.includes('message:string'));assert(notice.includes('title={message}'));assert(notice.includes('<NusaText text={message}/>'));
+ const {nusaText}=await import('../lib/currency.mjs');
+ for(const text of ['Koneksi terputus.','Biaya Rp500 ditolak.'])assert.equal(typeof nusaText(text),'string');
+});

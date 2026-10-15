@@ -1,10 +1,10 @@
 {
-  "version": "2.11.0",
+  "version": "2.11.1",
   "snapshot": "local-source",
-  "source_archive": "Monopoli_Nusantara_v2.10.zip",
-  "source_archive_sha256": "208f8983579716938301a2fbd90058f5cac91db6eb8c8244d4c567a385db3197",
+  "source_archive": "Monopoli_Nusantara_v2.11.zip",
+  "source_archive_sha256": "9d2141b1ab1f6c054e93fad88cd96e2e8cb7d05586571b7bc4bc484e41fb5665",
   "remote_sync_completed": false,
-  "scope": "Board visuals, new card artwork, Nusa visual symbol, pawn placement and selection",
+  "scope": "Hotfix TS2322: keep GameNotice.message a string, render Nusa within notice",
   "currency": {
     "name": "Nusa",
     "symbol_text_fallback": "N",
@@ -13,16 +13,16 @@
     "storage": "unchanged integer units; no migration or rounding"
   },
   "verification": {
-    "node_tests_passed": 146,
+    "node_tests_passed": 147,
     "camera_tests_passed": 7,
-    "new_v211_tests_passed": 13,
+    "new_v211_tests_passed": 14,
     "ts_tsx_syntax_parsed": 29,
     "syntax_parser": "Babel from preinstalled environment tooling; not tsc",
     "jsx_smoke": "32 cards, six-player HUD, dock buy/auction/debt, asset actions and picker; standalone JSX evaluation, not React DOM",
     "room_api": "Actual TypeScript-stripped route + in-memory CAS adapter; create/join/selection race/auth/start/reconnect tested",
     "svg_xml_passed": 17,
-    "typescript_typecheck": "not run: app dependencies/compiler unavailable",
-    "build_lint": "not run: app dependencies unavailable",
+    "typescript_typecheck": "Not run locally: compiler/dependencies unavailable; Vercel reported two TS2322 call sites corrected in this patch",
+    "build_lint": "Not rerun locally: dependencies unavailable; redeploy required",
     "browser_android": "not tested; assets inspected via Inkscape, not a full app visual test",
     "live_multiplayer": "not tested with Redis/D1 or multiple devices"
   },
@@ -30,67 +30,13 @@
     "MULAI_DI_SINI.txt",
     "README.md",
     "SOURCE_SNAPSHOT.json",
-    "app/api/game/route.ts",
-    "app/globals.css",
-    "components/game/AssetActions.tsx",
-    "components/game/AssetArt.tsx",
-    "components/game/AssetManager.tsx",
-    "components/game/AuctionPanel.tsx",
-    "components/game/Board.tsx",
-    "components/game/BoardMap.tsx",
-    "components/game/EventCard.tsx",
     "components/game/Game.tsx",
-    "components/game/HistoryPanel.tsx",
-    "components/game/InlineFeedback.tsx",
-    "components/game/MobileDock.tsx",
-    "components/game/NusaText.tsx",
-    "components/game/PawnPicker.tsx",
-    "components/game/PlayerCapsules.tsx",
-    "components/game/RuleActions.tsx",
-    "components/game/RulesPanel.tsx",
-    "components/game/SelectionView.tsx",
-    "components/game/TradeReview.tsx",
-    "components/game/TradeWizard.tsx",
-    "docs/ASSET_PROMPTS.json",
-    "docs/RELEASE_V2.md",
-    "docs/UPDATE_v2.11.md",
-    "lib/board-camera.mjs",
-    "lib/game.mjs",
-    "lib/pawn-animation.mjs",
-    "lib/pawn-layout.mjs",
-    "lib/pawns.mjs",
-    "lib/save-format.mjs",
+    "components/game/GameNotice.tsx",
+    "docs/HOTFIX_v2.11.1.md",
     "package.json",
-    "public/assets/board/chance.svg",
-    "public/assets/board/community.svg",
-    "public/assets/board/electric.svg",
-    "public/assets/board/gojail.svg",
-    "public/assets/board/jail.svg",
-    "public/assets/board/parking.svg",
-    "public/assets/board/start.svg",
-    "public/assets/board/station.svg",
-    "public/assets/board/tax.svg",
-    "public/assets/board/water.svg",
-    "public/assets/card-atlas.webp",
-    "public/assets/nusa-symbol.woff",
-    "public/assets/nusa.svg",
-    "public/assets/tokens/angklung.svg",
-    "public/assets/tokens/becak.svg",
-    "public/assets/tokens/cenderawasih.svg",
-    "public/assets/tokens/komodo.svg",
-    "public/assets/tokens/pinisi.svg",
-    "public/assets/tokens/rumah-gadang.svg",
-    "public/sw.js",
-    "scripts/create-board-assets.py",
-    "tests/asset-trade-v26.test.mjs",
-    "tests/board-2d.test.mjs",
-    "tests/board-visual-v211.test.mjs",
-    "tests/production.test.mjs",
-    "tests/vercel-build.test.mjs"
+    "tests/board-visual-v211.test.mjs"
   ],
-  "deleted_files": [
-    "public/assets/card-atlas.webp"
-  ],
+  "deleted_files": [],
   "files": {
     ".env.example": {
       "bytes": 638,
@@ -109,12 +55,12 @@
       "sha256": "236cc99acbdee5c8c64da8f36df116347ceac8017c73b764d970972a4fbb2d62"
     },
     "MULAI_DI_SINI.txt": {
-      "bytes": 1615,
-      "sha256": "ee9d633215e839672eb1c2e45047cc3c5e5eb96e444c178649d29f46b1331d89"
+      "bytes": 1785,
+      "sha256": "de6999cf6294402e532ce4dee063fb7090d99627a4ca71469f1c31e041578429"
     },
     "README.md": {
-      "bytes": 8392,
-      "sha256": "8f5e4ac39df9377104c23975b2b676b75d98c62c2b055fe64e2c3b0ec94d89ea"
+      "bytes": 8579,
+      "sha256": "8a4104e41f63270fbfbbd4c9692e88ecdc71764839932d67b50604a861668cc0"
     },
     "app/api/game/route.ts": {
       "bytes": 7206,
@@ -201,12 +147,12 @@
       "sha256": "be98a5d142146fbf719c80be97200c6bcf10f8a61ff2f6b418abe8d5c1d74a9d"
     },
     "components/game/Game.tsx": {
-      "bytes": 56899,
-      "sha256": "0e0d9ef079f765b86d3ba9653e9f9f3e707d39800a7edd5bedca97c77e1d162a"
+      "bytes": 56865,
+      "sha256": "15c1c55298510692baeb36ac986e0185f7efa41c69155d584dd0de9c4f22dd91"
     },
     "components/game/GameNotice.tsx": {
-      "bytes": 926,
-      "sha256": "26d792df104c2f2f7765c85a8b14225c56bcc4a8e1f09523eb62b6cfbd29c300"
+      "bytes": 978,
+      "sha256": "aa5cd5757715278ded588bee19b2b9a67d5d350f2ffc94c29c7bcb108cbf807e"
     },
     "components/game/HistoryPanel.tsx": {
       "bytes": 2415,
@@ -540,6 +486,10 @@
       "bytes": 6629,
       "sha256": "3923ea4117bb15035404cc894ab3e875312380299ce6b600ee9aea6b25d6956a"
     },
+    "docs/HOTFIX_v2.11.1.md": {
+      "bytes": 1820,
+      "sha256": "9efe053e75b6c8735ac4122daf4e1fce1b2e4ef8e00e99835397bc8a98d092ca"
+    },
     "docs/QA.md": {
       "bytes": 3298,
       "sha256": "40760c0060de11b98458f335674cbff1d17fe1ae455c831f93244103767e094d"
@@ -766,7 +716,7 @@
     },
     "package.json": {
       "bytes": 2750,
-      "sha256": "4185cc8a35dd4b06866c6037e63c0c7a00c4e23660cba037bb0ace71e9639d65"
+      "sha256": "bb28166709df70fe44d7dbea48b08c77a39687f0de3d928c75fe3610c0daa7fb"
     },
     "pnpm-lock.yaml": {
       "bytes": 345021,
@@ -953,8 +903,8 @@
       "sha256": "151064c9c5cfa3828d19f20b087695ca42646afc6cdcf1ed67ce4908dcaa5cc5"
     },
     "tests/board-visual-v211.test.mjs": {
-      "bytes": 12433,
-      "sha256": "d97447f7acfb2f04bc804fe8eaf1e5597f392b17f255c349bef68d764aae38c0"
+      "bytes": 13352,
+      "sha256": "8418c6a0afa02c56d6a6258e59ca930042d09e3c9d0278f4313919f6141db510"
     },
     "tests/classic.test.mjs": {
       "bytes": 13401,

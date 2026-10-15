@@ -1,4 +1,4 @@
-MONOPOLI NUSANTARA v2.11 — BOARD VISUAL & PAWN IDENTITY
+MONOPOLI NUSANTARA v2.11.1 — BOARD VISUAL & PAWN IDENTITY
 
 Baca docs/UPDATE_v2.11.md untuk daftar berkas, kompatibilitas dan checklist.
 Basis v2.10 dipertahankan. Tidak ada commit/reset/push/deployment.
@@ -12,7 +12,7 @@ Field pawn existing ikut save dan public state; pilihan lobby tervalidasi server
 Aturan, geometri 40 petak, kamera, dadu dan fitur gameplay v2.10 dipertahankan.
 
 VERIFIKASI
-146 tes regresi + 7 tes kamera lulus.
+147 tes regresi + 7 tes kamera lulus.
 Sintaks 29 berkas TS/TSX diperiksa dengan Babel, bukan TypeScript penuh.
 Tes API memakai route asli dan store CAS simulasi, bukan backend live.
 Build, lint, React DOM/Android dan room dua perangkat belum diverifikasi.
@@ -32,3 +32,7 @@ Aset sudah disertakan; Python/fontTools tidak dibutuhkan untuk menjalankan game.
 Uji mobile portrait, 1–6 pion per tile, pemilihan, gerakan/kartu/penjara,
 font fallback dan reconnect sesuai docs/UPDATE_v2.11.md.
 Paket belum dinyatakan siap produksi.
+
+HOTFIX v2.11.1
+Dua prop GameNotice.message kembali string; simbol dirender di dalam GameNotice.
+Detail: docs/HOTFIX_v2.11.1.md. Build Vercel perlu dijalankan kembali.
