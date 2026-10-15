@@ -1,23 +1,23 @@
-# Monopoli Nusantara v2.10 — Lelang Persisten & Nusa
+# Monopoli Nusantara v2.11 — Board Visual & Pawn Identity
 
-Web game properti 2D berbahasa Indonesia. Papan SVG vektor, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
+Web game properti 2D berbahasa Indonesia. Papan SVG, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
 
-v2.10 menghapus toast gameplay rutin, memindahkan feedback penting ke HUD, mempertahankan satu modul lelang sampai hasil otoritatif tampil, dan memakai grid pemain adaptif serta timing dadu/pion bersama. Nusa (N) diterapkan dengan 10 unit integer tersimpan per Nusa; saldo, ekonomi dan payload lama tidak dimigrasikan atau dibulatkan.
+v2.11 menyempurnakan board: monogram Nusa, artwork spesial dan kartu yang baru, enam pion SVG berbeda yang bisa dipilih, serta cluster pion simetris. Aset kartu lama dihapus. Nilai ekonomi, aturan, kamera, dadu dan Smart Gameplay Flow v2.10 dipertahankan.
 
-**Status verifikasi:** 133 tes regresi dan 7 tes kamera lulus. Empat pertandingan referensi menghasilkan 2.398 transisi ekonomi identik dengan v2.9. TypeScript/TSX, build, lint, DOM/browser dan multiplayer live belum diverifikasi karena dependency tidak tersedia. Lihat [audit, perubahan, kompatibilitas Nusa dan QA v2.10](docs/UPDATE_v2.10.md).
+**Status verifikasi:** 146 tes regresi + 7 tes kamera lulus; sintaks 29 berkas TS/TSX diperiksa dengan parser Babel. TypeScript penuh, build, lint, React DOM/Android dan room live belum terverifikasi. Lihat [perubahan, kompatibilitas dan checklist v2.11](docs/UPDATE_v2.11.md).
 
 ## Fitur tersedia
 
-- Gameplay HP portrait menggunakan tinggi layar aktif; daftar pemain dapat digeser mendatar. Setup, aset, barter, riwayat, dan keputusan panjang menggunakan panel yang dapat digulir. Beranda dapat digulir pada layar pendek.
+- Gameplay HP portrait menggunakan tinggi layar aktif; kapsul pemain memakai grid adaptif 2–6 pemain. Setup, aset, barter, riwayat, dan keputusan panjang menggunakan panel yang dapat digulir. Beranda dapat digulir pada layar pendek.
 - Papan SVG 40 petak dengan empat sudut besar dan pita warna klasik. Dua tampilan: Seluruh papan dan Dekat/Ikuti pemain. Geser dan pinch zoom langsung pada papan tanpa tombol, minimap, atau label yang menutupi petak. Jelajah manual tetap aktif sampai tombol Ikuti pemain ditekan.
 - Lima slot save lokal, arsip permainan sebelumnya, ekspor/impor JSON tervalidasi, serta pengaturan yang diingat di perangkat.
 
 - Hotseat 2–6 manusia; duel bot lokal; duel melalui Groq saat secret terpasang.
 - Room privat 2–6 manusia, lobby siap, kursi bertoken, pemulihan sesi perangkat yang sama, state otoritatif di server.
-- Aset gambar orisinal tetap disertakan. Beranda, HUD, sertifikat, dan keputusan kartu kini memakai teks, CSS, dan ikon vektor yang telah tersedia.
+- Pion SVG orisinal dapat dipilih di setup/lobby, lalu konsisten pada board dan HUD. Kartu Kesempatan/Dana Umum memakai artwork baru; ilustrasi regional existing dipakai pada kota.
 - Aturan dasar C1009: lempar awal, lelang terbuka, lelang stok bangunan langka, barter saat utang/di luar giliran, pilihan langsung tebus aset tergadai, dan opsi klaim sewa manual.
 - 40 petak, 28 sertifikat, 32 kartu, dadu kembar, penjara, sewa, pajak, lelang, gadai, bangunan merata, barter dan tawaran balik, utang/kebangkrutan/pemenang.
-- Papan tidak memakai WebGL, Three.js, atau tekstur gambar. Teks, ikon, bangunan, dan pion tetap vektor saat diperbesar. Efek suara, animasi cepat, reduced motion, serah giliran tetap tersedia.
+- Papan tidak memakai WebGL atau Three.js. Teks, ikon spesial, bangunan dan pion tetap vektor saat diperbesar; strip kota memakai ilustrasi WebP existing. Efek suara, animasi cepat, reduced motion, serah giliran tetap tersedia.
 - Save lokal IndexedDB dengan salinan localStorage; service worker untuk cache shell setelah pemuatan awal. Offline perlu origin HTTPS dan cache yang telah terisi. Mode room dan Groq membutuhkan koneksi.
 
 Baca `docs/RULEPACK.md` untuk adaptasi yang eksplisit dan batas verifikasi v2. Baca `docs/QA_BOARD_2D.md` untuk pemeriksaan dasar kamera, serta `docs/UPDATE_v2.4.md` untuk peningkatan UX dan batas pengujian perangkat nyata.

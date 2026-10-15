@@ -1,4 +1,5 @@
 'use client';
+import NusaText from './NusaText';
 import {useState} from 'react';
 import {Search} from 'lucide-react';
 import {nusaText} from '@/lib/currency.mjs';
@@ -14,7 +15,7 @@ export default function HistoryPanel({events}:{events:{id:number;text:string;typ
   <select aria-label="Saring riwayat" value={filter} onChange={e=>setFilter(e.target.value)}><option value="semua">Semua</option><option value="transaksi">Transaksi</option></select></div>
   <ol className="history-timeline">{rows.map((event,index)=><li key={event.id}>
    {(index===0||rows[index-1].turn!==event.turn)&&<h3>Putaran {event.turn}</h3>}
-   <button type="button" className={`history-entry ${expanded===event.id?'expanded':''}`} aria-expanded={expanded===event.id} onClick={()=>setExpanded(old=>old===event.id?null:event.id)}><span className="history-sequence" aria-label={`Peristiwa ${event.id}`}>#{event.id}</span><div><small>{labels[event.type]||'Peristiwa'}</small><p>{nusaText(event.text)}</p></div></button>
+   <button type="button" className={`history-entry ${expanded===event.id?'expanded':''}`} aria-expanded={expanded===event.id} onClick={()=>setExpanded(old=>old===event.id?null:event.id)}><span className="history-sequence" aria-label={`Peristiwa ${event.id}`}>#{event.id}</span><div><small>{labels[event.type]||'Peristiwa'}</small><p><NusaText text={nusaText(event.text)}/></p></div></button>
   </li>)}</ol>
   {!rows.length&&<p className="simple-empty">{events.length?'Tidak ada riwayat yang cocok. Coba kata lain.':'Belum ada peristiwa.'}</p>}
   <p className="simple-hint">Menampilkan {rows.length} dari {events.length} peristiwa yang tersimpan.</p>

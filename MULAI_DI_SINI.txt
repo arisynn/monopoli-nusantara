@@ -1,20 +1,22 @@
-MONOPOLI NUSANTARA v2.10 — LELANG PERSISTEN, HUD RINGKAS & NUSA
+MONOPOLI NUSANTARA v2.11 — BOARD VISUAL & PAWN IDENTITY
 
-Baca docs/UPDATE_v2.10.md untuk audit, implementasi, batas QA dan checklist.
-Basis v2.9 tetap tersedia. Tidak ada commit/reset/push/deployment.
+Baca docs/UPDATE_v2.11.md untuk daftar berkas, kompatibilitas dan checklist.
+Basis v2.10 dipertahankan. Tidak ada commit/reset/push/deployment.
 
 PERUBAHAN
-Toast gameplay rutin dihapus; feedback penting berada inline pada HUD/dialog.
-Lelang memakai satu modul stabil, peserta/highest dan hasil final dari engine.
-Grid kapsul 2–6 pemain; dadu CSS memakai hasil sah dan timing bersama pion.
-Mata uang Nusa: 1 N = 10 unit integer tersimpan, dengan ketelitian 0,1 N.
-Tidak membagi/membulatkan saldo save atau payload multiplayer lama.
+Monogram Nusa baru dengan fallback teks N, tanpa mengubah nilai uang.
+Artwork petak spesial dan kartu baru; card-atlas lama dihapus.
+Enam pion SVG berbeda bentuk, pemilih di setup dan lobby.
+Pion tunggal centered; cluster dan anchor animasi mengikuti penghuni petak.
+Field pawn existing ikut save dan public state; pilihan lobby tervalidasi server.
+Aturan, geometri 40 petak, kamera, dadu dan fitur gameplay v2.10 dipertahankan.
 
-STATUS VERIFIKASI
-133 tes regresi + 7 tes kamera lulus.
-Empat pertandingan referensi: 2.398 transisi ekonomi identik dengan v2.9.
-TypeScript/TSX, build, lint, DOM/Android dan room live belum diverifikasi.
-Dependency tidak tersedia; instalasi yang sebelumnya terhambat tidak diulang.
+VERIFIKASI
+146 tes regresi + 7 tes kamera lulus.
+Sintaks 29 berkas TS/TSX diperiksa dengan Babel, bukan TypeScript penuh.
+Tes API memakai route asli dan store CAS simulasi, bukan backend live.
+Build, lint, React DOM/Android dan room dua perangkat belum diverifikasi.
+Dependency tidak tersedia; instalasi gagal sebelumnya tidak diulang.
 
 MENJALANKAN (Node 24, pnpm 11.25.0)
 1. Root adalah folder berisi package.json.
@@ -24,7 +26,9 @@ MENJALANKAN (Node 24, pnpm 11.25.0)
 5. npm run build:vercel
 6. npm run dev:vercel
 Jalur Vinext/Cloudflare tetap mengikuti README.md dan konfigurasi asli.
-Deploy frontend dan backend bersama agar hasil lelang terstruktur tersedia.
+Deploy frontend dan backend bersama agar pilihan pion lobby tervalidasi.
+Aset sudah disertakan; Python/fontTools tidak dibutuhkan untuk menjalankan game.
 
-Uji lelang bot/multiplayer, reconnect, dadu, enam pemain dan input Nusa
-sesuai checklist docs/UPDATE_v2.10.md. Paket belum dinyatakan siap produksi.
+Uji mobile portrait, 1–6 pion per tile, pemilihan, gerakan/kartu/penjara,
+font fallback dan reconnect sesuai docs/UPDATE_v2.11.md.
+Paket belum dinyatakan siap produksi.

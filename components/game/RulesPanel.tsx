@@ -1,4 +1,5 @@
 'use client';
+import NusaText from './NusaText';
 import {useState} from 'react';
 const topics=[
  ['Mulai & giliran','Lempar awal menentukan pemain pertama. Lempar dua dadu untuk berjalan. Melewati Mulai memberi N 200. Dadu kembar memberi lemparan lagi; tiga kali kembar berturut-turut mengirim ke penjara.'],
@@ -11,5 +12,5 @@ const topics=[
 ];
 export default function RulesPanel(){
  const [topic,setTopic]=useState(0);
- return <section className="rules-compact"><h2>Aturan permainan</h2><p className="modal-intro">Bertahan hingga menjadi pemain terakhir.</p><label className="field-label">Topik<select aria-label="Topik panduan" value={topic} onChange={e=>setTopic(Number(e.target.value))}>{topics.map(([name],i)=><option key={name} value={i}>{name}</option>)}</select></label><article><h3>{topics[topic][0]}</h3><p>{topics[topic][1]}</p></article><p className="fine">Semua harga memakai Nusa (N), dengan ketelitian 0,1 N. Nilai pertandingan lama tetap sama.</p><details className="reference-note"><summary>Acuan & catatan edisi</summary><p>Aturan dasar mengacu Monopoly C1009 ©2016/cetakan 2017. Nama, gambar, dan narasi kartu bertema Nusantara. Penutupan lelang dan hasil awal seri memakai prosedur digital. Bukan produk resmi Hasbro; isi kartu dan sertifikat belum diverifikasi terhadap set fisik.</p></details></section>;
+ return <section className="rules-compact"><h2>Aturan permainan</h2><p className="modal-intro">Bertahan hingga menjadi pemain terakhir.</p><label className="field-label">Topik<select aria-label="Topik panduan" value={topic} onChange={e=>setTopic(Number(e.target.value))}>{topics.map(([name],i)=><option key={name} value={i}>{name}</option>)}</select></label><article><h3>{topics[topic][0]}</h3><p><NusaText text={topics[topic][1]}/></p></article><p className="fine">Semua harga memakai Nusa (N), dengan ketelitian 0,1 N. Nilai pertandingan lama tetap sama.</p><details className="reference-note"><summary>Acuan & catatan edisi</summary><p>Aturan dasar mengacu Monopoly C1009 ©2016/cetakan 2017. Nama, gambar, dan narasi kartu bertema Nusantara. Penutupan lelang dan hasil awal seri memakai prosedur digital. Bukan produk resmi Hasbro; isi kartu dan sertifikat belum diverifikasi terhadap set fisik.</p></details></section>;
 }
