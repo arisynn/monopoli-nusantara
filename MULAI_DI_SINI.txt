@@ -1,4 +1,6 @@
-MONOPOLI NUSANTARA v2.2 — PORTRAIT 2.5D / VERCEL READY
+MONOPOLI NUSANTARA v2.6 — PAPAN 2D / VERCEL READY
+
+Update v2.6: Kelola Aset dengan cari/filter dan Barter empat langkah. Desain asli dipertahankan. Detail: docs/UPDATE_v2.6.md.
 
 1. Ekstrak ZIP. Folder yang berisi package.json dan vercel.json adalah root proyek.
 2. Upload/push isi folder tersebut ke repository GitHub Anda.
@@ -30,7 +32,7 @@ Baru di v2.2:
 - Lima slot lokal, ekspor/impor JSON, arsip permainan sebelumnya.
 - Pengaturan tersimpan dan penanganan koneksi room diperbaiki.
 
-Build produksi Next.js/Vercel lulus. Hasil uji dan batas v2.2:
+Build produksi v2.2 pernah diuji; build v2.6 belum bisa diverifikasi di lingkungan ini. Hasil uji dan batas v2.2:
   docs/QA_PORTRAIT.md
 Riwayat verifikasi v2.1: docs/QA_VERCEL.md.
 Deployment Vercel, Upstash live, Groq live, dan browser nyata belum diuji.

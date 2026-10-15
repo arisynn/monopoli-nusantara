@@ -1,6 +1,8 @@
-# Monopoli Nusantara v2.4 — Papan 2D & Navigasi Praktis
+# Monopoli Nusantara v2.6 — Aset & Barter Lebih Mudah
 
 Web game properti 2D berbahasa Indonesia. Papan SVG vektor, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
+
+v2.6: Kelola Aset kini memakai daftar dengan pencarian, filter, dan aksi relevan; Barter memakai empat langkah dengan ringkasan, termasuk tawaran balik. Tema navy/emas, papan, pion, animasi dadu, dan mesin aturan tidak berubah. Lihat `docs/UPDATE_v2.6.md`.
 
 ## Fitur tersedia
 
@@ -95,3 +97,8 @@ Deployment Vercel mengikuti pengaturan akses proyek Vercel Anda. Data room D1 ti
 - Logika aturan, pengambilan keputusan bot, struktur data dan penyimpanan tidak diubah.
 
 Pengujian source code: jalankan `npm run test` dan `npm run build:vercel` setelah dependensi terinstal melalui `pnpm install`; pengujian fitur di browser tetap diperlukan.
+
+
+## Pembaruan v2.5: Pion bergerak & lemparan penentu giliran
+
+Lemparan pembuka memilih pemain pertama (pion tidak berjalan). Setelah itu, dadu permainan menggerakkan pion satu per satu dengan kamera mengekor tanpa mengunci pion di tengah; aksi berikutnya menunggu perjalanan selesai. Baca `docs/UPDATE_v2.5.md`.

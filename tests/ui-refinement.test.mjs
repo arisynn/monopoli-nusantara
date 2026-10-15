@@ -17,9 +17,21 @@ test('dice animation respects the actual dice result and cannot intercept pointe
  assert(css.includes('.board-dice-effect{position:absolute;inset:0;z-index:3;display:grid;place-items:center;pointer-events:none'));
  assert(css.includes('@media(prefers-reduced-motion:reduce)'));
 });
-test('trade and asset navigation use compact popup pickers and keep original management actions',()=>{
+test('v2.6 uses a compact asset manager and a guided barter without changing board controls',()=>{
  const game=read('../components/game/Game.tsx');
- for(const part of ['tradeAssetTrigger(myId', 'tradeAssetTrigger(trade.to', "sheet==='tradePicker'", "sheet==='assetPicker'", "sheet==='manage'", 'pickerQuery', 'managementError(s,myId,selected,type)'])assert(game.includes(part),part);
- assert(game.includes("act('OFFER',{trade},myId)"));assert(game.includes("act('COUNTER',{trade})"));
- assert(game.includes("openManage(t.id)"));
+ const assets=read('../components/game/AssetManager.tsx');
+ const wizard=read('../components/game/TradeWizard.tsx');
+ const review=read('../components/game/TradeReview.tsx');
+ assert(game.includes('<AssetManager game={s}'));
+ assert(game.includes('<TradeWizard key='));
+ assert(game.includes('mode="counter"'));
+ assert(game.includes("act('OFFER',{trade:submitted},myId)"));
+ assert(game.includes("act('COUNTER',{trade:submitted})"));
+ assert(game.includes("sheet==='manage'"));
+ assert(game.includes('managementError(s,myId,selected,type)'));
+ for(const label of ['Cari kota atau properti','Bisa bangun','Digadai','Set lengkap','onAction'])assert(assets.includes(label),label);
+ for(const label of ['Pilih lawan','Aset kamu','Aset lawan','Konfirmasi','trade.giveCards','trade.takeCards','GROUPS[t.group].ids.some'])assert(wizard.includes(label),label);
+ assert(review.includes('Ringkasan pertukaran'));
+ assert(!game.includes("sheet==='tradePicker'"));
+ assert(!game.includes("sheet==='assetPicker'"));
 });

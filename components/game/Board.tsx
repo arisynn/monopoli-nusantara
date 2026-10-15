@@ -1,15 +1,16 @@
 'use client';
-import {useEffect,useRef} from 'react';
+import {useEffect,useLayoutEffect,useRef} from 'react';
 import {BoardArtwork,BoardTokens} from './BoardMap';
 import DiceRollFx from './DiceRollFx';
-import {BoardGesture,fitCamera,closeCamera,centerCamera,resizeCamera,zoomCamera,panCamera,worldPoint,hitTile,tokenPoint,tileCenter,scaleLimits} from '@/lib/board-camera.mjs';
+import {pawnRoute,samplePawnRoute} from '@/lib/pawn-animation.mjs';
+import {BoardGesture,fitCamera,closeCamera,centerCamera,resizeCamera,zoomCamera,panCamera,worldPoint,hitTile,tokenPoint,tileCenter,scaleLimits,keepPointVisible} from '@/lib/board-camera.mjs';
 
-type Props={state:any,selected:number,onSelect:(id:number)=>void,view?:string,cameraKey?:number,reduced?:boolean,speed?:boolean,rolling?:boolean,onCameraModeChange?:(mode:string)=>void};
-export default function Board({state,selected,onSelect,view='follow',cameraKey=0,reduced=false,speed=false,rolling=false,onCameraModeChange}:Props){
+type Props={state:any,selected:number,onSelect:(id:number)=>void,view?:string,cameraKey?:number,reduced?:boolean,speed?:boolean,rolling?:boolean,onMoveComplete?:(moveId:number)=>void,onMoveStep?:(moveId:number,step:number)=>void,onCameraModeChange?:(mode:string)=>void};
+export default function Board({state,selected,onSelect,view='follow',cameraKey=0,reduced=false,speed=false,rolling=false,onMoveComplete,onMoveStep,onCameraModeChange}:Props){
  const host=useRef<HTMLDivElement>(null),world=useRef<SVGGElement>(null),runtime=useRef<any>(null);
- const props=useRef({state,onSelect,view,cameraKey,reduced,speed,onCameraModeChange});props.current={state,onSelect,view,cameraKey,reduced,speed,onCameraModeChange};
+ const props=useRef({state,onSelect,view,cameraKey,reduced,speed,rolling,onMoveComplete,onMoveStep,onCameraModeChange});props.current={state,onSelect,view,cameraKey,reduced,speed,rolling,onMoveComplete,onMoveStep,onCameraModeChange};
  useEffect(()=>{
-  const root=host.current!;let camera=fitCamera(root.clientWidth,root.clientHeight),frame=0,animation:any=null,disposed=false;
+  const root=host.current!;let camera=fitCamera(root.clientWidth,root.clientHeight),frame=0,launchTimer:ReturnType<typeof setTimeout>|null=null,animation:any=null,disposed=false;
   let match=props.current.state?.matchId,moveId=props.current.state?.lastMove?.id;
   const gesture=new BoardGesture();let currentPoint=activePoint(),previousMode:string|undefined;
   function activePoint(){const s=props.current.state,p=s?.players[s.turn];return p?tokenPoint(p.pos,p.id):tileCenter(0)}
@@ -22,13 +23,30 @@ export default function Board({state,selected,onSelect,view='follow',cameraKey=0
    if(previousMode!==mode){previousMode=mode;props.current.onCameraModeChange?.(mode)}
   }
   function positionPawn(id:number,point:{x:number,y:number}){root.querySelector(`[data-pawn="${id}"]`)?.setAttribute('transform',`translate(${point.x} ${point.y})`)}
-  function stopAnimation(){cancelAnimationFrame(frame);frame=0;if(animation){const p=props.current.state?.players[animation.player];if(p)positionPawn(p.id,tokenPoint(p.pos,p.id));animation=null}currentPoint=activePoint()}
-  function follow(point=currentPoint){if(gesture.following&&props.current.view==='follow')camera=centerCamera(camera,point)}
+  function stopAnimation(){
+   if(launchTimer!==null){clearTimeout(launchTimer);launchTimer=null}
+   cancelAnimationFrame(frame);frame=0;
+   if(animation){const p=props.current.state?.players[animation.player];if(p)positionPawn(p.id,tokenPoint(p.pos,p.id));animation=null}
+   currentPoint=activePoint();
+  }
+  // Smooth trailing view: unlike centering every frame, this visibly moves the pawn.
+  function follow(point=currentPoint){if(gesture.following&&props.current.view==='follow')camera=keepPointVisible(camera,point)}
+  function finishAnimation(){
+   const a=animation;if(!a)return;
+   animation=null;if(launchTimer!==null){clearTimeout(launchTimer);launchTimer=null}
+   cancelAnimationFrame(frame);frame=0;
+   const p=props.current.state?.players[a.player];if(p)positionPawn(a.player,tokenPoint(p.pos,a.player));
+   currentPoint=activePoint();follow();apply();
+   props.current.onMoveComplete?.(a.id);
+  }
   function tick(time:number){
-   frame=0;if(!animation||disposed||document.hidden)return;
-   const a=animation,elapsed=(time-a.start)/a.step,index=Math.min(Math.floor(elapsed),a.points.length-2),t=Math.min(1,elapsed-index),smooth=t*t*(3-2*t),from=a.points[index],to=a.points[index+1];
-   currentPoint={x:from.x+(to.x-from.x)*smooth,y:from.y+(to.y-from.y)*smooth};positionPawn(a.player,currentPoint);follow();apply();
-   if(elapsed>=a.points.length-1){animation=null;currentPoint=activePoint();follow();apply()}else frame=requestAnimationFrame(tick);
+   frame=0;if(!animation||disposed)return;
+   if(document.hidden){finishAnimation();return}
+   const a=animation,point=samplePawnRoute(a.points,time-a.start,a.step);
+   if(!point){finishAnimation();return}
+   currentPoint=point;positionPawn(a.player,point);follow();apply();
+   if(point.step!==a.lastStep){a.lastStep=point.step;props.current.onMoveStep?.(a.id,point.step)}
+   if(point.done)finishAnimation();else frame=requestAnimationFrame(tick);
   }
   function setView(){
    gesture.clear();gesture.resume();currentPoint=animation?currentPoint:activePoint();
@@ -38,13 +56,21 @@ export default function Board({state,selected,onSelect,view='follow',cameraKey=0
    const s=props.current.state,m=s?.lastMove,newMatch=s?.matchId!==match;
    if(newMatch){stopAnimation();match=s?.matchId;moveId=m?.id;setView();return}
    if(m&&m.id!==moveId){
-    stopAnimation();moveId=m.id;currentPoint=activePoint();
-    if(!props.current.reduced&&!document.hidden&&!m.jump&&m.path?.length){
-     const ids=[m.from??m.path[0],...m.path],points=ids.map((id:number)=>tokenPoint(id,m.player));
-     animation={player:m.player,points,start:performance.now(),step:props.current.speed?65:150};currentPoint=points[0];positionPawn(m.player,currentPoint);frame=requestAnimationFrame(tick);
+    stopAnimation();moveId=m.id;
+    const points=pawnRoute(m);
+    if(points.length>=2&&!props.current.reduced&&!document.hidden){
+     animation={id:m.id,player:m.player,points,start:0,step:props.current.speed?115:225,lastStep:-1};
+     currentPoint=points[0];positionPawn(m.player,currentPoint);
+     // Show the settled dice first; otherwise a short move happens behind the dice.
+     launchTimer=setTimeout(()=>{
+      launchTimer=null;if(disposed||!animation||animation.id!==m.id)return;
+      animation.start=performance.now();frame=requestAnimationFrame(tick);
+     },props.current.rolling?840:340);
+    }else{
+     props.current.onMoveComplete?.(m.id);
     }
    }
-   if(props.current.reduced&&animation)stopAnimation();
+   if(props.current.reduced&&animation){const id=animation.id;stopAnimation();props.current.onMoveComplete?.(id)}
    if(!animation)currentPoint=activePoint();follow();apply();
   }
   const local=(e:{clientX:number,clientY:number})=>{const r=root.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top}};
@@ -69,12 +95,12 @@ export default function Board({state,selected,onSelect,view='follow',cameraKey=0
   }
   function focusTile(e:FocusEvent){const element=e.target as Element;if(!element.matches('[data-tile]:focus-visible'))return;const point=tileCenter(Number(element.getAttribute('data-tile')));gesture.explore();camera=centerCamera(camera,point);apply()}
   const observer=new ResizeObserver(()=>{if(!root.clientWidth||!root.clientHeight)return;camera=props.current.view==='overview'&&gesture.following?fitCamera(root.clientWidth,root.clientHeight):resizeCamera(camera,root.clientWidth,root.clientHeight);follow();apply()});observer.observe(root);
-  function visibility(){if(document.hidden){gesture.clear();root.classList.remove('dragging');stopAnimation()}else {currentPoint=activePoint();follow();apply()}}
+  function visibility(){if(document.hidden){gesture.clear();root.classList.remove('dragging');if(animation)finishAnimation();else stopAnimation()}else {currentPoint=activePoint();follow();apply()}}
   root.addEventListener('pointerdown',down);root.addEventListener('pointermove',move);root.addEventListener('pointerup',up);root.addEventListener('pointercancel',up);root.addEventListener('lostpointercapture',up);root.addEventListener('wheel',wheel,{passive:false});root.addEventListener('keydown',key);root.addEventListener('focusin',focusTile);document.addEventListener('visibilitychange',visibility);
   runtime.current={update,setView,zoom,jump(point:{x:number,y:number}){gesture.explore();camera=centerCamera(camera,point);apply()}};setView();
   return()=>{disposed=true;stopAnimation();gesture.clear();observer.disconnect();root.removeEventListener('pointerdown',down);root.removeEventListener('pointermove',move);root.removeEventListener('pointerup',up);root.removeEventListener('pointercancel',up);root.removeEventListener('lostpointercapture',up);root.removeEventListener('wheel',wheel);root.removeEventListener('keydown',key);root.removeEventListener('focusin',focusTile);document.removeEventListener('visibilitychange',visibility);runtime.current=null};
  },[]);
- useEffect(()=>runtime.current?.update(),[state,reduced,speed]);
+ useLayoutEffect(()=>runtime.current?.update(),[state,reduced,speed]);
  useEffect(()=>runtime.current?.setView(),[view,cameraKey]);
  return <div className="board-2d" ref={host} tabIndex={0} role="region" aria-label="Papan 2D Nusantara, 40 petak. Geser untuk menjelajah, cubit dua jari atau gulir untuk zoom. Tombol panah untuk menggeser. Tab untuk memilih petak.">
   <svg className="board-vector" width="100%" height="100%" aria-label="Peta permainan"><g ref={world}><BoardArtwork state={state} selected={selected}/><BoardTokens state={state}/></g></svg>
