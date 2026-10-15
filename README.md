@@ -1,11 +1,11 @@
-# Monopoli Nusantara v2.3 — Papan 2D & Kamera Pintar
+# Monopoli Nusantara v2.4 — Papan 2D & Navigasi Praktis
 
 Web game properti 2D berbahasa Indonesia. Papan SVG vektor, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
 
 ## Fitur tersedia
 
 - Beranda dan gameplay HP portrait mengikuti tinggi layar aktif. Papan dan tombol aksi utama berada dalam satu layar; setup, aset, barter, riwayat, dan keputusan panjang memakai panel terpisah yang dapat digulir.
-- Papan SVG 40 petak dengan empat sudut besar dan pita warna klasik. Dua tampilan: Seluruh papan dan Dekat/Ikuti pemain. Geser, pinch zoom, tombol +/−, serta minimap dengan batas area papan. Jelajah manual tetap aktif sampai tombol Ikuti pemain ditekan.
+- Papan SVG 40 petak dengan empat sudut besar dan pita warna klasik. Dua tampilan: Seluruh papan dan Dekat/Ikuti pemain. Geser dan pinch zoom langsung pada papan tanpa tombol, minimap, atau label yang menutupi petak. Jelajah manual tetap aktif sampai tombol Ikuti pemain ditekan.
 - Lima slot save lokal, arsip permainan sebelumnya, ekspor/impor JSON tervalidasi, serta pengaturan yang diingat di perangkat.
 
 - Hotseat 2–6 manusia; duel bot lokal; duel melalui Groq saat secret terpasang.
@@ -16,7 +16,7 @@ Web game properti 2D berbahasa Indonesia. Papan SVG vektor, antarmuka React, sha
 - Papan tidak memakai WebGL, Three.js, atau tekstur gambar. Teks, ikon, bangunan, dan pion tetap vektor saat diperbesar. Efek suara, animasi cepat, reduced motion, serah giliran tetap tersedia.
 - Save lokal IndexedDB dengan salinan localStorage; service worker untuk cache shell setelah pemuatan awal. Offline perlu origin HTTPS dan cache yang telah terisi. Mode room dan Groq membutuhkan koneksi.
 
-Baca `docs/RULEPACK.md` untuk adaptasi yang eksplisit dan batas verifikasi v2. Baca `docs/QA_BOARD_2D.md` untuk pemeriksaan v2.3 dan batas verifikasi perangkat nyata.
+Baca `docs/RULEPACK.md` untuk adaptasi yang eksplisit dan batas verifikasi v2. Baca `docs/QA_BOARD_2D.md` untuk pemeriksaan dasar kamera, serta `docs/UPDATE_v2.4.md` untuk peningkatan UX dan batas pengujian perangkat nyata.
 
 ## Deploy Vercel
 
@@ -83,3 +83,15 @@ API key hanya server. Token kursi random disimpan sebagai SHA-256 pada database.
 Publikasi Sites sebelumnya privat untuk pemilik. Membagikan kode room saja tidak mengubah siapa yang dapat membuka Site. Ubah akses Site secara sengaja sebelum mengundang akun lain.
 
 Deployment Vercel mengikuti pengaturan akses proyek Vercel Anda. Data room D1 tidak otomatis berpindah ke Redis.
+
+
+## Pembaruan terfokus v2.4 (UI tanpa rombak total)
+
+- Papan 2D 40 petak tetap sama. Kontrol zoom, minimap, label status dan petunjuk mengambang dihilangkan agar petak tidak tertutupi. Cubit dua jari atau gulir untuk zoom; geser untuk menjelajah. Tombol **Seluruh papan** dan **Ikuti pemain** tetap berada di luar papan.
+- Lempar dadu mendapat animasi singkat di tengah papan, menggunakan hasil dadu game yang sesungguhnya (efek grafis tidak mempengaruhi RNG). Dihormati pengaturan **Kurangi gerakan**.
+- Pion di papan tampil sebagai figur vektor berwarna dengan nomor dan gerakan langkah demi langkah. Tidak perlu memuat gambar baru untuk pion atau petak papan.
+- Di tab **Barter**, pilih properti melalui popup ringkas dengan pencarian dan pilihan multi-aset; berlaku juga untuk tawaran balik.
+- Di tab **Aset**, daftar panjang diringkas. Pilih kota melalui popup pencarian dan buka menu pengelolaan langsung tanpa harus menggulir sertifikat.
+- Logika aturan, pengambilan keputusan bot, struktur data dan penyimpanan tidak diubah.
+
+Pengujian source code: jalankan `npm run test` dan `npm run build:vercel` setelah dependensi terinstal melalui `pnpm install`; pengujian fitur di browser tetap diperlukan.

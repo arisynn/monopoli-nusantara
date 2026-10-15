@@ -1,5 +1,5 @@
 {
-  "version": "2.3.0",
+  "version": "2.4.0",
   "snapshot": "local-source",
   "base_commit": "7b6dd6b40105e9a0facf4823ebd2e7246083ee41",
   "remote_sync_completed": false,
@@ -25,8 +25,8 @@
       "bytes": 1751
     },
     "README.md": {
-      "sha256": "2a6558c6e415f7cb298796cb5d393f2f53175d476c35193876b217ce59acfcd4",
-      "bytes": 6104
+      "sha256": "3e283f2309779d4d45a180102a217e5e71ad1bdd4de66a47809af161b301b04c",
+      "bytes": 7395
     },
     "app/api/game/route.ts": {
       "sha256": "5a4e2a300b8d3f7512bc0728d5bc85c5cba5589a0f93b8750c72833b579a65aa",
@@ -37,8 +37,8 @@
       "bytes": 2550
     },
     "app/globals.css": {
-      "sha256": "253f1e507b650649d941f842ec06dbb63dc5126ab253639c887e50a4d1389c1e",
-      "bytes": 55629
+      "sha256": "20d25f20e66654d6ebdf27fb192b3e1bacb07452930a935ce040e0c1c062a331",
+      "bytes": 60198
     },
     "app/layout.tsx": {
       "sha256": "5fa8702e05542fd3c49926f7a660fa7bb99167835a5f1cad2cf5d37ba6f48764",
@@ -72,10 +72,6 @@
       "sha256": "8b0eca84aa3364cc7ccc43cc3af6beb88dd34ebd410de08690bf094ce39fbcb0",
       "bytes": 99
     },
-    "components.json": {
-      "sha256": "31f4ca67a4a62572571003d3d5aac85ee6fbfca67a192924bac6b168d95e98fd",
-      "bytes": 420
-    },
     "components/connector-error.tsx": {
       "sha256": "2d0d04559952ce9c9a327cca499f4b99f35d885cccfce375230e116695d3f155",
       "bytes": 1082
@@ -85,16 +81,20 @@
       "bytes": 753
     },
     "components/game/Board.tsx": {
-      "sha256": "2a0a06ce441c7c8af1322d32c858d98a0ea749117e5d87a32c62e99e9749ac05",
-      "bytes": 10301
+      "sha256": "caf33ab5f7b15db225b3ead311bc6230000c9cefabee2d072c550e3d336e0347",
+      "bytes": 8378
     },
     "components/game/BoardMap.tsx": {
-      "sha256": "f673e8536566b821fccb0569134f88053fdfc839043e6adb32fad465da39d643",
-      "bytes": 6820
+      "sha256": "f98693a85cd2cad20f5ac7079ccdb18aa5c3b837a835a4e4070e9c21a8dad86e",
+      "bytes": 7348
+    },
+    "components/game/DiceRollFx.tsx": {
+      "sha256": "f4ad91c9c169a922c21fce84c6a9d3902b340a19752590fa533df357889c2723",
+      "bytes": 1119
     },
     "components/game/Game.tsx": {
-      "sha256": "b51c1cd595f5990e4d0dd1404d1604f179792d4f96e280d43f39965673207d14",
-      "bytes": 49219
+      "sha256": "5dda42b74dae1ffed6acd3db45819654a5021a409e97ec0069a09c5d7753caec",
+      "bytes": 53837
     },
     "components/game/MobileDock.tsx": {
       "sha256": "6a3924c39a435b607c3943a2bcc573c029e564213dcecb54bd8097185bd92155",
@@ -356,6 +356,10 @@
       "sha256": "a0784eb77831a799fad7991df4f1b666f876201565a80175e1aa68733574a2e4",
       "bytes": 1830
     },
+    "components.json": {
+      "sha256": "31f4ca67a4a62572571003d3d5aac85ee6fbfca67a192924bac6b168d95e98fd",
+      "bytes": 420
+    },
     "db/index.ts": {
       "sha256": "dc7610b00b918e0ffff1360a63626f16655ced3064b2eaf96095a4101fb14bcd",
       "bytes": 423
@@ -408,9 +412,9 @@
       "sha256": "557cf1514ba87cdefeebd9f5ffee47722bf6290e7e87184034f298d98cc1b07c",
       "bytes": 7268
     },
-    "drizzle.config.ts": {
-      "sha256": "af081f7384aaeb0082cf422e29f139d137ca2f6a57c69b2c37b9fb1f8479867b",
-      "bytes": 148
+    "docs/UPDATE_v2.4.md": {
+      "sha256": "7b2342f6f440c3a3399d11a23934d4a4522a6dd34a2aeb945b85afa10eef01d9",
+      "bytes": 1414
     },
     "drizzle/0000_green_paper_doll.sql": {
       "sha256": "a8d11a3d6a6d183cb9a5e9da2fcb8ae1d0257c3283ed76c0005056b9c220e6f0",
@@ -423,6 +427,10 @@
     "drizzle/meta/_journal.json": {
       "sha256": "f1bbdcaae731a818bfb952afdb493e97a57a1c40f998214d989d803b9baa1366",
       "bytes": 206
+    },
+    "drizzle.config.ts": {
+      "sha256": "af081f7384aaeb0082cf422e29f139d137ca2f6a57c69b2c37b9fb1f8479867b",
+      "bytes": 148
     },
     "eslint.config.mjs": {
       "sha256": "f22a254df7d934bbf9be499d3c969a13abb7f7f64c03f5967d0095cad81dfe06",
@@ -525,8 +533,8 @@
       "bytes": 133
     },
     "package.json": {
-      "sha256": "25ae1214dd45feb8063670919b3b3aacbae5f29fbcea89e1dd26fdaadeaa095e",
-      "bytes": 2539
+      "sha256": "ac3c7288b7c6e4464cf4aef4741bf56e033a5a41d9e74d60a3b723e3811bc8a0",
+      "bytes": 2568
     },
     "pnpm-lock.yaml": {
       "sha256": "095ba6f301ba3997da2c251dfc4b805c220624bdf0921d905eaceee0d1fb29c9",
@@ -569,7 +577,7 @@
       "bytes": 1036
     },
     "public/sw.js": {
-      "sha256": "1e0a6bb8caf7335fa69c9b87f26d3197030b8d15011f5dd320dac917dc4e2bef",
+      "sha256": "a43d3d1e5e4aa661cb0cc29c56592aaa47ab06a5eca4ebcd0c3837c33992de2b",
       "bytes": 1615
     },
     "public/window.svg": {
@@ -672,6 +680,10 @@
       "sha256": "5997f4ec8d8d13487bda1f06f357b5c1588596457960ea83a30a1028bf3aacb2",
       "bytes": 3539
     },
+    "tests/ui-refinement.test.mjs": {
+      "sha256": "cb70fb26b548cd923e1535130ec9ddf00c3820f7405ad14dc6ec6306f30862dd",
+      "bytes": 1703
+    },
     "tests/vercel-build.test.mjs": {
       "sha256": "c8701475954c081f0b9d75548afbfcfda7a4edbba2922b4dffcab373e7d37d8a",
       "bytes": 1664
@@ -696,5 +708,6 @@
       "sha256": "ebb0d53518634b261be83a3c02b3492c2d88746a18968293c06f5cecdb7cf0e1",
       "bytes": 3412
     }
-  }
+  },
+  "derived_from_version": "2.3.0"
 }

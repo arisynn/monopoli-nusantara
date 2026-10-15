@@ -1,29 +1,24 @@
 'use client';
-import {useEffect,useRef,useState} from 'react';
-import {Plus,Minus,Navigation,Hand} from 'lucide-react';
-import {BOARD,PAWNS} from '@/lib/content.mjs';
+import {useEffect,useRef} from 'react';
 import {BoardArtwork,BoardTokens} from './BoardMap';
-import {BoardGesture,fitCamera,closeCamera,centerCamera,resizeCamera,zoomCamera,panCamera,worldPoint,hitTile,tokenPoint,tileCenter,visibleWorld,scaleLimits} from '@/lib/board-camera.mjs';
+import DiceRollFx from './DiceRollFx';
+import {BoardGesture,fitCamera,closeCamera,centerCamera,resizeCamera,zoomCamera,panCamera,worldPoint,hitTile,tokenPoint,tileCenter,scaleLimits} from '@/lib/board-camera.mjs';
 
-type Props={state:any,selected:number,onSelect:(id:number)=>void,view?:string,cameraKey?:number,reduced?:boolean,speed?:boolean,onCameraModeChange?:(mode:string)=>void};
-export default function Board({state,selected,onSelect,view='follow',cameraKey=0,reduced=false,speed=false,onCameraModeChange}:Props){
- const host=useRef<HTMLDivElement>(null),world=useRef<SVGGElement>(null),miniWindow=useRef<SVGRectElement>(null),runtime=useRef<any>(null);
+type Props={state:any,selected:number,onSelect:(id:number)=>void,view?:string,cameraKey?:number,reduced?:boolean,speed?:boolean,rolling?:boolean,onCameraModeChange?:(mode:string)=>void};
+export default function Board({state,selected,onSelect,view='follow',cameraKey=0,reduced=false,speed=false,rolling=false,onCameraModeChange}:Props){
+ const host=useRef<HTMLDivElement>(null),world=useRef<SVGGElement>(null),runtime=useRef<any>(null);
  const props=useRef({state,onSelect,view,cameraKey,reduced,speed,onCameraModeChange});props.current={state,onSelect,view,cameraKey,reduced,speed,onCameraModeChange};
- const [following,setFollowing]=useState(view==='follow'),[zoomed,setZoomed]=useState(view==='follow');
  useEffect(()=>{
   const root=host.current!;let camera=fitCamera(root.clientWidth,root.clientHeight),frame=0,animation:any=null,disposed=false;
   let match=props.current.state?.matchId,moveId=props.current.state?.lastMove?.id;
-  const gesture=new BoardGesture();let currentPoint=activePoint(),previousFollowing:boolean|undefined,previousZoomed:boolean|undefined,previousMode:string|undefined;
+  const gesture=new BoardGesture();let currentPoint=activePoint(),previousMode:string|undefined;
   function activePoint(){const s=props.current.state,p=s?.players[s.turn];return p?tokenPoint(p.pos,p.id):tileCenter(0)}
   function apply(){
    if(disposed)return;
    world.current?.setAttribute('transform',`translate(${camera.x} ${camera.y}) scale(${camera.scale})`);
-   const rect=visibleWorld(camera);for(const key of ['x','y','width','height'] as const)miniWindow.current?.setAttribute(key,String(rect[key]));
    const isFollowing=gesture.following&&props.current.view==='follow';
    const isZoomed=camera.scale>scaleLimits(camera.width,camera.height).min*1.05;
    const mode=isFollowing?'follow':isZoomed?'explore':'overview';
-   if(previousFollowing!==isFollowing){previousFollowing=isFollowing;setFollowing(isFollowing)}
-   if(previousZoomed!==isZoomed){previousZoomed=isZoomed;setZoomed(isZoomed)}
    if(previousMode!==mode){previousMode=mode;props.current.onCameraModeChange?.(mode)}
   }
   function positionPawn(id:number,point:{x:number,y:number}){root.querySelector(`[data-pawn="${id}"]`)?.setAttribute('transform',`translate(${point.x} ${point.y})`)}
@@ -81,13 +76,9 @@ export default function Board({state,selected,onSelect,view='follow',cameraKey=0
  },[]);
  useEffect(()=>runtime.current?.update(),[state,reduced,speed]);
  useEffect(()=>runtime.current?.setView(),[view,cameraKey]);
- return <div className="board-2d" ref={host} tabIndex={0} role="region" aria-label="Papan 2D Nusantara, 40 petak. Geser untuk menjelajah, cubit atau gunakan tombol untuk zoom. Tombol panah untuk menggeser. Tab untuk memilih petak.">
+ return <div className="board-2d" ref={host} tabIndex={0} role="region" aria-label="Papan 2D Nusantara, 40 petak. Geser untuk menjelajah, cubit dua jari atau gulir untuk zoom. Tombol panah untuk menggeser. Tab untuk memilih petak.">
   <svg className="board-vector" width="100%" height="100%" aria-label="Peta permainan"><g ref={world}><BoardArtwork state={state} selected={selected}/><BoardTokens state={state}/></g></svg>
-  <div className="map-status" aria-live="polite">{following?<Navigation size={12}/>:zoomed?<Hand size={12}/>:null}<span>{following?'Mengikuti pion':zoomed?'Jelajah bebas':'Seluruh papan'}</span></div>
-  <button type="button" data-map-control className={`map-minimap ${zoomed?'':'is-hidden'}`} tabIndex={zoomed?0:-1} aria-hidden={!zoomed} aria-label="Peta kecil. Ketuk lokasi untuk menggeser papan." onClick={e=>{const r=e.currentTarget.getBoundingClientRect();const point=e.detail===0?{x:500,y:500}:{x:(e.clientX-r.left)/r.width*1000,y:(e.clientY-r.top)/r.height*1000};runtime.current?.jump(point)}}>
-   <svg viewBox="0 0 1000 1000" aria-hidden="true"><rect width="1000" height="1000" fill="#cee2cd"/><rect x="140" y="140" width="720" height="720" fill="#95b8a5"/>{state?.players?.filter((p:any)=>!p.out).map((p:any)=>{const c=tileCenter(p.pos);return <circle key={p.id} cx={c.x} cy={c.y} r="38" fill={PAWNS[p.id].color} stroke="#183d39" strokeWidth="14"/>})}<rect ref={miniWindow} fill="#ffffff30" stroke="#fff" strokeWidth="26"/></svg>
-  </button>
-  <div className="map-zoom" data-map-control><button type="button" aria-label="Perbesar papan" onClick={()=>runtime.current?.zoom(1.25)}><Plus size={18}/></button><button type="button" aria-label="Perkecil papan" onClick={()=>runtime.current?.zoom(.8)}><Minus size={18}/></button></div>
-  <span className="map-hint">Geser · cubit untuk zoom · ketuk petak</span>
+  <DiceRollFx rolling={rolling} dice={state?.dice||[1,1]} reduced={reduced}/>
+
  </div>
 }

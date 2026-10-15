@@ -48,8 +48,14 @@ export function BoardTokens({state}:{state:any}){
  return <g className="map-tokens" pointerEvents="none" fontFamily="Arial, sans-serif">{state?.players?.map((p:any)=>{
   const point=tokenPoint(p.pos,p.id);if(p.out)return null;
   return <g key={p.id} data-pawn={p.id} transform={`translate(${point.x} ${point.y})`} aria-label={`${p.name}, ${BOARD[p.pos].name}`}>
-   {p.id===state.turn&&<circle r="14" fill="#fff" stroke="#173d3b" strokeWidth="2"/>}
-   <circle r="10" fill={PAWNS[p.id].color} stroke="#173d3b" strokeWidth="2"/><text y="4" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#132b2c">{p.id+1}</text>
+   {p.id===state.turn&&<circle className="pawn-active-ring" r="19" fill="#f8faf0b8" stroke={PAWNS[p.id].color} strokeWidth="2.5"/>}
+   <g className={p.id===state.turn?'pawn-figure pawn-is-active':'pawn-figure'}>
+    <ellipse cx="0" cy="14" rx="15" ry="5" fill="#173d3b" opacity=".25"/>
+    <circle cx="0" cy="-9" r="7" fill={PAWNS[p.id].color} stroke="#173d3b" strokeWidth="2"/>
+    <path d="M-6 -3Q-15 5-13 10L-10 13H10L13 10Q15 5 6 -3Z" fill={PAWNS[p.id].color} stroke="#173d3b" strokeWidth="2" strokeLinejoin="round"/>
+    <rect x="-15" y="10" width="30" height="5" rx="2.5" fill={PAWNS[p.id].color} stroke="#173d3b" strokeWidth="1.8"/>
+    <circle cy="5" r="6.5" fill="#173d3b"/><text y="8.5" textAnchor="middle" fontSize="9.5" fontWeight="bold" fill="#fff">{p.id+1}</text>
+   </g>
   </g>
  })}</g>
 }
