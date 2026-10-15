@@ -188,3 +188,35 @@
  .is-home .lobby-world h1{font-size:33px;margin-top:10px}
  .is-home .intro{font-size:10px}.is-home .edition{font-size:7px}
 }
+
+/* v2.3: vector board. The map owns gestures; the portrait page stays fixed. */
+.game-board{margin-top:0;isolation:isolate}
+.board-2d{position:relative;width:100%;height:100%;overflow:hidden;touch-action:none;overscroll-behavior:contain;user-select:none;-webkit-user-select:none;background:#102b2b;cursor:grab;contain:layout paint}
+.board-2d.dragging{cursor:grabbing}
+.board-2d:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.board-vector{display:block;overflow:hidden}
+.map-tile{cursor:pointer;outline:none}
+.map-tile:focus-visible .tile-focus{stroke:#ad4a22;stroke-width:6}
+.map-status,.map-hint{position:absolute;left:10px;display:flex;align-items:center;gap:5px;background:#102c2bea;border:1px solid #bdd5c42b;color:#e5ecdf;pointer-events:none;border-radius:6px;line-height:1.2}
+.map-status{top:10px;padding:6px 8px;font-size:10px;font-weight:600}
+.map-hint{bottom:10px;padding:5px 7px;font-size:9px;max-width:calc(100% - 74px)}
+.map-zoom{position:absolute;right:10px;bottom:10px;display:grid;background:#102c2bf2;border:1px solid #bdd5c448;border-radius:9px;overflow:hidden;cursor:default}
+.map-zoom button{display:grid;place-items:center;width:42px;height:42px;color:#eef5e8}
+.map-zoom button+button{border-top:1px solid #bdd5c430}
+.map-zoom button:hover{background:#b7d3be22}
+.map-minimap{position:absolute;top:10px;right:10px;width:64px;height:64px;padding:0;border:2px solid #e1ebdba8;border-radius:6px;overflow:hidden;box-shadow:0 2px 8px #0003}
+.map-minimap svg{display:block;width:100%;height:100%}
+.map-minimap.is-hidden{visibility:hidden}
+.camera-tools{margin-top:9px}
+.camera-tools button{font-size:11px;min-width:116px;justify-content:center}
+@media(max-width:800px){
+ .app.is-playing .camera-tools{margin-top:0;gap:4px;justify-content:center}
+ .app.is-playing .camera-tools button{font-size:10px;min-width:125px}
+ .map-status{top:6px;left:6px;font-size:9px}
+ .map-minimap{top:6px;right:6px;width:56px;height:56px}
+ .map-zoom{right:6px;bottom:6px}
+ .map-zoom button{width:40px;height:40px}
+ .map-hint{left:6px;bottom:6px;font-size:8px}
+}
+@media(max-height:500px){.map-hint{display:none}.map-minimap{width:44px;height:44px}}
+.player-number{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:15px;height:15px;line-height:15px;margin-right:4px;border-radius:50%;background:var(--player);color:#16312e;font-size:10px;font-weight:700;vertical-align:middle}

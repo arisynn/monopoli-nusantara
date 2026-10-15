@@ -11,3 +11,7 @@ const trace=JSON.parse(await readFile('.next/server/app/api/game/route.js.nft.js
 assert(!trace.files.some(file=>/wrangler|miniflare|runtime-sites|cloudflare:workers/.test(file)));
 const files=await readdir('.next/server',{recursive:true});for(const file of files.filter(file=>/\.js$/.test(file))){const code=await readFile(path.join('.next/server',file),'utf8');assert(!code.includes('cloudflare:workers'),file)}
 console.log(`PASS Next.js production HTML, ${scripts.length} bundled scripts, four images and API trace without Workers imports.`);
+
+const chunks=await readdir('.next/static/chunks',{recursive:true});
+for(const file of chunks.filter(file=>/\.js$/.test(file))){const code=await readFile(path.join('.next/static/chunks',file),'utf8');assert(!/WebGLRenderer|OrbitControls|THREE\.REVISION/.test(code),`3D renderer leaked into ${file}`)}
+console.log('PASS client bundles exclude the removed Three.js board renderer.');

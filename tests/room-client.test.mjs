@@ -14,5 +14,5 @@ test('requests distinguish server rejection from connection failure and respect 
  const controller=new AbortController();controller.abort();await assert.rejects(requestJSON('/api/game',{signal:controller.signal},async(_url,options)=>{assert(options.signal.aborted);throw Error('aborted')}),ConnectionError);
 });
 test('corrupt preferences recover to a usable board and preserve reduced-motion preference',()=>{
- assert.equal(normalizePreferences(null,true).reduced,true);assert.equal(normalizePreferences({quality:'unknown'}).quality,'balanced');assert.equal(normalizePreferences({quality:'low',sound:true,view:'follow'}).view,'follow');assert.equal(normalizePreferences({view:'locked'}).view,'overview');
+ assert.equal(normalizePreferences(null,true).reduced,true);assert.equal(normalizePreferences({quality:'unknown'}).view,'follow');assert.equal(normalizePreferences({view:'top'}).view,'overview');assert.equal(normalizePreferences({quality:'low',sound:true,view:'follow'}).view,'follow');assert.equal(normalizePreferences({view:'locked'}).view,'overview');
 });

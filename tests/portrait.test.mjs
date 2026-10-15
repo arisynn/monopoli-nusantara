@@ -2,8 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createRequire} from 'node:module';
-import {OrthographicCamera,Vector3} from 'three';
-import {coords,boardFrustum,CAMERA} from '../lib/board-camera.mjs';
+import {coords,fitCamera,BOARD_SIZE} from '../lib/board-camera.mjs';
 import {createGame} from '../lib/game.mjs';
 const require=createRequire(import.meta.url),ts=require('typescript');
 const source=readFileSync(new URL('../components/game/MobileDock.tsx',import.meta.url),'utf8');
@@ -20,10 +19,9 @@ test('board keeps the original 40 unique perimeter positions and four corners',(
  assert.deepEqual([coords(0),coords(10),coords(20),coords(30)],[[5,5],[-5,5],[-5,-5],[5,-5]]);
  for(let i=0;i<40;i++){const next=all[(i+1)%40];assert.equal(Math.abs(all[i][0]-next[0])+Math.abs(all[i][1]-next[1]),1)}
 });
-test('fixed 2.5D and top cameras contain every board corner at tall, short, narrow and landscape sizes',()=>{
- for(const [width,height] of [[304,150],[344,230],[374,354],[396,420],[414,460],[684,850],[430,180],[350,90]])for(const mode of ['overview','top']){
-  const f=boardFrustum(width,height,mode),c=new OrthographicCamera(f.left,f.right,f.top,f.bottom,.1,150);c.position.set(...CAMERA[mode]);c.lookAt(0,0,0);c.updateMatrixWorld();
-  for(const x of [-5.9,5.9])for(const z of [-5.9,5.9])for(const y of [-.65,1.2]){const p=new Vector3(x,y,z).project(c);assert(Math.abs(p.x)<=1&&Math.abs(p.y)<=1,`${width}×${height} ${mode}: ${p.toArray()}`)}
+test('2D overview contains the entire board in tall, short and narrow viewports',()=>{
+ for(const [width,height] of [[304,150],[344,230],[374,354],[396,420],[414,460],[684,850],[430,180],[350,90]]){
+  const c=fitCamera(width,height);assert(c.x>=0&&c.y>=0);assert(c.x+BOARD_SIZE*c.scale<=width);assert(c.y+BOARD_SIZE*c.scale<=height);
  }
 });
 test('purchase buttons call the same engine commands and honor affordability',()=>{

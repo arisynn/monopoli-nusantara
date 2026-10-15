@@ -1,22 +1,22 @@
-# Monopoli Nusantara v2.2 — Portrait 2.5D
+# Monopoli Nusantara v2.3 — Papan 2D & Kamera Pintar
 
-Web game properti 2.5D berbahasa Indonesia. Papan Three.js, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
+Web game properti 2D berbahasa Indonesia. Papan SVG vektor, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
 
 ## Fitur tersedia
 
 - Beranda dan gameplay HP portrait mengikuti tinggi layar aktif. Papan dan tombol aksi utama berada dalam satu layar; setup, aset, barter, riwayat, dan keputusan panjang memakai panel terpisah yang dapat digulir.
-- Papan 40 petak mempertahankan susunan asli, dengan sudut 2.5D tetap. Kamera muat seluruh papan secara otomatis; pan/zoom, fokus petak, ikuti pion, atas, dan kunci tersedia.
+- Papan SVG 40 petak dengan empat sudut besar dan pita warna klasik. Dua tampilan: Seluruh papan dan Dekat/Ikuti pemain. Geser, pinch zoom, tombol +/−, serta minimap dengan batas area papan. Jelajah manual tetap aktif sampai tombol Ikuti pemain ditekan.
 - Lima slot save lokal, arsip permainan sebelumnya, ekspor/impor JSON tervalidasi, serta pengaturan yang diingat di perangkat.
 
 - Hotseat 2–6 manusia; duel bot lokal; duel melalui Groq saat secret terpasang.
 - Room privat 2–6 manusia, lobby siap, kursi bertoken, pemulihan sesi perangkat yang sama, state otoritatif di server.
-- Aset gambar orisinal untuk beranda, tekstur papan, pion, kawasan, sertifikat, dan kartu.
+- Aset gambar orisinal untuk beranda, kartu pemain, kawasan, sertifikat, dan kartu.
 - Aturan dasar C1009: lempar awal, lelang terbuka, lelang stok bangunan langka, barter saat utang/di luar giliran, pilihan langsung tebus aset tergadai, dan opsi klaim sewa manual.
 - 40 petak, 28 sertifikat, 32 kartu, dadu kembar, penjara, sewa, pajak, lelang, gadai, bangunan merata, barter dan tawaran balik, utang/kebangkrutan/pemenang.
-- Kualitas Ringan/Seimbang/Detail tinggi dan opsi papan 2D; fallback otomatis saat WebGL gagal. Kamera tidak memutar susunan papan. Efek suara, animasi cepat, reduced motion, serah giliran.
+- Papan tidak memakai WebGL, Three.js, atau tekstur gambar. Teks, ikon, bangunan, dan pion tetap vektor saat diperbesar. Efek suara, animasi cepat, reduced motion, serah giliran tetap tersedia.
 - Save lokal IndexedDB dengan salinan localStorage; service worker untuk cache shell setelah pemuatan awal. Offline perlu origin HTTPS dan cache yang telah terisi. Mode room dan Groq membutuhkan koneksi.
 
-Baca `docs/RULEPACK.md` untuk adaptasi yang eksplisit dan batas verifikasi v2. Baca `docs/QA_PORTRAIT.md` untuk pemeriksaan v2.2 dan batas verifikasi perangkat nyata.
+Baca `docs/RULEPACK.md` untuk adaptasi yang eksplisit dan batas verifikasi v2. Baca `docs/QA_BOARD_2D.md` untuk pemeriksaan v2.3 dan batas verifikasi perangkat nyata.
 
 ## Deploy Vercel
 
@@ -68,7 +68,7 @@ Groq belum dikonfigurasi atau diuji langsung pada versi rilis ini. UI secara juj
 - `lib/board-camera.mjs`, `components/game/useGameViewport.ts`: posisi tetap dan ukuran viewport.
 - `components/game/MobileDock.tsx`: aksi utama dalam area ringkas.
 - `lib/room-client.mjs`: pembatalan request, revision, timeout, reconnect.
-- `components/game/Board.tsx`: geometri asli, kamera, animasi, fallback.
+- `components/game/Board.tsx`, `BoardMap.tsx`: kamera berbatas, gesture, animasi pion, dan SVG papan.
 - `components/game/Game.tsx`: lobby, HUD, panel, interaksi.
 - `app/api/game/route.ts`: room, kursi, concurrency, server RNG, batas penggunaan.
 - `lib/server/`: runtime Node/Sites serta adapter room Redis/D1.
