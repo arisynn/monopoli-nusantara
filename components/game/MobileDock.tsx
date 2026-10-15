@@ -20,12 +20,13 @@ export default function MobileDock({s,actor,human,busy,rolling,paused,traveling,
   case 'buildOffer':title='Stok bangunan terbatas';subtitle=`${s.buildOffer.remaining} ${s.buildOffer.kind==='house'?'rumah':'hotel'} tersisa`;label='Pilih bangunan';break;
   case 'won':title=`${s.players[s.winner].name} menang!`;subtitle='Penguasa Nusantara';label='Main lagi';break;
  }
+ if(rolling){title='Dadu bergulir…';subtitle='Menyiapkan langkah berikutnya';label='Tunggu hasil dadu'}
  if(traveling){title=`${s.players[traveling.player]?.name||'Pion'} sedang berjalan`;subtitle=`${traveling.step} dari ${traveling.total} petak`;label='Pion bergerak…'}
  return <section className="mobile-dock" aria-label="Aksi giliran">
   <div className="dock-heading"><span className="dock-emblem">{s.phase==='won'?<Trophy size={25}/>:<Dice5 size={25}/>}</span><div><small>{subtitle}</small><h2 title={title}>{title}</h2></div></div>
   {traveling&&<div className="travel-progress" role="progressbar" aria-label="Perjalanan pion" aria-valuemin={0} aria-valuemax={traveling.total} aria-valuenow={traveling.step}><span style={{width:`${Math.round(traveling.step/Math.max(1,traveling.total)*100)}%`}}/></div>}
   <div className="dock-actions">
-   {traveling?<button className="secondary" disabled>Pion menuju {BOARD[s.players[traveling.player].pos].name}…</button>:
+   {rolling?<button className="secondary" disabled>Dadu bergulir…</button>:traveling?<button className="secondary" disabled>Pion menuju {BOARD[s.players[traveling.player].pos].name}…</button>:
     paused?<button className="primary" onClick={onResume}>Lanjutkan permainan<Play size={18}/></button>:
     s.phase==='won'?<button className="primary" onClick={onNew}>{label}<ArrowRight size={18}/></button>:
     !human&&s.phase!=='auction'?<button className="secondary" onClick={onDetails}>{who.controller==='bot'?'Bot sedang berpikir…':`Menunggu ${who.name}`}<ChevronRight size={18}/></button>:

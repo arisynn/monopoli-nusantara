@@ -13,7 +13,7 @@ test('v2.4 keeps the 40-tile board clear of fixed zoom and minimap widgets',()=>
 });
 test('dice animation respects the actual dice result and cannot intercept pointer input',()=>{
  const fx=read('../components/game/DiceRollFx.tsx');const css=read('../app/globals.css');
- assert(fx.includes('(dice[i]||1)'));assert(fx.includes('reduced?350:1050'));
+ assert(fx.includes('(dice[i]||1)'));assert(fx.includes('reduced?150:200'));
  assert(css.includes('.board-dice-effect{position:absolute;inset:0;z-index:3;display:grid;place-items:center;pointer-events:none'));
  assert(css.includes('@media(prefers-reduced-motion:reduce)'));
 });
@@ -27,7 +27,7 @@ test('v2.6 uses a compact asset manager and a guided barter without changing boa
  assert(game.includes('mode="counter"'));
  assert(game.includes("act('OFFER',{trade:submitted},myId)"));
  assert(game.includes("act('COUNTER',{trade:submitted})"));
- assert(game.includes("sheet==='manage'"));
+ assert(game.includes("displaySheet==='manage'"));
  assert(read('../components/game/AssetActions.tsx').includes('managementError(game,player,tile,type)'));
  assert(game.includes('onAction={requestAssetAction}'));
  for(const label of ['Cari kota atau properti','Bisa bangun','Digadai','Set lengkap','onAction'])assert(assets.includes(label),label);

@@ -9,7 +9,7 @@ export default function DiceRollFx({rolling,dice,reduced}:{rolling:boolean,dice:
   if(rolling){wasRolling.current=true;setVisible(true);return;}
   if(!wasRolling.current)return;
   wasRolling.current=false;
-  const timeout=window.setTimeout(()=>setVisible(false),reduced?350:1050);
+  const timeout=window.setTimeout(()=>setVisible(false),reduced?150:200);
   return()=>window.clearTimeout(timeout);
  },[rolling,reduced]);
  if(!visible)return null;

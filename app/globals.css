@@ -562,3 +562,30 @@
 .reduced button,.reduced .travel-progress span{transition:none}
 .trade-chosen{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
 .trade-chosen button{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 10px;background:#dfbe8012;border:1px solid #dfbe8055;border-radius:8px;font-size:12px;color:var(--gold)}
+
+/* v2.8: one gameplay dialog, lightweight transaction feedback. */
+.gameplay-modal{animation:gameplay-enter .16s ease-out;scrollbar-gutter:stable}
+.gameplay-modal .event-card{min-height:0;margin:16px 0;padding:24px 20px;border-radius:14px;animation:gameplay-enter .18s ease-out}
+.card-impact{margin-top:16px;padding-top:14px;border-top:1px solid #dfbe8055;font-size:13px;line-height:1.6;font-weight:600}
+.major-event{text-align:center;padding:16px 4px 10px}
+.major-event .event-symbol{display:inline-grid;place-items:center;width:64px;height:64px;border-radius:50%;background:#dfbe8018;color:var(--gold);margin:0 0 18px}
+.major-event small{display:block;font-size:11px;letter-spacing:1.5px;color:var(--gold)}
+.major-event h2{font:30px/1.2 var(--serif);margin:12px 0}
+.major-event p{font-size:14px;line-height:1.7;color:var(--muted)}
+.pending-decision{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;padding:12px;margin-bottom:16px;border:1px solid #dfbe8066;border-radius:10px;background:#dfbe8012;font-size:12px;line-height:1.5}
+.pending-decision span{color:var(--muted)}
+.pending-decision b{display:flex;align-items:center;gap:4px;color:var(--gold);font-size:12px}
+.gameplay-toast{bottom:auto;top:calc(66px + env(safe-area-inset-top,0px));max-width:min(620px,94vw);width:max-content;z-index:55;animation:gameplay-toast-enter .15s ease-out;padding:10px 14px;font-size:13px}
+.gameplay-toast>svg{flex-shrink:0}
+.gameplay-toast>span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.gameplay-toast .text-link{flex-shrink:0;color:inherit;text-decoration:underline;min-height:44px;margin:0}
+.result-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:20px 0}
+.result-stats span{font-size:12px;color:var(--muted)}
+.result-stats b{display:block;font-size:16px;color:var(--gold);margin-top:6px}
+@keyframes gameplay-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes gameplay-toast-enter{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.gameplay-modal,.gameplay-modal .event-card,.gameplay-toast{animation:none!important;transition:none!important}}
+@media(max-width:800px){.gameplay-toast{font-size:12px;top:calc(60px + env(safe-area-inset-top,0px))}.pending-decision{position:sticky;top:52px;z-index:3;background:var(--panel)}.gameplay-modal .event-card h3{font-size:26px}.result-stats b{font-size:14px}}
+.gameplay-modal .turn-person{margin:12px 0 18px;gap:10px}
+.gameplay-modal .turn-person h2{font-size:26px}
+.gameplay-modal .turn-person .avatar{width:42px;height:42px}

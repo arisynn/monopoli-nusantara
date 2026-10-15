@@ -1,16 +1,18 @@
 {
-  "version": "2.7.0",
+  "version": "2.8.0",
   "snapshot": "local-source",
-  "source_archive": "1-Monopoli_Nusantara_v2.6_Simple_Assets_Barter.zip",
-  "source_archive_sha256": "a209f9d5c7d681aca018b9292f854fe302100624fb855f85c6a8e45d2356606a",
+  "source_archive": "1-Monopoli_Nusantara_v2.7.zip",
+  "source_archive_sha256": "a4f7047ba3e99c860f522fb1f10e2f408d7016e8c5d9c1c6ed172ec5097baaa8",
   "remote_sync_completed": false,
   "verification": {
-    "node_tests_passed": 86,
+    "node_tests_passed": 100,
     "camera_tests_passed": 7,
-    "typescript": "blocked: missing typescript",
-    "next_build": "blocked: missing next",
-    "vinext_build": "blocked: missing vinext",
-    "browser": "blocked: Chromium sandbox EPERM",
+    "new_flow_regressions_passed": 14,
+    "typescript_tsx": "not verified: compiler/dependencies unavailable",
+    "syntax_checks": "passed: engine, presentation module, pawn animation, TS hook via Node, service worker",
+    "next_vinext_build": "not run: dependencies unavailable",
+    "lint": "not run: dependencies unavailable",
+    "browser_dom": "not run",
     "multiplayer_live": "not tested"
   },
   "changed_files": [
@@ -19,19 +21,21 @@
     "app/globals.css",
     "components/game/AssetActions.tsx",
     "components/game/AssetManager.tsx",
+    "components/game/Board.tsx",
+    "components/game/DiceRollFx.tsx",
     "components/game/Game.tsx",
-    "components/game/HistoryPanel.tsx",
     "components/game/MobileDock.tsx",
-    "components/game/TradeReview.tsx",
-    "components/game/TradeWizard.tsx",
-    "components/game/useDialogFocus.ts",
-    "docs/UPDATE_v2.7.md",
+    "components/game/useGameplayPresentation.ts",
+    "docs/UPDATE_v2.8.md",
+    "lib/game.mjs",
+    "lib/gameplay-presentation.mjs",
+    "lib/pawn-animation.mjs",
     "package.json",
     "public/sw.js",
     "tests/asset-trade-v26.test.mjs",
-    "tests/production.test.mjs",
+    "tests/gameplay-flow-v28.test.mjs",
     "tests/ui-refinement.test.mjs",
-    "tests/vercel-build.test.mjs"
+    "SOURCE_SNAPSHOT.json"
   ],
   "files": {
     ".env.example": {
@@ -51,12 +55,12 @@
       "bytes": 91
     },
     "MULAI_DI_SINI.txt": {
-      "sha256": "83f7d71a70e72986bc8d769d4d478309033cb710c74ebfc231a4a09fb05a05ab",
-      "bytes": 1407
+      "sha256": "e3d2ed98f30845bab6fc42ee7cb7857ed33baf09ec1907570baaa07c5f797c47",
+      "bytes": 1497
     },
     "README.md": {
-      "sha256": "48b85bdfa138e29031831c5bfbceb4e7045833c56fdcce70da081709d8402277",
-      "bytes": 8400
+      "sha256": "c76bf8e7b5c848d88d0b8f9cc1b5910331c00b98aa1128f751730ff8e5bb7243",
+      "bytes": 8406
     },
     "app/api/game/route.ts": {
       "sha256": "5a4e2a300b8d3f7512bc0728d5bc85c5cba5589a0f93b8750c72833b579a65aa",
@@ -67,8 +71,8 @@
       "bytes": 2550
     },
     "app/globals.css": {
-      "sha256": "544ffade1c94fe799424f24e6b6d96398852364038ef800122e427f2cf11cdec",
-      "bytes": 83234
+      "sha256": "28547c7be9a452b2a2825e30fe531239695781e20991389f976ef3bb6a0e8dd0",
+      "bytes": 85881
     },
     "app/layout.tsx": {
       "sha256": "5fa8702e05542fd3c49926f7a660fa7bb99167835a5f1cad2cf5d37ba6f48764",
@@ -111,40 +115,40 @@
       "bytes": 1082
     },
     "components/game/AssetActions.tsx": {
-      "sha256": "81b8cd5eb03a3eb3c43f5b922c78a1b8f23c5e6a0bdf298812970ea4d5391a08",
-      "bytes": 1961
+      "sha256": "03883afea2819d8c74b570980d9ea0b8e4d1dfd36ce2fba51f6e8bf744bbbaf6",
+      "bytes": 2308
     },
     "components/game/AssetArt.tsx": {
       "sha256": "621e3faf0cb521d3349bacdca3030c4c18fbd741732cd3e1b4077dc6cb3290ab",
       "bytes": 753
     },
     "components/game/AssetManager.tsx": {
-      "sha256": "1d18a3ace9c601c0e6cd4773e7432e0f99cef6eef79fc977da3f8f5f25b40f16",
-      "bytes": 4821
+      "sha256": "4d91d78c3e889a629d0cf9a072d8878423d106347d1ab8ce19969be340c7ebad",
+      "bytes": 5007
     },
     "components/game/Board.tsx": {
-      "sha256": "daaef1dd1fcad8aaceb2b18cde5439d81841fda37d94a34a90f0fa39f30882a7",
-      "bytes": 9540
+      "sha256": "78a99cfb89c5596ca83a98293a8b34089e0f936ef56ede3c5c2d82fda1c8f1fe",
+      "bytes": 10158
     },
     "components/game/BoardMap.tsx": {
       "sha256": "f98693a85cd2cad20f5ac7079ccdb18aa5c3b837a835a4e4070e9c21a8dad86e",
       "bytes": 7348
     },
     "components/game/DiceRollFx.tsx": {
-      "sha256": "f4ad91c9c169a922c21fce84c6a9d3902b340a19752590fa533df357889c2723",
-      "bytes": 1119
+      "sha256": "76cc20ee0e036663586eb77e2bf9a01d52da81a3813fd5e4ed006773d0201ac7",
+      "bytes": 1118
     },
     "components/game/Game.tsx": {
-      "sha256": "f44646f4b0a92345930d2065c2fdfd22839d257a93148ffd38ec52c046c31771",
-      "bytes": 47855
+      "sha256": "abc47d7cf2ac1d1a7e7452d7b1d1496d009948da881c176a20bd16b9aedd933c",
+      "bytes": 53100
     },
     "components/game/HistoryPanel.tsx": {
       "sha256": "b7fee1230928edda5038c18f733ff728c21f19a3d6fc2da257aa3376143a1120",
       "bytes": 2023
     },
     "components/game/MobileDock.tsx": {
-      "sha256": "44676b2fd13e1d83e61ef5d2536598949832718e5f8a7e8b45c0c4b74a87ace0",
-      "bytes": 4322
+      "sha256": "725ee003854f073987e6344579bb9400d4d64520f47b3f013d5dd2614d3cdd20",
+      "bytes": 4501
     },
     "components/game/RuleActions.tsx": {
       "sha256": "284ea6e51657d67f33e76d837c43a2c3e85141d614fa7c1c074292de9d3741bb",
@@ -169,6 +173,10 @@
     "components/game/useGameViewport.ts": {
       "sha256": "a6d58f531d1ee2e1363a9aac70ed2ac2b378bbca5b9e5ceb1a362c53378250f6",
       "bytes": 1006
+    },
+    "components/game/useGameplayPresentation.ts": {
+      "sha256": "f92060c328a547f3e6616c1410834946d4b6f1fd2100f18b40a4cdb7fd59a490",
+      "bytes": 2004
     },
     "components/ui/accordion.tsx": {
       "sha256": "a4f153089ba886dfcf73fac26b5c01ca933fa12fbe88df6fb723912bfffdfbb0",
@@ -482,6 +490,10 @@
       "sha256": "81e3dbe319df3099b45fef7ad35a2914892993b3aba5b6533a82a47331c461ea",
       "bytes": 12403
     },
+    "docs/UPDATE_v2.8.md": {
+      "sha256": "075e20b03c907660593ff7d7994c635590b16d46dbd09478da4ba6c09f0d9d6d",
+      "bytes": 10941
+    },
     "drizzle.config.ts": {
       "sha256": "af081f7384aaeb0082cf422e29f139d137ca2f6a57c69b2c37b9fb1f8479867b",
       "bytes": 148
@@ -551,16 +563,20 @@
       "bytes": 20467
     },
     "lib/game.mjs": {
-      "sha256": "991c19ff7396432214addfcab81971cb4be014c023ad21e28095a9a1a92f5b4f",
-      "bytes": 30447
+      "sha256": "f8a5a768fc49058dbf0b599113f0506d71bd16ba369aec9a57c1e9c81303c6b9",
+      "bytes": 31472
+    },
+    "lib/gameplay-presentation.mjs": {
+      "sha256": "d7d87ba7212af42438e94bf86284de3001938906d54a95d3136f477a40301a6a",
+      "bytes": 4794
     },
     "lib/groq.ts": {
       "sha256": "7432bd8966e82cf809e67816dc78d35b492ed381c3a47b15ef9c7619bb6b6088",
       "bytes": 2042
     },
     "lib/pawn-animation.mjs": {
-      "sha256": "f7b0314f474ef6d07a53885a69937d51533bd1d281889f7d4abb1bc6488ac4e3",
-      "bytes": 923
+      "sha256": "254c29e73cac03c2239ccd5b702add8e130a0539647248bb4557143ddcfed0f5",
+      "bytes": 975
     },
     "lib/preferences.mjs": {
       "sha256": "6483bd54f640f9120d9140052eb90a718524c23d5bed0cd962d077d2d80efec3",
@@ -603,8 +619,8 @@
       "bytes": 133
     },
     "package.json": {
-      "sha256": "69609f0d53c8aa2c6a660aa5216d7bc4b5ffe84ab60d8d0fc51285c601975f88",
-      "bytes": 2624
+      "sha256": "4a894a3f4d70e92ad862ffe631ed11e85b19c45cbe7f955f142b30d82b786014",
+      "bytes": 2657
     },
     "pnpm-lock.yaml": {
       "sha256": "095ba6f301ba3997da2c251dfc4b805c220624bdf0921d905eaceee0d1fb29c9",
@@ -647,7 +663,7 @@
       "bytes": 1036
     },
     "public/sw.js": {
-      "sha256": "6c2346a2e3d8292ba515aedddfc5021e9ef6315f7e57a9e9c6893ec487fd0c12",
+      "sha256": "a2dd34a9cdf984115c0c0c3db0ea341a2f1f2112796fbacdc1b1f195f5dac14e",
       "bytes": 1530
     },
     "public/window.svg": {
@@ -711,7 +727,7 @@
       "bytes": 5087
     },
     "tests/asset-trade-v26.test.mjs": {
-      "sha256": "67f28b13f76c5087b622e7b2e4069faafe2d36474bcb4c7c5d0660da956efba9",
+      "sha256": "c6c5f89cbba22a50c525767b325e92d77c41f153b1b669a5da141ce6c2cabdb5",
       "bytes": 2836
     },
     "tests/board-2d.test.mjs": {
@@ -729,6 +745,10 @@
     "tests/game.test.mjs": {
       "sha256": "faf82d6a7b9d45cc862092977cdd49ab3ed96cae0ea997db37d15f03245f4639",
       "bytes": 11124
+    },
+    "tests/gameplay-flow-v28.test.mjs": {
+      "sha256": "7fac9da34b15807686330d806424cb037c0b9b3364de3eca65d3377d15cf467e",
+      "bytes": 9402
     },
     "tests/pawn-flow.test.mjs": {
       "sha256": "36c176115e7d4e8169d464d3350584bf5b3be3d8dae3a3ed23ef2bdc74d41a64",
@@ -759,8 +779,8 @@
       "bytes": 3539
     },
     "tests/ui-refinement.test.mjs": {
-      "sha256": "e263d28d7751be2482485123c900b9bd1fa4f3e375caa9104d0c2aaf76101d85",
-      "bytes": 2419
+      "sha256": "a072bcdc9ca3c1f153efb18db3a235bd2bd06ac6e95d4c627aaa16bba397ae12",
+      "bytes": 2425
     },
     "tests/vercel-build.test.mjs": {
       "sha256": "9e6f93c138e7b0938170cbcf470cdcd689b652d4da46f6e9248ffb0cd40f4beb",
