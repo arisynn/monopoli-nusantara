@@ -1,10 +1,12 @@
-# Monopoli Nusantara v2.11.2 — Groq Bot Hotfix
+# Monopoli Nusantara — persistent Online Multiplayer (source update)
+
+**Status pembaruan:** implementasi lokal Supabase/Auth/room/Realtime/voting/auto-pause/resume tersedia, tetapi Supabase live dan build frontend belum terverifikasi. [Laporan audit, status, risiko dan QA](docs/ONLINE_MULTIPLAYER_REPORT.md) · [Deployment Supabase](docs/DEPLOY_SUPABASE.md) · [Bukti tes lokal](docs/QA_ONLINE_RESULTS.json).
 
 Web game properti 2D berbahasa Indonesia. Papan SVG, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
 
 v2.11 menyempurnakan board: monogram Nusa, artwork spesial dan kartu yang baru, enam pion SVG berbeda yang bisa dipilih, serta cluster pion simetris. Aset kartu lama dihapus. Nilai ekonomi, aturan, kamera, dadu dan Smart Gameplay Flow v2.10 dipertahankan.
 
-**Basis 2.11.1:** memperbaiki TS2322 pada dua prop `GameNotice.message`. Pesan tetap string; rendering Nusa dilakukan di komponen notifikasi. [Detail hotfix](docs/HOTFIX_v2.11.1.md).
+**Hotfix 2.11.1:** memperbaiki TS2322 pada dua prop `GameNotice.message`. Pesan tetap string; rendering Nusa dilakukan di komponen notifikasi. [Detail hotfix](docs/HOTFIX_v2.11.1.md).
 
 **Status verifikasi:** 147 tes regresi + 7 tes kamera lulus; sintaks 29 berkas TS/TSX diperiksa dengan parser Babel. TypeScript penuh, build, lint, React DOM/Android dan room live belum terverifikasi. Lihat [perubahan, kompatibilitas dan checklist v2.11](docs/UPDATE_v2.11.md).
 
@@ -14,8 +16,8 @@ v2.11 menyempurnakan board: monogram Nusa, artwork spesial dan kartu yang baru, 
 - Papan SVG 40 petak dengan empat sudut besar dan pita warna klasik. Dua tampilan: Seluruh papan dan Dekat/Ikuti pemain. Geser dan pinch zoom langsung pada papan tanpa tombol, minimap, atau label yang menutupi petak. Jelajah manual tetap aktif sampai tombol Ikuti pemain ditekan.
 - Lima slot save lokal, arsip permainan sebelumnya, ekspor/impor JSON tervalidasi, serta pengaturan yang diingat di perangkat.
 
-- Hotseat 2–6 manusia; duel bot lokal; duel melalui Groq saat secret terpasang.
-- Room privat 2–6 manusia, lobby siap, kursi bertoken, pemulihan sesi perangkat yang sama, state otoritatif di server.
+- Dua mode baru: VS Bot (satu manusia + 1–5 bot lokal) dan Online Multiplayer (2–6 manusia). Save hotseat lama dan adapter bot/Groq lama dipertahankan untuk kompatibilitas.
+- Jalur online baru: Supabase Auth, kursi per UUID, snapshot privat persisten, transaksi atomik, revision hints Realtime, reconnect, voting mayoritas, auto-pause dan resume semua aktif siap. Belum tervalidasi pada Supabase live.
 - Pion SVG orisinal dapat dipilih di setup/lobby, lalu konsisten pada board dan HUD. Kartu Kesempatan/Dana Umum memakai artwork baru; ilustrasi regional existing dipakai pada kota.
 - Aturan dasar C1009: lempar awal, lelang terbuka, lelang stok bangunan langka, barter saat utang/di luar giliran, pilihan langsung tebus aset tergadai, dan opsi klaim sewa manual.
 - 40 petak, 28 sertifikat, 32 kartu, dadu kembar, penjara, sewa, pajak, lelang, gadai, bangunan merata, barter dan tawaran balik, utang/kebangkrutan/pemenang.
@@ -26,7 +28,7 @@ Baca `docs/RULEPACK.md` untuk adaptasi yang eksplisit dan batas verifikasi v2. B
 
 ## Deploy Vercel
 
-Gunakan `vercel.json` yang disertakan. Framework **Next.js**, Node **24.x**, build `npm run build:vercel`, output `.next`. Panduan lengkap dan environment variables: [`docs/DEPLOY_VERCEL.md`](docs/DEPLOY_VERCEL.md). Hotseat dan bot lokal tidak memerlukan database. Room online memerlukan Upstash Redis; Groq juga memerlukan `GROQ_API_KEY`.
+Gunakan `vercel.json` yang disertakan. Framework **Next.js**, Node **24.x**, build `npm run build:vercel`, output `.next`. Panduan lengkap dan environment variables: [`docs/DEPLOY_VERCEL.md`](docs/DEPLOY_VERCEL.md). VS Bot tidak memerlukan database. Room online baru memerlukan Supabase; lihat panduan di atas. Upstash/D1 dan Groq hanya diperlukan bila melanjutkan room legacy pada backend tersebut.
 
 ```bash
 npx --yes pnpm@11.25.0 install --frozen-lockfile
@@ -55,15 +57,13 @@ pnpm build
 
 Migrations schema-only pada `drizzle/`; hosting Sites menerapkannya sebelum Worker terbit. Untuk backend di luar Sites, konfigurasikan D1 dan terapkan SQL migrations sebelum memakai API room. Pada Sites, CREATE membutuhkan header identitas yang diberikan platform. Jalur Vercel memakai tamu dan pembatasan berbasis IP dari Vercel; tidak mempercayai header identitas ChatGPT.
 
-## Groq — v2.11.2
+## Groq
 
-Mode **VS Bot** tetap memakai game state lokal; keputusan strategis dapat dikirim ke endpoint server `/api/bot` ketika secret `GROQ_API_KEY` tersedia. **Redis tidak lagi menjadi syarat untuk menggunakan Groq pada VS Bot**; Redis tetap tidak dihapus dan masih dibutuhkan oleh room online lama. Server memvalidasi state dan kandidat legal, tidak mengirim kunci API ke browser, dan bot lokal mengambil alih bila provider gagal. Keputusan dengan hanya satu aksi legal tidak perlu memanggil Groq.
+Set secret runtime `GROQ_API_KEY` melalui konfigurasi server Vercel atau Sites. Opsional `GROQ_MODEL`, default `openai/gpt-oss-20b`. Jangan masukkan key ke frontend, git, atau hosting.json. Setelah menambah secret, terbitkan ulang versi Site agar konfigurasi aktif.
 
-Untuk Vercel: isi `GROQ_API_KEY` pada **Production** (atau Preview yang benar), biarkan `GROQ_MODEL=openai/gpt-oss-20b`, lalu **Redeploy**. Jangan tambahkan prefiks `NEXT_PUBLIC_`, jangan commit key ke source, dan jangan mengirim key melalui chat. Buka `/api/game?status=1`; `groq: true` hanya membuktikan **key terkonfigurasi di server**, bukan keberhasilan request ke penyedia. Di mode VS Bot, pilih **Periksa ulang Groq** jika ingin memuat status tanpa refresh. Setelah bot mendapat giliran strategis, cek status **Groq aktif** atau **Bot lokal cadangan**; kesalahan provider yang aman tersedia sebagai komentar/status.
+Gateway menerima kandidat tindakan dari engine dan hanya memilih actionId legal; snapshot tidak berisi urutan deck. Respons timeout 5,5 detik, key tidak tersedia, error provider, atau batas penggunaan memakai bot cadangan berlabel. Tidak ada integrasi Groq langsung dari browser. Batas server awal: 1.000 evaluasi Groq per hari per Site, 30 pembuatan room per identitas per hari. Batas ini konservatif dan dapat disesuaikan dengan anggaran nyata.
 
-Laju request dibatasi lewat Redis secara atomik bila tersedia. Tanpa Redis, ada batas sementara di memori instance (tidak konsisten antar-instance serverless); sebelum dipakai publik dengan trafik tinggi, konfigurasi Redis/rate limit terpusat atau proteksi platform. Kuota dan limit paket Groq tetap berlaku. Adapter menggunakan timeout 6,5 detik dan fallback, sehingga permainan tidak berhenti saat jaringan/providernya gagal.
-
-Riwayat perbaikan dan checklist tersedia di [docs/HOTFIX_v2.11.2.md](docs/HOTFIX_v2.11.2.md).
+Groq belum dikonfigurasi atau diuji langsung pada versi rilis ini. UI secara jujur menawarkan bot lokal bila key tidak tersedia.
 
 ## Struktur
 

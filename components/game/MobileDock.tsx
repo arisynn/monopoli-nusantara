@@ -5,7 +5,7 @@ import InlineFeedback,{type Feedback} from './InlineFeedback';
 import {BOARD,money} from '@/lib/content.mjs';
 
 /** A bounded action area: long decisions open the full, existing turn panel. */
-export default function MobileDock({s,feedback,actor,human,busy,rolling,paused,traveling,act,onDetails,onResume,onNew}:{s:any,feedback?:Feedback,actor:number,human:boolean,busy:boolean,rolling:boolean,paused:boolean,traveling?:{moveId:number,player:number,step:number,total:number}|null,act:any,onDetails:()=>void,onResume:()=>void,onNew:()=>void}){
+export default function MobileDock({s,feedback,actor,human,busy,rolling,paused,onlinePaused,traveling,act,onDetails,onResume,onNew}:{s:any,feedback?:Feedback,actor:number,human:boolean,busy:boolean,rolling:boolean,paused:boolean,onlinePaused?:boolean,traveling?:{moveId:number,player:number,step:number,total:number}|null,act:any,onDetails:()=>void,onResume:()=>void,onNew:()=>void}){
  const who=s.players[actor],disabled=busy||!human||rolling||paused||!!traveling;
  let title='',subtitle='',label='Buka keputusan',type='';
  switch(s.phase){
@@ -29,6 +29,7 @@ export default function MobileDock({s,feedback,actor,human,busy,rolling,paused,t
   {traveling&&<div className="travel-progress" role="progressbar" aria-label="Perjalanan pion" aria-valuemin={0} aria-valuemax={traveling.total} aria-valuenow={traveling.step}><span style={{width:`${Math.round(traveling.step/Math.max(1,traveling.total)*100)}%`}}/></div>}
   <div className="dock-actions">
    {rolling?<button className="secondary" disabled>Dadu bergulir…</button>:traveling?<button className="secondary" disabled>Pion menuju {BOARD[s.players[traveling.player].pos].name}…</button>:
+    onlinePaused?<button className="secondary" disabled>Permainan dijeda · pilih Siap lanjut</button>:
     paused?<button className="primary" onClick={onResume}>Lanjutkan permainan<Play size={18}/></button>:
     s.phase==='won'?<button className="primary" onClick={onNew}>{label}<ArrowRight size={18}/></button>:
     !human&&s.phase!=='auction'?<button className="secondary" onClick={onDetails}>{who.controller==='bot'?'Bot sedang berpikir…':`Menunggu ${who.name}`}<ChevronRight size={18}/></button>:

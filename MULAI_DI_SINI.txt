@@ -1,7 +1,7 @@
-HOTFIX v2.11.3 — TypeScript build TS2339
-Perbaikan: createGame() sekarang menginisialisasi aiComment:null; Groq bot v2.11.2 dipertahankan.
-Cara cek: npm test dan npm run build:vercel (memerlukan dependencies).
-Catatan: docs/HOTFIX_v2.11.3.md.
+PEMBARUAN ONLINE MULTIPLAYER
+Baca docs/ONLINE_MULTIPLAYER_REPORT.md dan docs/DEPLOY_SUPABASE.md.
+Kode lokal sudah diperbarui; Supabase live, build frontend, dan deployment belum terverifikasi.
+Room legacy tidak otomatis dipindahkan. Jangan hapus database/token lama.
 
 MONOPOLI NUSANTARA v2.11.1 — BOARD VISUAL & PAWN IDENTITY
 
@@ -41,10 +41,3 @@ Paket belum dinyatakan siap produksi.
 HOTFIX v2.11.1
 Dua prop GameNotice.message kembali string; simbol dirender di dalam GameNotice.
 Detail: docs/HOTFIX_v2.11.1.md. Build Vercel perlu dijalankan kembali.
-
-HOTFIX v2.11.2 — GROQ BOT
-Menu VS Bot dapat mendeteksi Groq tanpa Redis. Keputusan strategis melewati API /api/bot.
-Isi GROQ_API_KEY di Vercel (Production/Preview yang digunakan), redeploy, lalu cek
-/api/game?status=1 dan tombol Periksa ulang Groq. Status groq:true = konfigurasi,
-bukan tes nyata penyedia. Redis/room, board, ekonomi, dan gameplay tidak diubah.
-Detail: docs/HOTFIX_v2.11.2.md.

@@ -98,6 +98,8 @@ test('room API keeps pawn selection exclusive through CAS, reconnect and START',
  let source=read('app/api/game/route.ts');source=source.replace(/^import .*?;$/gm,line=>line.includes('getRuntime')?`const getRuntime=()=>globalThis.${runtimeKey};`:line.includes('aiDecision')?'const aiDecision=()=>{throw Error("Unused in online test")};':line.replace(/'@\/(.*?)'/,(_,file)=>JSON.stringify(new URL('../'+file,import.meta.url).href)));
  const route=await import('data:text/javascript;base64,'+Buffer.from(stripTypeScriptTypes(source,{mode:'strip'})).toString('base64'));
  const post=async(body,token)=>{const response=await route.POST(new Request('https://game.test/api/game',{method:'POST',headers:{'Content-Type':'application/json',...(token?{'X-Room-Token':token}:{})},body:JSON.stringify(body)}));return {status:response.status,...await response.json()}};
+ assert.equal((await post({type:'CREATE',name:'Deprecated'})).status,410);
+ globalThis[runtimeKey].env.ALLOW_LEGACY_ROOM_CREATION='true'; // Isolated compatibility fixture only.
  const host=await post({type:'CREATE',name:'A',pawn:4});assert.equal(host.status,200);assert.equal(host.seats[0].pawn,4);
  const guest=await post({type:'JOIN',code:host.code,name:'B',pawn:4});assert.equal(guest.status,200);assert.notEqual(guest.seats[1].pawn,4);
  const third=await post({type:'JOIN',code:host.code,name:'C',pawn:3});assert.equal(third.status,200);

@@ -29,7 +29,7 @@ try{
   const html=await response.text();
   assert.equal(response.status,200,html.slice(0,500));
   assert(html.includes('Nusantara'));
-  for(const label of ['Main lokal','Lawan bot','Room online'])assert(html.includes(label));
+  for(const label of ['VS Bot','Online Multiplayer'])assert(html.includes(label));
   assert(!html.includes('Starter Project'));
   assert(!html.includes('<img class="lobby-illustration"'));
   for(const asset of ['nusantara-scene','pawn-atlas','region-atlas']){
@@ -58,7 +58,9 @@ try{
     body:JSON.stringify({type:'CREATE',name:'Pemeriksaan produksi'})
   });
   const room=await created.json();
-  assert.equal(created.status,200,JSON.stringify(room));
-  assert(room.token&&room.code);
-  console.log('PASS production API routing, D1 migration and room creation.');
+  assert.equal(created.status,410,JSON.stringify(room));
+  assert(room.error.includes('Supabase'));
+  const config=await mf.dispatchFetch('https://game.test/api/online?config=1');
+  assert.equal(config.status,200);assert.equal((await config.json()).online,false);
+  console.log('PASS production API routing, legacy creation disabled, Supabase configuration status.');
 }finally{await mf.dispose()}

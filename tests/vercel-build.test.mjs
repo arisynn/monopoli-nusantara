@@ -2,7 +2,7 @@ import {readFile,readdir} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 const html=await readFile('.next/server/app/index.html','utf8');
-for(const label of ['Main lokal','Lawan bot','Room online'])assert(html.includes(label));assert(!html.includes('<img class="lobby-illustration"'));
+for(const label of ['VS Bot','Online Multiplayer'])assert(html.includes(label));assert(!html.includes('<img class="lobby-illustration"'));
 const scripts=[...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map(m=>m[1]).filter(src=>src.startsWith('/_next/'));
 assert(scripts.length>0);
 for(const script of scripts)assert((await readFile('.next/'+script.slice('/_next/'.length))).length>0);
