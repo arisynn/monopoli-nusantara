@@ -1,3 +1,0 @@
-Monopoli Nusantara 2.2.0 — Portrait 2.5D
-Source commit: 7b6dd6b40105e9a0facf4823ebd2e7246083ee41
-Source and image assets. Build on Vercel with npm run build:vercel.
