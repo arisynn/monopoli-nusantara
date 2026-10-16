@@ -4,7 +4,7 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import {createGame,stock} from '../lib/game.mjs';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.MN_BROWSER_MODULE||'playwright');
 const origin=process.env.MN_TEST_ORIGIN||'http://127.0.0.1:8787',folder=process.env.MN_BROWSER_OUTPUT||'/tmp/nusantara-browser-qa';await mkdir(folder,{recursive:true});
-assert.equal((await fetch(origin+'/build.json').then(r=>r.json())).version,'4.8.0','Build the current source first');
+assert.equal((await fetch(origin+'/build.json').then(r=>r.json())).version,'4.8.1','Build the current source first');
 const browser=await chromium.launch({executablePath:process.env.MN_CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
 const checks=[],errors=[];
 const fixture=n=>{const names=['Jovan','Raka','Bima','Sari','Dewi','Bayu'];const state=createGame({players:names.slice(0,n).map(name=>({name,controller:'human'})),startingRoll:false},()=>.2);state.assets[1]={owner:0,level:2,mortgaged:false};state.assets[3]={owner:0,level:2,mortgaged:false};state.assets[6]={owner:n-1,level:0,mortgaged:true};state.bank=stock(state);return state;};
@@ -16,9 +16,9 @@ try{
   assert.equal(metrics.board.x,0);assert.equal(metrics.board.width,viewport.width);assert.equal(metrics.board.height,viewport.width);assert(metrics.console.bottom<=viewport.height+1);assert(!metrics.overflow);assert(!metrics.mainOverflow,JSON.stringify({viewport,n,metrics}));
   assert.equal(await page.locator('[data-tile]').count(),40);for(const [tile,angle] of [[1,0],[11,90],[21,180],[31,270]])assert.equal(await page.locator(`[data-tile="${tile}"] .tile-face`).getAttribute('data-angle'),String(angle));assert(await page.locator('.tile-name').evaluateAll(nodes=>nodes.every(n=>{const tile=n.closest('[data-tile]').querySelector('rect').getBoundingClientRect(),t=n.getBoundingClientRect();return t.x>=tile.x-1&&t.x+t.width<=tile.x+tile.width+1&&t.y>=tile.y-1&&t.y+t.height<=tile.y+tile.height+1})));assert.equal(await page.locator('.player-capsule').count(),n);assert.equal(await page.locator('[data-action=camera]').count(),1);assert.equal(await page.locator('.board-stage button').count(),0);assert.equal(await page.locator('.quick-actions [data-action=ownAssets]').count(),1);assert.equal(await page.locator('.quick-actions [data-action=trade]').count(),1);
   const labels=await page.locator('[data-tile="27"] .tile-name').allTextContents();assert.equal(labels.join(' '),'BANJARMASIN');assert.equal(await page.locator('[data-tile="6"] .tile-name').textContent(),'YOGYAKARTA');
-  await page.locator('[data-action=ownAssets]').click();await page.locator('dialog[open]').waitFor();const popup=await page.locator('dialog').boundingBox();assert(popup.x>=0&&popup.y>=0&&popup.x+popup.width<=viewport.width+1&&popup.y+popup.height<=viewport.height+1);await page.locator('dialog [data-action=close]').click();
-  await page.locator('.quick-actions [data-action=trade]').click();await page.locator('[data-kind=trade][open]').waitFor();await page.locator('dialog [data-action=close]').click();
-  await page.locator('[data-action=menu]').click();assert.equal(await page.locator('dialog [data-action=assets],dialog [data-action=trade],dialog [data-action=camera]').count(),0);await page.locator('dialog [data-action=close]').click();
+  await page.locator('[data-action=ownAssets]').click();await page.locator('dialog[open]').waitFor();const popup=await page.locator('dialog').boundingBox();assert(popup.x>=0&&popup.y>=0&&popup.x+popup.width<=viewport.width+1&&popup.y+popup.height<=viewport.height+1);await page.locator('dialog .popup-footer [data-action=close]').click();
+  await page.locator('.quick-actions [data-action=trade]').click();await page.locator('[data-kind=trade][open]').waitFor();await page.locator('[data-action=saveTradeDraft]').click();
+  await page.locator('[data-action=menu]').click();assert.equal(await page.locator('dialog [data-action=assets],dialog [data-action=trade],dialog [data-action=camera]').count(),0);await page.locator('dialog .popup-footer [data-action=close]').click();
   if(viewport.width===390&&n===6)await page.screenshot({path:folder+'/gameplay-6.png'});
   checks.push({name:`portrait ${viewport.width}x${viewport.height}, ${n} players`,passed:true,metrics});await context.close();
  }
@@ -36,7 +36,7 @@ try{
   await page.waitForFunction(()=>!document.querySelector('[data-action=primary]').disabled&&document.querySelector('[data-action=primary]').textContent.includes('Akhiri'));
   assert.deepEqual(await page.locator('.die').evaluateAll(ns=>ns.map(n=>Number(n.dataset.value))),[1,2]);assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('nusantara-save-v1')).state.version),1);
   assert(await page.locator('.die').evaluateAll(ns=>ns.every(n=>getComputedStyle(n).transform==='none'&&getComputedStyle(n).animationName==='none')));
-  await page.locator('[data-action=ownAssets]').click();await page.locator('dialog [data-action=close]').click();assert.deepEqual(await page.locator('.die').evaluateAll(ns=>ns.map(n=>Number(n.dataset.value))),[1,2]);
+  await page.locator('[data-action=ownAssets]').click();await page.locator('dialog .popup-footer [data-action=close]').click();assert.deepEqual(await page.locator('.die').evaluateAll(ns=>ns.map(n=>Number(n.dataset.value))),[1,2]);
   if(!reduced)await page.screenshot({path:folder+'/dice-result.png'});
   await page.reload({waitUntil:'networkidle'});await page.locator('[data-action=resume]').click();assert.equal(await page.locator('.dice-tray').getAttribute('data-stage'),'idle');assert.deepEqual(await page.locator('.die').evaluateAll(ns=>ns.map(n=>Number(n.dataset.value))),[1,2]);checks.push({name:`pip animation, reveal persistence, double click, refresh (${reduced?'reduced':'normal'})`,passed:true});await context.close();
  }

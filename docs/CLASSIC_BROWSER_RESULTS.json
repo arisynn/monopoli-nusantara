@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T13:06:16.471Z",
+  "generatedAt": "2026-10-16T15:21:59.793Z",
   "engine": "System Chromium via Playwright, real DOM and local HTTP server",
   "checks": [
     {
@@ -8,10 +8,10 @@
       "metrics": {
         "board": {
           "x": 0,
-          "y": 115,
+          "y": 106,
           "width": 320,
           "height": 320,
-          "bottom": 435,
+          "bottom": 426,
           "right": 320
         },
         "console": {
@@ -40,10 +40,10 @@
       "metrics": {
         "board": {
           "x": 0,
-          "y": 135,
+          "y": 128,
           "width": 320,
           "height": 320,
-          "bottom": 455,
+          "bottom": 448,
           "right": 320
         },
         "console": {
@@ -72,10 +72,10 @@
       "metrics": {
         "board": {
           "x": 0,
-          "y": 135,
+          "y": 128,
           "width": 320,
           "height": 320,
-          "bottom": 455,
+          "bottom": 448,
           "right": 320
         },
         "console": {
@@ -104,10 +104,10 @@
       "metrics": {
         "board": {
           "x": 0,
-          "y": 131,
+          "y": 122,
           "width": 360,
           "height": 360,
-          "bottom": 491,
+          "bottom": 482,
           "right": 360
         },
         "console": {
@@ -136,10 +136,10 @@
       "metrics": {
         "board": {
           "x": 0,
-          "y": 151,
+          "y": 144,
           "width": 360,
           "height": 360,
-          "bottom": 511,
+          "bottom": 504,
           "right": 360
         },
         "console": {
@@ -168,10 +168,10 @@
       "metrics": {
         "board": {
           "x": 0,
-          "y": 151,
+          "y": 144,
           "width": 360,
           "height": 360,
-          "bottom": 511,
+          "bottom": 504,
           "right": 360
         },
         "console": {
@@ -200,10 +200,10 @@
       "metrics": {
         "board": {
           "x": 0,
-          "y": 213,
+          "y": 199,
           "width": 390,
           "height": 390,
-          "bottom": 603,
+          "bottom": 589,
           "right": 390
         },
         "console": {
@@ -232,10 +232,10 @@
       "metrics": {
         "board": {
           "x": 0,
-          "y": 242.5,
+          "y": 225,
           "width": 390,
           "height": 390,
-          "bottom": 632.5,
+          "bottom": 615,
           "right": 390
         },
         "console": {
@@ -264,10 +264,10 @@
       "metrics": {
         "board": {
           "x": 0,
-          "y": 242.5,
+          "y": 225,
           "width": 390,
           "height": 390,
-          "bottom": 632.5,
+          "bottom": 615,
           "right": 390
         },
         "console": {
@@ -296,10 +296,10 @@
       "metrics": {
         "board": {
           "x": 0,
-          "y": 237,
+          "y": 223,
           "width": 430,
           "height": 430,
-          "bottom": 667,
+          "bottom": 653,
           "right": 430
         },
         "console": {
@@ -328,10 +328,10 @@
       "metrics": {
         "board": {
           "x": 0,
-          "y": 266.5,
+          "y": 249,
           "width": 430,
           "height": 430,
-          "bottom": 696.5,
+          "bottom": 679,
           "right": 430
         },
         "console": {
@@ -360,10 +360,10 @@
       "metrics": {
         "board": {
           "x": 0,
-          "y": 266.5,
+          "y": 249,
           "width": 430,
           "height": 430,
-          "bottom": 696.5,
+          "bottom": 679,
           "right": 430
         },
         "console": {

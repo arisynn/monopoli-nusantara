@@ -1,3 +1,5 @@
+Update terbaru: `ASSET_CLEANUP.json` dan `ASSET_MANIFEST.json` menjelaskan pembersihan aset runtime di luar board. Hasil browser/screenshot CLASSIC sebelumnya adalah baseline sebelum pembersihan.
+
 # Status dokumen
 
 Dokumen aktif update UI **4.8**: `CLASSIC_REPORT.md`, `FRONTEND_GUIDE.md`, `CLASSIC_TEST_RESULTS.json`, `CLASSIC_BROWSER_RESULTS.json`, `CLASSIC_SESSION_SMOKE.json`, `CLASSIC_SYNTAX_IMPORTS.json`, `CLASSIC_CORE_INTEGRITY.json`, `CLASSIC_CHANGED_FILES.json`, `CLASSIC_VERIFICATION.json` dan `ASSET_MANIFEST.json`.

@@ -1,4 +1,4 @@
-import {decisionActor,managementError,assets,buildTargets,canManage,canTrade} from '../lib/game.mjs';
+import {decisionActor,managementError,redemption,assets,buildTargets,canManage,canTrade} from '../lib/game.mjs';
 import {BOARD,money,AUCTION_RULES} from '../lib/content.mjs';
 import {gameplayDecision,canPresentDecision} from '../lib/gameplay-presentation.mjs';
 import {liveCardDecision} from '../lib/presentation-timeline.mjs';
@@ -30,7 +30,8 @@ export function autoPopup(s,full,head,seat,dismissed){
 }
 export const claimableRent=(s,seat)=>(['roll','end','jail','buy','card'].includes(s?.phase)?s.rentClaims?.filter(c=>c.to===seat):[])||[];
 export const dismissalKey=(p,s)=>p?.kind==='event'&&p.interactive?gameplayDecision(s)?.key||p.key:p?.key||gameplayDecision(s)?.key||'';
-export function assetPermission(s,seat,tile,type,busy=false){if(busy)return 'Tunggu presentasi selesai.';if(!canControl(s,seat)||s.assets[tile]?.owner!==seat)return 'Aset pemain lain hanya dapat dilihat.';if(!canManage(s,seat))return 'Selesaikan keputusan aktif dahulu.';return managementError(s,seat,tile,type)||'';}
+export function assetPermission(s,seat,tile,type,busy=false){if(busy)return 'Tunggu presentasi selesai.';if(!canControl(s,seat)||s.assets[tile]?.owner!==seat)return 'Aset pemain lain hanya dapat dilihat.';if(!canManage(s,seat))return 'Selesaikan keputusan aktif dahulu.';if(s.phase==='debt'&&!['SELL','SELL_SET','MORTGAGE'].includes(type))return 'Lunasi utang dahulu.';if(s.phase==='auction'&&type==='BUILD')return 'Selesaikan lelang sebelum memesan bangunan.';if(s.phase==='auction'&&s.auction.highest===seat&&type==='REDEEM'&&s.players[seat].cash-redemption(tile)<s.auction.amount)return 'Kas ini dicadangkan untuk tawaran tertinggi.';return managementError(s,seat,tile,type)||'';}
+
 export const bidMinimum=s=>Math.max(AUCTION_RULES.minimum,(s.auction?.amount||0)+AUCTION_RULES.increment);
 export function roomEligibility(room){const humans=room?.seats?.filter(p=>p.controller==='human'&&!p.out)||[];return {humans,needed:room?.vote?Math.floor(room.vote.eligible.length/2)+1:Math.floor(humans.length/2)+1,ready:humans.filter(p=>p.connected&&room.pause?.ready.includes(p.id)).length};}
 export {BOARD,money,gameplayDecision,assets,buildTargets,canTrade};

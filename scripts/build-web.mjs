@@ -16,8 +16,9 @@ await cp(new URL('frontend/service-worker.js',root),new URL('nusantara-sw.js',di
 const css=await readFile(new URL('frontend/styles.css',dist));const hash=createHash('sha256').update(css).update(await readFile(new URL('frontend/app.mjs',dist))).digest('hex').slice(0,12);
 const html=(await readFile(new URL('index.html',dist),'utf8')).replace('/frontend/styles.css',`/frontend/styles.css?v=${hash}`).replace('/frontend/app.mjs',`/frontend/app.mjs?v=${hash}`);
 await writeFile(new URL('index.html',dist),html);
-await writeFile(new URL('build.json',dist),JSON.stringify({version:'4.8.0',frontend:'classic',build:hash,serverModulesExposed:false},null,2)+'\n');
-const precache=['/','/frontend/styles.css',...((await readdir(new URL('frontend/',dist))).filter(n=>n.endsWith('.mjs')).map(n=>'/frontend/'+n)),...allowed.map(p=>'/'+p),'/lib/storage.mjs','/assets/archipelago-light.webp','/assets/region-atlas-light.webp','/assets/pawn-miniatures.webp','/assets/nusa-symbol.woff',...['pinisi','komodo','becak','cenderawasih','angklung','rumah-gadang'].map(n=>'/assets/tokens/'+n+'.svg'),...['start','chance','community','jail','gojail','parking','station','tax','electric','water'].map(n=>'/assets/classic/'+n+'.png'),...['start','chance','community','jail','gojail','parking','station','tax','electric','water'].map(n=>'/assets/board/'+n+'.svg')];
+await writeFile(new URL('build.json',dist),JSON.stringify({version:'4.8.1',frontend:'classic',build:hash,serverModulesExposed:false},null,2)+'\n');
+async function assetPaths(dir,prefix){const paths=[];for(const entry of await readdir(dir,{withFileTypes:true})){if(entry.isDirectory())paths.push(...await assetPaths(new URL(entry.name+'/',dir),prefix+entry.name+'/'));else paths.push(prefix+entry.name);}return paths.sort();}
+const precache=['/','/frontend/styles.css',...((await readdir(new URL('frontend/',dist))).filter(n=>n.endsWith('.mjs')).map(n=>'/frontend/'+n)),...allowed.map(p=>'/'+p),'/lib/storage.mjs',...await assetPaths(new URL('assets/',dist),'/assets/')];
 for(const path of precache)await readFile(new URL(path==='/'?'index.html':path.slice(1),dist));
 await writeFile(new URL('precache.json',dist),JSON.stringify(precache));
 // Avoid leaking any backend module or historical metadata through the static root.

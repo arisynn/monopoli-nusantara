@@ -1,74 +1,69 @@
-# Monopoli Nusantara 4.8 — Papan Klasik
+# Monopoli Nusantara 4.8.1 — Klasik Ringkas
 
-Frontend aktif menggunakan papan 2D klasik selebar layar portrait, header ringkas, Aset dan Barter berdampingan, serta dadu datar dengan animasi perubahan titik. Lobby dan gameplay menjadi dua layar utama; fitur lain dibuka dalam popup. Engine, ekonomi, bot, Auth dan room Supabase dipertahankan.
+Source aktif melanjutkan v4.8: papan klasik 40 petak selebar layar portrait, dua layar utama (lobby dan gameplay), serta popup untuk fitur lain. Update ini melengkapi dua baris informasi, feedback Nusa di dalam kapsul, riwayat uang per profil, pembangunan seluruh kelompok warna, draft barter, pilihan dalam game, dan keluarga aset PNG yang lebih sederhana. Engine, ekonomi, bot dan otorisasi multiplayer dipertahankan.
 
-Baca [laporan 4.8](docs/CLASSIC_REPORT.md), [panduan frontend](docs/FRONTEND_GUIDE.md) dan [kontrak integrasi engine](AI_UI_INTEGRATION.md). Basis logic adalah paket headless v4.6.1 yang dicatat di `design/SOURCE_OF_TRUTH.json`; source UI aktif ini bukan frontend React lama. `/build.json` melaporkan versi UI, sedangkan `lib/version.mjs` dan `/health` tetap metadata core historis.
+Baca [laporan implementasi dan QA](docs/COMPACT_REPORT.md), [peta frontend](docs/FRONTEND_GUIDE.md), [pemetaan 32 kartu](docs/CARD_ASSET_MAP.json), dan [kontrak engine](AI_UI_INTEGRATION.md). File laporan CLASSIC/KEPULAUAN/MIND/HEADLESS lama merupakan sejarah rilis sebelumnya kecuali hasil tes yang diperbarui oleh runner. Metadata core historis di `/health` berbeda dari versi UI di `/build.json`.
 
 ## Menjalankan
 
-Gunakan Node.js **24.x**. Tidak perlu instalasi dependency untuk build dan bermain VS Bot:
+Node.js **24.x**. Build dan runtime tidak memerlukan dependency produksi:
 
 ```bash
 npm run build
 npm start
 ```
 
-Buka `http://127.0.0.1:8787`. `npm run dev` menjalankan server yang sama; jalankan ulang build setelah mengubah source. Static root adalah **dist/**, bukan seluruh repository.
+Buka `http://127.0.0.1:8787`. Server menyajikan **dist/**. Setelah mengubah source, jalankan build kembali. VS Bot tetap dapat bermain tanpa Redis, Supabase atau Groq; cache offline memerlukan kunjungan pertama yang berhasil.
 
 ```bash
-npm test                 # build + seluruh tes engine/backend/frontend
-npm run test:frontend    # build + tes sesi/renderer/widget frontend
-npm run check:source     # syntax dan resolusi import source/output
-npm run build:vercel     # native Node build statis, bukan Next.js
-npm run smoke:ui         # simulasi sesi VS Bot 2/3/4 peserta tanpa DOM
+npm test                  # build dan seluruh tes engine/backend/frontend
+npm run check:source      # syntax dan resolusi import source/output
+npm run smoke:ui          # sesi VS Bot 2/3/4 peserta tanpa DOM
+npm run build:vercel      # build native Node statis, bukan Next.js
+npm run diagnose:online   # hanya keberadaan/bentuk konfigurasi, tanpa nilai secret
 ```
 
-Untuk pemeriksaan TypeScript semantik:
+Untuk TypeScript: `npm ci --ignore-scripts`, lalu `npm run typecheck`. Tidak ada script lint pada basis ini. Dependency pengembangan hanya TypeScript dan tipe Node.
 
-```bash
-npm ci --ignore-scripts
-npm run typecheck
-```
+## UI dan aset
 
-Dependency pengembangan hanya TypeScript dan tipe Node. Runtime frontend tetap ES modules, CSS dan SVG tanpa React/Next atau library 3D. Tidak ada script lint pada source basis.
-
-## Desain dan alur
-
-- Header hanya hamburger, nama Nusantara, serta kamera ketika gameplay. Tidak ada kamera di samping papan atau ikon pengaturan ganda.
-- Papan persegi memakai seluruh lebar viewport portrait. Seluruh 40 petak tetap utuh dan koordinat engine tidak berubah. Nama lengkap sesuai BOARD; kata tunggal tidak dipotong sembarang. Nama dekat strip kelompok, harga di tepi luar, dengan orientasi isi petak 0°/90°/180°/270° menghadap tengah seperti papan klasik. Teks dapat dipadatkan secara horizontal pada petak sempit.
-- Properti biasa: warna kelompok, nama, penanda pemilik/rumah/hotel/gadai. Harga/tabel sewa/detail berada pada popup. PNG transparan hanya untuk petak khusus; source vektornya tersedia di `design/classic-icons/`.
-- Tengah papan memakai nama Nusantara dan dua area deck sederhana. Tidak memakai perspektif, alas batu, dekorasi pulau atau atlas foto pada petak biasa.
-- Kapsul pemain 2–6 peserta, paling banyak dua baris. Aset dan Barter berada berdampingan di konsol bawah, diikuti dadu dan tindakan utama. Fitur lainnya lewat hamburger. Detail aset/kartu/barter/lelang/penjara/utang/profil/riwayat/save/room/settings tetap popup.
-- Dadu tidak berputar atau berpindah ke tengah papan. Pip dekoratif berubah selama rolling, tanpa menerima hasil sah pada widget sampai tahap reveal. Pasangan yang sudah diperlihatkan disimpan dalam view presentasi agar tidak kembali ke log dadu lama ketika pion bergerak.
-- Timer animasi tidak menentukan hasil gameplay. Klik ganda, versi state, hak bertindak dan idempotency tetap diperiksa. Snapshot reconnect menjadi baseline, bukan replay animasi lama.
-- VS Bot memakai NUSA MIND existing, tiga persona dan empat model. Groq opsional; permainan lokal tidak memerlukan server, Redis atau Supabase. Aturan klasik tetap mempunyai akses Tagih Sewa.
-- Autosave lokal, lima slot, previous save dan impor/ekspor JSON tetap menggunakan adapter existing. Room online tidak diubah lewat impor JSON.
+- Header: hamburger, Nusantara, satu kamera pada gameplay. Aset/Barter berdampingan pada konsol; profil melalui kapsul; riwayat melalui dua baris informasi di atas info petak. Hamburger gameplay berisi fitur pendukung tanpa salinan akses tersebut.
+- Baris aksi mengikuti kejadian yang sedang diperlihatkan; baris Nusa mengikuti transaksi publik yang sudah sah. Tinggi tetap. Hasil dadu tidak masuk baris aksi sebelum reveal.
+- Feedback uang berada pada baris tetap di dalam kapsul. Profil menampilkan ledger pemain yang dipilih, dari log publik tersimpan (maksimal 300 kejadian), bukan rekonstruksi seluruh sejarah pertandingan.
+- Aset → Bangun menampilkan delapan kelompok warna, kelompok siap di atas, kepemilikan, biaya dan perubahan sewa. Satu kelompok harus lengkap; status gadai, pembangunan merata, saldo, bank, utang dan lelang mengikuti validator. Tombol Barter ke pemilik yang dibutuhkan menyiapkan draft; belum mengirim transaksi. Setelah membangun, panel ditutup untuk memperlihatkan transaksi/presentasi yang sah.
+- Draft barter disimpan privat pada perangkat per match, identitas, lawan dan konteks counteroffer. Menutup popup tidak mengirim tawaran. Semua nilai divalidasi ulang saat pengiriman. Penyimpanan tidak tersedia memakai draft sesi dengan status jujur.
+- Pemilihan aturan, peserta, aset pemain dan opsi lainnya memakai kontrol game; native select hanya adapter nilai tersembunyi. Tidak ada prompt/confirm/alert untuk keputusan game.
+- Kesempatan/Dana Umum: 16 ilustrasi kontekstual dipetakan eksplisit ke **32 kartu**, 16 tiap deck. Teks, nominal, urutan dan efek dari engine. Dokter, pendidikan, kereta, penjara, perbaikan dan uang memakai ikon sesuai konteks; tidak dibagi acak.
+- Sertifikat ringkas memakai warna kelompok, tabel sewa asli, harga bangun/gadai, PNG rumah/hotel dan simbol stasiun/utilitas. Popup bertombol footer tidak mempunyai X di sudut; footer, Escape/Back tetap menyediakan jalan keluar yang sesuai.
+- Enam profil hewan kepala–bahu, enam pion memanjang, rumah/hotel, ikon UI, kartu dan monogram Nusa memakai PNG transparan. Numeric pawn IDs tetap 0–5. Board tetap SVG **untuk garis, teks dan hit area**, sedangkan ilustrasinya PNG supaya nama/harga tetap tajam saat zoom. Master ikon papan dan logo Nusa disimpan di `design/`; runtime tidak mengunduh aset SVG.
+- Seluruh aset runtime lama di luar papan sudah dihentikan; atlas pion lama kemudian diganti sesuai instruksi. Sepuluh ikon papan yang masih sesuai dipertahankan identik. Lihat `ASSET_CLEANUP.json` dan `ASSET_MANIFEST.json`.
 
 ## QA browser
 
-`npm run test:browser` adalah suite terpisah yang memerlukan Playwright dan Chromium yang tersedia pada mesin QA. Keduanya tidak menjadi dependency produksi game. Jalankan server dan build terlebih dahulu. Bila modul/browser berada di luar project, gunakan `MN_BROWSER_MODULE` (path modul Playwright) dan `MN_CHROMIUM_PATH` (path executable). `MN_TEST_ORIGIN` opsional; default localhost:8787. Screenshot diletakkan di `MN_BROWSER_OUTPUT` atau `/tmp/nusantara-browser-qa`.
+Jalankan server/build lebih dahulu, lalu `npm run test:browser`, `npm run test:compact`, dan `npm run test:plan`. QA memerlukan Playwright dan Chromium; keduanya tidak menjadi dependency produksi. Bila terpasang di luar proyek, set `MN_BROWSER_MODULE` dan `MN_CHROMIUM_PATH`. Opsional: `MN_TEST_ORIGIN`, `MN_BROWSER_OUTPUT`.
 
-Laporan `docs/CLASSIC_BROWSER_RESULTS.json` mencatat hasil browser aktual. Viewport mobile adalah emulasi Chromium, belum pengujian perangkat Android fisik. Fixture enam kursi pada tes layout hanya fixture UI dan bukan penambahan mode hotseat baru.
+Hasil aktual ada pada `CLASSIC_TEST_RESULTS.json`, `CLASSIC_BROWSER_RESULTS.json`, `COMPACT_BROWSER_RESULTS.json`, `PLAN_BROWSER_RESULTS.json` dan `COMPACT_VERIFICATION.json` dalam `docs/`. Pengujian portrait memakai emulasi Chromium, bukan Android fisik. Enam kursi manusia pada fixture hanya untuk QA UI, bukan mode hotseat baru. Pengujian online menggunakan simulasi/handler lokal dan mock konfigurasi, bukan Supabase live.
 
-## Backend dan deployment
+## Online dan deployment
 
-`.env.example` hanya template, tanpa secret. Gunakan environment/secret manager server. Node tidak membaca `.env` otomatis; bila diperlukan:
+Audit lokal menemukan **tidak ada `.env` aktif dan tiga ENV Supabase belum disediakan pada proses**. `/api/online?config=1` merespons `online:false`. Itu menjelaskan kondisi lokal, belum membuktikan kondisi deployment Anda sama. UI membedakan belum dikonfigurasi, gagal memuat konfigurasi, perlu masuk, dan room terputus; Periksa ulang tidak menghapus simpanan.
+
+Node tidak otomatis membaca `.env`. Gunakan secret manager server atau:
 
 ```bash
 node --env-file=.env --experimental-strip-types --import ./adapters/node/aliases.mjs adapters/node/server.mjs
 ```
 
-- Adapter Node: `MN_HEADLESS_HOST`/`MN_HEADLESS_PORT` default 127.0.0.1:8787; `MN_HEADLESS_ORIGIN` harus cocok dengan origin publik bila memakai reverse proxy. Frontend dan `/api/*` satu origin.
-- Vercel: framework **Other**, Node **24.x**, konfigurasi `vercel.json`, build `npm run build:vercel`, output `dist`. `api/index.ts` meneruskan handler Fetch existing untuk online/bot/game. Belum melakukan deployment Vercel aktual.
-- Supabase membutuhkan URL/key publik serta service role key **hanya di server**. Browser mendapat URL dan public key melalui endpoint config. Identitas, kursi, transaksi, revision, persistence, pause/vote/resume dan heartbeat tetap backend-authoritative.
-- Bot online tetap memakai jobs/lease/Edge Function/scheduler existing, tidak dijalankan browser host. Default `MN_ONLINE_BOTS_ENABLED=false`; aktifkan sesudah staging worker terverifikasi. Lihat `docs/DEPLOY_SUPABASE.md` dan `docs/DEPLOY_HYBRID.md`.
-- Tidak ada migration baru pada update ini. Jangan mengulang migration existing tanpa memeriksa project. Tidak ada database produksi yang diubah.
-- Groq memakai ENV server, bersifat opsional, dan tidak pernah masuk bundle publik. Tidak ada request Groq live atau Supabase live pada QA ini.
+Konfigurasi server: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`. Hanya URL dan key publik boleh sampai browser. Simpan service role dan Groq key hanya pada server. Jangan memasukkan nilai secret ke ZIP.
+
+Vercel: framework **Other**, Node **24.x**, build `npm run build:vercel`, output `dist`, rewrite `/api/*` melalui `api/index.ts` sesuai `vercel.json`. Atur ENV untuk environment deployment yang benar, lalu redeploy. Build lokal bukan bukti deployment Vercel berhasil.
+
+Periksa Supabase Auth URL/redirect origin publik, metode guest/email yang digunakan, tiga migration existing, RLS/permission RPC dan Realtime `mn_room_updates` pada staging. Jangan mengulang migration tanpa melihat keadaan project. Tidak ada migration/database produksi yang diubah pada update ini. Lihat `docs/DEPLOY_SUPABASE.md`, `docs/DEPLOY_HYBRID.md`, dan bagian diagnosis pada laporan baru.
+
+Bot online tetap backend-authoritative dengan jobs/lease/recovery existing. `MN_ONLINE_BOTS_ENABLED` default false sampai worker staging tervalidasi. Groq opsional. Tidak ada pengujian atau pemanggilan Groq live, Supabase live, maupun deployment aktual dalam pekerjaan ini.
 
 ## Cache dan kompatibilitas
 
-Cache shell dinaikkan ke `nusantara-classic-v480`. Service worker menyimpan aset/modul publik, tidak menyimpan respons API/Auth/state room. Cleanup terbatas pada cache Nusantara; save IndexedDB/localStorage tidak dihapus. Offline memerlukan kunjungan online yang berhasil untuk memasang cache lengkap.
+Cache shell `nusantara-classic-v481` hanya menyimpan modul/aset publik, tidak API/Auth/room state. Cache Nusantara lama dibersihkan tanpa menghapus localStorage/IndexedDB pertandingan. Schema save, angka ekonomi, numeric pawn IDs dan aturan bot tetap; nama visual pion berubah menjadi warna sesuai aset barunya.
 
-Identitas pion, schema save dan rulepack tetap. Dua file shared presentation berubah untuk memperbaiki queue kosong dan mempertahankan hasil reveal; engine aturan, strategi bot dan backend otorisasi tidak diubah. Lihat `docs/CLASSIC_CORE_INTEGRITY.json` dan `docs/ASSET_MANIFEST.json`.
-
-Dokumen HEADLESS, MIND, KEPULAUAN dan laporan 4.7 adalah bukti historis. Hasil aktif update ini memakai nama `CLASSIC_*`; runner gabungan menulis `CLASSIC_TEST_RESULTS.json`.
+Paket source menyertakan backend, migration, tests, docs, lockfile, aset dan master desain; tidak memuat `node_modules`, `dist`, secret ENV atau log. `PACKAGE_MANIFEST.json` mencatat hash setiap file selain dirinya sendiri. Bandingkan perubahan inti pada `docs/COMPACT_CORE_INTEGRITY.json`.

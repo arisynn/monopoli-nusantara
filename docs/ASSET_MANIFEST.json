@@ -1,193 +1,144 @@
 {
-  "release": "4.8.0 Classic",
+  "release": "4.8.1 Compact",
+  "runtimeFileCount": 17,
+  "runtimeBytes": 1343637,
+  "allRuntimeArt": "PNG; board geometry/text remain dynamic SVG",
   "files": [
     {
-      "path": "public/assets/archipelago-light.webp",
-      "bytes": 419078,
-      "sha256": "0f9ef286fde70bf927f5b91291d5b563d6c28662d5853c041c211e08cb62b563",
-      "status": "retained from 4.7.1"
+      "path": "public/assets/avatars/animal-portraits.png",
+      "bytes": 532462,
+      "width": 768,
+      "height": 512,
+      "sha256": "6c31017548cd6a7e1daa972b9eedb5c1a56f07898673ad3b719cb117bc8a1c54",
+      "status": "new optimized PNG"
     },
     {
-      "path": "public/assets/board/chance.svg",
-      "bytes": 776,
-      "sha256": "28c83b07523a45d2338f12220d5d81b6572c0c856bb6d1ca610deacf9129497c",
-      "status": "retained from 4.7.1"
+      "path": "public/assets/buildings/building-icons.png",
+      "bytes": 92312,
+      "width": 888,
+      "height": 444,
+      "sha256": "a638820b79e3dd5b921a06f61d3b070d0ca70114135a62254e0b091ed55d7540",
+      "status": "new optimized PNG"
     },
     {
-      "path": "public/assets/board/community.svg",
-      "bytes": 802,
-      "sha256": "5cc6f8ddab4b14305238b8cad7944d4e2bc25f87b098055b833bc247f7a36b11",
-      "status": "retained from 4.7.1"
+      "path": "public/assets/cards/chest.png",
+      "bytes": 19126,
+      "width": 128,
+      "height": 128,
+      "sha256": "f1762749e17ac6bd92732ae6bbbe0c00c2628b88457f310b9f69052c4d22a08a",
+      "status": "new optimized PNG"
     },
     {
-      "path": "public/assets/board/electric.svg",
-      "bytes": 703,
-      "sha256": "0c90526baeef70e6a396235538d5fe9aae87d525f50b8ae21d125fde3aa3bb2b",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/board/gojail.svg",
-      "bytes": 786,
-      "sha256": "ad19e7a59e6f316db69b6c8527eb9a3d1af8d872ab1c295ccf4b103d5a343c14",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/board/jail.svg",
-      "bytes": 732,
-      "sha256": "380eedb4822b9921dcfea0864e9d4b8a8ff974181893bd841ff0d26b2b66c1d0",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/board/parking.svg",
-      "bytes": 799,
-      "sha256": "1b7c0fb988d410407af63c477f8e653ff627774f08bf5fadc89b5d77626bfde6",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/board/start.svg",
-      "bytes": 700,
-      "sha256": "943d6f37458281447c89545ae5a4e1a5febfb765b95bd160e846dd0e1ac5432b",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/board/station.svg",
-      "bytes": 840,
-      "sha256": "c87387f558abd058f2f8eed82abbe9ce71f84474089045bb29f001796d052c00",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/board/tax.svg",
-      "bytes": 731,
-      "sha256": "e03014913feff0f7f7a44ee61dbb6edce916945d72865116d099a8fdd6d7c8e4",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/board/water.svg",
-      "bytes": 734,
-      "sha256": "9f79eb49413b56c9998403080adf7f1afb2459ffc78b1c3b70ee3cf0257212d9",
-      "status": "retained from 4.7.1"
+      "path": "public/assets/cards/event-icons.png",
+      "bytes": 473758,
+      "width": 768,
+      "height": 768,
+      "sha256": "30d8f706977a146a94cf179304c650b4ec0e32909f6864b69facb603ac76d2ea",
+      "status": "new optimized PNG"
     },
     {
       "path": "public/assets/classic/chance.png",
       "bytes": 3628,
+      "width": 212,
+      "height": 212,
       "sha256": "3c55e9ce4fdc31640e9c17b33aad9ce2b2018af368cf4873ce27d752f19c0b06",
-      "status": "new classic transparent icon"
+      "status": "retained board icon"
     },
     {
       "path": "public/assets/classic/community.png",
       "bytes": 1880,
+      "width": 212,
+      "height": 212,
       "sha256": "76effa8adf0ae2cdd32e56f8d9fdf9b3d2f5677c7218cb0598362269b4173a69",
-      "status": "new classic transparent icon"
+      "status": "retained board icon"
     },
     {
       "path": "public/assets/classic/electric.png",
       "bytes": 3215,
+      "width": 212,
+      "height": 212,
       "sha256": "611ed8ccb670ba5a76e70fdf444622950a2602f72e725a862b354149ee983252",
-      "status": "new classic transparent icon"
+      "status": "retained board icon"
     },
     {
       "path": "public/assets/classic/gojail.png",
       "bytes": 4648,
+      "width": 212,
+      "height": 212,
       "sha256": "2136a7b28252ebe6295a4827a319013a0cc4372d7feec61544d0b08e390185f8",
-      "status": "new classic transparent icon"
+      "status": "retained board icon"
     },
     {
       "path": "public/assets/classic/jail.png",
       "bytes": 2353,
+      "width": 212,
+      "height": 212,
       "sha256": "34f9b818fc15e0fa080edef80f3b6027c70a05625efd758b5466ab12f4ea5cae",
-      "status": "new classic transparent icon"
+      "status": "retained board icon"
     },
     {
       "path": "public/assets/classic/parking.png",
       "bytes": 2706,
+      "width": 212,
+      "height": 212,
       "sha256": "d0aa4325f7ae1f38c8664fc4b27c5d3b2787115ec51a240b634d98548aa2e0db",
-      "status": "new classic transparent icon"
+      "status": "retained board icon"
     },
     {
       "path": "public/assets/classic/start.png",
       "bytes": 1335,
+      "width": 212,
+      "height": 212,
       "sha256": "eebd4719677d112188c594774b0e737c18786fb4a9b9f14223ae1a01accfe13b",
-      "status": "new classic transparent icon"
+      "status": "retained board icon"
     },
     {
       "path": "public/assets/classic/station.png",
       "bytes": 2603,
+      "width": 212,
+      "height": 212,
       "sha256": "2515e10b0f40971eb6a35eeeba62be0267264f9c6b47a555bed02e0b821bea84",
-      "status": "new classic transparent icon"
+      "status": "retained board icon"
     },
     {
       "path": "public/assets/classic/tax.png",
       "bytes": 8451,
+      "width": 212,
+      "height": 212,
       "sha256": "61a9161441e017ae54472ad11c46a4719bfb549979d32917eb06baa91dcd9c6f",
-      "status": "new classic transparent icon"
+      "status": "retained board icon"
     },
     {
       "path": "public/assets/classic/water.png",
       "bytes": 1659,
+      "width": 212,
+      "height": 212,
       "sha256": "813e0b267251807aa5015c4cc4825a5eed955d74b14df518b2a92bef57e4be2b",
-      "status": "new classic transparent icon"
+      "status": "retained board icon"
     },
     {
-      "path": "public/assets/nusa-symbol.woff",
-      "bytes": 724,
-      "sha256": "849862ab22024852c93a5eabdfc7bbb7ecac44e501e24dd827164e641b8c6aa4",
-      "status": "retained from 4.7.1"
+      "path": "public/assets/currency/nusa-mark.png",
+      "bytes": 9234,
+      "width": 128,
+      "height": 128,
+      "sha256": "a245940d890e865fe141eb70783d39edb0c6f662442cdc299de9dca0b69aa091",
+      "status": "new optimized PNG"
     },
     {
-      "path": "public/assets/nusa.svg",
-      "bytes": 206,
-      "sha256": "964fdf6f25061232039377b2eacfe1dd61c28e4324c54f9ef3a0b0cbabda2cd0",
-      "status": "retained from 4.7.1"
+      "path": "public/assets/pawns/pawn-tokens.png",
+      "bytes": 172337,
+      "width": 768,
+      "height": 512,
+      "sha256": "ddff2049eb7d46437a8988028996e8cfb12b0780b36c31b8b2bf0eb087efde10",
+      "status": "new optimized PNG"
     },
     {
-      "path": "public/assets/pawn-miniatures.webp",
-      "bytes": 360562,
-      "sha256": "ece8fdcdcc72a120080679290ed64cf7cf7606fa2833ed72dc6d6102af6fd3e1",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/region-atlas-light.webp",
-      "bytes": 430854,
-      "sha256": "6d0a80c41a4e2416d8a6ca77fd474ef50838d1337a8ba2aff8f27f09ccf45a56",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/tokens/angklung.svg",
-      "bytes": 770,
-      "sha256": "33df2d4ee26f496c180c773eb585b7cfb4e5d72b67a4b18f6d9c89e50d09ee89",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/tokens/becak.svg",
-      "bytes": 857,
-      "sha256": "b40249dfe777599df5a089303742e52899c53273c072a5a38c115e183933169a",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/tokens/cenderawasih.svg",
-      "bytes": 865,
-      "sha256": "8a0758c0428f68b53d116fa60369eabe267cd46a0e561d73ae417cda5264db60",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/tokens/komodo.svg",
-      "bytes": 828,
-      "sha256": "baf157ba4dea1eb66d04a82287ea48a9632688c96cd8141d11ed9b96acb2da95",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/tokens/pinisi.svg",
-      "bytes": 792,
-      "sha256": "a02c2b5a6a477383ca8bef0659382961dced0a79128daffd3ec94a67b79e4bc5",
-      "status": "retained from 4.7.1"
-    },
-    {
-      "path": "public/assets/tokens/rumah-gadang.svg",
-      "bytes": 830,
-      "sha256": "a052e86aef95a3280e9f0424838dacac523ab7b785b094b0cd63a53cf90ec5d2",
-      "status": "retained from 4.7.1"
+      "path": "public/assets/ui/interface-icons.png",
+      "bytes": 11930,
+      "width": 512,
+      "height": 256,
+      "sha256": "3589a2b6c450f35f9f8d1e6b54043bc49b2c5896b2a6886ff74d45bd18067050",
+      "status": "new optimized PNG"
     }
-  ],
-  "vectorOriginals": "design/classic-icons/*.svg",
-  "boardPolicy": "Ordinary tiles do not render scenic/property images; old compatible art is retained for popups/lobby/pawns."
+  ]
 }

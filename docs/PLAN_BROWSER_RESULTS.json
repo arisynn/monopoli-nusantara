@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-10-16T15:21:26.032Z",
+  "engine": "System Chromium via Playwright on local HTTP",
+  "checks": [
+    {
+      "name": "all eight development groups, complete-set guards, prefilled barter draft, one committed build, inline cash and public profile ledger survive refresh without replay",
+      "passed": true
+    },
+    {
+      "name": "six player information layout, one access per feature and other player public ledger remains read-only",
+      "passed": true
+    },
+    {
+      "name": "online unconfigured: distinct configuration/network/identity state and safe retry",
+      "passed": true
+    },
+    {
+      "name": "online error: distinct configuration/network/identity state and safe retry",
+      "passed": true
+    },
+    {
+      "name": "online signin: distinct configuration/network/identity state and safe retry",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Emulated portrait viewports, not physical Android.",
+    "Online status routes are explicit mocks; no live Supabase/Groq tested.",
+    "Six-human save is a UI fixture, not a new local mode."
+  ]
+}

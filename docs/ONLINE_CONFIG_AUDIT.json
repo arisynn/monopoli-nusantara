@@ -1,0 +1,20 @@
+{
+  "scope": "Local runtime configuration audit; no live Supabase request or credentials printed",
+  "configured": false,
+  "variables": {
+    "SUPABASE_URL": false,
+    "SUPABASE_ANON_KEY": false,
+    "SUPABASE_SERVICE_ROLE_KEY": false
+  },
+  "urlShape": "missing",
+  "environmentFiles": [],
+  "migrationFiles": [
+    "202610160001_persistent_online.sql",
+    "202610160002_hybrid_bot_jobs.sql",
+    "202610160003_nusa_mind_settings.sql"
+  ],
+  "liveAuth": "not verified",
+  "liveRLS": "not verified",
+  "liveRealtime": "not verified",
+  "note": "Node runtime reads process ENV. Use your server secret manager or node --env-file=.env; Vercel uses environment settings per deployment."
+}

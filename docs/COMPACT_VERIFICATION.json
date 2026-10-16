@@ -1,0 +1,110 @@
+{
+  "release": "4.8.1 Compact",
+  "generatedAt": "2026-10-16T15:27:41.506205+00:00",
+  "node": "v24.19.0",
+  "commands": {
+    "npm test": {
+      "passed": true,
+      "tests": 333,
+      "failed": 0,
+      "skipped": 0
+    },
+    "npm run typecheck": {
+      "passed": true,
+      "kind": "semantic TypeScript, existing strict configuration unchanged"
+    },
+    "npm run check:source": {
+      "passed": true,
+      "modules": 190
+    },
+    "npm run build:vercel": {
+      "passed": true,
+      "kind": "native static production build; no live deployment"
+    },
+    "npm run smoke:ui": {
+      "passed": true,
+      "runs": [
+        {
+          "players": 2,
+          "seed": 461,
+          "actions": 389,
+          "finished": true,
+          "winner": "Raka",
+          "phase": "won",
+          "error": null,
+          "elapsedMs": 7762
+        },
+        {
+          "players": 3,
+          "seed": 461,
+          "actions": 428,
+          "finished": true,
+          "winner": "Raka",
+          "phase": "won",
+          "error": null,
+          "elapsedMs": 4562
+        },
+        {
+          "players": 4,
+          "seed": 461,
+          "actions": 610,
+          "finished": true,
+          "winner": "Bima",
+          "phase": "won",
+          "error": null,
+          "elapsedMs": 10427
+        }
+      ]
+    }
+  },
+  "browser": {
+    "CLASSIC_BROWSER_RESULTS.json": {
+      "scenarios": 16,
+      "passed": true,
+      "generatedAt": "2026-10-16T15:21:59.793Z"
+    },
+    "COMPACT_BROWSER_RESULTS.json": {
+      "scenarios": 18,
+      "passed": true,
+      "generatedAt": "2026-10-16T15:24:22.748Z"
+    },
+    "PLAN_BROWSER_RESULTS.json": {
+      "scenarios": 5,
+      "passed": true,
+      "generatedAt": "2026-10-16T15:21:26.032Z"
+    }
+  },
+  "browserScenarioTotal": 39,
+  "lint": "No lint script supplied by source basis",
+  "liveSupabase": false,
+  "liveGroq": false,
+  "deployed": false,
+  "physicalAndroid": false,
+  "onlineConfiguration": {
+    "scope": "Local runtime configuration audit; no live Supabase request or credentials printed",
+    "configured": false,
+    "variables": {
+      "SUPABASE_URL": false,
+      "SUPABASE_ANON_KEY": false,
+      "SUPABASE_SERVICE_ROLE_KEY": false
+    },
+    "urlShape": "missing",
+    "environmentFiles": [],
+    "migrationFiles": [
+      "202610160001_persistent_online.sql",
+      "202610160002_hybrid_bot_jobs.sql",
+      "202610160003_nusa_mind_settings.sql"
+    ],
+    "liveAuth": "not verified",
+    "liveRLS": "not verified",
+    "liveRealtime": "not verified",
+    "note": "Node runtime reads process ENV. Use your server secret manager or node --env-file=.env; Vercel uses environment settings per deployment."
+  },
+  "integrity": {
+    "comparedCoreFiles": 57,
+    "identical": 56,
+    "onlyChangedCorePath": "lib/pawns.mjs",
+    "reason": "Visual PNG metadata and color labels only"
+  },
+  "packaging": "CRC and every included file hash are verified when packaging; delivery verification is supplied beside ZIP to avoid self-hashing archive metadata."
+}

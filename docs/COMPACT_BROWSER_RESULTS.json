@@ -1,0 +1,109 @@
+{
+  "generatedAt": "2026-10-16T15:24:22.748Z",
+  "engine": "System Chromium via Playwright on localhost HTTP",
+  "checks": [
+    {
+      "name": "in-game options, keyboard navigation and Escape without native browser pickers",
+      "passed": true
+    },
+    {
+      "name": "draft per opponent, picker back, close/refresh restore, explicit submit and clearing only accepted draft",
+      "passed": true
+    },
+    {
+      "name": "counteroffer preserves correct reversed perspective and its own draft across refresh",
+      "passed": true
+    },
+    {
+      "name": "compact chance card 11, exact engine text and fitting 320x568",
+      "passed": true,
+      "height": 319
+    },
+    {
+      "name": "compact community card 2, exact engine text and fitting 320x568",
+      "passed": true,
+      "height": 330
+    },
+    {
+      "name": "compact community card 14, exact engine text and fitting 320x568",
+      "passed": true,
+      "height": 330
+    },
+    {
+      "name": "compact certificate tile 1, real rulepack and fitting 320x568",
+      "passed": true,
+      "height": 479.578125
+    },
+    {
+      "name": "compact certificate tile 5, real rulepack and fitting 320x568",
+      "passed": true,
+      "height": 385.390625
+    },
+    {
+      "name": "compact certificate tile 12, real rulepack and fitting 320x568",
+      "passed": true,
+      "height": 357.984375
+    },
+    {
+      "name": "compact certificate tile 28, real rulepack and fitting 320x568",
+      "passed": true,
+      "height": 357.984375
+    },
+    {
+      "name": "PNG houses and hotels face the corresponding board edge, all assets load",
+      "passed": true
+    },
+    {
+      "name": "compact history popup has footer exit and no obstructing corner X",
+      "passed": true
+    },
+    {
+      "name": "compact settings popup has footer exit and no obstructing corner X",
+      "passed": true
+    },
+    {
+      "name": "compact rules popup has footer exit and no obstructing corner X",
+      "passed": true
+    },
+    {
+      "name": "compact saves popup has footer exit and no obstructing corner X",
+      "passed": true
+    },
+    {
+      "name": "compact room popup has footer exit and no obstructing corner X",
+      "passed": true
+    },
+    {
+      "name": "compact profile popup has footer exit and no obstructing corner X",
+      "passed": true
+    },
+    {
+      "name": "six distinct PNG animals and pawns, Nusa logo preserves exact text and decoration is idempotent",
+      "passed": true,
+      "images": [
+        {
+          "src": "/assets/avatars/animal-portraits.png",
+          "loaded": true
+        },
+        {
+          "src": "/assets/pawns/pawn-tokens.png",
+          "loaded": true
+        },
+        {
+          "src": "/assets/currency/nusa-mark.png",
+          "loaded": true
+        },
+        {
+          "src": "/assets/ui/interface-icons.png",
+          "loaded": true
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Mobile viewport emulation, not physical Android.",
+    "Six/human save fixtures are QA only; no new hotseat mode.",
+    "No live Supabase or Groq tested."
+  ]
+}

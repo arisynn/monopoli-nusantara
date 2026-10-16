@@ -1,49 +1,42 @@
-# Peta frontend Kepulauan
+# Peta frontend aktif 4.8.1
 
-Source utama ialah `frontend/`, bukan komponen React versi lama. Backend dalam `app/api/` tetap handler Fetch dan tidak mengandung halaman Next.js. Tidak menyalin frontend lama ke source ini.
+Frontend memakai ES modules/CSS, bukan React/Next lama. `app/api` tetap backend Fetch handler. Hanya lobby dan gameplay menjadi layar penuh. Semua fitur lain dalam satu elemen `<dialog>` yang dimiliki aplikasi; kontrol pemilihan tidak memakai popup browser.
 
 | File | Tanggung jawab |
 | --- | --- |
-| `frontend/app.mjs` | Dua layar, satu native dialog, event delegation, forms, focus, browser Back, slot save dan feedback |
-| `frontend/session.mjs` | Adapter command lokal/intent online, autosave, timeline, worker lokal, subscription dan heartbeat |
-| `frontend/domain.mjs` | Hak kontrol, tindakan utama, masking dadu, pemilihan popup, klaim sewa |
-| `frontend/popups.mjs` | Renderer popup seluruh keputusan dan fitur pendukung |
-| `frontend/board-depth.mjs` | Proyeksi/invers 2.5D, alas batu, pita kepemilikan, miniatur rumah/hotel dan dekorasi rim |
-| `frontend/board.mjs` | SVG 40 petak dari BOARD existing, kepemilikan/gadai/bangunan, kamera dan animasi pion |
-| `frontend/art.mjs` | Crest/logo, enam avatar, ikon UI dan crop atlas |
-| `frontend/styles.css` | Tema terang, layout portrait dan desktop, popup scroll, safe area, reduced motion |
-| `frontend/service-worker.js` | Cache aset/shell publik; tidak menyimpan API atau save |
-| `frontend/cache-migration.mjs` | Cleanup khusus cache/worker UI Nusantara lama |
-| `scripts/build-web.mjs` | Membuat dist terpisah dan manifest precache; strip storage.ts; tidak mengekspos modul server |
-| `adapters/node/static.mjs` | Static root khusus dist, MIME dan penjagaan path |
-| `api/index.ts` | Transport Vercel ke handler existing, body cap dan origin yang dipertahankan |
+| `frontend/app.mjs` | Dua layar, navigasi, event delegation, popup lifecycle, draft dan bindings |
+| `frontend/session.mjs` | Intent lokal/online, autosave, timeline, worker bot, koneksi, retry config |
+| `frontend/domain.mjs` | Hak kontrol, primary action, masking dadu, popup, guard manajemen |
+| `frontend/popups.mjs` | Renderer sertifikat, kartu, aset, pembangunan, profil/ledger, barter dan keputusan |
+| `frontend/development.mjs` | Delapan kelompok warna, status pembangunan, biaya/sewa dan kesempatan barter |
+| `frontend/economy-view.mjs` | Dua baris aktivitas, feedback kapsul, ledger per pemain dari log publik |
+| `frontend/online-status.mjs` | Status konfigurasi/identitas/koneksi yang tidak menyamakan ENV dengan konektivitas |
+| `frontend/selections.mjs` | Listbox HTML, keyboard, fokus dan adapter select tersembunyi |
+| `frontend/trade-drafts.mjs` | Draft privat serializable, konteks counteroffer, cap 24 record, fallback memori |
+| `frontend/card-icons.mjs` | Pemetaan eksplisit 16 + 16 kartu ke konteks PNG |
+| `frontend/currency-view.mjs` | Logo PNG sebagai dekorasi; teks N/angka dan input tetap |
+| `frontend/board.mjs` | 40 petak dari BOARD, orientasi teks/bangunan, hit area, PNG pion, animasi |
+| `frontend/board-camera.mjs` | Fit selebar layar, zoom dan clamp pada board 2D datar |
+| `frontend/dice-view.mjs` | Pengacakan pip dekoratif, reveal sah, pembatalan callback usang |
+| `frontend/art.mjs` | Crop atlas PNG hewan/pion/kartu/bangunan dan PNG mask glyph UI |
+| `frontend/styles.css` | Portrait, desktop, safe area, popup compact dan reduced motion |
+| `frontend/service-worker.js` | Cache publik v481; tidak menyimpan API/identitas/state room |
+| `frontend/cache-migration.mjs` | Cleanup worker/cache UI Nusantara lama, tanpa menyentuh save |
+| `scripts/build-web.mjs` | Output dist terpisah, precache berdasarkan aset aktual, tanpa modul server |
+| `scripts/diagnose-online.mjs` | Audit ENV lokal tanpa mencetak nilainya atau menghubungi Supabase |
 
-`GameSession.state` adalah snapshot authoritative. `model/view/head` hanya presentasi. Jangan menggunakan view untuk menghitung ulang pembayaran, kartu, dadu atau properti. Gunakan `session.act(type, data)` agar pending guard, actor binding dan version diperiksa. Online hanya mengirim intent plus requestId/action.id yang sama; command tidak dijalankan di client online.
+`GameSession.state` authoritative. `view/head/model` hanya presentasi. Semua tindakan melalui `session.act(type,data)` dengan actor binding, pending guard, version dan backend validation. Jangan mengubah saldo/posisi/kartu melalui callback animasi. Online hanya mengirim intent; server menentukan RNG dan transaksi.
 
-Worker lokal di `lib/bot/mind-client.mjs` tetap melakukan perhitungan di luar main thread ketika browser mendukung. Rekomendasi terlambat dibuang saat match/version/generation berubah, popup menutupi, pause, unmount atau pindah layar. Bila worker gagal, planner ekonomi lokal menjadi fallback; kegagalan berulang dibatasi dan menyediakan Coba Ulang. Bot room diproses worker backend existing, tidak oleh session browser.
+`ingestTimeline` memberi ID/watermark. Reconnect/refresh adalah baseline. Dadu rolling tidak menerima angka hasil pada widget maupun baris aktivitas. Reveal membatalkan timer lama, mempertahankan pasangan baru selama movement. Pion berjalan dari rute engine. Kejadian penjara/kartu tidak dipicu ulang hanya karena render. Observer kartu publik mendapat kontrol tutup, bukan ACK pemain lain.
 
-`ingestTimeline` existing memberi event ID dan log watermark. Restore/reconnect memakai baseline agar riwayat lama tidak diputar ulang. Observer melihat kartu publik dengan tombol tutup; hanya pemilik kartu yang dapat ACK. ACK adalah perintah engine sekali; menutup popup presentasi tidak menjalankan efek kartu. Setelah restore pada phase card, tombol ACK tetap tersedia walau queue visual kosong.
+Feedback kapsul hanya dari `head.finance`, bukan beda saldo dua snapshot. Node stabil untuk event sama; tidak ada badge di luar kartu. Baris aktivitas dapat memakai `head.source` setelah reveal agar tidak terlambat, sementara ledger persisten dibaca dari log publik yang dibatasi 300 kejadian oleh engine. Deduplikasi ID mencegah baris ganda tanpa menyimpan ledger ekonomi kedua.
 
-Dadu berada pada konsol UI. Saat rolling, hasil belum masuk markup/aria-label. Saat diceResult, nilai server/engine baru ditampilkan. Pion memakai rute sah dari event. Callback animasi hanya menyelesaikan langkah presentasi lokal. Tidak ada ACK animasi yang mengubah room atau menunggu semua client.
+Pembangunan memakai `assetPermission` + `managementError`/`canManage`, termasuk pembatasan dispatcher utang/lelang dan saldo yang dicadangkan. Tidak ada aturan “dua properti selalu cukup”: kelompok harus lengkap. Perintah BUILD menutup panel agar timeline dapat memperlihatkan hasil; stok terbatas dapat memunculkan buildOffer/lelang existing. Barter dari kelompok hanya mengisi draft dan selalu divalidasi ulang saat dikirim.
 
-Saldo animasi memakai finance records engine. Kapsul tidak dibuat ulang seluruhnya pada heartbeat sehingga efek transaksi tidak restart. Lelang memakai satu node dialog selama proses; angka bid berasal dari AUCTION_RULES, bukan timer atau harga mockup. Harga contoh pada referensi tidak mengubah ekonomi.
+Draft memakai match, account/seat, lawan dan fingerprint tawaran masuk; nama bukan bukti identitas. Data input mentah tidak pernah disisipkan pada command. Auth token tidak masuk draft, URL, markup atau snapshot. Draft berbeda akun tidak digunakan untuk akun lain. Aset yang berpindah harus dihapus dari draft atau diperiksa kembali sebelum submit.
 
-State UI tambahan tidak dimasukkan ke snapshot gameplay. Nama/teks publik di-escape sebelum HTML. Auth token dikelola adapter existing, tidak masuk URL/markup/save game. Export/import dilarang untuk room online. Informasi strategi privat bot dan deck tidak masuk public snapshot atau broadcast.
+PNG sprite grids: kartu 4×4 (16 konteks), hewan/pion 3×2 (6), UI glyph 8×4 (25 terisi); rumah/hotel memakai crop yang dicatat pada renderer. Pion ID 0–5 tetap; hanya penampilan/nama visual berubah. Ikon UI memakai mask PNG agar warna currentColor tetap kontras. Garis/teks/hit target board tetap SVG dinamis, bukan screenshot board. Semua aset runtime berada dalam `public/assets` dan otomatis masuk precache; master desain berada di `design` dan tidak disajikan sebagai runtime.
 
-Perubahan selanjutnya wajib menjaga minimal tap target, scroll internal popup, safe area, portrait 320–430 px, enam kapsul dalam dua baris, serta fokus keyboard. Catatan historis 4.7: saat itu browser belum tersedia; pada 4.8 Chromium sudah berjalan dan laporan terpisah mencatat hasil DOM/layout. Pemeriksaan Android fisik tetap diperlukan.
+Popup menggunakan footer untuk keluar bila memiliki aksi. X hanya tampil bila tidak ada tombol footer. Jangan menutup keputusan engine dengan callback modal; keputusan tetap sah sampai command yang berwenang disimpan. Escape/Back hanya mengubah tampilan. Jaga 320×568, enam kapsul/two rows, scroll internal popup, tidak horizontal overflow, dan reduced motion.
 
-Update 4.7.1: `projectBoard` mengubah titik logical ke scene trapesium 1000 unit. `unprojectBoard` menyediakan invers yang diuji untuk seluruh 40 petak. Semua polygon petak memakai proyeksi yang sama sehingga hit target SVG mengikuti bentuk yang tampak; tidak ada tilt CSS yang membuat hit area bergeser. Rute pion diproyeksikan pada tiap frame, follow camera memakai pusat tile terproyeksi. Lapisan objek diurutkan berdasarkan titik pijakan, termasuk selama pion berjalan. Pion dan bangunan tetap sprite/shape 2D menghadap pemain, tanpa model 3D.
-
-`pawn-miniatures.webp` adalah atlas RGBA 3×2 dengan urutan numeric 0–5 sesuai `lib/pawns.mjs`: Pinisi, Komodo, Becak, Cenderawasih, Angklung, Rumah Gadang. `pawnArt` menampilkan crop yang sama pada lobby, kapsul dan profil. Tidak mengubah ID pada save/room. Cache shell dinaikkan menjadi v471 agar bundle/sprite baru dipasang bersama.
-
-## Aktif pada versi 4.8: Papan Klasik
-
-Panduan 2.5D di atas adalah historis. `frontend/board-depth.mjs` sudah dihentikan; papan aktif adalah 2D biasa. `frontend/board-camera.mjs` menyediakan fit/zoom/clamp tanpa gutter, sehingga overview menyentuh tepi viewport portrait. Logical tileRect dan game coordinates tidak diubah. Nama tile dibaca langsung dari BOARD, tanpa mengganti nama/urutan atau memenggal kata tunggal; rentang teks dipadatkan bila perlu. Ikon khusus memakai PNG transparan dalam `public/assets/classic/`, dengan source SVG di `design/classic-icons/`.
-
-`frontend/dice-view.mjs` mengganti animasi putar. Widget menerima `values:null` selama rolling; `pipFrame` menghasilkan pip dekoratif tanpa memakai RNG gameplay. Reveal membatalkan timer pip, menampilkan pasangan sah dan menolak callback usang. Reduced motion mematikan pengacakan. Shared timeline membawa metadata `presentationDice` pada view setelah reveal sampai snapshot berikutnya; metadata tidak masuk authoritative state atau autosave.
-
-`advanceTimeline` dan `GameSession.complete` memeriksa keberadaan head serta ID sebelum maju. Queue kosong/ID usang menjadi no-op, sehingga penutupan popup dan mulai ulang dari lobby tidak membaca `kind` dari undefined.
-
-Header memuat hamburger, tulisan Nusantara dan kamera gameplay. Aset serta Barter hanya menjadi akses utama pada konsol bawah. Kamera tidak ditampilkan di papan. Render popup dan validasi backend tetap memakai kontrak sebelumnya. Baca `CLASSIC_REPORT.md` dan `CLASSIC_BROWSER_RESULTS.json` untuk bukti pengujian terkini.
-
-Arahan referensi 1251174 diterapkan melalui `.tile-face`: sistem koordinat lokal konsisten dengan nama dekat strip dalam, ruang pion di tengah dan harga di tepi luar. Seluruh isi diputar sesuai `tileRect.angle` (0/90/180/270), sedangkan pion tetap menghadap layar. Nama ditulis kapital dan tetap berasal dari `BOARD`; harga memakai formatter Nusa existing. Corner mempertahankan ikon dan label tersendiri. Jangan kembali meratakan semua teks agar menghadap layar karena itu merusak susunan papan klasik yang diminta.
+Backend/migration/bot bukan tempat perubahan kosmetik. File integrasi/brief lama menjelaskan basis headless; panduan 2.5D dari 4.7 sudah historis. Referensi aktif dan provenance ada di `design/SOURCE_OF_TRUTH.json`.

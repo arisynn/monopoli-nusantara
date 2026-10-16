@@ -13,7 +13,15 @@
     "Pip-only dice shuffle without spinning, authoritative reveal before pawn motion",
     "Blurred scene on lobby only; calm mint game surface; mobile portrait",
     "Rules, IDs, prices, bots and server authorization preserved",
-    "Tile face orientation follows reference 1251174: inward-facing labels at 0/90/180/270 degrees; original Nusantara names and prices retained"
+    "Tile face orientation follows reference 1251174: inward-facing labels at 0/90/180/270 degrees; original Nusantara names and prices retained",
+    "Retire all old runtime art outside the board; later instructions authorize new small PNG sprites for cards and buildings",
+    "All 32 revealed cards explicitly map to contextual PNG illustrations; text and economy stay in engine",
+    "Compact classic certificates read actual prices and rent tiers from the rulepack",
+    "Use in-game choices and private device-local trade drafts",
+    "Two fixed activity/money lines above tile caption; history via this area only during gameplay",
+    "Cash feedback inside player capsules; public per-player ledger from the retained log only",
+    "All eight development groups with complete-set/even-building validators and explicit trade drafts",
+    "Six animal portraits and tall colored PNG pawns; numeric IDs unchanged"
   ],
   "historicalReferences": [
     "1249628",
@@ -32,5 +40,10 @@
     "1251173",
     "1251174"
   ],
-  "release": "4.8.0 Classic"
+  "release": "4.8.1 Compact \u2014 Nusa, Cards, Development & Drafts",
+  "supportingReferences": [
+    "1251193",
+    "1251192",
+    "1251194"
+  ]
 }
