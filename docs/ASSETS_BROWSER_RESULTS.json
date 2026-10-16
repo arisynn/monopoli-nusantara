@@ -1,0 +1,45 @@
+{
+  "generatedAt": "2026-10-16T16:11:29.182Z",
+  "engine": "Chromium via Playwright, actual DOM/local HTTP",
+  "checks": [
+    {
+      "name": "all forty tiles open their information; read-only inspection, no selection rim or central deck boxes",
+      "passed": true
+    },
+    {
+      "name": "chance catalog: sixteen contextual public cards, bounded inner scroll and always visible footer",
+      "passed": true,
+      "height": 469.296875
+    },
+    {
+      "name": "community catalog: sixteen contextual public cards, bounded inner scroll and always visible footer",
+      "passed": true,
+      "height": 469.296875
+    },
+    {
+      "name": "tax info 4: fixed N 200, Bank destination and no repeated payment button",
+      "passed": true
+    },
+    {
+      "name": "tax info 38: fixed N 100, Bank destination and no repeated payment button",
+      "passed": true
+    },
+    {
+      "name": "single and three additional buildings in one stable Assets module, evenly distributed, no double queue or refresh replay",
+      "passed": true
+    },
+    {
+      "name": "reviewed automatic mortgage protects complete group, exact two commits and stays open without replay",
+      "passed": true
+    },
+    {
+      "name": "manual mortgage confirmation/cancel and redemption remain inline in the same Assets module",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Mobile emulation, not physical Android.",
+    "No live Supabase, Groq or Vercel deployment tested."
+  ]
+}

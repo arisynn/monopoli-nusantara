@@ -1,6 +1,6 @@
 {
   "name": "monopoli-nusantara",
-  "version": "4.8.1",
+  "version": "4.8.2",
   "private": true,
   "type": "module",
   "description": "Nusantara \u2014 Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
@@ -29,7 +29,8 @@
     "test:browser": "node --experimental-strip-types scripts/test-browser.mjs",
     "test:compact": "node --experimental-strip-types scripts/test-compact-browser.mjs",
     "diagnose:online": "node scripts/diagnose-online.mjs",
-    "test:plan": "node --experimental-strip-types scripts/test-plan-browser.mjs"
+    "test:plan": "node --experimental-strip-types scripts/test-plan-browser.mjs",
+    "test:assets": "node --experimental-strip-types scripts/test-assets-browser.mjs"
   },
   "dependencies": {},
   "devDependencies": {

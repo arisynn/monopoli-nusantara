@@ -4,7 +4,7 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import {createGame,stock} from '../lib/game.mjs';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.MN_BROWSER_MODULE||'playwright');
 const origin=process.env.MN_TEST_ORIGIN||'http://127.0.0.1:8787',folder=process.env.MN_BROWSER_OUTPUT||'/tmp/nusantara-browser-qa';await mkdir(folder,{recursive:true});
-assert.equal((await fetch(origin+'/build.json').then(r=>r.json())).version,'4.8.1','Build the current source first');
+assert.equal((await fetch(origin+'/build.json').then(r=>r.json())).version,'4.8.2','Build the current source first');
 const browser=await chromium.launch({executablePath:process.env.MN_CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
 const checks=[],errors=[];
 const fixture=n=>{const names=['Jovan','Raka','Bima','Sari','Dewi','Bayu'];const state=createGame({players:names.slice(0,n).map(name=>({name,controller:'human'})),startingRoll:false},()=>.2);state.assets[1]={owner:0,level:2,mortgaged:false};state.assets[3]={owner:0,level:2,mortgaged:false};state.assets[6]={owner:n-1,level:0,mortgaged:true};state.bank=stock(state);return state;};

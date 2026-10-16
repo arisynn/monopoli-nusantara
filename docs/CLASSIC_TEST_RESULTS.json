@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T15:24:03.832Z",
+  "generatedAt": "2026-10-16T16:10:15.795Z",
   "node": "v24.19.0",
   "files": [
     "tests/game.test.mjs",
@@ -19,8 +19,8 @@
     "tests/headless-package.test.mjs",
     "tests/frontend.test.mjs"
   ],
-  "tests": 333,
-  "passed": 333,
+  "tests": 346,
+  "passed": 346,
   "failed": 0,
   "skipped": 0,
   "failures": [],

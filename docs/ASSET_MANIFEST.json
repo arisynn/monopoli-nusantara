@@ -1,8 +1,9 @@
 {
-  "release": "4.8.1 Compact",
+  "release": "4.8.2",
   "runtimeFileCount": 17,
-  "runtimeBytes": 1343637,
-  "allRuntimeArt": "PNG; board geometry/text remain dynamic SVG",
+  "runtimeBytes": 1447334,
+  "allRuntimeArt": "PNG; SVG board is geometry/text/image container only",
+  "boardGenerationMaster": "design/board-icons-master.png",
   "files": [
     {
       "path": "public/assets/avatars/animal-portraits.png",
@@ -10,7 +11,7 @@
       "width": 768,
       "height": 512,
       "sha256": "6c31017548cd6a7e1daa972b9eedb5c1a56f07898673ad3b719cb117bc8a1c54",
-      "status": "new optimized PNG"
+      "status": "retained 4.8.1 PNG"
     },
     {
       "path": "public/assets/buildings/building-icons.png",
@@ -18,7 +19,7 @@
       "width": 888,
       "height": 444,
       "sha256": "a638820b79e3dd5b921a06f61d3b070d0ca70114135a62254e0b091ed55d7540",
-      "status": "new optimized PNG"
+      "status": "retained 4.8.1 PNG"
     },
     {
       "path": "public/assets/cards/chest.png",
@@ -26,7 +27,7 @@
       "width": 128,
       "height": 128,
       "sha256": "f1762749e17ac6bd92732ae6bbbe0c00c2628b88457f310b9f69052c4d22a08a",
-      "status": "new optimized PNG"
+      "status": "retained 4.8.1 PNG"
     },
     {
       "path": "public/assets/cards/event-icons.png",
@@ -34,87 +35,87 @@
       "width": 768,
       "height": 768,
       "sha256": "30d8f706977a146a94cf179304c650b4ec0e32909f6864b69facb603ac76d2ea",
-      "status": "new optimized PNG"
+      "status": "retained 4.8.1 PNG"
     },
     {
       "path": "public/assets/classic/chance.png",
-      "bytes": 3628,
-      "width": 212,
-      "height": 212,
-      "sha256": "3c55e9ce4fdc31640e9c17b33aad9ce2b2018af368cf4873ce27d752f19c0b06",
-      "status": "retained board icon"
+      "bytes": 9852,
+      "width": 128,
+      "height": 128,
+      "sha256": "b34f0906d37d4cc7a7eaf616da168b6ad9186d5728c505e90b0d88ab79f4b73e",
+      "status": "new generated board PNG"
     },
     {
       "path": "public/assets/classic/community.png",
-      "bytes": 1880,
-      "width": 212,
-      "height": 212,
-      "sha256": "76effa8adf0ae2cdd32e56f8d9fdf9b3d2f5677c7218cb0598362269b4173a69",
-      "status": "retained board icon"
+      "bytes": 22971,
+      "width": 128,
+      "height": 128,
+      "sha256": "d77240cbd522f3cf30c8346570a1a31f37abf762d6e611e26d481ddb449240fb",
+      "status": "new generated board PNG"
     },
     {
       "path": "public/assets/classic/electric.png",
-      "bytes": 3215,
-      "width": 212,
-      "height": 212,
-      "sha256": "611ed8ccb670ba5a76e70fdf444622950a2602f72e725a862b354149ee983252",
-      "status": "retained board icon"
+      "bytes": 11712,
+      "width": 128,
+      "height": 128,
+      "sha256": "2d7a649a7d8eb0b464cd006a8c1fb70f6b0a82c7690fdd5a9c344f140e072dec",
+      "status": "new generated board PNG"
     },
     {
       "path": "public/assets/classic/gojail.png",
-      "bytes": 4648,
-      "width": 212,
-      "height": 212,
-      "sha256": "2136a7b28252ebe6295a4827a319013a0cc4372d7feec61544d0b08e390185f8",
-      "status": "retained board icon"
+      "bytes": 13684,
+      "width": 128,
+      "height": 128,
+      "sha256": "9bc49f5b3debe44076ffd1fe9d084fcd7c3737c07cf024678d3f663ac64b6c25",
+      "status": "new generated board PNG"
     },
     {
       "path": "public/assets/classic/jail.png",
-      "bytes": 2353,
-      "width": 212,
-      "height": 212,
-      "sha256": "34f9b818fc15e0fa080edef80f3b6027c70a05625efd758b5466ab12f4ea5cae",
-      "status": "retained board icon"
+      "bytes": 14414,
+      "width": 128,
+      "height": 128,
+      "sha256": "18327bb0e978b1883e389df80bd23b0b837adeeafc3dfba83f3443d1afa0131c",
+      "status": "new generated board PNG"
     },
     {
       "path": "public/assets/classic/parking.png",
-      "bytes": 2706,
-      "width": 212,
-      "height": 212,
-      "sha256": "d0aa4325f7ae1f38c8664fc4b27c5d3b2787115ec51a240b634d98548aa2e0db",
-      "status": "retained board icon"
+      "bytes": 16052,
+      "width": 128,
+      "height": 128,
+      "sha256": "8de436e9114fc70fbbef8210d2cc3af2cb6f136a0262900ca446a54083353145",
+      "status": "new generated board PNG"
     },
     {
       "path": "public/assets/classic/start.png",
-      "bytes": 1335,
-      "width": 212,
-      "height": 212,
-      "sha256": "eebd4719677d112188c594774b0e737c18786fb4a9b9f14223ae1a01accfe13b",
-      "status": "retained board icon"
+      "bytes": 5533,
+      "width": 128,
+      "height": 128,
+      "sha256": "14fdb4a9cb1dc7fe103e278d437b990bffd6bdd475089e904b94e338a1f8f2ec",
+      "status": "new generated board PNG"
     },
     {
       "path": "public/assets/classic/station.png",
-      "bytes": 2603,
-      "width": 212,
-      "height": 212,
-      "sha256": "2515e10b0f40971eb6a35eeeba62be0267264f9c6b47a555bed02e0b821bea84",
-      "status": "retained board icon"
+      "bytes": 12599,
+      "width": 128,
+      "height": 128,
+      "sha256": "598e8dfc39a33c8daf15d9d8d5357c42fc50a8f08704fe0dcc292c2322e692dc",
+      "status": "new generated board PNG"
     },
     {
       "path": "public/assets/classic/tax.png",
-      "bytes": 8451,
-      "width": 212,
-      "height": 212,
-      "sha256": "61a9161441e017ae54472ad11c46a4719bfb549979d32917eb06baa91dcd9c6f",
-      "status": "retained board icon"
+      "bytes": 18149,
+      "width": 128,
+      "height": 128,
+      "sha256": "86a6f019fec531c41a0b19f1e820f87c08d7aec2550635038fbb445ad81d0e43",
+      "status": "new generated board PNG"
     },
     {
       "path": "public/assets/classic/water.png",
-      "bytes": 1659,
-      "width": 212,
-      "height": 212,
-      "sha256": "813e0b267251807aa5015c4cc4825a5eed955d74b14df518b2a92bef57e4be2b",
-      "status": "retained board icon"
+      "bytes": 11209,
+      "width": 128,
+      "height": 128,
+      "sha256": "254b78dd7d874cb554b6b1b19682bf0ab576822a35be19f318cff77fd3f9a660",
+      "status": "new generated board PNG"
     },
     {
       "path": "public/assets/currency/nusa-mark.png",
@@ -122,7 +123,7 @@
       "width": 128,
       "height": 128,
       "sha256": "a245940d890e865fe141eb70783d39edb0c6f662442cdc299de9dca0b69aa091",
-      "status": "new optimized PNG"
+      "status": "retained 4.8.1 PNG"
     },
     {
       "path": "public/assets/pawns/pawn-tokens.png",
@@ -130,7 +131,7 @@
       "width": 768,
       "height": 512,
       "sha256": "ddff2049eb7d46437a8988028996e8cfb12b0780b36c31b8b2bf0eb087efde10",
-      "status": "new optimized PNG"
+      "status": "retained 4.8.1 PNG"
     },
     {
       "path": "public/assets/ui/interface-icons.png",
@@ -138,7 +139,7 @@
       "width": 512,
       "height": 256,
       "sha256": "3589a2b6c450f35f9f8d1e6b54043bc49b2c5896b2a6886ff74d45bd18067050",
-      "status": "new optimized PNG"
+      "status": "retained 4.8.1 PNG"
     }
   ]
 }

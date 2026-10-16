@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-16T15:21:26.032Z",
+  "generatedAt": "2026-10-16T16:09:01.094Z",
   "engine": "System Chromium via Playwright on local HTTP",
   "checks": [
     {
-      "name": "all eight development groups, complete-set guards, prefilled barter draft, one committed build, inline cash and public profile ledger survive refresh without replay",
+      "name": "all eight development groups, complete-set guards, prefilled barter draft, one committed build in a still-open asset panel, inline cash and public profile ledger survive refresh without replay",
       "passed": true
     },
     {

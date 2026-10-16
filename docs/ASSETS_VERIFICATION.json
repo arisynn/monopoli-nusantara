@@ -1,0 +1,95 @@
+{
+  "release": "4.8.2 Assets & Board Info",
+  "generatedAt": "2026-10-16T16:15:13.122148+00:00",
+  "node": "v24.19.0",
+  "tests": {
+    "total": 346,
+    "passed": 346,
+    "failed": 0,
+    "skipped": 0,
+    "frontendSubset": 80
+  },
+  "browser": {
+    "CLASSIC_BROWSER_RESULTS.json": {
+      "scenarios": 16,
+      "allPassed": true,
+      "generatedAt": "2026-10-16T16:09:11.525Z"
+    },
+    "COMPACT_BROWSER_RESULTS.json": {
+      "scenarios": 18,
+      "allPassed": true,
+      "generatedAt": "2026-10-16T16:09:29.782Z"
+    },
+    "PLAN_BROWSER_RESULTS.json": {
+      "scenarios": 5,
+      "allPassed": true,
+      "generatedAt": "2026-10-16T16:09:01.094Z"
+    },
+    "ASSETS_BROWSER_RESULTS.json": {
+      "scenarios": 8,
+      "allPassed": true,
+      "generatedAt": "2026-10-16T16:11:29.182Z"
+    }
+  },
+  "browserScenarioTotal": 47,
+  "typecheck": {
+    "passed": true,
+    "scope": "semantic tsc --noEmit; strict configuration unchanged"
+  },
+  "sourceGraph": {
+    "passed": true,
+    "modules": 197
+  },
+  "buildVercel": {
+    "passed": true,
+    "deploymentPerformed": false
+  },
+  "lint": "No lint script supplied by basis",
+  "localOrchestrationSmoke": {
+    "passed": true,
+    "runs": [
+      {
+        "players": 2,
+        "seed": 461,
+        "actions": 389,
+        "finished": true,
+        "winner": "Raka",
+        "phase": "won",
+        "error": null,
+        "elapsedMs": 4428
+      },
+      {
+        "players": 3,
+        "seed": 461,
+        "actions": 428,
+        "finished": true,
+        "winner": "Raka",
+        "phase": "won",
+        "error": null,
+        "elapsedMs": 2851
+      },
+      {
+        "players": 4,
+        "seed": 461,
+        "actions": 610,
+        "finished": true,
+        "winner": "Bima",
+        "phase": "won",
+        "error": null,
+        "elapsedMs": 6828
+      }
+    ],
+    "notACompetitiveBenchmark": true
+  },
+  "coreIntegrity": 57,
+  "liveSupabase": false,
+  "liveGroq": false,
+  "physicalAndroid": false,
+  "limits": [
+    "All browser results are local Chromium emulation.",
+    "Online queues and config tested with service/transport doubles; no live RLS, Postgres, Auth or Realtime verification.",
+    "Asset batch is sequential individually authorized commits, not an atomic batch transaction.",
+    "Mortgage advice is a public-state heuristic, not a guaranteed optimal strategy.",
+    "CRC/file hashes/fresh extraction build are recorded in the separate delivery verification."
+  ]
+}

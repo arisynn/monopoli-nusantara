@@ -145,5 +145,13 @@
     "public/assets/currency/nusa-mark.png",
     "public/assets/pawns/pawn-tokens.png",
     "public/assets/ui/interface-icons.png"
-  ]
+  ],
+  "historicalRelease": "4.8.1 Compact cleanup",
+  "currentUpdate": {
+    "release": "4.8.2",
+    "boardPNGsReplaced": 10,
+    "retiredBoardSVGMasters": 10,
+    "newMaster": "design/board-icons-master.png",
+    "note": "Paths of the ten board PNGs are retained for save/UI compatibility; their content has been replaced by freshly generated raster illustrations. Other cleanup entries describe the prior release."
+  }
 }

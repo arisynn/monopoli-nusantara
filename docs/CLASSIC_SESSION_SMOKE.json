@@ -9,7 +9,7 @@
       "winner": "Raka",
       "phase": "won",
       "error": null,
-      "elapsedMs": 7762
+      "elapsedMs": 4428
     },
     {
       "players": 3,
@@ -19,7 +19,7 @@
       "winner": "Raka",
       "phase": "won",
       "error": null,
-      "elapsedMs": 4562
+      "elapsedMs": 2851
     },
     {
       "players": 4,
@@ -29,7 +29,7 @@
       "winner": "Bima",
       "phase": "won",
       "error": null,
-      "elapsedMs": 10427
+      "elapsedMs": 6828
     }
   ]
 }

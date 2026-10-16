@@ -1,8 +1,8 @@
-# Monopoli Nusantara 4.8.1 — Klasik Ringkas
+# Monopoli Nusantara 4.8.2 — Aset Terpadu & Info Papan
 
-Source aktif melanjutkan v4.8: papan klasik 40 petak selebar layar portrait, dua layar utama (lobby dan gameplay), serta popup untuk fitur lain. Update ini melengkapi dua baris informasi, feedback Nusa di dalam kapsul, riwayat uang per profil, pembangunan seluruh kelompok warna, draft barter, pilihan dalam game, dan keluarga aset PNG yang lebih sederhana. Engine, ekonomi, bot dan otorisasi multiplayer dipertahankan.
+Source aktif melanjutkan v4.8.1: papan klasik 40 petak selebar layar portrait tanpa bingkai pilihan dan tanpa kotak deck tengah, dua layar utama (lobby dan gameplay), serta popup untuk fitur lain. Update ini menyatukan pembangunan, penjualan, gadai dan penebusan di Aset Saya, menambahkan pilihan jumlah bangunan dan Gadai Otomatis, memperjelas petak khusus/pajak, serta mengganti sepuluh ikon papan dengan PNG hasil generasi baru. Engine, ekonomi, bot dan otorisasi multiplayer dipertahankan.
 
-Baca [laporan implementasi dan QA](docs/COMPACT_REPORT.md), [peta frontend](docs/FRONTEND_GUIDE.md), [pemetaan 32 kartu](docs/CARD_ASSET_MAP.json), dan [kontrak engine](AI_UI_INTEGRATION.md). File laporan CLASSIC/KEPULAUAN/MIND/HEADLESS lama merupakan sejarah rilis sebelumnya kecuali hasil tes yang diperbarui oleh runner. Metadata core historis di `/health` berbeda dari versi UI di `/build.json`.
+Baca [laporan implementasi dan QA 4.8.2](docs/ASSETS_REPORT.md), [peta frontend](docs/FRONTEND_GUIDE.md), [pemetaan 32 kartu](docs/CARD_ASSET_MAP.json), dan [kontrak engine](AI_UI_INTEGRATION.md). File laporan CLASSIC/KEPULAUAN/MIND/HEADLESS lama merupakan sejarah rilis sebelumnya kecuali hasil tes yang diperbarui oleh runner. Metadata core historis di `/health` berbeda dari versi UI di `/build.json`.
 
 ## Menjalankan
 
@@ -20,6 +20,7 @@ npm test                  # build dan seluruh tes engine/backend/frontend
 npm run check:source      # syntax dan resolusi import source/output
 npm run smoke:ui          # sesi VS Bot 2/3/4 peserta tanpa DOM
 npm run build:vercel      # build native Node statis, bukan Next.js
+npm run test:assets       # QA browser untuk aset terpadu, katalog/pajak dan gadai
 npm run diagnose:online   # hanya keberadaan/bentuk konfigurasi, tanpa nilai secret
 ```
 
@@ -30,19 +31,21 @@ Untuk TypeScript: `npm ci --ignore-scripts`, lalu `npm run typecheck`. Tidak ada
 - Header: hamburger, Nusantara, satu kamera pada gameplay. Aset/Barter berdampingan pada konsol; profil melalui kapsul; riwayat melalui dua baris informasi di atas info petak. Hamburger gameplay berisi fitur pendukung tanpa salinan akses tersebut.
 - Baris aksi mengikuti kejadian yang sedang diperlihatkan; baris Nusa mengikuti transaksi publik yang sudah sah. Tinggi tetap. Hasil dadu tidak masuk baris aksi sebelum reveal.
 - Feedback uang berada pada baris tetap di dalam kapsul. Profil menampilkan ledger pemain yang dipilih, dari log publik tersimpan (maksimal 300 kejadian), bukan rekonstruksi seluruh sejarah pertandingan.
-- Aset → Bangun menampilkan delapan kelompok warna, kelompok siap di atas, kepemilikan, biaya dan perubahan sewa. Satu kelompok harus lengkap; status gadai, pembangunan merata, saldo, bank, utang dan lelang mengikuti validator. Tombol Barter ke pemilik yang dibutuhkan menyiapkan draft; belum mengirim transaksi. Setelah membangun, panel ditutup untuk memperlihatkan transaksi/presentasi yang sah.
+- Tab Bangun dalam Aset Saya menampilkan delapan kelompok warna, kelompok siap di atas, kepemilikan, biaya dan perubahan sewa. Satu kelompok harus lengkap; status gadai, pembangunan merata, saldo, bank, utang dan lelang mengikuti validator. Tombol Barter ke pemilik yang dibutuhkan menyiapkan draft; belum mengirim transaksi. Panel tetap terbuka setelah membangun/menggadai/menebus. Pemain dapat memilih jumlah bangunan per kelompok; perintah dijalankan satu per satu, merata dan divalidasi ulang. Antrean berhenti bila panel ditutup, halaman disembunyikan, pause, disconnect, revision berubah atau bank perlu keputusan lain. Antrean tidak disimpan dan tidak diulang saat refresh.
+- Gadai Otomatis menampilkan daftar rekomendasi dan dana sebelum eksekusi. Aset dengan bangunan atau yang sudah digadai dikecualikan; set lengkap dipertahankan bila alternatif cukup. Perkiraan kehilangan sewa, biaya pemulihan, kelompok hampir lengkap dan posisi lawan ikut dinilai. Bila daftar/revision berubah, rekomendasi tidak diganti diam-diam. Ini heuristik bantuan, bukan jaminan strategi terbaik.
+- Ketuk petak khusus untuk info. Kesempatan/Dana Umum menampilkan katalog 16 kartu dengan scroll internal, bukan urutan deck. Pajak Penghasilan N 200 dan Kemewahan N 100 tetap ke Bank, tanpa perhitungan kekayaan/opsi 10% atau jackpot Parkir Bebas. Pembayaran sekali tetap dari engine. Semua popup dibatasi tinggi agar footer dapat dijangkau.
 - Draft barter disimpan privat pada perangkat per match, identitas, lawan dan konteks counteroffer. Menutup popup tidak mengirim tawaran. Semua nilai divalidasi ulang saat pengiriman. Penyimpanan tidak tersedia memakai draft sesi dengan status jujur.
 - Pemilihan aturan, peserta, aset pemain dan opsi lainnya memakai kontrol game; native select hanya adapter nilai tersembunyi. Tidak ada prompt/confirm/alert untuk keputusan game.
 - Kesempatan/Dana Umum: 16 ilustrasi kontekstual dipetakan eksplisit ke **32 kartu**, 16 tiap deck. Teks, nominal, urutan dan efek dari engine. Dokter, pendidikan, kereta, penjara, perbaikan dan uang memakai ikon sesuai konteks; tidak dibagi acak.
 - Sertifikat ringkas memakai warna kelompok, tabel sewa asli, harga bangun/gadai, PNG rumah/hotel dan simbol stasiun/utilitas. Popup bertombol footer tidak mempunyai X di sudut; footer, Escape/Back tetap menyediakan jalan keluar yang sesuai.
-- Enam profil hewan kepala–bahu, enam pion memanjang, rumah/hotel, ikon UI, kartu dan monogram Nusa memakai PNG transparan. Numeric pawn IDs tetap 0–5. Board tetap SVG **untuk garis, teks dan hit area**, sedangkan ilustrasinya PNG supaya nama/harga tetap tajam saat zoom. Master ikon papan dan logo Nusa disimpan di `design/`; runtime tidak mengunduh aset SVG.
-- Seluruh aset runtime lama di luar papan sudah dihentikan; atlas pion lama kemudian diganti sesuai instruksi. Sepuluh ikon papan yang masih sesuai dipertahankan identik. Lihat `ASSET_CLEANUP.json` dan `ASSET_MANIFEST.json`.
+- Enam profil hewan kepala–bahu, enam pion memanjang, rumah/hotel, ikon UI, kartu dan monogram Nusa memakai PNG transparan. Numeric pawn IDs tetap 0–5. Board tetap SVG **untuk garis, teks dan hit area**, sedangkan ilustrasinya PNG supaya nama/harga tetap tajam saat zoom. Master PNG ikon papan baru dan master SVG logo Nusa disimpan di `design/`; runtime tidak mengunduh aset SVG.
+- Seluruh aset runtime lama di luar papan sudah dihentikan; atlas pion lama kemudian diganti sesuai instruksi. Sepuluh ikon papan kini diganti PNG hasil generasi dengan gaya retro yang sekeluarga dengan kartu; master SVG ikon papan lama dihentikan. Lihat `ASSET_CLEANUP.json` dan `ASSET_MANIFEST.json`.
 
 ## QA browser
 
-Jalankan server/build lebih dahulu, lalu `npm run test:browser`, `npm run test:compact`, dan `npm run test:plan`. QA memerlukan Playwright dan Chromium; keduanya tidak menjadi dependency produksi. Bila terpasang di luar proyek, set `MN_BROWSER_MODULE` dan `MN_CHROMIUM_PATH`. Opsional: `MN_TEST_ORIGIN`, `MN_BROWSER_OUTPUT`.
+Jalankan server/build lebih dahulu, lalu `npm run test:browser`, `npm run test:compact`, dan `npm run test:plan`, dan `npm run test:assets`. QA memerlukan Playwright dan Chromium; keduanya tidak menjadi dependency produksi. Bila terpasang di luar proyek, set `MN_BROWSER_MODULE` dan `MN_CHROMIUM_PATH`. Opsional: `MN_TEST_ORIGIN`, `MN_BROWSER_OUTPUT`.
 
-Hasil aktual ada pada `CLASSIC_TEST_RESULTS.json`, `CLASSIC_BROWSER_RESULTS.json`, `COMPACT_BROWSER_RESULTS.json`, `PLAN_BROWSER_RESULTS.json` dan `COMPACT_VERIFICATION.json` dalam `docs/`. Pengujian portrait memakai emulasi Chromium, bukan Android fisik. Enam kursi manusia pada fixture hanya untuk QA UI, bukan mode hotseat baru. Pengujian online menggunakan simulasi/handler lokal dan mock konfigurasi, bukan Supabase live.
+Hasil aktual ada pada `CLASSIC_TEST_RESULTS.json`, `CLASSIC_BROWSER_RESULTS.json`, `COMPACT_BROWSER_RESULTS.json`, `PLAN_BROWSER_RESULTS.json`, `ASSETS_BROWSER_RESULTS.json` dan `ASSETS_VERIFICATION.json` dalam `docs/`. Pengujian portrait memakai emulasi Chromium, bukan Android fisik. Enam kursi manusia pada fixture hanya untuk QA UI, bukan mode hotseat baru. Pengujian online menggunakan simulasi/handler lokal dan mock konfigurasi, bukan Supabase live.
 
 ## Online dan deployment
 
@@ -64,6 +67,6 @@ Bot online tetap backend-authoritative dengan jobs/lease/recovery existing. `MN_
 
 ## Cache dan kompatibilitas
 
-Cache shell `nusantara-classic-v481` hanya menyimpan modul/aset publik, tidak API/Auth/room state. Cache Nusantara lama dibersihkan tanpa menghapus localStorage/IndexedDB pertandingan. Schema save, angka ekonomi, numeric pawn IDs dan aturan bot tetap; nama visual pion berubah menjadi warna sesuai aset barunya.
+Cache shell `nusantara-classic-v482` hanya menyimpan modul/aset publik, tidak API/Auth/room state. Cache Nusantara lama dibersihkan tanpa menghapus localStorage/IndexedDB pertandingan. Schema save, angka ekonomi, numeric pawn IDs dan aturan bot tetap; nama visual pion berubah menjadi warna sesuai aset barunya.
 
-Paket source menyertakan backend, migration, tests, docs, lockfile, aset dan master desain; tidak memuat `node_modules`, `dist`, secret ENV atau log. `PACKAGE_MANIFEST.json` mencatat hash setiap file selain dirinya sendiri. Bandingkan perubahan inti pada `docs/COMPACT_CORE_INTEGRITY.json`.
+Paket source menyertakan backend, migration, tests, docs, lockfile, aset dan master desain; tidak memuat `node_modules`, `dist`, secret ENV atau log. `PACKAGE_MANIFEST.json` mencatat hash setiap file selain dirinya sendiri. Bandingkan perubahan inti pada `docs/ASSETS_CORE_INTEGRITY.json`.
