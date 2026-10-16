@@ -1,0 +1,349 @@
+{
+  "basisArchive": "Monopoli_Nusantara_Logic_v4.6.1-no-frontend.zip",
+  "basisSha256": "75f88c097e9356f6ebc6a602d3f04c5a744f1a26a87bf3416605e9e6d1f0689e",
+  "checked": 56,
+  "identical": 54,
+  "changed": [
+    "lib/presentation-types.ts",
+    "lib/presentation-timeline.mjs"
+  ],
+  "changeScope": "Only presentation queue empty-head guard and view-only revealed-dice metadata. Rules, money, bots, original API handlers, Supabase migrations/functions and schemas unchanged.",
+  "files": [
+    {
+      "path": "lib/content.mjs",
+      "basisSha256": "4e87e3b37db870f45de641cb897bcd290ef131e7363a55f74b53d95113674bbd",
+      "sha256": "4e87e3b37db870f45de641cb897bcd290ef131e7363a55f74b53d95113674bbd",
+      "unchanged": true
+    },
+    {
+      "path": "lib/game.mjs",
+      "basisSha256": "d8452c74d4f18522c237dd787102daf66ad06823db92ae69c577eb14102fdb8f",
+      "sha256": "d8452c74d4f18522c237dd787102daf66ad06823db92ae69c577eb14102fdb8f",
+      "unchanged": true
+    },
+    {
+      "path": "lib/quick-notice.mjs",
+      "basisSha256": "1b187b121dbb7c87268537d88a5c4886981e26cc61bef4c1feceedd6194b06cf",
+      "sha256": "1b187b121dbb7c87268537d88a5c4886981e26cc61bef4c1feceedd6194b06cf",
+      "unchanged": true
+    },
+    {
+      "path": "lib/compact-ui.mjs",
+      "basisSha256": "60960514dee64de32651df44c10e9b2a8f316b7dae95351b3c549ca4538f53ed",
+      "sha256": "60960514dee64de32651df44c10e9b2a8f316b7dae95351b3c549ca4538f53ed",
+      "unchanged": true
+    },
+    {
+      "path": "lib/storage.ts",
+      "basisSha256": "82610ce6a0f6948cdb6946a811f30b7eb219e8a57ef088c1159895467336c8e0",
+      "sha256": "82610ce6a0f6948cdb6946a811f30b7eb219e8a57ef088c1159895467336c8e0",
+      "unchanged": true
+    },
+    {
+      "path": "lib/gameplay-presentation.mjs",
+      "basisSha256": "fce3f5849614731661ab44f7fe55e88659edc0ee88b351e7bf777107e9fa960f",
+      "sha256": "fce3f5849614731661ab44f7fe55e88659edc0ee88b351e7bf777107e9fa960f",
+      "unchanged": true
+    },
+    {
+      "path": "lib/room-client.mjs",
+      "basisSha256": "c3e53a0e95a45fc81ab868850595ef42a6a17812a4a58175af13c528ad928abc",
+      "sha256": "c3e53a0e95a45fc81ab868850595ef42a6a17812a4a58175af13c528ad928abc",
+      "unchanged": true
+    },
+    {
+      "path": "lib/pawns.mjs",
+      "basisSha256": "0387b566ba273cd2b30d5fcb129947685004bd3452f1e975f0c3f9996fd21fd9",
+      "sha256": "0387b566ba273cd2b30d5fcb129947685004bd3452f1e975f0c3f9996fd21fd9",
+      "unchanged": true
+    },
+    {
+      "path": "lib/auction-presentation.mjs",
+      "basisSha256": "6cd9b7531d9827d29c332410c7545b62cd9eeb33986eff8889136eea7c0abf7b",
+      "sha256": "6cd9b7531d9827d29c332410c7545b62cd9eeb33986eff8889136eea7c0abf7b",
+      "unchanged": true
+    },
+    {
+      "path": "lib/layer-navigation.mjs",
+      "basisSha256": "0b53df3e87c2574ec218af47e2d9c6e5f3f75001a141059c82f34249ea74479e",
+      "sha256": "0b53df3e87c2574ec218af47e2d9c6e5f3f75001a141059c82f34249ea74479e",
+      "unchanged": true
+    },
+    {
+      "path": "lib/board-camera.mjs",
+      "basisSha256": "43cdd34c1c97fb73b56b3998a7ddc5317f6150dc358e440cc66faf3dba973f05",
+      "sha256": "43cdd34c1c97fb73b56b3998a7ddc5317f6150dc358e440cc66faf3dba973f05",
+      "unchanged": true
+    },
+    {
+      "path": "lib/presentation-types.ts",
+      "basisSha256": "09a4233f1cb0e455d24a586e7d998e53c90007a2bc331bab12dfd99076c7c41e",
+      "sha256": "08b2025864c928a6817be54e7f4ff9c25f60bf4aa07f0daa9b6694fbe5bc29e8",
+      "unchanged": false
+    },
+    {
+      "path": "lib/game-v1.mjs",
+      "basisSha256": "33eadc5b0e4ab64c95c25fd858b11a44fa14f32e75c6a6748847f75307223c58",
+      "sha256": "33eadc5b0e4ab64c95c25fd858b11a44fa14f32e75c6a6748847f75307223c58",
+      "unchanged": true
+    },
+    {
+      "path": "lib/pawn-animation.mjs",
+      "basisSha256": "2c83abaa6edcc6bee647e2cb4b6f1df9a87c8fbc96bbb6169ac61eb1a3e63684",
+      "sha256": "2c83abaa6edcc6bee647e2cb4b6f1df9a87c8fbc96bbb6169ac61eb1a3e63684",
+      "unchanged": true
+    },
+    {
+      "path": "lib/groq.ts",
+      "basisSha256": "bd2ee02895e17ba31d22044950db66cc46a664796446fbb134a000e9780e4559",
+      "sha256": "bd2ee02895e17ba31d22044950db66cc46a664796446fbb134a000e9780e4559",
+      "unchanged": true
+    },
+    {
+      "path": "lib/finance.mjs",
+      "basisSha256": "f267b9773a43abc170b0ae29fcf57ae780ee598a5304630c9398054e53aed5ae",
+      "sha256": "f267b9773a43abc170b0ae29fcf57ae780ee598a5304630c9398054e53aed5ae",
+      "unchanged": true
+    },
+    {
+      "path": "lib/pawn-layout.mjs",
+      "basisSha256": "25c6529a4ca2e2a0904bbd7bb8bdfad24c571774d59e1338b7d28dfc7342c1d9",
+      "sha256": "25c6529a4ca2e2a0904bbd7bb8bdfad24c571774d59e1338b7d28dfc7342c1d9",
+      "unchanged": true
+    },
+    {
+      "path": "lib/currency.mjs",
+      "basisSha256": "b7c30a2ca47c827ad28582bb2aa8f487667bdb99eae6ccd31a3220f829818b53",
+      "sha256": "b7c30a2ca47c827ad28582bb2aa8f487667bdb99eae6ccd31a3220f829818b53",
+      "unchanged": true
+    },
+    {
+      "path": "lib/save-format.mjs",
+      "basisSha256": "475d9b497b2707827adf255a740efa9d0c6d22d5b4b48fcd512ea965bb3fb5ab",
+      "sha256": "475d9b497b2707827adf255a740efa9d0c6d22d5b4b48fcd512ea965bb3fb5ab",
+      "unchanged": true
+    },
+    {
+      "path": "lib/dice-timing.mjs",
+      "basisSha256": "ce763922817bfe3d2daa77bbfdd647997ec8055c57dbe6c4528d0bf4dc406618",
+      "sha256": "ce763922817bfe3d2daa77bbfdd647997ec8055c57dbe6c4528d0bf4dc406618",
+      "unchanged": true
+    },
+    {
+      "path": "lib/content-v1.mjs",
+      "basisSha256": "cf6c1eeebcf000b064ff8b18274e7c105db78fbed7c874fb51587627ffaa135b",
+      "sha256": "cf6c1eeebcf000b064ff8b18274e7c105db78fbed7c874fb51587627ffaa135b",
+      "unchanged": true
+    },
+    {
+      "path": "lib/preferences.mjs",
+      "basisSha256": "6483bd54f640f9120d9140052eb90a718524c23d5bed0cd962d077d2d80efec3",
+      "sha256": "6483bd54f640f9120d9140052eb90a718524c23d5bed0cd962d077d2d80efec3",
+      "unchanged": true
+    },
+    {
+      "path": "lib/online-client.mjs",
+      "basisSha256": "65f7b57930d1e8ba65c944ed34f41b7919344f680f24f1ae18c6fb3c8226cd75",
+      "sha256": "65f7b57930d1e8ba65c944ed34f41b7919344f680f24f1ae18c6fb3c8226cd75",
+      "unchanged": true
+    },
+    {
+      "path": "lib/presentation-timeline.mjs",
+      "basisSha256": "49ee0af5722b5b57e5149b7c9ac44872fe655f379731e971623e3cfeeb35d040",
+      "sha256": "2aad7f89f431d3b91fe4e7e69d82368f57072ab555e724c6d4366ad0617b90b7",
+      "unchanged": false
+    },
+    {
+      "path": "lib/version.mjs",
+      "basisSha256": "8ba287fe4bbb21b6ad0ec9f331d8c94070402f55a7f6634c54954fe57471ffe8",
+      "sha256": "8ba287fe4bbb21b6ad0ec9f331d8c94070402f55a7f6634c54954fe57471ffe8",
+      "unchanged": true
+    },
+    {
+      "path": "lib/bot/personas.mjs",
+      "basisSha256": "170f9783488546ac6f194787d06650819a6aa9cbabfd55ec744fe222016127db",
+      "sha256": "170f9783488546ac6f194787d06650819a6aa9cbabfd55ec744fe222016127db",
+      "unchanged": true
+    },
+    {
+      "path": "lib/bot/memory.mjs",
+      "basisSha256": "2fb41d1d1335e95654bb62bed3604b14dea1460b8f81680719a31c07a0116bc3",
+      "sha256": "2fb41d1d1335e95654bb62bed3604b14dea1460b8f81680719a31c07a0116bc3",
+      "unchanged": true
+    },
+    {
+      "path": "lib/bot/candidates.mjs",
+      "basisSha256": "f0066f2bd492aa93c7b624116e1efa9e2f56d61590332d388a800d15db64741d",
+      "sha256": "f0066f2bd492aa93c7b624116e1efa9e2f56d61590332d388a800d15db64741d",
+      "unchanged": true
+    },
+    {
+      "path": "lib/bot/contracts.ts",
+      "basisSha256": "2b8f9fadcb987af54e645f618e7738b1df1a7e829db7cb83e358d7c0c137f7d7",
+      "sha256": "2b8f9fadcb987af54e645f618e7738b1df1a7e829db7cb83e358d7c0c137f7d7",
+      "unchanged": true
+    },
+    {
+      "path": "lib/bot/mind-config.mjs",
+      "basisSha256": "623c396edc842034d746d28ddbf02b501e1aa20ecdddcbb204c69bf88f1727a4",
+      "sha256": "623c396edc842034d746d28ddbf02b501e1aa20ecdddcbb204c69bf88f1727a4",
+      "unchanged": true
+    },
+    {
+      "path": "lib/bot/negotiation.mjs",
+      "basisSha256": "dd8b47d106d94189b117932bb123bfa832beb1c2f779a6698345c395e16407e5",
+      "sha256": "dd8b47d106d94189b117932bb123bfa832beb1c2f779a6698345c395e16407e5",
+      "unchanged": true
+    },
+    {
+      "path": "lib/bot/strategy.mjs",
+      "basisSha256": "fd0418bb899dc819ddfd2893952b6259203517c4b2714d80f854f37482f15218",
+      "sha256": "fd0418bb899dc819ddfd2893952b6259203517c4b2714d80f854f37482f15218",
+      "unchanged": true
+    },
+    {
+      "path": "lib/bot/mind.worker.mjs",
+      "basisSha256": "53da52b7e1c2f1beee0e538545f791f27f6937d16e4c047c6895b96352485554",
+      "sha256": "53da52b7e1c2f1beee0e538545f791f27f6937d16e4c047c6895b96352485554",
+      "unchanged": true
+    },
+    {
+      "path": "lib/bot/analysis.mjs",
+      "basisSha256": "a034eedb0a3a59d9054e7a5e2113bbfa956afb56fc5c2e20ac547f7e67e0aab4",
+      "sha256": "a034eedb0a3a59d9054e7a5e2113bbfa956afb56fc5c2e20ac547f7e67e0aab4",
+      "unchanged": true
+    },
+    {
+      "path": "lib/bot/mind.mjs",
+      "basisSha256": "c9eec829fdef8056ab6aa673791e225034feeedfa21e0e7a8716561efe1cd0a9",
+      "sha256": "c9eec829fdef8056ab6aa673791e225034feeedfa21e0e7a8716561efe1cd0a9",
+      "unchanged": true
+    },
+    {
+      "path": "lib/bot/mind-client.mjs",
+      "basisSha256": "c90eff416ceb3401af4cfec29f063ade1cf55c51d578685ab9c0f0af52dd499d",
+      "sha256": "c90eff416ceb3401af4cfec29f063ade1cf55c51d578685ab9c0f0af52dd499d",
+      "unchanged": true
+    },
+    {
+      "path": "lib/server/bot-worker.mjs",
+      "basisSha256": "310824f9a1616c64991a42f7d7b3e754cc8df42b4502925acdfb5cc0e4626a54",
+      "sha256": "310824f9a1616c64991a42f7d7b3e754cc8df42b4502925acdfb5cc0e4626a54",
+      "unchanged": true
+    },
+    {
+      "path": "lib/server/online-service.mjs",
+      "basisSha256": "351ddb85283314f4242c5df81a502d6e424c7428530be2aa4a7589c436d7e02c",
+      "sha256": "351ddb85283314f4242c5df81a502d6e424c7428530be2aa4a7589c436d7e02c",
+      "unchanged": true
+    },
+    {
+      "path": "lib/server/runtime-sites.ts",
+      "basisSha256": "b8789038a906a1251899d5d576f3bf5133f74b0a337874e42368ea0a91e07fcf",
+      "sha256": "b8789038a906a1251899d5d576f3bf5133f74b0a337874e42368ea0a91e07fcf",
+      "unchanged": true
+    },
+    {
+      "path": "lib/server/d1-store.mjs",
+      "basisSha256": "e397b386b965b84ddca2cbb64d08c2c7f96daf198efb1863ef6a544503bbbb40",
+      "sha256": "e397b386b965b84ddca2cbb64d08c2c7f96daf198efb1863ef6a544503bbbb40",
+      "unchanged": true
+    },
+    {
+      "path": "lib/server/runtime.ts",
+      "basisSha256": "745e63dcda080068b95edef313ae8fd7c4efe1a9cbe0e5d9732c853d0e224c31",
+      "sha256": "745e63dcda080068b95edef313ae8fd7c4efe1a9cbe0e5d9732c853d0e224c31",
+      "unchanged": true
+    },
+    {
+      "path": "lib/server/redis-store.mjs",
+      "basisSha256": "4f2102cb3f9b07c293d1861638671e09ae1c57088a6785428de0ffe046be1805",
+      "sha256": "4f2102cb3f9b07c293d1861638671e09ae1c57088a6785428de0ffe046be1805",
+      "unchanged": true
+    },
+    {
+      "path": "lib/server/online-room.mjs",
+      "basisSha256": "533a145522afc69791ecca3f0776be7ab11130dc428444ec6ede9e8df1002b1c",
+      "sha256": "533a145522afc69791ecca3f0776be7ab11130dc428444ec6ede9e8df1002b1c",
+      "unchanged": true
+    },
+    {
+      "path": "lib/server/supabase-store.mjs",
+      "basisSha256": "e573c0b3be9d963839a5c803aec36073bdf73eaa835bacffd1ede81b3b544eab",
+      "sha256": "e573c0b3be9d963839a5c803aec36073bdf73eaa835bacffd1ede81b3b544eab",
+      "unchanged": true
+    },
+    {
+      "path": "app/api/bot/route.ts",
+      "basisSha256": "21143bf7950c9eb4eeb14b2190056f8a264f7e38560dd4bda57a413d6462cb87",
+      "sha256": "21143bf7950c9eb4eeb14b2190056f8a264f7e38560dd4bda57a413d6462cb87",
+      "unchanged": true
+    },
+    {
+      "path": "app/api/game/route.ts",
+      "basisSha256": "e247d4c92d96fdbfd3d45c523247cee452ef9e675df0ff5e5548f741ac943e7a",
+      "sha256": "e247d4c92d96fdbfd3d45c523247cee452ef9e675df0ff5e5548f741ac943e7a",
+      "unchanged": true
+    },
+    {
+      "path": "app/api/online/route.ts",
+      "basisSha256": "1bd38d4e1dc7d411a7b805cd20d7565fce7ca8a34d75de0b779c21f6027eb8b8",
+      "sha256": "1bd38d4e1dc7d411a7b805cd20d7565fce7ca8a34d75de0b779c21f6027eb8b8",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/config.toml",
+      "basisSha256": "53b2e34297a895dd9720789bbed985f4d93c222060dbdc3f30c8d67b19f4a460",
+      "sha256": "53b2e34297a895dd9720789bbed985f4d93c222060dbdc3f30c8d67b19f4a460",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/scheduler_setup.sql",
+      "basisSha256": "749ab4bb6c54a97195ab07ef44c6139a666728c14dc29109c9b5c0889eb8d96d",
+      "sha256": "749ab4bb6c54a97195ab07ef44c6139a666728c14dc29109c9b5c0889eb8d96d",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/202610160001_persistent_online.sql",
+      "basisSha256": "60bb05e3d5598eda25e535a44a73dd47590e039548f8a059d993f8f6fd601ecc",
+      "sha256": "60bb05e3d5598eda25e535a44a73dd47590e039548f8a059d993f8f6fd601ecc",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/202610160003_nusa_mind_settings.sql",
+      "basisSha256": "ee2312867ef2fd6f654cb4cf5644d31515759a9c662ab9635671bfdbb6c8aa8e",
+      "sha256": "ee2312867ef2fd6f654cb4cf5644d31515759a9c662ab9635671bfdbb6c8aa8e",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/202610160002_hybrid_bot_jobs.sql",
+      "basisSha256": "03c9a294acc5bfb75ba69d9d7081b84eda9c9b102b167b237e066507fc9941ef",
+      "sha256": "03c9a294acc5bfb75ba69d9d7081b84eda9c9b102b167b237e066507fc9941ef",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/index.ts",
+      "basisSha256": "40a10f0ee2d0ab2f6ef2e3e692e85fcdabac3f0b83fc7aa0aca7ed57972d7334",
+      "sha256": "40a10f0ee2d0ab2f6ef2e3e692e85fcdabac3f0b83fc7aa0aca7ed57972d7334",
+      "unchanged": true
+    },
+    {
+      "path": "drizzle/0000_green_paper_doll.sql",
+      "basisSha256": "a8d11a3d6a6d183cb9a5e9da2fcb8ae1d0257c3283ed76c0005056b9c220e6f0",
+      "sha256": "a8d11a3d6a6d183cb9a5e9da2fcb8ae1d0257c3283ed76c0005056b9c220e6f0",
+      "unchanged": true
+    },
+    {
+      "path": "drizzle/meta/_journal.json",
+      "basisSha256": "f1bbdcaae731a818bfb952afdb493e97a57a1c40f998214d989d803b9baa1366",
+      "sha256": "f1bbdcaae731a818bfb952afdb493e97a57a1c40f998214d989d803b9baa1366",
+      "unchanged": true
+    },
+    {
+      "path": "drizzle/meta/0000_snapshot.json",
+      "basisSha256": "f68c9833e4de85af622b64a15ea7ae81f666a18e48ec951d4158d2902d2aa175",
+      "sha256": "f68c9833e4de85af622b64a15ea7ae81f666a18e48ec951d4158d2902d2aa175",
+      "unchanged": true
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 {
   "name": "monopoli-nusantara",
-  "version": "4.7.1",
+  "version": "4.8.0",
   "private": true,
   "type": "module",
-  "description": "Nusantara \u2014 Kepulauan UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
+  "description": "Nusantara — Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
   "engines": {
     "node": "24.x"
   },
@@ -25,7 +25,8 @@
     "pretest": "npm run build",
     "pretest:frontend": "npm run build",
     "check:source": "node --experimental-vm-modules scripts/verify-web.mjs",
-    "smoke:ui": "node --experimental-strip-types scripts/smoke-session.mjs"
+    "smoke:ui": "node --experimental-strip-types scripts/smoke-session.mjs",
+    "test:browser": "node --experimental-strip-types scripts/test-browser.mjs"
   },
   "dependencies": {},
   "devDependencies": {

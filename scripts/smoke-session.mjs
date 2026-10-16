@@ -14,4 +14,4 @@ for(const count of [2,3,4]){
  runs.push({players:count,seed:461,actions,finished:s.state.phase==='won',winner:s.state.players[s.state.winner]?.name||null,phase:s.state.phase,error,elapsedMs:Math.round(performance.now()-began)});s.dispose();
 }
 const report={scope:'Real frontend GameSession local orchestration without a DOM, injected zero-search-budget local mind, persistence double, human decisions simulated by the same planner; not browser QA or a competitive benchmark.',runs};
-await writeFile('docs/KEPULAUAN_SESSION_SMOKE.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));if(runs.some(r=>r.error||!r.finished))process.exitCode=2;
+await writeFile('docs/CLASSIC_SESSION_SMOKE.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));if(runs.some(r=>r.error||!r.finished))process.exitCode=2;

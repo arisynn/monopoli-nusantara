@@ -1,0 +1,418 @@
+{
+  "generatedAt": "2026-10-16T13:06:16.471Z",
+  "engine": "System Chromium via Playwright, real DOM and local HTTP server",
+  "checks": [
+    {
+      "name": "portrait 320x568, 2 players",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 0,
+          "y": 115,
+          "width": 320,
+          "height": 320,
+          "bottom": 435,
+          "right": 320
+        },
+        "console": {
+          "x": 0,
+          "y": 488,
+          "width": 320,
+          "height": 80,
+          "bottom": 568,
+          "right": 320
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 40,
+          "bottom": 40,
+          "right": 320
+        },
+        "overflow": false,
+        "mainOverflow": false
+      }
+    },
+    {
+      "name": "portrait 320x568, 4 players",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 0,
+          "y": 135,
+          "width": 320,
+          "height": 320,
+          "bottom": 455,
+          "right": 320
+        },
+        "console": {
+          "x": 0,
+          "y": 488,
+          "width": 320,
+          "height": 80,
+          "bottom": 568,
+          "right": 320
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 40,
+          "bottom": 40,
+          "right": 320
+        },
+        "overflow": false,
+        "mainOverflow": false
+      }
+    },
+    {
+      "name": "portrait 320x568, 6 players",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 0,
+          "y": 135,
+          "width": 320,
+          "height": 320,
+          "bottom": 455,
+          "right": 320
+        },
+        "console": {
+          "x": 0,
+          "y": 488,
+          "width": 320,
+          "height": 80,
+          "bottom": 568,
+          "right": 320
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 40,
+          "bottom": 40,
+          "right": 320
+        },
+        "overflow": false,
+        "mainOverflow": false
+      }
+    },
+    {
+      "name": "portrait 360x640, 2 players",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 0,
+          "y": 131,
+          "width": 360,
+          "height": 360,
+          "bottom": 491,
+          "right": 360
+        },
+        "console": {
+          "x": 0,
+          "y": 560,
+          "width": 360,
+          "height": 80,
+          "bottom": 640,
+          "right": 360
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "width": 360,
+          "height": 40,
+          "bottom": 40,
+          "right": 360
+        },
+        "overflow": false,
+        "mainOverflow": false
+      }
+    },
+    {
+      "name": "portrait 360x640, 4 players",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 0,
+          "y": 151,
+          "width": 360,
+          "height": 360,
+          "bottom": 511,
+          "right": 360
+        },
+        "console": {
+          "x": 0,
+          "y": 560,
+          "width": 360,
+          "height": 80,
+          "bottom": 640,
+          "right": 360
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "width": 360,
+          "height": 40,
+          "bottom": 40,
+          "right": 360
+        },
+        "overflow": false,
+        "mainOverflow": false
+      }
+    },
+    {
+      "name": "portrait 360x640, 6 players",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 0,
+          "y": 151,
+          "width": 360,
+          "height": 360,
+          "bottom": 511,
+          "right": 360
+        },
+        "console": {
+          "x": 0,
+          "y": 560,
+          "width": 360,
+          "height": 80,
+          "bottom": 640,
+          "right": 360
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "width": 360,
+          "height": 40,
+          "bottom": 40,
+          "right": 360
+        },
+        "overflow": false,
+        "mainOverflow": false
+      }
+    },
+    {
+      "name": "portrait 390x844, 2 players",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 0,
+          "y": 213,
+          "width": 390,
+          "height": 390,
+          "bottom": 603,
+          "right": 390
+        },
+        "console": {
+          "x": 0,
+          "y": 753,
+          "width": 390,
+          "height": 91,
+          "bottom": 844,
+          "right": 390
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 46,
+          "bottom": 46,
+          "right": 390
+        },
+        "overflow": false,
+        "mainOverflow": false
+      }
+    },
+    {
+      "name": "portrait 390x844, 4 players",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 0,
+          "y": 242.5,
+          "width": 390,
+          "height": 390,
+          "bottom": 632.5,
+          "right": 390
+        },
+        "console": {
+          "x": 0,
+          "y": 753,
+          "width": 390,
+          "height": 91,
+          "bottom": 844,
+          "right": 390
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 46,
+          "bottom": 46,
+          "right": 390
+        },
+        "overflow": false,
+        "mainOverflow": false
+      }
+    },
+    {
+      "name": "portrait 390x844, 6 players",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 0,
+          "y": 242.5,
+          "width": 390,
+          "height": 390,
+          "bottom": 632.5,
+          "right": 390
+        },
+        "console": {
+          "x": 0,
+          "y": 753,
+          "width": 390,
+          "height": 91,
+          "bottom": 844,
+          "right": 390
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 46,
+          "bottom": 46,
+          "right": 390
+        },
+        "overflow": false,
+        "mainOverflow": false
+      }
+    },
+    {
+      "name": "portrait 430x932, 2 players",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 0,
+          "y": 237,
+          "width": 430,
+          "height": 430,
+          "bottom": 667,
+          "right": 430
+        },
+        "console": {
+          "x": 0,
+          "y": 841,
+          "width": 430,
+          "height": 91,
+          "bottom": 932,
+          "right": 430
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 46,
+          "bottom": 46,
+          "right": 430
+        },
+        "overflow": false,
+        "mainOverflow": false
+      }
+    },
+    {
+      "name": "portrait 430x932, 4 players",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 0,
+          "y": 266.5,
+          "width": 430,
+          "height": 430,
+          "bottom": 696.5,
+          "right": 430
+        },
+        "console": {
+          "x": 0,
+          "y": 841,
+          "width": 430,
+          "height": 91,
+          "bottom": 932,
+          "right": 430
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 46,
+          "bottom": 46,
+          "right": 430
+        },
+        "overflow": false,
+        "mainOverflow": false
+      }
+    },
+    {
+      "name": "portrait 430x932, 6 players",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 0,
+          "y": 266.5,
+          "width": 430,
+          "height": 430,
+          "bottom": 696.5,
+          "right": 430
+        },
+        "console": {
+          "x": 0,
+          "y": 841,
+          "width": 430,
+          "height": 91,
+          "bottom": 932,
+          "right": 430
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 46,
+          "bottom": 46,
+          "right": 430
+        },
+        "overflow": false,
+        "mainOverflow": false
+      }
+    },
+    {
+      "name": "desktop 1280x800, 6 players",
+      "passed": true,
+      "board": {
+        "x": 124,
+        "y": 56,
+        "width": 726,
+        "height": 726
+      }
+    },
+    {
+      "name": "repeat start -> lobby -> start",
+      "passed": true
+    },
+    {
+      "name": "pip animation, reveal persistence, double click, refresh (normal)",
+      "passed": true
+    },
+    {
+      "name": "pip animation, reveal persistence, double click, refresh (reduced)",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Emulated mobile viewports, not physical Android hardware.",
+    "Local save fixtures include six human seats solely to exercise UI, not a new hotseat mode.",
+    "No real Supabase/Groq service contacted."
+  ]
+}

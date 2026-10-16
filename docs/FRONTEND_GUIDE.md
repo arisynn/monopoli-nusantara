@@ -30,8 +30,20 @@ Saldo animasi memakai finance records engine. Kapsul tidak dibuat ulang seluruhn
 
 State UI tambahan tidak dimasukkan ke snapshot gameplay. Nama/teks publik di-escape sebelum HTML. Auth token dikelola adapter existing, tidak masuk URL/markup/save game. Export/import dilarang untuk room online. Informasi strategi privat bot dan deck tidak masuk public snapshot atau broadcast.
 
-Perubahan selanjutnya wajib menjaga minimal tap target, scroll internal popup, safe area, portrait 320–430 px, enam kapsul dalam dua baris, serta fokus keyboard. Semua popup perlu cek manual karena lingkungan ini belum dapat menjalankan browser.
+Perubahan selanjutnya wajib menjaga minimal tap target, scroll internal popup, safe area, portrait 320–430 px, enam kapsul dalam dua baris, serta fokus keyboard. Catatan historis 4.7: saat itu browser belum tersedia; pada 4.8 Chromium sudah berjalan dan laporan terpisah mencatat hasil DOM/layout. Pemeriksaan Android fisik tetap diperlukan.
 
 Update 4.7.1: `projectBoard` mengubah titik logical ke scene trapesium 1000 unit. `unprojectBoard` menyediakan invers yang diuji untuk seluruh 40 petak. Semua polygon petak memakai proyeksi yang sama sehingga hit target SVG mengikuti bentuk yang tampak; tidak ada tilt CSS yang membuat hit area bergeser. Rute pion diproyeksikan pada tiap frame, follow camera memakai pusat tile terproyeksi. Lapisan objek diurutkan berdasarkan titik pijakan, termasuk selama pion berjalan. Pion dan bangunan tetap sprite/shape 2D menghadap pemain, tanpa model 3D.
 
 `pawn-miniatures.webp` adalah atlas RGBA 3×2 dengan urutan numeric 0–5 sesuai `lib/pawns.mjs`: Pinisi, Komodo, Becak, Cenderawasih, Angklung, Rumah Gadang. `pawnArt` menampilkan crop yang sama pada lobby, kapsul dan profil. Tidak mengubah ID pada save/room. Cache shell dinaikkan menjadi v471 agar bundle/sprite baru dipasang bersama.
+
+## Aktif pada versi 4.8: Papan Klasik
+
+Panduan 2.5D di atas adalah historis. `frontend/board-depth.mjs` sudah dihentikan; papan aktif adalah 2D biasa. `frontend/board-camera.mjs` menyediakan fit/zoom/clamp tanpa gutter, sehingga overview menyentuh tepi viewport portrait. Logical tileRect dan game coordinates tidak diubah. Nama tile dibaca langsung dari BOARD, tanpa mengganti nama/urutan atau memenggal kata tunggal; rentang teks dipadatkan bila perlu. Ikon khusus memakai PNG transparan dalam `public/assets/classic/`, dengan source SVG di `design/classic-icons/`.
+
+`frontend/dice-view.mjs` mengganti animasi putar. Widget menerima `values:null` selama rolling; `pipFrame` menghasilkan pip dekoratif tanpa memakai RNG gameplay. Reveal membatalkan timer pip, menampilkan pasangan sah dan menolak callback usang. Reduced motion mematikan pengacakan. Shared timeline membawa metadata `presentationDice` pada view setelah reveal sampai snapshot berikutnya; metadata tidak masuk authoritative state atau autosave.
+
+`advanceTimeline` dan `GameSession.complete` memeriksa keberadaan head serta ID sebelum maju. Queue kosong/ID usang menjadi no-op, sehingga penutupan popup dan mulai ulang dari lobby tidak membaca `kind` dari undefined.
+
+Header memuat hamburger, tulisan Nusantara dan kamera gameplay. Aset serta Barter hanya menjadi akses utama pada konsol bawah. Kamera tidak ditampilkan di papan. Render popup dan validasi backend tetap memakai kontrak sebelumnya. Baca `CLASSIC_REPORT.md` dan `CLASSIC_BROWSER_RESULTS.json` untuk bukti pengujian terkini.
+
+Arahan referensi 1251174 diterapkan melalui `.tile-face`: sistem koordinat lokal konsisten dengan nama dekat strip dalam, ruang pion di tengah dan harga di tepi luar. Seluruh isi diputar sesuai `tileRect.angle` (0/90/180/270), sedangkan pion tetap menghadap layar. Nama ditulis kapital dan tetap berasal dari `BOARD`; harga memakai formatter Nusa existing. Corner mempertahankan ikon dan label tersendiri. Jangan kembali meratakan semua teks agar menghadap layar karena itu merusak susunan papan klasik yang diminta.

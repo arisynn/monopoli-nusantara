@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-10-16T13:06:39.292Z",
+  "node": "v24.19.0",
+  "files": [
+    "tests/game.test.mjs",
+    "tests/classic.test.mjs",
+    "tests/storage.test.mjs",
+    "tests/save-format.test.mjs",
+    "tests/room-client.test.mjs",
+    "tests/online.test.mjs",
+    "tests/online-client.test.mjs",
+    "tests/online-api.test.mjs",
+    "tests/bot-strategy.test.mjs",
+    "tests/groq-hybrid.test.mjs",
+    "tests/bot-api.test.mjs",
+    "tests/online-bots.test.mjs",
+    "tests/mind-headless.test.mjs",
+    "tests/presentation-headless.test.mjs",
+    "tests/headless-package.test.mjs",
+    "tests/frontend.test.mjs"
+  ],
+  "tests": 316,
+  "passed": 316,
+  "failed": 0,
+  "skipped": 0,
+  "failures": [],
+  "limits": [
+    "No real Supabase/Auth/Postgres/RLS/Realtime or Groq service was contacted.",
+    "This suite calls fetch handlers in process with contract doubles; browser socket checks are reported separately.",
+    "This suite tests renderer/session in process and adapters with doubles or Node workers; real DOM/layout checks are in CLASSIC_BROWSER_RESULTS.json.",
+    "This suite uses native TypeScript stripping; separate npm run typecheck performs semantic tsc validation."
+  ]
+}

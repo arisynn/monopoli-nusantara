@@ -1,0 +1,60 @@
+{
+  "release": "4.8.0",
+  "generatedAt": "2026-10-16T13:08:15.712120+00:00",
+  "node": "v24.19.0",
+  "checks": [
+    {
+      "command": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-headless.mjs",
+      "status": "passed",
+      "tests": 316,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "npm run test:frontend",
+      "status": "passed",
+      "tests": 50
+    },
+    {
+      "command": "npm run typecheck",
+      "status": "passed",
+      "note": "Real TypeScript 5.9.3 semantic compiler; strict configuration preserved, JS is checked through syntax/import and browser tests."
+    },
+    {
+      "command": "npm run build:vercel",
+      "status": "passed",
+      "note": "Native static build, not a live Vercel deployment."
+    },
+    {
+      "command": "npm run check:source",
+      "status": "passed",
+      "modules": 173
+    },
+    {
+      "command": "npm run smoke:ui",
+      "status": "passed",
+      "finishedMatches": 3
+    },
+    {
+      "command": "node --experimental-strip-types scripts/test-browser.mjs",
+      "status": "passed",
+      "scenarios": 16,
+      "note": "External Playwright + system Chromium, localhost:8787; browser environment paths set."
+    }
+  ],
+  "lint": "No lint script in supplied source",
+  "notVerified": [
+    "Physical Android performance",
+    "Live Supabase Auth/Postgres/RLS/Realtime and scheduler",
+    "Real Groq provider",
+    "Live Vercel deployment",
+    "Upgrade of installed PWA on actual production domain"
+  ],
+  "distribution": {
+    "freshExtraction": "passed",
+    "freshBuildVercel": "passed without dependency install",
+    "freshModuleGraph": "173 modules, zero failures",
+    "zipIntegrity": "CRC and SHA256 of every manifested file verified",
+    "excludes": "node_modules, dist, actual env/secrets"
+  }
+}
