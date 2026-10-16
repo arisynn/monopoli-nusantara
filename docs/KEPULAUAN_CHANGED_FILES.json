@@ -1,0 +1,250 @@
+[
+  {
+    "path": ".gitignore",
+    "status": "modified"
+  },
+  {
+    "path": "AI_UI_INTEGRATION.md",
+    "status": "modified"
+  },
+  {
+    "path": "README.md",
+    "status": "modified"
+  },
+  {
+    "path": "UI_REBUILD_BRIEF.md",
+    "status": "modified"
+  },
+  {
+    "path": "adapters/node/server.mjs",
+    "status": "modified"
+  },
+  {
+    "path": "adapters/node/static.mjs",
+    "status": "added"
+  },
+  {
+    "path": "api/index.ts",
+    "status": "added"
+  },
+  {
+    "path": "design/SOURCE_OF_TRUTH.json",
+    "status": "added"
+  },
+  {
+    "path": "design/references/1249621.jpg",
+    "status": "added"
+  },
+  {
+    "path": "design/references/1249622.jpg",
+    "status": "added"
+  },
+  {
+    "path": "design/references/1249623.jpg",
+    "status": "added"
+  },
+  {
+    "path": "design/references/1249624.jpg",
+    "status": "added"
+  },
+  {
+    "path": "design/references/1249625.jpg",
+    "status": "added"
+  },
+  {
+    "path": "design/references/1249626.jpg",
+    "status": "added"
+  },
+  {
+    "path": "design/references/1249627.jpg",
+    "status": "added"
+  },
+  {
+    "path": "design/references/1249628.jpg",
+    "status": "added"
+  },
+  {
+    "path": "design/references/1249629.jpg",
+    "status": "added"
+  },
+  {
+    "path": "design/references/1249630.jpg",
+    "status": "added"
+  },
+  {
+    "path": "docs/ASSET_MANIFEST.json",
+    "status": "modified"
+  },
+  {
+    "path": "docs/FRONTEND_GUIDE.md",
+    "status": "added"
+  },
+  {
+    "path": "docs/KEPULAUAN_CHANGED_FILES.json",
+    "status": "added"
+  },
+  {
+    "path": "docs/KEPULAUAN_CORE_INTEGRITY.json",
+    "status": "added"
+  },
+  {
+    "path": "docs/KEPULAUAN_REPORT.md",
+    "status": "added"
+  },
+  {
+    "path": "docs/KEPULAUAN_SELFPLAY.json",
+    "status": "added"
+  },
+  {
+    "path": "docs/KEPULAUAN_SESSION_SMOKE.json",
+    "status": "added"
+  },
+  {
+    "path": "docs/KEPULAUAN_SYNTAX_IMPORTS.json",
+    "status": "added"
+  },
+  {
+    "path": "docs/KEPULAUAN_VERIFICATION.json",
+    "status": "added"
+  },
+  {
+    "path": "docs/QA_KEPULAUAN_RESULTS.json",
+    "status": "added"
+  },
+  {
+    "path": "docs/README.md",
+    "status": "added"
+  },
+  {
+    "path": "docs/history/HEADLESS_ASSET_MANIFEST.json",
+    "status": "added"
+  },
+  {
+    "path": "docs/history/HEADLESS_PACKAGE_MANIFEST.json",
+    "status": "added"
+  },
+  {
+    "path": "docs/history/README_HEADLESS_v4.6.1.md",
+    "status": "added"
+  },
+  {
+    "path": "frontend/app.mjs",
+    "status": "added"
+  },
+  {
+    "path": "frontend/art.mjs",
+    "status": "added"
+  },
+  {
+    "path": "frontend/board-depth.mjs",
+    "status": "added"
+  },
+  {
+    "path": "frontend/board.mjs",
+    "status": "added"
+  },
+  {
+    "path": "frontend/cache-migration.mjs",
+    "status": "added"
+  },
+  {
+    "path": "frontend/domain.mjs",
+    "status": "added"
+  },
+  {
+    "path": "frontend/index.html",
+    "status": "added"
+  },
+  {
+    "path": "frontend/popups.mjs",
+    "status": "added"
+  },
+  {
+    "path": "frontend/service-worker.js",
+    "status": "added"
+  },
+  {
+    "path": "frontend/session.mjs",
+    "status": "added"
+  },
+  {
+    "path": "frontend/styles.css",
+    "status": "added"
+  },
+  {
+    "path": "package.json",
+    "status": "modified"
+  },
+  {
+    "path": "public/assets/archipelago-light.webp",
+    "status": "added"
+  },
+  {
+    "path": "public/assets/pawn-miniatures.webp",
+    "status": "added"
+  },
+  {
+    "path": "public/assets/region-atlas-light.webp",
+    "status": "added"
+  },
+  {
+    "path": "public/favicon.svg",
+    "status": "modified"
+  },
+  {
+    "path": "scripts/build-web.mjs",
+    "status": "added"
+  },
+  {
+    "path": "scripts/smoke-session.mjs",
+    "status": "added"
+  },
+  {
+    "path": "scripts/test-headless.mjs",
+    "status": "modified"
+  },
+  {
+    "path": "scripts/verify-web.mjs",
+    "status": "added"
+  },
+  {
+    "path": "tests/frontend.test.mjs",
+    "status": "added"
+  },
+  {
+    "path": "tests/headless-package.test.mjs",
+    "status": "modified"
+  },
+  {
+    "path": "tsconfig.json",
+    "status": "modified"
+  },
+  {
+    "path": "vercel.json",
+    "status": "added"
+  },
+  {
+    "path": "public/assets/nusantara-scene.webp",
+    "status": "removed"
+  },
+  {
+    "path": "public/assets/pawn-atlas.webp",
+    "status": "removed"
+  },
+  {
+    "path": "public/assets/region-atlas.webp",
+    "status": "removed"
+  },
+  {
+    "path": "public/file.svg",
+    "status": "removed"
+  },
+  {
+    "path": "public/globe.svg",
+    "status": "removed"
+  },
+  {
+    "path": "public/window.svg",
+    "status": "removed"
+  }
+]

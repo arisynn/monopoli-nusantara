@@ -1,0 +1,34 @@
+{
+  "generatedAt": "2026-10-16T11:57:53.492330+00:00",
+  "release": "4.7.1 Kepulauan 2.5D",
+  "tests": {
+    "passed": 313,
+    "total": 313,
+    "skipped": 0,
+    "report": "QA_KEPULAUAN_RESULTS.json"
+  },
+  "frontendTests": 47,
+  "syntaxImportModules": 170,
+  "build": {
+    "production": "passed",
+    "buildVercelScript": "passed",
+    "technology": "Native Node 24 static module build, not Next.js",
+    "deployed": false
+  },
+  "semanticTypecheck": {
+    "status": "blocked",
+    "reason": "tsc not installed; npm run typecheck exited 127"
+  },
+  "browser": {
+    "status": "blocked",
+    "reason": "Chromium sandbox denied crashpad setsockopt; no DOM/layout test"
+  },
+  "liveSupabase": "not available; service simulations only",
+  "liveGroq": "not available; provider contract doubles only",
+  "coreIntegrityFiles": 56,
+  "coreFilesChanged": 0,
+  "localSessionSmoke": "2/3/4 players finished in 389/428/610 actions; simulated human, no DOM",
+  "newDatabaseMigrations": 0,
+  "visualVerification": "Actual SVG renderer raster inspected at 1100px and 390px; no browser DOM/layout QA",
+  "newAssets": "Transparent painted token atlas, unchanged numeric identities"
+}

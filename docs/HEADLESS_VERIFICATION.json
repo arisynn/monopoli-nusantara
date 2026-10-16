@@ -1,0 +1,96 @@
+{
+  "generatedAt": "2026-10-16T07:50:00.722948+00:00",
+  "package": "monopoli-nusantara-logic",
+  "sourceVersion": "4.6.1",
+  "tests": {
+    "generatedAt": "2026-10-16T07:50:20.428Z",
+    "node": "v24.19.0",
+    "files": [
+      "tests/game.test.mjs",
+      "tests/classic.test.mjs",
+      "tests/storage.test.mjs",
+      "tests/save-format.test.mjs",
+      "tests/room-client.test.mjs",
+      "tests/online.test.mjs",
+      "tests/online-client.test.mjs",
+      "tests/online-api.test.mjs",
+      "tests/bot-strategy.test.mjs",
+      "tests/groq-hybrid.test.mjs",
+      "tests/bot-api.test.mjs",
+      "tests/online-bots.test.mjs",
+      "tests/mind-headless.test.mjs",
+      "tests/presentation-headless.test.mjs",
+      "tests/headless-package.test.mjs"
+    ],
+    "tests": 266,
+    "passed": 266,
+    "failed": 0,
+    "skipped": 0,
+    "failures": [],
+    "limits": [
+      "No real Supabase/Auth/Postgres/RLS/Realtime or Groq service was contacted.",
+      "HTTP tests call real fetch handlers in process with contract doubles; listening socket not verified.",
+      "Browser-only storage/Auth/worker adapters use mocks or Node worker tests; no frontend rendering exists here.",
+      "Native Node TypeScript stripping is not semantic tsc validation."
+    ]
+  },
+  "syntaxAndImports": {
+    "parser": "Existing Babel parser; syntax/import existence only, not semantic TypeScript",
+    "files": 114,
+    "failed": [],
+    "missingImports": []
+  },
+  "demo": {
+    "command": "npm run demo",
+    "passed": true
+  },
+  "selfPlay": {
+    "command": "npm run selfplay -- --model=medium --seed=461 --max-actions=4000",
+    "result": {
+      "finished": true,
+      "actions": 457,
+      "phase": "won",
+      "winner": "Bima",
+      "players": [
+        {
+          "name": "Raka",
+          "out": true,
+          "cash": 0
+        },
+        {
+          "name": "Bima",
+          "out": false,
+          "cash": 12240
+        },
+        {
+          "name": "Sari",
+          "out": true,
+          "cash": 0
+        }
+      ],
+      "note": "Smoke self-play; bukan benchmark keunggulan kompetitif."
+    },
+    "qualityClaim": "One smoke run only; no competitive promotion claim."
+  },
+  "unmodifiedSourceFilesVerified": 156,
+  "visualAssetsVerified": 25,
+  "noFrontendFiles": true,
+  "noReactNextDependencies": true,
+  "noRuntimeDependencyInstallationRequiredForTestsDemoOrNodeAdapter": true,
+  "rejectedMockupDeleted": true,
+  "nodeServerListen": {
+    "attempted": true,
+    "passed": false,
+    "reason": "Sandbox EPERM when opening listening socket; no permissions escalation requested. Fetch handlers tested in process."
+  },
+  "semanticTypeScript": "Not run: compiler/dev dependencies unavailable. Native Node TS stripping does not typecheck.",
+  "liveSupabase": "Not connected/tested",
+  "liveGroq": "No actual provider requests",
+  "migrationsApplied": false,
+  "deploymentPerformed": false,
+  "notes": [
+    "Original full source remains intact.",
+    "No change to game rules, AI policies, economic units, server handlers or static assets during extraction.",
+    "Historical frontend/PWA tests are intentionally not part of this package; exclusions documented."
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "baseUrl": "/",
+  "preservedByteForByte": true,
+  "count": 25,
+  "files": [
+    {
+      "path": "public/assets/board/chance.svg",
+      "bytes": 776,
+      "sha256": "28c83b07523a45d2338f12220d5d81b6572c0c856bb6d1ca610deacf9129497c"
+    },
+    {
+      "path": "public/assets/board/community.svg",
+      "bytes": 802,
+      "sha256": "5cc6f8ddab4b14305238b8cad7944d4e2bc25f87b098055b833bc247f7a36b11"
+    },
+    {
+      "path": "public/assets/board/electric.svg",
+      "bytes": 703,
+      "sha256": "0c90526baeef70e6a396235538d5fe9aae87d525f50b8ae21d125fde3aa3bb2b"
+    },
+    {
+      "path": "public/assets/board/gojail.svg",
+      "bytes": 786,
+      "sha256": "ad19e7a59e6f316db69b6c8527eb9a3d1af8d872ab1c295ccf4b103d5a343c14"
+    },
+    {
+      "path": "public/assets/board/jail.svg",
+      "bytes": 732,
+      "sha256": "380eedb4822b9921dcfea0864e9d4b8a8ff974181893bd841ff0d26b2b66c1d0"
+    },
+    {
+      "path": "public/assets/board/parking.svg",
+      "bytes": 799,
+      "sha256": "1b7c0fb988d410407af63c477f8e653ff627774f08bf5fadc89b5d77626bfde6"
+    },
+    {
+      "path": "public/assets/board/start.svg",
+      "bytes": 700,
+      "sha256": "943d6f37458281447c89545ae5a4e1a5febfb765b95bd160e846dd0e1ac5432b"
+    },
+    {
+      "path": "public/assets/board/station.svg",
+      "bytes": 840,
+      "sha256": "c87387f558abd058f2f8eed82abbe9ce71f84474089045bb29f001796d052c00"
+    },
+    {
+      "path": "public/assets/board/tax.svg",
+      "bytes": 731,
+      "sha256": "e03014913feff0f7f7a44ee61dbb6edce916945d72865116d099a8fdd6d7c8e4"
+    },
+    {
+      "path": "public/assets/board/water.svg",
+      "bytes": 734,
+      "sha256": "9f79eb49413b56c9998403080adf7f1afb2459ffc78b1c3b70ee3cf0257212d9"
+    },
+    {
+      "path": "public/assets/nusa-symbol.woff",
+      "bytes": 724,
+      "sha256": "849862ab22024852c93a5eabdfc7bbb7ecac44e501e24dd827164e641b8c6aa4"
+    },
+    {
+      "path": "public/assets/nusa.svg",
+      "bytes": 206,
+      "sha256": "964fdf6f25061232039377b2eacfe1dd61c28e4324c54f9ef3a0b0cbabda2cd0"
+    },
+    {
+      "path": "public/assets/nusantara-scene.webp",
+      "bytes": 344442,
+      "sha256": "37cdda40cf79ae9879da2bd6eed7b8c8b704e9c10fd139f25cdc49fa5461c20b"
+    },
+    {
+      "path": "public/assets/pawn-atlas.webp",
+      "bytes": 365340,
+      "sha256": "6282b7ab6911e93bf45ee696cb693d8481b3b62d0df177defa9bd8bd56ca88a9"
+    },
+    {
+      "path": "public/assets/region-atlas.webp",
+      "bytes": 618032,
+      "sha256": "9db730ecd03199a866c4ea8f40adf80eb0a00eb9c35ac3d781295542f85c6c02"
+    },
+    {
+      "path": "public/assets/tokens/angklung.svg",
+      "bytes": 770,
+      "sha256": "33df2d4ee26f496c180c773eb585b7cfb4e5d72b67a4b18f6d9c89e50d09ee89"
+    },
+    {
+      "path": "public/assets/tokens/becak.svg",
+      "bytes": 857,
+      "sha256": "b40249dfe777599df5a089303742e52899c53273c072a5a38c115e183933169a"
+    },
+    {
+      "path": "public/assets/tokens/cenderawasih.svg",
+      "bytes": 865,
+      "sha256": "8a0758c0428f68b53d116fa60369eabe267cd46a0e561d73ae417cda5264db60"
+    },
+    {
+      "path": "public/assets/tokens/komodo.svg",
+      "bytes": 828,
+      "sha256": "baf157ba4dea1eb66d04a82287ea48a9632688c96cd8141d11ed9b96acb2da95"
+    },
+    {
+      "path": "public/assets/tokens/pinisi.svg",
+      "bytes": 792,
+      "sha256": "a02c2b5a6a477383ca8bef0659382961dced0a79128daffd3ec94a67b79e4bc5"
+    },
+    {
+      "path": "public/assets/tokens/rumah-gadang.svg",
+      "bytes": 830,
+      "sha256": "a052e86aef95a3280e9f0424838dacac523ab7b785b094b0cd63a53cf90ec5d2"
+    },
+    {
+      "path": "public/favicon.svg",
+      "bytes": 240,
+      "sha256": "d7e9435e8ac9206a6a282bd93ab01a7a39719db9e571df6a8e3bb049378b7a61"
+    },
+    {
+      "path": "public/file.svg",
+      "bytes": 392,
+      "sha256": "1e0ae4d1a1ddfa36752988647b731e4abf150c414d069ec83c96fb0aaeff0307"
+    },
+    {
+      "path": "public/globe.svg",
+      "bytes": 1036,
+      "sha256": "d051a8c47936990a9085693d307bb7cea1bc1b6d7ed956bcbaacf674f4ec96b9"
+    },
+    {
+      "path": "public/window.svg",
+      "bytes": 386,
+      "sha256": "decf1cf7bb22b5c99c4857cfcd5718ce5465c4454166317589c83fc73df74b66"
+    }
+  ],
+  "excluded": "public/sw.js is a frontend service worker, not a visual asset."
+}

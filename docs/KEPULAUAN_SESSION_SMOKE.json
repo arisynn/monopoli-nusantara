@@ -1,0 +1,35 @@
+{
+  "scope": "Real frontend GameSession local orchestration without a DOM, injected zero-search-budget local mind, persistence double, human decisions simulated by the same planner; not browser QA or a competitive benchmark.",
+  "runs": [
+    {
+      "players": 2,
+      "seed": 461,
+      "actions": 389,
+      "finished": true,
+      "winner": "Raka",
+      "phase": "won",
+      "error": null,
+      "elapsedMs": 4423
+    },
+    {
+      "players": 3,
+      "seed": 461,
+      "actions": 428,
+      "finished": true,
+      "winner": "Raka",
+      "phase": "won",
+      "error": null,
+      "elapsedMs": 2995
+    },
+    {
+      "players": 4,
+      "seed": 461,
+      "actions": 610,
+      "finished": true,
+      "winner": "Bima",
+      "phase": "won",
+      "error": null,
+      "elapsedMs": 6841
+    }
+  ]
+}

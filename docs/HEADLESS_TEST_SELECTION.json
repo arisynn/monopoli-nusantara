@@ -1,0 +1,43 @@
+{
+  "strategy": "Preserve all pure engine/bot/service/presentation tests from selected files; remove only frontend-specific cases and their imports/helpers, no skipped placeholder tests.",
+  "files": [
+    {
+      "source": "tests/mind-v46.test.mjs",
+      "sourceSha256": "8e61cfc94f600e13b1d839212c17af9b2a9e8143fdb4a2d7a57595f892a859da",
+      "output": "tests/mind-headless.test.mjs",
+      "excluded": [
+        {
+          "name": "actual setup renders independent levels for Raka/Bima/Sari and defaults Groq off",
+          "reason": "Frontend-only React rendering / PWA / UI release metadata; not part of headless package."
+        }
+      ]
+    },
+    {
+      "source": "tests/experience-v45.test.mjs",
+      "sourceSha256": "0b6e415d8eecf39bca1c6b5317712ea7fc67a42ba232096ea862eaee7aaace37",
+      "output": "tests/presentation-headless.test.mjs",
+      "excluded": [
+        {
+          "name": "PWA only retires old UI caches and never clears matches or another app cache",
+          "reason": "Frontend-only React rendering / PWA / UI release metadata; not part of headless package."
+        },
+        {
+          "name": "PWA refreshes unhashed JS, keeps immutable hashes, and never caches API/Auth requests",
+          "reason": "Frontend-only React rendering / PWA / UI release metadata; not part of headless package."
+        },
+        {
+          "name": "PWA offline navigation restores cached shell without touching persistent saves",
+          "reason": "Frontend-only React rendering / PWA / UI release metadata; not part of headless package."
+        },
+        {
+          "name": "release marker and package version agree while retaining v4.5 presentation",
+          "reason": "Frontend-only React rendering / PWA / UI release metadata; not part of headless package."
+        },
+        {
+          "name": "asset cache quota failures do not replace a successful network response with a stale page",
+          "reason": "Frontend-only React rendering / PWA / UI release metadata; not part of headless package."
+        }
+      ]
+    }
+  ]
+}

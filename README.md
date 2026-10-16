@@ -1,117 +1,68 @@
-# Monopoli Nusantara v4.6.1 — Player Experience
+# Monopoli Nusantara — Kepulauan UI 4.7.1 — Board 2.5D
 
-**Pembaruan saat ini:** satu layar permainan berfokus pada papan, tanpa bottom navigation. Ketuk kapsul untuk Aset, tombol Barter untuk negosiasi, baris aktivitas untuk Riwayat, dan Menu untuk Room, Simpanan, Pengaturan serta Aturan. Dadu memakai konsol aksi tetap; shared presentation queue tetap mengatur reveal → pion → event → transaksi. [Laporan UI](docs/PLAYER_UI_REPORT.md) · [Audit](docs/PLAYER_UI_AUDIT.md) · [Hasil regresi](docs/QA_PLAYER_UI_RESULTS.json).
+Frontend baru berdasarkan **paket logic v4.6.1 tanpa frontend**. Source aktif ini memakai 10 mockup terakhir yang disetujui, dengan penyesuaian: hanya lobby dan gameplay menjadi layar penuh, tanpa bottom tab, tanpa deretan properti di bawah papan. Fitur lain dibuka dalam popup dengan latar blur.
 
-Basis source adalah NUSA MIND v4.6 yang sudah ada di workspace, termasuk empat model lokal dan persona tetap. Nama folder lama bukan penanda versi source. Tidak ada perubahan engine, strategi bot, endpoint, worker, database atau migrasi dalam pembaruan UI ini. Build/TypeScript semantik, React DOM/browser/perangkat dan Supabase live masih perlu diverifikasi; lihat `docs/UI_BUILD_CHECKS.json`.
+Baca [laporan implementasi dan QA](docs/KEPULAUAN_REPORT.md), [peta frontend](docs/FRONTEND_GUIDE.md), dan [kontrak logic](AI_UI_INTEGRATION.md). Nomor 4.7.1 menandai frontend baru; engine dan backend v4.6.1 dipertahankan. `lib/version.mjs` dan `/health` tetap melaporkan versi core headless, bukan versi UI. Versi UI tercantum di lobby, pengaturan, dan `/build.json`.
 
-**Riwayat v4.5:** urutan dadu → pion → kejadian → transaksi visual kini memakai satu antrean presentasi; event kartu/ledger berasal dari shared engine. Detail board, kapsul dan riwayat diperkuat tanpa mengubah aturan atau strategi bot. [Laporan v4.5](docs/V45_REPORT.md) · [Deployment](docs/DEPLOY_V45.md) · [QA](docs/QA_V45_RESULTS.json). Build/TypeScript penuh, Supabase live dan Android/browser belum terverifikasi.
+## Menjalankan
 
-Web game properti 2D berbahasa Indonesia. v4.5 melanjutkan fondasi Hybrid Intelligence 4.0 dan Supabase; laporan lama tetap disimpan sebagai riwayat verifikasi. Papan SVG, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
-
-v2.11 menyempurnakan board: monogram Nusa, artwork spesial dan kartu yang baru, enam pion SVG berbeda yang bisa dipilih, serta cluster pion simetris. Aset kartu lama dihapus. Nilai ekonomi, aturan, kamera, dadu dan Smart Gameplay Flow v2.10 dipertahankan.
-
-**Hotfix 2.11.1:** memperbaiki TS2322 pada dua prop `GameNotice.message`. Pesan tetap string; rendering Nusa dilakukan di komponen notifikasi. [Detail hotfix](docs/HOTFIX_v2.11.1.md).
-
-**Riwayat verifikasi v2.11 (sebelum pembaruan Hybrid):** 147 tes regresi + 7 tes kamera lulus; sintaks 29 berkas TS/TSX diperiksa dengan parser Babel. TypeScript penuh, build, lint, React DOM/Android dan room live belum terverifikasi. Lihat [perubahan, kompatibilitas dan checklist v2.11](docs/UPDATE_v2.11.md).
-
-## Fitur tersedia
-
-- Gameplay HP portrait menggunakan tinggi layar aktif; kapsul pemain memakai grid adaptif 2–6 pemain. Setup, aset, barter, riwayat, dan keputusan panjang menggunakan panel yang dapat digulir. Beranda dapat digulir pada layar pendek.
-- Papan SVG 40 petak dengan empat sudut besar dan pita warna klasik. Dua tampilan: Seluruh papan dan Dekat/Ikuti pemain. Geser dan pinch zoom langsung pada papan tanpa tombol, minimap, atau label yang menutupi petak. Jelajah manual tetap aktif sampai tombol Ikuti pemain ditekan.
-- Lima slot save lokal, arsip permainan sebelumnya, ekspor/impor JSON tervalidasi, serta pengaturan yang diingat di perangkat.
-
-- Dua mode baru: VS Bot (2–4 peserta: manusia + Raka/Bima/Sari; empat model NUSA MIND existing dipertahankan) dan Online Multiplayer (2–6 peserta, minimal dua manusia, maksimal tiga bot unik setelah worker diverifikasi). Save hotseat lama dan adapter bot/Groq lama dipertahankan untuk kompatibilitas.
-- Jalur online baru: Supabase Auth, kursi per UUID, snapshot privat persisten, transaksi atomik, revision hints Realtime, reconnect, voting mayoritas, auto-pause dan resume semua aktif siap. Belum tervalidasi pada Supabase live.
-- Pion SVG orisinal dapat dipilih di setup/lobby, lalu konsisten pada board dan HUD. Kartu Kesempatan/Dana Umum memakai artwork baru; ilustrasi regional existing dipakai pada kota.
-- Aturan dasar C1009: lempar awal, lelang terbuka, lelang stok bangunan langka, barter saat utang/di luar giliran, pilihan langsung tebus aset tergadai, dan opsi klaim sewa manual.
-- 40 petak, 28 sertifikat, 32 kartu, dadu kembar, penjara, sewa, pajak, lelang, gadai, bangunan merata, barter dan tawaran balik, utang/kebangkrutan/pemenang.
-- Papan tidak memakai WebGL atau Three.js. Teks, ikon spesial, bangunan dan pion tetap vektor saat diperbesar; strip kota memakai ilustrasi WebP existing. Efek suara, animasi cepat, reduced motion, serah giliran tetap tersedia.
-- Save lokal IndexedDB dengan salinan localStorage; service worker untuk cache shell setelah pemuatan awal. Offline perlu origin HTTPS dan cache yang telah terisi. Mode room dan Groq membutuhkan koneksi.
-
-Baca `docs/RULEPACK.md` untuk adaptasi yang eksplisit dan batas verifikasi v2. Baca `docs/QA_BOARD_2D.md` untuk pemeriksaan dasar kamera, serta `docs/UPDATE_v2.4.md` untuk peningkatan UX dan batas pengujian perangkat nyata.
-
-## Deploy Vercel
-
-Gunakan `vercel.json` yang disertakan. Framework **Next.js**, Node **24.x**, build `npm run build:vercel`, output `.next`. Panduan lengkap dan environment variables: [`docs/DEPLOY_VERCEL.md`](docs/DEPLOY_VERCEL.md). VS Bot tidak memerlukan database. Room online baru memerlukan Supabase; lihat panduan di atas. Upstash/D1 dipertahankan untuk room legacy. Groq opsional untuk VS Bot tanpa database; bot lokal tetap mandiri.
+Gunakan **Node.js 24.x**, lalu dari folder source:
 
 ```bash
-npx --yes pnpm@11.25.0 install --frozen-lockfile
-npm run dev:vercel
-# Produksi: npm run build:vercel && npm run start:vercel
+npm run build
+npm start
 ```
 
-## Pengembangan Sites / Cloudflare
-
-Node.js 24, pnpm 11.25.0.
+Buka `http://127.0.0.1:8787`. Build frontend memakai ES modules, CSS, SVG, dan native TypeScript stripping untuk adapter storage. Tidak memerlukan React/Next, Redis, Supabase, Groq, atau instalasi dependency untuk VS Bot lokal. `npm run dev` menjalankan server yang sama; setelah mengubah source, jalankan build lagi dan refresh.
 
 ```bash
-pnpm install
-pnpm dev
+npm test                  # build + seluruh tes core/backend/frontend
+npm run test:frontend     # build + tes sesi dan renderer frontend
+npm run smoke:ui          # simulasi sesi lengkap VS Bot 2/3/4 peserta
+npm run check:source      # syntax dan resolusi import source/output
+npm run build:vercel      # build statis untuk konfigurasi Vercel terlampir
+npm run selfplay -- --model=medium --seed=461 --max-actions=4000
 ```
 
-Di lingkungan Sites, gunakan helper setup/preview/build resmi. Manifest `.openai/hosting.json` memuat identitas Site dan binding D1 `DB`. Untuk deployment independen, buat identitas/config sendiri; jangan menggunakan project_id milik proyek ini.
+`npm run typecheck` tetap tersedia untuk pemeriksaan TypeScript semantik setelah dependency pengembangan diinstal (`npm install --ignore-scripts`). Compiler `tsc` tidak tersedia di lingkungan pekerjaan ini. Native stripping dan build statis **bukan** pengganti typecheck semantik. Tidak ada script lint yang tersedia.
+
+## Board 2.5D
+
+Papan memakai perspektif trapesium SVG 2D, alas batu berketebalan, bayangan, rumah/hotel miniatur dan sprite pion yang berdiri tegak. Nama petak menghadap pemain di seluruh sisi. Proyeksi visual tidak mengubah koordinat engine, hasil dadu atau posisi tile. Tanpa WebGL, physics atau dependency 3D; kamera pan/zoom/follow tetap bekerja pada scene 2D.
+
+## Alur antarmuka
+
+- Lobby: atur nama/pion, 2–4 peserta VS Bot, persona tetap Raka/Bima/Sari dan empat model NUSA MIND; atau buat/gabung/lanjutkan room online.
+- Gameplay: dua baris kapsul pemain bila peserta lebih dari dua, papan interaktif, ringkasan aktivitas, dadu dalam konsol UI, tombol tindakan utama dan Properti Saya. Ikon menu membuka akses Barter, Riwayat, room, simpanan, profil dan pengaturan.
+- Detail petak, beli, kelola/bangun/gadai, barter/counteroffer, lelang, kartu, penjara, utang, hasil akhir, Auth dan pengaturan seluruhnya popup. Footer tindakan tetap berada dalam batas popup; isi panjang bergulir di dalamnya.
+- Geser/cubit/scroll untuk kamera. Ikon peta berganti overview/follow. Reduced motion dan animasi cepat tersedia. Tombol Back menutup lapisan popup terlebih dahulu.
+- Animasi menyajikan hasil engine/server: dadu → hasil → pion → kejadian → transaksi visual. Rent/pajak yang sudah dibukukan hanya diberi konfirmasi presentasi, tidak ditagih ulang.
+- Aturan **Meja Klasik** tetap mendukung klaim sewa manual lewat tombol utama yang kontekstual dan menu Tagih Sewa.
+- Lokal autosave memakai storage existing, lima slot, previous save, impor/ekspor JSON. Room online memakai snapshot backend dan identitas akun; JSON lokal tidak boleh mengganti state room.
+
+## Backend dan deployment
+
+`.env.example` hanya template. Masukkan nilai aktual melalui environment/secret manager **server**. Node tidak membaca `.env` otomatis; bila perlu:
 
 ```bash
-pnpm test
-node tests/api.test.mjs
-node tests/production.test.mjs # sesudah build
-pnpm exec tsc --noEmit
-pnpm build
+node --env-file=.env --experimental-strip-types --import ./adapters/node/aliases.mjs adapters/node/server.mjs
 ```
 
-Migrations schema-only pada `drizzle/`; hosting Sites menerapkannya sebelum Worker terbit. Untuk backend di luar Sites, konfigurasikan D1 dan terapkan SQL migrations sebelum memakai API room. Pada Sites, CREATE membutuhkan header identitas yang diberikan platform. Jalur Vercel memakai tamu dan pembatasan berbasis IP dari Vercel; tidak mempercayai header identitas ChatGPT.
+- Variabel adapter Node: `MN_HEADLESS_HOST`/`MN_HEADLESS_PORT` (default `127.0.0.1:8787`) dan `MN_HEADLESS_ORIGIN` jika origin publik berbeda. Frontend dan `/api/*` harus satu origin.
+- Groq opsional: `GROQ_API_KEY`, `GROQ_MODEL`, timeout/budget. Key tidak pernah masuk static output. Status terkonfigurasi berbeda dari keberhasilan request.
+- Supabase: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, dan secret `SUPABASE_SERVICE_ROLE_KEY` hanya di server. Browser mengambil URL dan key publik dari endpoint konfigurasi. Identitas Auth, keanggotaan, revision, idempotency, pause/voting/reconnect tetap di backend existing.
+- Bot online memerlukan worker, migration 002, Vault, pg_net dan recovery scheduler yang sudah disediakan source logic. Default `MN_ONLINE_BOTS_ENABLED=false`; aktifkan setelah staging lulus. Browser host tidak menjalankan bot room. Lihat [deployment Supabase](docs/DEPLOY_SUPABASE.md) dan [deployment hybrid](docs/DEPLOY_HYBRID.md). Jangan mengulang migration yang sudah diterapkan.
+- Vercel: pilih **Other**, Node **24.x**, gunakan `vercel.json` (build `npm run build:vercel`, output `dist`). `api/index.ts` mengadaptasi handler Fetch existing dan rewrite `/api/online`, `/api/bot`, `/api/game`. Supabase Edge Function dan scheduler dipasang terpisah. Belum dilakukan deployment aktual ke Vercel.
+- Hosting statis saja dapat menjalankan VS Bot setelah build, tetapi fitur server membutuhkan adapter API pada origin yang sama. Jangan menyajikan direktori repository sebagai static root; gunakan **hanya `dist/`**.
 
-## Groq
+## Assets dan cache
 
-Set secret runtime `GROQ_API_KEY` melalui konfigurasi server Vercel atau Sites. Opsional `GROQ_MODEL`, default `openai/gpt-oss-20b`. Jangan masukkan key ke frontend, git, atau hosting.json. Setelah menambah secret, terbitkan ulang versi Site agar konfigurasi aktif.
+Background kepulauan dan atlas properti dibuat baru untuk tema putih/biru. Logo, avatar dan ikon UI baru berupa SVG. Identitas enam pion tetap sama, dengan atlas miniatur transparan baru. SVG pion lama, simbol Nusa dan ikon petak khusus dipertahankan sebagai aset kompatibilitas. Lihat [manifest aset](docs/ASSET_MANIFEST.json) untuk detail perubahan dan hash.
 
-Endpoint `/api/bot` terpisah dari room Redis/D1. Local Engine menghitung kandidat legal, risiko, valuasi dan keputusan dasar; Groq hanya diminta untuk alternatif strategis yang berdekatan, lalu melewati economic decision gate. Timeout default 6,5 detik (ENV 1,5–9 detik), circuit breaker dan fallback lokal. Batas baru default 100 request/hari, maksimal 10/menit per instance/model dan 12/menit per sumber di endpoint. Budget harian memakai Supabase jika tersedia, atau penghitung instance yang tidak menjamin batas global serverless. Tidak ada request provider langsung dari browser.
+Service worker baru hanya menyimpan shell, modul browser dan aset publik. API/Auth/state room tidak dicache; IndexedDB/localStorage save tidak dihapus. Cache/worker Nusantara lama dipensiunkan secara terbatas. Pemakaian offline perlu satu kunjungan online yang berhasil dan instalasi cache lengkap terlebih dahulu.
 
-Status membedakan lokal, terkonfigurasi, sedang dipanggil, sukses hybrid dan fallback. ENV bukan bukti provider berhasil. Tidak ada API Groq sungguhan dipanggil dalam QA ini; mock menguji kontrak/error, bukan kualitas model. Lihat `docs/DEPLOY_HYBRID.md` untuk konfigurasi worker/budget yang terpisah.
+## Batas verifikasi
 
-## Struktur
+Tes otomatis mencakup engine, backend, renderer SVG/HTML, sesi UI, transport Vercel dan simulasi 2/4/6 client. Pengujian layout/klik browser Android, Supabase live/RLS/Realtime dan Groq live **belum terverifikasi**. Chromium ditolak sandbox (`setsockopt: Operation not permitted`); tidak ada klaim screenshot browser, deployment, atau production-ready.
 
-- `lib/game-v1.mjs`, `lib/content-v1.mjs`: mesin beku untuk save lama.
-- `components/game/AssetArt.tsx`, `RuleActions.tsx`: gambar UI dan keputusan aturan baru.
-- `lib/content.mjs`: rulepack, sertifikat, deck, identitas pion.
-- `lib/game.mjs`: validasi perintah, transaksi, resolusi kartu/utang, bot.
-- `lib/bot/`: persona, analisis publik, valuasi, negosiasi, kandidat legal, memori dan scoring.
-- `lib/groq.ts`: advisor server, kontrak bersama, timeout, circuit dan decision gate.
-- `app/api/bot/route.ts`: advisor VS Bot tanpa Redis/Supabase.
-- `lib/server/bot-worker.mjs`, `supabase/functions/monopoli-bots/`: eksekusi bot otoritatif dengan job/lease persisten.
-- `lib/storage.ts`, `lib/save-format.mjs`: autosave, slot, arsip, validasi cadangan.
-- `lib/board-camera.mjs`, `components/game/useGameViewport.ts`: posisi tetap dan ukuran viewport.
-- `components/game/MobileDock.tsx`: aksi utama dalam area ringkas.
-- `lib/room-client.mjs`: pembatalan request, revision, timeout, reconnect.
-- `components/game/Board.tsx`, `BoardMap.tsx`: kamera berbatas, gesture, animasi pion, dan SVG papan.
-- `components/game/Game.tsx`: lobby, HUD, panel, interaksi.
-- `app/api/game/route.ts`: room, kursi, concurrency, server RNG, batas penggunaan.
-- `lib/server/`: runtime Node/Sites serta adapter room Redis/D1.
-- `vercel.json`: instalasi dan build Vercel yang eksplisit.
-- `db/schema.ts`, `drizzle/`: database.
-- `tests/`: kasus aturan dan simulasi pertandingan.
-
-## Keamanan dan konsistensi
-
-API key hanya server. Room baru memakai Supabase Auth UUID dan service-only RPC/CAS; membership dan revision hint dilindungi RLS, snapshot dan memori bot tetap privat. Pada room legacy, token kursi random disimpan sebagai SHA-256 pada database. Snapshot publik menghapus deck, daftar dedup dan memori strategi bot. D1 atau skrip Lua Redis memeriksa revision saat commit; aksi membawa versi state dan command ID. Kas tidak boleh negatif; kreditur tidak menerima uang sebelum pembayaran benar-benar terjadi. Nama dan komentar dirender React sebagai teks.
-
-Publikasi Sites sebelumnya privat untuk pemilik. Membagikan kode room saja tidak mengubah siapa yang dapat membuka Site. Ubah akses Site secara sengaja sebelum mengundang akun lain.
-
-Deployment Vercel mengikuti pengaturan akses proyek Vercel Anda. Data room D1 tidak otomatis berpindah ke Redis.
-
-
-## Pembaruan terfokus v2.4 (UI tanpa rombak total)
-
-- Papan 2D 40 petak tetap sama. Kontrol zoom, minimap, label status dan petunjuk mengambang dihilangkan agar petak tidak tertutupi. Cubit dua jari atau gulir untuk zoom; geser untuk menjelajah. Tombol **Seluruh papan** dan **Ikuti pemain** tetap berada di luar papan.
-- Lempar dadu mendapat animasi singkat di tengah papan, menggunakan hasil dadu game yang sesungguhnya (efek grafis tidak mempengaruhi RNG). Dihormati pengaturan **Kurangi gerakan**.
-- Pion di papan tampil sebagai figur vektor berwarna dengan nomor dan gerakan langkah demi langkah. Tidak perlu memuat gambar baru untuk pion atau petak papan.
-- Di tab **Barter**, pilih properti melalui popup ringkas dengan pencarian dan pilihan multi-aset; berlaku juga untuk tawaran balik.
-- Di tab **Aset**, daftar panjang diringkas. Pilih kota melalui popup pencarian dan buka menu pengelolaan langsung tanpa harus menggulir sertifikat.
-- Logika aturan, pengambilan keputusan bot, struktur data dan penyimpanan tidak diubah.
-
-Pengujian source code: jalankan `npm run test` dan `npm run build:vercel` setelah dependensi terinstal melalui `pnpm install`; pengujian fitur di browser tetap diperlukan.
-
-
-## Pembaruan v2.5: Pion bergerak & lemparan penentu giliran
-
-Lemparan pembuka memilih pemain pertama (pion tidak berjalan). Setelah itu, dadu permainan menggerakkan pion satu per satu dengan kamera mengekor tanpa mengunci pion di tengah; aksi berikutnya menunggu perjalanan selesai. Baca `docs/UPDATE_v2.5.md`.
+Paket logic awal tetap tersedia sebagai backup terpisah. Dokumen `HEADLESS_*`, `MIND_*`, `QA_V46_*` dan `DEPLOY_V4*` adalah bukti/panduan historis; hasil baru berada pada `KEPULAUAN_*` dan `QA_KEPULAUAN_RESULTS.json`.

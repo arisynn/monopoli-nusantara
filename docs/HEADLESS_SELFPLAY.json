@@ -1,0 +1,24 @@
+{
+  "finished": true,
+  "actions": 457,
+  "phase": "won",
+  "winner": "Bima",
+  "players": [
+    {
+      "name": "Raka",
+      "out": true,
+      "cash": 0
+    },
+    {
+      "name": "Bima",
+      "out": false,
+      "cash": 12240
+    },
+    {
+      "name": "Sari",
+      "out": true,
+      "cash": 0
+    }
+  ],
+  "note": "Smoke self-play; bukan benchmark keunggulan kompetitif."
+}

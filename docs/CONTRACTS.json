@@ -1,0 +1,213 @@
+{
+  "version": "4.6.1",
+  "sourceOfTruth": [
+    "lib/game.mjs",
+    "lib/server/online-room.mjs",
+    "lib/server/online-service.mjs",
+    "lib/bot/contracts.ts",
+    "lib/presentation-types.ts"
+  ],
+  "modes": {
+    "vsBot": {
+      "total": [
+        2,
+        3,
+        4
+      ],
+      "humans": 1,
+      "personas": [
+        "raka",
+        "bima",
+        "sari"
+      ]
+    },
+    "online": {
+      "totalMin": 2,
+      "totalMax": 6,
+      "minHumans": 2,
+      "maxUniqueBots": 3
+    }
+  },
+  "phases": [
+    "starting",
+    "roll",
+    "resolve",
+    "buy",
+    "card",
+    "auction",
+    "jail",
+    "debt",
+    "trade",
+    "mortgage",
+    "buildOffer",
+    "end",
+    "won"
+  ],
+  "currency": {
+    "name": "Nusa",
+    "unitsPerNusa": 10,
+    "wireAmounts": "safe integer base units",
+    "startingCash": 15000
+  },
+  "gameAction": {
+    "required": [
+      "type",
+      "id",
+      "expectedVersion"
+    ],
+    "idempotency": "ACTION requestId must equal action.id; retry exact envelope only",
+    "allowedAdditionalFields": {
+      "START_ROLL": [],
+      "ROLL": [],
+      "END": [],
+      "BUY": [],
+      "AUCTION": [],
+      "ACK": [],
+      "PAY": [],
+      "BANKRUPT": [],
+      "JAIL_PAY": [],
+      "JAIL_CARD": [
+        "cardIndex"
+      ],
+      "BID": [
+        "amount"
+      ],
+      "PASS": [],
+      "BUILD": [
+        "tile"
+      ],
+      "SELL": [
+        "tile"
+      ],
+      "SELL_SET": [
+        "tile"
+      ],
+      "MORTGAGE": [
+        "tile"
+      ],
+      "REDEEM": [
+        "tile"
+      ],
+      "BUILD_JOIN": [
+        "tile"
+      ],
+      "BUILD_DECLINE": [],
+      "MORTGAGE_KEEP": [],
+      "MORTGAGE_REDEEM": [],
+      "OFFER": [
+        "trade"
+      ],
+      "COUNTER": [
+        "trade"
+      ],
+      "TRADE_ACCEPT": [],
+      "TRADE_REJECT": [],
+      "CLAIM_RENT": [
+        "claimId"
+      ]
+    },
+    "tradeFields": [
+      "to",
+      "give",
+      "take",
+      "giveCash",
+      "takeCash",
+      "giveCards",
+      "takeCards"
+    ],
+    "forbiddenExamples": [
+      "dice",
+      "cash",
+      "owner",
+      "actor",
+      "state",
+      "winner"
+    ]
+  },
+  "room": {
+    "codeLength": 8,
+    "legacyCodeLength": 6,
+    "statuses": [
+      "waiting",
+      "playing",
+      "paused",
+      "finished"
+    ],
+    "operations": {
+      "CREATE": [
+        "name",
+        "pawn",
+        "capacity",
+        "rules",
+        "advisorEnabled"
+      ],
+      "JOIN": [
+        "code",
+        "name",
+        "pawn"
+      ],
+      "READY": [
+        "ready",
+        "pawn"
+      ],
+      "START": [],
+      "HEARTBEAT": [],
+      "ADD_BOT": [
+        "difficulty"
+      ],
+      "ACTION": [
+        "action"
+      ],
+      "PAUSE_REQUEST": [],
+      "VOTE": [
+        "voteId",
+        "agree"
+      ],
+      "RESUME_READY": [
+        "cycle",
+        "ready"
+      ]
+    },
+    "envelope": [
+      "type",
+      "code except CREATE",
+      "clientId",
+      "requestId except HEARTBEAT"
+    ],
+    "leaseMs": 35000,
+    "disconnectPauseMs": 90000,
+    "voteDurationMs": 60000,
+    "pauseRule": "majority of active humans; bots excluded",
+    "resumeRule": "all active humans connected and ready in current cycle",
+    "authority": "server Auth UUID -> seat binding, never name or room code"
+  },
+  "models": [
+    "easy",
+    "medium",
+    "hard",
+    "hardcore"
+  ],
+  "defaultModel": "medium",
+  "presentation": {
+    "authoritativeSnapshotMustBeSeparate": true,
+    "phases": [
+      "diceRolling",
+      "diceResult",
+      "pawnMoving",
+      "tileArrival",
+      "eventRevealing",
+      "financialSettlement"
+    ],
+    "initialSnapshot": "baseline without replay",
+    "publicCardControls": "read only for observers; liveCardDecision gates actor ACK"
+  },
+  "ui": {
+    "fullScreenPages": [
+      "Menu Utama",
+      "Gameplay"
+    ],
+    "otherFeatures": "popups / bottom sheets",
+    "previousMockup": "rejected by user, excluded from this package"
+  },
+  "note": "This is a documented catalog, not a replacement validator; source functions validate conditional fields and legality."
+}

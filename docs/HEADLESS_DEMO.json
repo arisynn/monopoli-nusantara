@@ -1,0 +1,101 @@
+{
+  "matchId": "54fd9d3e-e36d-4b27-8e32-a712a69c2ed6",
+  "version": 1,
+  "phase": "card",
+  "dice": [
+    5,
+    2
+  ],
+  "players": [
+    {
+      "id": 0,
+      "name": "Jovan",
+      "position": 7,
+      "cash": "N 1.500"
+    },
+    {
+      "id": 1,
+      "name": "Raka",
+      "position": 0,
+      "cash": "N 1.500"
+    },
+    {
+      "id": 2,
+      "name": "Bima",
+      "position": 0,
+      "cash": "N 1.500"
+    },
+    {
+      "id": 3,
+      "name": "Sari",
+      "position": 0,
+      "cash": "N 1.500"
+    }
+  ],
+  "events": [
+    {
+      "id": 4,
+      "text": "Jovan mengambil Kesempatan: Bisnis di Sumatra.",
+      "type": "card",
+      "turn": 1,
+      "version": 1,
+      "actor": 0,
+      "audience": "public",
+      "card": {
+        "deck": "chance",
+        "idx": 3,
+        "player": 0,
+        "title": "Bisnis di Sumatra",
+        "text": "Maju ke Medan. Ambil gaji jika melewati Mulai.",
+        "move": 11,
+        "revealId": 4
+      }
+    },
+    {
+      "id": 3,
+      "text": "Jovan tiba di Kesempatan.",
+      "type": "move",
+      "turn": 1,
+      "version": 1,
+      "actor": 0,
+      "audience": "public",
+      "move": {
+        "id": 3,
+        "player": 0,
+        "path": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "from": 0
+      }
+    },
+    {
+      "id": 2,
+      "text": "Jovan melempar 5 + 2.",
+      "type": "dice",
+      "turn": 1,
+      "version": 1,
+      "actor": 0,
+      "audience": "public",
+      "dice": [
+        5,
+        2
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 1,
+      "text": "Modal setiap pemain N 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+      "type": "start",
+      "turn": 1,
+      "version": 0,
+      "actor": 0,
+      "audience": "public"
+    }
+  ]
+}

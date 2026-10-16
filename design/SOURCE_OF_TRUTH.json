@@ -1,0 +1,26 @@
+{
+  "basisArchive": "Monopoli_Nusantara_Logic_v4.6.1-no-frontend.zip",
+  "sha256": "75f88c097e9356f6ebc6a602d3f04c5a744f1a26a87bf3416605e9e6d1f0689e",
+  "activeSource": "/workspace/monopoli-nusantara",
+  "acceptedReferences": [
+    "1249628",
+    "1249629",
+    "1249630",
+    "1249627",
+    "1249626",
+    "1249623",
+    "1249624",
+    "1249625",
+    "1249621",
+    "1249622"
+  ],
+  "excludedReferences": "Previous first five mockups and rejected generated mockup",
+  "constraints": [
+    "Only lobby and gameplay are full-screen",
+    "No bottom tabs in gameplay",
+    "Assets and other features open as popup",
+    "White/blue visual direction; blurred scenery; mobile portrait",
+    "Rules/backend authoritative; mockup figures not rule changes",
+    "Painted 2.5D like accepted mockups: tapered tabletop, visible thickness, standing miniatures; no full 3D runtime"
+  ]
+}

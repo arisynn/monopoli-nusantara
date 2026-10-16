@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-10-16T07:50:20.428Z",
+  "node": "v24.19.0",
+  "files": [
+    "tests/game.test.mjs",
+    "tests/classic.test.mjs",
+    "tests/storage.test.mjs",
+    "tests/save-format.test.mjs",
+    "tests/room-client.test.mjs",
+    "tests/online.test.mjs",
+    "tests/online-client.test.mjs",
+    "tests/online-api.test.mjs",
+    "tests/bot-strategy.test.mjs",
+    "tests/groq-hybrid.test.mjs",
+    "tests/bot-api.test.mjs",
+    "tests/online-bots.test.mjs",
+    "tests/mind-headless.test.mjs",
+    "tests/presentation-headless.test.mjs",
+    "tests/headless-package.test.mjs"
+  ],
+  "tests": 266,
+  "passed": 266,
+  "failed": 0,
+  "skipped": 0,
+  "failures": [],
+  "limits": [
+    "No real Supabase/Auth/Postgres/RLS/Realtime or Groq service was contacted.",
+    "HTTP tests call real fetch handlers in process with contract doubles; listening socket not verified.",
+    "Browser-only storage/Auth/worker adapters use mocks or Node worker tests; no frontend rendering exists here.",
+    "Native Node TypeScript stripping is not semantic tsc validation."
+  ]
+}

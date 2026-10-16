@@ -1,0 +1,6 @@
+{
+  "parser": "Existing Babel parser; syntax/import existence only, not semantic TypeScript",
+  "files": 114,
+  "failed": [],
+  "missingImports": []
+}
