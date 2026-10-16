@@ -38,5 +38,5 @@ test('trade wizard keeps the specialty rules and does not allow empty offers or 
  for(const text of ['!hasValue','invalid','MoneyInput','tradeChoices','changeTradeOpponent',"mode==='counter'"])assert(wizard.includes(text),text);
  assert(game.includes("if(await act('COUNTER',{trade:submitted}))setSheet(null)"));
  assert(css.includes('var(--gold)')&&css.includes('var(--bg)'));
- assert.equal(read('../public/sw.js').includes('nusantara-v450'),true);
+ assert.equal(read('../public/sw.js').includes('nusantara-v460'),true);
 });

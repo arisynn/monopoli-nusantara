@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {createGame,command} from '../lib/game.mjs';import {localPlayers} from '../lib/bot/personas.mjs';
 import {aiDecision,advisorConfiguration,localDecision} from '../lib/groq.ts';
-const fixture=()=>{let s=createGame({players:localPlayers('Human',3),startingRoll:false},()=>.2);s.phase='buy';s.buy=19;return command(s,0,{type:'AUCTION'})};
+const fixture=()=>{let s=createGame({players:localPlayers('Human',3),advisorEnabled:true,startingRoll:false},()=>.2);s.phase='buy';s.buy=19;return command(s,0,{type:'AUCTION'})};
 const env={GROQ_API_KEY:'test-key-not-real',GROQ_MODEL:'configured-model'};
 const options=transport=>({transport,circuitKey:crypto.randomUUID()});
 test('uniform result contract includes safe optional reason in local, configured and hybrid cases',async()=>{

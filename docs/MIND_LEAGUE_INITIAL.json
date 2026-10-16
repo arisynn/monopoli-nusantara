@@ -1,0 +1,4541 @@
+{
+  "node": "v24.19.0",
+  "resources": {
+    "userCPUTime": 49070235,
+    "systemCPUTime": 205436,
+    "maxRSS": 225552,
+    "sharedMemorySize": 0,
+    "unsharedDataSize": 0,
+    "unsharedStackSize": 0,
+    "minorPageFault": 106719,
+    "majorPageFault": 0,
+    "swappedOut": 0,
+    "fsRead": 0,
+    "fsWrite": 16,
+    "ipcSent": 0,
+    "ipcReceived": 0,
+    "signalsCount": 0,
+    "voluntaryContextSwitches": 3817,
+    "involuntaryContextSwitches": 1661
+  },
+  "sourceHashFiles": [
+    "lib/bot/mind.mjs",
+    "lib/bot/strategy.mjs",
+    "lib/game.mjs"
+  ],
+  "version": "4.6.0",
+  "generatedAt": "2026-10-16T06:14:40.320Z",
+  "command": [
+    "/workspace/monopoli-source/Monopoli_Nusantara_v2.11.1/scripts/benchmark-mind.mjs",
+    "--mode=league",
+    "--models=hardcore",
+    "--seeds=1",
+    "--players=2,3,4,6",
+    "--seconds=110",
+    "--seed-base=497000",
+    "--output=docs/MIND_LEAGUE.json"
+  ],
+  "mode": "league",
+  "sourceHash": "06cf18e7b56694d24855488182463870c2aaffdc27d85b41fdc11c7a736a1bcd",
+  "seedBase": 497000,
+  "seeds": 1,
+  "sizes": [
+    2,
+    3,
+    4,
+    6
+  ],
+  "maxActions": 6000,
+  "maxNodes": 160,
+  "wallSeconds": 51.924040212,
+  "summary": {
+    "games": 15,
+    "finished": 9,
+    "wins": 3,
+    "winRate": 0.2,
+    "wilson95": [
+      0.07047420643610414,
+      0.4518593533465045
+    ],
+    "illegal": 0,
+    "failed": 6,
+    "bankrupt": 6,
+    "meanBuilds": 10.933333333333334,
+    "monopolies": 35,
+    "acceptedTrades": 11
+  },
+  "byModel": {
+    "hardcore": {
+      "games": 15,
+      "finished": 9,
+      "wins": 3,
+      "winRate": 0.2,
+      "wilson95": [
+        0.07047420643610414,
+        0.4518593533465045
+      ],
+      "illegal": 0,
+      "failed": 6,
+      "bankrupt": 6,
+      "meanBuilds": 10.933333333333334,
+      "monopolies": 35,
+      "acceptedTrades": 11
+    }
+  },
+  "byPersona": {
+    "raka": {
+      "games": 5,
+      "finished": 3,
+      "wins": 1,
+      "winRate": 0.2,
+      "wilson95": [
+        0.03622316096978745,
+        0.6244717358814613
+      ],
+      "illegal": 0,
+      "failed": 2,
+      "bankrupt": 2,
+      "meanBuilds": 10.8,
+      "monopolies": 13,
+      "acceptedTrades": 1
+    },
+    "bima": {
+      "games": 5,
+      "finished": 3,
+      "wins": 1,
+      "winRate": 0.2,
+      "wilson95": [
+        0.03622316096978745,
+        0.6244717358814613
+      ],
+      "illegal": 0,
+      "failed": 2,
+      "bankrupt": 2,
+      "meanBuilds": 9.8,
+      "monopolies": 10,
+      "acceptedTrades": 5
+    },
+    "sari": {
+      "games": 5,
+      "finished": 3,
+      "wins": 1,
+      "winRate": 0.2,
+      "wilson95": [
+        0.03622316096978745,
+        0.6244717358814613
+      ],
+      "illegal": 0,
+      "failed": 2,
+      "bankrupt": 2,
+      "meanBuilds": 12.2,
+      "monopolies": 12,
+      "acceptedTrades": 5
+    }
+  },
+  "bySize": {
+    "2": {
+      "games": 2,
+      "finished": 2,
+      "wins": 1,
+      "winRate": 0.5,
+      "wilson95": [
+        0.09452865480086614,
+        0.9054713451991339
+      ],
+      "illegal": 0,
+      "failed": 0,
+      "bankrupt": 1,
+      "meanBuilds": 18,
+      "monopolies": 8,
+      "acceptedTrades": 4
+    },
+    "3": {
+      "games": 3,
+      "finished": 3,
+      "wins": 1,
+      "winRate": 0.3333333333333333,
+      "wilson95": [
+        0.0614903152761605,
+        0.7923450448735121
+      ],
+      "illegal": 0,
+      "failed": 0,
+      "bankrupt": 2,
+      "meanBuilds": 21,
+      "monopolies": 13,
+      "acceptedTrades": 4
+    },
+    "4": {
+      "games": 4,
+      "finished": 4,
+      "wins": 1,
+      "winRate": 0.25,
+      "wilson95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "illegal": 0,
+      "failed": 0,
+      "bankrupt": 3,
+      "meanBuilds": 16.25,
+      "monopolies": 14,
+      "acceptedTrades": 3
+    },
+    "6": {
+      "games": 6,
+      "finished": 0,
+      "wins": 0,
+      "winRate": 0,
+      "wilson95": [
+        0,
+        0.3903430336530645
+      ],
+      "illegal": 0,
+      "failed": 6,
+      "bankrupt": 0,
+      "meanBuilds": 0,
+      "monopolies": 0,
+      "acceptedTrades": 0
+    }
+  },
+  "paired": {
+    "hardcore": {
+      "pairs": 0,
+      "independentSeedSizeClusters": 0,
+      "delta": null,
+      "clusterBootstrap95": [
+        null,
+        null
+      ]
+    }
+  },
+  "latencyMs": {
+    "easy:starting": {
+      "samples": 27,
+      "p50": 0.1509379999988596,
+      "p95": 0.38244699999995646,
+      "max": 14.155106999999994
+    },
+    "medium:starting": {
+      "samples": 27,
+      "p50": 0.15209999999933643,
+      "p95": 0.24808400000028996,
+      "max": 0.6730859999999979
+    },
+    "easy:roll": {
+      "samples": 633,
+      "p50": 5.8411779999996725,
+      "p95": 12.410011999999824,
+      "max": 52.611423000002105
+    },
+    "easy:end": {
+      "samples": 562,
+      "p50": 8.123591999999917,
+      "p95": 16.613647999998648,
+      "max": 49.57795400000032
+    },
+    "medium:roll": {
+      "samples": 421,
+      "p50": 2.868590000001859,
+      "p95": 6.341291999997338,
+      "max": 40.23246199999994
+    },
+    "medium:buy": {
+      "samples": 106,
+      "p50": 2.5901799999992363,
+      "p95": 7.379539999999906,
+      "max": 36.817333000000076
+    },
+    "medium:card": {
+      "samples": 76,
+      "p50": 2.587355000003299,
+      "p95": 4.943803000000116,
+      "max": 36.41118099999994
+    },
+    "medium:end": {
+      "samples": 402,
+      "p50": 4.4889860000002955,
+      "p95": 9.755576999999903,
+      "max": 48.7228810000006
+    },
+    "easy:buy": {
+      "samples": 60,
+      "p50": 2.6307410000003983,
+      "p95": 9.425576999994519,
+      "max": 41.153737999999976
+    },
+    "easy:card": {
+      "samples": 74,
+      "p50": 5.291947999998229,
+      "p95": 12.533038999999917,
+      "max": 19.782530000000406
+    },
+    "easy:auction": {
+      "samples": 209,
+      "p50": 3.470839999999953,
+      "p95": 9.581984999999804,
+      "max": 44.53501999999935
+    },
+    "medium:auction": {
+      "samples": 176,
+      "p50": 3.4255210000010266,
+      "p95": 6.8978519999946,
+      "max": 39.58651400000008
+    },
+    "easy:trade": {
+      "samples": 35,
+      "p50": 1.0932299999999486,
+      "p95": 1.9964130000007572,
+      "max": 2.6722440000012284
+    },
+    "easy:jail": {
+      "samples": 60,
+      "p50": 4.041479999999979,
+      "p95": 19.569862000000285,
+      "max": 43.60634200000004
+    },
+    "easy:debt": {
+      "samples": 119,
+      "p50": 61.40087499999936,
+      "p95": 256.5735459999996,
+      "max": 362.82012399999803
+    },
+    "medium:debt": {
+      "samples": 183,
+      "p50": 5.9013190000005125,
+      "p95": 97.16348600000038,
+      "max": 160.12993900000038
+    },
+    "medium:jail": {
+      "samples": 29,
+      "p50": 2.738123000000087,
+      "p95": 5.153169000000162,
+      "max": 14.449902999999722
+    },
+    "hard:starting": {
+      "samples": 19,
+      "p50": 0.15243999999802327,
+      "p95": 0.21350299999903655,
+      "max": 0.21350299999903655
+    },
+    "hard:roll": {
+      "samples": 292,
+      "p50": 2.779114999997546,
+      "p95": 6.169282000000749,
+      "max": 44.1579499999998
+    },
+    "hard:buy": {
+      "samples": 80,
+      "p50": 8.245326000000205,
+      "p95": 15.40827999999965,
+      "max": 16.962475000000268
+    },
+    "hard:end": {
+      "samples": 294,
+      "p50": 3.813716000000568,
+      "p95": 19.201294000002235,
+      "max": 51.77605200000107
+    },
+    "hard:auction": {
+      "samples": 85,
+      "p50": 10.541072999998505,
+      "p95": 28.336073000002216,
+      "max": 51.941679999999906
+    },
+    "hard:card": {
+      "samples": 48,
+      "p50": 2.878404999995837,
+      "p95": 4.440883999999642,
+      "max": 5.481033000000025
+    },
+    "hard:jail": {
+      "samples": 32,
+      "p50": 4.432471000000078,
+      "p95": 10.640832999999475,
+      "max": 16.070960999999443
+    },
+    "easy:mortgage": {
+      "samples": 51,
+      "p50": 0.7344880000018748,
+      "p95": 1.0965359999972861,
+      "max": 2.5017560000014782
+    },
+    "hard:debt": {
+      "samples": 135,
+      "p50": 13.201146999999764,
+      "p95": 192.77519600000232,
+      "max": 224.15124099999957
+    },
+    "hard:trade": {
+      "samples": 9,
+      "p50": 4.275714000001244,
+      "p95": 5.6715819999953965,
+      "max": 5.6715819999953965
+    },
+    "medium:trade": {
+      "samples": 5,
+      "p50": 0.9546909999990021,
+      "p95": 1.0763450000013108,
+      "max": 1.0763450000013108
+    },
+    "hard:mortgage": {
+      "samples": 4,
+      "p50": 0.5239710000023479,
+      "p95": 0.558152000001428,
+      "max": 0.558152000001428
+    },
+    "hardcore:starting": {
+      "samples": 10,
+      "p50": 0.13977100000192877,
+      "p95": 0.2552450000002864,
+      "max": 0.2552450000002864
+    },
+    "hardcore:roll": {
+      "samples": 252,
+      "p50": 4.197038999998767,
+      "p95": 60.26433700000052,
+      "max": 110.01761799999804
+    },
+    "hardcore:buy": {
+      "samples": 24,
+      "p50": 4.930452000000514,
+      "p95": 52.54809199999727,
+      "max": 53.78305399999954
+    },
+    "hardcore:end": {
+      "samples": 240,
+      "p50": 5.645441000000574,
+      "p95": 63.15173800000048,
+      "max": 88.63500300000305
+    },
+    "hardcore:card": {
+      "samples": 44,
+      "p50": 3.879216000001179,
+      "p95": 8.464196000000811,
+      "max": 8.746943000005558
+    },
+    "hardcore:jail": {
+      "samples": 16,
+      "p50": 3.5903889999972307,
+      "p95": 4.430829000000813,
+      "max": 4.430829000000813
+    },
+    "hardcore:debt": {
+      "samples": 52,
+      "p50": 7.435624000001553,
+      "p95": 23.129955000000336,
+      "max": 51.78321199999482
+    },
+    "hardcore:auction": {
+      "samples": 24,
+      "p50": 2.973497999999381,
+      "p95": 65.7304609999992,
+      "max": 137.94456699999864
+    },
+    "hardcore:mortgage": {
+      "samples": 24,
+      "p50": 0.6561209999999846,
+      "p95": 0.8036229999997886,
+      "max": 0.8551109999971231
+    },
+    "hardcore:trade": {
+      "samples": 4,
+      "p50": 1.1169760000011593,
+      "p95": 1.12572899999941,
+      "max": 1.12572899999941
+    }
+  },
+  "limitations": [
+    "No real Groq calls or live Supabase; this is the real local game engine.",
+    "Paired seeds share initial RNG, but policies consume future random values differently.",
+    "Wilson intervals are descriptive; seed/size-cluster bootstrap accounts for rotated-seat correlation.",
+    "Unfinished/failed matches remain in denominators with zero wins. No artificial net-worth winner.",
+    "Income/build activity and auction premiums are descriptive, not proof of realized ROI.",
+    "Cloud CPU performance does not establish Android performance.",
+    "Difficulty ladder and competitive superiority require confidence intervals and sufficient held-out games.",
+    "Harness cycle fingerprint omitted starting.pending/scores: six-player opening rolls were incorrectly classified as cycles after eight actions. This is an invalid detector result, not a bot deadlock. Rerun corrected six-player league separately; initial artifacts preserved."
+  ],
+  "runs": [
+    {
+      "n": 2,
+      "seed": 497062,
+      "seat": 0,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 342,
+      "invalid": 0,
+      "failed": null,
+      "builds": 25,
+      "trades": 4,
+      "monopolies": 6,
+      "income": 47730,
+      "spendBuilding": 27500,
+      "auctionPriceRatio": 0.0761904761904762,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "end",
+        "buy",
+        "card",
+        "auction",
+        "trade",
+        "jail",
+        "debt"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 497062,
+      "seat": 1,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 357,
+      "invalid": 0,
+      "failed": null,
+      "builds": 11,
+      "trades": 0,
+      "monopolies": 2,
+      "income": 42110,
+      "spendBuilding": 6000,
+      "auctionPriceRatio": 0.5808333333333333,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "end",
+        "buy",
+        "card",
+        "auction",
+        "trade",
+        "jail",
+        "debt"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 497093,
+      "seat": 0,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 647,
+      "invalid": 0,
+      "failed": null,
+      "builds": 44,
+      "trades": 4,
+      "monopolies": 8,
+      "income": 76250,
+      "spendBuilding": 48500,
+      "auctionPriceRatio": 0.46374215070643643,
+      "nodes": 1355,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "auction",
+        "card",
+        "jail",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 497093,
+      "seat": 1,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 652,
+      "invalid": 0,
+      "failed": null,
+      "builds": 14,
+      "trades": 0,
+      "monopolies": 2,
+      "income": 45340,
+      "spendBuilding": 14000,
+      "auctionPriceRatio": 1.2318181818181817,
+      "nodes": 1048,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "auction",
+        "card",
+        "jail",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 497093,
+      "seat": 2,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 607,
+      "invalid": 0,
+      "failed": null,
+      "builds": 5,
+      "trades": 0,
+      "monopolies": 3,
+      "income": 38086,
+      "spendBuilding": 7500,
+      "auctionPriceRatio": 0.5839285714285715,
+      "nodes": 906,
+      "samples": 0,
+      "budgetStops": 2,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "auction",
+        "card",
+        "jail",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 497124,
+      "seat": 0,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 571,
+      "invalid": 0,
+      "failed": null,
+      "builds": 14,
+      "trades": 1,
+      "monopolies": 3,
+      "income": 48578,
+      "spendBuilding": 17000,
+      "auctionPriceRatio": 0.38884920634920633,
+      "nodes": 4728,
+      "samples": 215,
+      "budgetStops": 27,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "debt",
+        "auction",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 497124,
+      "seat": 1,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 571,
+      "invalid": 0,
+      "failed": null,
+      "builds": 19,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 38749,
+      "spendBuilding": 19000,
+      "auctionPriceRatio": null,
+      "nodes": 4712,
+      "samples": 215,
+      "budgetStops": 27,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "debt",
+        "auction",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 497124,
+      "seat": 2,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 571,
+      "invalid": 0,
+      "failed": null,
+      "builds": 6,
+      "trades": 1,
+      "monopolies": 2,
+      "income": 32241,
+      "spendBuilding": 9000,
+      "auctionPriceRatio": 3.257051282051282,
+      "nodes": 4712,
+      "samples": 215,
+      "budgetStops": 27,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "debt",
+        "auction",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 497124,
+      "seat": 3,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": true,
+      "bankrupt": false,
+      "actions": 571,
+      "invalid": 0,
+      "failed": null,
+      "builds": 26,
+      "trades": 0,
+      "monopolies": 8,
+      "income": 72749,
+      "spendBuilding": 39000,
+      "auctionPriceRatio": 0.03125,
+      "nodes": 4680,
+      "samples": 215,
+      "budgetStops": 27,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "debt",
+        "auction",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 6,
+      "seed": 497186,
+      "seat": 0,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": false,
+      "winner": null,
+      "won": false,
+      "bankrupt": false,
+      "actions": 8,
+      "invalid": 0,
+      "failed": "repeated_policy_cycle",
+      "builds": 0,
+      "trades": 0,
+      "monopolies": 0,
+      "income": 0,
+      "spendBuilding": 0,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting"
+      ],
+      "failedSnapshot": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "mind-497186-0",
+        "version": 9,
+        "players": [
+          {
+            "id": 0,
+            "name": "Raka 0",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "hardcore",
+            "pawn": 0,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 1,
+            "name": "Bima 1",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 2,
+            "name": "Sari 2",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "medium",
+            "pawn": 2,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 3,
+            "name": "Raka 3",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 3,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 4,
+            "name": "Bima 4",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "medium",
+            "pawn": 4,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 5,
+            "name": "Sari 5",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "medium",
+            "pawn": 5,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "starting",
+        "starting": {
+          "pending": [
+            2,
+            5
+          ],
+          "scores": [],
+          "history": [
+            {
+              "player": 0,
+              "dice": [
+                5,
+                4
+              ],
+              "total": 9
+            },
+            {
+              "player": 1,
+              "dice": [
+                5,
+                2
+              ],
+              "total": 7
+            },
+            {
+              "player": 2,
+              "dice": [
+                5,
+                4
+              ],
+              "total": 9
+            },
+            {
+              "player": 3,
+              "dice": [
+                2,
+                5
+              ],
+              "total": 7
+            },
+            {
+              "player": 4,
+              "dice": [
+                1,
+                6
+              ],
+              "total": 7
+            },
+            {
+              "player": 5,
+              "dice": [
+                4,
+                5
+              ],
+              "total": 9
+            },
+            {
+              "player": 0,
+              "dice": [
+                2,
+                1
+              ],
+              "total": 3
+            },
+            {
+              "player": 2,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            },
+            {
+              "player": 5,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            }
+          ],
+          "round": 3
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          4,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 12
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 12,
+            "text": "Nilai tertinggi seri; peserta seri melempar ulang.",
+            "type": "dice",
+            "turn": 1,
+            "version": 9,
+            "actor": 5,
+            "audience": "public"
+          },
+          {
+            "id": 11,
+            "text": "Sari 5: lempar awal 4 + 1 = 5.",
+            "type": "dice",
+            "turn": 1,
+            "version": 9,
+            "actor": 5,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 10,
+            "text": "Sari 2: lempar awal 4 + 1 = 5.",
+            "type": "dice",
+            "turn": 1,
+            "version": 8,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 9,
+            "text": "Raka 0: lempar awal 2 + 1 = 3.",
+            "type": "dice",
+            "turn": 1,
+            "version": 7,
+            "actor": 0,
+            "audience": "public",
+            "dice": [
+              2,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 8,
+            "text": "Nilai tertinggi seri; peserta seri melempar ulang.",
+            "type": "dice",
+            "turn": 1,
+            "version": 6,
+            "actor": 5,
+            "audience": "public"
+          },
+          {
+            "id": 7,
+            "text": "Sari 5: lempar awal 4 + 5 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 6,
+            "actor": 5,
+            "audience": "public",
+            "dice": [
+              4,
+              5
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 6,
+            "text": "Bima 4: lempar awal 1 + 6 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 5,
+            "actor": 4,
+            "audience": "public",
+            "dice": [
+              1,
+              6
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 5,
+            "text": "Raka 3: lempar awal 2 + 5 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 4,
+            "actor": 3,
+            "audience": "public",
+            "dice": [
+              2,
+              5
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 4,
+            "text": "Sari 2: lempar awal 5 + 4 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 3,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              5,
+              4
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 3,
+            "text": "Bima 1: lempar awal 5 + 2 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 2,
+            "actor": 1,
+            "audience": "public",
+            "dice": [
+              5,
+              2
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 2,
+            "text": "Raka 0: lempar awal 5 + 4 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 1,
+            "actor": 0,
+            "audience": "public",
+            "dice": [
+              5,
+              4
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 1,
+            "text": "Modal setiap pemain N 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 12,
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "0": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {}
+            }
+          },
+          "opponents": {},
+          "negotiation": null
+        }
+      },
+      "recent": [
+        {
+          "actor": 0,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 0
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 1
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 2
+        },
+        {
+          "actor": 3,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 3
+        },
+        {
+          "actor": 4,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 4
+        },
+        {
+          "actor": 5,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 5
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 6
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 7
+        }
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 6,
+      "seed": 497186,
+      "seat": 1,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": false,
+      "winner": null,
+      "won": false,
+      "bankrupt": false,
+      "actions": 8,
+      "invalid": 0,
+      "failed": "repeated_policy_cycle",
+      "builds": 0,
+      "trades": 0,
+      "monopolies": 0,
+      "income": 0,
+      "spendBuilding": 0,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting"
+      ],
+      "failedSnapshot": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "mind-497186-1",
+        "version": 9,
+        "players": [
+          {
+            "id": 0,
+            "name": "Raka 0",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 0,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 1,
+            "name": "Bima 1",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "hardcore",
+            "pawn": 1,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 2,
+            "name": "Sari 2",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "medium",
+            "pawn": 2,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 3,
+            "name": "Raka 3",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 3,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 4,
+            "name": "Bima 4",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "medium",
+            "pawn": 4,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 5,
+            "name": "Sari 5",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "medium",
+            "pawn": 5,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "starting",
+        "starting": {
+          "pending": [
+            2,
+            5
+          ],
+          "scores": [],
+          "history": [
+            {
+              "player": 0,
+              "dice": [
+                5,
+                4
+              ],
+              "total": 9
+            },
+            {
+              "player": 1,
+              "dice": [
+                5,
+                2
+              ],
+              "total": 7
+            },
+            {
+              "player": 2,
+              "dice": [
+                5,
+                4
+              ],
+              "total": 9
+            },
+            {
+              "player": 3,
+              "dice": [
+                2,
+                5
+              ],
+              "total": 7
+            },
+            {
+              "player": 4,
+              "dice": [
+                1,
+                6
+              ],
+              "total": 7
+            },
+            {
+              "player": 5,
+              "dice": [
+                4,
+                5
+              ],
+              "total": 9
+            },
+            {
+              "player": 0,
+              "dice": [
+                2,
+                1
+              ],
+              "total": 3
+            },
+            {
+              "player": 2,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            },
+            {
+              "player": 5,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            }
+          ],
+          "round": 3
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          4,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 12
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 12,
+            "text": "Nilai tertinggi seri; peserta seri melempar ulang.",
+            "type": "dice",
+            "turn": 1,
+            "version": 9,
+            "actor": 5,
+            "audience": "public"
+          },
+          {
+            "id": 11,
+            "text": "Sari 5: lempar awal 4 + 1 = 5.",
+            "type": "dice",
+            "turn": 1,
+            "version": 9,
+            "actor": 5,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 10,
+            "text": "Sari 2: lempar awal 4 + 1 = 5.",
+            "type": "dice",
+            "turn": 1,
+            "version": 8,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 9,
+            "text": "Raka 0: lempar awal 2 + 1 = 3.",
+            "type": "dice",
+            "turn": 1,
+            "version": 7,
+            "actor": 0,
+            "audience": "public",
+            "dice": [
+              2,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 8,
+            "text": "Nilai tertinggi seri; peserta seri melempar ulang.",
+            "type": "dice",
+            "turn": 1,
+            "version": 6,
+            "actor": 5,
+            "audience": "public"
+          },
+          {
+            "id": 7,
+            "text": "Sari 5: lempar awal 4 + 5 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 6,
+            "actor": 5,
+            "audience": "public",
+            "dice": [
+              4,
+              5
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 6,
+            "text": "Bima 4: lempar awal 1 + 6 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 5,
+            "actor": 4,
+            "audience": "public",
+            "dice": [
+              1,
+              6
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 5,
+            "text": "Raka 3: lempar awal 2 + 5 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 4,
+            "actor": 3,
+            "audience": "public",
+            "dice": [
+              2,
+              5
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 4,
+            "text": "Sari 2: lempar awal 5 + 4 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 3,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              5,
+              4
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 3,
+            "text": "Bima 1: lempar awal 5 + 2 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 2,
+            "actor": 1,
+            "audience": "public",
+            "dice": [
+              5,
+              2
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 2,
+            "text": "Raka 0: lempar awal 5 + 4 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 1,
+            "actor": 0,
+            "audience": "public",
+            "dice": [
+              5,
+              4
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 1,
+            "text": "Modal setiap pemain N 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 12,
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "1": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {}
+            }
+          },
+          "opponents": {},
+          "negotiation": null
+        }
+      },
+      "recent": [
+        {
+          "actor": 0,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 0
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 1
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 2
+        },
+        {
+          "actor": 3,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 3
+        },
+        {
+          "actor": 4,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 4
+        },
+        {
+          "actor": 5,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 5
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 6
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 7
+        }
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 6,
+      "seed": 497186,
+      "seat": 2,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": false,
+      "winner": null,
+      "won": false,
+      "bankrupt": false,
+      "actions": 8,
+      "invalid": 0,
+      "failed": "repeated_policy_cycle",
+      "builds": 0,
+      "trades": 0,
+      "monopolies": 0,
+      "income": 0,
+      "spendBuilding": 0,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting"
+      ],
+      "failedSnapshot": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "mind-497186-2",
+        "version": 9,
+        "players": [
+          {
+            "id": 0,
+            "name": "Raka 0",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 0,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 1,
+            "name": "Bima 1",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 2,
+            "name": "Sari 2",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "hardcore",
+            "pawn": 2,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 3,
+            "name": "Raka 3",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 3,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 4,
+            "name": "Bima 4",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "medium",
+            "pawn": 4,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 5,
+            "name": "Sari 5",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "medium",
+            "pawn": 5,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "starting",
+        "starting": {
+          "pending": [
+            2,
+            5
+          ],
+          "scores": [],
+          "history": [
+            {
+              "player": 0,
+              "dice": [
+                5,
+                4
+              ],
+              "total": 9
+            },
+            {
+              "player": 1,
+              "dice": [
+                5,
+                2
+              ],
+              "total": 7
+            },
+            {
+              "player": 2,
+              "dice": [
+                5,
+                4
+              ],
+              "total": 9
+            },
+            {
+              "player": 3,
+              "dice": [
+                2,
+                5
+              ],
+              "total": 7
+            },
+            {
+              "player": 4,
+              "dice": [
+                1,
+                6
+              ],
+              "total": 7
+            },
+            {
+              "player": 5,
+              "dice": [
+                4,
+                5
+              ],
+              "total": 9
+            },
+            {
+              "player": 0,
+              "dice": [
+                2,
+                1
+              ],
+              "total": 3
+            },
+            {
+              "player": 2,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            },
+            {
+              "player": 5,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            }
+          ],
+          "round": 3
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          4,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 12
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 12,
+            "text": "Nilai tertinggi seri; peserta seri melempar ulang.",
+            "type": "dice",
+            "turn": 1,
+            "version": 9,
+            "actor": 5,
+            "audience": "public"
+          },
+          {
+            "id": 11,
+            "text": "Sari 5: lempar awal 4 + 1 = 5.",
+            "type": "dice",
+            "turn": 1,
+            "version": 9,
+            "actor": 5,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 10,
+            "text": "Sari 2: lempar awal 4 + 1 = 5.",
+            "type": "dice",
+            "turn": 1,
+            "version": 8,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 9,
+            "text": "Raka 0: lempar awal 2 + 1 = 3.",
+            "type": "dice",
+            "turn": 1,
+            "version": 7,
+            "actor": 0,
+            "audience": "public",
+            "dice": [
+              2,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 8,
+            "text": "Nilai tertinggi seri; peserta seri melempar ulang.",
+            "type": "dice",
+            "turn": 1,
+            "version": 6,
+            "actor": 5,
+            "audience": "public"
+          },
+          {
+            "id": 7,
+            "text": "Sari 5: lempar awal 4 + 5 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 6,
+            "actor": 5,
+            "audience": "public",
+            "dice": [
+              4,
+              5
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 6,
+            "text": "Bima 4: lempar awal 1 + 6 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 5,
+            "actor": 4,
+            "audience": "public",
+            "dice": [
+              1,
+              6
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 5,
+            "text": "Raka 3: lempar awal 2 + 5 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 4,
+            "actor": 3,
+            "audience": "public",
+            "dice": [
+              2,
+              5
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 4,
+            "text": "Sari 2: lempar awal 5 + 4 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 3,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              5,
+              4
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 3,
+            "text": "Bima 1: lempar awal 5 + 2 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 2,
+            "actor": 1,
+            "audience": "public",
+            "dice": [
+              5,
+              2
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 2,
+            "text": "Raka 0: lempar awal 5 + 4 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 1,
+            "actor": 0,
+            "audience": "public",
+            "dice": [
+              5,
+              4
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 1,
+            "text": "Modal setiap pemain N 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 12,
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "2": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {}
+            }
+          },
+          "opponents": {},
+          "negotiation": null
+        }
+      },
+      "recent": [
+        {
+          "actor": 0,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 0
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 1
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 2
+        },
+        {
+          "actor": 3,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 3
+        },
+        {
+          "actor": 4,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 4
+        },
+        {
+          "actor": 5,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 5
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 6
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 7
+        }
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 6,
+      "seed": 497186,
+      "seat": 3,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": false,
+      "winner": null,
+      "won": false,
+      "bankrupt": false,
+      "actions": 8,
+      "invalid": 0,
+      "failed": "repeated_policy_cycle",
+      "builds": 0,
+      "trades": 0,
+      "monopolies": 0,
+      "income": 0,
+      "spendBuilding": 0,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting"
+      ],
+      "failedSnapshot": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "mind-497186-3",
+        "version": 9,
+        "players": [
+          {
+            "id": 0,
+            "name": "Raka 0",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 0,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 1,
+            "name": "Bima 1",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 2,
+            "name": "Sari 2",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "medium",
+            "pawn": 2,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 3,
+            "name": "Raka 3",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "hardcore",
+            "pawn": 3,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 4,
+            "name": "Bima 4",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "medium",
+            "pawn": 4,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 5,
+            "name": "Sari 5",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "medium",
+            "pawn": 5,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "starting",
+        "starting": {
+          "pending": [
+            2,
+            5
+          ],
+          "scores": [],
+          "history": [
+            {
+              "player": 0,
+              "dice": [
+                5,
+                4
+              ],
+              "total": 9
+            },
+            {
+              "player": 1,
+              "dice": [
+                5,
+                2
+              ],
+              "total": 7
+            },
+            {
+              "player": 2,
+              "dice": [
+                5,
+                4
+              ],
+              "total": 9
+            },
+            {
+              "player": 3,
+              "dice": [
+                2,
+                5
+              ],
+              "total": 7
+            },
+            {
+              "player": 4,
+              "dice": [
+                1,
+                6
+              ],
+              "total": 7
+            },
+            {
+              "player": 5,
+              "dice": [
+                4,
+                5
+              ],
+              "total": 9
+            },
+            {
+              "player": 0,
+              "dice": [
+                2,
+                1
+              ],
+              "total": 3
+            },
+            {
+              "player": 2,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            },
+            {
+              "player": 5,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            }
+          ],
+          "round": 3
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          4,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 12
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 12,
+            "text": "Nilai tertinggi seri; peserta seri melempar ulang.",
+            "type": "dice",
+            "turn": 1,
+            "version": 9,
+            "actor": 5,
+            "audience": "public"
+          },
+          {
+            "id": 11,
+            "text": "Sari 5: lempar awal 4 + 1 = 5.",
+            "type": "dice",
+            "turn": 1,
+            "version": 9,
+            "actor": 5,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 10,
+            "text": "Sari 2: lempar awal 4 + 1 = 5.",
+            "type": "dice",
+            "turn": 1,
+            "version": 8,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 9,
+            "text": "Raka 0: lempar awal 2 + 1 = 3.",
+            "type": "dice",
+            "turn": 1,
+            "version": 7,
+            "actor": 0,
+            "audience": "public",
+            "dice": [
+              2,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 8,
+            "text": "Nilai tertinggi seri; peserta seri melempar ulang.",
+            "type": "dice",
+            "turn": 1,
+            "version": 6,
+            "actor": 5,
+            "audience": "public"
+          },
+          {
+            "id": 7,
+            "text": "Sari 5: lempar awal 4 + 5 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 6,
+            "actor": 5,
+            "audience": "public",
+            "dice": [
+              4,
+              5
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 6,
+            "text": "Bima 4: lempar awal 1 + 6 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 5,
+            "actor": 4,
+            "audience": "public",
+            "dice": [
+              1,
+              6
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 5,
+            "text": "Raka 3: lempar awal 2 + 5 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 4,
+            "actor": 3,
+            "audience": "public",
+            "dice": [
+              2,
+              5
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 4,
+            "text": "Sari 2: lempar awal 5 + 4 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 3,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              5,
+              4
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 3,
+            "text": "Bima 1: lempar awal 5 + 2 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 2,
+            "actor": 1,
+            "audience": "public",
+            "dice": [
+              5,
+              2
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 2,
+            "text": "Raka 0: lempar awal 5 + 4 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 1,
+            "actor": 0,
+            "audience": "public",
+            "dice": [
+              5,
+              4
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 1,
+            "text": "Modal setiap pemain N 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 12,
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "3": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {}
+            }
+          },
+          "opponents": {},
+          "negotiation": null
+        }
+      },
+      "recent": [
+        {
+          "actor": 0,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 0
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 1
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 2
+        },
+        {
+          "actor": 3,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 3
+        },
+        {
+          "actor": 4,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 4
+        },
+        {
+          "actor": 5,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 5
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 6
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 7
+        }
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 6,
+      "seed": 497186,
+      "seat": 4,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": false,
+      "winner": null,
+      "won": false,
+      "bankrupt": false,
+      "actions": 8,
+      "invalid": 0,
+      "failed": "repeated_policy_cycle",
+      "builds": 0,
+      "trades": 0,
+      "monopolies": 0,
+      "income": 0,
+      "spendBuilding": 0,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting"
+      ],
+      "failedSnapshot": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "mind-497186-4",
+        "version": 9,
+        "players": [
+          {
+            "id": 0,
+            "name": "Raka 0",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 0,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 1,
+            "name": "Bima 1",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 2,
+            "name": "Sari 2",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "medium",
+            "pawn": 2,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 3,
+            "name": "Raka 3",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 3,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 4,
+            "name": "Bima 4",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "hardcore",
+            "pawn": 4,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 5,
+            "name": "Sari 5",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "medium",
+            "pawn": 5,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "starting",
+        "starting": {
+          "pending": [
+            2,
+            5
+          ],
+          "scores": [],
+          "history": [
+            {
+              "player": 0,
+              "dice": [
+                5,
+                4
+              ],
+              "total": 9
+            },
+            {
+              "player": 1,
+              "dice": [
+                5,
+                2
+              ],
+              "total": 7
+            },
+            {
+              "player": 2,
+              "dice": [
+                5,
+                4
+              ],
+              "total": 9
+            },
+            {
+              "player": 3,
+              "dice": [
+                2,
+                5
+              ],
+              "total": 7
+            },
+            {
+              "player": 4,
+              "dice": [
+                1,
+                6
+              ],
+              "total": 7
+            },
+            {
+              "player": 5,
+              "dice": [
+                4,
+                5
+              ],
+              "total": 9
+            },
+            {
+              "player": 0,
+              "dice": [
+                2,
+                1
+              ],
+              "total": 3
+            },
+            {
+              "player": 2,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            },
+            {
+              "player": 5,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            }
+          ],
+          "round": 3
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          4,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 12
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 12,
+            "text": "Nilai tertinggi seri; peserta seri melempar ulang.",
+            "type": "dice",
+            "turn": 1,
+            "version": 9,
+            "actor": 5,
+            "audience": "public"
+          },
+          {
+            "id": 11,
+            "text": "Sari 5: lempar awal 4 + 1 = 5.",
+            "type": "dice",
+            "turn": 1,
+            "version": 9,
+            "actor": 5,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 10,
+            "text": "Sari 2: lempar awal 4 + 1 = 5.",
+            "type": "dice",
+            "turn": 1,
+            "version": 8,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 9,
+            "text": "Raka 0: lempar awal 2 + 1 = 3.",
+            "type": "dice",
+            "turn": 1,
+            "version": 7,
+            "actor": 0,
+            "audience": "public",
+            "dice": [
+              2,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 8,
+            "text": "Nilai tertinggi seri; peserta seri melempar ulang.",
+            "type": "dice",
+            "turn": 1,
+            "version": 6,
+            "actor": 5,
+            "audience": "public"
+          },
+          {
+            "id": 7,
+            "text": "Sari 5: lempar awal 4 + 5 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 6,
+            "actor": 5,
+            "audience": "public",
+            "dice": [
+              4,
+              5
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 6,
+            "text": "Bima 4: lempar awal 1 + 6 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 5,
+            "actor": 4,
+            "audience": "public",
+            "dice": [
+              1,
+              6
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 5,
+            "text": "Raka 3: lempar awal 2 + 5 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 4,
+            "actor": 3,
+            "audience": "public",
+            "dice": [
+              2,
+              5
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 4,
+            "text": "Sari 2: lempar awal 5 + 4 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 3,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              5,
+              4
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 3,
+            "text": "Bima 1: lempar awal 5 + 2 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 2,
+            "actor": 1,
+            "audience": "public",
+            "dice": [
+              5,
+              2
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 2,
+            "text": "Raka 0: lempar awal 5 + 4 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 1,
+            "actor": 0,
+            "audience": "public",
+            "dice": [
+              5,
+              4
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 1,
+            "text": "Modal setiap pemain N 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 12,
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "4": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {}
+            }
+          },
+          "opponents": {},
+          "negotiation": null
+        }
+      },
+      "recent": [
+        {
+          "actor": 0,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 0
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 1
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 2
+        },
+        {
+          "actor": 3,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 3
+        },
+        {
+          "actor": 4,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 4
+        },
+        {
+          "actor": 5,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 5
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 6
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 7
+        }
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 6,
+      "seed": 497186,
+      "seat": 5,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": false,
+      "winner": null,
+      "won": false,
+      "bankrupt": false,
+      "actions": 8,
+      "invalid": 0,
+      "failed": "repeated_policy_cycle",
+      "builds": 0,
+      "trades": 0,
+      "monopolies": 0,
+      "income": 0,
+      "spendBuilding": 0,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting"
+      ],
+      "failedSnapshot": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "mind-497186-5",
+        "version": 9,
+        "players": [
+          {
+            "id": 0,
+            "name": "Raka 0",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 0,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 1,
+            "name": "Bima 1",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 2,
+            "name": "Sari 2",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "medium",
+            "pawn": 2,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 3,
+            "name": "Raka 3",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 3,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 4,
+            "name": "Bima 4",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "medium",
+            "pawn": 4,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 5,
+            "name": "Sari 5",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "hardcore",
+            "pawn": 5,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "starting",
+        "starting": {
+          "pending": [
+            2,
+            5
+          ],
+          "scores": [],
+          "history": [
+            {
+              "player": 0,
+              "dice": [
+                5,
+                4
+              ],
+              "total": 9
+            },
+            {
+              "player": 1,
+              "dice": [
+                5,
+                2
+              ],
+              "total": 7
+            },
+            {
+              "player": 2,
+              "dice": [
+                5,
+                4
+              ],
+              "total": 9
+            },
+            {
+              "player": 3,
+              "dice": [
+                2,
+                5
+              ],
+              "total": 7
+            },
+            {
+              "player": 4,
+              "dice": [
+                1,
+                6
+              ],
+              "total": 7
+            },
+            {
+              "player": 5,
+              "dice": [
+                4,
+                5
+              ],
+              "total": 9
+            },
+            {
+              "player": 0,
+              "dice": [
+                2,
+                1
+              ],
+              "total": 3
+            },
+            {
+              "player": 2,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            },
+            {
+              "player": 5,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            }
+          ],
+          "round": 3
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          4,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 12
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 12,
+            "text": "Nilai tertinggi seri; peserta seri melempar ulang.",
+            "type": "dice",
+            "turn": 1,
+            "version": 9,
+            "actor": 5,
+            "audience": "public"
+          },
+          {
+            "id": 11,
+            "text": "Sari 5: lempar awal 4 + 1 = 5.",
+            "type": "dice",
+            "turn": 1,
+            "version": 9,
+            "actor": 5,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 10,
+            "text": "Sari 2: lempar awal 4 + 1 = 5.",
+            "type": "dice",
+            "turn": 1,
+            "version": 8,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 9,
+            "text": "Raka 0: lempar awal 2 + 1 = 3.",
+            "type": "dice",
+            "turn": 1,
+            "version": 7,
+            "actor": 0,
+            "audience": "public",
+            "dice": [
+              2,
+              1
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 8,
+            "text": "Nilai tertinggi seri; peserta seri melempar ulang.",
+            "type": "dice",
+            "turn": 1,
+            "version": 6,
+            "actor": 5,
+            "audience": "public"
+          },
+          {
+            "id": 7,
+            "text": "Sari 5: lempar awal 4 + 5 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 6,
+            "actor": 5,
+            "audience": "public",
+            "dice": [
+              4,
+              5
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 6,
+            "text": "Bima 4: lempar awal 1 + 6 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 5,
+            "actor": 4,
+            "audience": "public",
+            "dice": [
+              1,
+              6
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 5,
+            "text": "Raka 3: lempar awal 2 + 5 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 4,
+            "actor": 3,
+            "audience": "public",
+            "dice": [
+              2,
+              5
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 4,
+            "text": "Sari 2: lempar awal 5 + 4 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 3,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              5,
+              4
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 3,
+            "text": "Bima 1: lempar awal 5 + 2 = 7.",
+            "type": "dice",
+            "turn": 1,
+            "version": 2,
+            "actor": 1,
+            "audience": "public",
+            "dice": [
+              5,
+              2
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 2,
+            "text": "Raka 0: lempar awal 5 + 4 = 9.",
+            "type": "dice",
+            "turn": 1,
+            "version": 1,
+            "actor": 0,
+            "audience": "public",
+            "dice": [
+              5,
+              4
+            ],
+            "diceKind": "opening"
+          },
+          {
+            "id": 1,
+            "text": "Modal setiap pemain N 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 12,
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "5": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {}
+            }
+          },
+          "opponents": {},
+          "negotiation": null
+        }
+      },
+      "recent": [
+        {
+          "actor": 0,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 0
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 1
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 2
+        },
+        {
+          "actor": 3,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 3
+        },
+        {
+          "actor": 4,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 4
+        },
+        {
+          "actor": 5,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 5
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 6
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "START_ROLL",
+            "actionId": "c0"
+          },
+          "phase": "starting",
+          "version": 7
+        }
+      ],
+      "variant": "full"
+    }
+  ]
+}

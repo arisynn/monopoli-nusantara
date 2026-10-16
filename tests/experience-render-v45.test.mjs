@@ -24,7 +24,7 @@ test('actual capsule TSX shows signed confirmed debit/credit for the two humans 
 test('actual Game JSX receives masked board state, disables actions and preserves authoritative save binding',options,async t=>{
  const before=setup(),after=command(before,0,{type:'ROLL'},()=>.9),model=ingestTimeline(ingestTimeline(null,before),after),shown=presentedState(model);
  const f=await loadComponent(file('Game'),{states:{0:after,1:false},presentation:{state:shown,phase:'diceRolling',busy:true,dice:after.dice}});t.after(f.dispose);
- const tree=f.module.default(),all=elements(tree),board=all.find(n=>n.type?.displayName==='Board');assert(board);assert.equal(board.props.state.players[0].pos,before.players[0].pos);assert.deepEqual(board.props.state.dice,before.dice);assert(!textContent(tree).includes('6 + 6'));
+ const tree=f.module.default(),all=elements(tree),board=all.find(n=>n.type?.displayName==='Board');assert(board);assert.equal(board.props.state.players[0].pos,before.players[0].pos);assert.deepEqual(board.props.state.dice,before.dice);assert(!textContent(tree).includes('6 + 6'));const dock=all.find(n=>n.type?.displayName==='MobileDock');assert(dock);assert.equal(dock.props.s,shown);assert(!('shown' in dock.props));
  const rollButtons=all.filter(n=>n.type==='button'&&textContent(n).includes('Lempar'));assert.equal(rollButtons.length,0);
 });
 test('actual save panel receives the latest authoritative snapshot during an unfinished visual transfer',options,async t=>{

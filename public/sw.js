@@ -1,5 +1,5 @@
 // UI/assets cache only. IndexedDB, localStorage and authenticated API state are never cleared.
-const CACHE='nusantara-v450';
+const CACHE='nusantara-v460';
 const allowed=url=>url.origin===self.location.origin&&!/^\/(api(?:\/|$)|signin|signout|callback)/.test(url.pathname);
 const cacheable=response=>response.ok&&!response.redirected&&!/no-store|private/i.test(response.headers.get('Cache-Control')||'');
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.add('/favicon.svg')));self.skipWaiting()});

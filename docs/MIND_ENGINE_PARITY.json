@@ -1,0 +1,16 @@
+{
+  "seeds": [
+    461,
+    462,
+    463,
+    464
+  ],
+  "actionsCompared": 1800,
+  "identicalRulesEconomyPublicEventsAndRng": true,
+  "ignored": [
+    "additive botDifficulty",
+    "advisorEnabled",
+    "botMemory"
+  ],
+  "fail": null
+}

@@ -1,0 +1,7 @@
+n,seed,seat,persona,model,variant,finished,won,actions,invalid,failed
+6,497186,0,sari,hardcore,full,true,false,624,0,
+6,497186,1,raka,hardcore,full,true,true,607,0,
+6,497186,2,bima,hardcore,full,true,true,552,0,
+6,497186,3,sari,hardcore,full,true,false,574,0,
+6,497186,4,raka,hardcore,full,true,false,574,0,
+6,497186,5,bima,hardcore,full,true,false,588,0,

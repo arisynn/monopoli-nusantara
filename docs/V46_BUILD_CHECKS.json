@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-10-16T06:09:27.385Z",
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "4d8348",
+        "wall_time_seconds": 0.136910712,
+        "exit_code": 127,
+        "original_token_count": 19,
+        "output": "\n> monopoli-nusantara@4.6.0 typecheck\n> tsc --noEmit\n\nsh: 1: tsc: not found\n"
+      }
+    },
+    {
+      "command": "npm run lint",
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "4d4219",
+        "wall_time_seconds": 0.12981445,
+        "exit_code": 127,
+        "original_token_count": 29,
+        "output": "\n> monopoli-nusantara@4.6.0 lint\n> eslint . --ignore-pattern dist --ignore-pattern .next\n\nsh: 1: eslint: not found\n"
+      }
+    },
+    {
+      "command": "npm run build",
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "7c0c46",
+        "wall_time_seconds": 0.149660944,
+        "exit_code": 1,
+        "original_token_count": 309,
+        "output": "\n> monopoli-nusantara@4.6.0 build\n> node scripts/run-framework.mjs build\n\nnode:internal/modules/esm/resolve:271\n    throw new ERR_MODULE_NOT_FOUND(\n          ^\n\nError [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/monopoli-source/Monopoli_Nusantara_v2.11.1/node_modules/vinext/dist/cli.js' imported from /workspace/monopoli-source/Monopoli_Nusantara_v2.11.1/scripts/run-framework.mjs\n    at finalizeResolution (node:internal/modules/esm/resolve:271:11)\n    at moduleResolve (node:internal/modules/esm/resolve:865:10)\n    at defaultResolve (node:internal/modules/esm/resolve:992:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)\n    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)\n    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)\n    at #resolve (node:internal/modules/esm/loader:683:17)\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)\n    at node:internal/modules/esm/loader:632:32\n    at TracingChannel.tracePromise (node:diagnostics_channel:362:14) {\n  code: 'ERR_MODULE_NOT_FOUND',\n  url: 'file:///workspace/monopoli-source/Monopoli_Nusantara_v2.11.1/node_modules/vinext/dist/cli.js'\n}\n\nNode.js v24.19.0\n"
+      }
+    },
+    {
+      "command": "npm run build:vercel",
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "19f862",
+        "wall_time_seconds": 0.179445952,
+        "exit_code": 127,
+        "original_token_count": 22,
+        "output": "\n> monopoli-nusantara@4.6.0 build:vercel\n> next build --webpack\n\nsh: 1: next: not found\n"
+      }
+    }
+  ]
+}

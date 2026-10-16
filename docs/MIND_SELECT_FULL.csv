@@ -1,0 +1,11 @@
+n,seed,seat,persona,model,variant,finished,won,actions,invalid,failed
+2,465062,0,sari,baseline,full,true,false,347,0,
+2,465062,0,sari,hardcore,full,true,false,351,0,
+2,465062,1,raka,baseline,full,true,true,369,0,
+2,465062,1,raka,hardcore,full,true,true,269,0,
+3,465093,0,raka,baseline,full,true,false,779,0,
+3,465093,0,raka,hardcore,full,true,false,497,0,
+3,465093,1,bima,baseline,full,true,true,779,0,
+3,465093,1,bima,hardcore,full,true,false,609,0,
+3,465093,2,sari,baseline,full,true,false,779,0,
+3,465093,2,sari,hardcore,full,true,false,779,0,

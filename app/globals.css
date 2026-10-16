@@ -334,6 +334,9 @@
 @media(prefers-reduced-motion:reduce){.asset-simple *, .trade-simple *{scroll-behavior:auto!important}}
 .manage-choice{min-width:0}.manage-choice .secondary{margin:0}.manage-choice small{display:block;margin:5px 0 10px;color:var(--muted);font-size:10px;line-height:1.5}
 
+/* v4.6: compact per-persona configuration; gameplay geometry is unchanged. */
+.app .player-input .bot-level{flex:0 0 108px;max-width:42%;min-height:44px;padding:8px;font-size:13px}
+.lobby-actions>.field-label{flex:1 1 100%;margin:0;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px}
 /* v2.7 — quieter chrome, readable controls, original board geometry untouched. */
 :root{--muted:#a6b5c3;--border:#a5b8ca29;--ui-font:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .app{background:var(--bg)}

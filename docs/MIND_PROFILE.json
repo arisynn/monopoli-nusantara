@@ -1,0 +1,313 @@
+{
+  "generatedAt": "2026-10-16T06:17:35.905Z",
+  "node": "v24.19.0",
+  "resources": {
+    "userCPUTime": 5157056,
+    "systemCPUTime": 98847,
+    "maxRSS": 88904,
+    "sharedMemorySize": 0,
+    "unsharedDataSize": 0,
+    "unsharedStackSize": 0,
+    "minorPageFault": 35609,
+    "majorPageFault": 0,
+    "swappedOut": 0,
+    "fsRead": 0,
+    "fsWrite": 0,
+    "ipcSent": 0,
+    "ipcReceived": 0,
+    "signalsCount": 0,
+    "voluntaryContextSwitches": 1830,
+    "involuntaryContextSwitches": 108
+  },
+  "repeats": 15,
+  "rows": [
+    {
+      "kind": "roll",
+      "model": "easy",
+      "repeats": 15,
+      "p50": 0.30617200000000366,
+      "p95": 8.511919999999996,
+      "max": 8.511919999999996,
+      "meanNodes": 0,
+      "searchSamples": 0
+    },
+    {
+      "kind": "roll",
+      "model": "medium",
+      "repeats": 15,
+      "p50": 0.180412000000004,
+      "p95": 0.40913799999999156,
+      "max": 0.40913799999999156,
+      "meanNodes": 0,
+      "searchSamples": 0
+    },
+    {
+      "kind": "roll",
+      "model": "hard",
+      "repeats": 15,
+      "p50": 0.14543999999999357,
+      "p95": 3.046143999999998,
+      "max": 3.046143999999998,
+      "meanNodes": 0,
+      "searchSamples": 0
+    },
+    {
+      "kind": "roll",
+      "model": "hardcore",
+      "repeats": 15,
+      "p50": 0.14686100000000124,
+      "p95": 3.8342079999999896,
+      "max": 3.8342079999999896,
+      "meanNodes": 0,
+      "searchSamples": 0
+    },
+    {
+      "kind": "auction",
+      "model": "easy",
+      "repeats": 15,
+      "p50": 1.2710990000000066,
+      "p95": 7.482124999999996,
+      "max": 7.482124999999996,
+      "meanNodes": 0,
+      "searchSamples": 0
+    },
+    {
+      "kind": "auction",
+      "model": "medium",
+      "repeats": 15,
+      "p50": 0.8235829999999993,
+      "p95": 1.1193199999999877,
+      "max": 1.1193199999999877,
+      "meanNodes": 0,
+      "searchSamples": 0
+    },
+    {
+      "kind": "auction",
+      "model": "hard",
+      "repeats": 15,
+      "p50": 6.217164999999994,
+      "p95": 7.551820000000021,
+      "max": 7.551820000000021,
+      "meanNodes": 39,
+      "searchSamples": 0
+    },
+    {
+      "kind": "auction",
+      "model": "hardcore",
+      "repeats": 15,
+      "p50": 18.510302999999993,
+      "p95": 19.448170000000005,
+      "max": 19.448170000000005,
+      "meanNodes": 160,
+      "searchSamples": 75
+    },
+    {
+      "kind": "build",
+      "model": "easy",
+      "repeats": 15,
+      "p50": 0.7475390000000175,
+      "p95": 4.005357000000004,
+      "max": 4.005357000000004,
+      "meanNodes": 0,
+      "searchSamples": 0
+    },
+    {
+      "kind": "build",
+      "model": "medium",
+      "repeats": 15,
+      "p50": 0.7184639999999263,
+      "p95": 1.43893300000002,
+      "max": 1.43893300000002,
+      "meanNodes": 0,
+      "searchSamples": 0
+    },
+    {
+      "kind": "build",
+      "model": "hard",
+      "repeats": 15,
+      "p50": 6.5346649999999045,
+      "p95": 11.627793999999994,
+      "max": 11.627793999999994,
+      "meanNodes": 48,
+      "searchSamples": 0
+    },
+    {
+      "kind": "build",
+      "model": "hardcore",
+      "repeats": 15,
+      "p50": 11.55452200000002,
+      "p95": 18.048336000000063,
+      "max": 18.048336000000063,
+      "meanNodes": 160,
+      "searchSamples": 105
+    },
+    {
+      "kind": "debt",
+      "model": "easy",
+      "repeats": 15,
+      "p50": 25.81016299999999,
+      "p95": 35.17839600000002,
+      "max": 35.17839600000002,
+      "meanNodes": 0,
+      "searchSamples": 0
+    },
+    {
+      "kind": "debt",
+      "model": "medium",
+      "repeats": 15,
+      "p50": 22.820109999999886,
+      "p95": 28.84132999999997,
+      "max": 28.84132999999997,
+      "meanNodes": 0,
+      "searchSamples": 0
+    },
+    {
+      "kind": "debt",
+      "model": "hard",
+      "repeats": 15,
+      "p50": 97.34115699999984,
+      "p95": 104.09877000000006,
+      "max": 104.09877000000006,
+      "meanNodes": 33,
+      "searchSamples": 0
+    },
+    {
+      "kind": "debt",
+      "model": "hardcore",
+      "repeats": 15,
+      "p50": 33.969690999999784,
+      "p95": 44.6296940000002,
+      "max": 44.6296940000002,
+      "meanNodes": 160,
+      "searchSamples": 75
+    },
+    {
+      "kind": "trade",
+      "model": "easy",
+      "repeats": 15,
+      "p50": 0.9181060000000798,
+      "p95": 3.208534000000327,
+      "max": 3.208534000000327,
+      "meanNodes": 0,
+      "searchSamples": 0
+    },
+    {
+      "kind": "trade",
+      "model": "medium",
+      "repeats": 15,
+      "p50": 0.42172600000003513,
+      "p95": 0.8045050000000629,
+      "max": 0.8045050000000629,
+      "meanNodes": 0,
+      "searchSamples": 0
+    },
+    {
+      "kind": "trade",
+      "model": "hard",
+      "repeats": 15,
+      "p50": 2.2850389999998697,
+      "p95": 4.172387999999955,
+      "max": 4.172387999999955,
+      "meanNodes": 16,
+      "searchSamples": 0
+    },
+    {
+      "kind": "trade",
+      "model": "hardcore",
+      "repeats": 15,
+      "p50": 0.36522199999990335,
+      "p95": 0.5742459999996754,
+      "max": 0.5742459999996754,
+      "meanNodes": 0,
+      "searchSamples": 0
+    }
+  ],
+  "selection": [
+    {
+      "variant": "tactical",
+      "kind": "auction",
+      "meanNodes": 39,
+      "completedSamples": 0,
+      "selectedBy": [
+        "tactical"
+      ]
+    },
+    {
+      "variant": "tactical",
+      "kind": "build",
+      "meanNodes": 48,
+      "completedSamples": 0,
+      "selectedBy": [
+        "tactical"
+      ]
+    },
+    {
+      "variant": "tactical",
+      "kind": "trade",
+      "meanNodes": 16,
+      "completedSamples": 0,
+      "selectedBy": [
+        "tactical"
+      ]
+    },
+    {
+      "variant": "short",
+      "kind": "auction",
+      "meanNodes": 160,
+      "completedSamples": 75,
+      "selectedBy": [
+        "rollout"
+      ]
+    },
+    {
+      "variant": "short",
+      "kind": "build",
+      "meanNodes": 160,
+      "completedSamples": 105,
+      "selectedBy": [
+        "rollout"
+      ]
+    },
+    {
+      "variant": "short",
+      "kind": "trade",
+      "meanNodes": 0,
+      "completedSamples": 0,
+      "selectedBy": [
+        "economic"
+      ]
+    },
+    {
+      "variant": "full",
+      "kind": "auction",
+      "meanNodes": 160,
+      "completedSamples": 30,
+      "selectedBy": [
+        "rollout"
+      ]
+    },
+    {
+      "variant": "full",
+      "kind": "build",
+      "meanNodes": 160,
+      "completedSamples": 30,
+      "selectedBy": [
+        "rollout"
+      ]
+    },
+    {
+      "variant": "full",
+      "kind": "trade",
+      "meanNodes": 0,
+      "completedSamples": 0,
+      "selectedBy": [
+        "economic"
+      ]
+    }
+  ],
+  "notes": [
+    "Cloud CPU only; no Android FPS claim.",
+    "Model selection here measures operational cost and sample completion; superiority needs full games.",
+    "Deterministic node-budget selection tests use a frozen clock, not claimed wall latency."
+  ]
+}

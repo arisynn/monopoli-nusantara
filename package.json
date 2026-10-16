@@ -1,6 +1,6 @@
 {
   "name": "monopoli-nusantara",
-  "version": "4.5.0",
+  "version": "4.6.0",
   "private": true,
   "engines": {
     "node": "24.x"
@@ -12,7 +12,7 @@
     "start": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",
-    "test": "node --experimental-strip-types --test --test-isolation=none tests/game.test.mjs tests/classic.test.mjs tests/storage.test.mjs tests/portrait.test.mjs tests/save-format.test.mjs tests/room-client.test.mjs tests/board-2d.test.mjs tests/ui-refinement.test.mjs tests/pawn-flow.test.mjs tests/asset-trade-v26.test.mjs tests/gameplay-flow-v28.test.mjs tests/compact-ui-v29.test.mjs tests/gameplay-v210.test.mjs tests/board-visual-v211.test.mjs tests/online.test.mjs tests/online-client.test.mjs tests/online-api.test.mjs tests/bot-strategy.test.mjs tests/groq-hybrid.test.mjs tests/bot-api.test.mjs tests/online-bots.test.mjs tests/experience-v45.test.mjs tests/experience-render-v45.test.mjs",
+    "test": "node --experimental-strip-types --test --test-isolation=none tests/game.test.mjs tests/classic.test.mjs tests/storage.test.mjs tests/portrait.test.mjs tests/save-format.test.mjs tests/room-client.test.mjs tests/board-2d.test.mjs tests/ui-refinement.test.mjs tests/pawn-flow.test.mjs tests/asset-trade-v26.test.mjs tests/gameplay-flow-v28.test.mjs tests/compact-ui-v29.test.mjs tests/gameplay-v210.test.mjs tests/board-visual-v211.test.mjs tests/online.test.mjs tests/online-client.test.mjs tests/online-api.test.mjs tests/bot-strategy.test.mjs tests/groq-hybrid.test.mjs tests/bot-api.test.mjs tests/online-bots.test.mjs tests/experience-v45.test.mjs tests/experience-render-v45.test.mjs tests/mind-v46.test.mjs",
     "dev:vercel": "next dev",
     "build:vercel": "next build --webpack",
     "start:vercel": "next start",
@@ -24,7 +24,10 @@
     "test:bots": "node --test --test-isolation=none tests/bot-strategy.test.mjs tests/groq-hybrid.test.mjs tests/bot-api.test.mjs tests/online-bots.test.mjs",
     "benchmark:bots": "node scripts/benchmark-bots.mjs",
     "test:supabase:bots": "node tests/supabase-bots-live.test.mjs",
-    "test:experience": "node --test --test-isolation=none tests/experience-v45.test.mjs tests/experience-render-v45.test.mjs"
+    "test:experience": "node --test --test-isolation=none tests/experience-v45.test.mjs tests/experience-render-v45.test.mjs",
+    "test:mind": "node --test --test-isolation=none tests/mind-v46.test.mjs",
+    "benchmark:mind": "node scripts/benchmark-mind.mjs",
+    "profile:mind": "node scripts/profile-mind.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

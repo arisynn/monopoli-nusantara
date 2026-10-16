@@ -1,0 +1,6900 @@
+{
+  "version": "4.6.0",
+  "generatedAt": "2026-10-16T06:17:05.815Z",
+  "command": [
+    "/workspace/monopoli-source/Monopoli_Nusantara_v2.11.1/scripts/benchmark-mind.mjs",
+    "--seeds=4",
+    "--players=2,3,4",
+    "--seconds=600",
+    "--seed-base=480000",
+    "--output=docs/MIND_EVALUATION.json"
+  ],
+  "mode": "evaluation",
+  "sourceHash": "06cf18e7b56694d24855488182463870c2aaffdc27d85b41fdc11c7a736a1bcd",
+  "seedBase": 480000,
+  "seeds": 4,
+  "sizes": [
+    2,
+    3,
+    4
+  ],
+  "maxActions": 6000,
+  "maxNodes": 160,
+  "wallSeconds": 600.538740293,
+  "summary": {
+    "games": 120,
+    "finished": 119,
+    "wins": 59,
+    "winRate": 0.49166666666666664,
+    "wilson95": [
+      0.4038741586989492,
+      0.5799761791519831
+    ],
+    "illegal": 0,
+    "failed": 1,
+    "bankrupt": 60,
+    "meanBuilds": 17.416666666666668,
+    "monopolies": 456,
+    "acceptedTrades": 184
+  },
+  "byModel": {
+    "baseline": {
+      "games": 24,
+      "finished": 24,
+      "wins": 12,
+      "winRate": 0.5,
+      "wilson95": [
+        0.31427131627763083,
+        0.6857286837223692
+      ],
+      "illegal": 0,
+      "failed": 0,
+      "bankrupt": 12,
+      "meanBuilds": 16.708333333333332,
+      "monopolies": 87,
+      "acceptedTrades": 30
+    },
+    "easy": {
+      "games": 24,
+      "finished": 24,
+      "wins": 12,
+      "winRate": 0.5,
+      "wilson95": [
+        0.31427131627763083,
+        0.6857286837223692
+      ],
+      "illegal": 0,
+      "failed": 0,
+      "bankrupt": 12,
+      "meanBuilds": 15.666666666666666,
+      "monopolies": 104,
+      "acceptedTrades": 67
+    },
+    "medium": {
+      "games": 24,
+      "finished": 24,
+      "wins": 12,
+      "winRate": 0.5,
+      "wilson95": [
+        0.31427131627763083,
+        0.6857286837223692
+      ],
+      "illegal": 0,
+      "failed": 0,
+      "bankrupt": 12,
+      "meanBuilds": 17.041666666666668,
+      "monopolies": 88,
+      "acceptedTrades": 30
+    },
+    "hard": {
+      "games": 24,
+      "finished": 24,
+      "wins": 12,
+      "winRate": 0.5,
+      "wilson95": [
+        0.31427131627763083,
+        0.6857286837223692
+      ],
+      "illegal": 0,
+      "failed": 0,
+      "bankrupt": 12,
+      "meanBuilds": 19,
+      "monopolies": 94,
+      "acceptedTrades": 33
+    },
+    "hardcore": {
+      "games": 24,
+      "finished": 23,
+      "wins": 11,
+      "winRate": 0.4583333333333333,
+      "wilson95": [
+        0.2789105835168143,
+        0.6492544644689336
+      ],
+      "illegal": 0,
+      "failed": 1,
+      "bankrupt": 12,
+      "meanBuilds": 18.666666666666668,
+      "monopolies": 83,
+      "acceptedTrades": 24
+    }
+  },
+  "byPersona": {
+    "raka": {
+      "games": 40,
+      "finished": 39,
+      "wins": 13,
+      "winRate": 0.325,
+      "wilson95": [
+        0.20084316962661725,
+        0.4798254191110201
+      ],
+      "illegal": 0,
+      "failed": 1,
+      "bankrupt": 26,
+      "meanBuilds": 9.925,
+      "monopolies": 95,
+      "acceptedTrades": 49
+    },
+    "bima": {
+      "games": 40,
+      "finished": 40,
+      "wins": 17,
+      "winRate": 0.425,
+      "wilson95": [
+        0.28509168524815875,
+        0.5780519956394001
+      ],
+      "illegal": 0,
+      "failed": 0,
+      "bankrupt": 23,
+      "meanBuilds": 19,
+      "monopolies": 164,
+      "acceptedTrades": 68
+    },
+    "sari": {
+      "games": 40,
+      "finished": 40,
+      "wins": 29,
+      "winRate": 0.725,
+      "wilson95": [
+        0.5716474916687543,
+        0.8389214656685692
+      ],
+      "illegal": 0,
+      "failed": 0,
+      "bankrupt": 11,
+      "meanBuilds": 23.325,
+      "monopolies": 197,
+      "acceptedTrades": 67
+    }
+  },
+  "bySize": {
+    "2": {
+      "games": 30,
+      "finished": 30,
+      "wins": 23,
+      "winRate": 0.7666666666666667,
+      "wilson95": [
+        0.5907132766967574,
+        0.8820776078949878
+      ],
+      "illegal": 0,
+      "failed": 0,
+      "bankrupt": 7,
+      "meanBuilds": 18.866666666666667,
+      "monopolies": 153,
+      "acceptedTrades": 48
+    },
+    "3": {
+      "games": 45,
+      "finished": 45,
+      "wins": 24,
+      "winRate": 0.5333333333333333,
+      "wilson95": [
+        0.3907720886241046,
+        0.6706509605798527
+      ],
+      "illegal": 0,
+      "failed": 0,
+      "bankrupt": 21,
+      "meanBuilds": 19.2,
+      "monopolies": 187,
+      "acceptedTrades": 56
+    },
+    "4": {
+      "games": 45,
+      "finished": 44,
+      "wins": 12,
+      "winRate": 0.26666666666666666,
+      "wilson95": [
+        0.15964748860054623,
+        0.4103911669717528
+      ],
+      "illegal": 0,
+      "failed": 1,
+      "bankrupt": 32,
+      "meanBuilds": 14.666666666666666,
+      "monopolies": 116,
+      "acceptedTrades": 80
+    }
+  },
+  "paired": {
+    "easy": {
+      "pairs": 24,
+      "independentSeedSizeClusters": 9,
+      "delta": 0,
+      "clusterBootstrap95": [
+        -0.28,
+        0.24
+      ]
+    },
+    "medium": {
+      "pairs": 24,
+      "independentSeedSizeClusters": 9,
+      "delta": 0,
+      "clusterBootstrap95": [
+        0,
+        0
+      ]
+    },
+    "hard": {
+      "pairs": 24,
+      "independentSeedSizeClusters": 9,
+      "delta": 0,
+      "clusterBootstrap95": [
+        -0.18181818181818182,
+        0.16
+      ]
+    },
+    "hardcore": {
+      "pairs": 24,
+      "independentSeedSizeClusters": 9,
+      "delta": -0.041666666666666664,
+      "clusterBootstrap95": [
+        -0.13043478260869565,
+        0
+      ]
+    }
+  },
+  "latencyMs": {
+    "baseline:starting": {
+      "samples": 311,
+      "p50": 0.09139800001867115,
+      "p95": 0.189725999996881,
+      "max": 7.7790879999999945
+    },
+    "baseline:roll": {
+      "samples": 13786,
+      "p50": 3.072807999997167,
+      "p95": 10.210530999989714,
+      "max": 51.37152099999366
+    },
+    "baseline:end": {
+      "samples": 13265,
+      "p50": 4.519250999990618,
+      "p95": 11.069468000001507,
+      "max": 65.52579200000037
+    },
+    "baseline:card": {
+      "samples": 1907,
+      "p50": 2.960397999995621,
+      "p95": 9.134828999987803,
+      "max": 53.86250200000359
+    },
+    "baseline:buy": {
+      "samples": 2618,
+      "p50": 1.943513999984134,
+      "p95": 6.056822000013199,
+      "max": 42.818301999999676
+    },
+    "baseline:auction": {
+      "samples": 17874,
+      "p50": 2.3437059999996563,
+      "p95": 5.365370000014082,
+      "max": 43.47881399997277
+    },
+    "baseline:trade": {
+      "samples": 646,
+      "p50": 0.7364119999692775,
+      "p95": 1.4232690000208095,
+      "max": 32.81951800000388
+    },
+    "baseline:jail": {
+      "samples": 1391,
+      "p50": 3.873548000003211,
+      "p95": 11.285162000000128,
+      "max": 44.585948000021745
+    },
+    "baseline:debt": {
+      "samples": 4413,
+      "p50": 7.729918999946676,
+      "p95": 136.5095919999876,
+      "max": 488.95293700002367
+    },
+    "baseline:mortgage": {
+      "samples": 668,
+      "p50": 0.49500700004864484,
+      "p95": 0.8906940000597388,
+      "max": 12.722654999932274
+    },
+    "easy:starting": {
+      "samples": 26,
+      "p50": 0.19022700004279613,
+      "p95": 4.004924999957439,
+      "max": 5.7865310000001955
+    },
+    "easy:roll": {
+      "samples": 1414,
+      "p50": 4.208892000002379,
+      "p95": 9.622876000008546,
+      "max": 44.900013000005856
+    },
+    "easy:end": {
+      "samples": 1382,
+      "p50": 6.505470000032801,
+      "p95": 13.453419999976177,
+      "max": 43.017723999975715
+    },
+    "easy:buy": {
+      "samples": 242,
+      "p50": 2.437900000018999,
+      "p95": 6.8061129999987315,
+      "max": 16.447337999998126
+    },
+    "easy:auction": {
+      "samples": 853,
+      "p50": 2.8770930000027874,
+      "p95": 7.031443000014406,
+      "max": 28.42184200003976
+    },
+    "easy:trade": {
+      "samples": 89,
+      "p50": 0.9449060000042664,
+      "p95": 1.9091219999827445,
+      "max": 28.747285000048578
+    },
+    "easy:jail": {
+      "samples": 153,
+      "p50": 5.227069000000483,
+      "p95": 10.761433999985456,
+      "max": 39.99000700004399
+    },
+    "easy:card": {
+      "samples": 181,
+      "p50": 3.9415590000571683,
+      "p95": 9.10451400000602,
+      "max": 10.679482000006828
+    },
+    "easy:debt": {
+      "samples": 291,
+      "p50": 11.734083999996074,
+      "p95": 184.96207700000377,
+      "max": 330.07256200001575
+    },
+    "medium:starting": {
+      "samples": 26,
+      "p50": 0.16288600000552833,
+      "p95": 0.286722999997437,
+      "max": 0.5471550000002026
+    },
+    "medium:roll": {
+      "samples": 1181,
+      "p50": 3.4675350000034086,
+      "p95": 10.812160999979824,
+      "max": 38.18035999999847
+    },
+    "medium:end": {
+      "samples": 1124,
+      "p50": 5.403195999970194,
+      "p95": 11.77551599999424,
+      "max": 37.01029400003608
+    },
+    "medium:buy": {
+      "samples": 235,
+      "p50": 2.1560840000020107,
+      "p95": 6.7966810000361875,
+      "max": 10.196160999999847
+    },
+    "medium:auction": {
+      "samples": 1968,
+      "p50": 2.7653639999916777,
+      "p95": 5.508144000021275,
+      "max": 36.47522600000957
+    },
+    "medium:trade": {
+      "samples": 54,
+      "p50": 0.9313350000011269,
+      "p95": 1.5817469999892637,
+      "max": 2.4505289999069646
+    },
+    "medium:jail": {
+      "samples": 121,
+      "p50": 4.363046999962535,
+      "p95": 9.237404000014067,
+      "max": 14.994399000017438
+    },
+    "medium:card": {
+      "samples": 167,
+      "p50": 3.3257400000002235,
+      "p95": 11.867734000028577,
+      "max": 30.620351000048686
+    },
+    "medium:debt": {
+      "samples": 296,
+      "p50": 7.706540999992285,
+      "p95": 122.17965199996252,
+      "max": 202.42984799999977
+    },
+    "medium:mortgage": {
+      "samples": 46,
+      "p50": 0.7617390000086743,
+      "p95": 1.163816999993287,
+      "max": 1.2491859999718145
+    },
+    "hard:starting": {
+      "samples": 26,
+      "p50": 0.15911999996751547,
+      "p95": 0.2198119999957271,
+      "max": 0.24749299998802599
+    },
+    "hard:roll": {
+      "samples": 1219,
+      "p50": 3.571722000022419,
+      "p95": 33.376921999966726,
+      "max": 80.62733400001889
+    },
+    "hard:end": {
+      "samples": 1165,
+      "p50": 5.817900999973062,
+      "p95": 32.39211300003808,
+      "max": 85.12074899999425
+    },
+    "hard:buy": {
+      "samples": 239,
+      "p50": 7.999593999993522,
+      "p95": 20.43891999999869,
+      "max": 48.34326999995392
+    },
+    "hard:auction": {
+      "samples": 1809,
+      "p50": 9.348812000011094,
+      "p95": 27.54107500000009,
+      "max": 76.62453799997456
+    },
+    "hard:trade": {
+      "samples": 76,
+      "p50": 4.321883999975398,
+      "p95": 9.75742999999784,
+      "max": 41.39537300000666
+    },
+    "hard:jail": {
+      "samples": 116,
+      "p50": 5.9259040000033565,
+      "p95": 17.062091999978293,
+      "max": 30.20490000001155
+    },
+    "hard:card": {
+      "samples": 161,
+      "p50": 3.317739000020083,
+      "p95": 7.710569999995641,
+      "max": 11.02815600001486
+    },
+    "hard:debt": {
+      "samples": 299,
+      "p50": 13.503120000008494,
+      "p95": 216.93004600005224,
+      "max": 388.77831800002605
+    },
+    "hard:mortgage": {
+      "samples": 52,
+      "p50": 0.671284000040032,
+      "p95": 0.9107849999563769,
+      "max": 1.1834159999853
+    },
+    "hardcore:starting": {
+      "samples": 26,
+      "p50": 0.15771800000220537,
+      "p95": 0.28788499999791384,
+      "max": 0.8178339999867603
+    },
+    "hardcore:roll": {
+      "samples": 1242,
+      "p50": 3.9095410000008997,
+      "p95": 51.718544999996084,
+      "max": 88.37294599995948
+    },
+    "hardcore:end": {
+      "samples": 1162,
+      "p50": 5.880264999985229,
+      "p95": 50.131461999961175,
+      "max": 103.81596300000092
+    },
+    "hardcore:buy": {
+      "samples": 235,
+      "p50": 3.536376999996719,
+      "p95": 65.44024799996987,
+      "max": 117.08777600002941
+    },
+    "hardcore:auction": {
+      "samples": 1738,
+      "p50": 39.469075000000885,
+      "p95": 79.47730099997716,
+      "max": 161.4436679999926
+    },
+    "hardcore:trade": {
+      "samples": 49,
+      "p50": 1.0475120000191964,
+      "p95": 40.422916000010446,
+      "max": 54.09511299995938
+    },
+    "hardcore:jail": {
+      "samples": 127,
+      "p50": 4.073037999914959,
+      "p95": 50.83736399997724,
+      "max": 80.15718099998776
+    },
+    "hardcore:card": {
+      "samples": 173,
+      "p50": 3.7114419999998063,
+      "p95": 10.547452000027988,
+      "max": 13.453783000004478
+    },
+    "hardcore:debt": {
+      "samples": 323,
+      "p50": 9.057102999999188,
+      "p95": 140.42372900003102,
+      "max": 244.89542499999516
+    },
+    "hardcore:mortgage": {
+      "samples": 62,
+      "p50": 0.692737000004854,
+      "p95": 0.9885519999661483,
+      "max": 1.280492999998387
+    },
+    "easy:mortgage": {
+      "samples": 47,
+      "p50": 0.6887299999943934,
+      "p95": 1.1858490000013262,
+      "max": 1.7733219999354333
+    }
+  },
+  "limitations": [
+    "No real Groq calls or live Supabase; this is the real local game engine.",
+    "Paired seeds share initial RNG, but policies consume future random values differently.",
+    "Wilson intervals are descriptive; seed/size-cluster bootstrap accounts for rotated-seat correlation.",
+    "Unfinished/failed matches remain in denominators with zero wins. No artificial net-worth winner.",
+    "Income/build activity and auction premiums are descriptive, not proof of realized ROI.",
+    "Cloud CPU performance does not establish Android performance.",
+    "Difficulty ladder and competitive superiority require confidence intervals and sufficient held-out games.",
+    "Some evaluation wall timings overlapped separate laboratory processes on the same cloud host; isolated MIND_PROFILE.json is the performance reference. One last X4 match was administratively censored by the global 600s budget and remains zero wins in this cohort."
+  ],
+  "runs": [
+    {
+      "n": 2,
+      "seed": 480062,
+      "seat": 0,
+      "persona": "sari",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 403,
+      "invalid": 0,
+      "failed": null,
+      "builds": 27,
+      "trades": 2,
+      "monopolies": 6,
+      "income": 53540,
+      "spendBuilding": 33000,
+      "auctionPriceRatio": 0.37039562289562294,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "end",
+        "card",
+        "buy",
+        "auction",
+        "trade",
+        "jail",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 480062,
+      "seat": 0,
+      "persona": "sari",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 433,
+      "invalid": 0,
+      "failed": null,
+      "builds": 19,
+      "trades": 3,
+      "monopolies": 1,
+      "income": 55095,
+      "spendBuilding": 19000,
+      "auctionPriceRatio": 0.2125,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "end",
+        "card",
+        "buy",
+        "auction",
+        "trade",
+        "jail",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 480062,
+      "seat": 0,
+      "persona": "sari",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 403,
+      "invalid": 0,
+      "failed": null,
+      "builds": 27,
+      "trades": 2,
+      "monopolies": 6,
+      "income": 53620,
+      "spendBuilding": 33000,
+      "auctionPriceRatio": 0.3781734006734007,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "end",
+        "card",
+        "buy",
+        "auction",
+        "trade",
+        "jail",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 480062,
+      "seat": 0,
+      "persona": "sari",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 361,
+      "invalid": 0,
+      "failed": null,
+      "builds": 19,
+      "trades": 1,
+      "monopolies": 4,
+      "income": 45280,
+      "spendBuilding": 21000,
+      "auctionPriceRatio": 0.3865122377622377,
+      "nodes": 2456,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "end",
+        "card",
+        "buy",
+        "auction",
+        "trade",
+        "jail",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 480062,
+      "seat": 0,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 373,
+      "invalid": 0,
+      "failed": null,
+      "builds": 19,
+      "trades": 1,
+      "monopolies": 4,
+      "income": 48310,
+      "spendBuilding": 21000,
+      "auctionPriceRatio": 0.34499433899433896,
+      "nodes": 8000,
+      "samples": 370,
+      "budgetStops": 50,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "end",
+        "card",
+        "buy",
+        "auction",
+        "trade",
+        "jail",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 480062,
+      "seat": 1,
+      "persona": "raka",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 244,
+      "invalid": 0,
+      "failed": null,
+      "builds": 15,
+      "trades": 0,
+      "monopolies": 2,
+      "income": 20546,
+      "spendBuilding": 15000,
+      "auctionPriceRatio": 0.2608484848484849,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "end",
+        "card",
+        "buy",
+        "auction",
+        "trade",
+        "jail",
+        "debt"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 480062,
+      "seat": 1,
+      "persona": "raka",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 300,
+      "invalid": 0,
+      "failed": null,
+      "builds": 13,
+      "trades": 1,
+      "monopolies": 6,
+      "income": 30080,
+      "spendBuilding": 11000,
+      "auctionPriceRatio": 0.2018452380952381,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "end",
+        "card",
+        "buy",
+        "jail",
+        "auction",
+        "debt",
+        "trade",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 480062,
+      "seat": 1,
+      "persona": "raka",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 244,
+      "invalid": 0,
+      "failed": null,
+      "builds": 15,
+      "trades": 0,
+      "monopolies": 2,
+      "income": 20546,
+      "spendBuilding": 15000,
+      "auctionPriceRatio": 0.2608484848484849,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "end",
+        "card",
+        "buy",
+        "auction",
+        "trade",
+        "jail",
+        "debt"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 480062,
+      "seat": 1,
+      "persona": "raka",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 249,
+      "invalid": 0,
+      "failed": null,
+      "builds": 15,
+      "trades": 0,
+      "monopolies": 2,
+      "income": 20546,
+      "spendBuilding": 15000,
+      "auctionPriceRatio": 0.2284848484848485,
+      "nodes": 1846,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "end",
+        "card",
+        "buy",
+        "auction",
+        "trade",
+        "jail",
+        "debt"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 480062,
+      "seat": 1,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 249,
+      "invalid": 0,
+      "failed": null,
+      "builds": 15,
+      "trades": 0,
+      "monopolies": 2,
+      "income": 20546,
+      "spendBuilding": 15000,
+      "auctionPriceRatio": 0.2284848484848485,
+      "nodes": 6080,
+      "samples": 296,
+      "budgetStops": 38,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "end",
+        "card",
+        "buy",
+        "auction",
+        "trade",
+        "jail",
+        "debt"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 0,
+      "persona": "raka",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": false,
+      "bankrupt": true,
+      "actions": 872,
+      "invalid": 0,
+      "failed": null,
+      "builds": 5,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 35140,
+      "spendBuilding": 10000,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 0,
+      "persona": "raka",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 529,
+      "invalid": 0,
+      "failed": null,
+      "builds": 15,
+      "trades": 1,
+      "monopolies": 7,
+      "income": 64135,
+      "spendBuilding": 22500,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "trade",
+        "debt",
+        "auction",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 0,
+      "persona": "raka",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": false,
+      "bankrupt": true,
+      "actions": 872,
+      "invalid": 0,
+      "failed": null,
+      "builds": 5,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 35140,
+      "spendBuilding": 10000,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 0,
+      "persona": "raka",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": false,
+      "bankrupt": true,
+      "actions": 1058,
+      "invalid": 0,
+      "failed": null,
+      "builds": 8,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 54540,
+      "spendBuilding": 16000,
+      "auctionPriceRatio": null,
+      "nodes": 5758,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 0,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": false,
+      "bankrupt": true,
+      "actions": 846,
+      "invalid": 0,
+      "failed": null,
+      "builds": 3,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 36990,
+      "spendBuilding": 6000,
+      "auctionPriceRatio": null,
+      "nodes": 13440,
+      "samples": 644,
+      "budgetStops": 84,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 1,
+      "persona": "bima",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": false,
+      "bankrupt": true,
+      "actions": 872,
+      "invalid": 0,
+      "failed": null,
+      "builds": 6,
+      "trades": 2,
+      "monopolies": 2,
+      "income": 53930,
+      "spendBuilding": 9000,
+      "auctionPriceRatio": 0.7464761904761904,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 1,
+      "persona": "bima",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 734,
+      "invalid": 0,
+      "failed": null,
+      "builds": 20,
+      "trades": 3,
+      "monopolies": 7,
+      "income": 56390,
+      "spendBuilding": 25500,
+      "auctionPriceRatio": 0.4244444444444444,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 1,
+      "persona": "bima",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": false,
+      "bankrupt": true,
+      "actions": 872,
+      "invalid": 0,
+      "failed": null,
+      "builds": 6,
+      "trades": 2,
+      "monopolies": 2,
+      "income": 53930,
+      "spendBuilding": 9000,
+      "auctionPriceRatio": 0.7457142857142858,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 1,
+      "persona": "bima",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 755,
+      "invalid": 0,
+      "failed": null,
+      "builds": 29,
+      "trades": 2,
+      "monopolies": 7,
+      "income": 53380,
+      "spendBuilding": 29500,
+      "auctionPriceRatio": 0.4883333333333334,
+      "nodes": 4339,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 1,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": false,
+      "bankrupt": true,
+      "actions": 892,
+      "invalid": 0,
+      "failed": null,
+      "builds": 6,
+      "trades": 2,
+      "monopolies": 2,
+      "income": 53930,
+      "spendBuilding": 9000,
+      "auctionPriceRatio": 0.8203174603174603,
+      "nodes": 16480,
+      "samples": 795,
+      "budgetStops": 107,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 2,
+      "persona": "sari",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": true,
+      "bankrupt": false,
+      "actions": 872,
+      "invalid": 0,
+      "failed": null,
+      "builds": 35,
+      "trades": 1,
+      "monopolies": 7,
+      "income": 65040,
+      "spendBuilding": 37500,
+      "auctionPriceRatio": 1.1491666666666667,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 2,
+      "persona": "sari",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 613,
+      "invalid": 0,
+      "failed": null,
+      "builds": 6,
+      "trades": 3,
+      "monopolies": 2,
+      "income": 41657,
+      "spendBuilding": 6000,
+      "auctionPriceRatio": 1.17,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 2,
+      "persona": "sari",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": true,
+      "bankrupt": false,
+      "actions": 868,
+      "invalid": 0,
+      "failed": null,
+      "builds": 35,
+      "trades": 1,
+      "monopolies": 7,
+      "income": 65040,
+      "spendBuilding": 37500,
+      "auctionPriceRatio": 1.1491666666666667,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 2,
+      "persona": "sari",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": true,
+      "bankrupt": false,
+      "actions": 816,
+      "invalid": 0,
+      "failed": null,
+      "builds": 35,
+      "trades": 1,
+      "monopolies": 7,
+      "income": 65040,
+      "spendBuilding": 37500,
+      "auctionPriceRatio": 1.1491666666666667,
+      "nodes": 3722,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 480093,
+      "seat": 2,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": true,
+      "bankrupt": false,
+      "actions": 1082,
+      "invalid": 0,
+      "failed": null,
+      "builds": 74,
+      "trades": 3,
+      "monopolies": 7,
+      "income": 117280,
+      "spendBuilding": 71000,
+      "auctionPriceRatio": 0.39297313797313793,
+      "nodes": 19199,
+      "samples": 1063,
+      "budgetStops": 119,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "jail",
+        "buy",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 0,
+      "persona": "bima",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 867,
+      "invalid": 0,
+      "failed": null,
+      "builds": 5,
+      "trades": 2,
+      "monopolies": 1,
+      "income": 22823,
+      "spendBuilding": 7500,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "debt",
+        "auction",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 0,
+      "persona": "bima",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 525,
+      "invalid": 0,
+      "failed": null,
+      "builds": 8,
+      "trades": 3,
+      "monopolies": 1,
+      "income": 26426,
+      "spendBuilding": 4000,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "jail",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 0,
+      "persona": "bima",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 867,
+      "invalid": 0,
+      "failed": null,
+      "builds": 5,
+      "trades": 2,
+      "monopolies": 1,
+      "income": 22823,
+      "spendBuilding": 7500,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "debt",
+        "auction",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 0,
+      "persona": "bima",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 502,
+      "invalid": 0,
+      "failed": null,
+      "builds": 1,
+      "trades": 0,
+      "monopolies": 2,
+      "income": 17450,
+      "spendBuilding": 1500,
+      "auctionPriceRatio": 1,
+      "nodes": 869,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 0,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 641,
+      "invalid": 0,
+      "failed": null,
+      "builds": 23,
+      "trades": 0,
+      "monopolies": 2,
+      "income": 57050,
+      "spendBuilding": 24500,
+      "auctionPriceRatio": 1,
+      "nodes": 5760,
+      "samples": 328,
+      "budgetStops": 36,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 1,
+      "persona": "sari",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 690,
+      "invalid": 0,
+      "failed": null,
+      "builds": 8,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 50820,
+      "spendBuilding": 16000,
+      "auctionPriceRatio": 0.9514285714285714,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 1,
+      "persona": "sari",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 712,
+      "invalid": 0,
+      "failed": null,
+      "builds": 8,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 50820,
+      "spendBuilding": 16000,
+      "auctionPriceRatio": 0.7403571428571428,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 1,
+      "persona": "sari",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 690,
+      "invalid": 0,
+      "failed": null,
+      "builds": 8,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 50820,
+      "spendBuilding": 16000,
+      "auctionPriceRatio": 0.9514285714285714,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 1,
+      "persona": "sari",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 690,
+      "invalid": 0,
+      "failed": null,
+      "builds": 8,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 50820,
+      "spendBuilding": 16000,
+      "auctionPriceRatio": 0.9514285714285714,
+      "nodes": 645,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 1,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 690,
+      "invalid": 0,
+      "failed": null,
+      "builds": 8,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 50820,
+      "spendBuilding": 16000,
+      "auctionPriceRatio": 0.9514285714285714,
+      "nodes": 2080,
+      "samples": 115,
+      "budgetStops": 13,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 2,
+      "persona": "raka",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 1143,
+      "invalid": 0,
+      "failed": null,
+      "builds": 19,
+      "trades": 2,
+      "monopolies": 1,
+      "income": 58899,
+      "spendBuilding": 28500,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 2,
+      "persona": "raka",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 661,
+      "invalid": 0,
+      "failed": null,
+      "builds": 0,
+      "trades": 2,
+      "monopolies": 0,
+      "income": 26700,
+      "spendBuilding": 0,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 2,
+      "persona": "raka",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 1143,
+      "invalid": 0,
+      "failed": null,
+      "builds": 19,
+      "trades": 2,
+      "monopolies": 1,
+      "income": 58899,
+      "spendBuilding": 28500,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 2,
+      "persona": "raka",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 1143,
+      "invalid": 0,
+      "failed": null,
+      "builds": 19,
+      "trades": 2,
+      "monopolies": 1,
+      "income": 58899,
+      "spendBuilding": 28500,
+      "auctionPriceRatio": null,
+      "nodes": 1509,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 2,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 1143,
+      "invalid": 0,
+      "failed": null,
+      "builds": 19,
+      "trades": 2,
+      "monopolies": 1,
+      "income": 58899,
+      "spendBuilding": 28500,
+      "auctionPriceRatio": null,
+      "nodes": 2720,
+      "samples": 153,
+      "budgetStops": 17,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 3,
+      "persona": "bima",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": true,
+      "bankrupt": false,
+      "actions": 487,
+      "invalid": 0,
+      "failed": null,
+      "builds": 38,
+      "trades": 2,
+      "monopolies": 7,
+      "income": 68001,
+      "spendBuilding": 48500,
+      "auctionPriceRatio": 1,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 3,
+      "persona": "bima",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": true,
+      "bankrupt": false,
+      "actions": 904,
+      "invalid": 0,
+      "failed": null,
+      "builds": 50,
+      "trades": 5,
+      "monopolies": 8,
+      "income": 104595,
+      "spendBuilding": 40000,
+      "auctionPriceRatio": 0.49769345238095236,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 3,
+      "persona": "bima",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": true,
+      "bankrupt": false,
+      "actions": 487,
+      "invalid": 0,
+      "failed": null,
+      "builds": 38,
+      "trades": 2,
+      "monopolies": 7,
+      "income": 68001,
+      "spendBuilding": 48500,
+      "auctionPriceRatio": 1,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 3,
+      "persona": "bima",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": true,
+      "bankrupt": false,
+      "actions": 578,
+      "invalid": 0,
+      "failed": null,
+      "builds": 47,
+      "trades": 2,
+      "monopolies": 7,
+      "income": 79626,
+      "spendBuilding": 55000,
+      "auctionPriceRatio": 1,
+      "nodes": 2248,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 480124,
+      "seat": 3,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": true,
+      "bankrupt": false,
+      "actions": 578,
+      "invalid": 0,
+      "failed": null,
+      "builds": 47,
+      "trades": 2,
+      "monopolies": 7,
+      "income": 79626,
+      "spendBuilding": 55000,
+      "auctionPriceRatio": 1,
+      "nodes": 6400,
+      "samples": 342,
+      "budgetStops": 40,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 481059,
+      "seat": 0,
+      "persona": "raka",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 531,
+      "invalid": 0,
+      "failed": null,
+      "builds": 13,
+      "trades": 1,
+      "monopolies": 2,
+      "income": 45745,
+      "spendBuilding": 19500,
+      "auctionPriceRatio": 0.29619047619047617,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "auction",
+        "end",
+        "card",
+        "trade",
+        "debt",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 481059,
+      "seat": 0,
+      "persona": "raka",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 627,
+      "invalid": 0,
+      "failed": null,
+      "builds": 23,
+      "trades": 3,
+      "monopolies": 8,
+      "income": 76755,
+      "spendBuilding": 36500,
+      "auctionPriceRatio": 0.17299603174603173,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "auction",
+        "end",
+        "card",
+        "trade",
+        "debt",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 481059,
+      "seat": 0,
+      "persona": "raka",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 531,
+      "invalid": 0,
+      "failed": null,
+      "builds": 13,
+      "trades": 1,
+      "monopolies": 2,
+      "income": 45745,
+      "spendBuilding": 19500,
+      "auctionPriceRatio": 0.29619047619047617,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "auction",
+        "end",
+        "card",
+        "trade",
+        "debt",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 481059,
+      "seat": 0,
+      "persona": "raka",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 446,
+      "invalid": 0,
+      "failed": null,
+      "builds": 26,
+      "trades": 1,
+      "monopolies": 8,
+      "income": 50201,
+      "spendBuilding": 31500,
+      "auctionPriceRatio": 0.2542261904761905,
+      "nodes": 3600,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "auction",
+        "end",
+        "card",
+        "trade",
+        "debt",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 481059,
+      "seat": 0,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 531,
+      "invalid": 0,
+      "failed": null,
+      "builds": 13,
+      "trades": 1,
+      "monopolies": 2,
+      "income": 45745,
+      "spendBuilding": 19500,
+      "auctionPriceRatio": 0.29619047619047617,
+      "nodes": 15200,
+      "samples": 663,
+      "budgetStops": 95,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "auction",
+        "end",
+        "card",
+        "trade",
+        "debt",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 481059,
+      "seat": 1,
+      "persona": "bima",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 531,
+      "invalid": 0,
+      "failed": null,
+      "builds": 18,
+      "trades": 1,
+      "monopolies": 8,
+      "income": 47225,
+      "spendBuilding": 25500,
+      "auctionPriceRatio": 0.4914935064935065,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "auction",
+        "end",
+        "card",
+        "trade",
+        "debt",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 481059,
+      "seat": 1,
+      "persona": "bima",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 459,
+      "invalid": 0,
+      "failed": null,
+      "builds": 5,
+      "trades": 4,
+      "monopolies": 3,
+      "income": 67220,
+      "spendBuilding": 10000,
+      "auctionPriceRatio": 0.10753896103896106,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 481059,
+      "seat": 1,
+      "persona": "bima",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 525,
+      "invalid": 0,
+      "failed": null,
+      "builds": 18,
+      "trades": 1,
+      "monopolies": 8,
+      "income": 47215,
+      "spendBuilding": 25500,
+      "auctionPriceRatio": 0.4911580086580086,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "auction",
+        "end",
+        "card",
+        "trade",
+        "debt",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 481059,
+      "seat": 1,
+      "persona": "bima",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 497,
+      "invalid": 0,
+      "failed": null,
+      "builds": 11,
+      "trades": 4,
+      "monopolies": 4,
+      "income": 71951,
+      "spendBuilding": 19000,
+      "auctionPriceRatio": 0.36505214482487214,
+      "nodes": 2472,
+      "samples": 0,
+      "budgetStops": 12,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "auction",
+        "end",
+        "card",
+        "trade",
+        "debt",
+        "mortgage",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 481059,
+      "seat": 1,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 525,
+      "invalid": 0,
+      "failed": null,
+      "builds": 19,
+      "trades": 1,
+      "monopolies": 8,
+      "income": 47055,
+      "spendBuilding": 26000,
+      "auctionPriceRatio": 0.5063095238095238,
+      "nodes": 15198,
+      "samples": 793,
+      "budgetStops": 94,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "auction",
+        "end",
+        "card",
+        "trade",
+        "debt",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 0,
+      "persona": "bima",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 1054,
+      "invalid": 0,
+      "failed": null,
+      "builds": 31,
+      "trades": 2,
+      "monopolies": 2,
+      "income": 72077,
+      "spendBuilding": 28500,
+      "auctionPriceRatio": 1.0816666666666666,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "jail",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 0,
+      "persona": "bima",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": false,
+      "bankrupt": true,
+      "actions": 772,
+      "invalid": 0,
+      "failed": null,
+      "builds": 32,
+      "trades": 3,
+      "monopolies": 5,
+      "income": 91052,
+      "spendBuilding": 28000,
+      "auctionPriceRatio": 0.26030799062049065,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "jail",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 0,
+      "persona": "bima",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 1054,
+      "invalid": 0,
+      "failed": null,
+      "builds": 31,
+      "trades": 2,
+      "monopolies": 2,
+      "income": 72077,
+      "spendBuilding": 28500,
+      "auctionPriceRatio": 1.0816666666666666,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "jail",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 0,
+      "persona": "bima",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 967,
+      "invalid": 0,
+      "failed": null,
+      "builds": 50,
+      "trades": 2,
+      "monopolies": 7,
+      "income": 83241,
+      "spendBuilding": 40000,
+      "auctionPriceRatio": 0.6231770833333333,
+      "nodes": 7172,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "jail",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 0,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 1054,
+      "invalid": 0,
+      "failed": null,
+      "builds": 31,
+      "trades": 2,
+      "monopolies": 2,
+      "income": 72077,
+      "spendBuilding": 28500,
+      "auctionPriceRatio": 1.0816666666666666,
+      "nodes": 19403,
+      "samples": 827,
+      "budgetStops": 122,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "jail",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 1,
+      "persona": "sari",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 594,
+      "invalid": 0,
+      "failed": null,
+      "builds": 34,
+      "trades": 1,
+      "monopolies": 4,
+      "income": 43654,
+      "spendBuilding": 29500,
+      "auctionPriceRatio": 0.6630555555555556,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "jail",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 1,
+      "persona": "sari",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 448,
+      "invalid": 0,
+      "failed": null,
+      "builds": 23,
+      "trades": 2,
+      "monopolies": 7,
+      "income": 41570,
+      "spendBuilding": 27000,
+      "auctionPriceRatio": 0.14400462962962962,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "debt",
+        "auction",
+        "jail",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 1,
+      "persona": "sari",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 600,
+      "invalid": 0,
+      "failed": null,
+      "builds": 34,
+      "trades": 1,
+      "monopolies": 4,
+      "income": 43654,
+      "spendBuilding": 29500,
+      "auctionPriceRatio": 0.6676851851851852,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "jail",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 1,
+      "persona": "sari",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 636,
+      "invalid": 0,
+      "failed": null,
+      "builds": 38,
+      "trades": 1,
+      "monopolies": 8,
+      "income": 58280,
+      "spendBuilding": 30500,
+      "auctionPriceRatio": 0.6024368686868687,
+      "nodes": 4902,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "jail",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 1,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 583,
+      "invalid": 0,
+      "failed": null,
+      "builds": 35,
+      "trades": 1,
+      "monopolies": 4,
+      "income": 44547,
+      "spendBuilding": 31500,
+      "auctionPriceRatio": 0.6586688311688312,
+      "nodes": 18236,
+      "samples": 825,
+      "budgetStops": 113,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "jail",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 2,
+      "persona": "raka",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 672,
+      "invalid": 0,
+      "failed": null,
+      "builds": 1,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 16830,
+      "spendBuilding": 1500,
+      "auctionPriceRatio": 1.2321428571428572,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 2,
+      "persona": "raka",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 634,
+      "invalid": 0,
+      "failed": null,
+      "builds": 0,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 18580,
+      "spendBuilding": 0,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "jail",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 2,
+      "persona": "raka",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 612,
+      "invalid": 0,
+      "failed": null,
+      "builds": 1,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 16830,
+      "spendBuilding": 1500,
+      "auctionPriceRatio": 1.2321428571428572,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 2,
+      "persona": "raka",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 612,
+      "invalid": 0,
+      "failed": null,
+      "builds": 1,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 16830,
+      "spendBuilding": 1500,
+      "auctionPriceRatio": 1.2321428571428572,
+      "nodes": 1611,
+      "samples": 0,
+      "budgetStops": 1,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 481090,
+      "seat": 2,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 612,
+      "invalid": 0,
+      "failed": null,
+      "builds": 1,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 16830,
+      "spendBuilding": 1500,
+      "auctionPriceRatio": 1.2321428571428572,
+      "nodes": 7858,
+      "samples": 521,
+      "budgetStops": 50,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage",
+        "jail"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 0,
+      "persona": "sari",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 522,
+      "invalid": 0,
+      "failed": null,
+      "builds": 12,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 23000,
+      "spendBuilding": 12000,
+      "auctionPriceRatio": 0.6242857142857143,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 0,
+      "persona": "sari",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 661,
+      "invalid": 0,
+      "failed": null,
+      "builds": 30,
+      "trades": 1,
+      "monopolies": 7,
+      "income": 87255,
+      "spendBuilding": 30000,
+      "auctionPriceRatio": 0.465,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 0,
+      "persona": "sari",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 522,
+      "invalid": 0,
+      "failed": null,
+      "builds": 12,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 23000,
+      "spendBuilding": 12000,
+      "auctionPriceRatio": 0.6242857142857143,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 0,
+      "persona": "sari",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 522,
+      "invalid": 0,
+      "failed": null,
+      "builds": 12,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 23000,
+      "spendBuilding": 12000,
+      "auctionPriceRatio": 0.6242857142857143,
+      "nodes": 1599,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 0,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 606,
+      "invalid": 0,
+      "failed": null,
+      "builds": 11,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 22500,
+      "spendBuilding": 11000,
+      "auctionPriceRatio": 0.7762433862433863,
+      "nodes": 10240,
+      "samples": 418,
+      "budgetStops": 64,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 1,
+      "persona": "raka",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 525,
+      "invalid": 0,
+      "failed": null,
+      "builds": 3,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 20240,
+      "spendBuilding": 6000,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 1,
+      "persona": "raka",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 697,
+      "invalid": 0,
+      "failed": null,
+      "builds": 15,
+      "trades": 5,
+      "monopolies": 8,
+      "income": 64816,
+      "spendBuilding": 22500,
+      "auctionPriceRatio": 0.2338888888888889,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 1,
+      "persona": "raka",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": false,
+      "bankrupt": true,
+      "actions": 525,
+      "invalid": 0,
+      "failed": null,
+      "builds": 3,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 20240,
+      "spendBuilding": 6000,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 1,
+      "persona": "raka",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 478,
+      "invalid": 0,
+      "failed": null,
+      "builds": 7,
+      "trades": 2,
+      "monopolies": 1,
+      "income": 18282,
+      "spendBuilding": 10500,
+      "auctionPriceRatio": null,
+      "nodes": 1316,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 1,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 613,
+      "invalid": 0,
+      "failed": null,
+      "builds": 5,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 14550,
+      "spendBuilding": 7500,
+      "auctionPriceRatio": null,
+      "nodes": 1600,
+      "samples": 92,
+      "budgetStops": 10,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 2,
+      "persona": "bima",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 561,
+      "invalid": 0,
+      "failed": null,
+      "builds": 2,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 16620,
+      "spendBuilding": 3000,
+      "auctionPriceRatio": 0.9333333333333333,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 2,
+      "persona": "bima",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 537,
+      "invalid": 0,
+      "failed": null,
+      "builds": 12,
+      "trades": 2,
+      "monopolies": 1,
+      "income": 17050,
+      "spendBuilding": 6000,
+      "auctionPriceRatio": 1.125,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 2,
+      "persona": "bima",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 561,
+      "invalid": 0,
+      "failed": null,
+      "builds": 2,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 16620,
+      "spendBuilding": 3000,
+      "auctionPriceRatio": 0.9333333333333333,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 2,
+      "persona": "bima",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 555,
+      "invalid": 0,
+      "failed": null,
+      "builds": 1,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 15870,
+      "spendBuilding": 1500,
+      "auctionPriceRatio": 0.9333333333333333,
+      "nodes": 1512,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 2,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": false,
+      "bankrupt": true,
+      "actions": 561,
+      "invalid": 0,
+      "failed": null,
+      "builds": 2,
+      "trades": 0,
+      "monopolies": 1,
+      "income": 16620,
+      "spendBuilding": 3000,
+      "auctionPriceRatio": 0.9333333333333333,
+      "nodes": 4480,
+      "samples": 260,
+      "budgetStops": 28,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 3,
+      "persona": "sari",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": true,
+      "bankrupt": false,
+      "actions": 678,
+      "invalid": 0,
+      "failed": null,
+      "builds": 32,
+      "trades": 5,
+      "monopolies": 7,
+      "income": 51346,
+      "spendBuilding": 27500,
+      "auctionPriceRatio": 0.5871428571428571,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 3,
+      "persona": "sari",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": true,
+      "bankrupt": false,
+      "actions": 548,
+      "invalid": 0,
+      "failed": null,
+      "builds": 25,
+      "trades": 5,
+      "monopolies": 7,
+      "income": 60800,
+      "spendBuilding": 27500,
+      "auctionPriceRatio": null,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "debt",
+        "auction",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 3,
+      "persona": "sari",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": true,
+      "bankrupt": false,
+      "actions": 708,
+      "invalid": 0,
+      "failed": null,
+      "builds": 39,
+      "trades": 5,
+      "monopolies": 8,
+      "income": 55826,
+      "spendBuilding": 32500,
+      "auctionPriceRatio": 0.5107738095238095,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 3,
+      "persona": "sari",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": true,
+      "bankrupt": false,
+      "actions": 583,
+      "invalid": 0,
+      "failed": null,
+      "builds": 18,
+      "trades": 5,
+      "monopolies": 6,
+      "income": 42930,
+      "spendBuilding": 21000,
+      "auctionPriceRatio": 0.6254761904761904,
+      "nodes": 1868,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 481121,
+      "seat": 3,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 3,
+      "won": true,
+      "bankrupt": false,
+      "actions": 624,
+      "invalid": 0,
+      "failed": null,
+      "builds": 39,
+      "trades": 5,
+      "monopolies": 8,
+      "income": 55836,
+      "spendBuilding": 32500,
+      "auctionPriceRatio": 0.5107738095238095,
+      "nodes": 6538,
+      "samples": 315,
+      "budgetStops": 40,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "trade",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 482056,
+      "seat": 0,
+      "persona": "bima",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 424,
+      "invalid": 0,
+      "failed": null,
+      "builds": 22,
+      "trades": 1,
+      "monopolies": 7,
+      "income": 44201,
+      "spendBuilding": 25500,
+      "auctionPriceRatio": 0.3814174482924483,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "auction",
+        "jail",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 482056,
+      "seat": 0,
+      "persona": "bima",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 309,
+      "invalid": 0,
+      "failed": null,
+      "builds": 11,
+      "trades": 3,
+      "monopolies": 6,
+      "income": 39460,
+      "spendBuilding": 16500,
+      "auctionPriceRatio": 0.16371753246753248,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "auction",
+        "trade",
+        "jail",
+        "debt"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 482056,
+      "seat": 0,
+      "persona": "bima",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 422,
+      "invalid": 0,
+      "failed": null,
+      "builds": 22,
+      "trades": 1,
+      "monopolies": 7,
+      "income": 44191,
+      "spendBuilding": 25500,
+      "auctionPriceRatio": 0.3800417869167869,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "auction",
+        "jail",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 482056,
+      "seat": 0,
+      "persona": "bima",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 454,
+      "invalid": 0,
+      "failed": null,
+      "builds": 31,
+      "trades": 2,
+      "monopolies": 2,
+      "income": 48805,
+      "spendBuilding": 15500,
+      "auctionPriceRatio": 0.43615079365079373,
+      "nodes": 3958,
+      "samples": 0,
+      "budgetStops": 4,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "auction",
+        "jail",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 482056,
+      "seat": 0,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 422,
+      "invalid": 0,
+      "failed": null,
+      "builds": 22,
+      "trades": 1,
+      "monopolies": 7,
+      "income": 44191,
+      "spendBuilding": 25500,
+      "auctionPriceRatio": 0.3800417869167869,
+      "nodes": 11840,
+      "samples": 574,
+      "budgetStops": 74,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "auction",
+        "jail",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 482056,
+      "seat": 1,
+      "persona": "sari",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 476,
+      "invalid": 0,
+      "failed": null,
+      "builds": 23,
+      "trades": 2,
+      "monopolies": 7,
+      "income": 55462,
+      "spendBuilding": 27000,
+      "auctionPriceRatio": 0.27798362131695464,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "auction",
+        "jail",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 482056,
+      "seat": 1,
+      "persona": "sari",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 447,
+      "invalid": 0,
+      "failed": null,
+      "builds": 31,
+      "trades": 5,
+      "monopolies": 8,
+      "income": 64660,
+      "spendBuilding": 35000,
+      "auctionPriceRatio": 0.3250347222222222,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "auction",
+        "trade",
+        "jail",
+        "debt"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 482056,
+      "seat": 1,
+      "persona": "sari",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 477,
+      "invalid": 0,
+      "failed": null,
+      "builds": 24,
+      "trades": 2,
+      "monopolies": 7,
+      "income": 56122,
+      "spendBuilding": 28500,
+      "auctionPriceRatio": 0.27742806576139906,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "auction",
+        "jail",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 482056,
+      "seat": 1,
+      "persona": "sari",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 443,
+      "invalid": 0,
+      "failed": null,
+      "builds": 22,
+      "trades": 3,
+      "monopolies": 7,
+      "income": 57982,
+      "spendBuilding": 25500,
+      "auctionPriceRatio": 0.27742806576139906,
+      "nodes": 3293,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "auction",
+        "jail",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 2,
+      "seed": 482056,
+      "seat": 1,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 446,
+      "invalid": 0,
+      "failed": null,
+      "builds": 15,
+      "trades": 0,
+      "monopolies": 7,
+      "income": 45552,
+      "spendBuilding": 15000,
+      "auctionPriceRatio": 0.30031025918525917,
+      "nodes": 13760,
+      "samples": 684,
+      "budgetStops": 86,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "card",
+        "end",
+        "buy",
+        "auction",
+        "jail",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 0,
+      "persona": "sari",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 333,
+      "invalid": 0,
+      "failed": null,
+      "builds": 18,
+      "trades": 0,
+      "monopolies": 6,
+      "income": 40390,
+      "spendBuilding": 19000,
+      "auctionPriceRatio": 0.5106666666666667,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 0,
+      "persona": "sari",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 321,
+      "invalid": 0,
+      "failed": null,
+      "builds": 16,
+      "trades": 1,
+      "monopolies": 7,
+      "income": 41650,
+      "spendBuilding": 16500,
+      "auctionPriceRatio": 0.10373809523809525,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "auction",
+        "trade",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 0,
+      "persona": "sari",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 333,
+      "invalid": 0,
+      "failed": null,
+      "builds": 18,
+      "trades": 0,
+      "monopolies": 6,
+      "income": 40390,
+      "spendBuilding": 19000,
+      "auctionPriceRatio": 0.5106666666666667,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 0,
+      "persona": "sari",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 333,
+      "invalid": 0,
+      "failed": null,
+      "builds": 18,
+      "trades": 0,
+      "monopolies": 6,
+      "income": 40390,
+      "spendBuilding": 19000,
+      "auctionPriceRatio": 0.5106666666666667,
+      "nodes": 1262,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 0,
+      "persona": "sari",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 0,
+      "won": true,
+      "bankrupt": false,
+      "actions": 333,
+      "invalid": 0,
+      "failed": null,
+      "builds": 18,
+      "trades": 0,
+      "monopolies": 6,
+      "income": 40390,
+      "spendBuilding": 19000,
+      "auctionPriceRatio": 0.5106666666666667,
+      "nodes": 4000,
+      "samples": 219,
+      "budgetStops": 25,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 1,
+      "persona": "raka",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 433,
+      "invalid": 0,
+      "failed": null,
+      "builds": 14,
+      "trades": 1,
+      "monopolies": 6,
+      "income": 38675,
+      "spendBuilding": 21000,
+      "auctionPriceRatio": 0.4475,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 1,
+      "persona": "raka",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": false,
+      "bankrupt": true,
+      "actions": 481,
+      "invalid": 0,
+      "failed": null,
+      "builds": 14,
+      "trades": 1,
+      "monopolies": 1,
+      "income": 47828,
+      "spendBuilding": 21000,
+      "auctionPriceRatio": 0.195,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 1,
+      "persona": "raka",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 433,
+      "invalid": 0,
+      "failed": null,
+      "builds": 14,
+      "trades": 1,
+      "monopolies": 6,
+      "income": 38675,
+      "spendBuilding": 21000,
+      "auctionPriceRatio": 0.4475,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 1,
+      "persona": "raka",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 598,
+      "invalid": 0,
+      "failed": null,
+      "builds": 31,
+      "trades": 1,
+      "monopolies": 8,
+      "income": 60960,
+      "spendBuilding": 37500,
+      "auctionPriceRatio": 0.37859375000000006,
+      "nodes": 3317,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 1,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": true,
+      "bankrupt": false,
+      "actions": 551,
+      "invalid": 0,
+      "failed": null,
+      "builds": 14,
+      "trades": 1,
+      "monopolies": 6,
+      "income": 40645,
+      "spendBuilding": 20000,
+      "auctionPriceRatio": 0.7161111111111111,
+      "nodes": 10560,
+      "samples": 492,
+      "budgetStops": 66,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 2,
+      "persona": "bima",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": true,
+      "bankrupt": false,
+      "actions": 661,
+      "invalid": 0,
+      "failed": null,
+      "builds": 20,
+      "trades": 0,
+      "monopolies": 6,
+      "income": 71056,
+      "spendBuilding": 33000,
+      "auctionPriceRatio": 0.30291666666666667,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 2,
+      "persona": "bima",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 591,
+      "invalid": 0,
+      "failed": null,
+      "builds": 0,
+      "trades": 5,
+      "monopolies": 2,
+      "income": 40376,
+      "spendBuilding": 0,
+      "auctionPriceRatio": 0.5054761904761905,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 2,
+      "persona": "bima",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 2,
+      "won": true,
+      "bankrupt": false,
+      "actions": 661,
+      "invalid": 0,
+      "failed": null,
+      "builds": 20,
+      "trades": 0,
+      "monopolies": 6,
+      "income": 71056,
+      "spendBuilding": 33000,
+      "auctionPriceRatio": 0.30291666666666667,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 2,
+      "persona": "bima",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 610,
+      "invalid": 0,
+      "failed": null,
+      "builds": 9,
+      "trades": 0,
+      "monopolies": 2,
+      "income": 54830,
+      "spendBuilding": 13500,
+      "auctionPriceRatio": 0.3388333333333334,
+      "nodes": 1482,
+      "samples": 0,
+      "budgetStops": 4,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 3,
+      "seed": 482087,
+      "seat": 2,
+      "persona": "bima",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 610,
+      "invalid": 0,
+      "failed": null,
+      "builds": 9,
+      "trades": 0,
+      "monopolies": 2,
+      "income": 54830,
+      "spendBuilding": 13500,
+      "auctionPriceRatio": 0.3388333333333334,
+      "nodes": 4171,
+      "samples": 224,
+      "budgetStops": 27,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "auction",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 482118,
+      "seat": 0,
+      "persona": "raka",
+      "model": "baseline",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 1566,
+      "invalid": 0,
+      "failed": null,
+      "builds": 0,
+      "trades": 2,
+      "monopolies": 0,
+      "income": 29332,
+      "spendBuilding": 0,
+      "auctionPriceRatio": 1,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "auction",
+        "jail",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 482118,
+      "seat": 0,
+      "persona": "raka",
+      "model": "easy",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 1157,
+      "invalid": 0,
+      "failed": null,
+      "builds": 0,
+      "trades": 5,
+      "monopolies": 0,
+      "income": 68942,
+      "spendBuilding": 0,
+      "auctionPriceRatio": 1.38,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "auction",
+        "jail",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 482118,
+      "seat": 0,
+      "persona": "raka",
+      "model": "medium",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 1611,
+      "invalid": 0,
+      "failed": null,
+      "builds": 0,
+      "trades": 2,
+      "monopolies": 0,
+      "income": 29332,
+      "spendBuilding": 0,
+      "auctionPriceRatio": 1,
+      "nodes": 0,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "auction",
+        "jail",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 482118,
+      "seat": 0,
+      "persona": "raka",
+      "model": "hard",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": true,
+      "winner": 1,
+      "won": false,
+      "bankrupt": true,
+      "actions": 1611,
+      "invalid": 0,
+      "failed": null,
+      "builds": 0,
+      "trades": 2,
+      "monopolies": 0,
+      "income": 29332,
+      "spendBuilding": 0,
+      "auctionPriceRatio": 1,
+      "nodes": 13270,
+      "samples": 0,
+      "budgetStops": 0,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "auction",
+        "jail",
+        "debt",
+        "mortgage"
+      ],
+      "variant": "full"
+    },
+    {
+      "n": 4,
+      "seed": 482118,
+      "seat": 0,
+      "persona": "raka",
+      "model": "hardcore",
+      "options": {
+        "searchVariant": "short"
+      },
+      "finished": false,
+      "winner": null,
+      "won": false,
+      "bankrupt": false,
+      "actions": 880,
+      "invalid": 0,
+      "failed": "wall_budget",
+      "builds": 0,
+      "trades": 0,
+      "monopolies": 0,
+      "income": 5070,
+      "spendBuilding": 0,
+      "auctionPriceRatio": null,
+      "nodes": 29920,
+      "samples": 1255,
+      "budgetStops": 187,
+      "seenPhases": [
+        "starting",
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "auction",
+        "jail",
+        "debt"
+      ],
+      "failedSnapshot": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "mind-482118-0",
+        "version": 880,
+        "players": [
+          {
+            "id": 0,
+            "name": "Raka 0",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "hardcore",
+            "pawn": 0,
+            "cash": 3290,
+            "pos": 13,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 1,
+            "name": "Bima 1",
+            "controller": "bot",
+            "botPersona": "bima",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 356,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false,
+            "lastOfferRound": 5
+          },
+          {
+            "id": 2,
+            "name": "Sari 2",
+            "controller": "bot",
+            "botPersona": "sari",
+            "botDifficulty": "medium",
+            "pawn": 2,
+            "cash": 7200,
+            "pos": 37,
+            "jail": 0,
+            "inJail": false,
+            "cards": [
+              {
+                "deck": "chance",
+                "idx": 8
+              }
+            ],
+            "out": false,
+            "lastOfferRound": 9
+          },
+          {
+            "id": 3,
+            "name": "Raka 3",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 3,
+            "cash": 10624,
+            "pos": 17,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": 2,
+            "level": 5,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": 2,
+            "level": 5,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": 3,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": 1,
+            "level": 5,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": 3,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": 1,
+            "level": 4,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": 1,
+            "level": 5,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": 2,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": 2,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": 3,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": 3,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": 2,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": 3,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": 3,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 2,
+        "startSeat": 3,
+        "turnSerial": 47,
+        "round": 12,
+        "phase": "auction",
+        "starting": {
+          "pending": [],
+          "scores": [
+            {
+              "player": 0,
+              "dice": [
+                5,
+                2
+              ],
+              "total": 7
+            },
+            {
+              "player": 1,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            },
+            {
+              "player": 2,
+              "dice": [
+                1,
+                4
+              ],
+              "total": 5
+            },
+            {
+              "player": 3,
+              "dice": [
+                3,
+                6
+              ],
+              "total": 9
+            }
+          ],
+          "history": [
+            {
+              "player": 0,
+              "dice": [
+                5,
+                2
+              ],
+              "total": 7
+            },
+            {
+              "player": 1,
+              "dice": [
+                4,
+                1
+              ],
+              "total": 5
+            },
+            {
+              "player": 2,
+              "dice": [
+                1,
+                4
+              ],
+              "total": 5
+            },
+            {
+              "player": 3,
+              "dice": [
+                3,
+                6
+              ],
+              "total": 9
+            }
+          ],
+          "round": 1
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          3,
+          5
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 28,
+          "hotels": 8
+        },
+        "queue": [],
+        "debt": null,
+        "auction": {
+          "id": "mind-482118-0:auction:922",
+          "kind": "property",
+          "tile": 37,
+          "participants": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "highest": 2,
+          "amount": 2160,
+          "passed": [],
+          "bidder": 3
+        },
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 979,
+            "text": "Sari 2 menawar N 216.",
+            "type": "auction",
+            "turn": 12,
+            "version": 880,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 978,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 879,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 977,
+            "text": "Raka 0 menawar N 215.",
+            "type": "auction",
+            "turn": 12,
+            "version": 878,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 976,
+            "text": "Sari 2 menawar N 214.",
+            "type": "auction",
+            "turn": 12,
+            "version": 877,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 975,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 876,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 974,
+            "text": "Raka 0 menawar N 213.",
+            "type": "auction",
+            "turn": 12,
+            "version": 875,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 973,
+            "text": "Sari 2 menawar N 212.",
+            "type": "auction",
+            "turn": 12,
+            "version": 874,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 972,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 873,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 971,
+            "text": "Raka 0 menawar N 211.",
+            "type": "auction",
+            "turn": 12,
+            "version": 872,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 970,
+            "text": "Sari 2 menawar N 210.",
+            "type": "auction",
+            "turn": 12,
+            "version": 871,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 969,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 870,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 968,
+            "text": "Raka 0 menawar N 209.",
+            "type": "auction",
+            "turn": 12,
+            "version": 869,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 967,
+            "text": "Sari 2 menawar N 208.",
+            "type": "auction",
+            "turn": 12,
+            "version": 868,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 966,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 867,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 965,
+            "text": "Raka 0 menawar N 207.",
+            "type": "auction",
+            "turn": 12,
+            "version": 866,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 964,
+            "text": "Sari 2 menawar N 206.",
+            "type": "auction",
+            "turn": 12,
+            "version": 865,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 963,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 864,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 962,
+            "text": "Raka 0 menawar N 205.",
+            "type": "auction",
+            "turn": 12,
+            "version": 863,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 961,
+            "text": "Sari 2 menawar N 204.",
+            "type": "auction",
+            "turn": 12,
+            "version": 862,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 960,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 861,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 959,
+            "text": "Raka 0 menawar N 203.",
+            "type": "auction",
+            "turn": 12,
+            "version": 860,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 958,
+            "text": "Sari 2 menawar N 202.",
+            "type": "auction",
+            "turn": 12,
+            "version": 859,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 957,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 858,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 956,
+            "text": "Raka 0 menawar N 201.",
+            "type": "auction",
+            "turn": 12,
+            "version": 857,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 955,
+            "text": "Sari 2 menawar N 200.",
+            "type": "auction",
+            "turn": 12,
+            "version": 856,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 954,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 855,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 953,
+            "text": "Raka 0 menawar N 199.",
+            "type": "auction",
+            "turn": 12,
+            "version": 854,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 952,
+            "text": "Sari 2 menawar N 198.",
+            "type": "auction",
+            "turn": 12,
+            "version": 853,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 951,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 852,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 950,
+            "text": "Raka 0 menawar N 197.",
+            "type": "auction",
+            "turn": 12,
+            "version": 851,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 949,
+            "text": "Sari 2 menawar N 196.",
+            "type": "auction",
+            "turn": 12,
+            "version": 850,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 948,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 849,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 947,
+            "text": "Raka 0 menawar N 195.",
+            "type": "auction",
+            "turn": 12,
+            "version": 848,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 946,
+            "text": "Sari 2 menawar N 194.",
+            "type": "auction",
+            "turn": 12,
+            "version": 847,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 945,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 846,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 944,
+            "text": "Raka 0 menawar N 193.",
+            "type": "auction",
+            "turn": 12,
+            "version": 845,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 943,
+            "text": "Sari 2 menawar N 192.",
+            "type": "auction",
+            "turn": 12,
+            "version": 844,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 942,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 843,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 941,
+            "text": "Raka 0 menawar N 191.",
+            "type": "auction",
+            "turn": 12,
+            "version": 842,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 940,
+            "text": "Sari 2 menawar N 190.",
+            "type": "auction",
+            "turn": 12,
+            "version": 841,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 939,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 840,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 938,
+            "text": "Raka 0 menawar N 189.",
+            "type": "auction",
+            "turn": 12,
+            "version": 839,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 937,
+            "text": "Sari 2 menawar N 188.",
+            "type": "auction",
+            "turn": 12,
+            "version": 838,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 936,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 837,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 935,
+            "text": "Raka 0 menawar N 187.",
+            "type": "auction",
+            "turn": 12,
+            "version": 836,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 934,
+            "text": "Sari 2 menawar N 186.",
+            "type": "auction",
+            "turn": 12,
+            "version": 835,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 933,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 834,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 932,
+            "text": "Raka 0 menawar N 185.",
+            "type": "auction",
+            "turn": 12,
+            "version": 833,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 931,
+            "text": "Sari 2 menawar N 184.",
+            "type": "auction",
+            "turn": 12,
+            "version": 832,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 930,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 831,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 929,
+            "text": "Raka 0 menawar N 183.",
+            "type": "auction",
+            "turn": 12,
+            "version": 830,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 928,
+            "text": "Sari 2 menawar N 143.",
+            "type": "auction",
+            "turn": 12,
+            "version": 829,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 927,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 828,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 926,
+            "text": "Raka 0 menawar N 142.",
+            "type": "auction",
+            "turn": 12,
+            "version": 827,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 925,
+            "text": "Sari 2 menawar N 102.",
+            "type": "auction",
+            "turn": 12,
+            "version": 826,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 924,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 825,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 923,
+            "text": "Raka 0 menawar N 49.",
+            "type": "auction",
+            "turn": 12,
+            "version": 824,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 922,
+            "text": "Lelang Raja Ampat: mulai N 10, kenaikan minimal N 1.",
+            "type": "auction",
+            "turn": 12,
+            "version": 823,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 921,
+            "text": "Sari 2 tiba di Raja Ampat.",
+            "type": "move",
+            "turn": 12,
+            "version": 822,
+            "actor": 2,
+            "audience": "public",
+            "move": {
+              "id": 921,
+              "player": 2,
+              "path": [
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37
+              ],
+              "from": 29
+            }
+          },
+          {
+            "id": 920,
+            "text": "Sari 2 melempar 3 + 5.",
+            "type": "dice",
+            "turn": 12,
+            "version": 822,
+            "actor": 2,
+            "audience": "public",
+            "dice": [
+              3,
+              5
+            ],
+            "diceKind": "movement"
+          },
+          {
+            "id": 919,
+            "text": "Giliran Sari 2.",
+            "type": "turn",
+            "turn": 12,
+            "version": 821,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 918,
+            "text": "Bima 1 membangun hotel di Medan · N 100.",
+            "type": "build",
+            "turn": 12,
+            "version": 820,
+            "actor": 1,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 1,
+                "to": null,
+                "amount": 1000,
+                "tile": 11
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 11,
+                "owner": 1,
+                "level": 5,
+                "mortgaged": false
+              }
+            ]
+          },
+          {
+            "id": 917,
+            "text": "Bima 1 membangun hotel di Palembang · N 100.",
+            "type": "build",
+            "turn": 12,
+            "version": 819,
+            "actor": 1,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 1,
+                "to": null,
+                "amount": 1000,
+                "tile": 14
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 14,
+                "owner": 1,
+                "level": 5,
+                "mortgaged": false
+              }
+            ]
+          },
+          {
+            "id": 916,
+            "text": "Bima 1 tiba di Mulai.",
+            "type": "move",
+            "turn": 12,
+            "version": 818,
+            "actor": 1,
+            "audience": "public",
+            "move": {
+              "id": 916,
+              "player": 1,
+              "path": [
+                36,
+                37,
+                38,
+                39,
+                0
+              ],
+              "from": 35
+            }
+          },
+          {
+            "id": 915,
+            "text": "Bima 1 melewati Mulai: +N 200.",
+            "type": "money",
+            "turn": 12,
+            "version": 818,
+            "actor": 1,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "salary",
+                "from": null,
+                "to": 1,
+                "amount": 2000
+              }
+            ]
+          },
+          {
+            "id": 914,
+            "text": "Bima 1 melempar 4 + 1.",
+            "type": "dice",
+            "turn": 12,
+            "version": 818,
+            "actor": 1,
+            "audience": "public",
+            "dice": [
+              4,
+              1
+            ],
+            "diceKind": "movement"
+          },
+          {
+            "id": 913,
+            "text": "Bima 1 membayar N 100 kepada Raka 3 · sewa Stasiun Tugu.",
+            "type": "money",
+            "turn": 12,
+            "version": 817,
+            "actor": 1,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "rent",
+                "from": 1,
+                "to": 3,
+                "amount": 1000,
+                "tile": 35
+              }
+            ]
+          },
+          {
+            "id": 912,
+            "text": "Bima 1 menjual bangunan Palembang.",
+            "type": "money",
+            "turn": 12,
+            "version": 816,
+            "actor": 1,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "sell",
+                "from": null,
+                "to": 1,
+                "amount": 500,
+                "tile": 14
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 14,
+                "owner": 1,
+                "level": 4,
+                "mortgaged": false
+              }
+            ]
+          },
+          {
+            "id": 911,
+            "text": "Bima 1 kekurangan N 14,4 untuk sewa Stasiun Tugu.",
+            "type": "debt",
+            "turn": 12,
+            "version": 815,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 910,
+            "text": "Bima 1 tiba di Stasiun Tugu.",
+            "type": "move",
+            "turn": 12,
+            "version": 815,
+            "actor": 1,
+            "audience": "public",
+            "move": {
+              "id": 910,
+              "player": 1,
+              "path": [
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35
+              ],
+              "from": 27
+            }
+          },
+          {
+            "id": 909,
+            "text": "Bima 1 melempar 4 + 4 · kembar.",
+            "type": "dice",
+            "turn": 12,
+            "version": 815,
+            "actor": 1,
+            "audience": "public",
+            "dice": [
+              4,
+              4
+            ],
+            "diceKind": "movement"
+          },
+          {
+            "id": 908,
+            "text": "Lelang selesai: Raka 3 memenangkan Banjarmasin · N 296.",
+            "type": "auctionResult",
+            "turn": 12,
+            "version": 814,
+            "actor": 2,
+            "audience": "public",
+            "auctionResult": {
+              "auctionId": "mind-482118-0:auction:663",
+              "kind": "property",
+              "building": null,
+              "tile": 27,
+              "winner": 3,
+              "amount": 2960,
+              "participants": [
+                0,
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "id": 907,
+            "text": "Raka 3 memenangkan Banjarmasin seharga N 296.",
+            "type": "buy",
+            "turn": 12,
+            "version": 814,
+            "actor": 2,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "auction",
+                "from": 3,
+                "to": null,
+                "amount": 2960,
+                "tile": 27
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 27,
+                "owner": 3,
+                "level": 0,
+                "mortgaged": false
+              }
+            ]
+          },
+          {
+            "id": 906,
+            "text": "Sari 2 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 814,
+            "actor": 2,
+            "audience": "public"
+          },
+          {
+            "id": 905,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 813,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 904,
+            "text": "Raka 0 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 812,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 903,
+            "text": "Raka 3 menawar N 296.",
+            "type": "auction",
+            "turn": 12,
+            "version": 811,
+            "actor": 3,
+            "audience": "public"
+          },
+          {
+            "id": 902,
+            "text": "Bima 1 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 810,
+            "actor": 1,
+            "audience": "public"
+          },
+          {
+            "id": 901,
+            "text": "Raka 0 tidak menaikkan tawaran saat ini.",
+            "type": "auction",
+            "turn": 12,
+            "version": 809,
+            "actor": 0,
+            "audience": "public"
+          },
+          {
+            "id": 900,
+            "text": "Sari 2 menawar N 295.",
+            "type": "auction",
+            "turn": 12,
+            "version": 808,
+            "actor": 2,
+            "audience": "public"
+          }
+        ],
+        "eventId": 979,
+        "lastMove": {
+          "id": 921,
+          "player": 2,
+          "path": [
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "from": 29
+        },
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "buy": 37,
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "0": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {}
+            }
+          },
+          "opponents": {
+            "0": {
+              "aggression": 0.5985724190730324,
+              "observations": 186
+            },
+            "1": {
+              "aggression": 0.32486401570679824,
+              "observations": 26
+            },
+            "2": {
+              "aggression": 0.6020984981947105,
+              "observations": 187
+            },
+            "3": {
+              "aggression": 1.1165621055270023,
+              "observations": 30
+            }
+          },
+          "negotiation": null
+        }
+      },
+      "recent": [
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 1900,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 840
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 1910,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 841
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 842
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 1920,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 843
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 1930,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 844
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 845
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 1940,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 846
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 1950,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 847
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 848
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 1960,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 849
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 1970,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 850
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 851
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 1980,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 852
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 1990,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 853
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 854
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 2000,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 855
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 2010,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 856
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 857
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 2020,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 858
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 2030,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 859
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 860
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 2040,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 861
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 2050,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 862
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 863
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 2060,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 864
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 2070,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 865
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 866
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 2080,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 867
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 2090,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 868
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 869
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 2100,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 870
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 2110,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 871
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 872
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 2120,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 873
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 2130,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 874
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 875
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 2140,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 876
+        },
+        {
+          "actor": 0,
+          "action": {
+            "type": "BID",
+            "amount": 2150,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 877
+        },
+        {
+          "actor": 1,
+          "action": {
+            "type": "PASS",
+            "actionId": "c0"
+          },
+          "phase": "auction",
+          "version": 878
+        },
+        {
+          "actor": 2,
+          "action": {
+            "type": "BID",
+            "amount": 2160,
+            "actionId": "c1"
+          },
+          "phase": "auction",
+          "version": 879
+        }
+      ],
+      "variant": "full"
+    }
+  ],
+  "node": "v24.19.0",
+  "sourceHashFiles": [
+    "lib/bot/mind.mjs",
+    "lib/bot/strategy.mjs",
+    "lib/game.mjs"
+  ],
+  "promotion": {
+    "promote": false,
+    "reasons": [
+      "insufficient_held_out_games",
+      "finish_rate_below_99_percent",
+      "superiority_not_established"
+    ],
+    "champion": "v4.5 economic policy / default Medium",
+    "challenger": "NUSA-X4",
+    "automaticProductionChanges": false
+  }
+}

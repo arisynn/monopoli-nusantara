@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-10-16T06:18:02.548Z",
+  "node": "v24.19.0",
+  "files": [
+    "tests/game.test.mjs",
+    "tests/classic.test.mjs",
+    "tests/storage.test.mjs",
+    "tests/save-format.test.mjs",
+    "tests/room-client.test.mjs",
+    "tests/ui-refinement.test.mjs",
+    "tests/pawn-flow.test.mjs",
+    "tests/asset-trade-v26.test.mjs",
+    "tests/gameplay-flow-v28.test.mjs",
+    "tests/compact-ui-v29.test.mjs",
+    "tests/gameplay-v210.test.mjs",
+    "tests/board-visual-v211.test.mjs",
+    "tests/online.test.mjs",
+    "tests/online-client.test.mjs",
+    "tests/online-api.test.mjs",
+    "tests/bot-strategy.test.mjs",
+    "tests/groq-hybrid.test.mjs",
+    "tests/bot-api.test.mjs",
+    "tests/online-bots.test.mjs",
+    "tests/experience-v45.test.mjs",
+    "tests/experience-render-v45.test.mjs",
+    "tests/mind-v46.test.mjs"
+  ],
+  "tests": 350,
+  "passed": 350,
+  "skipped": 0,
+  "failed": 0,
+  "failures": [],
+  "limitations": [
+    "PostgreSQL, RLS, live Auth and live Realtime not exercised; online store/HTTP tests use contract doubles.",
+    "Full npm test includes React/TypeScript rendering suites unavailable before dependency installation.",
+    "Production bundling, semantic TypeScript, real React DOM/mobile QA and deployment have not passed. Isolated TSX fixtures use TypeScript or an existing Babel transform with hook/child stubs."
+  ]
+}
