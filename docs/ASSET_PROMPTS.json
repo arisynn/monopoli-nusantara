@@ -15,11 +15,12 @@
       "key": "region-atlas",
       "transparent": false,
       "prompt": "Use case: stylized-concept. Asset type: eight-region illustration atlas used as original property card art in Monopoli Nusantara. An exact 4-column by 2-row contact sheet, eight equally sized rectangular panels, edge-to-edge with NO gaps NO borders NO text. Every panel has matching premium miniature handcrafted 3D diorama style, warm sunset light, teal navy champagne palette. Top row left to right: West Java tea hills and colonial garden villa; Central/East Java city with ancient temple and modern skyline; Sumatra traditional sweeping roof houses beside a river; East Java majestic volcanic mountain and colorful village. Bottom row left to right: Bali and Nusa Tenggara with multi-tier temple and tropical ocean; Kalimantan dense forest river with wooden stilt houses; Sulawesi and Maluku sailing harbor and curved traditional roof; Raja Ampat emerald karst islands meeting a sophisticated Jakarta skyscraper silhouette. Each is a standalone centered miniature scene within its exact cell, fully usable as property illustration. No people, no text, no Monopoly brand assets or mascots. Landscape 2:1 overall."
-    },
-    {
-      "key": "card-atlas",
-      "transparent": false,
-      "prompt": "Use case: stylized-concept. Asset type: original card-deck art atlas for Monopoli Nusantara. Two equally-sized square illustrations side-by-side with exact vertical split in center, no margins, no borders, no text. Left square: a beautiful brass compass with glowing star, antique map fragments, a tiny pinisi sailboat, warm golden magical light; colors navy and gold, suggesting chance and travel. Right square: a beautiful carved teal treasure chest open with warm gold coins and miniature Indonesian village rooftops surrounded by subtle batik ornaments; colors navy emerald and gold, suggesting community and shared prosperity. Both premium polished 3D miniature collectible style with rich matte materials, consistent dramatic studio lighting, centered subjects with quiet corners for UI crop. No letters, numbers, logos, or watermarks."
     }
-  ]
+  ],
+  "board_v211": {
+    "mode": "original vector artwork",
+    "generator": "scripts/create-board-assets.py",
+    "cards": "Entirely new chance/community SVG illustrations; old card-atlas removed.",
+    "license": "Original project artwork; no third-party characters or official board-game artwork."
+  }
 }

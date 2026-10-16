@@ -1,0 +1,3 @@
+# The function uses a dedicated constant-time verified header secret, not browser JWTs.
+[functions.monopoli-bots]
+verify_jwt = false

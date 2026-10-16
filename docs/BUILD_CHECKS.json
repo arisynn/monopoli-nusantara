@@ -1,0 +1,10 @@
+{
+  "status": "blocked_by_missing_dependencies",
+  "commands": [
+    {"command":"npm run typecheck","exitCode":127,"error":"tsc: not found"},
+    {"command":"npm run lint","exitCode":127,"error":"eslint: not found"},
+    {"command":"npm run build","exitCode":1,"error":"vinext/dist/cli.js not installed"},
+    {"command":"npm run build:vercel","exitCode":127,"error":"next: not found"}
+  ],
+  "limitations": ["Dependency installation was interrupted and was not retried.","Node syntax stripping and runtime tests do not replace TypeScript/TSX checking or a production build.","Remote commit bc90b2f and its branch were not available in this workspace."]
+}

@@ -1,0 +1,13 @@
+{
+  "release":"4.5.0",
+  "status":"blocked_by_uninstalled_dependencies",
+  "commands":[
+    {"command":"npm run typecheck","exitCode":127,"error":"tsc: not found"},
+    {"command":"npm run lint","exitCode":127,"error":"eslint: not found"},
+    {"command":"npm run build","exitCode":1,"error":"vinext/dist/cli.js not installed"},
+    {"command":"npm run build:vercel","exitCode":127,"error":"next: not found"}
+  ],
+  "installationRetried":false,
+  "alternatives":"Node regression/service tests; existing Babel syntax parser; TSX element-tree fixtures using hook/child stubs; static SVG artwork rasterization.",
+  "limits":"These alternatives do not establish semantic TypeScript, React DOM lifecycle, CSS 3D rendering, Android performance, Supabase live or successful deployment."
+}

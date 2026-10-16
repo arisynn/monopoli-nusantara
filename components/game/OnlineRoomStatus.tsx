@@ -1,0 +1,11 @@
+'use client';
+export default function OnlineRoomStatus({room,busy,onAction}:{room:any;busy:boolean;onAction:(type:string,data?:any)=>void}) {
+ if(!room||room.provider!=='supabase'||!room.state)return null;
+ const active=room.seats.filter((s:any)=>!s.out&&s.controller!=='bot'), own=room.seats[room.seat], vote=room.vote;
+ const eligible=vote?.eligible.includes(room.seat), voted=vote&&Object.hasOwn(vote.votes,room.seat);
+ const yes=vote?Object.values(vote.votes).filter(Boolean).length:0, needed=vote?Math.floor(vote.eligible.length/2)+1:0;
+ return <section className={`online-room-status ${room.status==='paused'?'room-paused':''}`} aria-label="Status pertandingan online" aria-live="polite">
+  {room.status==='paused'?<><div><b>Permainan dijeda</b><small>{room.pause.reason==='disconnect'?'Koneksi pemain terputus':'Voting jeda disetujui'} · {room.pause.ready.length}/{active.length} siap lanjut</small></div><div className="resume-participants">{active.map((s:any)=><span key={s.id}>{s.name}: {!s.connected?'offline':room.pause.ready.includes(s.id)?'siap':'menunggu siap'}</span>)}</div>{!own.out&&<button className="secondary" disabled={busy||!own.connected} onClick={()=>onAction('RESUME_READY',{cycle:room.pause.cycle,ready:!room.pause.ready.includes(room.seat)})}>{room.pause.ready.includes(room.seat)?'Batalkan siap':'Siap lanjut'}</button>}</>:
+   room.status==='playing'?<><div><b>{room.held?'Menunggu pemain tersambung':'Room '+room.code}</b>{room.held&&<small>Hak keputusan ditahan. Auto-pause setelah 90 detik tanpa heartbeat.</small>}</div>{vote?.status==='open'?<div className="online-button-row"><span>Jeda: {yes}/{needed} setuju</span>{eligible&&!voted&&!own.out?<><button className="secondary" disabled={busy} onClick={()=>onAction('VOTE',{voteId:vote.id,agree:true})}>Setuju</button><button className="secondary" disabled={busy} onClick={()=>onAction('VOTE',{voteId:vote.id,agree:false})}>Tolak</button></>:<small>{voted?'Suara tercatat':'Menunggu peserta'} · berlaku 60 detik</small>}</div>:<>{vote&&<small>{vote.status==='expired'?'Voting berakhir':vote.status==='rejected'?'Voting ditolak':''}</small>}{!own.out&&<button className="text-link" disabled={busy} onClick={()=>onAction('PAUSE_REQUEST')}>Ajukan jeda</button>}</>}</>:<b>Pertandingan selesai · tersimpan</b>}
+ </section>;
+}

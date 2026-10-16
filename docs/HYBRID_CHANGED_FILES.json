@@ -1,0 +1,218 @@
+[
+  {
+    "file": ".env.example",
+    "status": "modified"
+  },
+  {
+    "file": "README.md",
+    "status": "modified"
+  },
+  {
+    "file": "app/api/bot/route.ts",
+    "status": "new"
+  },
+  {
+    "file": "app/api/game/route.ts",
+    "status": "modified"
+  },
+  {
+    "file": "app/api/online/route.ts",
+    "status": "modified"
+  },
+  {
+    "file": "components/game/Game.tsx",
+    "status": "modified"
+  },
+  {
+    "file": "components/game/OnlineRoomStatus.tsx",
+    "status": "modified"
+  },
+  {
+    "file": "docs/BOT_ABLATION.json",
+    "status": "new"
+  },
+  {
+    "file": "docs/BOT_BENCHMARK_ANALYSIS.json",
+    "status": "new"
+  },
+  {
+    "file": "docs/BOT_EVALUATION.json",
+    "status": "new"
+  },
+  {
+    "file": "docs/BOT_EVALUATION_PRE_AUCTION.json",
+    "status": "new"
+  },
+  {
+    "file": "docs/BOT_TRUNCATED_REPLAY.json",
+    "status": "new"
+  },
+  {
+    "file": "docs/BOT_TUNING.json",
+    "status": "new"
+  },
+  {
+    "file": "docs/BUILD_CHECKS.json",
+    "status": "new"
+  },
+  {
+    "file": "docs/DEPLOY_HYBRID.md",
+    "status": "new"
+  },
+  {
+    "file": "docs/DEPLOY_SUPABASE.md",
+    "status": "modified"
+  },
+  {
+    "file": "docs/DEPLOY_VERCEL.md",
+    "status": "modified"
+  },
+  {
+    "file": "docs/HYBRID_AUDIT.md",
+    "status": "new"
+  },
+  {
+    "file": "docs/HYBRID_IMPLEMENTATION_REPORT.md",
+    "status": "new"
+  },
+  {
+    "file": "docs/ONLINE_MULTIPLAYER_REPORT.md",
+    "status": "modified"
+  },
+  {
+    "file": "docs/QA_HYBRID_RESULTS.json",
+    "status": "new"
+  },
+  {
+    "file": "docs/SYNTAX_CHECKS.json",
+    "status": "new"
+  },
+  {
+    "file": "lib/bot/analysis.mjs",
+    "status": "new"
+  },
+  {
+    "file": "lib/bot/candidates.mjs",
+    "status": "new"
+  },
+  {
+    "file": "lib/bot/contracts.ts",
+    "status": "new"
+  },
+  {
+    "file": "lib/bot/memory.mjs",
+    "status": "new"
+  },
+  {
+    "file": "lib/bot/negotiation.mjs",
+    "status": "new"
+  },
+  {
+    "file": "lib/bot/personas.mjs",
+    "status": "new"
+  },
+  {
+    "file": "lib/bot/strategy.mjs",
+    "status": "new"
+  },
+  {
+    "file": "lib/content.mjs",
+    "status": "modified"
+  },
+  {
+    "file": "lib/game.mjs",
+    "status": "modified"
+  },
+  {
+    "file": "lib/groq.ts",
+    "status": "modified"
+  },
+  {
+    "file": "lib/server/bot-worker.mjs",
+    "status": "new"
+  },
+  {
+    "file": "lib/server/online-room.mjs",
+    "status": "modified"
+  },
+  {
+    "file": "lib/server/online-service.mjs",
+    "status": "modified"
+  },
+  {
+    "file": "lib/server/supabase-store.mjs",
+    "status": "modified"
+  },
+  {
+    "file": "package.json",
+    "status": "modified"
+  },
+  {
+    "file": "scripts/analyze-benchmark.mjs",
+    "status": "new"
+  },
+  {
+    "file": "scripts/benchmark-bots.mjs",
+    "status": "new"
+  },
+  {
+    "file": "scripts/test-core.mjs",
+    "status": "modified"
+  },
+  {
+    "file": "supabase/config.toml",
+    "status": "new"
+  },
+  {
+    "file": "supabase/functions/monopoli-bots/index.ts",
+    "status": "new"
+  },
+  {
+    "file": "supabase/migrations/202610160002_hybrid_bot_jobs.sql",
+    "status": "new"
+  },
+  {
+    "file": "supabase/scheduler_setup.sql",
+    "status": "new"
+  },
+  {
+    "file": "tests/board-visual-v211.test.mjs",
+    "status": "modified"
+  },
+  {
+    "file": "tests/bot-api.test.mjs",
+    "status": "new"
+  },
+  {
+    "file": "tests/bot-strategy.test.mjs",
+    "status": "new"
+  },
+  {
+    "file": "tests/groq-hybrid.test.mjs",
+    "status": "new"
+  },
+  {
+    "file": "tests/helpers/bot-job-store.mjs",
+    "status": "new"
+  },
+  {
+    "file": "tests/online-bots.test.mjs",
+    "status": "new"
+  },
+  {
+    "file": "tests/supabase-bots-live.test.mjs",
+    "status": "new"
+  },
+  {
+    "file": "tests/types/bot-contract.ts",
+    "status": "new"
+  },
+  {
+    "file": "tsconfig.json",
+    "status": "modified"
+  },
+  {
+    "file": "docs/HYBRID_CHANGED_FILES.json",
+    "status": "new"
+  }
+]

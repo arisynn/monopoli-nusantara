@@ -13,7 +13,7 @@ test('v2.4 keeps the 40-tile board clear of fixed zoom and minimap widgets',()=>
 });
 test('dice animation respects the actual dice result and cannot intercept pointer input',()=>{
  const fx=read('../components/game/DiceRollFx.tsx');const css=read('../app/globals.css');
- assert(fx.includes('(dice[i]||1)'));assert(fx.includes('reduced?150:200'));
+ assert(fx.includes('orientations[dice[i]]'));assert(fx.includes("stage==='rolling'"));
  assert(css.includes('.board-dice-effect{position:absolute;inset:0;z-index:3;display:grid;place-items:center;pointer-events:none'));
  assert(css.includes('@media(prefers-reduced-motion:reduce)'));
 });
@@ -22,7 +22,7 @@ test('v2.6 uses a compact asset manager and a guided barter without changing boa
  const assets=read('../components/game/AssetManager.tsx');
  const wizard=read('../components/game/TradeWizard.tsx');
  const review=read('../components/game/TradeReview.tsx');
- assert(game.includes('<AssetManager game={s}'));
+ assert(game.includes('<AssetManager game={shown}'));
  assert(game.includes('<TradeWizard onPick='));
  assert(game.includes('mode="counter"'));
  assert(game.includes("act('OFFER',{trade:submitted},myId)"));

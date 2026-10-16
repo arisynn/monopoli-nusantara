@@ -1,30 +1,34 @@
-# Monopoli Nusantara v2.9 — Compact UI
+# Monopoli Nusantara v4.5 — Board & Gameplay Experience
 
-Web game properti 2D berbahasa Indonesia. Papan SVG vektor, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
+**Status v4.5:** urutan dadu → pion → kejadian → transaksi visual kini memakai satu antrean presentasi; event kartu/ledger berasal dari shared engine. Detail board, kapsul dan riwayat diperkuat tanpa mengubah aturan atau strategi bot. [Laporan v4.5](docs/V45_REPORT.md) · [Deployment](docs/DEPLOY_V45.md) · [QA](docs/QA_V45_RESULTS.json). Build/TypeScript penuh, Supabase live dan Android/browser belum terverifikasi.
 
-v2.9 memadatkan home, setup, lobby, gameplay, aset, barter, riwayat, simpanan, pengaturan dan panduan. Barter memakai satu composer dua sisi dengan selector properti; navigasi Back menjaga draf. Toast khusus mengatasi konflik CSS top/bottom yang menyebabkan notifikasi mobile terlalu tinggi. Smart Gameplay Flow v2.8 dan fondasi permainan tetap dipertahankan.
+Web game properti 2D berbahasa Indonesia. v4.5 melanjutkan fondasi Hybrid Intelligence 4.0 dan Supabase; laporan lama tetap disimpan sebagai riwayat verifikasi. Papan SVG, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
 
-**Status verifikasi:** 114 tes aturan/storage/klien/presentasi/source UI dan 7 tes kamera lulus. TypeScript/TSX, build, lint, DOM/browser dan multiplayer live belum diverifikasi karena dependency tidak tersedia; tidak dilakukan instalasi ulang. Lihat [audit, perubahan, hasil QA dan checklist v2.9](docs/UPDATE_v2.9.md).
+v2.11 menyempurnakan board: monogram Nusa, artwork spesial dan kartu yang baru, enam pion SVG berbeda yang bisa dipilih, serta cluster pion simetris. Aset kartu lama dihapus. Nilai ekonomi, aturan, kamera, dadu dan Smart Gameplay Flow v2.10 dipertahankan.
+
+**Hotfix 2.11.1:** memperbaiki TS2322 pada dua prop `GameNotice.message`. Pesan tetap string; rendering Nusa dilakukan di komponen notifikasi. [Detail hotfix](docs/HOTFIX_v2.11.1.md).
+
+**Riwayat verifikasi v2.11 (sebelum pembaruan Hybrid):** 147 tes regresi + 7 tes kamera lulus; sintaks 29 berkas TS/TSX diperiksa dengan parser Babel. TypeScript penuh, build, lint, React DOM/Android dan room live belum terverifikasi. Lihat [perubahan, kompatibilitas dan checklist v2.11](docs/UPDATE_v2.11.md).
 
 ## Fitur tersedia
 
-- Gameplay HP portrait menggunakan tinggi layar aktif; daftar pemain dapat digeser mendatar. Setup, aset, barter, riwayat, dan keputusan panjang menggunakan panel yang dapat digulir. Beranda dapat digulir pada layar pendek.
+- Gameplay HP portrait menggunakan tinggi layar aktif; kapsul pemain memakai grid adaptif 2–6 pemain. Setup, aset, barter, riwayat, dan keputusan panjang menggunakan panel yang dapat digulir. Beranda dapat digulir pada layar pendek.
 - Papan SVG 40 petak dengan empat sudut besar dan pita warna klasik. Dua tampilan: Seluruh papan dan Dekat/Ikuti pemain. Geser dan pinch zoom langsung pada papan tanpa tombol, minimap, atau label yang menutupi petak. Jelajah manual tetap aktif sampai tombol Ikuti pemain ditekan.
 - Lima slot save lokal, arsip permainan sebelumnya, ekspor/impor JSON tervalidasi, serta pengaturan yang diingat di perangkat.
 
-- Hotseat 2–6 manusia; duel bot lokal; duel melalui Groq saat secret terpasang.
-- Room privat 2–6 manusia, lobby siap, kursi bertoken, pemulihan sesi perangkat yang sama, state otoritatif di server.
-- Aset gambar orisinal tetap disertakan. Beranda, HUD, sertifikat, dan keputusan kartu kini memakai teks, CSS, dan ikon vektor yang telah tersedia.
+- Dua mode baru: VS Bot (2–4 peserta: manusia + Raka/Bima/Sari, tanpa difficulty selector) dan Online Multiplayer (2–6 peserta, minimal dua manusia, maksimal tiga bot unik setelah worker diverifikasi). Save hotseat lama dan adapter bot/Groq lama dipertahankan untuk kompatibilitas.
+- Jalur online baru: Supabase Auth, kursi per UUID, snapshot privat persisten, transaksi atomik, revision hints Realtime, reconnect, voting mayoritas, auto-pause dan resume semua aktif siap. Belum tervalidasi pada Supabase live.
+- Pion SVG orisinal dapat dipilih di setup/lobby, lalu konsisten pada board dan HUD. Kartu Kesempatan/Dana Umum memakai artwork baru; ilustrasi regional existing dipakai pada kota.
 - Aturan dasar C1009: lempar awal, lelang terbuka, lelang stok bangunan langka, barter saat utang/di luar giliran, pilihan langsung tebus aset tergadai, dan opsi klaim sewa manual.
 - 40 petak, 28 sertifikat, 32 kartu, dadu kembar, penjara, sewa, pajak, lelang, gadai, bangunan merata, barter dan tawaran balik, utang/kebangkrutan/pemenang.
-- Papan tidak memakai WebGL, Three.js, atau tekstur gambar. Teks, ikon, bangunan, dan pion tetap vektor saat diperbesar. Efek suara, animasi cepat, reduced motion, serah giliran tetap tersedia.
+- Papan tidak memakai WebGL atau Three.js. Teks, ikon spesial, bangunan dan pion tetap vektor saat diperbesar; strip kota memakai ilustrasi WebP existing. Efek suara, animasi cepat, reduced motion, serah giliran tetap tersedia.
 - Save lokal IndexedDB dengan salinan localStorage; service worker untuk cache shell setelah pemuatan awal. Offline perlu origin HTTPS dan cache yang telah terisi. Mode room dan Groq membutuhkan koneksi.
 
 Baca `docs/RULEPACK.md` untuk adaptasi yang eksplisit dan batas verifikasi v2. Baca `docs/QA_BOARD_2D.md` untuk pemeriksaan dasar kamera, serta `docs/UPDATE_v2.4.md` untuk peningkatan UX dan batas pengujian perangkat nyata.
 
 ## Deploy Vercel
 
-Gunakan `vercel.json` yang disertakan. Framework **Next.js**, Node **24.x**, build `npm run build:vercel`, output `.next`. Panduan lengkap dan environment variables: [`docs/DEPLOY_VERCEL.md`](docs/DEPLOY_VERCEL.md). Hotseat dan bot lokal tidak memerlukan database. Room online memerlukan Upstash Redis; Groq juga memerlukan `GROQ_API_KEY`.
+Gunakan `vercel.json` yang disertakan. Framework **Next.js**, Node **24.x**, build `npm run build:vercel`, output `.next`. Panduan lengkap dan environment variables: [`docs/DEPLOY_VERCEL.md`](docs/DEPLOY_VERCEL.md). VS Bot tidak memerlukan database. Room online baru memerlukan Supabase; lihat panduan di atas. Upstash/D1 dipertahankan untuk room legacy. Groq opsional untuk VS Bot tanpa database; bot lokal tetap mandiri.
 
 ```bash
 npx --yes pnpm@11.25.0 install --frozen-lockfile
@@ -57,9 +61,9 @@ Migrations schema-only pada `drizzle/`; hosting Sites menerapkannya sebelum Work
 
 Set secret runtime `GROQ_API_KEY` melalui konfigurasi server Vercel atau Sites. Opsional `GROQ_MODEL`, default `openai/gpt-oss-20b`. Jangan masukkan key ke frontend, git, atau hosting.json. Setelah menambah secret, terbitkan ulang versi Site agar konfigurasi aktif.
 
-Gateway menerima kandidat tindakan dari engine dan hanya memilih actionId legal; snapshot tidak berisi urutan deck. Respons timeout 5,5 detik, key tidak tersedia, error provider, atau batas penggunaan memakai bot cadangan berlabel. Tidak ada integrasi Groq langsung dari browser. Batas server awal: 1.000 evaluasi Groq per hari per Site, 30 pembuatan room per identitas per hari. Batas ini konservatif dan dapat disesuaikan dengan anggaran nyata.
+Endpoint `/api/bot` terpisah dari room Redis/D1. Local Engine menghitung kandidat legal, risiko, valuasi dan keputusan dasar; Groq hanya diminta untuk alternatif strategis yang berdekatan, lalu melewati economic decision gate. Timeout default 6,5 detik (ENV 1,5–9 detik), circuit breaker dan fallback lokal. Batas baru default 100 request/hari, maksimal 10/menit per instance/model dan 12/menit per sumber di endpoint. Budget harian memakai Supabase jika tersedia, atau penghitung instance yang tidak menjamin batas global serverless. Tidak ada request provider langsung dari browser.
 
-Groq belum dikonfigurasi atau diuji langsung pada versi rilis ini. UI secara jujur menawarkan bot lokal bila key tidak tersedia.
+Status membedakan lokal, terkonfigurasi, sedang dipanggil, sukses hybrid dan fallback. ENV bukan bukti provider berhasil. Tidak ada API Groq sungguhan dipanggil dalam QA ini; mock menguji kontrak/error, bukan kualitas model. Lihat `docs/DEPLOY_HYBRID.md` untuk konfigurasi worker/budget yang terpisah.
 
 ## Struktur
 
@@ -67,7 +71,10 @@ Groq belum dikonfigurasi atau diuji langsung pada versi rilis ini. UI secara juj
 - `components/game/AssetArt.tsx`, `RuleActions.tsx`: gambar UI dan keputusan aturan baru.
 - `lib/content.mjs`: rulepack, sertifikat, deck, identitas pion.
 - `lib/game.mjs`: validasi perintah, transaksi, resolusi kartu/utang, bot.
-- `lib/groq.ts`: adapter server Groq, timeout, schema.
+- `lib/bot/`: persona, analisis publik, valuasi, negosiasi, kandidat legal, memori dan scoring.
+- `lib/groq.ts`: advisor server, kontrak bersama, timeout, circuit dan decision gate.
+- `app/api/bot/route.ts`: advisor VS Bot tanpa Redis/Supabase.
+- `lib/server/bot-worker.mjs`, `supabase/functions/monopoli-bots/`: eksekusi bot otoritatif dengan job/lease persisten.
 - `lib/storage.ts`, `lib/save-format.mjs`: autosave, slot, arsip, validasi cadangan.
 - `lib/board-camera.mjs`, `components/game/useGameViewport.ts`: posisi tetap dan ukuran viewport.
 - `components/game/MobileDock.tsx`: aksi utama dalam area ringkas.
@@ -82,7 +89,7 @@ Groq belum dikonfigurasi atau diuji langsung pada versi rilis ini. UI secara juj
 
 ## Keamanan dan konsistensi
 
-API key hanya server. Token kursi random disimpan sebagai SHA-256 pada database. Snapshot publik menghapus deck dan daftar dedup. D1 atau skrip Lua Redis memeriksa revision saat commit; aksi membawa versi state dan command ID. Kas tidak boleh negatif; kreditur tidak menerima uang sebelum pembayaran benar-benar terjadi. Nama dan komentar dirender React sebagai teks.
+API key hanya server. Room baru memakai Supabase Auth UUID dan service-only RPC/CAS; membership dan revision hint dilindungi RLS, snapshot dan memori bot tetap privat. Pada room legacy, token kursi random disimpan sebagai SHA-256 pada database. Snapshot publik menghapus deck, daftar dedup dan memori strategi bot. D1 atau skrip Lua Redis memeriksa revision saat commit; aksi membawa versi state dan command ID. Kas tidak boleh negatif; kreditur tidak menerima uang sebelum pembayaran benar-benar terjadi. Nama dan komentar dirender React sebagai teks.
 
 Publikasi Sites sebelumnya privat untuk pemilik. Membagikan kode room saja tidak mengubah siapa yang dapat membuka Site. Ubah akses Site secara sengaja sebelum mengundang akun lain.
 

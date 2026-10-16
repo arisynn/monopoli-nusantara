@@ -1,0 +1,8 @@
+{
+  "baseline": "Current workspace source before v4.5, not an old ZIP",
+  "pairedSeeds": 6,
+  "participants": 4,
+  "actionsCompared": 3282,
+  "identicalRulesEconomyRngAndBaselineDecisions": true,
+  "ignored": "Additive presentation/finance metadata, reveal IDs and jail jump origin; gameplay fields, queue, assets, decks, balances and legacy event text were compared."
+}

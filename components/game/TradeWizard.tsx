@@ -1,10 +1,12 @@
 'use client';
+import NusaText from './NusaText';
 import {useRef,useState} from 'react';
 import {ArrowRight,Building2} from 'lucide-react';
 import {BOARD,money} from '@/lib/content.mjs';
-import {boundedAmount,changeTradeOpponent,tradeChoices,tradeDraftStatus} from '@/lib/compact-ui.mjs';
+import {changeTradeOpponent,tradeChoices,tradeDraftStatus} from '@/lib/compact-ui.mjs';
 import type {PickerRequest} from './SelectionView';
 import TradeReview from './TradeReview';
+import MoneyInput from './MoneyInput';
 
 /** A single composer; long property lists temporarily replace the shared dialog. */
 export default function TradeWizard({game,from,trade,onChange,onSubmit,canSubmit,busy,onPick,mode='offer'}:{
@@ -21,7 +23,7 @@ export default function TradeWizard({game,from,trade,onChange,onSubmit,canSubmit
   if(!player)return null;
   return <section className="trade-compose-side" aria-label={give?'Aset yang diberikan':'Aset yang diterima'}><h4>{give?'Kamu memberi':'Kamu menerima'}<span>{player.name}</span></h4>
    <button type="button" className="property-pick" onClick={()=>onPick({title:give?'Properti diberikan':'Properti diterima',items:tradeChoices(game,owner,chosen),selected:chosen,multiple:true,onChange:ids=>update({[key]:ids})})}><Building2 size={18}/><span><b>{chosen.length?`${chosen.length} properti`:'Pilih properti'}</b><small>{chosen.length?chosen.map(id=>BOARD[id]?.name||'Properti berubah').join(', '):'Boleh lebih dari satu'}</small></span><ArrowRight size={17}/></button>
-   <div className="trade-compose-inputs"><label>Uang<input type="number" inputMode="numeric" min={0} max={player.cash} step={1} aria-label={`Uang dari ${player.name}`} value={trade[cash]} onChange={e=>update({[cash]:boundedAmount(e.target.value,player.cash)})}/><small>Maks. {money(player.cash)}</small></label>
+   <div className="trade-compose-inputs"><label>Uang (Nusa)<MoneyInput label={`Nusa dari ${player.name}`} units={trade[cash]} max={player.cash} disabled={busy} onUnitsChange={value=>update({[cash]:value})}/><small>Maks. <NusaText text={money(player.cash)}/></small></label>
    <label>Kartu bebas<select aria-label={`Kartu bebas dari ${player.name}`} value={trade[cards]} onChange={e=>update({[cards]:Number(e.target.value)})}>{Array.from({length:Math.max(player.cards.length,trade[cards])+1},(_,n)=><option key={n} value={n} disabled={n>player.cards.length}>{n} kartu{n>player.cards.length?' · tidak tersedia':''}</option>)}</select><small>{player.cards.length} tersedia</small></label></div>
   </section>;
  }

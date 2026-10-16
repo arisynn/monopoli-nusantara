@@ -1,3 +1,7 @@
+> Hybrid Intelligence 4.0: panduan terbaru [DEPLOY_HYBRID.md](DEPLOY_HYBRID.md). Bagian Redis/duel di dokumen ini adalah jalur legacy; VS Bot baru 2–4 peserta dan `/api/bot` tidak memerlukan Redis.
+
+> Pembaruan Online Multiplayer: room baru memakai Supabase, bukan Redis. Ikuti [DEPLOY_SUPABASE.md](DEPLOY_SUPABASE.md). Panduan Redis di bawah tetap relevan untuk pemulihan room legacy; tidak memigrasikan identitas/data secara otomatis.
+
 # Deploy Monopoli Nusantara v2.2 ke Vercel
 
 Paket ini menambahkan jalur Next.js asli untuk Vercel. Source, tampilan 2.5D, gambar, aturan v2, dan dukungan save v1 tetap disertakan.
@@ -22,7 +26,7 @@ Paket v2 membangun `dist/server` untuk Cloudflare Workers melalui Vinext. API me
 | Root Directory | Folder yang memuat `package.json` |
 
 4. Deploy. Jika proyek lama masih menggunakan konfigurasi/cache Vite atau Workers, gunakan Redeploy dengan build cache lama dimatikan satu kali.
-5. Tanpa environment variable pun, beranda, aset, hotseat 2–6 pemain, dan bot lokal dapat dibangun. UI menampilkan bahwa room online belum aktif.
+5. Tanpa environment variable pun, beranda, aset dan VS Bot lokal dapat dibangun (save hotseat lama tetap kompatibel). UI menampilkan bahwa room online belum aktif.
 
 Vercel membangun source sendiri. Jangan mengunggah `node_modules`, `.next`, `.env.local`, atau build `dist` lama. ZIP source ini sengaja tidak menyertakan dependency terpasang atau output build platform lain.
 
@@ -34,7 +38,7 @@ Tambahkan database **Upstash Redis** lewat Storage/Marketplace Vercel atau gunak
 |---|---|
 | `UPSTASH_REDIS_REST_URL` | Wajib untuk room; URL HTTPS REST database |
 | `UPSTASH_REDIS_REST_TOKEN` | Wajib untuk room; token baca/tulis, bukan token read-only |
-| `GROQ_API_KEY` | Opsional; mengaktifkan duel Groq jika Redis juga aktif |
+| `GROQ_API_KEY` | Opsional; advisor VS Bot baru mandiri. Duel legacy tetap memakai Redis |
 | `GROQ_MODEL` | Opsional; default `openai/gpt-oss-20b` |
 | `ROOM_NAMESPACE` | Opsional; pemisah database untuk beberapa proyek |
 | `ROOM_TTL_SECONDS` | Opsional; default `604800` (7 hari), rentang 1 jam–30 hari |
@@ -81,7 +85,7 @@ Node.js 24 disarankan dan dipilih lewat `engines` pada `package.json`. pnpm diku
 | Versi pnpm/lockfile tidak cocok | Pertahankan `pnpm-lock.yaml` dan Install Command yang tercantum |
 | Room belum aktif | Pasangan URL/token Redis belum diisi pada environment deployment |
 | Penyimpanan tidak dapat dihubungi | Token salah/read-only, URL bukan REST HTTPS, database tidak aktif, atau kuota penyedia habis |
-| Bot tetap lokal | Redis dan `GROQ_API_KEY` belum sama-sama aktif; periksa environment lalu redeploy |
+| Bot tetap lokal | Periksa `GROQ_API_KEY` dan status `/api/bot`; hanya duel legacy memerlukan Redis |
 
 ## Referensi primer
 

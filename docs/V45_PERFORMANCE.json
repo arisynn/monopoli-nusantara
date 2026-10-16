@@ -1,0 +1,9 @@
+{
+  "samples": 2000,
+  "visualSteps": 10000,
+  "medianMs": 0.0031449999999964007,
+  "p95Ms": 0.010004999999999598,
+  "node": "v24.19.0",
+  "scope": "Pure ingest + full queue advancement, six-player committed roll. No React, layout, network or GPU work.",
+  "limitation": "Cloud CPU only; not Android profiling, FPS or a visual animation benchmark."
+}

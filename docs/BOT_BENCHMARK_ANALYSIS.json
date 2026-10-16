@@ -1,0 +1,261 @@
+{
+  "generatedAt": "2026-10-16T01:28:48.813Z",
+  "evaluationGames": 270,
+  "independentSeedClusters": 15,
+  "pairedDelta": 0.07407407407407407,
+  "clusterBootstrap95": [
+    -0.041666666666666664,
+    0.19166666666666668
+  ],
+  "competitiveSuperiorityEstablished": false,
+  "byPersona": {
+    "raka": {
+      "smart": {
+        "games": 45,
+        "wins": 19,
+        "winRate": 0.4222222222222222,
+        "wilson95": [
+          0.2896848798168781,
+          0.566994672040555
+        ],
+        "finished": 44,
+        "unfinished": 1,
+        "bankrupt": 25,
+        "meanBuilds": 20.133333333333333,
+        "meanMonopolies": 3.5555555555555554,
+        "acceptedTrades": 126
+      },
+      "baseline": {
+        "games": 45,
+        "wins": 15,
+        "winRate": 0.3333333333333333,
+        "wilson95": [
+          0.21358692207276764,
+          0.479297831907446
+        ],
+        "finished": 45,
+        "unfinished": 0,
+        "bankrupt": 30,
+        "meanBuilds": 17.844444444444445,
+        "meanMonopolies": 3.1555555555555554,
+        "acceptedTrades": 141
+      }
+    },
+    "bima": {
+      "smart": {
+        "games": 45,
+        "wins": 19,
+        "winRate": 0.4222222222222222,
+        "wilson95": [
+          0.2896848798168781,
+          0.566994672040555
+        ],
+        "finished": 45,
+        "unfinished": 0,
+        "bankrupt": 26,
+        "meanBuilds": 19.288888888888888,
+        "meanMonopolies": 3.7555555555555555,
+        "acceptedTrades": 127
+      },
+      "baseline": {
+        "games": 45,
+        "wins": 15,
+        "winRate": 0.3333333333333333,
+        "wilson95": [
+          0.21358692207276764,
+          0.479297831907446
+        ],
+        "finished": 45,
+        "unfinished": 0,
+        "bankrupt": 30,
+        "meanBuilds": 17.844444444444445,
+        "meanMonopolies": 3.1555555555555554,
+        "acceptedTrades": 141
+      }
+    },
+    "sari": {
+      "smart": {
+        "games": 45,
+        "wins": 17,
+        "winRate": 0.37777777777777777,
+        "wilson95": [
+          0.25107885298349863,
+          0.5237032999353246
+        ],
+        "finished": 45,
+        "unfinished": 0,
+        "bankrupt": 28,
+        "meanBuilds": 18.31111111111111,
+        "meanMonopolies": 3.4444444444444446,
+        "acceptedTrades": 123
+      },
+      "baseline": {
+        "games": 45,
+        "wins": 15,
+        "winRate": 0.3333333333333333,
+        "wilson95": [
+          0.21358692207276764,
+          0.479297831907446
+        ],
+        "finished": 45,
+        "unfinished": 0,
+        "bankrupt": 30,
+        "meanBuilds": 17.844444444444445,
+        "meanMonopolies": 3.1555555555555554,
+        "acceptedTrades": 141
+      }
+    }
+  },
+  "byPlayers": {
+    "2": {
+      "smart": {
+        "games": 30,
+        "wins": 17,
+        "winRate": 0.5666666666666667,
+        "wilson95": [
+          0.3919700954540873,
+          0.7262276256938489
+        ],
+        "finished": 30,
+        "unfinished": 0,
+        "bankrupt": 13,
+        "meanBuilds": 22.133333333333333,
+        "meanMonopolies": 4.566666666666666,
+        "acceptedTrades": 38
+      },
+      "baseline": {
+        "games": 30,
+        "wins": 15,
+        "winRate": 0.5,
+        "wilson95": [
+          0.33153851227173764,
+          0.6684614877282624
+        ],
+        "finished": 30,
+        "unfinished": 0,
+        "bankrupt": 15,
+        "meanBuilds": 21.5,
+        "meanMonopolies": 4.1,
+        "acceptedTrades": 72
+      }
+    },
+    "3": {
+      "smart": {
+        "games": 45,
+        "wins": 20,
+        "winRate": 0.4444444444444444,
+        "wilson95": [
+          0.30938708549039107,
+          0.5882411658363468
+        ],
+        "finished": 45,
+        "unfinished": 0,
+        "bankrupt": 25,
+        "meanBuilds": 17.91111111111111,
+        "meanMonopolies": 3.7111111111111112,
+        "acceptedTrades": 132
+      },
+      "baseline": {
+        "games": 45,
+        "wins": 15,
+        "winRate": 0.3333333333333333,
+        "wilson95": [
+          0.21358692207276764,
+          0.479297831907446
+        ],
+        "finished": 45,
+        "unfinished": 0,
+        "bankrupt": 30,
+        "meanBuilds": 17.2,
+        "meanMonopolies": 3.2666666666666666,
+        "acceptedTrades": 135
+      }
+    },
+    "4": {
+      "smart": {
+        "games": 60,
+        "wins": 18,
+        "winRate": 0.3,
+        "wilson95": [
+          0.19898010252726892,
+          0.42508946966390415
+        ],
+        "finished": 59,
+        "unfinished": 1,
+        "bankrupt": 41,
+        "meanBuilds": 18.8,
+        "meanMonopolies": 3,
+        "acceptedTrades": 206
+      },
+      "baseline": {
+        "games": 60,
+        "wins": 15,
+        "winRate": 0.25,
+        "wilson95": [
+          0.1577638557841185,
+          0.372323109454848
+        ],
+        "finished": 60,
+        "unfinished": 0,
+        "bankrupt": 45,
+        "meanBuilds": 16.5,
+        "meanMonopolies": 2.6,
+        "acceptedTrades": 216
+      }
+    }
+  },
+  "decisionMs": {
+    "median": 1.9863279999990482,
+    "p95": 5.610258999999999,
+    "samples": 37560
+  },
+  "ablation": {
+    "full": {
+      "games": 6,
+      "wins": 1,
+      "unfinished": 0,
+      "meanActions": 661.3333333333334,
+      "pairedWinDeltaVsFull": 0
+    },
+    "no_plan": {
+      "games": 6,
+      "wins": 1,
+      "unfinished": 0,
+      "meanActions": 661.3333333333334,
+      "pairedWinDeltaVsFull": 0
+    },
+    "fixed_reserve": {
+      "games": 6,
+      "wins": 2,
+      "unfinished": 0,
+      "meanActions": 739,
+      "pairedWinDeltaVsFull": 0.16666666666666666
+    },
+    "no_trade": {
+      "games": 6,
+      "wins": 1,
+      "unfinished": 0,
+      "meanActions": 876.8333333333334,
+      "pairedWinDeltaVsFull": 0
+    },
+    "greedy_liquidation": {
+      "games": 6,
+      "wins": 2,
+      "unfinished": 0,
+      "meanActions": 678.8333333333334,
+      "pairedWinDeltaVsFull": 0.16666666666666666
+    }
+  },
+  "meanAuctionFacePriceRatio": {
+    "smart": 0.8756325029557985,
+    "baseline": 0.5783714535345238
+  },
+  "limitations": [
+    "Bootstrap resamples whole seed groups because personas/seats and baseline replays are correlated. Only five seed indices per player count; expand held-out seeds before a strong claim.",
+    "Raw Wilson and row bootstrap intervals are descriptive, not independent-trial inference.",
+    "Build/monopoly counts and face-price ratios are activity proxies, not measured realized investment ROI. Monopoly count can include bankruptcy transfers. Accepted trade counts include the whole table.",
+    "Automatic trade utility/outcome quality scoring and Android profiling remain incomplete; scenario tests protect specific economic errors.",
+    "Ablations have six matched runs per variant and no statistical power claim. no_trade disables proactive and counteroffer generation, retaining legal accept/reject decisions.",
+    "No Groq requests were made; this is local-engine evaluation only."
+  ]
+}

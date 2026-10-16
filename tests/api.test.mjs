@@ -7,7 +7,7 @@ const require=createRequire(await realpath(new URL('../node_modules/wrangler/pac
 const {Miniflare}=require('miniflare'),{build}=require('esbuild');
 const scratch=await mkdtemp(path.join(tmpdir(),'nusantara-api-'));
 const output=await build({stdin:{contents:"import {GET,POST} from './app/api/game/route.ts';export default {fetch:r=>r.method==='GET'?GET(r):POST(r)}",resolveDir:process.cwd(),sourcefile:'test-entry.ts'},bundle:true,format:'esm',platform:'browser',write:false,external:['cloudflare:workers'],alias:{'@/lib/server/runtime':'./lib/server/runtime-sites.ts'},tsconfig:'tsconfig.json'});
-const mf=new Miniflare({modules:true,script:output.outputFiles[0].text,compatibilityDate:'2026-05-15',compatibilityFlags:['nodejs_compat'],d1Databases:['DB'],d1Persist:scratch});
+const mf=new Miniflare({modules:true,script:output.outputFiles[0].text,compatibilityDate:'2026-05-15',compatibilityFlags:['nodejs_compat'],d1Databases:['DB'],d1Persist:scratch,bindings:{ALLOW_LEGACY_ROOM_CREATION:'true'}});
 try{
  const db=await mf.getD1Database('DB');const sql=await readFile('drizzle/0000_green_paper_doll.sql','utf8');for(const part of sql.split('--> statement-breakpoint'))if(part.trim())await db.prepare(part.trim()).run();
  async function call(body,token='',user='test-user'){const result=await mf.dispatchFetch('https://game.test/api/game',{method:'POST',headers:{'Content-Type':'application/json','X-Room-Token':token,'oai-authenticated-user-id':user},body:JSON.stringify(body)});return {status:result.status,data:await result.json()}}

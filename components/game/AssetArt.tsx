@@ -1,11 +1,11 @@
 'use client';
-import {PAWNS} from '@/lib/content.mjs';
+import {TOKENS,validPawn} from '@/lib/pawns.mjs';
 export function PawnArt({id=0,className=''}:{id?:number,className?:string}){
- const variant=id%4;
- return <span role="img" aria-label={PAWNS[id]?.name||'Pion'} className={`pawn-art ${className}`} style={{backgroundPosition:`${variant%2?100:0}% ${variant>1?100:0}%`,filter:id>=4?'hue-rotate(320deg) saturate(1.2)':undefined}}/>;
+ const token=TOKENS[validPawn(id)?id:0];
+ return <img src={token.src} width={64} height={64} alt={token.name} draggable={false} decoding="async" className={`pawn-art ${className}`}/>;
 }
 export function RegionArt({group=0,className=''}:{group?:number,className?:string}){
  const g=Math.max(0,group);
  return <div aria-hidden="true" className={`region-art ${className}`} style={{backgroundPosition:`${g%4*100/3}% ${g>3?100:0}%`}}/>;
 }
-export function CardArt({deck='chance'}:{deck?:string}){return <div className={`deck-art ${deck}`} aria-hidden="true"/>}
+export function CardArt({deck='chance'}:{deck?:string}){return <img src={`/assets/board/${deck==='community'?'community':'chance'}.svg`} width={72} height={72} className={`deck-art ${deck}`} alt="" aria-hidden="true"/>}
