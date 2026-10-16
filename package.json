@@ -1,6 +1,6 @@
 {
   "name": "monopoli-nusantara",
-  "version": "4.8.2",
+  "version": "4.8.3",
   "private": true,
   "type": "module",
   "description": "Nusantara \u2014 Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-headless.mjs",
-    "start": "node --experimental-strip-types --import ./adapters/node/aliases.mjs adapters/node/server.mjs",
+    "start": "node --env-file-if-exists=.env --experimental-strip-types --import ./adapters/node/aliases.mjs adapters/node/server.mjs",
     "demo": "node examples/local-game.mjs",
     "selfplay": "node examples/self-play.mjs",
     "test:online": "node --experimental-strip-types --test --test-isolation=none tests/online.test.mjs tests/online-client.test.mjs tests/online-api.test.mjs tests/online-bots.test.mjs",
@@ -20,7 +20,7 @@
     "test:supabase:bots": "node tests/supabase-bots-live.test.mjs",
     "build": "node scripts/build-web.mjs",
     "build:vercel": "node scripts/build-web.mjs",
-    "dev": "node --experimental-strip-types --import ./adapters/node/aliases.mjs adapters/node/server.mjs",
+    "dev": "node --env-file-if-exists=.env --experimental-strip-types --import ./adapters/node/aliases.mjs adapters/node/server.mjs",
     "test:frontend": "node --experimental-strip-types --import ./adapters/node/aliases.mjs --test --test-isolation=none tests/frontend.test.mjs",
     "pretest": "npm run build",
     "pretest:frontend": "npm run build",
@@ -30,11 +30,15 @@
     "test:compact": "node --experimental-strip-types scripts/test-compact-browser.mjs",
     "diagnose:online": "node scripts/diagnose-online.mjs",
     "test:plan": "node --experimental-strip-types scripts/test-plan-browser.mjs",
-    "test:assets": "node --experimental-strip-types scripts/test-assets-browser.mjs"
+    "test:assets": "node --experimental-strip-types scripts/test-assets-browser.mjs",
+    "format": "prettier --write frontend lib/groq.ts lib/storage.ts lib/version.mjs adapters/node scripts/build-web.mjs scripts/build-fingerprint.mjs",
+    "format:check": "prettier --check frontend lib/groq.ts lib/storage.ts lib/version.mjs adapters/node scripts/build-web.mjs scripts/build-fingerprint.mjs",
+    "test:stability": "node --experimental-strip-types scripts/test-stability-browser.mjs"
   },
-  "dependencies": {},
   "devDependencies": {
-    "typescript": "5.9.3",
-    "@types/node": "22.19.19"
-  }
+    "@types/node": "22.19.19",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3"
+  },
+  "dependencies": {}
 }

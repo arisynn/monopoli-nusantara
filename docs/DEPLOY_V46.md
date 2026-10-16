@@ -1,3 +1,5 @@
+> Panduan historis. Untuk perintah build/runtime dan status database terbaru gunakan [DEPLOY_483.md](DEPLOY_483.md).
+
 # Deploy NUSA MIND v4.6
 
 Status: source kandidat; **jangan promosi produksi sampai semantic TypeScript, production build dan staging live lulus**. Lingkungan pengerjaan tidak memiliki executable Next/TypeScript atau kredensial Supabase/Groq. Tidak ada deployment atau migrasi produksi dilakukan.

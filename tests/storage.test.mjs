@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {saveGame,loadGame,saveSlot,listSaves,clearSlot,savePrevious} from '../lib/storage.ts';
+import {saveGame,loadGame,saveSlot,listSaves,clearSlot,savePrevious,SaveConflictError,saveRevision} from '../lib/storage.ts';
 
 function storage(t,{local=null,indexed=null,failLocal=false,failIndexed=false}={}){
   const originals={localStorage:globalThis.localStorage,indexedDB:globalThis.indexedDB};
@@ -15,7 +15,7 @@ function storage(t,{local=null,indexed=null,failLocal=false,failIndexed=false}={
     queueMicrotask(()=>{
       if(failIndexed){request.error=Error('Unavailable');request.onerror();return}
       request.result={close(){},transaction(){
-        const tx={objectStore(){return {
+        const tx={abort(){queueMicrotask(()=>tx.onabort())},objectStore(){return {
           put(value,key){indexedMap.set(key,structuredClone(value));queueMicrotask(()=>tx.oncomplete())},
           get(key){const req={};queueMicrotask(()=>{req.result=structuredClone(indexedMap.get(key));req.onsuccess()});return req}
         }}};
@@ -59,4 +59,32 @@ test('deletion tombstone prevents a stale backend from resurrecting a slot',asyn
 });
 test('queued writes preserve last requested save and reject online manual slots',async t=>{
  storage(t);await Promise.all(Array.from({length:10},(_,version)=>saveSlot('slot-1',{state:{version}},'Meja')));assert.equal((await listSaves()).find(v=>v.id==='slot-1').state.version,9);assert.throws(()=>saveSlot('slot-2',{room:{token:'private'},state:{}},'Room'),/lokal/);assert.throws(()=>clearSlot('latest'),/dikenal/);
+});
+
+
+test('autosave rejects an older tab snapshot without changing either backend',async t=>{
+ const memory=storage(t),state={matchId:'same-match',version:2};
+ await saveGame({state,room:null});
+ const before=memory.local;
+ await assert.rejects(saveGame({state:{...state,version:1},room:null}),SaveConflictError);
+ assert.equal(memory.local,before);assert.equal(memory.indexed.state.version,2);
+});
+test('save envelope CAS permits only one competing branch at the same game revision',async t=>{
+ storage(t);const initial=await saveGame({state:{matchId:'same',version:0},room:null});
+ const options={expectedRevision:saveRevision(initial)};
+ const attempts=await Promise.allSettled([saveGame({state:{matchId:'same',version:1,branch:'A'},room:null},options),saveGame({state:{matchId:'same',version:1,branch:'B'},room:null},options)]);
+ assert.equal(attempts.filter(x=>x.status==='fulfilled').length,1);
+ assert.equal((await loadGame()).state.branch,'A');
+});
+test('explicit restore allows an older revision but cannot overwrite a different newer envelope',async t=>{
+ storage(t);const current=await saveGame({state:{matchId:'same',version:8},room:null});
+ const restored=await saveGame({state:{matchId:'same',version:2},room:null},{replace:true,expectedRevision:saveRevision(current)});
+ assert.equal(restored.state.version,2);
+ await assert.rejects(saveGame({state:{matchId:'different',version:0},room:null},{replace:true,expectedRevision:saveRevision(current)}),SaveConflictError);
+ assert.equal((await loadGame()).state.matchId,'same');
+});
+test('legacy save envelopes gain a revision without changing game schema',async t=>{
+ storage(t,{local:JSON.stringify({state:{matchId:'old',version:3,schemaVersion:1},persistedAt:100})});
+ const old=await loadGame();const saved=await saveGame({state:old.state,room:null},{expectedRevision:saveRevision(old)});
+ assert.equal(typeof saved.saveRevision,'string');assert.equal(saved.state.schemaVersion,1);assert.equal(saved.state.version,3);
 });

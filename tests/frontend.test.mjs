@@ -136,3 +136,20 @@ test('an asset queue yields when bank stock requires other players to decide, wi
 test('online multi-build sends individual intentions with revisions and IDs, while pause cancels the rest',async t=>{const s=session(t);ownedSet(s);let authoritative=structuredClone(s.state),revision=0;const requests=[];s.room={code:'ABCDEFGH',seat:0,userId:'user'};s.connected=true;s.online={status:'playing',roomRevision:0};s.auth={session:()=>({user:{id:'user'}}),request:async(_path,body)=>{if(body){requests.push(body);authoritative=command(authoritative,0,body.action,()=>.2);revision++}return {code:'ABCDEFGH',seat:0,roomRevision:revision,status:'playing',state:publicState(authoritative)}}};assert(s.startBuilds(0,2));await drainAssetPlan(s);assert.equal(requests.length,2);assert.deepEqual(requests.map(r=>r.action.expectedVersion),[0,1]);assert(requests.every(r=>r.requestId===r.action.id&&r.action.type==='BUILD'&&!('cash' in r.action)&&!('level' in r.action)));s.startBuilds(0,4);for(let i=0;i<20&&!s.head;i++)await tick();const count=requests.length;s.takeRoom({code:'ABCDEFGH',seat:0,roomRevision:++revision,status:'paused',state:publicState(authoritative)});assert.equal(s.assetPlan.status,'stopped');s.takeRoom({code:'ABCDEFGH',seat:0,roomRevision:++revision,status:'playing',state:publicState(authoritative)});await tick();assert.equal(requests.length,count);});
 test('a failed server asset command stops the queue and never retries a transaction with a new ID',async t=>{const s=session(t);ownedSet(s);let calls=0;s.room={code:'ABCDEFGH',seat:0,userId:'user'};s.connected=true;s.online={status:'playing',roomRevision:0};s.auth={session:()=>({user:{id:'user'}}),request:async(_p,body)=>{if(body){calls++;throw Error('Revision berubah.')}return {code:'ABCDEFGH',seat:0,roomRevision:0,status:'playing',state:publicState(s.state)}}};s.startBuilds(0,3);await drainAssetPlan(s);assert.equal(calls,1);assert.equal(s.state.version,0);assert.equal(s.assetPlan.status,'stopped');});
 test('automatic mortgage refuses a stale or substituted reviewed property list before committing anything',t=>{const s=session(t);ownedSet(s);for(const id of [6,8])s.state.assets[id].owner=0;s.ingest(s.state,{reset:true});assert.equal(s.startMortgages(800,{version:s.state.version-1,tiles:[6,8]}),false);assert.equal(s.startMortgages(800,{version:s.state.version,tiles:[1,3]}),false);assert.equal(s.state.version,0);assert.equal(s.assetPlan,null);assert(s.error.includes('Hitung rekomendasi baru'));});
+
+import {SaveConflictError} from '../lib/storage.ts';
+test('a conflicting autosave pauses local actions until latest save is explicitly resumed',async t=>{
+ const s=session(t,{persist:async()=>{throw new SaveConflictError()}});
+ await s.act('ROLL');assert.equal(s.saveConflict,true);assert.equal(s.localPaused,true);
+ s.setPaused(false);assert.equal(s.localPaused,true);assert.equal(await s.act('END'),false);
+ const version=s.state.version;await s.lobby();assert.equal(s.screen,'lobby');assert.equal(s.state.version,version);
+});
+test('overlapping saves within one session serialize using the latest successful envelope',async t=>{
+ let revision=0;
+ const s=session(t,{persist:async(value,options)=>{
+  await new Promise(resolve=>setTimeout(resolve,5));
+  assert.equal(options.expectedRevision,revision||null);
+  return {...value,saveRevision:++revision};
+ }});
+ await Promise.all([s.saveCurrent(),s.saveCurrent()]);assert.equal(revision,2);assert.equal(s.saved.saveRevision,2);
+});

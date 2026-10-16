@@ -1,0 +1,126 @@
+{
+  "files": [
+    {
+      "path": "lib/game-v1.mjs",
+      "unchanged": true,
+      "sha256": "33eadc5b0e4ab64c95c25fd858b11a44fa14f32e75c6a6748847f75307223c58"
+    },
+    {
+      "path": "lib/game.mjs",
+      "unchanged": true,
+      "sha256": "d8452c74d4f18522c237dd787102daf66ad06823db92ae69c577eb14102fdb8f"
+    },
+    {
+      "path": "lib/gameplay-presentation.mjs",
+      "unchanged": true,
+      "sha256": "fce3f5849614731661ab44f7fe55e88659edc0ee88b351e7bf777107e9fa960f"
+    },
+    {
+      "path": "lib/content-v1.mjs",
+      "unchanged": true,
+      "sha256": "cf6c1eeebcf000b064ff8b18274e7c105db78fbed7c874fb51587627ffaa135b"
+    },
+    {
+      "path": "lib/content.mjs",
+      "unchanged": true,
+      "sha256": "4e87e3b37db870f45de641cb897bcd290ef131e7363a55f74b53d95113674bbd"
+    },
+    {
+      "path": "lib/finance.mjs",
+      "unchanged": true,
+      "sha256": "f267b9773a43abc170b0ae29fcf57ae780ee598a5304630c9398054e53aed5ae"
+    },
+    {
+      "path": "lib/save-format.mjs",
+      "unchanged": true,
+      "sha256": "475d9b497b2707827adf255a740efa9d0c6d22d5b4b48fcd512ea965bb3fb5ab"
+    },
+    {
+      "path": "lib/bot/analysis.mjs",
+      "unchanged": true,
+      "sha256": "a034eedb0a3a59d9054e7a5e2113bbfa956afb56fc5c2e20ac547f7e67e0aab4"
+    },
+    {
+      "path": "lib/bot/candidates.mjs",
+      "unchanged": true,
+      "sha256": "f0066f2bd492aa93c7b624116e1efa9e2f56d61590332d388a800d15db64741d"
+    },
+    {
+      "path": "lib/bot/memory.mjs",
+      "unchanged": true,
+      "sha256": "2fb41d1d1335e95654bb62bed3604b14dea1460b8f81680719a31c07a0116bc3"
+    },
+    {
+      "path": "lib/bot/mind-client.mjs",
+      "unchanged": true,
+      "sha256": "c90eff416ceb3401af4cfec29f063ade1cf55c51d578685ab9c0f0af52dd499d"
+    },
+    {
+      "path": "lib/bot/mind-config.mjs",
+      "unchanged": true,
+      "sha256": "623c396edc842034d746d28ddbf02b501e1aa20ecdddcbb204c69bf88f1727a4"
+    },
+    {
+      "path": "lib/bot/mind.mjs",
+      "unchanged": true,
+      "sha256": "c9eec829fdef8056ab6aa673791e225034feeedfa21e0e7a8716561efe1cd0a9"
+    },
+    {
+      "path": "lib/bot/mind.worker.mjs",
+      "unchanged": true,
+      "sha256": "53da52b7e1c2f1beee0e538545f791f27f6937d16e4c047c6895b96352485554"
+    },
+    {
+      "path": "lib/bot/negotiation.mjs",
+      "unchanged": true,
+      "sha256": "dd8b47d106d94189b117932bb123bfa832beb1c2f779a6698345c395e16407e5"
+    },
+    {
+      "path": "lib/bot/personas.mjs",
+      "unchanged": true,
+      "sha256": "170f9783488546ac6f194787d06650819a6aa9cbabfd55ec744fe222016127db"
+    },
+    {
+      "path": "lib/bot/strategy.mjs",
+      "unchanged": true,
+      "sha256": "fd0418bb899dc819ddfd2893952b6259203517c4b2714d80f854f37482f15218"
+    },
+    {
+      "path": "lib/server/bot-worker.mjs",
+      "unchanged": true,
+      "sha256": "310824f9a1616c64991a42f7d7b3e754cc8df42b4502925acdfb5cc0e4626a54"
+    },
+    {
+      "path": "lib/server/d1-store.mjs",
+      "unchanged": true,
+      "sha256": "e397b386b965b84ddca2cbb64d08c2c7f96daf198efb1863ef6a544503bbbb40"
+    },
+    {
+      "path": "lib/server/online-room.mjs",
+      "unchanged": true,
+      "sha256": "533a145522afc69791ecca3f0776be7ab11130dc428444ec6ede9e8df1002b1c"
+    },
+    {
+      "path": "lib/server/online-service.mjs",
+      "unchanged": true,
+      "sha256": "351ddb85283314f4242c5df81a502d6e424c7428530be2aa4a7589c436d7e02c"
+    },
+    {
+      "path": "lib/server/redis-store.mjs",
+      "unchanged": true,
+      "sha256": "4f2102cb3f9b07c293d1861638671e09ae1c57088a6785428de0ffe046be1805"
+    },
+    {
+      "path": "lib/server/supabase-store.mjs",
+      "unchanged": true,
+      "sha256": "e573c0b3be9d963839a5c803aec36073bdf73eaa835bacffd1ede81b3b544eab"
+    }
+  ],
+  "unchanged": true,
+  "intentionalChanges": [
+    "lib/storage.ts",
+    "lib/version.mjs",
+    "lib/groq.ts optional advisor request",
+    "supabase/migrations/202610160002_hybrid_bot_jobs.sql CASE parentheses"
+  ]
+}

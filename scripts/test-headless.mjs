@@ -1,5 +1,5 @@
 import {run} from 'node:test';import {mkdirSync,writeFileSync} from 'node:fs';
-const names=['game','classic','storage','save-format','room-client','online','online-client','online-api','bot-strategy','groq-hybrid','bot-api','online-bots','mind-headless','presentation-headless','headless-package','frontend'];
+const names=['build-fingerprint','game','classic','storage','save-format','room-client','online','online-client','online-api','bot-strategy','groq-hybrid','bot-api','online-bots','mind-headless','presentation-headless','headless-package','frontend'];
 const files=names.map(n=>'tests/'+n+'.test.mjs'),failures=[];let summary;
 for await(const event of run({files,isolation:'none',concurrency:false})){
  if(event.type==='test:fail'){failures.push({name:event.data.name,error:String(event.data.details?.error)});console.error('FAIL',event.data.name,event.data.details?.error);}

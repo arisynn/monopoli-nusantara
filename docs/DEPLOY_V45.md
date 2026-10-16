@@ -1,3 +1,5 @@
+> Panduan historis. Untuk perintah build/runtime dan status database terbaru gunakan [DEPLOY_483.md](DEPLOY_483.md).
+
 # Deployment v4.5 — Board & Gameplay Experience
 
 Source siap ditinjau dan tes lokal tersedia; build dan deployment belum berhasil dijalankan pada lingkungan ini. Folder workspace tetap bernama `Monopoli_Nusantara_v2.11.1`, tetapi package, label aplikasi dan metadata rilis kini 4.5.0. Jangan memakai nama folder atau nomor package sebagai bukti identitas commit. Tidak ada Git checkout/branch pada workspace ini.

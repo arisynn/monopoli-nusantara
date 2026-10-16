@@ -1,3 +1,5 @@
+> Update 4.8.3: LocalSessionLease mengunci tab penulis lokal. storage.ts memakai envelope saveRevision dan CAS atomik; session.saved menyimpan revision terakhir yang sukses. APP_VERSION dipakai UI/health/build; hash output mencakup seluruh aset/modul. Lihat STABILITY_REPORT.md.
+
 # Peta frontend aktif 4.8.2
 
 Frontend memakai ES modules/CSS, bukan React/Next lama. `app/api` tetap backend Fetch handler. Hanya lobby dan gameplay menjadi layar penuh. Semua fitur lain dalam satu elemen `<dialog>` yang dimiliki aplikasi; kontrol pemilihan tidak memakai popup browser.

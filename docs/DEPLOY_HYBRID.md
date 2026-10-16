@@ -1,3 +1,5 @@
+> Panduan historis. Untuk perintah build/runtime dan status database terbaru gunakan [DEPLOY_483.md](DEPLOY_483.md).
+
 # Deployment Hybrid Bot Intelligence 4.0
 
 Ini panduan penerapan source, bukan bukti deployment berhasil. Paket mempertahankan pembaruan Supabase sebelumnya. Workspace tidak memiliki Git checkout, remote atau commit `bc90b2f`; cocokkan source/branch tujuan dan diff sebelum integrasi. Jangan menimpa perubahan multiplayer yang belum ada di paket ini.

@@ -1,7 +1,5 @@
-Update terbaru: `ASSET_CLEANUP.json` dan `ASSET_MANIFEST.json` menjelaskan pembersihan aset runtime di luar board. Hasil browser/screenshot CLASSIC sebelumnya adalah baseline sebelum pembersihan.
+# Dokumen aktif 4.8.3
 
-# Status dokumen
+Mulai dari `STABILITY_REPORT.md`, `DEPLOY_483.md`, `STABILITY_BROWSER_RESULTS.json`, dan `STABILITY_VERIFICATION.json`. Panduan frontend 4.8.2 tetap membantu pemetaan modul, dengan tambahan local-session-lease.mjs dan guard autosave pada storage.ts.
 
-Dokumen aktif update UI **4.8**: `CLASSIC_REPORT.md`, `FRONTEND_GUIDE.md`, `CLASSIC_TEST_RESULTS.json`, `CLASSIC_BROWSER_RESULTS.json`, `CLASSIC_SESSION_SMOKE.json`, `CLASSIC_SYNTAX_IMPORTS.json`, `CLASSIC_CORE_INTEGRITY.json`, `CLASSIC_CHANGED_FILES.json`, `CLASSIC_VERIFICATION.json` dan `ASSET_MANIFEST.json`.
-
-`KEPULAUAN_*` dan `QA_KEPULAUAN_RESULTS.json` merupakan laporan tahap UI terdahulu. `HEADLESS_*`, `MIND_*`, `QA_V46_*`, `ONLINE_MULTIPLAYER_REPORT.md` dan `P0_V46_HOTFIX.md` menjelaskan tahap terdahulu, bukan bukti uji live pada update ini. `history/` menyimpan README dan manifest basis logic. Panduan deployment backend tetap relevan; perintah frontend aktif mengikuti README root.
+Laporan ASSETS/CLASSIC/COMPACT/PLAN dan MIND menjelaskan tahap sebelumnya; hasil runner dapat diperbarui saat regresi 4.8.3. Panduan deployment lama dipertahankan sebagai riwayat; perintah aktif mengikuti README root dan DEPLOY_483.md.

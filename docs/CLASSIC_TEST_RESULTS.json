@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-10-16T16:10:15.795Z",
+  "generatedAt": "2026-10-16T17:56:15.177Z",
   "node": "v24.19.0",
   "files": [
+    "tests/build-fingerprint.test.mjs",
     "tests/game.test.mjs",
     "tests/classic.test.mjs",
     "tests/storage.test.mjs",
@@ -19,8 +20,8 @@
     "tests/headless-package.test.mjs",
     "tests/frontend.test.mjs"
   ],
-  "tests": 346,
-  "passed": 346,
+  "tests": 354,
+  "passed": 354,
   "failed": 0,
   "skipped": 0,
   "failures": [],

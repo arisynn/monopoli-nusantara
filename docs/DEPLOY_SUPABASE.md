@@ -1,3 +1,5 @@
+> Panduan historis. Untuk perintah build/runtime dan status database terbaru gunakan [DEPLOY_483.md](DEPLOY_483.md).
+
 > Bot online memerlukan migration 002 dan scheduler backend; ikuti [DEPLOY_HYBRID.md](DEPLOY_HYBRID.md). Panduan ini tetap menjadi fondasi room/Auth manusia.
 
 # Deployment Online Multiplayer dengan Supabase

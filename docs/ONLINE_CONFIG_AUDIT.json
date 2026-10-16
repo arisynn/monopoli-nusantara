@@ -1,20 +1,15 @@
 {
-  "scope": "Local runtime configuration audit; no live Supabase request or credentials printed",
+  "generatedAt": "2026-10-16T18:01:21.565851+00:00",
   "configured": false,
-  "variables": {
-    "SUPABASE_URL": false,
-    "SUPABASE_ANON_KEY": false,
+  "serverVariables": {
+    "SUPABASE_URL": true,
+    "SUPABASE_ANON_KEY": true,
     "SUPABASE_SERVICE_ROLE_KEY": false
   },
-  "urlShape": "missing",
-  "environmentFiles": [],
-  "migrationFiles": [
-    "202610160001_persistent_online.sql",
-    "202610160002_hybrid_bot_jobs.sql",
-    "202610160003_nusa_mind_settings.sql"
-  ],
-  "liveAuth": "not verified",
-  "liveRLS": "not verified",
-  "liveRealtime": "not verified",
-  "note": "Node runtime reads process ENV. Use your server secret manager or node --env-file=.env; Vercel uses environment settings per deployment."
+  "supabaseProject": "connectify",
+  "migrationsApplied": 3,
+  "liveDatabaseVerified": true,
+  "authSettingsVerified": true,
+  "liveAuthSessionsOrRealtimeGameVerified": false,
+  "note": "Plugin database access does not supply the server service-role key. Private runtime .env is excluded from release archive."
 }

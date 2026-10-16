@@ -104,7 +104,7 @@ begin
  for item in select value from jsonb_array_elements(p_data->'seats') loop
   if item->>'controller' = 'bot' then
    if item->>'userId' is not null or coalesce(item->>'botPersona','') not in ('raka','bima','sari') or item->>'botPersona' = any(identities)
-    or coalesce(item->>'name','') <> case item->>'botPersona' when 'raka' then 'Raka' when 'bima' then 'Bima' else 'Sari' end
+    or coalesce(item->>'name','') <> (case item->>'botPersona' when 'raka' then 'Raka' when 'bima' then 'Bima' else 'Sari' end)
     or exists(select 1 from public.mn_members where code=p_code and seat=seat_index) then raise exception 'Invalid bot identity'; end if;
    identities := array_append(identities,item->>'botPersona');
    if p_expected_revision >= 0 and seat_index < jsonb_array_length(r.data->'seats')

@@ -1,50 +1,330 @@
-import {BOARD,money} from '../lib/content.mjs';
-import {tileRect,tileCenter,hitTile} from '../lib/board-camera.mjs';
-import {fitCamera,centerCamera,zoomCamera,clampCamera} from './board-camera.mjs';
-import {pawnPlacement} from '../lib/pawn-layout.mjs';
-import {pawnRoute,samplePawnRoute} from '../lib/pawn-animation.mjs';
-import {stepDuration} from '../lib/presentation-timeline.mjs';
-import {pawnFor} from '../lib/pawns.mjs';
-import {colors} from './art.mjs';
-import {esc} from './domain.mjs';
-export function tileNameLines(name){const words=name.split(' ');return words.length>1?[words.slice(0,-1).join(' '),words.at(-1)]:[name];}
-function labelWidth(text,font,max){const units=[...text].reduce((n,c)=>n+(/[ilItjf]/.test(c)?.3:/[mwMW]/.test(c)?.85:c===' '?.3:/[A-Z]/.test(c)?.67:.56),0);return Math.min(max,units*font);}
-function band(r,side,owner=false){const size=owner?7:22;if(side===0)return {...r,y:owner?r.y+r.height-size:r.y,height:size};if(side===1)return {...r,x:owner?r.x:r.x+r.width-size,width:size};if(side===2)return {...r,y:owner?r.y:r.y+r.height-size,height:size};return {...r,x:owner?r.x+r.width-size:r.x,width:size};}
-export function pawnDisplayPoint(p){const id=hitTile(p);if(id===null||id%10===0)return {x:p.x,y:p.y};const angle=tileRect(id).angle*Math.PI/180;return {x:p.x-18*Math.sin(angle),y:p.y+18*Math.cos(angle)};}
+import { BOARD, money } from "../lib/content.mjs";
+import { tileRect, tileCenter, hitTile } from "../lib/board-camera.mjs";
+import {
+  fitCamera,
+  centerCamera,
+  zoomCamera,
+  clampCamera,
+} from "./board-camera.mjs";
+import { pawnPlacement } from "../lib/pawn-layout.mjs";
+import { pawnRoute, samplePawnRoute } from "../lib/pawn-animation.mjs";
+import { stepDuration } from "../lib/presentation-timeline.mjs";
+import { pawnFor } from "../lib/pawns.mjs";
+import { colors } from "./art.mjs";
+import { esc } from "./domain.mjs";
+export function tileNameLines(name) {
+  const words = name.split(" ");
+  return words.length > 1
+    ? [words.slice(0, -1).join(" "), words.at(-1)]
+    : [name];
+}
+function labelWidth(text, font, max) {
+  const units = [...text].reduce(
+    (n, c) =>
+      n +
+      (/[ilItjf]/.test(c)
+        ? 0.3
+        : /[mwMW]/.test(c)
+          ? 0.85
+          : c === " "
+            ? 0.3
+            : /[A-Z]/.test(c)
+              ? 0.67
+              : 0.56),
+    0,
+  );
+  return Math.min(max, units * font);
+}
+function band(r, side, owner = false) {
+  const size = owner ? 7 : 22;
+  if (side === 0)
+    return { ...r, y: owner ? r.y + r.height - size : r.y, height: size };
+  if (side === 1)
+    return { ...r, x: owner ? r.x : r.x + r.width - size, width: size };
+  if (side === 2)
+    return { ...r, y: owner ? r.y : r.y + r.height - size, height: size };
+  return { ...r, x: owner ? r.x + r.width - size : r.x, width: size };
+}
+export function pawnDisplayPoint(p) {
+  const id = hitTile(p);
+  if (id === null || id % 10 === 0) return { x: p.x, y: p.y };
+  const angle = (tileRect(id).angle * Math.PI) / 180;
+  return { x: p.x - 18 * Math.sin(angle), y: p.y + 18 * Math.cos(angle) };
+}
 // Every edge uses the same local face: inner color strip, name, pawn pocket, outer price.
 // Rotate the entire face toward the board center, matching a classic physical board.
-function tileFace(t,r){const corner=t.id%10===0,center={x:r.x+r.width/2,y:r.y+r.height/2},names=tileNameLines(t.name),special=t.type!=='city';
- const symbol=({start:'start',jail:'jail',gojail:'gojail',parking:'parking',chance:'chance',community:'community',station:'station',tax:'tax',utility:t.id===12?'electric':'water'})[t.type];
- const font=corner?18:special?14.5:16,width=corner?120:73,y=corner?34:special?-51:names.length===1?-24:-30;
- const title=names.map((line,i)=>`<text class="tile-name" x="0" y="${y+i*(font+2)}" text-anchor="middle" font-size="${font}" font-weight="650" textLength="${labelWidth(line.toUpperCase(),font,width)}" lengthAdjust="spacingAndGlyphs">${esc(line.toUpperCase())}</text>`).join('');
- const icon=special?`<image href="/assets/classic/${symbol}.png" x="${corner?-29:-25}" y="${corner?-53:-15}" width="${corner?58:50}" height="${corner?58:50}"/>`:'';
- const price=t.price?money(t.price):t.type==='tax'?money(t.tax):t.id===0?'AMBIL N 200':'';
- return `<g class="tile-face" data-angle="${corner?0:r.angle}" transform="translate(${center.x} ${center.y}) rotate(${corner?0:r.angle})" pointer-events="none">${title}${icon}${price?`<text class="tile-price" x="0" y="${corner?62:58}" text-anchor="middle" font-size="${corner?11:14}" fill="#345747">${esc(price)}</text>`:''}</g>`;}
-
-const rect=(r,attributes)=>`<rect x="${r.x}" y="${r.y}" width="${r.width}" height="${r.height}" ${attributes}/>`;
-function buildings(r,side,a){if(!a?.level)return '';const center={x:r.x+r.width/2,y:r.y+r.height/2},hotel=a.level===5,viewBox=hotel?'1175 211 304 454':'271 347 347 297',size=hotel?20:14,count=hotel?1:a.level;
- return `<g class="property-buildings" transform="translate(${center.x} ${center.y}) rotate(${r.angle})" pointer-events="none">${Array.from({length:count},(_,i)=>{const x=hotel?0:-(count-1)*7+i*14;return `<svg class="building-image" x="${x-size/2}" y="${-59-size/2}" width="${size}" height="${size}" viewBox="${viewBox}" role="img" aria-label="${hotel?'Hotel':'Rumah'}"><image href="/assets/buildings/building-icons.png" width="1774" height="887"/></svg>`}).join('')}</g>`;
+function tileFace(t, r) {
+  const corner = t.id % 10 === 0,
+    center = { x: r.x + r.width / 2, y: r.y + r.height / 2 },
+    names = tileNameLines(t.name),
+    special = t.type !== "city";
+  const symbol = {
+    start: "start",
+    jail: "jail",
+    gojail: "gojail",
+    parking: "parking",
+    chance: "chance",
+    community: "community",
+    station: "station",
+    tax: "tax",
+    utility: t.id === 12 ? "electric" : "water",
+  }[t.type];
+  const font = corner ? 18 : special ? 14.5 : 16,
+    width = corner ? 120 : 73,
+    y = corner ? 34 : special ? -51 : names.length === 1 ? -24 : -30;
+  const title = names
+    .map(
+      (line, i) =>
+        `<text class="tile-name" x="0" y="${y + i * (font + 2)}" text-anchor="middle" font-size="${font}" font-weight="650" textLength="${labelWidth(line.toUpperCase(), font, width)}" lengthAdjust="spacingAndGlyphs">${esc(line.toUpperCase())}</text>`,
+    )
+    .join("");
+  const icon = special
+    ? `<image href="/assets/classic/${symbol}.png" x="${corner ? -29 : -25}" y="${corner ? -53 : -15}" width="${corner ? 58 : 50}" height="${corner ? 58 : 50}"/>`
+    : "";
+  const price = t.price
+    ? money(t.price)
+    : t.type === "tax"
+      ? money(t.tax)
+      : t.id === 0
+        ? "AMBIL N 200"
+        : "";
+  return `<g class="tile-face" data-angle="${corner ? 0 : r.angle}" transform="translate(${center.x} ${center.y}) rotate(${corner ? 0 : r.angle})" pointer-events="none">${title}${icon}${price ? `<text class="tile-price" x="0" y="${corner ? 62 : 58}" text-anchor="middle" font-size="${corner ? 11 : 14}" fill="#345747">${esc(price)}</text>` : ""}</g>`;
 }
 
-export function boardMarkup(s,selected=-1){
- const tiles=BOARD.map(t=>{const r=tileRect(t.id),side=Math.floor(t.id/10),a=s.assets[t.id],owner=a?.owner,center={x:r.x+r.width/2,y:r.y+r.height/2};
- return `<g data-tile="${t.id}" tabindex="0" role="button" aria-label="${esc(t.name)}${owner!=null?', milik '+esc(s.players[owner].name):''}">${rect(r,`fill="${a?.mortgaged?'#d3d5d1':'#dcebd8'}" stroke="#283e34" stroke-width="2.8"`)}${t.type==='city'?rect(band(r,side),`fill="${t.color}" stroke="#283e34" stroke-width="2"`):''}${tileFace(t,r)}${owner!=null?rect(band(r,side,true),`fill="${colors[pawnFor(s.players[owner])]}"`):''}${buildings(r,side,a)}${a?.mortgaged?`<path d="M${r.x+7} ${r.y+7}l${r.width-14} ${r.height-14}" stroke="#92566e" stroke-width="3" pointer-events="none"/><g transform="translate(${center.x} ${center.y}) rotate(${r.angle})" pointer-events="none"><rect x="-25" y="30" width="50" height="18" rx="3" fill="#92566e"/><text x="0" y="43" text-anchor="middle" class="mortgage-label" font-size="11">GADAI</text></g>`:''}</g>`;}).join('');
- const pawns=s.players.map(p=>{const slot={...pawnPlacement(s,p.id),...pawnDisplayPoint(pawnPlacement(s,p.id))},size=slot.size,token=pawnFor(p);return `<g data-pawn="${p.id}" transform="translate(${slot.x} ${slot.y})" class="board-pawn ${p.out?'pawn-out':''}" pointer-events="none"><ellipse cy="${size*.25}" rx="${size*.42}" ry="${size*.17}" fill="${colors[pawnFor(p)]}" opacity=".4"/><svg x="${-size*.65}" y="${-size*.55}" width="${size*1.3}" height="${size*1.3}" viewBox="${token%3*100} ${Math.floor(token/3)*100} 100 100"><image href="/assets/pawns/pawn-tokens.png" width="300" height="200" preserveAspectRatio="none"/></svg></g>`;}).join('');
- return `<rect width="1000" height="1000" fill="#dcebd8"/><rect x="140" y="140" width="720" height="720" fill="#dcebd8" stroke="#283e34" stroke-width="3"/><g class="board-center" pointer-events="none"><text x="500" y="490" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="61" letter-spacing="3" fill="#294b42">NUSANTARA</text><text x="500" y="523" text-anchor="middle" font-size="14" letter-spacing="4" fill="#617d6b">JELAJAH · MILIKI · BANGUN</text></g>${tiles}<g class="board-pawns">${pawns}</g>`;
+const rect = (r, attributes) =>
+  `<rect x="${r.x}" y="${r.y}" width="${r.width}" height="${r.height}" ${attributes}/>`;
+function buildings(r, side, a) {
+  if (!a?.level) return "";
+  const center = { x: r.x + r.width / 2, y: r.y + r.height / 2 },
+    hotel = a.level === 5,
+    viewBox = hotel ? "1175 211 304 454" : "271 347 347 297",
+    size = hotel ? 20 : 14,
+    count = hotel ? 1 : a.level;
+  return `<g class="property-buildings" transform="translate(${center.x} ${center.y}) rotate(${r.angle})" pointer-events="none">${Array.from(
+    { length: count },
+    (_, i) => {
+      const x = hotel ? 0 : -(count - 1) * 7 + i * 14;
+      return `<svg class="building-image" x="${x - size / 2}" y="${-59 - size / 2}" width="${size}" height="${size}" viewBox="${viewBox}" role="img" aria-label="${hotel ? "Hotel" : "Rumah"}"><image href="/assets/buildings/building-icons.png" width="1774" height="887"/></svg>`;
+    },
+  ).join("")}</g>`;
 }
-export class BoardView{
- constructor(container,onTile,onComplete){this.container=container;this.onComplete=onComplete;this.onTile=onTile;this.svg=container.querySelector('svg');this.world=this.svg.querySelector('g');this.selected=-1;this.mode='overview';this.points=new Map();this.observer=new ResizeObserver(()=>this.resize());this.observer.observe(container);container.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const t=e.target.closest('[data-tile]');if(t){e.preventDefault();onTile(Number(t.dataset.tile));}}});container.addEventListener('pointerdown',e=>this.down(e));container.addEventListener('pointermove',e=>this.move(e));for(const type of ['pointerup','pointercancel'])container.addEventListener(type,e=>this.up(e));container.addEventListener('wheel',e=>{e.preventDefault();this.mode='manual';this.camera=zoomCamera(this.camera,Math.exp(-e.deltaY*.002),this.point(e));this.transform();},{passive:false});}
- resize(){const rect=this.container.getBoundingClientRect();if(!rect.width||!rect.height)return;this.svg.setAttribute('viewBox',`0 0 ${rect.width} ${rect.height}`);this.camera=fitCamera(rect.width,rect.height);this.applyMode();}
- point(e){const r=this.container.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};}
- down(e){this.dragged=false;this.downTile=e.target.closest('[data-tile]')?.dataset.tile;this.points.set(e.pointerId,this.point(e));this.container.setPointerCapture(e.pointerId);this.lastPinch=null;}
- move(e){if(!this.points.has(e.pointerId)||!this.camera)return;const before=this.points.get(e.pointerId),point=this.point(e);this.points.set(e.pointerId,point);if(this.points.size===2){const [a,b]=[...this.points.values()],distance=Math.hypot(a.x-b.x,a.y-b.y);if(this.lastPinch)this.camera=zoomCamera(this.camera,distance/this.lastPinch,{x:(a.x+b.x)/2,y:(a.y+b.y)/2});this.lastPinch=distance;this.dragged=true;}else{const dx=point.x-before.x,dy=point.y-before.y;if(Math.abs(dx)+Math.abs(dy)>2)this.dragged=true;this.camera=clampCamera({...this.camera,x:this.camera.x+dx,y:this.camera.y+dy});}if(this.dragged)this.mode='manual';this.transform();}
- up(e){const tap=e.type==='pointerup'&&!this.dragged&&this.points.size===1&&this.downTile!==undefined;this.points.delete(e.pointerId);this.lastPinch=null;if(this.container.hasPointerCapture(e.pointerId))this.container.releasePointerCapture(e.pointerId);if(tap)this.onTile(Number(this.downTile));this.downTile=undefined;}
- transform(){if(this.camera)this.world.setAttribute('transform',`translate(${this.camera.x} ${this.camera.y}) scale(${this.camera.scale})`);}
- setMode(mode){this.mode=mode;this.applyMode();}
- applyMode(){if(!this.camera)return;if(this.mode==='overview')this.camera=fitCamera(this.camera.width,this.camera.height);else if(this.mode==='follow'&&this.state){const c=fitCamera(this.camera.width,this.camera.height);this.camera=centerCamera({...c,scale:Math.min(.9,c.scale*1.8)},tileCenter(this.state.players[this.state.turn].pos));}this.transform();}
- update(state,head,{paused=false,reduced=false,fast=false,selected=-1}={}){this.state=state;const key=JSON.stringify([state.matchId,state.version,head?.id,selected,state.players.map(p=>[p.pos,p.inJail,p.out]),state.assets]);if(key!==this.key){this.key=key;this.world.innerHTML=boardMarkup(state,selected);this.applyMode();}
- if(head?.kind!=='pawnMoving'||reduced){this.cancelMove();return;}if(this.motion?.id!==head.id){this.cancelMove();this.motion={id:head.id,move:head.move,points:pawnRoute(head.move,state).map(pawnDisplayPoint),elapsed:0,duration:stepDuration(head,{fast,reduced})};}if(paused){if(this.raf){cancelAnimationFrame(this.raf);this.raf=0;this.motion.elapsed+=performance.now()-this.started;}return;}if(this.raf)return;this.started=performance.now();const motion=this.motion;
- const frame=()=>{if(this.motion!==motion)return;const elapsed=motion.elapsed+performance.now()-this.started,p=this.world.querySelector(`[data-pawn="${motion.move.player}"]`),sample=samplePawnRoute(motion.points,elapsed,motion.duration/Math.max(1,motion.points.length-1));if(p&&sample)p.setAttribute('transform',`translate(${sample.x} ${sample.y})`);if(elapsed>=motion.duration){this.raf=0;this.onComplete(motion.id);return;}this.raf=requestAnimationFrame(frame);};frame();}
- cancelMove(){if(this.raf)cancelAnimationFrame(this.raf);this.raf=0;this.motion=null;}
- dispose(){this.cancelMove();this.observer.disconnect();}
+
+export function boardMarkup(s, selected = -1) {
+  const tiles = BOARD.map((t) => {
+    const r = tileRect(t.id),
+      side = Math.floor(t.id / 10),
+      a = s.assets[t.id],
+      owner = a?.owner,
+      center = { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+    return `<g data-tile="${t.id}" tabindex="0" role="button" aria-label="${esc(t.name)}${owner != null ? ", milik " + esc(s.players[owner].name) : ""}">${rect(r, `fill="${a?.mortgaged ? "#d3d5d1" : "#dcebd8"}" stroke="#283e34" stroke-width="2.8"`)}${t.type === "city" ? rect(band(r, side), `fill="${t.color}" stroke="#283e34" stroke-width="2"`) : ""}${tileFace(t, r)}${owner != null ? rect(band(r, side, true), `fill="${colors[pawnFor(s.players[owner])]}"`) : ""}${buildings(r, side, a)}${a?.mortgaged ? `<path d="M${r.x + 7} ${r.y + 7}l${r.width - 14} ${r.height - 14}" stroke="#92566e" stroke-width="3" pointer-events="none"/><g transform="translate(${center.x} ${center.y}) rotate(${r.angle})" pointer-events="none"><rect x="-25" y="30" width="50" height="18" rx="3" fill="#92566e"/><text x="0" y="43" text-anchor="middle" class="mortgage-label" font-size="11">GADAI</text></g>` : ""}</g>`;
+  }).join("");
+  const pawns = s.players
+    .map((p) => {
+      const slot = {
+          ...pawnPlacement(s, p.id),
+          ...pawnDisplayPoint(pawnPlacement(s, p.id)),
+        },
+        size = slot.size,
+        token = pawnFor(p);
+      return `<g data-pawn="${p.id}" transform="translate(${slot.x} ${slot.y})" class="board-pawn ${p.out ? "pawn-out" : ""}" pointer-events="none"><ellipse cy="${size * 0.25}" rx="${size * 0.42}" ry="${size * 0.17}" fill="${colors[pawnFor(p)]}" opacity=".4"/><svg x="${-size * 0.65}" y="${-size * 0.55}" width="${size * 1.3}" height="${size * 1.3}" viewBox="${(token % 3) * 100} ${Math.floor(token / 3) * 100} 100 100"><image href="/assets/pawns/pawn-tokens.png" width="300" height="200" preserveAspectRatio="none"/></svg></g>`;
+    })
+    .join("");
+  return `<rect width="1000" height="1000" fill="#dcebd8"/><rect x="140" y="140" width="720" height="720" fill="#dcebd8" stroke="#283e34" stroke-width="3"/><g class="board-center" pointer-events="none"><text x="500" y="490" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="61" letter-spacing="3" fill="#294b42">NUSANTARA</text><text x="500" y="523" text-anchor="middle" font-size="14" letter-spacing="4" fill="#617d6b">JELAJAH · MILIKI · BANGUN</text></g>${tiles}<g class="board-pawns">${pawns}</g>`;
+}
+export class BoardView {
+  constructor(container, onTile, onComplete) {
+    this.container = container;
+    this.onComplete = onComplete;
+    this.onTile = onTile;
+    this.svg = container.querySelector("svg");
+    this.world = this.svg.querySelector("g");
+    this.selected = -1;
+    this.mode = "overview";
+    this.points = new Map();
+    this.observer = new ResizeObserver(() => this.resize());
+    this.observer.observe(container);
+    container.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        const t = e.target.closest("[data-tile]");
+        if (t) {
+          e.preventDefault();
+          onTile(Number(t.dataset.tile));
+        }
+      }
+    });
+    container.addEventListener("pointerdown", (e) => this.down(e));
+    container.addEventListener("pointermove", (e) => this.move(e));
+    for (const type of ["pointerup", "pointercancel"])
+      container.addEventListener(type, (e) => this.up(e));
+    container.addEventListener(
+      "wheel",
+      (e) => {
+        e.preventDefault();
+        this.mode = "manual";
+        this.camera = zoomCamera(
+          this.camera,
+          Math.exp(-e.deltaY * 0.002),
+          this.point(e),
+        );
+        this.transform();
+      },
+      { passive: false },
+    );
+  }
+  resize() {
+    const rect = this.container.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    this.svg.setAttribute("viewBox", `0 0 ${rect.width} ${rect.height}`);
+    this.camera = fitCamera(rect.width, rect.height);
+    this.applyMode();
+  }
+  point(e) {
+    const r = this.container.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+  down(e) {
+    this.dragged = false;
+    this.downTile = e.target.closest("[data-tile]")?.dataset.tile;
+    this.points.set(e.pointerId, this.point(e));
+    this.container.setPointerCapture(e.pointerId);
+    this.lastPinch = null;
+  }
+  move(e) {
+    if (!this.points.has(e.pointerId) || !this.camera) return;
+    const before = this.points.get(e.pointerId),
+      point = this.point(e);
+    this.points.set(e.pointerId, point);
+    if (this.points.size === 2) {
+      const [a, b] = [...this.points.values()],
+        distance = Math.hypot(a.x - b.x, a.y - b.y);
+      if (this.lastPinch)
+        this.camera = zoomCamera(this.camera, distance / this.lastPinch, {
+          x: (a.x + b.x) / 2,
+          y: (a.y + b.y) / 2,
+        });
+      this.lastPinch = distance;
+      this.dragged = true;
+    } else {
+      const dx = point.x - before.x,
+        dy = point.y - before.y;
+      if (Math.abs(dx) + Math.abs(dy) > 2) this.dragged = true;
+      this.camera = clampCamera({
+        ...this.camera,
+        x: this.camera.x + dx,
+        y: this.camera.y + dy,
+      });
+    }
+    if (this.dragged) this.mode = "manual";
+    this.transform();
+  }
+  up(e) {
+    const tap =
+      e.type === "pointerup" &&
+      !this.dragged &&
+      this.points.size === 1 &&
+      this.downTile !== undefined;
+    this.points.delete(e.pointerId);
+    this.lastPinch = null;
+    if (this.container.hasPointerCapture(e.pointerId))
+      this.container.releasePointerCapture(e.pointerId);
+    if (tap) this.onTile(Number(this.downTile));
+    this.downTile = undefined;
+  }
+  transform() {
+    if (this.camera)
+      this.world.setAttribute(
+        "transform",
+        `translate(${this.camera.x} ${this.camera.y}) scale(${this.camera.scale})`,
+      );
+  }
+  setMode(mode) {
+    this.mode = mode;
+    this.applyMode();
+  }
+  applyMode() {
+    if (!this.camera) return;
+    if (this.mode === "overview")
+      this.camera = fitCamera(this.camera.width, this.camera.height);
+    else if (this.mode === "follow" && this.state) {
+      const c = fitCamera(this.camera.width, this.camera.height);
+      this.camera = centerCamera(
+        { ...c, scale: Math.min(0.9, c.scale * 1.8) },
+        tileCenter(this.state.players[this.state.turn].pos),
+      );
+    }
+    this.transform();
+  }
+  update(
+    state,
+    head,
+    { paused = false, reduced = false, fast = false, selected = -1 } = {},
+  ) {
+    this.state = state;
+    const key = JSON.stringify([
+      state.matchId,
+      state.version,
+      head?.id,
+      selected,
+      state.players.map((p) => [p.pos, p.inJail, p.out]),
+      state.assets,
+    ]);
+    if (key !== this.key) {
+      this.key = key;
+      this.world.innerHTML = boardMarkup(state, selected);
+      this.applyMode();
+    }
+    if (head?.kind !== "pawnMoving" || reduced) {
+      this.cancelMove();
+      return;
+    }
+    if (this.motion?.id !== head.id) {
+      this.cancelMove();
+      this.motion = {
+        id: head.id,
+        move: head.move,
+        points: pawnRoute(head.move, state).map(pawnDisplayPoint),
+        elapsed: 0,
+        duration: stepDuration(head, { fast, reduced }),
+      };
+    }
+    if (paused) {
+      if (this.raf) {
+        cancelAnimationFrame(this.raf);
+        this.raf = 0;
+        this.motion.elapsed += performance.now() - this.started;
+      }
+      return;
+    }
+    if (this.raf) return;
+    this.started = performance.now();
+    const motion = this.motion;
+    const frame = () => {
+      if (this.motion !== motion) return;
+      const elapsed = motion.elapsed + performance.now() - this.started,
+        p = this.world.querySelector(`[data-pawn="${motion.move.player}"]`),
+        sample = samplePawnRoute(
+          motion.points,
+          elapsed,
+          motion.duration / Math.max(1, motion.points.length - 1),
+        );
+      if (p && sample)
+        p.setAttribute("transform", `translate(${sample.x} ${sample.y})`);
+      if (elapsed >= motion.duration) {
+        this.raf = 0;
+        this.onComplete(motion.id);
+        return;
+      }
+      this.raf = requestAnimationFrame(frame);
+    };
+    frame();
+  }
+  cancelMove() {
+    if (this.raf) cancelAnimationFrame(this.raf);
+    this.raf = 0;
+    this.motion = null;
+  }
+  dispose() {
+    this.cancelMove();
+    this.observer.disconnect();
+  }
 }

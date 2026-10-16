@@ -1,8 +1,13 @@
-# Monopoli Nusantara 4.8.2 — Aset Terpadu & Info Papan
+# Monopoli Nusantara 4.8.3 — Keamanan Simpanan & Stabilitas
 
-Source aktif melanjutkan v4.8.1: papan klasik 40 petak selebar layar portrait tanpa bingkai pilihan dan tanpa kotak deck tengah, dua layar utama (lobby dan gameplay), serta popup untuk fitur lain. Update ini menyatukan pembangunan, penjualan, gadai dan penebusan di Aset Saya, menambahkan pilihan jumlah bangunan dan Gadai Otomatis, memperjelas petak khusus/pajak, serta mengganti sepuluh ikon papan dengan PNG hasil generasi baru. Engine, ekonomi, bot dan otorisasi multiplayer dipertahankan.
+Source aktif melanjutkan 4.8.2 (nama ZIP 4.8.1 sebelumnya hanya typo): papan klasik 40 petak selebar layar portrait tanpa bingkai pilihan dan tanpa kotak deck tengah, dua layar utama (lobby dan gameplay), serta popup untuk fitur lain. Update ini menyatukan pembangunan, penjualan, gadai dan penebusan di Aset Saya, menambahkan pilihan jumlah bangunan dan Gadai Otomatis, memperjelas petak khusus/pajak, serta mengganti sepuluh ikon papan dengan PNG hasil generasi baru. Engine, ekonomi, bot dan otorisasi multiplayer dipertahankan.
 
-Baca [laporan implementasi dan QA 4.8.2](docs/ASSETS_REPORT.md), [peta frontend](docs/FRONTEND_GUIDE.md), [pemetaan 32 kartu](docs/CARD_ASSET_MAP.json), dan [kontrak engine](AI_UI_INTEGRATION.md). File laporan CLASSIC/KEPULAUAN/MIND/HEADLESS lama merupakan sejarah rilis sebelumnya kecuali hasil tes yang diperbarui oleh runner. Metadata core historis di `/health` berbeda dari versi UI di `/build.json`.
+
+Update 4.8.3 menambahkan satu tab penulis lokal, pemeriksaan konflik autosave atomik di IndexedDB, pemulihan simpanan terbaru, layout landscape kecil, metadata versi terpadu, fingerprint seluruh output/aset dan format sumber frontend yang mudah dibaca. Restore/import eksplisit tetap dapat memuat versi pertandingan lebih lama; save schema dan aturan ekonomi tetap.
+
+Panduan deployment aktif: [DEPLOY_483.md](docs/DEPLOY_483.md). Laporan rilis: [STABILITY_REPORT.md](docs/STABILITY_REPORT.md). Target Supabase **connectify**, bukan proyek novel champagne. Schema mn_* sudah diterapkan pada connectify; runtime online masih membutuhkan service-role key server dan pengujian Auth/Realtime lintas perangkat.
+
+Baca [laporan implementasi dan QA 4.8.2](docs/ASSETS_REPORT.md), [peta frontend](docs/FRONTEND_GUIDE.md), [pemetaan 32 kartu](docs/CARD_ASSET_MAP.json), dan [kontrak engine](AI_UI_INTEGRATION.md). File laporan CLASSIC/KEPULAUAN/MIND/HEADLESS lama merupakan sejarah rilis sebelumnya kecuali hasil tes yang diperbarui oleh runner. `/health`, `/build.json` dan UI kini memakai releaseVersion yang sama; engine schema 2 dan rulepack nusantara-c1009-2 ditampilkan terpisah.
 
 ## Menjalankan
 
@@ -22,9 +27,11 @@ npm run smoke:ui          # sesi VS Bot 2/3/4 peserta tanpa DOM
 npm run build:vercel      # build native Node statis, bukan Next.js
 npm run test:assets       # QA browser untuk aset terpadu, katalog/pajak dan gadai
 npm run diagnose:online   # hanya keberadaan/bentuk konfigurasi, tanpa nilai secret
+npm run test:stability    # regresi dua tab dan landscape kecil
+npm run format:check      # format sumber frontend dan adapter
 ```
 
-Untuk TypeScript: `npm ci --ignore-scripts`, lalu `npm run typecheck`. Tidak ada script lint pada basis ini. Dependency pengembangan hanya TypeScript dan tipe Node.
+Untuk TypeScript: `npm ci --ignore-scripts`, lalu `npm run typecheck`. Tidak ada lint semantik penuh; formatter Prettier dipin bersama TypeScript dan tipe Node. checkJs tetap false, sehingga typecheck belum mencakup semantik semua modul JavaScript.
 
 ## UI dan aset
 
@@ -43,15 +50,15 @@ Untuk TypeScript: `npm ci --ignore-scripts`, lalu `npm run typecheck`. Tidak ada
 
 ## QA browser
 
-Jalankan server/build lebih dahulu, lalu `npm run test:browser`, `npm run test:compact`, dan `npm run test:plan`, dan `npm run test:assets`. QA memerlukan Playwright dan Chromium; keduanya tidak menjadi dependency produksi. Bila terpasang di luar proyek, set `MN_BROWSER_MODULE` dan `MN_CHROMIUM_PATH`. Opsional: `MN_TEST_ORIGIN`, `MN_BROWSER_OUTPUT`.
+Jalankan server/build lebih dahulu, lalu `npm run test:browser`, `npm run test:compact`, dan `npm run test:plan`, dan `npm run test:assets`, serta `npm run test:stability`. QA memerlukan Playwright dan Chromium; keduanya tidak menjadi dependency produksi. Bila terpasang di luar proyek, set `MN_BROWSER_MODULE` dan `MN_CHROMIUM_PATH`. Opsional: `MN_TEST_ORIGIN`, `MN_BROWSER_OUTPUT`.
 
 Hasil aktual ada pada `CLASSIC_TEST_RESULTS.json`, `CLASSIC_BROWSER_RESULTS.json`, `COMPACT_BROWSER_RESULTS.json`, `PLAN_BROWSER_RESULTS.json`, `ASSETS_BROWSER_RESULTS.json` dan `ASSETS_VERIFICATION.json` dalam `docs/`. Pengujian portrait memakai emulasi Chromium, bukan Android fisik. Enam kursi manusia pada fixture hanya untuk QA UI, bukan mode hotseat baru. Pengujian online menggunakan simulasi/handler lokal dan mock konfigurasi, bukan Supabase live.
 
 ## Online dan deployment
 
-Audit lokal menemukan **tidak ada `.env` aktif dan tiga ENV Supabase belum disediakan pada proses**. `/api/online?config=1` merespons `online:false`. Itu menjelaskan kondisi lokal, belum membuktikan kondisi deployment Anda sama. UI membedakan belum dikonfigurasi, gagal memuat konfigurasi, perlu masuk, dan room terputus; Periksa ulang tidak menghapus simpanan.
+Runtime lokal memiliki konfigurasi privat Upstash/Groq dan endpoint publik connectify, tetapi service-role key server belum tersedia. `/api/online?config=1` tetap `online:false` hingga konfigurasi server lengkap. File `.env` privat tidak disertakan dalam ZIP. UI membedakan belum dikonfigurasi, gagal memuat konfigurasi, perlu masuk, dan room terputus; Periksa ulang tidak menghapus simpanan.
 
-Node tidak otomatis membaca `.env`. Gunakan secret manager server atau:
+`npm start`/`npm run dev` kini membaca `.env` jika tersedia. Pada hosting gunakan secret manager server. Jika memanggil Node langsung:
 
 ```bash
 node --env-file=.env --experimental-strip-types --import ./adapters/node/aliases.mjs adapters/node/server.mjs
@@ -61,12 +68,12 @@ Konfigurasi server: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_
 
 Vercel: framework **Other**, Node **24.x**, build `npm run build:vercel`, output `dist`, rewrite `/api/*` melalui `api/index.ts` sesuai `vercel.json`. Atur ENV untuk environment deployment yang benar, lalu redeploy. Build lokal bukan bukti deployment Vercel berhasil.
 
-Periksa Supabase Auth URL/redirect origin publik, metode guest/email yang digunakan, tiga migration existing, RLS/permission RPC dan Realtime `mn_room_updates` pada staging. Jangan mengulang migration tanpa melihat keadaan project. Tidak ada migration/database produksi yang diubah pada update ini. Lihat `docs/DEPLOY_SUPABASE.md`, `docs/DEPLOY_HYBRID.md`, dan bagian diagnosis pada laporan baru.
+Periksa Supabase Auth URL/redirect origin publik, metode guest/email yang digunakan, tiga migration existing, RLS/permission RPC dan Realtime `mn_room_updates` pada staging. Jangan mengulang migration tanpa melihat keadaan project. Update 4.8.3 telah menerapkan tiga migration mn_* pada connectify setelah audit; satu room legacy mp_rooms tetap dipertahankan. Lihat DEPLOY_483.md sebelum menjalankan SQL ulang. Lihat `docs/DEPLOY_SUPABASE.md`, `docs/DEPLOY_HYBRID.md`, dan bagian diagnosis pada laporan baru.
 
-Bot online tetap backend-authoritative dengan jobs/lease/recovery existing. `MN_ONLINE_BOTS_ENABLED` default false sampai worker staging tervalidasi. Groq opsional. Tidak ada pengujian atau pemanggilan Groq live, Supabase live, maupun deployment aktual dalam pekerjaan ini.
+Bot online tetap backend-authoritative dengan jobs/lease/recovery existing. `MN_ONLINE_BOTS_ENABLED` default false sampai worker staging tervalidasi. Groq opsional. Groq live telah diuji (structured output dan satu keputusan advisor game); Supabase SQL/RLS/grants/publication diverifikasi. Auth/Realtime multi-device, scheduler bot dan deployment aplikasi belum diuji live.
 
 ## Cache dan kompatibilitas
 
-Cache shell `nusantara-classic-v482` hanya menyimpan modul/aset publik, tidak API/Auth/room state. Cache Nusantara lama dibersihkan tanpa menghapus localStorage/IndexedDB pertandingan. Schema save, angka ekonomi, numeric pawn IDs dan aturan bot tetap; nama visual pion berubah menjadi warna sesuai aset barunya.
+Cache shell `nusantara-classic-v483-<build hash>` hanya menyimpan modul/aset publik, tidak API/Auth/room state. Cache Nusantara lama dibersihkan tanpa menghapus localStorage/IndexedDB pertandingan. Schema save, angka ekonomi, numeric pawn IDs dan aturan bot tetap; nama visual pion berubah menjadi warna sesuai aset barunya.
 
 Paket source menyertakan backend, migration, tests, docs, lockfile, aset dan master desain; tidak memuat `node_modules`, `dist`, secret ENV atau log. `PACKAGE_MANIFEST.json` mencatat hash setiap file selain dirinya sendiri. Bandingkan perubahan inti pada `docs/ASSETS_CORE_INTEGRITY.json`.

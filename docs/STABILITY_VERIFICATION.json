@@ -1,0 +1,110 @@
+{
+  "release": "4.8.3",
+  "basis": "4.8.2",
+  "generatedAt": "2026-10-16T18:01:21.565851+00:00",
+  "tests": {
+    "tests": 354,
+    "passed": 354,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "CLASSIC": {
+      "scenarios": 16,
+      "passed": true,
+      "generatedAt": "2026-10-16T17:57:03.179Z"
+    },
+    "COMPACT": {
+      "scenarios": 18,
+      "passed": true,
+      "generatedAt": "2026-10-16T17:58:00.118Z"
+    },
+    "PLAN": {
+      "scenarios": 5,
+      "passed": true,
+      "generatedAt": "2026-10-16T17:58:16.901Z"
+    },
+    "ASSETS": {
+      "scenarios": 8,
+      "passed": true,
+      "generatedAt": "2026-10-16T17:59:03.870Z"
+    },
+    "STABILITY": {
+      "scenarios": 7,
+      "passed": true,
+      "generatedAt": "2026-10-16T17:59:25.199Z"
+    }
+  },
+  "browserScenarios": 54,
+  "typecheck": {
+    "passed": true,
+    "checkJs": false
+  },
+  "formatter": {
+    "passed": true,
+    "prettier": "3.6.2"
+  },
+  "sourceGraph": {
+    "files": 202,
+    "failures": []
+  },
+  "coreIntegrity": {
+    "files": 23,
+    "unchanged": true
+  },
+  "supabase": {
+    "project": "connectify",
+    "ref": "ymunfgclqfdqaczluqti",
+    "status": "ACTIVE_HEALTHY",
+    "migrationsApplied": [
+      "20261016175341_mn_persistent_online",
+      "20261016175403_mn_hybrid_bot_jobs",
+      "20261016175404_mn_nusa_mind_settings"
+    ],
+    "tablesWithRLS": 7,
+    "browserCommitAllowed": false,
+    "serviceCommitAllowed": true,
+    "newPublishedTables": [
+      "mn_room_updates"
+    ],
+    "legacyRoomsBefore": 1,
+    "legacyRoomsAfter": 1,
+    "emailAuthEnabled": true,
+    "anonymousAuthEnabled": true,
+    "publicPrivateSnapshotRequest": {
+      "status": 401,
+      "code": "42501"
+    },
+    "publicCommitRequest": {
+      "status": 404,
+      "code": "PGRST202"
+    },
+    "runtimeServiceRoleConfigured": false,
+    "endToEndAuthRealtimeTested": false,
+    "botWorkerValidated": false
+  },
+  "upstash": {
+    "livePing": "PONG",
+    "roomDataReadOrModified": false
+  },
+  "groq": {
+    "model": "openai/gpt-oss-20b",
+    "modelsEndpoint": 200,
+    "strictJsonResponse": true,
+    "gameAdvisor": {
+      "status": "hybrid",
+      "advisorUsed": true,
+      "legalAction": "BID",
+      "totalTokens": 1035,
+      "latencyMs": 519
+    },
+    "competitiveBenchmarkPerformed": false
+  },
+  "limits": [
+    "No physical Android hardware test",
+    "No app/Vercel deployment",
+    "No live end-to-end Supabase multi-device game",
+    "No live online bot worker/scheduler validation"
+  ],
+  "delivery": "See external DELIVERY_VERIFICATION.json for fresh-extraction build and ZIP hash."
+}
