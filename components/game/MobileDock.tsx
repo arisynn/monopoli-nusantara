@@ -1,11 +1,12 @@
 'use client';
 import NusaText from './NusaText';
-import {ArrowRight,ChevronRight,Dice5,Play,Trophy} from 'lucide-react';
+import {ArrowRight,ChevronRight,Dice5,Play} from 'lucide-react';
+import DiceTray,{type DiceTrayProps} from './DiceTray';
 import InlineFeedback,{type Feedback} from './InlineFeedback';
 import {BOARD,money} from '@/lib/content.mjs';
 
 /** A bounded action area: long decisions open the full, existing turn panel. */
-export default function MobileDock({s,feedback,actor,human,busy,rolling,paused,onlinePaused,traveling,act,onDetails,onResume,onNew}:{s:any,feedback?:Feedback,actor:number,human:boolean,busy:boolean,rolling:boolean,paused:boolean,onlinePaused?:boolean,traveling?:{moveId:number,player:number,step:number,total:number}|null,act:any,onDetails:()=>void,onResume:()=>void,onNew:()=>void}){
+export default function MobileDock({s,feedback,actor,human,busy,rolling,paused,onlinePaused,traveling,act,onDetails,onResume,onNew,diceStage='hidden',diceValues=[1,1],diceKind='movement',rollKey='',lastDice,reduced=false,fast=false,animationPaused=false,presentationPhase='idle',hasClaim=false}:{s:any,feedback?:Feedback,actor:number,human:boolean,busy:boolean,rolling:boolean,paused:boolean,onlinePaused?:boolean,traveling?:{moveId:number,player:number,step:number,total:number}|null,act:any,onDetails:()=>void,onResume:()=>void,onNew:()=>void;diceStage?:DiceTrayProps['stage'];diceValues?:number[];diceKind?:string;rollKey?:string;lastDice?:DiceTrayProps['last'];reduced?:boolean;fast?:boolean;animationPaused?:boolean;presentationPhase?:string;hasClaim?:boolean}){
  const who=s.players[actor],disabled=busy||!human||rolling||paused||!!traveling;
  let title='',subtitle='',label='Buka keputusan',type='';
  switch(s.phase){
@@ -22,13 +23,18 @@ export default function MobileDock({s,feedback,actor,human,busy,rolling,paused,o
   case 'buildOffer':title='Stok bangunan terbatas';subtitle=`${s.buildOffer.remaining} ${s.buildOffer.kind==='house'?'rumah':'hotel'} tersisa`;label='Pilih bangunan';break;
   case 'won':title=`${s.players[s.winner].name} menang!`;subtitle='Penguasa Nusantara';label='Main lagi';break;
  }
+ if(diceStage==='result'){title='Hasil dadu';subtitle=diceKind==='opening'?'Menentukan urutan bermain':diceKind==='utility'?'Perhitungan sewa utilitas':'Menyiapkan langkah berikutnya';label='Menyiapkan perjalanan'}
+ if(presentationPhase==='financialSettlement'){title='Transaksi Nusa tercatat';subtitle='Saldo diperbarui sesuai hasil permainan';label='Menyelesaikan transaksi'}
  if(rolling){title='Dadu bergulir…';subtitle='Menyiapkan langkah berikutnya';label='Tunggu hasil dadu'}
  if(traveling){title=`${s.players[traveling.player]?.name||'Pion'} sedang berjalan`;subtitle=`${traveling.step} dari ${traveling.total} petak`;label='Pion bergerak…'}
- return <section className="mobile-dock" aria-label="Aksi giliran">
-  <div className="dock-heading"><span className="dock-emblem">{s.phase==='won'?<Trophy size={25}/>:<Dice5 size={25}/>}</span><div><div className={`dock-meta ${feedback?'has-feedback':''}`}><small><NusaText text={subtitle}/></small><InlineFeedback feedback={feedback||null}/></div><h2 title={title}><NusaText text={title}/></h2></div></div>
+ return <section className="turn-console" aria-label="Aksi giliran">
+  <DiceTray stage={rolling?'rolling':diceStage} dice={diceValues} kind={diceKind} rollKey={rollKey.replace(/diceRolling|diceResult/,'dice')} last={lastDice} reduced={reduced} fast={fast} paused={animationPaused}/>
+  <div className="turn-console-main">
+  <div className="turn-console-heading"><button type="button" className={`turn-details ${hasClaim?'has-claim':''}`} disabled={rolling||!!traveling||diceStage==='result'} onClick={onDetails} aria-label={hasClaim?'Tagih sewa':'Detail giliran'} title={hasClaim?'Tagih sewa':'Detail giliran'}><ChevronRight size={18}/></button><span className="turn-context">{paused||onlinePaused?'PERMAINAN DIJEDA':human?'GILIRANMU':s.phase==='auction'?'LELANG TERBUKA':`GILIRAN ${who.name}`}</span><h2 title={title}><NusaText text={title}/></h2><p><NusaText text={subtitle}/></p></div>
+
   {traveling&&<div className="travel-progress" role="progressbar" aria-label="Perjalanan pion" aria-valuemin={0} aria-valuemax={traveling.total} aria-valuenow={traveling.step}><span style={{width:`${Math.round(traveling.step/Math.max(1,traveling.total)*100)}%`}}/></div>}
-  <div className="dock-actions">
-   {rolling?<button className="secondary" disabled>Dadu bergulir…</button>:traveling?<button className="secondary" disabled>Pion menuju {BOARD[s.players[traveling.player].pos].name}…</button>:
+  <div className="turn-console-actions">
+   {rolling||diceStage==='result'||presentationPhase==='financialSettlement'?<button className="secondary" disabled>{rolling?'Dadu bergulir…':diceStage==='result'?'Hasil diterima':'Transaksi tercatat'}</button>:traveling?<button className="secondary" disabled>Pion menuju {BOARD[s.players[traveling.player].pos].name}…</button>:
     onlinePaused?<button className="secondary" disabled>Permainan dijeda · pilih Siap lanjut</button>:
     paused?<button className="primary" onClick={onResume}>Lanjutkan permainan<Play size={18}/></button>:
     s.phase==='won'?<button className="primary" onClick={onNew}>{label}<ArrowRight size={18}/></button>:
@@ -36,5 +42,7 @@ export default function MobileDock({s,feedback,actor,human,busy,rolling,paused,o
     s.phase==='buy'?<><button className="primary" disabled={disabled||who.cash<BOARD[s.buy].price} onClick={()=>act('BUY')}>Beli · <NusaText text={money(BOARD[s.buy].price)}/></button><button className="secondary" disabled={disabled} onClick={()=>act('AUCTION')}>Lelang</button></>:
     <button className="primary" disabled={type?disabled:false} onClick={()=>type?act(type):onDetails()}>{rolling?'Dadu bergulir…':label}{type==='ROLL'||type==='START_ROLL'?<Dice5 size={19}/>:<ArrowRight size={18}/>}</button>}
   </div>
+  </div>
+  {feedback&&<div className="turn-console-feedback"><InlineFeedback feedback={feedback}/></div>}
  </section>
 }

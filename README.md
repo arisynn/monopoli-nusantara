@@ -1,6 +1,10 @@
-# Monopoli Nusantara v4.5 — Board & Gameplay Experience
+# Monopoli Nusantara v4.6.1 — Player Experience
 
-**Status v4.5:** urutan dadu → pion → kejadian → transaksi visual kini memakai satu antrean presentasi; event kartu/ledger berasal dari shared engine. Detail board, kapsul dan riwayat diperkuat tanpa mengubah aturan atau strategi bot. [Laporan v4.5](docs/V45_REPORT.md) · [Deployment](docs/DEPLOY_V45.md) · [QA](docs/QA_V45_RESULTS.json). Build/TypeScript penuh, Supabase live dan Android/browser belum terverifikasi.
+**Pembaruan saat ini:** satu layar permainan berfokus pada papan, tanpa bottom navigation. Ketuk kapsul untuk Aset, tombol Barter untuk negosiasi, baris aktivitas untuk Riwayat, dan Menu untuk Room, Simpanan, Pengaturan serta Aturan. Dadu memakai konsol aksi tetap; shared presentation queue tetap mengatur reveal → pion → event → transaksi. [Laporan UI](docs/PLAYER_UI_REPORT.md) · [Audit](docs/PLAYER_UI_AUDIT.md) · [Hasil regresi](docs/QA_PLAYER_UI_RESULTS.json).
+
+Basis source adalah NUSA MIND v4.6 yang sudah ada di workspace, termasuk empat model lokal dan persona tetap. Nama folder lama bukan penanda versi source. Tidak ada perubahan engine, strategi bot, endpoint, worker, database atau migrasi dalam pembaruan UI ini. Build/TypeScript semantik, React DOM/browser/perangkat dan Supabase live masih perlu diverifikasi; lihat `docs/UI_BUILD_CHECKS.json`.
+
+**Riwayat v4.5:** urutan dadu → pion → kejadian → transaksi visual kini memakai satu antrean presentasi; event kartu/ledger berasal dari shared engine. Detail board, kapsul dan riwayat diperkuat tanpa mengubah aturan atau strategi bot. [Laporan v4.5](docs/V45_REPORT.md) · [Deployment](docs/DEPLOY_V45.md) · [QA](docs/QA_V45_RESULTS.json). Build/TypeScript penuh, Supabase live dan Android/browser belum terverifikasi.
 
 Web game properti 2D berbahasa Indonesia. v4.5 melanjutkan fondasi Hybrid Intelligence 4.0 dan Supabase; laporan lama tetap disimpan sebagai riwayat verifikasi. Papan SVG, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
 
@@ -16,7 +20,7 @@ v2.11 menyempurnakan board: monogram Nusa, artwork spesial dan kartu yang baru, 
 - Papan SVG 40 petak dengan empat sudut besar dan pita warna klasik. Dua tampilan: Seluruh papan dan Dekat/Ikuti pemain. Geser dan pinch zoom langsung pada papan tanpa tombol, minimap, atau label yang menutupi petak. Jelajah manual tetap aktif sampai tombol Ikuti pemain ditekan.
 - Lima slot save lokal, arsip permainan sebelumnya, ekspor/impor JSON tervalidasi, serta pengaturan yang diingat di perangkat.
 
-- Dua mode baru: VS Bot (2–4 peserta: manusia + Raka/Bima/Sari, tanpa difficulty selector) dan Online Multiplayer (2–6 peserta, minimal dua manusia, maksimal tiga bot unik setelah worker diverifikasi). Save hotseat lama dan adapter bot/Groq lama dipertahankan untuk kompatibilitas.
+- Dua mode baru: VS Bot (2–4 peserta: manusia + Raka/Bima/Sari; empat model NUSA MIND existing dipertahankan) dan Online Multiplayer (2–6 peserta, minimal dua manusia, maksimal tiga bot unik setelah worker diverifikasi). Save hotseat lama dan adapter bot/Groq lama dipertahankan untuk kompatibilitas.
 - Jalur online baru: Supabase Auth, kursi per UUID, snapshot privat persisten, transaksi atomik, revision hints Realtime, reconnect, voting mayoritas, auto-pause dan resume semua aktif siap. Belum tervalidasi pada Supabase live.
 - Pion SVG orisinal dapat dipilih di setup/lobby, lalu konsisten pada board dan HUD. Kartu Kesempatan/Dana Umum memakai artwork baru; ilustrasi regional existing dipakai pada kota.
 - Aturan dasar C1009: lempar awal, lelang terbuka, lelang stok bangunan langka, barter saat utang/di luar giliran, pilihan langsung tebus aset tergadai, dan opsi klaim sewa manual.

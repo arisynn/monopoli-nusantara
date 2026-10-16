@@ -15,7 +15,7 @@ export async function loadComponent(file,{states={},presentation}={}){
  const node=(type,props,key)=>({type,props:props||{},key});
  const stub=name=>Object.assign(()=>null,{displayName:name});
  const runtime={jsx:node,jsxs:node,Fragment:'fragment'};
- const react={useState:value=>{const i=stateIndex++;return [Object.hasOwn(states,stateNames[i]?.name)?states[stateNames[i].name]:Object.hasOwn(states,i)?states[i]:typeof value==='function'?value():value,next=>updates.push({name:stateNames[i]?.name,value:next})]},useRef:value=>({current:value}),useEffect:()=>{},useLayoutEffect:()=>{},useCallback:fn=>fn,memo:fn=>fn};
+ const react={useState:value=>{const i=stateIndex++;return [Object.hasOwn(states,stateNames[i]?.name)?states[stateNames[i].name]:Object.hasOwn(states,i)?states[i]:typeof value==='function'?value():value,next=>updates.push({name:stateNames[i]?.name,value:next})]},useRef:value=>({current:value}),useEffect:()=>{},useLayoutEffect:()=>{},useCallback:fn=>fn,useMemo:fn=>fn(),memo:fn=>fn};
  const defaults={};
  const fakePresentation=game=>({state:game,phase:'idle',busy:false,stepId:'',dice:null,diceKind:'movement',event:null,notice:null,transactions:[],motion:null,traveling:null,paused:false,canAcknowledge:false,completeMove:()=>{},onMoveStep:()=>{},dismissEvent:()=>{},skip:()=>{},...presentation});
  globalThis[token]={get(path){

@@ -1,0 +1,150 @@
+{
+  "basis": "Workspace NUSA MIND v4.6 snapshot before UI task",
+  "unchanged": [
+    {
+      "file": "app/api/bot/route.ts",
+      "sha256": "21143bf7950c9eb4eeb14b2190056f8a264f7e38560dd4bda57a413d6462cb87"
+    },
+    {
+      "file": "app/api/game/route.ts",
+      "sha256": "e247d4c92d96fdbfd3d45c523247cee452ef9e675df0ff5e5548f741ac943e7a"
+    },
+    {
+      "file": "app/api/online/route.ts",
+      "sha256": "1bd38d4e1dc7d411a7b805cd20d7565fce7ca8a34d75de0b779c21f6027eb8b8"
+    },
+    {
+      "file": "components/game/BoardMap.tsx",
+      "sha256": "008f480d90c23d3b6d633024abd76584d1c8bf0c11892d3d89f133a708445298"
+    },
+    {
+      "file": "components/game/useGameplayPresentation.ts",
+      "sha256": "5d583e61e35f826b53c49a041573a1ee628e0cd94469ab8bf8a902619d69b07d"
+    },
+    {
+      "file": "lib/bot/analysis.mjs",
+      "sha256": "a034eedb0a3a59d9054e7a5e2113bbfa956afb56fc5c2e20ac547f7e67e0aab4"
+    },
+    {
+      "file": "lib/bot/candidates.mjs",
+      "sha256": "f0066f2bd492aa93c7b624116e1efa9e2f56d61590332d388a800d15db64741d"
+    },
+    {
+      "file": "lib/bot/contracts.ts",
+      "sha256": "2b8f9fadcb987af54e645f618e7738b1df1a7e829db7cb83e358d7c0c137f7d7"
+    },
+    {
+      "file": "lib/bot/memory.mjs",
+      "sha256": "2fb41d1d1335e95654bb62bed3604b14dea1460b8f81680719a31c07a0116bc3"
+    },
+    {
+      "file": "lib/bot/mind-client.mjs",
+      "sha256": "c90eff416ceb3401af4cfec29f063ade1cf55c51d578685ab9c0f0af52dd499d"
+    },
+    {
+      "file": "lib/bot/mind-config.mjs",
+      "sha256": "623c396edc842034d746d28ddbf02b501e1aa20ecdddcbb204c69bf88f1727a4"
+    },
+    {
+      "file": "lib/bot/mind.mjs",
+      "sha256": "c9eec829fdef8056ab6aa673791e225034feeedfa21e0e7a8716561efe1cd0a9"
+    },
+    {
+      "file": "lib/bot/mind.worker.mjs",
+      "sha256": "53da52b7e1c2f1beee0e538545f791f27f6937d16e4c047c6895b96352485554"
+    },
+    {
+      "file": "lib/bot/negotiation.mjs",
+      "sha256": "dd8b47d106d94189b117932bb123bfa832beb1c2f779a6698345c395e16407e5"
+    },
+    {
+      "file": "lib/bot/personas.mjs",
+      "sha256": "170f9783488546ac6f194787d06650819a6aa9cbabfd55ec744fe222016127db"
+    },
+    {
+      "file": "lib/bot/strategy.mjs",
+      "sha256": "fd0418bb899dc819ddfd2893952b6259203517c4b2714d80f854f37482f15218"
+    },
+    {
+      "file": "lib/finance.mjs",
+      "sha256": "f267b9773a43abc170b0ae29fcf57ae780ee598a5304630c9398054e53aed5ae"
+    },
+    {
+      "file": "lib/game.mjs",
+      "sha256": "d8452c74d4f18522c237dd787102daf66ad06823db92ae69c577eb14102fdb8f"
+    },
+    {
+      "file": "lib/online-client.mjs",
+      "sha256": "65f7b57930d1e8ba65c944ed34f41b7919344f680f24f1ae18c6fb3c8226cd75"
+    },
+    {
+      "file": "lib/presentation-timeline.mjs",
+      "sha256": "49ee0af5722b5b57e5149b7c9ac44872fe655f379731e971623e3cfeeb35d040"
+    },
+    {
+      "file": "lib/room-client.mjs",
+      "sha256": "c3e53a0e95a45fc81ab868850595ef42a6a17812a4a58175af13c528ad928abc"
+    },
+    {
+      "file": "lib/server/bot-worker.mjs",
+      "sha256": "310824f9a1616c64991a42f7d7b3e754cc8df42b4502925acdfb5cc0e4626a54"
+    },
+    {
+      "file": "lib/server/d1-store.mjs",
+      "sha256": "e397b386b965b84ddca2cbb64d08c2c7f96daf198efb1863ef6a544503bbbb40"
+    },
+    {
+      "file": "lib/server/online-room.mjs",
+      "sha256": "533a145522afc69791ecca3f0776be7ab11130dc428444ec6ede9e8df1002b1c"
+    },
+    {
+      "file": "lib/server/online-service.mjs",
+      "sha256": "351ddb85283314f4242c5df81a502d6e424c7428530be2aa4a7589c436d7e02c"
+    },
+    {
+      "file": "lib/server/redis-store.mjs",
+      "sha256": "4f2102cb3f9b07c293d1861638671e09ae1c57088a6785428de0ffe046be1805"
+    },
+    {
+      "file": "lib/server/runtime-sites.ts",
+      "sha256": "b8789038a906a1251899d5d576f3bf5133f74b0a337874e42368ea0a91e07fcf"
+    },
+    {
+      "file": "lib/server/runtime.ts",
+      "sha256": "745e63dcda080068b95edef313ae8fd7c4efe1a9cbe0e5d9732c853d0e224c31"
+    },
+    {
+      "file": "lib/server/supabase-store.mjs",
+      "sha256": "e573c0b3be9d963839a5c803aec36073bdf73eaa835bacffd1ede81b3b544eab"
+    },
+    {
+      "file": "lib/storage.ts",
+      "sha256": "82610ce6a0f6948cdb6946a811f30b7eb219e8a57ef088c1159895467336c8e0"
+    },
+    {
+      "file": "supabase/config.toml",
+      "sha256": "53b2e34297a895dd9720789bbed985f4d93c222060dbdc3f30c8d67b19f4a460"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/index.ts",
+      "sha256": "40a10f0ee2d0ab2f6ef2e3e692e85fcdabac3f0b83fc7aa0aca7ed57972d7334"
+    },
+    {
+      "file": "supabase/migrations/202610160001_persistent_online.sql",
+      "sha256": "60bb05e3d5598eda25e535a44a73dd47590e039548f8a059d993f8f6fd601ecc"
+    },
+    {
+      "file": "supabase/migrations/202610160002_hybrid_bot_jobs.sql",
+      "sha256": "03c9a294acc5bfb75ba69d9d7081b84eda9c9b102b167b237e066507fc9941ef"
+    },
+    {
+      "file": "supabase/migrations/202610160003_nusa_mind_settings.sql",
+      "sha256": "ee2312867ef2fd6f654cb4cf5644d31515759a9c662ab9635671bfdbb6c8aa8e"
+    },
+    {
+      "file": "supabase/scheduler_setup.sql",
+      "sha256": "749ab4bb6c54a97195ab07ef44c6139a666728c14dc29109c9b5c0889eb8d96d"
+    }
+  ],
+  "note": "Byte equality proves these source files were preserved; it does not prove live backend correctness."
+}

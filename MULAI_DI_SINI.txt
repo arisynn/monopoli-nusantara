@@ -1,3 +1,15 @@
+MONOPOLI NUSANTARA v4.6.1 — PLAYER EXPERIENCE
+
+Source terbaru melanjutkan NUSA MIND v4.6 di workspace.
+Baca docs/PLAYER_UI_REPORT.md dan docs/PLAYER_UI_AUDIT.md terlebih dahulu.
+Bottom navigation dihapus; semua fitur tersedia dari kapsul, Barter, aktivitas, dan Menu.
+Dadu ditampilkan dalam konsol UI, mengikuti antrean presentasi yang sama.
+Tidak ada migrasi database atau perubahan ekonomi/bot pada pembaruan ini.
+Build, semantic TypeScript dan browser/perangkat nyata belum terverifikasi.
+Ikuti langkah deployment dan checklist manual dalam laporan UI.
+
+CATATAN RILIS LAMA DI BAWAH INI ADALAH RIWAYAT, BUKAN STATUS RILIS TERBARU.
+
 PEMBARUAN ONLINE MULTIPLAYER
 Baca docs/ONLINE_MULTIPLAYER_REPORT.md dan docs/DEPLOY_SUPABASE.md.
 Kode lokal sudah diperbarui; Supabase live, build frontend, dan deployment belum terverifikasi.

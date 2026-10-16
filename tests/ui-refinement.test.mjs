@@ -9,12 +9,12 @@ test('v2.4 keeps the 40-tile board clear of fixed zoom and minimap widgets',()=>
  assert.equal(BOARD.length,40);
  for(const name of ['map-zoom','map-minimap','map-hint','map-status'])assert(!board.includes(`className="${name}`),`${name} must not float over the map`);
  assert(board.includes('BoardArtwork'));assert(board.includes('BoardTokens'));
- assert(board.includes('BoardGesture'));assert(board.includes('DiceRollFx'));
+ assert(board.includes('BoardGesture'));assert(!board.includes('DiceRollFx'));assert(read('../components/game/MobileDock.tsx').includes('DiceTray'));
 });
 test('dice animation respects the actual dice result and cannot intercept pointer input',()=>{
  const fx=read('../components/game/DiceRollFx.tsx');const css=read('../app/globals.css');
  assert(fx.includes('orientations[dice[i]]'));assert(fx.includes("stage==='rolling'"));
- assert(css.includes('.board-dice-effect{position:absolute;inset:0;z-index:3;display:grid;place-items:center;pointer-events:none'));
+ assert(fx.includes('tray-dice-effect'));assert(css.includes('.tray-dice-effect{position:relative;inset:auto;'));assert(!fx.includes('board-dice-effect'));
  assert(css.includes('@media(prefers-reduced-motion:reduce)'));
 });
 test('v2.6 uses a compact asset manager and a guided barter without changing board controls',()=>{

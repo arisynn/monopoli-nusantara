@@ -1,14 +1,13 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef} from 'react';
 import {BoardArtwork,BoardTokens} from './BoardMap';
-import DiceRollFx from './DiceRollFx';
 import {pawnStepTiming} from '@/lib/pawn-animation.mjs';
 import {pawnPoint} from '@/lib/pawn-layout.mjs';
 import {pawnRoute,samplePawnRoute,pawnMotionScale} from '@/lib/pawn-animation.mjs';
 import {BoardGesture,fitCamera,closeCamera,centerCamera,resizeCamera,zoomCamera,panCamera,worldPoint,hitTile,tileCenter,scaleLimits,keepPointVisible} from '@/lib/board-camera.mjs';
 
-type Props={state:any,selected:number,onSelect:(id:number)=>void,view?:string,cameraKey?:number,reduced?:boolean,speed?:boolean,rolling?:boolean,moveIdToAnimate?:number|null,motionKey?:string,animationPaused?:boolean,diceStage?:'hidden'|'rolling'|'result',diceValues?:number[],diceKind?:string,onMoveComplete?:(moveId:number)=>void,onMoveStep?:(moveId:number,step:number)=>void,onCameraModeChange?:(mode:string)=>void};
-export default function Board({state,selected,onSelect,view='follow',cameraKey=0,reduced=false,speed=false,rolling=false,moveIdToAnimate=null,motionKey='',animationPaused=false,diceStage='hidden',diceValues,diceKind='movement',onMoveComplete,onMoveStep,onCameraModeChange}:Props){
+type Props={state:any,selected:number,onSelect:(id:number)=>void,view?:string,cameraKey?:number,reduced?:boolean,speed?:boolean,rolling?:boolean,moveIdToAnimate?:number|null,motionKey?:string,animationPaused?:boolean,onMoveComplete?:(moveId:number)=>void,onMoveStep?:(moveId:number,step:number)=>void,onCameraModeChange?:(mode:string)=>void};
+export default function Board({state,selected,onSelect,view='follow',cameraKey=0,reduced=false,speed=false,rolling=false,moveIdToAnimate=null,motionKey='',animationPaused=false,onMoveComplete,onMoveStep,onCameraModeChange}:Props){
  const host=useRef<HTMLDivElement>(null),world=useRef<SVGGElement>(null),runtime=useRef<any>(null);
  const props=useRef({state,onSelect,view,cameraKey,reduced,speed,rolling,moveIdToAnimate,motionKey,animationPaused,onMoveComplete,onMoveStep,onCameraModeChange});props.current={state,onSelect,view,cameraKey,reduced,speed,rolling,moveIdToAnimate,motionKey,animationPaused,onMoveComplete,onMoveStep,onCameraModeChange};
  useLayoutEffect(()=>{
@@ -106,7 +105,6 @@ export default function Board({state,selected,onSelect,view='follow',cameraKey=0
  useEffect(()=>runtime.current?.setView(),[view,cameraKey]);
  return <div className="board-2d" ref={host} tabIndex={0} role="region" aria-label="Papan 2D Nusantara, 40 petak. Geser untuk menjelajah, cubit dua jari atau gulir untuk zoom. Tombol panah untuk menggeser. Tab untuk memilih petak.">
   <svg className="board-vector" width="100%" height="100%" aria-label="Peta permainan"><g ref={world}><BoardArtwork state={state} selected={selected}/><BoardTokens state={state} jumping={moveIdToAnimate!==null&&state?.lastMove?.jump?state.lastMove.player:null}/></g></svg>
-  <DiceRollFx stage={diceStage} dice={diceValues||state?.dice||[1,1]} reduced={reduced} fast={speed} rollKey={motionKey.replace(/diceRolling|diceResult/,'dice')} kind={diceKind} paused={animationPaused}/>
 
  </div>
 }

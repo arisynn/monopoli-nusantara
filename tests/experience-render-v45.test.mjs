@@ -48,6 +48,6 @@ test('actual expanded history presents both sides of a confirmed rent transfer f
 });
 test('actual local roll handler accepts only one command when double-clicked before React updates',options,async t=>{
  const game=setup(),f=await loadComponent(file('Game'),{states:{s:game,home:false}});t.after(f.dispose);
- const roll=elements(f.module.default()).find(n=>n.type==='button'&&textContent(n).trim()==='Lempar dadu');assert(roll);
+ const consoleProps=elements(f.module.default()).find(n=>n.type?.displayName==='MobileDock')?.props;assert(consoleProps);const dock=await loadComponent(file('MobileDock'));t.after(dock.dispose);const roll=elements(dock.module.default(consoleProps)).find(n=>n.type==='button'&&textContent(n).trim()==='Lempar dadu');assert(roll);
  await Promise.all([roll.props.onClick(),roll.props.onClick()]);const saved=f.updates.filter(u=>u.name==='s');assert.equal(saved.length,1);assert.equal(saved[0].value.version,game.version+1);assert.equal(game.version,0);
 });
