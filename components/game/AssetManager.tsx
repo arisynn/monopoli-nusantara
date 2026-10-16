@@ -1,5 +1,4 @@
 'use client';
-import NusaText from './NusaText';
 import {useMemo,useState} from 'react';
 import {ChevronRight,Search} from 'lucide-react';
 import {GROUPS,money} from '@/lib/content.mjs';
@@ -36,11 +35,11 @@ export default function AssetManager({game,ownerId,controllerId,busy,onOwnerChan
    const status=prop.mortgaged?'Digadai':prop.level===5?'Hotel':prop.level?`${prop.level} rumah`:complete?'Set lengkap':'Tanpa bangunan';
    return <div key={t.id} className="asset-simple-item"><span className="asset-color" style={{background:t.color}}/>
     <button className="asset-simple-detail" type="button" onClick={()=>onOpen(t.id)} aria-label={`Lihat pengelolaan ${t.name}`}><b>{t.name}</b><small>{t.group>=0?GROUPS[t.group].name:t.type==='station'?'Stasiun':'Utilitas'} · {status}{complete&&!prop.mortgaged&&prop.level>0?' · Set lengkap':''}</small></button>
-    {manageable&&type?<button type="button" className="asset-simple-action" disabled={busy} onClick={()=>onAction(t.id,type)}><span>{label}<small>{['SELL','MORTGAGE'].includes(type)?'+':''}<NusaText text={money(cost)}/></small></span></button>:<button type="button" className="asset-simple-more" onClick={()=>onOpen(t.id)} aria-label={`Detail ${t.name}`}><ChevronRight size={18}/></button>}
+    {manageable&&type?<button type="button" className="asset-simple-action" disabled={busy} onClick={()=>onAction(t.id,type)}><span>{label}<small>{['SELL','MORTGAGE'].includes(type)?'+':''}{money(cost)}</small></span></button>:<button type="button" className="asset-simple-more" onClick={()=>onOpen(t.id)} aria-label={`Detail ${t.name}`}><ChevronRight size={18}/></button>}
    </div>})}</div>
   {!rows.length&&<p className="simple-empty">{owned.length?'Tidak ada aset yang sesuai. Coba filter lain.':'Belum punya properti. Beli kota saat mendarat di sana.'}</p>}
   {!manageable&&<p className="simple-hint">{ownerId!==controllerId||game.players[ownerId]?.controller!=='human'?'Aset pemain ini hanya dapat dilihat.':'Selesaikan keputusan aktif sebelum mengelola aset.'}</p>}
-  <details className="asset-secondary"><summary>Kekayaan & stok bank</summary><div className="asset-stats"><div><span>Nilai kekayaan</span><b><NusaText text={money(worth(game,ownerId))}/></b></div><div><span>Stok bank</span><b>{game.bank.houses} rumah · {game.bank.hotels} hotel</b></div></div></details>
+  <details className="asset-secondary"><summary>Kekayaan & stok bank</summary><div className="asset-stats"><div><span>Nilai kekayaan</span><b>{money(worth(game,ownerId))}</b></div><div><span>Stok bank</span><b>{game.bank.houses} rumah · {game.bank.hotels} hotel</b></div></div></details>
   <button className="secondary" onClick={onAllTiles}>Lihat semua petak<ChevronRight size={17}/></button>
  </section>;
 }

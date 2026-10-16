@@ -54,11 +54,10 @@ test('actual vector artwork exposes all tiles, ownership, hotel, mortgage and si
  const require=createRequire(import.meta.url),ts=require('typescript'),React=require('react'),{renderToStaticMarkup}=require('react-dom/server');
  const source=readFileSync(new URL('../components/game/BoardMap.tsx',import.meta.url),'utf8');
  const code=ts.transpileModule(source,{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
- const nusaModule={exports:{}};const nusaCode=ts.transpileModule(readFileSync(new URL('../components/game/NusaText.tsx',import.meta.url),'utf8'),{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.CommonJS}}).outputText;new Function('require','module','exports',nusaCode)(require,nusaModule,nusaModule.exports);
- const module={exports:{}};new Function('require','module','exports',code)(id=>id==='./NusaText'?nusaModule.exports:require(id.startsWith('@/')?'../'+id.slice(2):id),module,module.exports);
+ const module={exports:{}};new Function('require','module','exports',code)(id=>require(id.startsWith('@/')?'../'+id.slice(2):id),module,module.exports);
  const s=createGame({players:Array.from({length:6},(_,i)=>({name:`Pemain ${i+1}`}))});s.assets[1]={owner:0,level:5,mortgaged:false};s.assets[3]={owner:1,level:0,mortgaged:true};
  const html=renderToStaticMarkup(React.createElement('svg',null,React.createElement(module.exports.BoardArtwork,{state:s,selected:1}),React.createElement(module.exports.BoardTokens,{state:s})));
  assert.equal((html.match(/data-tile=/g)||[]).length,40);assert.equal((html.match(/data-pawn=/g)||[]).length,6);
  assert(html.includes('milik Pemain 1, hotel'));assert(html.includes('digadaikan'));assert(html.includes('GADAI'));
- assert(html.includes('/assets/tokens/'));assert(html.includes('/assets/board/chance.svg'));assert(!html.includes('<canvas'));for(const t of BOARD)assert(html.includes(t.name));
+ assert(!html.includes('<image'));assert(!html.includes('<canvas'));for(const t of BOARD)assert(html.includes(t.name));
 });

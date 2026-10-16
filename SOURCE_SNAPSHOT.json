@@ -1,994 +1,870 @@
 {
-  "version": "2.11.1",
+  "version": "2.9.0",
   "snapshot": "local-source",
-  "source_archive": "Monopoli_Nusantara_v2.11.zip",
-  "source_archive_sha256": "9d2141b1ab1f6c054e93fad88cd96e2e8cb7d05586571b7bc4bc484e41fb5665",
+  "source_archive": "Monopoli_Nusantara_v2.8.zip",
+  "source_archive_sha256": "8d474422387252f0b91f57cfd872b60443fbd636fdc7347b42b712f663d8d96e",
   "remote_sync_completed": false,
-  "scope": "Hotfix TS2322: keep GameNotice.message a string, render Nusa within notice",
-  "currency": {
-    "name": "Nusa",
-    "symbol_text_fallback": "N",
-    "visual": "Original N monogram with archipelago wave; scoped WOFF glyph and SVG",
-    "units_per_nusa": 10,
-    "storage": "unchanged integer units; no migration or rounding"
-  },
   "verification": {
-    "node_tests_passed": 147,
+    "node_tests_passed": 114,
     "camera_tests_passed": 7,
-    "new_v211_tests_passed": 14,
-    "ts_tsx_syntax_parsed": 29,
-    "syntax_parser": "Babel from preinstalled environment tooling; not tsc",
-    "jsx_smoke": "32 cards, six-player HUD, dock buy/auction/debt, asset actions and picker; standalone JSX evaluation, not React DOM",
-    "room_api": "Actual TypeScript-stripped route + in-memory CAS adapter; create/join/selection race/auth/start/reconnect tested",
-    "svg_xml_passed": 17,
-    "typescript_typecheck": "Not run locally: compiler/dependencies unavailable; Vercel reported two TS2322 call sites corrected in this patch",
-    "build_lint": "Not rerun locally: dependencies unavailable; redeploy required",
-    "browser_android": "not tested; assets inspected via Inkscape, not a full app visual test",
-    "live_multiplayer": "not tested with Redis/D1 or multiple devices"
+    "new_compact_and_notice_tests": 14,
+    "syntax_checks": "passed: compact/navigation/notice helpers, TS hooks via Node, service worker",
+    "typescript_tsx": "not verified: dependencies/compiler unavailable",
+    "next_vinext_build": "not run: dependencies unavailable",
+    "lint": "not run: dependencies unavailable",
+    "browser_dom": "not run; source CSS tests are not rendered size measurements",
+    "multiplayer_live": "not tested",
+    "protected_files_identical": [
+      "lib/game.mjs",
+      "lib/game-v1.mjs",
+      "lib/content.mjs",
+      "lib/content-v1.mjs",
+      "lib/gameplay-presentation.mjs",
+      "lib/pawn-animation.mjs",
+      "lib/board-camera.mjs",
+      "components/game/Board.tsx",
+      "components/game/BoardMap.tsx",
+      "components/game/DiceRollFx.tsx",
+      "components/game/MobileDock.tsx",
+      "lib/storage.ts",
+      "lib/save-format.mjs",
+      "lib/room-client.mjs",
+      "app/api/game/route.ts",
+      "pnpm-lock.yaml"
+    ]
   },
   "changed_files": [
     "MULAI_DI_SINI.txt",
     "README.md",
-    "SOURCE_SNAPSHOT.json",
+    "app/globals.css",
+    "components/game/AssetActions.tsx",
+    "components/game/AssetManager.tsx",
     "components/game/Game.tsx",
     "components/game/GameNotice.tsx",
-    "docs/HOTFIX_v2.11.1.md",
+    "components/game/HistoryPanel.tsx",
+    "components/game/RuleActions.tsx",
+    "components/game/RulesPanel.tsx",
+    "components/game/SavePanel.tsx",
+    "components/game/SelectionView.tsx",
+    "components/game/TradeReview.tsx",
+    "components/game/TradeWizard.tsx",
+    "components/game/useGameplayPresentation.ts",
+    "components/game/useLayerBack.ts",
+    "docs/UPDATE_v2.9.md",
+    "lib/compact-ui.mjs",
+    "lib/layer-navigation.mjs",
+    "lib/quick-notice.mjs",
     "package.json",
-    "tests/board-visual-v211.test.mjs"
+    "public/sw.js",
+    "tests/asset-trade-v26.test.mjs",
+    "tests/compact-ui-v29.test.mjs",
+    "tests/ui-refinement.test.mjs",
+    "SOURCE_SNAPSHOT.json"
   ],
-  "deleted_files": [],
   "files": {
     ".env.example": {
-      "bytes": 638,
-      "sha256": "412e3eabe30b75cd7961a57444e589d3f9af807c557f1a4d2c5963f0f0d25336"
+      "sha256": "412e3eabe30b75cd7961a57444e589d3f9af807c557f1a4d2c5963f0f0d25336",
+      "bytes": 638
     },
     ".gitignore": {
-      "bytes": 937,
-      "sha256": "714f4c6b6466d4bdfc91c7549c4f5ce66c131826a1513dfc477754e55beff8e0"
+      "sha256": "714f4c6b6466d4bdfc91c7549c4f5ce66c131826a1513dfc477754e55beff8e0",
+      "bytes": 937
     },
     ".npmrc": {
-      "bytes": 45,
-      "sha256": "a3909ac0447c469fda12c57374993be70f47ce73e49fd3124678c7c047f2214d"
+      "sha256": "a3909ac0447c469fda12c57374993be70f47ce73e49fd3124678c7c047f2214d",
+      "bytes": 45
     },
     ".openai/hosting.json": {
-      "bytes": 91,
-      "sha256": "236cc99acbdee5c8c64da8f36df116347ceac8017c73b764d970972a4fbb2d62"
+      "sha256": "236cc99acbdee5c8c64da8f36df116347ceac8017c73b764d970972a4fbb2d62",
+      "bytes": 91
     },
     "MULAI_DI_SINI.txt": {
-      "bytes": 1785,
-      "sha256": "de6999cf6294402e532ce4dee063fb7090d99627a4ca71469f1c31e041578429"
+      "sha256": "83aa496c6b37f43edf3bf079b302913949c4f8ae05466d3d5e4c32b067bd2a9a",
+      "bytes": 1431
     },
     "README.md": {
-      "bytes": 8579,
-      "sha256": "8a4104e41f63270fbfbbd4c9692e88ecdc71764839932d67b50604a861668cc0"
+      "sha256": "860cba0529db910a2c382d3edfed45a68187302e09cc24f8119debce2830dffc",
+      "bytes": 8449
     },
     "app/api/game/route.ts": {
-      "bytes": 7206,
-      "sha256": "ccaed9878913b28ed551c1f3e6302d34598b016222bd8e3fff4e5f3807eabf82"
+      "sha256": "5a4e2a300b8d3f7512bc0728d5bc85c5cba5589a0f93b8750c72833b579a65aa",
+      "bytes": 6949
     },
     "app/chatgpt-auth.ts": {
-      "bytes": 2550,
-      "sha256": "4265a2e7c2dcb3a6f4b7026f762bf5b6e4caec76cc13c0a45987ee9a9f2e42cc"
+      "sha256": "4265a2e7c2dcb3a6f4b7026f762bf5b6e4caec76cc13c0a45987ee9a9f2e42cc",
+      "bytes": 2550
     },
     "app/globals.css": {
-      "bytes": 115976,
-      "sha256": "e001b8404a111a37185526c7463d62ae209a6441d9ad76d2b7290dbb727e2130"
+      "sha256": "4135115ba419ca63c55dde7118af37b2382ddde6917fba32ac47495940667d1f",
+      "bytes": 103945
     },
     "app/layout.tsx": {
-      "bytes": 561,
-      "sha256": "5fa8702e05542fd3c49926f7a660fa7bb99167835a5f1cad2cf5d37ba6f48764"
+      "sha256": "5fa8702e05542fd3c49926f7a660fa7bb99167835a5f1cad2cf5d37ba6f48764",
+      "bytes": 561
     },
     "app/page.tsx": {
-      "bytes": 90,
-      "sha256": "6e6ce4aedae9a75ff041aaa6a53410d14b1834deacfb5beafede458d905ae745"
+      "sha256": "6e6ce4aedae9a75ff041aaa6a53410d14b1834deacfb5beafede458d905ae745",
+      "bytes": 90
     },
     "build/connector-preview-plugin.mjs": {
-      "bytes": 7211,
-      "sha256": "a6a9fe2086e302f94a3f91e3c1a68a45bb3aa07d4a79faf01b14732191eb4e80"
+      "sha256": "a6a9fe2086e302f94a3f91e3c1a68a45bb3aa07d4a79faf01b14732191eb4e80",
+      "bytes": 7211
     },
     "build/connector-preview-worker.mjs": {
-      "bytes": 594,
-      "sha256": "c1b6b2c420cb67d9e28f8f4ae440f578c0dfd4cb840a12cfe4b58076629a17ba"
+      "sha256": "c1b6b2c420cb67d9e28f8f4ae440f578c0dfd4cb840a12cfe4b58076629a17ba",
+      "bytes": 594
     },
     "build/sites-vite-plugin.LICENSE": {
-      "bytes": 1063,
-      "sha256": "7de1e115d165f176e68f962acdb809b5ab8d8ae78d3981e0701392b2ac50c713"
+      "sha256": "7de1e115d165f176e68f962acdb809b5ab8d8ae78d3981e0701392b2ac50c713",
+      "bytes": 1063
     },
     "build/sites-vite-plugin.ts": {
-      "bytes": 7185,
-      "sha256": "07af20e7097d9ed1d76f7c446d02997550b8fc5ca89668b249e25eabd62c6834"
+      "sha256": "07af20e7097d9ed1d76f7c446d02997550b8fc5ca89668b249e25eabd62c6834",
+      "bytes": 7185
     },
     "build/sites-worker.ts": {
-      "bytes": 1279,
-      "sha256": "28a75f74adfc226a773d1c00d5779c26412eea40a104da5c77f7d0f0fc30f0e8"
+      "sha256": "28a75f74adfc226a773d1c00d5779c26412eea40a104da5c77f7d0f0fc30f0e8",
+      "bytes": 1279
     },
     "cloudflare-env.d.ts": {
-      "bytes": 99,
-      "sha256": "8b0eca84aa3364cc7ccc43cc3af6beb88dd34ebd410de08690bf094ce39fbcb0"
+      "sha256": "8b0eca84aa3364cc7ccc43cc3af6beb88dd34ebd410de08690bf094ce39fbcb0",
+      "bytes": 99
     },
     "components.json": {
-      "bytes": 420,
-      "sha256": "31f4ca67a4a62572571003d3d5aac85ee6fbfca67a192924bac6b168d95e98fd"
+      "sha256": "31f4ca67a4a62572571003d3d5aac85ee6fbfca67a192924bac6b168d95e98fd",
+      "bytes": 420
     },
     "components/connector-error.tsx": {
-      "bytes": 1082,
-      "sha256": "2d0d04559952ce9c9a327cca499f4b99f35d885cccfce375230e116695d3f155"
+      "sha256": "2d0d04559952ce9c9a327cca499f4b99f35d885cccfce375230e116695d3f155",
+      "bytes": 1082
     },
     "components/game/AssetActions.tsx": {
-      "bytes": 2429,
-      "sha256": "d57c2a66feba2d8c5e834256614e7271ed7a9ee8766041279b11035e16bd6293"
+      "sha256": "648cc7acde78080f8bd4d7e802e50d6feb6a7a4a49d719b07cbf3298f03e36cc",
+      "bytes": 2359
     },
     "components/game/AssetArt.tsx": {
-      "bytes": 794,
-      "sha256": "d32db0ab0fddb4f1c910b436180446304092d6798b83a097b023344579d65cb8"
+      "sha256": "621e3faf0cb521d3349bacdca3030c4c18fbd741732cd3e1b4077dc6cb3290ab",
+      "bytes": 753
     },
     "components/game/AssetManager.tsx": {
-      "bytes": 5313,
-      "sha256": "3c21bfb1ae8f9175f990bb1b4153982df446c5e31b7c74ef7780c79e8eed7df7"
-    },
-    "components/game/AuctionPanel.tsx": {
-      "bytes": 1424,
-      "sha256": "9a9c363d7eefa2e2779c29d55994012c20f6c13300576b9bd37562468a979a15"
+      "sha256": "6a3caceaaf02cdeab5e337b5a0565fe41be15caad4362927d488327078d30ca4",
+      "bytes": 5244
     },
     "components/game/Board.tsx": {
-      "bytes": 10755,
-      "sha256": "d590177af7ff44ae36b26ad11496fb45237bf1a6fae597c2813094045d1a7e54"
+      "sha256": "78a99cfb89c5596ca83a98293a8b34089e0f936ef56ede3c5c2d82fda1c8f1fe",
+      "bytes": 10158
     },
     "components/game/BoardMap.tsx": {
-      "bytes": 7565,
-      "sha256": "7baa7d37b8f9be60772963371372d92a51e48bb9f1f074dae6512e9a7f70cb7c"
+      "sha256": "f98693a85cd2cad20f5ac7079ccdb18aa5c3b837a835a4e4070e9c21a8dad86e",
+      "bytes": 7348
     },
     "components/game/DiceRollFx.tsx": {
-      "bytes": 1405,
-      "sha256": "5b9d44a2bc8cbc0b5f6ddb77bc7cd3a9eb63e2552bd156de7a34bdd7285c1f2a"
-    },
-    "components/game/EventCard.tsx": {
-      "bytes": 609,
-      "sha256": "be98a5d142146fbf719c80be97200c6bcf10f8a61ff2f6b418abe8d5c1d74a9d"
+      "sha256": "76cc20ee0e036663586eb77e2bf9a01d52da81a3813fd5e4ed006773d0201ac7",
+      "bytes": 1118
     },
     "components/game/Game.tsx": {
-      "bytes": 56865,
-      "sha256": "15c1c55298510692baeb36ac986e0185f7efa41c69155d584dd0de9c4f22dd91"
+      "sha256": "7167445c15dd7252325a920db81f8a8c3df2f6a237227ce877dc935b5eabc44d",
+      "bytes": 53029
     },
     "components/game/GameNotice.tsx": {
-      "bytes": 978,
-      "sha256": "aa5cd5757715278ded588bee19b2b9a67d5d350f2ffc94c29c7bcb108cbf807e"
+      "sha256": "26d792df104c2f2f7765c85a8b14225c56bcc4a8e1f09523eb62b6cfbd29c300",
+      "bytes": 926
     },
     "components/game/HistoryPanel.tsx": {
-      "bytes": 2415,
-      "sha256": "d88d3aaacf9663818f928934e535b040bf83f29b7248b303d3fbab51d67c584f"
-    },
-    "components/game/InlineFeedback.tsx": {
-      "bytes": 562,
-      "sha256": "5de223659663148d7edf8ffe416ad2f4e0c39dc0ab6ba3787d615179e21e6a27"
+      "sha256": "ea45c42b64dab0c04df64e2d8e570d75274c6899bb9f9739d3b67547dc1f9940",
+      "bytes": 2253
     },
     "components/game/MobileDock.tsx": {
-      "bytes": 4786,
-      "sha256": "afce35adf0229f5d54682cf841bc32d59187b6db7348eddeacfb5141ec33a1b4"
-    },
-    "components/game/MoneyInput.tsx": {
-      "bytes": 1045,
-      "sha256": "81b9592c79dab443152c3eea670614c3e49e3741af622db0c33998037c4443e2"
-    },
-    "components/game/NusaText.tsx": {
-      "bytes": 726,
-      "sha256": "4f6bc34b966f73ae716568718ee5bb9e5aba909b28f2f5451fdf6a5201e4c880"
-    },
-    "components/game/PawnPicker.tsx": {
-      "bytes": 953,
-      "sha256": "e4ec5ffc9f420d9cfbb4006b1626240d32de36694f665562e04a89a02c22659d"
-    },
-    "components/game/PlayerCapsules.tsx": {
-      "bytes": 1645,
-      "sha256": "93f07b16735aebe59026102b0eb4cd7e7a8c73e42484a49604e31e25dc141bf8"
+      "sha256": "725ee003854f073987e6344579bb9400d4d64520f47b3f013d5dd2614d3cdd20",
+      "bytes": 4501
     },
     "components/game/RuleActions.tsx": {
-      "bytes": 6139,
-      "sha256": "2f9737f6ada825ae321ef80b3694ff2c21407828114490037ae0ac58a26e5ba5"
+      "sha256": "855ae000eb892ca6af3b5dca4df5189d6635e59d02f75a7e6e275a82b96b97ee",
+      "bytes": 5416
     },
     "components/game/RulesPanel.tsx": {
-      "bytes": 3139,
-      "sha256": "c281e01187ca6844f45f46ff37dc310270b4eff87a0756b913de6b26a0b0afa1"
+      "sha256": "eb91299d034413b5ee153fb8a1aa5918963ff1a535150299a311e787d7ace23c",
+      "bytes": 2979
     },
     "components/game/SavePanel.tsx": {
-      "bytes": 5271,
-      "sha256": "270f0cb454dfa87b4b463783fb66dc168e976941cb70b20de05c1873a79dd2ba"
+      "sha256": "270f0cb454dfa87b4b463783fb66dc168e976941cb70b20de05c1873a79dd2ba",
+      "bytes": 5271
     },
     "components/game/SelectionView.tsx": {
-      "bytes": 2348,
-      "sha256": "f0d3cd2bad05a0988433be6fefd5adc63350f59f8637da5dcf0c4bc387add18d"
+      "sha256": "5d5966b67352401b1bfdd6f67080b8b5d2d3ccda6831952b2c792e8d569fc067",
+      "bytes": 2296
     },
     "components/game/TradeReview.tsx": {
-      "bytes": 2138,
-      "sha256": "be2326847243dc82bcc3fb898df6795b58b119f1500fbad17c2abb0e20f09e90"
+      "sha256": "2497a6b09e3fba4b997347dd7cb699f578ff477d0cbb5247decb25c6e18d75d1",
+      "bytes": 2035
     },
     "components/game/TradeWizard.tsx": {
-      "bytes": 4645,
-      "sha256": "101418d416c74fd475c81bb8c89b885ca04b92f1fcecf91bfc88a0f8bc670a52"
-    },
-    "components/game/useAuctionPresentation.ts": {
-      "bytes": 1012,
-      "sha256": "ff5e9c028a9dc787b4f8be2899723686782d2b19dcab4b3872882b555485c32b"
+      "sha256": "29c0766d16cb118b8a83a61d581d17483e56143c3ecf13d481de4f2a71beec85",
+      "bytes": 4623
     },
     "components/game/useDialogFocus.ts": {
-      "bytes": 1539,
-      "sha256": "17b2c02c14fbac9c36615e213afa970c2411eca0503d3fd6d39f4543befd5e70"
+      "sha256": "17b2c02c14fbac9c36615e213afa970c2411eca0503d3fd6d39f4543befd5e70",
+      "bytes": 1539
     },
     "components/game/useGameViewport.ts": {
-      "bytes": 1006,
-      "sha256": "a6d58f531d1ee2e1363a9aac70ed2ac2b378bbca5b9e5ceb1a362c53378250f6"
+      "sha256": "a6d58f531d1ee2e1363a9aac70ed2ac2b378bbca5b9e5ceb1a362c53378250f6",
+      "bytes": 1006
     },
     "components/game/useGameplayPresentation.ts": {
-      "bytes": 1874,
-      "sha256": "6c9ab0ba2571b5a47f8f00b47616f7dac26fe35a4e6e661bf2b281ff49e63509"
+      "sha256": "6c9ab0ba2571b5a47f8f00b47616f7dac26fe35a4e6e661bf2b281ff49e63509",
+      "bytes": 1874
     },
     "components/game/useLayerBack.ts": {
-      "bytes": 951,
-      "sha256": "b3d1d354cd7cda00f2f69bb016566633d4aba144daf7f8252ef9323b41340fbe"
+      "sha256": "b3d1d354cd7cda00f2f69bb016566633d4aba144daf7f8252ef9323b41340fbe",
+      "bytes": 951
     },
     "components/ui/accordion.tsx": {
-      "bytes": 2048,
-      "sha256": "a4f153089ba886dfcf73fac26b5c01ca933fa12fbe88df6fb723912bfffdfbb0"
+      "sha256": "a4f153089ba886dfcf73fac26b5c01ca933fa12fbe88df6fb723912bfffdfbb0",
+      "bytes": 2048
     },
     "components/ui/alert-dialog.tsx": {
-      "bytes": 5439,
-      "sha256": "9a8d950f2b9b4352d5ebb762fb44d5c28c2d353aa29712071973656a8736e311"
+      "sha256": "9a8d950f2b9b4352d5ebb762fb44d5c28c2d353aa29712071973656a8736e311",
+      "bytes": 5439
     },
     "components/ui/alert.tsx": {
-      "bytes": 1614,
-      "sha256": "2cc59b5f7bda91c1670884b1bf46bfc8a2a6f226cef184f5762acc037188885b"
+      "sha256": "2cc59b5f7bda91c1670884b1bf46bfc8a2a6f226cef184f5762acc037188885b",
+      "bytes": 1614
     },
     "components/ui/aspect-ratio.tsx": {
-      "bytes": 274,
-      "sha256": "b1c157886236782cb92d8fbcd4749532aaf6d8aabefd6e157ca40358f902f407"
+      "sha256": "b1c157886236782cb92d8fbcd4749532aaf6d8aabefd6e157ca40358f902f407",
+      "bytes": 274
     },
     "components/ui/attachment.tsx": {
-      "bytes": 6002,
-      "sha256": "ae8a25dd1a896d3964e3ef54d97e51221b418cde287dfd794428b89951c5c790"
+      "sha256": "ae8a25dd1a896d3964e3ef54d97e51221b418cde287dfd794428b89951c5c790",
+      "bytes": 6002
     },
     "components/ui/avatar.tsx": {
-      "bytes": 2916,
-      "sha256": "58a846bf1617b94b9681921db9b8461d0145f311424663d11678a06b6153cb34"
+      "sha256": "58a846bf1617b94b9681921db9b8461d0145f311424663d11678a06b6153cb34",
+      "bytes": 2916
     },
     "components/ui/badge.tsx": {
-      "bytes": 1776,
-      "sha256": "46a0de5224f6a5d5d63d45246534288518dce888f031064bff925bbc7fe6ad97"
+      "sha256": "46a0de5224f6a5d5d63d45246534288518dce888f031064bff925bbc7fe6ad97",
+      "bytes": 1776
     },
     "components/ui/breadcrumb.tsx": {
-      "bytes": 2350,
-      "sha256": "d4c0831bba2212e778248f54a6ace6ef378df8bba4616d1abf27787a31eabae5"
+      "sha256": "d4c0831bba2212e778248f54a6ace6ef378df8bba4616d1abf27787a31eabae5",
+      "bytes": 2350
     },
     "components/ui/bubble.tsx": {
-      "bytes": 4699,
-      "sha256": "870cc0c5cfc8a515053f7e41e706a6bd017a909b45f1305fd3b164a52cc4483b"
+      "sha256": "870cc0c5cfc8a515053f7e41e706a6bd017a909b45f1305fd3b164a52cc4483b",
+      "bytes": 4699
     },
     "components/ui/button-group.tsx": {
-      "bytes": 2202,
-      "sha256": "784c89d8ee683e1bc972ae69e6ea8225a7f63abe22aa1b5fc3423ae8a2a399c0"
+      "sha256": "784c89d8ee683e1bc972ae69e6ea8225a7f63abe22aa1b5fc3423ae8a2a399c0",
+      "bytes": 2202
     },
     "components/ui/button.tsx": {
-      "bytes": 2392,
-      "sha256": "cc36af0f8b5019c33cc039fbf03bb952a513072b15b55b53c592b78af3e5f4c4"
+      "sha256": "cc36af0f8b5019c33cc039fbf03bb952a513072b15b55b53c592b78af3e5f4c4",
+      "bytes": 2392
     },
     "components/ui/calendar.tsx": {
-      "bytes": 7832,
-      "sha256": "3855fbe0d3f8ad3a4b93071f98b76a9f6782d46ec8b05f5d2ddbee1e4e39bc84"
+      "sha256": "3855fbe0d3f8ad3a4b93071f98b76a9f6782d46ec8b05f5d2ddbee1e4e39bc84",
+      "bytes": 7832
     },
     "components/ui/card.tsx": {
-      "bytes": 1987,
-      "sha256": "c48dd3b96be90a7066f1aebf294f0af9d00ebcdc367d5d4aca55429ade570c1c"
+      "sha256": "c48dd3b96be90a7066f1aebf294f0af9d00ebcdc367d5d4aca55429ade570c1c",
+      "bytes": 1987
     },
     "components/ui/carousel.tsx": {
-      "bytes": 5556,
-      "sha256": "b7ea0dda3903d972c186f739e23da61f547bc83b5a0bf13b16856577846d5fc3"
+      "sha256": "b7ea0dda3903d972c186f739e23da61f547bc83b5a0bf13b16856577846d5fc3",
+      "bytes": 5556
     },
     "components/ui/chart.tsx": {
-      "bytes": 10614,
-      "sha256": "45aa5ea4a386f4fb5b8869ff4bab3a08cf89255190ee322043baf84c3e950b6a"
+      "sha256": "45aa5ea4a386f4fb5b8869ff4bab3a08cf89255190ee322043baf84c3e950b6a",
+      "bytes": 10614
     },
     "components/ui/checkbox.tsx": {
-      "bytes": 1214,
-      "sha256": "b23ab9d4deeedf2ac8f512c368361ede681aa383437ef48563a6f9b7dbe95f27"
+      "sha256": "b23ab9d4deeedf2ac8f512c368361ede681aa383437ef48563a6f9b7dbe95f27",
+      "bytes": 1214
     },
     "components/ui/collapsible.tsx": {
-      "bytes": 795,
-      "sha256": "c6598e5584f4258b5d9fefadbc5ad6a66888ad58729f4b634a0bb2d9c513188b"
+      "sha256": "c6598e5584f4258b5d9fefadbc5ad6a66888ad58729f4b634a0bb2d9c513188b",
+      "bytes": 795
     },
     "components/ui/combobox.tsx": {
-      "bytes": 9158,
-      "sha256": "2d68e78b2dc7e38a085f222dede60a80b4f8229a6e91732c484605e204d46735"
+      "sha256": "2d68e78b2dc7e38a085f222dede60a80b4f8229a6e91732c484605e204d46735",
+      "bytes": 9158
     },
     "components/ui/command.tsx": {
-      "bytes": 4818,
-      "sha256": "361193df1e3d64a9e9b5048f045264782fcb387aab3f00f2b805fdcbf538b16a"
+      "sha256": "361193df1e3d64a9e9b5048f045264782fcb387aab3f00f2b805fdcbf538b16a",
+      "bytes": 4818
     },
     "components/ui/context-menu.tsx": {
-      "bytes": 8268,
-      "sha256": "2cf1fcf59df0649a3e2a126d1df2f639145f6b6bf5689ee54af1f40ab1245017"
+      "sha256": "2cf1fcf59df0649a3e2a126d1df2f639145f6b6bf5689ee54af1f40ab1245017",
+      "bytes": 8268
     },
     "components/ui/dialog.tsx": {
-      "bytes": 4303,
-      "sha256": "dce39c6adc47d997bd2567f8b7a72f466b0134715105cd42f9194007b8ecdb14"
+      "sha256": "dce39c6adc47d997bd2567f8b7a72f466b0134715105cd42f9194007b8ecdb14",
+      "bytes": 4303
     },
     "components/ui/direction.tsx": {
-      "bytes": 506,
-      "sha256": "84ae2ad658207f0e0f367978e5508cd8027cd00c29c41d3d13db21a708c3d1e6"
+      "sha256": "84ae2ad658207f0e0f367978e5508cd8027cd00c29c41d3d13db21a708c3d1e6",
+      "bytes": 506
     },
     "components/ui/drawer.tsx": {
-      "bytes": 4255,
-      "sha256": "cb6eaf58eb0757ca91af284e5d925b89a42ad7eb19cb3f44c575a3487aa9350f"
+      "sha256": "cb6eaf58eb0757ca91af284e5d925b89a42ad7eb19cb3f44c575a3487aa9350f",
+      "bytes": 4255
     },
     "components/ui/dropdown-menu.tsx": {
-      "bytes": 8418,
-      "sha256": "98f0dcdae38225b73734aceeb9213dd751fea2c72ea520df31003cd133deac8a"
+      "sha256": "98f0dcdae38225b73734aceeb9213dd751fea2c72ea520df31003cd133deac8a",
+      "bytes": 8418
     },
     "components/ui/empty.tsx": {
-      "bytes": 2396,
-      "sha256": "ae95bdcf367a076ae02e7925f14522a148798f72d9651749c6d55497dba584c0"
+      "sha256": "ae95bdcf367a076ae02e7925f14522a148798f72d9651749c6d55497dba584c0",
+      "bytes": 2396
     },
     "components/ui/field.tsx": {
-      "bytes": 6159,
-      "sha256": "ba67d76f017ac059fc86cf8c344e0b2991c4322d3619e125498c19b87f6eefbd"
+      "sha256": "ba67d76f017ac059fc86cf8c344e0b2991c4322d3619e125498c19b87f6eefbd",
+      "bytes": 6159
     },
     "components/ui/form.tsx": {
-      "bytes": 3757,
-      "sha256": "315b46bb75ab7d1c6061b5d750aa4bedf6e7a455e15e2d7f9182f053d5972b1e"
+      "sha256": "315b46bb75ab7d1c6061b5d750aa4bedf6e7a455e15e2d7f9182f053d5972b1e",
+      "bytes": 3757
     },
     "components/ui/hover-card.tsx": {
-      "bytes": 1526,
-      "sha256": "f5d8df42c59370ec14d61bcc54f7d68e9bb7dfa0d6a872b2f7cffc2aafbf23b8"
+      "sha256": "f5d8df42c59370ec14d61bcc54f7d68e9bb7dfa0d6a872b2f7cffc2aafbf23b8",
+      "bytes": 1526
     },
     "components/ui/input-group.tsx": {
-      "bytes": 5065,
-      "sha256": "6afbd58fea4c438e6252dc4568bddc122e84ababead4ad5cee50ace01100c9a0"
+      "sha256": "6afbd58fea4c438e6252dc4568bddc122e84ababead4ad5cee50ace01100c9a0",
+      "bytes": 5065
     },
     "components/ui/input-otp.tsx": {
-      "bytes": 2254,
-      "sha256": "161946daa89f0eda2575b9271c0494e35807c4ffb55598a49f67160c17fec299"
+      "sha256": "161946daa89f0eda2575b9271c0494e35807c4ffb55598a49f67160c17fec299",
+      "bytes": 2254
     },
     "components/ui/input.tsx": {
-      "bytes": 962,
-      "sha256": "8c4612a7c41319ac5049daa3b34b080f9784b6245c17780eb87c127e58e473db"
+      "sha256": "8c4612a7c41319ac5049daa3b34b080f9784b6245c17780eb87c127e58e473db",
+      "bytes": 962
     },
     "components/ui/item.tsx": {
-      "bytes": 4486,
-      "sha256": "6e2144d6d87142dbbe56d568810bf546318c8aa661447ebb0d76ebbf382cb45f"
+      "sha256": "6e2144d6d87142dbbe56d568810bf546318c8aa661447ebb0d76ebbf382cb45f",
+      "bytes": 4486
     },
     "components/ui/kbd.tsx": {
-      "bytes": 862,
-      "sha256": "6088c3a5432338b1719c17e9b5d0e1fa74fd1f66060f248fc88909d33a82cd13"
+      "sha256": "6088c3a5432338b1719c17e9b5d0e1fa74fd1f66060f248fc88909d33a82cd13",
+      "bytes": 862
     },
     "components/ui/label.tsx": {
-      "bytes": 606,
-      "sha256": "a476e41f08b9de5bd447de66a33d8bc2ad18f2fa6b96c064778bab4b6f439f4c"
+      "sha256": "a476e41f08b9de5bd447de66a33d8bc2ad18f2fa6b96c064778bab4b6f439f4c",
+      "bytes": 606
     },
     "components/ui/marker.tsx": {
-      "bytes": 1864,
-      "sha256": "3d798763f094b2bb5e7ade2d5cd1b9bab498bc8ca7fd4cfaf4e5835bdedc34a0"
+      "sha256": "3d798763f094b2bb5e7ade2d5cd1b9bab498bc8ca7fd4cfaf4e5835bdedc34a0",
+      "bytes": 1864
     },
     "components/ui/menubar.tsx": {
-      "bytes": 8389,
-      "sha256": "9243af8afcea03703398ccd1c2a8c0a87ad6cbaf2bd272fb609f5b79fe46aebb"
+      "sha256": "9243af8afcea03703398ccd1c2a8c0a87ad6cbaf2bd272fb609f5b79fe46aebb",
+      "bytes": 8389
     },
     "components/ui/message-scroller.tsx": {
-      "bytes": 3992,
-      "sha256": "bb7660a248e4e9589c3816c7c1c199ea1381a70d2c8476ae895b567a7a4d86cf"
+      "sha256": "bb7660a248e4e9589c3816c7c1c199ea1381a70d2c8476ae895b567a7a4d86cf",
+      "bytes": 3992
     },
     "components/ui/message.tsx": {
-      "bytes": 2232,
-      "sha256": "9d2952bf3b641081f09aa2739535e6bbd1be0a4946789752a2c20d8aaef43185"
+      "sha256": "9d2952bf3b641081f09aa2739535e6bbd1be0a4946789752a2c20d8aaef43185",
+      "bytes": 2232
     },
     "components/ui/native-select.tsx": {
-      "bytes": 1995,
-      "sha256": "007516b111fca8c98a6c40c94ab91bb68cc5b52afce1ed1f5e510c3d86e7347c"
+      "sha256": "007516b111fca8c98a6c40c94ab91bb68cc5b52afce1ed1f5e510c3d86e7347c",
+      "bytes": 1995
     },
     "components/ui/navigation-menu.tsx": {
-      "bytes": 6658,
-      "sha256": "889d358a77de88e9cb6f39ea4895ea4c76eaf01d731b74e44f1c41e97a78a044"
+      "sha256": "889d358a77de88e9cb6f39ea4895ea4c76eaf01d731b74e44f1c41e97a78a044",
+      "bytes": 6658
     },
     "components/ui/pagination.tsx": {
-      "bytes": 2717,
-      "sha256": "374ad135c3d4ff3ec080a0009cd9745cdd0e12faa89d2b0e86074f11e5127fd1"
+      "sha256": "374ad135c3d4ff3ec080a0009cd9745cdd0e12faa89d2b0e86074f11e5127fd1",
+      "bytes": 2717
     },
     "components/ui/popover.tsx": {
-      "bytes": 2357,
-      "sha256": "31c350309ff5d3034e6ecf1b0eda75ba8855bdbf987fc7ad6d71f0ef07c5a447"
+      "sha256": "31c350309ff5d3034e6ecf1b0eda75ba8855bdbf987fc7ad6d71f0ef07c5a447",
+      "bytes": 2357
     },
     "components/ui/progress.tsx": {
-      "bytes": 755,
-      "sha256": "c8c26e8f5f041c3cdf4915347dc1d9c022f9448f149990fadcaf303e952fa57d"
+      "sha256": "c8c26e8f5f041c3cdf4915347dc1d9c022f9448f149990fadcaf303e952fa57d",
+      "bytes": 755
     },
     "components/ui/radio-group.tsx": {
-      "bytes": 1460,
-      "sha256": "fe5ce39636d0818c2bf9c4eebddff893d1225fa2c81b5fa4bb8cbb39a8c913ce"
+      "sha256": "fe5ce39636d0818c2bf9c4eebddff893d1225fa2c81b5fa4bb8cbb39a8c913ce",
+      "bytes": 1460
     },
     "components/ui/resizable.tsx": {
-      "bytes": 1815,
-      "sha256": "bc63958467aa00557c551bb0d96a5ae4c965c1e1ba2380e595949d933b132f7c"
+      "sha256": "bc63958467aa00557c551bb0d96a5ae4c965c1e1ba2380e595949d933b132f7c",
+      "bytes": 1815
     },
     "components/ui/scroll-area.tsx": {
-      "bytes": 1639,
-      "sha256": "8bd9d986b2844c9a87de825c6de4787b6739b36c3dc9a05ccf3eb107160e4043"
+      "sha256": "8bd9d986b2844c9a87de825c6de4787b6739b36c3dc9a05ccf3eb107160e4043",
+      "bytes": 1639
     },
     "components/ui/select.tsx": {
-      "bytes": 6353,
-      "sha256": "0b796a108a4eb5ba52d9ad938b7aea36dc56ae66c703a6d0a23dbc24f96daff3"
+      "sha256": "0b796a108a4eb5ba52d9ad938b7aea36dc56ae66c703a6d0a23dbc24f96daff3",
+      "bytes": 6353
     },
     "components/ui/separator.tsx": {
-      "bytes": 694,
-      "sha256": "6da346505c8629a4668420d2a5ca48891383bbe0b0ceb14163537c671879427e"
+      "sha256": "6da346505c8629a4668420d2a5ca48891383bbe0b0ceb14163537c671879427e",
+      "bytes": 694
     },
     "components/ui/sheet.tsx": {
-      "bytes": 4188,
-      "sha256": "63863cf2df8f8973e52b3459ac9bdbf81be1262dbc70eb53d5271ffb03488e16"
+      "sha256": "63863cf2df8f8973e52b3459ac9bdbf81be1262dbc70eb53d5271ffb03488e16",
+      "bytes": 4188
     },
     "components/ui/sidebar.tsx": {
-      "bytes": 21526,
-      "sha256": "4a8d73e7730a2b1fcecfca31299ed26db65c2307b84197a59c6ec7c01c7ad28e"
+      "sha256": "4a8d73e7730a2b1fcecfca31299ed26db65c2307b84197a59c6ec7c01c7ad28e",
+      "bytes": 21526
     },
     "components/ui/skeleton.tsx": {
-      "bytes": 276,
-      "sha256": "ba48dd5be5a6a1378bd4e011028654b5bf419f1e7d20ee4b9f8330c1264e7239"
+      "sha256": "ba48dd5be5a6a1378bd4e011028654b5bf419f1e7d20ee4b9f8330c1264e7239",
+      "bytes": 276
     },
     "components/ui/slider.tsx": {
-      "bytes": 1991,
-      "sha256": "0e37484f4b416e79ac18c655cac961aefacf6e67085cfc2b320ea8af545635a3"
+      "sha256": "0e37484f4b416e79ac18c655cac961aefacf6e67085cfc2b320ea8af545635a3",
+      "bytes": 1991
     },
     "components/ui/sonner.tsx": {
-      "bytes": 1034,
-      "sha256": "13ccc9b0fe4248e622f83a1d3b2f0566b72b5e04162d7d0c8db8945ecc71b55f"
+      "sha256": "13ccc9b0fe4248e622f83a1d3b2f0566b72b5e04162d7d0c8db8945ecc71b55f",
+      "bytes": 1034
     },
     "components/ui/spinner.tsx": {
-      "bytes": 331,
-      "sha256": "3e6e6e8d37fb4069f8e43e55318f8db06fbc36e6c8be0096da3c9337c1c798b9"
+      "sha256": "3e6e6e8d37fb4069f8e43e55318f8db06fbc36e6c8be0096da3c9337c1c798b9",
+      "bytes": 331
     },
     "components/ui/switch.tsx": {
-      "bytes": 1408,
-      "sha256": "386d4d4deb39f34126f9700fe9bf5393d238485dd94018bba9d154dda84c62ae"
+      "sha256": "386d4d4deb39f34126f9700fe9bf5393d238485dd94018bba9d154dda84c62ae",
+      "bytes": 1408
     },
     "components/ui/table.tsx": {
-      "bytes": 2478,
-      "sha256": "20e5a7f224959c6b75802995706a97e9da171f693d4b6b1b436388fcd9df96f3"
+      "sha256": "20e5a7f224959c6b75802995706a97e9da171f693d4b6b1b436388fcd9df96f3",
+      "bytes": 2478
     },
     "components/ui/tabs.tsx": {
-      "bytes": 3782,
-      "sha256": "865d0194331b9b2be36723fa79d3575dc83078b4cb941cafee87cb72fc2cff46"
+      "sha256": "865d0194331b9b2be36723fa79d3575dc83078b4cb941cafee87cb72fc2cff46",
+      "bytes": 3782
     },
     "components/ui/textarea.tsx": {
-      "bytes": 759,
-      "sha256": "253cdeb487c73beaaccdf47fc163e36e7d5b7ae6ddf09a4f64998a109a112979"
+      "sha256": "253cdeb487c73beaaccdf47fc163e36e7d5b7ae6ddf09a4f64998a109a112979",
+      "bytes": 759
     },
     "components/ui/toggle-group.tsx": {
-      "bytes": 2308,
-      "sha256": "69f643e889e933f05c1439084480d8646f66a161c7d1cf0730ee926382ade35e"
+      "sha256": "69f643e889e933f05c1439084480d8646f66a161c7d1cf0730ee926382ade35e",
+      "bytes": 2308
     },
     "components/ui/toggle.tsx": {
-      "bytes": 1565,
-      "sha256": "ba4d0b0a2b2fee75dc36dfc19e32082e721024b919050c97fd5dc70faa924e16"
+      "sha256": "ba4d0b0a2b2fee75dc36dfc19e32082e721024b919050c97fd5dc70faa924e16",
+      "bytes": 1565
     },
     "components/ui/tooltip.tsx": {
-      "bytes": 1830,
-      "sha256": "a0784eb77831a799fad7991df4f1b666f876201565a80175e1aa68733574a2e4"
+      "sha256": "a0784eb77831a799fad7991df4f1b666f876201565a80175e1aa68733574a2e4",
+      "bytes": 1830
     },
     "db/index.ts": {
-      "bytes": 423,
-      "sha256": "dc7610b00b918e0ffff1360a63626f16655ced3064b2eaf96095a4101fb14bcd"
+      "sha256": "dc7610b00b918e0ffff1360a63626f16655ced3064b2eaf96095a4101fb14bcd",
+      "bytes": 423
     },
     "db/schema.ts": {
-      "bytes": 443,
-      "sha256": "68937ceeeb411002b261db8fd5d4d76b3e250ca3db319d1ac3d460302fdd156c"
+      "sha256": "68937ceeeb411002b261db8fd5d4d76b3e250ca3db319d1ac3d460302fdd156c",
+      "bytes": 443
     },
     "docs/ASSET_PROMPTS.json": {
-      "bytes": 3443,
-      "sha256": "1eb111349d8e278b74b0889578afed9e0998b61e3cee6433f85a661af721360c"
+      "sha256": "2f43343b4e7438328b00a447ee2e29872a33a5b6f5d17582bfa04a8654371254",
+      "bytes": 4068
     },
     "docs/DEPLOY_VERCEL.md": {
-      "bytes": 6629,
-      "sha256": "3923ea4117bb15035404cc894ab3e875312380299ce6b600ee9aea6b25d6956a"
-    },
-    "docs/HOTFIX_v2.11.1.md": {
-      "bytes": 1820,
-      "sha256": "9efe053e75b6c8735ac4122daf4e1fce1b2e4ef8e00e99835397bc8a98d092ca"
+      "sha256": "3923ea4117bb15035404cc894ab3e875312380299ce6b600ee9aea6b25d6956a",
+      "bytes": 6629
     },
     "docs/QA.md": {
-      "bytes": 3298,
-      "sha256": "40760c0060de11b98458f335674cbff1d17fe1ae455c831f93244103767e094d"
+      "sha256": "40760c0060de11b98458f335674cbff1d17fe1ae455c831f93244103767e094d",
+      "bytes": 3298
     },
     "docs/QA_BOARD_2D.md": {
-      "bytes": 3314,
-      "sha256": "d250a0d093ab1b1d6f659cdec1fc2e62e8b4bd9a18cb8c225c74350694bbadcf"
+      "sha256": "d250a0d093ab1b1d6f659cdec1fc2e62e8b4bd9a18cb8c225c74350694bbadcf",
+      "bytes": 3314
     },
     "docs/QA_PORTRAIT.md": {
-      "bytes": 3368,
-      "sha256": "4ee7e1d661e6b5315829a8593547823c0bcda2bb0d548fa21208a5544935636c"
+      "sha256": "4ee7e1d661e6b5315829a8593547823c0bcda2bb0d548fa21208a5544935636c",
+      "bytes": 3368
     },
     "docs/QA_VERCEL.md": {
-      "bytes": 3134,
-      "sha256": "7af4ab36fa859ce0a7be89ddbd9f4e710045a4941bce6257817d8667f689c19a"
+      "sha256": "7af4ab36fa859ce0a7be89ddbd9f4e710045a4941bce6257817d8667f689c19a",
+      "bytes": 3134
     },
     "docs/RELEASE_V2.md": {
-      "bytes": 1546,
-      "sha256": "ecd9e0fe5faa90ad6ce6cde9ad45407c095b6b7e13362c93d63e2c18f79a2412"
+      "sha256": "80687ba4d922b9593dea8143bdeb698f058b97673605f898b813c6da4396e8bf",
+      "bytes": 1479
     },
     "docs/RELEASE_V21.md": {
-      "bytes": 1170,
-      "sha256": "675ad838285b42034bdd69d493ca8bf127bcc4b70672c04e742c15c54dd8b617"
+      "sha256": "675ad838285b42034bdd69d493ca8bf127bcc4b70672c04e742c15c54dd8b617",
+      "bytes": 1170
     },
     "docs/RELEASE_V22.md": {
-      "bytes": 2286,
-      "sha256": "d6247bcfcb855099b1e1a1d71706a9e9e58efcb01c6b139d5522c2ec8ade70de"
+      "sha256": "d6247bcfcb855099b1e1a1d71706a9e9e58efcb01c6b139d5522c2ec8ade70de",
+      "bytes": 2286
     },
     "docs/RELEASE_V23.md": {
-      "bytes": 2124,
-      "sha256": "603eb46f4b295e0354c7138532bc3c1de7227c187ca632d8f4b17d942eaa4d44"
+      "sha256": "603eb46f4b295e0354c7138532bc3c1de7227c187ca632d8f4b17d942eaa4d44",
+      "bytes": 2124
     },
     "docs/RULEPACK.md": {
-      "bytes": 7268,
-      "sha256": "557cf1514ba87cdefeebd9f5ffee47722bf6290e7e87184034f298d98cc1b07c"
-    },
-    "docs/UPDATE_v2.10.md": {
-      "bytes": 12766,
-      "sha256": "226ef95b1c82462aaabe2281e53a85f0f9c8693c7f1978b9829946060c98ba86"
-    },
-    "docs/UPDATE_v2.11.md": {
-      "bytes": 10952,
-      "sha256": "c69c6d7f323016e36cfe116444d76e7a292457d6a72d4646cfe4bbc3cfa40c2a"
+      "sha256": "557cf1514ba87cdefeebd9f5ffee47722bf6290e7e87184034f298d98cc1b07c",
+      "bytes": 7268
     },
     "docs/UPDATE_v2.4.md": {
-      "bytes": 1414,
-      "sha256": "7b2342f6f440c3a3399d11a23934d4a4522a6dd34a2aeb945b85afa10eef01d9"
+      "sha256": "7b2342f6f440c3a3399d11a23934d4a4522a6dd34a2aeb945b85afa10eef01d9",
+      "bytes": 1414
     },
     "docs/UPDATE_v2.5.md": {
-      "bytes": 1234,
-      "sha256": "c38e7ddd4ec70576f7b10e3b77503865e70048a20ad70ca4b4f080eba6a16316"
+      "sha256": "c38e7ddd4ec70576f7b10e3b77503865e70048a20ad70ca4b4f080eba6a16316",
+      "bytes": 1234
     },
     "docs/UPDATE_v2.6.md": {
-      "bytes": 2517,
-      "sha256": "18bbdad8dcc019cb84c6503aaa20a0e8574e857aab0949899208a55756048631"
+      "sha256": "18bbdad8dcc019cb84c6503aaa20a0e8574e857aab0949899208a55756048631",
+      "bytes": 2517
     },
     "docs/UPDATE_v2.7.md": {
-      "bytes": 12403,
-      "sha256": "81e3dbe319df3099b45fef7ad35a2914892993b3aba5b6533a82a47331c461ea"
+      "sha256": "81e3dbe319df3099b45fef7ad35a2914892993b3aba5b6533a82a47331c461ea",
+      "bytes": 12403
     },
     "docs/UPDATE_v2.8.md": {
-      "bytes": 10941,
-      "sha256": "075e20b03c907660593ff7d7994c635590b16d46dbd09478da4ba6c09f0d9d6d"
+      "sha256": "075e20b03c907660593ff7d7994c635590b16d46dbd09478da4ba6c09f0d9d6d",
+      "bytes": 10941
     },
     "docs/UPDATE_v2.9.md": {
-      "bytes": 12043,
-      "sha256": "25d498caaf2c018e7b9d545a14fab4fb83da0376bcf89b173fb3f26e7fc6a95a"
+      "sha256": "25d498caaf2c018e7b9d545a14fab4fb83da0376bcf89b173fb3f26e7fc6a95a",
+      "bytes": 12043
     },
     "drizzle.config.ts": {
-      "bytes": 148,
-      "sha256": "af081f7384aaeb0082cf422e29f139d137ca2f6a57c69b2c37b9fb1f8479867b"
+      "sha256": "af081f7384aaeb0082cf422e29f139d137ca2f6a57c69b2c37b9fb1f8479867b",
+      "bytes": 148
     },
     "drizzle/0000_green_paper_doll.sql": {
-      "bytes": 314,
-      "sha256": "a8d11a3d6a6d183cb9a5e9da2fcb8ae1d0257c3283ed76c0005056b9c220e6f0"
+      "sha256": "a8d11a3d6a6d183cb9a5e9da2fcb8ae1d0257c3283ed76c0005056b9c220e6f0",
+      "bytes": 314
     },
     "drizzle/meta/0000_snapshot.json": {
-      "bytes": 2037,
-      "sha256": "f68c9833e4de85af622b64a15ea7ae81f666a18e48ec951d4158d2902d2aa175"
+      "sha256": "f68c9833e4de85af622b64a15ea7ae81f666a18e48ec951d4158d2902d2aa175",
+      "bytes": 2037
     },
     "drizzle/meta/_journal.json": {
-      "bytes": 206,
-      "sha256": "f1bbdcaae731a818bfb952afdb493e97a57a1c40f998214d989d803b9baa1366"
+      "sha256": "f1bbdcaae731a818bfb952afdb493e97a57a1c40f998214d989d803b9baa1366",
+      "bytes": 206
     },
     "eslint.config.mjs": {
-      "bytes": 846,
-      "sha256": "f22a254df7d934bbf9be499d3c969a13abb7f7f64c03f5967d0095cad81dfe06"
+      "sha256": "f22a254df7d934bbf9be499d3c969a13abb7f7f64c03f5967d0095cad81dfe06",
+      "bytes": 846
     },
     "examples/d1/app/api/notes/route.ts": {
-      "bytes": 1700,
-      "sha256": "a3d4a74fd53b7bf53e2df41f169d9d9d44a8b22aeb6d92f4e754956079af8909"
+      "sha256": "a3d4a74fd53b7bf53e2df41f169d9d9d44a8b22aeb6d92f4e754956079af8909",
+      "bytes": 1700
     },
     "examples/d1/db/schema.ts": {
-      "bytes": 370,
-      "sha256": "d89eabd95716ce404f5f7ca2a254220435be8ddce7c899d7ef461ff22ec80454"
+      "sha256": "d89eabd95716ce404f5f7ca2a254220435be8ddce7c899d7ef461ff22ec80454",
+      "bytes": 370
     },
     "hooks/use-mobile.ts": {
-      "bytes": 565,
-      "sha256": "ad0936f84f1df79d3697bfbff9c18f8ad58431c1cbaf2359c6a853b0fcc9f28b"
-    },
-    "lib/auction-presentation.mjs": {
-      "bytes": 1437,
-      "sha256": "6cd9b7531d9827d29c332410c7545b62cd9eeb33986eff8889136eea7c0abf7b"
+      "sha256": "ad0936f84f1df79d3697bfbff9c18f8ad58431c1cbaf2359c6a853b0fcc9f28b",
+      "bytes": 565
     },
     "lib/board-camera.mjs": {
-      "bytes": 5334,
-      "sha256": "43cdd34c1c97fb73b56b3998a7ddc5317f6150dc358e440cc66faf3dba973f05"
+      "sha256": "5cc6dfb14f3f1d83cebb87520740f4ec89d757f8d0df2f2a997c9f38dc48a452",
+      "bytes": 5431
     },
     "lib/compact-ui.mjs": {
-      "bytes": 2263,
-      "sha256": "60960514dee64de32651df44c10e9b2a8f316b7dae95351b3c549ca4538f53ed"
+      "sha256": "6e1148c18efc4d14ef4ad38e12ec98922adc4a0235ea8b5b8fc679b065903f6b",
+      "bytes": 2276
     },
     "lib/connector-context.ts": {
-      "bytes": 612,
-      "sha256": "bbddff68689cb0f6926fecd4b8b96f12f2054277c296e97b0df07d4ad5ece24e"
+      "sha256": "bbddff68689cb0f6926fecd4b8b96f12f2054277c296e97b0df07d4ad5ece24e",
+      "bytes": 612
     },
     "lib/connector-contract.mts": {
-      "bytes": 5362,
-      "sha256": "e1a7b24a8793af34b595690d9b1300c897c7321c14f215cedf58ad95799d7c3e"
+      "sha256": "e1a7b24a8793af34b595690d9b1300c897c7321c14f215cedf58ad95799d7c3e",
+      "bytes": 5362
     },
     "lib/connector-errors.mts": {
-      "bytes": 2717,
-      "sha256": "a22edf13d6873ae832c4a2a0d579fc666c73ec996ef0722d39172649d38f0871"
+      "sha256": "a22edf13d6873ae832c4a2a0d579fc666c73ec996ef0722d39172649d38f0871",
+      "bytes": 2717
     },
     "lib/connector-preview.d.ts": {
-      "bytes": 433,
-      "sha256": "abd69a94f7f61f1359063bb557574faae35e8ff5a028cc4c04b9ee248ef52642"
+      "sha256": "abd69a94f7f61f1359063bb557574faae35e8ff5a028cc4c04b9ee248ef52642",
+      "bytes": 433
     },
     "lib/connectors.ts": {
-      "bytes": 416,
-      "sha256": "1c93d747e384c8e17e3e3dd5361b24412babf5eba2a11d2ae7a75f4e0924112c"
+      "sha256": "1c93d747e384c8e17e3e3dd5361b24412babf5eba2a11d2ae7a75f4e0924112c",
+      "bytes": 416
     },
     "lib/content-v1.mjs": {
-      "bytes": 5422,
-      "sha256": "cf6c1eeebcf000b064ff8b18274e7c105db78fbed7c874fb51587627ffaa135b"
+      "sha256": "cf6c1eeebcf000b064ff8b18274e7c105db78fbed7c874fb51587627ffaa135b",
+      "bytes": 5422
     },
     "lib/content.mjs": {
-      "bytes": 5564,
-      "sha256": "2395ac90cd38c1a930b8074422f2ff078d0b2781275d581db775c87f38b46753"
-    },
-    "lib/currency.mjs": {
-      "bytes": 1099,
-      "sha256": "b7c30a2ca47c827ad28582bb2aa8f487667bdb99eae6ccd31a3220f829818b53"
-    },
-    "lib/dice-timing.mjs": {
-      "bytes": 212,
-      "sha256": "ee50ea4f131f6da87fdb7e41e7b3322014af3c92ae548e391fcfb768dfb32f62"
+      "sha256": "77fc9f997ae70df5da1b16dacf134b94afb1c449000569b4cfe7be86edb8d9b5",
+      "bytes": 5525
     },
     "lib/game-v1.mjs": {
-      "bytes": 20849,
-      "sha256": "33eadc5b0e4ab64c95c25fd858b11a44fa14f32e75c6a6748847f75307223c58"
+      "sha256": "ee9ba0fc4b2ee1aff63d875fbaa0c75dfac76103e7d84bc2e3f600a6a8f912c5",
+      "bytes": 20467
     },
     "lib/game.mjs": {
-      "bytes": 32258,
-      "sha256": "b45622e3a389ed3253ba092ac5c1ea33d79436793eea98e5b9b8857daf1ef842"
+      "sha256": "f8a5a768fc49058dbf0b599113f0506d71bd16ba369aec9a57c1e9c81303c6b9",
+      "bytes": 31472
     },
     "lib/gameplay-presentation.mjs": {
-      "bytes": 5016,
-      "sha256": "f413ad13eacb1f9281b5b93fcbc7498b7fe76e4c03c8a18f7cb0aefbc4cb75f0"
+      "sha256": "d7d87ba7212af42438e94bf86284de3001938906d54a95d3136f477a40301a6a",
+      "bytes": 4794
     },
     "lib/groq.ts": {
-      "bytes": 2042,
-      "sha256": "7432bd8966e82cf809e67816dc78d35b492ed381c3a47b15ef9c7619bb6b6088"
+      "sha256": "7432bd8966e82cf809e67816dc78d35b492ed381c3a47b15ef9c7619bb6b6088",
+      "bytes": 2042
     },
     "lib/layer-navigation.mjs": {
-      "bytes": 750,
-      "sha256": "0b53df3e87c2574ec218af47e2d9c6e5f3f75001a141059c82f34249ea74479e"
+      "sha256": "0b53df3e87c2574ec218af47e2d9c6e5f3f75001a141059c82f34249ea74479e",
+      "bytes": 750
     },
     "lib/pawn-animation.mjs": {
-      "bytes": 2210,
-      "sha256": "5cce1679784c1e4603be77e8ce0cc35bf3ef8e6de7aba90589b80e49c55e3264"
-    },
-    "lib/pawn-layout.mjs": {
-      "bytes": 1030,
-      "sha256": "25c6529a4ca2e2a0904bbd7bb8bdfad24c571774d59e1338b7d28dfc7342c1d9"
-    },
-    "lib/pawns.mjs": {
-      "bytes": 2005,
-      "sha256": "0387b566ba273cd2b30d5fcb129947685004bd3452f1e975f0c3f9996fd21fd9"
+      "sha256": "254c29e73cac03c2239ccd5b702add8e130a0539647248bb4557143ddcfed0f5",
+      "bytes": 975
     },
     "lib/preferences.mjs": {
-      "bytes": 759,
-      "sha256": "6483bd54f640f9120d9140052eb90a718524c23d5bed0cd962d077d2d80efec3"
+      "sha256": "6483bd54f640f9120d9140052eb90a718524c23d5bed0cd962d077d2d80efec3",
+      "bytes": 759
     },
     "lib/quick-notice.mjs": {
-      "bytes": 389,
-      "sha256": "1b187b121dbb7c87268537d88a5c4886981e26cc61bef4c1feceedd6194b06cf"
+      "sha256": "0a66926e0c96d7395e6d00789dbf2cbf2c8581df6542db5bf3025f61151fac41",
+      "bytes": 878
     },
     "lib/room-client.mjs": {
-      "bytes": 1242,
-      "sha256": "dfc836d2b70b94f5e6a9c123ae99b98af1460d6a647e709acd07a15572a2885e"
+      "sha256": "dfc836d2b70b94f5e6a9c123ae99b98af1460d6a647e709acd07a15572a2885e",
+      "bytes": 1242
     },
     "lib/save-format.mjs": {
-      "bytes": 8105,
-      "sha256": "24d17c78a9e002265e56fa0ea1756449774e4c5cbd6228fdc7cfc9c9a9f97e76"
+      "sha256": "5227493fb741892b007f921aef7c45b8a7ca99502e1d229151f8abd9a1f4f387",
+      "bytes": 7645
     },
     "lib/server/d1-store.mjs": {
-      "bytes": 1186,
-      "sha256": "e397b386b965b84ddca2cbb64d08c2c7f96daf198efb1863ef6a544503bbbb40"
+      "sha256": "e397b386b965b84ddca2cbb64d08c2c7f96daf198efb1863ef6a544503bbbb40",
+      "bytes": 1186
     },
     "lib/server/redis-store.mjs": {
-      "bytes": 3603,
-      "sha256": "4f2102cb3f9b07c293d1861638671e09ae1c57088a6785428de0ffe046be1805"
+      "sha256": "4f2102cb3f9b07c293d1861638671e09ae1c57088a6785428de0ffe046be1805",
+      "bytes": 3603
     },
     "lib/server/runtime-sites.ts": {
-      "bytes": 401,
-      "sha256": "b8789038a906a1251899d5d576f3bf5133f74b0a337874e42368ea0a91e07fcf"
+      "sha256": "b8789038a906a1251899d5d576f3bf5133f74b0a337874e42368ea0a91e07fcf",
+      "bytes": 401
     },
     "lib/server/runtime.ts": {
-      "bytes": 600,
-      "sha256": "c5fa6b503ad60d298976ec40e77b60cc24ffe774e17c3ef4d313ad09fc0e08e3"
+      "sha256": "c5fa6b503ad60d298976ec40e77b60cc24ffe774e17c3ef4d313ad09fc0e08e3",
+      "bytes": 600
     },
     "lib/storage.ts": {
-      "bytes": 2961,
-      "sha256": "82610ce6a0f6948cdb6946a811f30b7eb219e8a57ef088c1159895467336c8e0"
+      "sha256": "82610ce6a0f6948cdb6946a811f30b7eb219e8a57ef088c1159895467336c8e0",
+      "bytes": 2961
     },
     "lib/utils.ts": {
-      "bytes": 177,
-      "sha256": "53f3d3d070f0a9082934da25b875f9499855c2b0693868dd28be8c23d8730f68"
+      "sha256": "53f3d3d070f0a9082934da25b875f9499855c2b0693868dd28be8c23d8730f68",
+      "bytes": 177
     },
     "next.config.ts": {
-      "bytes": 133,
-      "sha256": "614bce25b089c3f19b1e17a6346c74b858034040154c6621e7d35303004767cc"
+      "sha256": "614bce25b089c3f19b1e17a6346c74b858034040154c6621e7d35303004767cc",
+      "bytes": 133
     },
     "package.json": {
-      "bytes": 2750,
-      "sha256": "bb28166709df70fe44d7dbea48b08c77a39687f0de3d928c75fe3610c0daa7fb"
+      "sha256": "cf2fd541a21a9ac76ace25665d090a93af7aefb3806c2c6923f4daaefc72b6f4",
+      "bytes": 2687
     },
     "pnpm-lock.yaml": {
-      "bytes": 345021,
-      "sha256": "095ba6f301ba3997da2c251dfc4b805c220624bdf0921d905eaceee0d1fb29c9"
+      "sha256": "095ba6f301ba3997da2c251dfc4b805c220624bdf0921d905eaceee0d1fb29c9",
+      "bytes": 345021
     },
     "pnpm-workspace.yaml": {
-      "bytes": 736,
-      "sha256": "4a69dc93a75ff4a33f54c2853d5317c8e7374faab592f3472b5164257bff8066"
+      "sha256": "4a69dc93a75ff4a33f54c2853d5317c8e7374faab592f3472b5164257bff8066",
+      "bytes": 736
     },
     "postcss.config.mjs": {
-      "bytes": 94,
-      "sha256": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde"
+      "sha256": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde",
+      "bytes": 94
     },
-    "public/assets/board/chance.svg": {
-      "bytes": 776,
-      "sha256": "28c83b07523a45d2338f12220d5d81b6572c0c856bb6d1ca610deacf9129497c"
-    },
-    "public/assets/board/community.svg": {
-      "bytes": 802,
-      "sha256": "5cc6f8ddab4b14305238b8cad7944d4e2bc25f87b098055b833bc247f7a36b11"
-    },
-    "public/assets/board/electric.svg": {
-      "bytes": 703,
-      "sha256": "0c90526baeef70e6a396235538d5fe9aae87d525f50b8ae21d125fde3aa3bb2b"
-    },
-    "public/assets/board/gojail.svg": {
-      "bytes": 786,
-      "sha256": "ad19e7a59e6f316db69b6c8527eb9a3d1af8d872ab1c295ccf4b103d5a343c14"
-    },
-    "public/assets/board/jail.svg": {
-      "bytes": 732,
-      "sha256": "380eedb4822b9921dcfea0864e9d4b8a8ff974181893bd841ff0d26b2b66c1d0"
-    },
-    "public/assets/board/parking.svg": {
-      "bytes": 799,
-      "sha256": "1b7c0fb988d410407af63c477f8e653ff627774f08bf5fadc89b5d77626bfde6"
-    },
-    "public/assets/board/start.svg": {
-      "bytes": 700,
-      "sha256": "943d6f37458281447c89545ae5a4e1a5febfb765b95bd160e846dd0e1ac5432b"
-    },
-    "public/assets/board/station.svg": {
-      "bytes": 840,
-      "sha256": "c87387f558abd058f2f8eed82abbe9ce71f84474089045bb29f001796d052c00"
-    },
-    "public/assets/board/tax.svg": {
-      "bytes": 731,
-      "sha256": "e03014913feff0f7f7a44ee61dbb6edce916945d72865116d099a8fdd6d7c8e4"
-    },
-    "public/assets/board/water.svg": {
-      "bytes": 734,
-      "sha256": "9f79eb49413b56c9998403080adf7f1afb2459ffc78b1c3b70ee3cf0257212d9"
-    },
-    "public/assets/nusa-symbol.woff": {
-      "bytes": 724,
-      "sha256": "849862ab22024852c93a5eabdfc7bbb7ecac44e501e24dd827164e641b8c6aa4"
-    },
-    "public/assets/nusa.svg": {
-      "bytes": 206,
-      "sha256": "964fdf6f25061232039377b2eacfe1dd61c28e4324c54f9ef3a0b0cbabda2cd0"
+    "public/assets/card-atlas.webp": {
+      "sha256": "c40231908a4d0c418f6b95b67111a86dab48b828d36531e85afd2086344ce826",
+      "bytes": 439392
     },
     "public/assets/nusantara-scene.webp": {
-      "bytes": 344442,
-      "sha256": "37cdda40cf79ae9879da2bd6eed7b8c8b704e9c10fd139f25cdc49fa5461c20b"
+      "sha256": "37cdda40cf79ae9879da2bd6eed7b8c8b704e9c10fd139f25cdc49fa5461c20b",
+      "bytes": 344442
     },
     "public/assets/pawn-atlas.webp": {
-      "bytes": 365340,
-      "sha256": "6282b7ab6911e93bf45ee696cb693d8481b3b62d0df177defa9bd8bd56ca88a9"
+      "sha256": "6282b7ab6911e93bf45ee696cb693d8481b3b62d0df177defa9bd8bd56ca88a9",
+      "bytes": 365340
     },
     "public/assets/region-atlas.webp": {
-      "bytes": 618032,
-      "sha256": "9db730ecd03199a866c4ea8f40adf80eb0a00eb9c35ac3d781295542f85c6c02"
-    },
-    "public/assets/tokens/angklung.svg": {
-      "bytes": 770,
-      "sha256": "33df2d4ee26f496c180c773eb585b7cfb4e5d72b67a4b18f6d9c89e50d09ee89"
-    },
-    "public/assets/tokens/becak.svg": {
-      "bytes": 857,
-      "sha256": "b40249dfe777599df5a089303742e52899c53273c072a5a38c115e183933169a"
-    },
-    "public/assets/tokens/cenderawasih.svg": {
-      "bytes": 865,
-      "sha256": "8a0758c0428f68b53d116fa60369eabe267cd46a0e561d73ae417cda5264db60"
-    },
-    "public/assets/tokens/komodo.svg": {
-      "bytes": 828,
-      "sha256": "baf157ba4dea1eb66d04a82287ea48a9632688c96cd8141d11ed9b96acb2da95"
-    },
-    "public/assets/tokens/pinisi.svg": {
-      "bytes": 792,
-      "sha256": "a02c2b5a6a477383ca8bef0659382961dced0a79128daffd3ec94a67b79e4bc5"
-    },
-    "public/assets/tokens/rumah-gadang.svg": {
-      "bytes": 830,
-      "sha256": "a052e86aef95a3280e9f0424838dacac523ab7b785b094b0cd63a53cf90ec5d2"
+      "sha256": "9db730ecd03199a866c4ea8f40adf80eb0a00eb9c35ac3d781295542f85c6c02",
+      "bytes": 618032
     },
     "public/favicon.svg": {
-      "bytes": 240,
-      "sha256": "d7e9435e8ac9206a6a282bd93ab01a7a39719db9e571df6a8e3bb049378b7a61"
+      "sha256": "d7e9435e8ac9206a6a282bd93ab01a7a39719db9e571df6a8e3bb049378b7a61",
+      "bytes": 240
     },
     "public/file.svg": {
-      "bytes": 392,
-      "sha256": "1e0ae4d1a1ddfa36752988647b731e4abf150c414d069ec83c96fb0aaeff0307"
+      "sha256": "1e0ae4d1a1ddfa36752988647b731e4abf150c414d069ec83c96fb0aaeff0307",
+      "bytes": 392
     },
     "public/globe.svg": {
-      "bytes": 1036,
-      "sha256": "d051a8c47936990a9085693d307bb7cea1bc1b6d7ed956bcbaacf674f4ec96b9"
+      "sha256": "d051a8c47936990a9085693d307bb7cea1bc1b6d7ed956bcbaacf674f4ec96b9",
+      "bytes": 1036
     },
     "public/sw.js": {
-      "bytes": 1794,
-      "sha256": "1cea6f4eb1bc31297d46947e305f42245b969beba1f2788e451b0b05b286d3da"
+      "sha256": "a85df9c8102ae32273e864d8341ae010816482dbae1044dda319da07af01f6ec",
+      "bytes": 1530
     },
     "public/window.svg": {
-      "bytes": 386,
-      "sha256": "decf1cf7bb22b5c99c4857cfcd5718ce5465c4454166317589c83fc73df74b66"
+      "sha256": "decf1cf7bb22b5c99c4857cfcd5718ce5465c4454166317589c83fc73df74b66",
+      "bytes": 386
     },
     "scripts/build-verified.sh": {
-      "bytes": 661,
-      "sha256": "2ae5329ac860076070c9217a43106a15cb5ecf907a0f7baeb9ef903f76b53c68"
+      "sha256": "2ae5329ac860076070c9217a43106a15cb5ecf907a0f7baeb9ef903f76b53c68",
+      "bytes": 661
     },
     "scripts/connector-preview/connector-preview-session.mjs": {
-      "bytes": 6855,
-      "sha256": "57224ad185a25115a14fccc68d3217e55b199260c3dd98a2c807beffec1a0a9b"
+      "sha256": "57224ad185a25115a14fccc68d3217e55b199260c3dd98a2c807beffec1a0a9b",
+      "bytes": 6855
     },
     "scripts/connector-preview/host-binding.mjs": {
-      "bytes": 7793,
-      "sha256": "9e44ab6864133a5c82f834a5904ebb7d6104cb783c24efba3c0fe1a161182cea"
+      "sha256": "9e44ab6864133a5c82f834a5904ebb7d6104cb783c24efba3c0fe1a161182cea",
+      "bytes": 7793
     },
     "scripts/connector-preview/protocol.mjs": {
-      "bytes": 1781,
-      "sha256": "111e062ebf08d3f180130f5bc3dcb3c1414c1d7be3c032c9d675a61c0c7513a8"
-    },
-    "scripts/create-board-assets.py": {
-      "bytes": 7854,
-      "sha256": "41719b1475df01d9f79af1a671c5904292b6061e8b7991918fd788b1ef700ba3"
+      "sha256": "111e062ebf08d3f180130f5bc3dcb3c1414c1d7be3c032c9d675a61c0c7513a8",
+      "bytes": 1781
     },
     "scripts/execution-profile.mjs": {
-      "bytes": 624,
-      "sha256": "2e71116f4d2b70cff8bb70436f8dd5c709ec7ff62893424530f404e0193d3630"
+      "sha256": "2e71116f4d2b70cff8bb70436f8dd5c709ec7ff62893424530f404e0193d3630",
+      "bytes": 624
     },
     "scripts/install-ci.mjs": {
-      "bytes": 1685,
-      "sha256": "4a5a92d60a08d0ba54effd8373da2da06284312c55b767287c68a0bec7200da7"
+      "sha256": "4a5a92d60a08d0ba54effd8373da2da06284312c55b767287c68a0bec7200da7",
+      "bytes": 1685
     },
     "scripts/install-ci.sh": {
-      "bytes": 6783,
-      "sha256": "10d8764a61be50351dc3496e13588270de7956f0aa5f1189c49cabb2d89fe5c0"
+      "sha256": "10d8764a61be50351dc3496e13588270de7956f0aa5f1189c49cabb2d89fe5c0",
+      "bytes": 6783
     },
     "scripts/install-pnpm.sh": {
-      "bytes": 9015,
-      "sha256": "a684c02c2b493dfbf262a66252a5cd36f81ca995a4024761728662ae63aa40c0"
+      "sha256": "a684c02c2b493dfbf262a66252a5cd36f81ca995a4024761728662ae63aa40c0",
+      "bytes": 9015
     },
     "scripts/npm-install.mjs": {
-      "bytes": 7025,
-      "sha256": "9715c6a32d1d4a0289ef6376a0e819c3b6a6416b8a9877733d9fb4339ce626b6"
+      "sha256": "9715c6a32d1d4a0289ef6376a0e819c3b6a6416b8a9877733d9fb4339ce626b6",
+      "bytes": 7025
     },
     "scripts/pnpm-install.mjs": {
-      "bytes": 10633,
-      "sha256": "a83164e344c1947053def83b546be8115deaa827314bbaead7afe6b6451c5cdf"
+      "sha256": "a83164e344c1947053def83b546be8115deaa827314bbaead7afe6b6451c5cdf",
+      "bytes": 10633
     },
     "scripts/run-framework.mjs": {
-      "bytes": 993,
-      "sha256": "9bf9f41a29314cabe0238b8e9c540ec3f7b5a6adafc7c8fb6c3940722d061dca"
+      "sha256": "9bf9f41a29314cabe0238b8e9c540ec3f7b5a6adafc7c8fb6c3940722d061dca",
+      "bytes": 993
     },
     "scripts/sites-env.mjs": {
-      "bytes": 906,
-      "sha256": "5de99d6806b01f0ee0b941af3684d75dcf1afbbcff22cb95bfa2e584c5dafa88"
+      "sha256": "5de99d6806b01f0ee0b941af3684d75dcf1afbbcff22cb95bfa2e584c5dafa88",
+      "bytes": 906
     },
     "scripts/sites-env.sh": {
-      "bytes": 1530,
-      "sha256": "df86ebfc27d2f00860036658e933ac0ddd7b5f6879aa5d51218f0863c7e1fb60"
+      "sha256": "df86ebfc27d2f00860036658e933ac0ddd7b5f6879aa5d51218f0863c7e1fb60",
+      "bytes": 1530
     },
     "tests/api.test.mjs": {
-      "bytes": 5087,
-      "sha256": "53954ba46292e3badaf900d785f30356e93633cec0cd859d964ec36e85453911"
+      "sha256": "53954ba46292e3badaf900d785f30356e93633cec0cd859d964ec36e85453911",
+      "bytes": 5087
     },
     "tests/asset-trade-v26.test.mjs": {
-      "bytes": 2818,
-      "sha256": "805c171828668c5ac8f8bc04ef7fcd8ee43ceac0ba9dd63397316e40560d32c2"
+      "sha256": "6b037871f6f370cdd77da2f41cf9c30fe5d56470c748b83310e3e2f453f4861e",
+      "bytes": 2820
     },
     "tests/board-2d.test.mjs": {
-      "bytes": 6270,
-      "sha256": "151064c9c5cfa3828d19f20b087695ca42646afc6cdcf1ed67ce4908dcaa5cc5"
-    },
-    "tests/board-visual-v211.test.mjs": {
-      "bytes": 13352,
-      "sha256": "8418c6a0afa02c56d6a6258e59ca930042d09e3c9d0278f4313919f6141db510"
+      "sha256": "91711d4d1532f1c65377842870f799a737c4adb0a436faa6fac71eba4febbdf1",
+      "bytes": 5852
     },
     "tests/classic.test.mjs": {
-      "bytes": 13401,
-      "sha256": "b95c08b482883b1dab199f88d89736666cdafdaa9585fae1dfd3a86af028eb12"
+      "sha256": "b95c08b482883b1dab199f88d89736666cdafdaa9585fae1dfd3a86af028eb12",
+      "bytes": 13401
     },
     "tests/compact-ui-v29.test.mjs": {
-      "bytes": 9264,
-      "sha256": "56f749cf6ca25a3855ac6e6206b0c2a13af76550491f09d456b6dd648c993c7b"
-    },
-    "tests/fixtures/economy-v29.json": {
-      "bytes": 9138,
-      "sha256": "6e6e7e5e8b127c4dfc33d5fa708e61e90bbee1470b32de75e26148fbf0830924"
+      "sha256": "02a3acd130f15d6ce61faaf668330ab770a8cccd988adb6276a63735c7e61963",
+      "bytes": 9425
     },
     "tests/fixtures/redis-lua.py": {
-      "bytes": 574,
-      "sha256": "33925101f3f24a6628e35f09a35e3361603dbb26c3ea21c134ed7c504872da49"
+      "sha256": "33925101f3f24a6628e35f09a35e3361603dbb26c3ea21c134ed7c504872da49",
+      "bytes": 574
     },
     "tests/game.test.mjs": {
-      "bytes": 11124,
-      "sha256": "faf82d6a7b9d45cc862092977cdd49ab3ed96cae0ea997db37d15f03245f4639"
+      "sha256": "faf82d6a7b9d45cc862092977cdd49ab3ed96cae0ea997db37d15f03245f4639",
+      "bytes": 11124
     },
     "tests/gameplay-flow-v28.test.mjs": {
-      "bytes": 9401,
-      "sha256": "5414aec03fca1da870d9616369cc041d3c8e7836ba3d0ce4f53e8621601d9bf7"
-    },
-    "tests/gameplay-v210.test.mjs": {
-      "bytes": 12330,
-      "sha256": "4d8d4e043fdbfc7b5605736be24ce5b586a3a17d3f0ab4112df0badc17772241"
+      "sha256": "7fac9da34b15807686330d806424cb037c0b9b3364de3eca65d3377d15cf467e",
+      "bytes": 9402
     },
     "tests/pawn-flow.test.mjs": {
-      "bytes": 3003,
-      "sha256": "35d47afcf5efa41226f04da9bb30a5de5366c6abd1ab6f596d84e3fdbe1cc6a9"
+      "sha256": "36c176115e7d4e8169d464d3350584bf5b3be3d8dae3a3ed23ef2bdc74d41a64",
+      "bytes": 2978
     },
     "tests/portrait.test.mjs": {
-      "bytes": 3942,
-      "sha256": "3ef0c220b8350e29e9b64ddddf3c3a237d3f03231882ad971a179f78539a418b"
+      "sha256": "3ef0c220b8350e29e9b64ddddf3c3a237d3f03231882ad971a179f78539a418b",
+      "bytes": 3942
     },
     "tests/production.test.mjs": {
-      "bytes": 3548,
-      "sha256": "d66012cd1b9d42bffddf2b5f3e2e49a5dea5142a86844c03d296966a5e5bbd81"
+      "sha256": "bec509749f36adc9db1c1b97de0f6ce00b16cbe7af210072edf1a10fe840cfc9",
+      "bytes": 3226
     },
     "tests/redis.test.mjs": {
-      "bytes": 9150,
-      "sha256": "b92f4d05bcf68e98a26ba57035c94be68a0f69e704ec9fde64e5c2c2da27d046"
+      "sha256": "b92f4d05bcf68e98a26ba57035c94be68a0f69e704ec9fde64e5c2c2da27d046",
+      "bytes": 9150
     },
     "tests/room-client.test.mjs": {
-      "bytes": 2192,
-      "sha256": "b6ec79edad62c893cf542a6ea098230bf1f513935427d00c5a91b978cd8332a1"
+      "sha256": "b6ec79edad62c893cf542a6ea098230bf1f513935427d00c5a91b978cd8332a1",
+      "bytes": 2192
     },
     "tests/save-format.test.mjs": {
-      "bytes": 2671,
-      "sha256": "9a4807c523488cca048f110e9b16d511178a5140ee78ad35f904e12908b9d50f"
+      "sha256": "9a4807c523488cca048f110e9b16d511178a5140ee78ad35f904e12908b9d50f",
+      "bytes": 2671
     },
     "tests/storage.test.mjs": {
-      "bytes": 3539,
-      "sha256": "5997f4ec8d8d13487bda1f06f357b5c1588596457960ea83a30a1028bf3aacb2"
+      "sha256": "5997f4ec8d8d13487bda1f06f357b5c1588596457960ea83a30a1028bf3aacb2",
+      "bytes": 3539
     },
     "tests/ui-refinement.test.mjs": {
-      "bytes": 2421,
-      "sha256": "820fe6633ceb85e0680ff2ec46853a17c8af248ae19db85ffbd6dfc1cb8cf7c1"
+      "sha256": "5bb8480a961a9f4614506f3dc1072887e295408ab08fe8e9762416ae79d774ea",
+      "bytes": 2425
     },
     "tests/vercel-build.test.mjs": {
-      "bytes": 2029,
-      "sha256": "f69d580e4956f4df311349cb27103417cfe51b44b5c84ba1e1b4fb49be71b792"
+      "sha256": "9e6f93c138e7b0938170cbcf470cdcd689b652d4da46f6e9248ffb0cd40f4beb",
+      "bytes": 1714
     },
     "tsconfig.json": {
-      "bytes": 800,
-      "sha256": "7199c6e4e400921e8049729840165a39f1476fa97901bed00239e7697bfe8da4"
+      "sha256": "7199c6e4e400921e8049729840165a39f1476fa97901bed00239e7697bfe8da4",
+      "bytes": 800
     },
     "vendor/shadcn-tailwind-4.13.0.LICENSE.md": {
-      "bytes": 1063,
-      "sha256": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f"
+      "sha256": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f",
+      "bytes": 1063
     },
     "vendor/shadcn-tailwind-4.13.0.css": {
-      "bytes": 16041,
-      "sha256": "bc7d83425702955b4cb67cb14ede9d603f9d912376d57a2d81d661094d2a782a"
+      "sha256": "bc7d83425702955b4cb67cb14ede9d603f9d912376d57a2d81d661094d2a782a",
+      "bytes": 16041
     },
     "vercel.json": {
-      "bytes": 422,
-      "sha256": "f12ace497410870d1cf53142e864d55295f0b15ec63441cf18ec3cb09f807992"
+      "sha256": "f12ace497410870d1cf53142e864d55295f0b15ec63441cf18ec3cb09f807992",
+      "bytes": 422
     },
     "vite.config.ts": {
-      "bytes": 3412,
-      "sha256": "ebb0d53518634b261be83a3c02b3492c2d88746a18968293c06f5cecdb7cf0e1"
+      "sha256": "ebb0d53518634b261be83a3c02b3492c2d88746a18968293c06f5cecdb7cf0e1",
+      "bytes": 3412
     }
   }
 }

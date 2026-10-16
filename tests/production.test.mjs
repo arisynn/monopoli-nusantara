@@ -29,24 +29,22 @@ try{
   const html=await response.text();
   assert.equal(response.status,200,html.slice(0,500));
   assert(html.includes('Nusantara'));
-  for(const label of ['VS Bot','Online Multiplayer'])assert(html.includes(label));
+  for(const label of ['Main lokal','Lawan bot','Room online'])assert(html.includes(label));
   assert(!html.includes('Starter Project'));
   assert(!html.includes('<img class="lobby-illustration"'));
-  for(const asset of ['nusantara-scene','pawn-atlas','region-atlas']){
+  for(const asset of ['nusantara-scene','pawn-atlas','region-atlas','card-atlas']){
     const bytes=await readFile(`dist/client/assets/${asset}.webp`);
     assert.equal(bytes.subarray(0,4).toString(),'RIFF',asset);
     assert.equal(bytes.subarray(8,12).toString(),'WEBP',asset);
     assert(bytes.length>1000,asset);
   }
-  for(const file of ['board/chance.svg','board/community.svg','tokens/pinisi.svg','tokens/angklung.svg','tokens/rumah-gadang.svg'])assert((await readFile(`dist/client/assets/${file}`,'utf8')).includes('<svg'));
-  assert.equal((await readFile('dist/client/assets/nusa-symbol.woff')).subarray(0,4).toString(),'wOFF');
   const scripts=[...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map(m=>m[1]);
   assert(scripts.length>0);
   for(const script of scripts){
     if(script.startsWith('/'))assert((await readFile(path.resolve('dist/client','.'+script))).length>0,script);
   }
   console.log(`PASS production SSR homepage, title, primary button and ${scripts.length} script reference(s).`);
-  console.log('PASS direct mode choices and three preserved WebP assets and new board artwork.');
+  console.log('PASS direct mode choices and all four preserved WebP assets.');
   const db=await mf.getD1Database('DB');
   const migration=await readFile('drizzle/0000_green_paper_doll.sql','utf8');
   for(const sql of migration.split('--> statement-breakpoint'))if(sql.trim())await db.prepare(sql.trim()).run();
@@ -58,9 +56,7 @@ try{
     body:JSON.stringify({type:'CREATE',name:'Pemeriksaan produksi'})
   });
   const room=await created.json();
-  assert.equal(created.status,410,JSON.stringify(room));
-  assert(room.error.includes('Supabase'));
-  const config=await mf.dispatchFetch('https://game.test/api/online?config=1');
-  assert.equal(config.status,200);assert.equal((await config.json()).online,false);
-  console.log('PASS production API routing, legacy creation disabled, Supabase configuration status.');
+  assert.equal(created.status,200,JSON.stringify(room));
+  assert(room.token&&room.code);
+  console.log('PASS production API routing, D1 migration and room creation.');
 }finally{await mf.dispose()}

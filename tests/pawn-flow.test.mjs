@@ -35,7 +35,7 @@ test('following camera maintains a dead zone and moves only to keep the pawn vis
 });
 test('game UI freezes decisions while pawn moves and tells players what the first roll does',()=>{
  const game=read('../components/game/Game.tsx'),board=read('../components/game/Board.tsx');
- assert(game.includes('if(travelIdRef.current!==null||diceSettlingRef.current)'));assert(game.includes('onMoveComplete={id=>'));
+ assert(game.includes('if(travelIdRef.current!==null)'));assert(game.includes('onMoveComplete={id=>'));
  assert(board.includes('samplePawnRoute'));assert(board.includes('keepPointVisible'));
  const rules=read('../components/game/RuleActions.tsx');
  assert(rules.includes('Semua pion tetap di Mulai'));

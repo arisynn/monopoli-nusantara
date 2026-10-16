@@ -1,5 +1,3 @@
-> Pembaruan Online Multiplayer: room baru memakai Supabase, bukan Redis. Ikuti [DEPLOY_SUPABASE.md](DEPLOY_SUPABASE.md). Panduan Redis di bawah tetap relevan untuk pemulihan room legacy; tidak memigrasikan identitas/data secara otomatis.
-
 # Deploy Monopoli Nusantara v2.2 ke Vercel
 
 Paket ini menambahkan jalur Next.js asli untuk Vercel. Source, tampilan 2.5D, gambar, aturan v2, dan dukungan save v1 tetap disertakan.

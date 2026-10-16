@@ -1,34 +1,30 @@
-# Monopoli Nusantara — persistent Online Multiplayer (source update)
+# Monopoli Nusantara v2.9 — Compact UI
 
-**Status pembaruan:** implementasi lokal Supabase/Auth/room/Realtime/voting/auto-pause/resume tersedia, tetapi Supabase live dan build frontend belum terverifikasi. [Laporan audit, status, risiko dan QA](docs/ONLINE_MULTIPLAYER_REPORT.md) · [Deployment Supabase](docs/DEPLOY_SUPABASE.md) · [Bukti tes lokal](docs/QA_ONLINE_RESULTS.json).
+Web game properti 2D berbahasa Indonesia. Papan SVG vektor, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
 
-Web game properti 2D berbahasa Indonesia. Papan SVG, antarmuka React, shared engine JavaScript, server Next.js/Vercel + Upstash Redis, serta jalur Vinext/Cloudflare Workers + D1.
+v2.9 memadatkan home, setup, lobby, gameplay, aset, barter, riwayat, simpanan, pengaturan dan panduan. Barter memakai satu composer dua sisi dengan selector properti; navigasi Back menjaga draf. Toast khusus mengatasi konflik CSS top/bottom yang menyebabkan notifikasi mobile terlalu tinggi. Smart Gameplay Flow v2.8 dan fondasi permainan tetap dipertahankan.
 
-v2.11 menyempurnakan board: monogram Nusa, artwork spesial dan kartu yang baru, enam pion SVG berbeda yang bisa dipilih, serta cluster pion simetris. Aset kartu lama dihapus. Nilai ekonomi, aturan, kamera, dadu dan Smart Gameplay Flow v2.10 dipertahankan.
-
-**Hotfix 2.11.1:** memperbaiki TS2322 pada dua prop `GameNotice.message`. Pesan tetap string; rendering Nusa dilakukan di komponen notifikasi. [Detail hotfix](docs/HOTFIX_v2.11.1.md).
-
-**Status verifikasi:** 147 tes regresi + 7 tes kamera lulus; sintaks 29 berkas TS/TSX diperiksa dengan parser Babel. TypeScript penuh, build, lint, React DOM/Android dan room live belum terverifikasi. Lihat [perubahan, kompatibilitas dan checklist v2.11](docs/UPDATE_v2.11.md).
+**Status verifikasi:** 114 tes aturan/storage/klien/presentasi/source UI dan 7 tes kamera lulus. TypeScript/TSX, build, lint, DOM/browser dan multiplayer live belum diverifikasi karena dependency tidak tersedia; tidak dilakukan instalasi ulang. Lihat [audit, perubahan, hasil QA dan checklist v2.9](docs/UPDATE_v2.9.md).
 
 ## Fitur tersedia
 
-- Gameplay HP portrait menggunakan tinggi layar aktif; kapsul pemain memakai grid adaptif 2–6 pemain. Setup, aset, barter, riwayat, dan keputusan panjang menggunakan panel yang dapat digulir. Beranda dapat digulir pada layar pendek.
+- Gameplay HP portrait menggunakan tinggi layar aktif; daftar pemain dapat digeser mendatar. Setup, aset, barter, riwayat, dan keputusan panjang menggunakan panel yang dapat digulir. Beranda dapat digulir pada layar pendek.
 - Papan SVG 40 petak dengan empat sudut besar dan pita warna klasik. Dua tampilan: Seluruh papan dan Dekat/Ikuti pemain. Geser dan pinch zoom langsung pada papan tanpa tombol, minimap, atau label yang menutupi petak. Jelajah manual tetap aktif sampai tombol Ikuti pemain ditekan.
 - Lima slot save lokal, arsip permainan sebelumnya, ekspor/impor JSON tervalidasi, serta pengaturan yang diingat di perangkat.
 
-- Dua mode baru: VS Bot (satu manusia + 1–5 bot lokal) dan Online Multiplayer (2–6 manusia). Save hotseat lama dan adapter bot/Groq lama dipertahankan untuk kompatibilitas.
-- Jalur online baru: Supabase Auth, kursi per UUID, snapshot privat persisten, transaksi atomik, revision hints Realtime, reconnect, voting mayoritas, auto-pause dan resume semua aktif siap. Belum tervalidasi pada Supabase live.
-- Pion SVG orisinal dapat dipilih di setup/lobby, lalu konsisten pada board dan HUD. Kartu Kesempatan/Dana Umum memakai artwork baru; ilustrasi regional existing dipakai pada kota.
+- Hotseat 2–6 manusia; duel bot lokal; duel melalui Groq saat secret terpasang.
+- Room privat 2–6 manusia, lobby siap, kursi bertoken, pemulihan sesi perangkat yang sama, state otoritatif di server.
+- Aset gambar orisinal tetap disertakan. Beranda, HUD, sertifikat, dan keputusan kartu kini memakai teks, CSS, dan ikon vektor yang telah tersedia.
 - Aturan dasar C1009: lempar awal, lelang terbuka, lelang stok bangunan langka, barter saat utang/di luar giliran, pilihan langsung tebus aset tergadai, dan opsi klaim sewa manual.
 - 40 petak, 28 sertifikat, 32 kartu, dadu kembar, penjara, sewa, pajak, lelang, gadai, bangunan merata, barter dan tawaran balik, utang/kebangkrutan/pemenang.
-- Papan tidak memakai WebGL atau Three.js. Teks, ikon spesial, bangunan dan pion tetap vektor saat diperbesar; strip kota memakai ilustrasi WebP existing. Efek suara, animasi cepat, reduced motion, serah giliran tetap tersedia.
+- Papan tidak memakai WebGL, Three.js, atau tekstur gambar. Teks, ikon, bangunan, dan pion tetap vektor saat diperbesar. Efek suara, animasi cepat, reduced motion, serah giliran tetap tersedia.
 - Save lokal IndexedDB dengan salinan localStorage; service worker untuk cache shell setelah pemuatan awal. Offline perlu origin HTTPS dan cache yang telah terisi. Mode room dan Groq membutuhkan koneksi.
 
 Baca `docs/RULEPACK.md` untuk adaptasi yang eksplisit dan batas verifikasi v2. Baca `docs/QA_BOARD_2D.md` untuk pemeriksaan dasar kamera, serta `docs/UPDATE_v2.4.md` untuk peningkatan UX dan batas pengujian perangkat nyata.
 
 ## Deploy Vercel
 
-Gunakan `vercel.json` yang disertakan. Framework **Next.js**, Node **24.x**, build `npm run build:vercel`, output `.next`. Panduan lengkap dan environment variables: [`docs/DEPLOY_VERCEL.md`](docs/DEPLOY_VERCEL.md). VS Bot tidak memerlukan database. Room online baru memerlukan Supabase; lihat panduan di atas. Upstash/D1 dan Groq hanya diperlukan bila melanjutkan room legacy pada backend tersebut.
+Gunakan `vercel.json` yang disertakan. Framework **Next.js**, Node **24.x**, build `npm run build:vercel`, output `.next`. Panduan lengkap dan environment variables: [`docs/DEPLOY_VERCEL.md`](docs/DEPLOY_VERCEL.md). Hotseat dan bot lokal tidak memerlukan database. Room online memerlukan Upstash Redis; Groq juga memerlukan `GROQ_API_KEY`.
 
 ```bash
 npx --yes pnpm@11.25.0 install --frozen-lockfile

@@ -42,7 +42,7 @@ try{
  let status=await (await GET(new Request('https://game.test/api/game?status=1'))).json();assert.deepEqual(status,{online:false,groq:false,hosting:'vercel'});
  let unavailable=await POST(new Request('https://game.test/api/game',{method:'POST',body:JSON.stringify({type:'CREATE'})}));assert.equal(unavailable.status,400);assert((await unavailable.json()).error.includes('belum diaktifkan'));
  console.log('PASS built Next.js API gracefully disables room/Groq without database configuration');
- Object.assign(process.env,{ALLOW_LEGACY_ROOM_CREATION:'true',UPSTASH_REDIS_REST_URL:config.url,UPSTASH_REDIS_REST_TOKEN:config.token,ROOM_NAMESPACE:'test:api',VERCEL:'1',VERCEL_ENV:'production'});
+ Object.assign(process.env,{UPSTASH_REDIS_REST_URL:config.url,UPSTASH_REDIS_REST_TOKEN:config.token,ROOM_NAMESPACE:'test:api',VERCEL:'1',VERCEL_ENV:'production'});
  globalThis.fetch=transport;
  async function call(body,token='',extra={}){const result=await POST(new Request('https://game.test/api/game',{method:'POST',headers:{'Content-Type':'application/json','X-Room-Token':token,'x-vercel-forwarded-for':'192.0.2.1',Origin:'https://game.test',...extra},body:JSON.stringify(body)}));return {status:result.status,data:await result.json()}}
  const a=(await call({type:'CREATE',name:'Jovan',rules:'classic'})).data;assert(a.token,a.error);assert.equal(a.roomRevision,0);assert.equal(a.online,true);assert.equal(a.rules,'classic');assert(!a.seats[0].token);

@@ -12,7 +12,7 @@
 - `public/assets/nusantara-scene.webp`
 - `public/assets/pawn-atlas.webp`
 - `public/assets/region-atlas.webp`
-- Artwork kartu awal telah diganti pada v2.11: `public/assets/board/chance.svg` dan `community.svg`.
+- `public/assets/card-atlas.webp`
 
 Dibuat memakai built-in `image_gen`; prompt lengkap ada di `ASSET_PROMPTS.json`. WebP adalah konversi format untuk pengiriman web, tanpa perubahan komposisi. Label, angka, keputusan, dan kepemilikan tetap berupa data game/HTML; bukan teks yang dibakar ke gambar.
 
