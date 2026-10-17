@@ -90,3 +90,22 @@ test('browser transport errors distinguish timeout without treating Auth 400 as 
  storage(t);const auth=new OnlineAuth(config,async()=>{throw Object.assign(new Error('timeout'),{name:'TimeoutError'})});
  await assert.rejects(auth.guest(),e=>e instanceof ConnectionError&&/terlalu lama/.test(e.message));
 });
+
+// Chromium requires Window.fetch to be invoked without an arbitrary object receiver.
+// A stored native fetch called through `this.transport(...)` otherwise raises
+// TypeError: Failed to execute 'fetch' on 'Window': Illegal invocation.
+test('Auth transport invokes browser fetch without an illegal this receiver', async t=>{
+ storage(t);
+ let requests=0;
+ async function strictBrowserFetch(url,options){
+  assert.equal(this,undefined,'fetch must not be invoked as an OnlineAuth object method');
+  requests++;
+  assert.equal(url,'/api/auth?op=signup');
+  assert.equal(options.method,'POST');
+  return Response.json({access_token:'fixed-token',refresh_token:'fixed-refresh',expires_in:3600,user:{id:'fixed-id'}});
+ }
+ const auth=new OnlineAuth(config,strictBrowserFetch);
+ await auth.signup('test@example.com','password123');
+ assert.equal(requests,1);
+ assert.equal(auth.session().user.id,'fixed-id');
+});
