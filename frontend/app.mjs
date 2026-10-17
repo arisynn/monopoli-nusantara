@@ -36,6 +36,7 @@ import { parseNusa } from "../lib/currency.mjs";
 import { serializeSave, parseSave } from "../lib/save-format.mjs";
 import { saveSlot, listSaves } from "../lib/storage.ts";
 import { loadPreferences, savePreferences } from "../lib/preferences.mjs";
+import { loadPlayerName, savePlayerName, requirePlayerName } from "../lib/player-name.mjs";
 import { changeTradeOpponent, tradeDraftStatus } from "../lib/compact-ui.mjs";
 const session = new GameSession(),
   prefs = loadPreferences(
@@ -48,7 +49,8 @@ Object.assign(session, {
 });
 const ui = {
   mode: "bot",
-  name: "Jovan",
+  name: loadPlayerName(),
+  profileDraft: "",
   count: 4,
   pawn: 0,
   rules: "digital",
@@ -105,7 +107,9 @@ function lobbyContent() {
     isRoom = !!session.room,
     players = isRoom
       ? r.seats
-      : localPlayers(ui.name, ui.count, ui.pawn, ui.levels).map((p, id) => ({
+      : (ui.name ? localPlayers(ui.name, ui.count, ui.pawn, ui.levels) :
+          [{name: "Isi nama di Profil Saya", controller: "human", pawn: ui.pawn},
+           ...PERSONAS.slice(0, ui.count - 1).map(p => ({name: p.name, controller: "bot", botPersona: p.id, botDifficulty: ui.levels[p.id], pawn: p.pawn}))]).map((p, id) => ({
           ...p,
           id,
           ready: true,
@@ -119,7 +123,7 @@ function lobbyContent() {
         players.every((p) => p.controller === "bot" || (p.ready && p.connected))
       : true;
   const slots = isRoom ? r.capacity : ui.count;
-  return `<div class="lobby-heading"><span class="eyebrow">RUANG BERMAIN <b>${isRoom ? "ONLINE" : "VS BOT"}</b></span><h1>Ruang Bermain</h1></div><div class="lobby-facts"><span>${icon("map", 19)}40 petak</span><span>${icon("people", 19)}${isRoom ? "2–6" : ui.count} peserta</span><span class="coin-label"><span class="nusa-token">N</span> = Nusa</span></div>${isRoom ? `<button class="room-code" data-action="copyRoom"><small>KODE ROOM</small><b>${esc(r.code)}</b>${icon("copy", 18)}</button>` : `<button class="setup-summary" data-action="setup"><span>${esc(ui.name)} · ${ui.count} peserta</span><b>Atur permainan ${icon("gear", 15)}</b></button>`}<div class="lobby-roster" style="--columns:${slots === 2 || slots === 4 ? 2 : 3}">${Array.from(
+  return `<div class="lobby-heading"><span class="eyebrow">RUANG BERMAIN <b>${isRoom ? "ONLINE" : "VS BOT"}</b></span><h1>Ruang Bermain</h1></div><div class="lobby-facts"><span>${icon("map", 19)}40 petak</span><span>${icon("people", 19)}${isRoom ? "2–6" : ui.count} peserta</span><span class="coin-label"><span class="nusa-token">N</span> = Nusa</span></div>${isRoom ? `<button class="room-code" data-action="copyRoom"><small>KODE ROOM</small><b>${esc(r.code)}</b>${icon("copy", 18)}</button>` : `<button class="setup-summary" data-action="setup"><span>${esc(ui.name || "Nama belum diisi")} · ${ui.count} peserta</span><b>Atur permainan ${icon("gear", 15)}</b></button>`}<div class="lobby-roster" style="--columns:${slots === 2 || slots === 4 ? 2 : 3}">${Array.from(
     { length: slots },
     (_, i) => {
       const p = players[i];
@@ -242,8 +246,16 @@ function render() {
           !session.online?.held &&
           session.online?.status !== "paused" &&
           session.online?.vote?.status !== "open");
-      if (!note.hidden)
-        note.innerHTML = `<button data-action="room">${icon("people", 17)}<span>${session.online?.status === "paused" ? "Permainan dijeda · Siap lanjut" : !session.connected ? "Menghubungkan kembali…" : session.online?.held ? "Menunggu koneksi pemain" : "Permintaan jeda · tanggapi"}</span>${icon("arrow", 15)}</button>`;
+      if (!note.hidden) {
+        const humans = session.online?.seats?.filter(p => p.controller === "human" && !p.out).length || 0;
+        const ready = session.online?.pause?.ready?.length || 0;
+        const message = session.online?.status === "paused"
+          ? `Dijeda · ${ready}/${humans} siap lanjut`
+          : !session.connected ? "Menghubungkan kembali…"
+          : session.online?.held ? "Menunggu koneksi pemain"
+          : "Permintaan jeda · tanggapi";
+        note.innerHTML = `<button data-action="room" aria-label="${esc(message)}. Lihat detail room">${icon("pause", 16)}<span class="connection-note-label">${esc(message)}</span>${icon("arrow", 15)}</button>`;
+      }
     }
     page.querySelector("#page-status").textContent = session.error || "";
     decorateCurrency(page);
@@ -470,13 +482,21 @@ function auxiliary(p) {
           html:
             lead(
               "people",
-              ui.name,
-              "Nama dan pion untuk pertandingan lokal berikutnya.",
+              ui.name || "Profil Saya",
+              "Nama pemain harus diisi sebelum memulai pertandingan.",
             ) +
-            `<div class="profile-hero">${avatar(0)}<h3>${esc(ui.name)}</h3>${pawnArt(ui.pawn, "Pion pilihan")}</div>`,
+            `<div class="profile-hero">${avatar(0)}<h3>${esc(ui.name || "Belum diberi nama")}</h3>${pawnArt(ui.pawn, "Pion pilihan")}</div>`,
           footer: btn("Pilih pion", "pawn", { primary: true }),
         };
       return null;
+    case "myProfile":
+      return {
+        title: "Profil Saya",
+        html: lead("people", "Profil Saya", "Pilih nama pemainmu sendiri. Tidak ada nama bawaan.") +
+          `<label class="field">Nama pemain<input name="playerName" autocomplete="nickname" placeholder="Isi nama pemain (2–24 karakter)" maxlength="24" value="${esc(ui.profileDraft)}" required></label>` +
+          `<p class="inline-note">${session.room ? "Nama akan disinkronkan ke semua pemain di room, termasuk saat dijeda." : "Nama disimpan di perangkat ini dan digunakan untuk VS Bot maupun room baru."}</p>`,
+        footer: btn("Simpan nama", "savePlayerName", {primary:true, disabled:session.pending}) + btn("Batal", "close"),
+      };
     case "menu":
       return {
         title: "Menu Permainan",
@@ -484,6 +504,7 @@ function auxiliary(p) {
           lead("menu", "Meja Nusantara", "") +
           `${session.botBlocked ? btn("Coba ulang bot", "retryBot", { primary: true }) : ""}${claimableRent(s, own).length ? btn("Tagih sewa (" + claimableRent(s, own).length + ")", "rentClaims", { primary: true }) : ""}<div class="menu-grid">${(s
             ? [
+                ["myProfile", "Profil saya", "people"],
                 ["room", "Room & koneksi", "people"],
                 ["saves", "Simpanan", "save"],
                 ["settings", "Pengaturan", "gear"],
@@ -493,7 +514,7 @@ function auxiliary(p) {
                 ["saves", "Simpanan", "save"],
                 ["settings", "Pengaturan", "gear"],
                 ["rules", "Aturan", "info"],
-                ["profile", "Profil saya", "people"],
+                ["myProfile", "Profil saya", "people"],
               ]
           )
             .map(([a, l, i]) => btn(l, a, { sym: i }))
@@ -517,7 +538,7 @@ function auxiliary(p) {
         title: "Atur VS Bot",
         html:
           lead("gear", "Teman Berpetualang", "") +
-          `<label class="field">Nama pemain<input name="playerName" value="${esc(ui.name)}" maxlength="24"></label><div class="setup-controls"><div class="setup-row"><span>Peserta</span><div class="segments">${[2, 3, 4].map((n) => `<button data-action="count" data-value="${n}" aria-pressed="${n === ui.count}">${n}</button>`).join("")}</div></div>${btn("Pilih pion", "pawn")}</div>` +
+          `<div class="profile-name-row"><span>Nama kamu: <b>${esc(ui.name || "Belum diisi")}</b></span>${btn("Atur nama", "myProfile")}</div><div class="setup-controls"><div class="setup-row"><span>Peserta</span><div class="segments">${[2, 3, 4].map((n) => `<button data-action="count" data-value="${n}" aria-pressed="${n === ui.count}">${n}</button>`).join("")}</div></div>${btn("Pilih pion", "pawn")}</div>` +
           PERSONAS.slice(0, ui.count - 1)
             .map(
               (p, i) =>
@@ -633,7 +654,7 @@ function auxiliary(p) {
         title: "Pengaturan",
         html:
           lead("gear", "Pengaturan") +
-          `<label class="toggle">Efek suara<input type="checkbox" name="sound" ${ui.sound ? "checked" : ""}></label><label class="toggle">Animasi cepat<input type="checkbox" name="fast" ${session.fast ? "checked" : ""}></label><label class="toggle">Kurangi gerakan<input type="checkbox" name="reduced" ${session.reduced ? "checked" : ""}></label><p class="inline-note">Pengaturan disimpan pada perangkat ini. Preferensi reduced motion sistem tetap dihormati.</p><div class="fact-row"><span>Versi</span><b>${APP_VERSION} · Papan Klasik</b></div>`,
+          `${btn("Profil Saya · Atur nama", "myProfile", {sym:"people"})}<label class="toggle">Efek suara<input type="checkbox" name="sound" ${ui.sound ? "checked" : ""}></label><label class="toggle">Animasi cepat<input type="checkbox" name="fast" ${session.fast ? "checked" : ""}></label><label class="toggle">Kurangi gerakan<input type="checkbox" name="reduced" ${session.reduced ? "checked" : ""}></label><p class="inline-note">Pengaturan disimpan pada perangkat ini. Preferensi reduced motion sistem tetap dihormati.</p><div class="fact-row"><span>Versi</span><b>${APP_VERSION} · Papan Klasik</b></div>`,
         footer: btn("Selesai", "close", { primary: true }),
       };
     case "rules":
@@ -850,6 +871,23 @@ async function perform(action, el) {
       case "addBotPopup":
         open({ kind: action });
         return;
+      case "myProfile":
+        ui.profileDraft = session.room
+          ? (session.online?.seats?.[session.room.seat]?.name || ui.name)
+          : ui.name;
+        open({kind: "myProfile"});
+        return;
+      case "savePlayerName": {
+        const name = requirePlayerName(ui.profileDraft);
+        if (session.room) {
+          if (!await session.roomOp("RENAME", {name})) throw Error(session.error || "Nama belum tersimpan di room.");
+        } else if (session.screen === "gameplay") {
+          await session.renameLocalPlayer(name);
+        }
+        ui.name = savePlayerName(name);
+        close();
+        break;
+      }
       case "count":
         ui.count = Number(el.dataset.value);
         ui.trade = null;
@@ -877,6 +915,8 @@ async function perform(action, el) {
         }
         break;
       case "startLocal":
+        if (!ui.name) { ui.profileDraft = ""; open({kind:"myProfile"}); break; }
+        requirePlayerName(ui.name);
         close();
         ui.dismissed = "";
         ui.trade = null;
@@ -898,6 +938,8 @@ async function perform(action, el) {
         queueRender();
         return;
       case "enterRoom": {
+        if (!ui.name) { ui.profileDraft = ""; open({kind:"myProfile"}); break; }
+        requirePlayerName(ui.name);
         if (!session.auth?.session()) {
           open({ kind: "auth" });
           break;
@@ -1334,7 +1376,7 @@ dialog.addEventListener("click", (e) => {
 document.addEventListener("input", (e) => {
   const el = e.target,
     name = el.name;
-  if (name === "playerName") ui.name = el.value;
+  if (name === "playerName") ui.profileDraft = el.value;
   else if (name === "mortgageTarget") {
     ui.mortgageTarget = el.value;
     queueRender();

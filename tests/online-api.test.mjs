@@ -46,8 +46,8 @@ test('API rejects unauthenticated, invalid-session, cross-origin and oversized r
  assert.equal((await POST(new Request('https://game.test/api/online',{method:'POST',headers:f.headers(0),body:JSON.stringify({padding:'x'.repeat(17000)})}))).status,413);
 });
 for(const n of [2,3,6])test(`actual route: ${n} human identities, ready/start, dice validation and cross-room access`,async t=>{
- const f=setup(t),a=await f.post(0,'CREATE',{capacity:n});assert.equal(a.status,200);const code=a.data.code;
- for(let i=1;i<n;i++){const joined=await f.post(i,'JOIN',{code});assert.equal(joined.status,200);assert.equal(joined.data.seat,i)}
+ const f=setup(t),a=await f.post(0,'CREATE',{capacity:n,name:'Ayu'});assert.equal(a.status,200);const code=a.data.code;
+ for(let i=1;i<n;i++){const joined=await f.post(i,'JOIN',{code,name:`Pemain ${i+1}`});assert.equal(joined.status,200);assert.equal(joined.data.seat,i)}
  assert.equal((await f.post(0,'START',{code})).status,400);
  for(let i=0;i<n;i++)assert.equal((await f.post(i,'READY',{code,ready:true})).status,200);
  const started=await f.post(0,'START',{code});assert.equal(started.status,200);assert.equal(started.data.status,'playing');assert(!('decks' in started.data.state));assert(!JSON.stringify(started.data).includes(ids[0]));

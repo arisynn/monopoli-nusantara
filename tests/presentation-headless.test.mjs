@@ -119,7 +119,7 @@ for(const n of [2,4,6])test(`actual room service distributes revealed card and l
  const {createOnlineService}=await import('../lib/server/online-service.mjs'),{MemoryOnlineStore}=await import('./helpers/online-store.mjs');
  const store=new MemoryOnlineStore(),service=createOnlineService({store,clock:()=>1000000,rng:()=>.2,generateCode:()=> 'ABCDEFGH'}),users=Array.from({length:n},(_,i)=>`00000000-0000-4000-8000-${String(i+1).padStart(12,'0')}`);
  const call=(i,type,data={})=>service.execute({type,code:'ABCDEFGH',clientId:`client-${i}`,requestId:data.action?.id||crypto.randomUUID(),...data},users[i]);
- await call(0,'CREATE',{capacity:n});for(let i=1;i<n;i++)await call(i,'JOIN');for(let i=0;i<n;i++)await call(i,'READY',{ready:true});await call(0,'START');
+ await call(0,'CREATE',{capacity:n,name:'Ayu'});for(let i=1;i<n;i++)await call(i,'JOIN',{name:`Pemain ${i+1}`});for(let i=0;i<n;i++)await call(i,'READY',{ready:true});await call(0,'START');
  const row=await store.get('ABCDEFGH');row.data.state=setup(n);row.data.state.players[0].pos=3;card(row.data.state,'chance',c=>c.money>0);await store.commit(row,row.data);
  const before=await Promise.all(users.map(id=>service.read('ABCDEFGH',id)));const rolled=await call(0,'ACTION',{action:{type:'ROLL',id:crypto.randomUUID(),expectedVersion:0}});assert.equal(rolled.state.phase,'card');
  const views=await Promise.all(users.map(id=>service.read('ABCDEFGH',id)));const events=views.map((v,i)=>ingestTimeline(ingestTimeline(null,before[i].state),v.state).queue.find(x=>x.event?.card).event);assert(events.every(e=>e.id===events[0].id));
@@ -141,7 +141,7 @@ test('extra doubles rolls remain distinct, and the third double has one direct j
 });
 test('two concurrent room roll requests cannot both commit, even when the first earns an extra roll',async()=>{
  const {createOnlineService}=await import('../lib/server/online-service.mjs'),{MemoryOnlineStore}=await import('./helpers/online-store.mjs');const store=new MemoryOnlineStore(),service=createOnlineService({store,clock:()=>1000000,rng:()=>.2,generateCode:()=> 'ABCDEFGH'}),users=['00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000002'];
- const call=(i,type,data={})=>service.execute({type,code:'ABCDEFGH',clientId:`double-${i}`,requestId:data.action?.id||crypto.randomUUID(),...data},users[i]);await call(0,'CREATE');await call(1,'JOIN');await call(0,'READY',{ready:true});await call(1,'READY',{ready:true});await call(0,'START');const row=await store.get('ABCDEFGH');row.data.state=setup();await store.commit(row,row.data);
+ const call=(i,type,data={})=>service.execute({type,code:'ABCDEFGH',clientId:`double-${i}`,requestId:data.action?.id||crypto.randomUUID(),...data},users[i]);await call(0,'CREATE',{name:'Ayu'});await call(1,'JOIN',{name:'Budi'});await call(0,'READY',{ready:true});await call(1,'READY',{ready:true});await call(0,'START');const row=await store.get('ABCDEFGH');row.data.state=setup();await store.commit(row,row.data);
  const race=await Promise.allSettled([call(0,'ACTION',{action:{type:'ROLL',id:crypto.randomUUID(),expectedVersion:0}}),call(0,'ACTION',{action:{type:'ROLL',id:crypto.randomUUID(),expectedVersion:0}})]);assert.equal(race.filter(r=>r.status==='fulfilled').length,1);const final=(await service.read('ABCDEFGH',users[0])).state;assert.equal(final.version,1);assert.equal(final.phase,'roll');assert.equal(final.log.filter(e=>e.type==='dice').length,1);
 });
 

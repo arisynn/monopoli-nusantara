@@ -8,7 +8,7 @@ import {BotJobStore} from './helpers/bot-job-store.mjs';
 async function room(){
  const clock=()=>1000000,store=new BotJobStore(clock),service=createOnlineService({store,clock,botsEnabled:true,generateCode:()=> 'ABCDEFGH',rng:()=>.2}),users=['00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000002'];
  const call=(i,type,data={})=>service.execute({type,clientId:'connection-'+i,code:'ABCDEFGH',requestId:data.action?.id||crypto.randomUUID(),...data},users[i]);
- await call(0,'CREATE');await call(1,'JOIN');await call(0,'ADD_BOT',{difficulty:'hardcore'});await call(0,'READY',{ready:true});await call(1,'READY',{ready:true});await call(0,'START');
+ await call(0,'CREATE',{name:'Ayu'});await call(1,'JOIN',{name:'Budi'});await call(0,'ADD_BOT',{difficulty:'hardcore'});await call(0,'READY',{ready:true});await call(1,'READY',{ready:true});await call(0,'START');
  const row=await store.get('ABCDEFGH');row.data.state=createGame({players:row.data.seats,startingRoll:false},()=>.2);row.data.state.turn=2;row.data.state.phase='buy';row.data.state.buy=19;row.data.state.assets[6].owner=0;await store.commit(row,row.data,{notify:true});
  return {store,clock,call};
 }

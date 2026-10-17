@@ -693,21 +693,33 @@ img {
 }
 .connection-note {
   flex: none;
-  margin: 0 8px 5px;
+  margin: 0 8px 4px;
 }
 .connection-note > button {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 7px;
   width: 100%;
-  padding: 5px 8px;
+  height: 36px;
+  min-height: 36px;
+  padding: 5px 10px;
   background: #fff1d3;
   border: 1px solid #e9d49e;
-  border-radius: 8px;
-  font-size: 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  line-height: 1.2;
 }
-.connection-note > button > span {
-  flex: 1;
+.connection-note > button > .ui-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+.connection-note > button > .connection-note-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .pawn-sprite {
   display: inline-block;
@@ -1426,11 +1438,26 @@ img {
   border-radius: 13px;
   padding: 8px 10px;
 }
-.room-members > div > span {
+.room-members > div > .room-member-identity {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
+}
+.room-members > div > .avatar {
+  flex: 0 0 40px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1;
+}
+.room-member-identity b { overflow-wrap: anywhere; }
+.room-member-identity em {
+  font-style: normal;
+  color: #6b92ac;
+  font-size: 10px;
+  margin-right: 4px;
 }
 .room-members b {
   font-size: 12px;
@@ -3822,8 +3849,10 @@ select[hidden] {
   border-radius: 8px;
 }
 .popup[data-density="compact"] .room-members .avatar {
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  aspect-ratio: 1;
 }
 .popup[data-density="compact"] .room-members small {
   font-size: 11px;
@@ -4499,3 +4528,11 @@ select[hidden] {
 .bank-indicator[hidden] {
   display: none;
 }
+
+/* v4.10.2: editable human identity and compact pause UI. */
+.profile-name-row {display:flex;align-items:center;gap:8px;justify-content:space-between;min-width:0;padding:6px 0 12px;font-size:12px;}
+.profile-name-row > span {min-width:0;overflow-wrap:anywhere;}
+.profile-name-row > button {flex:0 0 auto;min-height:34px;padding:6px 10px;font-size:11px;}
+.room-members > .room-member {min-height:52px;}
+.popup[data-density="compact"] .room-members > .room-member {min-height:44px;}
+@media (max-width:359px) {.connection-note > button {height:34px;min-height:34px;font-size:10px;} .room-members > div > .avatar{flex-basis:32px;width:32px;height:32px;}}

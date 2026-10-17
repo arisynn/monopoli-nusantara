@@ -53,14 +53,14 @@ test('concurrent purchases commit once; same command receipt returns current sna
 test('concurrent duplicate creates and duplicate joins keep one room and one seat',async()=>{
  const store=new MemoryOnlineStore();let i=0;
  const s=createOnlineService({store,generateCode:()=>`ABCDEFG${'HJKLMN'[i++]}`});
- const b={type:'CREATE',clientId:'browser-tab-one',requestId:crypto.randomUUID(),capacity:6};
+ const b={type:'CREATE',clientId:'browser-tab-one',requestId:crypto.randomUUID(),capacity:6,name:'Ayu'};
  const both=await Promise.all([s.execute(b,users[0]),s.execute(b,users[0])]);assert.equal(both[0].code,both[1].code);assert.equal(store.rooms.size,1);
- const j={type:'JOIN',code:both[0].code,clientId:'browser-tab-two',requestId:crypto.randomUUID()};
+ const j={type:'JOIN',code:both[0].code,clientId:'browser-tab-two',requestId:crypto.randomUUID(),name:'Budi'};
  const joined=await Promise.all([s.execute(j,users[1]),s.execute({...j,requestId:crypto.randomUUID()},users[1])]);assert(joined.every(x=>x.seat===1));assert.equal(store.rooms.get(j.code).data.seats.length,2);
 });
 test('simultaneous final seat join respects capacity',async()=>{
  const f=await fixture(2);f.store.edit(f.code,r=>{r.status='waiting';r.state=null;r.capacity=3});
- const result=await Promise.allSettled([f.call(2,'JOIN'),f.call(3,'JOIN')]);assert.equal(result.filter(r=>r.status==='fulfilled').length,1);assert.equal(f.store.rooms.get(f.code).data.seats.length,3);
+ const result=await Promise.allSettled([f.call(2,'JOIN',{name:'Dina'}),f.call(3,'JOIN',{name:'Eka'})]);assert.equal(result.filter(r=>r.status==='fulfilled').length,1);assert.equal(f.store.rooms.get(f.code).data.seats.length,3);
 });
 test('forged dice, balances, bot commands, wrong actor and stale revision are rejected',async()=>{
  const f=await fixture();for(const data of [{dice:[6,6]},{cash:999999},{expectedVersion:99}])await assert.rejects(f.action(0,'ROLL',data));
@@ -157,4 +157,38 @@ test('numeric strings and injected trade contexts cannot corrupt ownership types
  const trade={to:1,give:[1],take:[],giveCash:0,takeCash:0,giveCards:0,takeCards:0};
  for(const patch of [{to:'1'},{give:['1']},{context:{phase:'won'}},{takeCash:'100'},{giveCards:-1}])await assert.rejects(f.action(0,'OFFER',{trade:{...trade,...patch}}));
  assert.equal(f.store.rooms.get(f.code).data.state.assets[1].owner,0);assert.equal((await f.view(0)).state.phase,'roll');
+});
+
+test('human names are mandatory when creating and joining a new online seat',async()=>{
+ const store=new MemoryOnlineStore(),service=createOnlineService({store,generateCode:()=> 'ABCDEFGH'});
+ const b={type:'CREATE',capacity:4,clientId:'browser-one',requestId:crypto.randomUUID()};
+ await assert.rejects(service.execute(b,users[0]),/Isi nama pemain/);
+ const room=await service.execute({...b,name:'  Sinta   Putri '},users[0]);
+ assert.equal(room.seats[0].name,'Sinta Putri');
+ await assert.rejects(service.execute({type:'JOIN',code:room.code,clientId:'browser-two',requestId:crypto.randomUUID()},users[1]),/Isi nama pemain/);
+ assert.equal((await service.read(room.code,users[0])).seats.length,1);
+});
+
+test('participant can rename while playing and paused without rewriting turn, assets, or game version',async()=>{
+ const f=await fixture(2);
+ const original=(await f.view(0)), turn=original.state.turn, version=original.state.version,
+  assets=structuredClone(original.state.assets), match=original.state.matchId;
+ const renamed=await f.call(1,'RENAME',{name:'  Ayu    Maharani  '});
+ assert.equal(renamed.seats[1].name,'Ayu Maharani');
+ assert.equal((await f.view(0)).state.players[1].name,'Ayu Maharani');
+ assert.equal(renamed.state.version,version);
+ assert.equal(renamed.state.turn,turn);
+ assert.equal(renamed.state.matchId,match);
+ assert.deepEqual(renamed.state.assets,assets);
+ await f.votePause();
+ const pause=await f.call(0,'RENAME',{name:'Budi'});
+ assert.equal(pause.status,'paused');
+ assert.equal(pause.seats[0].name,'Budi');
+ assert.equal(pause.state.players[0].name,'Budi');
+ assert.equal(pause.pause.ready.length,0);
+ // An existing user may reconnect with an outdated name and must not overwrite the chosen name.
+ const rejoin=await f.call(0,'JOIN',{name:'Old name'});
+ assert.equal(rejoin.seats[0].name,'Budi');
+ // Only the identified participant can change their own seat.
+ await assert.rejects(f.call(6,'RENAME',{name:'Impersonated'}),/Bukan peserta/);
 });

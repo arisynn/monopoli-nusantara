@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T03:08:34.218Z",
+  "generatedAt": "2026-10-17T04:13:15.101Z",
   "node": "v22.16.0",
   "files": [
     "tests/bank-economy.test.mjs",
@@ -20,6 +20,7 @@
     "tests/room-client.test.mjs",
     "tests/online.test.mjs",
     "tests/online-client.test.mjs",
+    "tests/player-name.test.mjs",
     "tests/auth-proxy.test.mjs",
     "tests/online-api.test.mjs",
     "tests/bot-strategy.test.mjs",
@@ -31,8 +32,8 @@
     "tests/headless-package.test.mjs",
     "tests/frontend.test.mjs"
   ],
-  "tests": 465,
-  "passed": 465,
+  "tests": 472,
+  "passed": 472,
   "failed": 0,
   "skipped": 0,
   "failures": [],

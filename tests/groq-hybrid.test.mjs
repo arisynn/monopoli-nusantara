@@ -9,7 +9,7 @@ test('uniform result contract includes safe optional reason in local, configured
  assert.equal(advisorConfiguration(env).status,'configured');assert.equal(localDecision(s,1,'timeout').reason,'timeout');
 });
 test('simple/mechanical choices never call provider even with ENV configured',async()=>{
- const s=createGame({players:localPlayers('A',2)},()=>.2);s.starting.pending=[1];
+ const s=createGame({players:localPlayers('Ayu',2)},()=>.2);s.starting.pending=[1];
  const r=await aiDecision(s,1,env,options(async()=>{throw Error('must not call')}));assert.equal(r.reason,'simple');assert.equal(r.status,'configured');
 });
 test('valid structured recommendation respects guardrails and reports real call usage',async()=>{

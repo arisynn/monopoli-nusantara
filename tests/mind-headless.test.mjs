@@ -87,7 +87,7 @@ test('old saves default to Medium; levels and optional advisor survive save/load
  s.players[1].botDifficulty='fake';assert.throws(()=>validateLocalState(s));
 });
 test('host configures public fixed bot difficulty before start; invalid settings and post-start additions fail',()=>{
- const r=newRoom({capacity:4,advisorEnabled:true},'ABCDEFGH','user','tab',1000);
+ const r=newRoom({capacity:4,advisorEnabled:true,name:'Ayu'},'ABCDEFGH','user','tab',1000);
  assert.throws(()=>applyOperation(r,0,{type:'ADD_BOT',difficulty:'impossible'},1000,()=>.1,{botsEnabled:true}));
  applyOperation(r,0,{type:'ADD_BOT',difficulty:'hardcore'},1000,()=>.1,{botsEnabled:true});
  assert.equal(r.seats[1].botDifficulty,'hardcore');assert.equal(roomView({data:r,revision:0},'user',1000).seats[1].botDifficulty,'hardcore');r.status='playing';
@@ -95,7 +95,7 @@ test('host configures public fixed bot difficulty before start; invalid settings
 });
 test('adding lobby bots reserves enough capacity for the second required human',()=>{
  for(const capacity of [2,3,4,6]){
-  const r=newRoom({capacity},'ABCDEFGH','user','connection',1000);
+  const r=newRoom({capacity,name:'Ayu'},'ABCDEFGH','user','connection',1000);
   for(let i=0;i<Math.min(3,capacity-2);i++)applyOperation(r,0,{type:'ADD_BOT'},1000,()=>.1,{botsEnabled:true});
   assert(r.capacity-r.seats.length>=1);assert.throws(()=>applyOperation(r,0,{type:'ADD_BOT'},1000,()=>.1,{botsEnabled:true}));
  }
@@ -113,7 +113,7 @@ test('online worker escapes a hung advisor and commits exactly one local command
  const clock=()=>1000000,store=new BotJobStore(clock),service=createOnlineService({store,clock,botsEnabled:true,generateCode:()=> 'ABCDEFGH',rng:()=>.2});
  const users=['00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000002'];
  const call=(i,type,data={})=>service.execute({type,clientId:'connection-'+i,code:'ABCDEFGH',requestId:crypto.randomUUID(),...data},users[i]);
- await call(0,'CREATE');await call(1,'JOIN');await call(0,'ADD_BOT',{difficulty:'hardcore'});await call(0,'READY',{ready:true});await call(1,'READY',{ready:true});await call(0,'START');
+ await call(0,'CREATE',{name:'Ayu'});await call(1,'JOIN',{name:'Budi'});await call(0,'ADD_BOT',{difficulty:'hardcore'});await call(0,'READY',{ready:true});await call(1,'READY',{ready:true});await call(0,'START');
  let row=await store.get('ABCDEFGH');row.data.state=createGame({players:row.data.seats,startingRoll:false},()=>.2);row.data.state.turn=2;await store.commit(row,row.data,{notify:true});
  const r=await runBotWorker({store,clock,maxSteps:1,maxMs:120,decide:async()=>new Promise(()=>{})});assert.equal(r.committed,1);assert.equal((await store.get('ABCDEFGH')).data.state.version,1);
 });
@@ -121,7 +121,7 @@ test('six-seat online room persists three distinct levels and excludes bots from
  const clock=()=>1000000,store=new BotJobStore(clock),service=createOnlineService({store,clock,botsEnabled:true,generateCode:()=> 'ABCDEFGH',rng:()=>.2});
  const users=Array.from({length:3},(_,i)=>`00000000-0000-4000-8000-${String(i+1).padStart(12,'0')}`);
  const call=(i,type,data={})=>service.execute({type,clientId:'connection-'+i,code:'ABCDEFGH',requestId:crypto.randomUUID(),...data},users[i]);
- await call(0,'CREATE',{capacity:6,advisorEnabled:true});await call(1,'JOIN');await call(2,'JOIN');
+ await call(0,'CREATE',{capacity:6,advisorEnabled:true,name:'Ayu'});await call(1,'JOIN',{name:'Budi'});await call(2,'JOIN',{name:'Citra'});
  for(const difficulty of ['easy','hard','hardcore'])await call(0,'ADD_BOT',{difficulty});
  for(let i=0;i<3;i++)await call(i,'READY',{ready:true});await call(0,'START');
  const view=await service.read('ABCDEFGH',users[2]);assert.deepEqual(view.state.players.slice(3).map(p=>p.botDifficulty),['easy','hard','hardcore']);assert(view.advisorEnabled);assert(view.state.advisorEnabled);

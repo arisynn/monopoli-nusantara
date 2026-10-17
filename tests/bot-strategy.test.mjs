@@ -12,8 +12,8 @@ const own=(s,t,id,level=0)=>Object.assign(s.assets[t],{owner:id,level});
 const trade=(to,patch={})=>({to,give:[],take:[],giveCash:0,takeCash:0,giveCards:0,takeCards:0,...patch});
 const offer=(s,from,t)=>command(s,from,{type:'OFFER',trade:t});
 test('fixed persona order, high skill shared by all, total count and pawn uniqueness',()=>{
- for(const n of [2,3,4]){const p=localPlayers('A',n,1);assert.equal(p.length,n);assert.deepEqual(p.slice(1).map(p=>p.name),PERSONAS.slice(0,n-1).map(p=>p.name));assert.equal(new Set(p.map(p=>p.pawn)).size,n);const s=createGame({players:p});assert.deepEqual(s.players.slice(1).map(p=>p.botPersona),PERSONAS.slice(0,n-1).map(p=>p.id));}
- assert.throws(()=>localPlayers('A',5));assert.throws(()=>localPlayers('A',1));
+ for(const n of [2,3,4]){const p=localPlayers('Ayu',n,1);assert.equal(p.length,n);assert.deepEqual(p.slice(1).map(p=>p.name),PERSONAS.slice(0,n-1).map(p=>p.name));assert.equal(new Set(p.map(p=>p.pawn)).size,n);const s=createGame({players:p});assert.deepEqual(s.players.slice(1).map(p=>p.botPersona),PERSONAS.slice(0,n-1).map(p=>p.id));}
+ assert.throws(()=>localPlayers('Ayu',5));assert.throws(()=>localPlayers('Ayu',1));
 });
 test('public chance probabilities sum to horizon and ignore hidden shuffled deck/RNG',()=>{
  const s=setup(),b=structuredClone(s);b.decks.chance.reverse();b.decks.community.reverse();

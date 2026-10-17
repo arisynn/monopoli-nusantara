@@ -6,7 +6,7 @@ import {BotJobStore} from './helpers/bot-job-store.mjs';
 const users=Array.from({length:7},(_,i)=>`00000000-0000-4000-8000-${String(i+1).padStart(12,'0')}`);
 async function fixture(humans=2,bots=3){let now=1000000;const clock=()=>now,store=new BotJobStore(clock),service=createOnlineService({store,clock,botsEnabled:true,rng:()=>.2,generateCode:()=> 'ABCDEFGH'});
  const call=(i,type,data={})=>service.execute({type,clientId:`connection-${i}`,requestId:data.action?.id||crypto.randomUUID(),code:'ABCDEFGH',...data},users[i]);
- await call(0,'CREATE',{capacity:6});for(let i=1;i<humans;i++)await call(i,'JOIN');for(let i=0;i<bots;i++)await call(0,'ADD_BOT');
+ await call(0,'CREATE',{capacity:6,name:'Player 1'});for(let i=1;i<humans;i++)await call(i,'JOIN',{name:`Player ${i+1}`});for(let i=0;i<bots;i++)await call(0,'ADD_BOT');
  for(let i=0;i<humans;i++)await call(i,'READY',{ready:true});await call(0,'START');
  const engine=async fn=>{const row=await store.get('ABCDEFGH');row.data.state=createGame({players:row.data.seats,startingRoll:false},()=>.2);fn(row.data.state);await store.commit(row,row.data,{notify:true});store.jobs.get('ABCDEFGH').status='scheduled';};
  return {store,service,call,clock,advance:t=>now+=t,engine,room:()=>store.rooms.get('ABCDEFGH').data};
@@ -22,8 +22,8 @@ test('only host can add at Waiting; no duplicate personas, fourth bot, or partic
 test('two humans required even with three bots and joining after a bot preserves human seat identity',async()=>{
  const store=new BotJobStore(Date.now),service=createOnlineService({store,botsEnabled:true,generateCode:()=> 'ABCDEFGH'});
  const op=(i,type,data={})=>service.execute({type,clientId:`browser-${i}`,requestId:crypto.randomUUID(),code:'ABCDEFGH',...data},users[i]);
- await op(0,'CREATE');await op(0,'ADD_BOT');await op(0,'READY',{ready:true});await assert.rejects(op(0,'START'));
- const joined=await op(1,'JOIN');assert.equal(joined.seat,2);await op(1,'READY',{ready:true});await op(0,'START');assert.equal((await service.read('ABCDEFGH',users[1])).seat,2);
+ await op(0,'CREATE',{name:'Ayu'});await op(0,'ADD_BOT');await op(0,'READY',{ready:true});await assert.rejects(op(0,'START'));
+ const joined=await op(1,'JOIN',{name:'Budi'});assert.equal(joined.seat,2);await op(1,'READY',{ready:true});await op(0,'START');assert.equal((await service.read('ABCDEFGH',users[1])).seat,2);
 });
 test('bot voting/Ready are excluded and resume needs only all active humans',async()=>{
  const f=await fixture();await f.call(0,'PAUSE_REQUEST');let v=await f.service.read('ABCDEFGH',users[0]);assert.equal(v.vote.eligible.length,2);

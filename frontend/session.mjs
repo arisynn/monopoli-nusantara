@@ -27,6 +27,7 @@ import {
   SaveConflictError,
 } from "../lib/storage.ts";
 import { validateLocalState } from "../lib/save-format.mjs";
+import {requirePlayerName} from '../lib/player-name.mjs';
 import {
   OnlineAuth,
   subscribeRoom,
@@ -264,7 +265,7 @@ export class GameSession extends EventTarget {
     );
   }
   async startLocal({
-    name = "Jovan",
+    name,
     count = 4,
     pawn = 0,
     rules = "digital",
@@ -860,6 +861,16 @@ export class GameSession extends EventTarget {
       this.notify();
     }
   }
+  async renameLocalPlayer(value) {
+    const name = requirePlayerName(value);
+    if (this.room) throw Error('Gunakan sinkronisasi room untuk nama online.');
+    if (!this.state) return;
+    const state = {...this.state, players: this.state.players.map((player, i) =>
+      i === 0 ? {...player, name} : player)};
+    this.ingest(state, {reset: true});
+    if (!await this.persistNow()) throw Error(this.error || 'Nama belum dapat disimpan.');
+    this.notify();
+  }
   async roomOp(type, data = {}) {
     if (this.pending) return false;
     this.pending = true;
@@ -919,9 +930,14 @@ export class GameSession extends EventTarget {
         this.state.matchId !== result.state.matchId
       )
         this.epoch++;
-      this.ingest(mergeState(this.state, result.state, baseline), {
-        reset: baseline,
-      });
+      // Room metadata is authoritative for display names even if gameplay
+      // state.version stayed unchanged during a profile-only rename.
+      const merged = mergeState(this.state, result.state, baseline);
+      const renamed = merged.players.some((player, index) =>
+        result.seats?.[index] && player.name !== result.seats[index].name);
+      const named = renamed ? {...merged, players: merged.players.map((player, index) =>
+        ({...player, name: result.seats?.[index]?.name ?? player.name}))} : merged;
+      this.ingest(named, {reset: baseline || renamed});
     } else {
       this.state = null;
       this.model = null;

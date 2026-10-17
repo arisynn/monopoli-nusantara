@@ -72,7 +72,7 @@ test('online room retries and concurrent purchases persist one ledger entry shar
  const users=['00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000002'];
  const store=new MemoryOnlineStore(),service=createOnlineService({store,clock:()=>1000000,rng:()=>.2,generateCode:()=> 'ABCDEFGH'});
  const call=(i,type,data={})=>service.execute({type,clientId:'bank-test-'+i,code:'ABCDEFGH',requestId:crypto.randomUUID(),...data},users[i]);
- await call(0,'CREATE');await call(1,'JOIN');await call(0,'READY',{ready:true});await call(1,'READY',{ready:true});await call(0,'START');
+ await call(0,'CREATE',{name:'Ayu'});await call(1,'JOIN',{name:'Budi'});await call(0,'READY',{ready:true});await call(1,'READY',{ready:true});await call(0,'START');
  store.edit('ABCDEFGH',room=>{room.state=createGame({players:room.seats,startingRoll:false},()=>.2);room.state.phase='buy';room.state.buy=1;});
  const id=crypto.randomUUID(),body={type:'ACTION',clientId:'bank-test-0',code:'ABCDEFGH',requestId:id,action:{type:'BUY',id,expectedVersion:0}};
  const both=await Promise.all([service.execute(body,users[0]),service.execute(body,users[0])]);

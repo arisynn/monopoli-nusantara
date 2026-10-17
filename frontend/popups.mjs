@@ -487,11 +487,13 @@ function profile(c, p) {
     html:
       lead("people", "Profil Pemain") +
       `<div class="profile-hero">${avatar(player.id)}<h3>${esc(player.name)}</h3><span>${player.controller === "bot" ? "Bot · " + esc(player.botPersona || player.name) : "Pemain manusia"}${connection ? " · " + (connection.connected ? "Terhubung" : "Terputus") : ""}</span>${pawnArt(pawnFor(player), "Pion " + TOKENS[pawnFor(player)].name)}</div><div class="detail-grid"><div><span>Saldo</span>${amount(player.cash)}</div><div><span>Total aset</span>${amount(worth(c.s, player.id))}</div><div><span>Properti</span><b>${assets(c.s, player.id).length}</b></div><div><span>Status</span><b>${player.out ? "Bangkrut" : player.inJail ? "Penjara" : "Aktif"}</b></div></div><section class="profile-ledger"><h3>Riwayat Nusa</h3><small>Transaksi publik dalam riwayat tersimpan · maksimal 300 kejadian.</small>${ledger.map((row) => `<article data-ledger-row="${esc(row.id)}"><span><small>RONDE ${row.turn} · ${esc(financeLabels[row.kind] || "Transaksi")}</small><p>${esc(row.description)}</p></span><b class="${row.amount > 0 ? "positive" : "negative"}">${row.amount > 0 ? "+" : "−"} ${esc(money(Math.abs(row.amount)))}</b></article>`).join("") || '<p class="empty">Belum ada transaksi Nusa tercatat.</p>'}</section>`,
-    footer: btn("Lihat properti", "assets", {
-      primary: true,
-      extra: `data-id="${player.id}"`,
-      sym: "assets",
-    }),
+    footer: (player.id === c.seat && player.controller === "human"
+      ? btn("Ubah nama", "myProfile", {sym: "people"}) : "") +
+      btn("Lihat properti", "assets", {
+        primary: true,
+        extra: `data-id="${player.id}"`,
+        sym: "assets",
+      }),
   };
 }
 
@@ -517,7 +519,7 @@ function room(c) {
         r.status === "paused" ? "Permainan Dijeda" : "Room " + r.code,
         "Progres tersimpan di backend.",
       ) +
-      `<button class="room-code" data-action="copyRoom">${esc(r.code)}${icon("copy", 18)}</button><div class="room-members">${r.seats.map((p) => `<div>${avatar(p.id)}<span><b>${esc(p.name)}${p.id === r.host ? " · Host" : ""}</b><small>${p.controller === "bot" ? "Bot · otomatis mengikuti room" : !p.connected ? "Terputus" : r.pause?.ready.includes(p.id) ? "Siap lanjut" : "Terhubung"}${p.out ? " · penonton" : ""}</small></span><i class="connection ${p.connected ? "on" : ""}"></i></div>`).join("")}</div>${r.held ? '<p class="inline-note">Hak keputusan ditahan. Auto-pause 90 detik sejak heartbeat terakhir.</p>' : ""}${r.status === "paused" ? `<div class="ready-summary">${info.ready}/${info.humans.length} manusia siap lanjut</div><p class="body-copy">Semua manusia aktif harus terhubung dan siap. Bot tidak ikut voting atau menekan siap.</p>` : v?.status === "open" ? `<div class="ready-summary">${Object.values(v.votes).filter(Boolean).length}/${info.needed} persetujuan jeda</div><p class="body-copy">Satu suara per manusia aktif. Pemain offline tetap dihitung.</p>` : ""}`,
+      `<button class="room-code" data-action="copyRoom">${esc(r.code)}${icon("copy", 18)}</button><div class="room-members">${r.seats.map((p) => `<div class="room-member">${avatar(p.id)}<span class="room-member-identity"><b><em>P${p.id + 1}</em> ${esc(p.name)}${p.id === r.host ? " · Host" : ""}</b><small>${p.controller === "bot" ? "Bot · mengikuti room" : !p.connected ? "Terputus" : r.pause?.ready.includes(p.id) ? "Siap lanjut" : "Terhubung"}${p.out ? " · penonton" : ""}</small></span><i class="connection ${p.connected ? "on" : ""}"></i></div>`).join("")}</div>${r.held ? '<p class="inline-note">Hak keputusan ditahan. Auto-pause 90 detik sejak heartbeat terakhir.</p>' : ""}${r.status === "paused" ? `<div class="ready-summary">${info.ready}/${info.humans.length} manusia siap lanjut</div><p class="body-copy">Semua pemain manusia aktif harus siap. Bot tidak ikut voting.</p>` : v?.status === "open" ? `<div class="ready-summary">${Object.values(v.votes).filter(Boolean).length}/${info.needed} persetujuan jeda</div><p class="body-copy">Satu suara per manusia aktif. Pemain offline tetap dihitung.</p>` : ""}`,
     footer:
       r.status === "paused" && !own.out && own.controller === "human"
         ? btn(
