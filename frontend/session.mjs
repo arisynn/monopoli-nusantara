@@ -11,8 +11,7 @@ import {
 import { localPlayers } from "../lib/bot/personas.mjs";
 import { createMindClient } from "../lib/bot/mind-client.mjs";
 import { strategyView } from "../lib/bot/memory.mjs";
-import { decisionGate } from "../lib/bot/strategy.mjs";
-import { decidePersona } from "../lib/bot/persona-router.mjs";
+import { decisionGate, planDecision } from "../lib/bot/strategy.mjs";
 import {
   ingestTimeline,
   advanceTimeline,
@@ -271,7 +270,7 @@ export class GameSession extends EventTarget {
     pawn = 0,
     rules = "digital",
     levels = {},
-    botPersonas = null,
+    botIds = null,
     advisorEnabled = false,
   } = {}) {
     if (this.pending) return;
@@ -294,7 +293,7 @@ export class GameSession extends EventTarget {
       this.ingest(
         createGame(
           {
-            players: localPlayers(name, Number(count), Number(pawn), levels, botPersonas),
+            players: localPlayers(name, Number(count), Number(pawn), levels, botIds),
             rules,
             advisorEnabled: advisorEnabled && this.configured,
           },
@@ -742,12 +741,12 @@ export class GameSession extends EventTarget {
         });
       } catch {
         if (generation !== this.generation) return;
-        plan = decidePersona(this.state, actor, {difficulty:"medium",timeBudgetMs:0});
+        plan = planDecision(this.state, actor);
         this.botStatus = "fallback";
       }
       if (!plan) {
         if (generation !== this.generation) return;
-        plan = decidePersona(this.state, actor, {difficulty:"medium",timeBudgetMs:0});
+        plan = planDecision(this.state, actor);
       }
       let action = plan.action;
       this.botStatus = "local";

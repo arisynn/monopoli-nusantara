@@ -1,10 +1,6 @@
-# Monopoli Nusantara V4.11.0 — Multi-AI Persona Edition
+# Monopoli Nusantara 4.11.0 — Enam Persona AI & Popup Pilihan Bot
 
-**Pembaruan utama:** karakter **₦USA** menggunakan 16 ahli strategi dan Expert Council V7.2, **Arka** menggunakan kebijakan JavaScript adaptasi Sonnet Apex yang **independen**, sementara Raka/Bima/Sari tetap ada. Pemilihan persona tersedia pada VS Bot dan penambahan bot room online. Save game lama tetap kompatibel; belum ada deploy ataupun sync Supabase. Referensi sumber asli Python Apex tersimpan untuk audit, tetapi adapter JS **belum identik 100%** dengan Apex Python.
-
-**Panduan rilis dan batasan:** [docs/RELEASE_4110_MULTI_AI_PERSONAS.md](docs/RELEASE_4110_MULTI_AI_PERSONAS.md)  
-**Tes baru:** `npm run test:personas`  
-**Build aplikasi:** `npm run build`
+Update di atas **v4.10.2** dengan source bot dari **Nusa.zip**. Raka, Bima, Sari, NUSA, Arka/APEX, dan Kresna kini dapat dipilih sebagai enam kebijakan bot independen. Pilihan persona dan empat tingkat kesulitan ditampilkan dalam dua dialog kartu yang terpisah, bukan dropdown. VS Bot mendukung 2–6 peserta; online tetap maksimal tiga bot, dengan dua manusia minimal. **LEARNED_MODEL = null** sampai ada bobot baru yang lolos verifikasi sumber dan benchmark holdout. Petunjuk & hasil uji ada di [INTEGRASI_NUSA_V411.md](INTEGRASI_NUSA_V411.md).
 
 ---
 

@@ -1,5 +1,5 @@
 import { decisionGate } from "./bot/strategy.mjs";
-import { decideMind } from "./bot/mind.mjs";
+import { decidePersona } from "./bot/persona-router.mjs";
 import { strategyView } from "./bot/memory.mjs";
 import type {
   BotAction,
@@ -37,7 +37,7 @@ export function localDecision(
   actor: number,
   reason: BotReason = "not_configured",
 ): BotDecisionResult {
-  const action = decideMind(s, actor, { timeBudgetMs: 180 }).action;
+  const action = decidePersona(s, actor, { timeBudgetMs: 180 }).action;
   if (!action) throw Error("Tidak ada keputusan bot legal.");
   return {
     action,
@@ -63,7 +63,7 @@ export async function aiDecision(
   env: BotEnvironment,
   options: AdvisorOptions = {},
 ): Promise<BotDecisionResult> {
-  const plan = decideMind(s, actor, { timeBudgetMs: 180 }),
+  const plan = decidePersona(s, actor, { timeBudgetMs: 180 }),
     action: BotAction | null = plan.action;
   if (!action) throw Error("Tidak ada keputusan bot legal.");
   const result = (

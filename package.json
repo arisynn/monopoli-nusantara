@@ -3,7 +3,7 @@
   "version": "4.11.0",
   "private": true,
   "type": "module",
-  "description": "Monopoli Nusantara V4.11 — Multi-AI Persona: ₦USA V7.2, independent Apex, and legacy bots",
+  "description": "Nusantara \u2014 Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
   "engines": {
     "node": "24.x"
   },
@@ -46,8 +46,7 @@
     "test:auction": "node --experimental-strip-types scripts/test-auction-browser.mjs",
     "test:bank": "node --experimental-strip-types scripts/test-bank-browser.mjs",
     "benchmark:hybrid": "node scripts/benchmark-hybrid.mjs",
-    "train:hybrid": "node scripts/train-hybrid.mjs",
-    "test:personas": "node --test tests/multi-ai-personas.test.mjs"
+    "train:hybrid": "node scripts/train-hybrid.mjs"
   },
   "devDependencies": {
     "@types/node": "22.19.19",

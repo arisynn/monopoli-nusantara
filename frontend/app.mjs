@@ -54,9 +54,9 @@ const ui = {
   count: 4,
   pawn: 0,
   rules: "digital",
-  levels: { raka: "medium", bima: "medium", sari: "medium", nusa: "hard", apex: "hard" },
-  botSlots: ["nusa", "apex", "raka"],
-  nextBotPersona: "nusa",
+  levels: Object.fromEntries(PERSONAS.map((p) => [p.id, "medium"])),
+  botIds: ["raka", "bima", "sari", "nusa", "apex"],
+  nextBotPersona: null,
   advisor: false,
   popup: null,
   dismissed: "",
@@ -95,6 +95,14 @@ let board,
   footerHTML = "",
   previousFocus,
   renderQueued = false;
+const botFor = (id) => PERSONAS.find((p) => p.id === id);
+const selectedBots = () => ui.botIds.slice(0, ui.count - 1);
+const levelLabel = (id) => MODELS.find((m) => m.id === id)?.label || "Medium";
+const availableRoomPersona = () => {
+  const occupied = new Set((session.online?.seats || []).filter((p) => p.controller === "bot").map((p) => p.botPersona));
+  return PERSONAS.find((p) => p.id === ui.nextBotPersona && !occupied.has(p.id)) || PERSONAS.find((p) => !occupied.has(p.id));
+};
+const botCard = (p, selected, disabled) => `<button type="button" class="bot-choice-card ${selected ? "selected" : ""}" data-action="chooseBotPersona" data-value="${p.id}" aria-pressed="${selected}" ${disabled ? "disabled" : ""}><span class="bot-choice-emblem">${esc(p.name.slice(0, 1))}</span><span class="bot-choice-details"><b>${esc(p.name === "Arka" ? "Arka / APEX" : p.name)}</b><small>${esc(p.role)}</small></span><span class="bot-choice-indicator">${selected ? icon("check", 16) : disabled ? "Dipakai" : icon("arrow", 16)}</span></button>`;
 const brand = () => `<div class="brand">Nusantara</div>`;
 const topbar = () =>
   `<header class="topbar"><button class="icon-button" data-action="menu" aria-label="Menu permainan">${icon("menu", 22)}</button>${brand()}${session.screen === "gameplay" ? `<button class="icon-button" data-action="camera" aria-label="Kamera: ${ui.camera === "overview" ? "lihat dekat" : "seluruh papan"}" aria-pressed="${ui.camera === "follow"}">${icon("map", 22)}</button>` : '<span class="header-spacer" aria-hidden="true"></span>'}</header>`;
@@ -109,9 +117,9 @@ function lobbyContent() {
     isRoom = !!session.room,
     players = isRoom
       ? r.seats
-      : (ui.name ? localPlayers(ui.name, ui.count, ui.pawn, ui.levels, ui.botSlots) :
-          [{name: "Isi nama di Profil Saya", controller: "human", pawn: ui.pawn},
-           ...ui.botSlots.slice(0, ui.count - 1).map(id => PERSONAS.find(p => p.id === id)).map(p => ({name: p.name, controller: "bot", botPersona: p.id, botDifficulty: ui.levels[p.id], pawn: p.pawn}))]).map((p, id) => ({
+      : localPlayers(ui.name || "Pemain", ui.count, ui.pawn, ui.levels, selectedBots()).map((p, id) => ({
+          ...p,
+          name: !ui.name && id === 0 ? "Isi nama di Profil Saya" : p.name,
           ...p,
           id,
           ready: true,
@@ -130,7 +138,7 @@ function lobbyContent() {
     (_, i) => {
       const p = players[i];
       return p
-        ? `<button class="lobby-player ${i === (isRoom ? session.room.seat : 0) ? "own" : ""}" data-action="${isRoom ? "room" : "setup"}" style="--player:${colors[pawnFor(p)]}"><span class="player-number">P${i + 1}${isRoom && i === r.host ? " · HOST" : ""}</span><div class="roster-art">${avatar(i)}${pawnArt(pawnFor(p), TOKENS[pawnFor(p)].name)}</div><b>${esc(p.name)}</b><small class="ready-pill ${p.ready || p.controller === "bot" ? "ready" : ""}">${p.controller === "bot" ? "Bot · " + esc(PERSONAS.find(x=>x.id===p.botPersona)?.name||p.name) + " · " + esc(MODELS.find((m) => m.id === p.botDifficulty)?.label || "Medium") : p.ready ? "Siap" : "Belum siap"}</small></button>`
+        ? `<button class="lobby-player ${i === (isRoom ? session.room.seat : 0) ? "own" : ""}" data-action="${isRoom ? "room" : "setup"}" style="--player:${colors[pawnFor(p)]}"><span class="player-number">P${i + 1}${isRoom && i === r.host ? " · HOST" : ""}</span><div class="roster-art">${avatar(i)}${pawnArt(pawnFor(p), TOKENS[pawnFor(p)].name)}</div><b>${esc(p.name)}</b><small class="ready-pill ${p.ready || p.controller === "bot" ? "ready" : ""}">${p.controller === "bot" ? esc((botFor(p.botPersona)?.name || "Bot") + " · " + levelLabel(p.botDifficulty)) : p.ready ? "Siap" : "Belum siap"}</small></button>`
         : `<div class="lobby-player empty-seat"><span>P${i + 1}</span>${icon("plus", 25)}<small>Kursi kosong</small></div>`;
     },
   ).join(
@@ -413,6 +421,11 @@ function close() {
       });
     return;
   }
+  if (["botChoice", "botLevelChoice"].includes(ui.popup?.kind)) {
+    ui.popup = { kind: ui.popup.slot === "online" ? "addBotPopup" : "setup" };
+    queueRender();
+    return;
+  }
   if (ui.popup?.kind === "picker") {
     ui.popup = ui.pickerReturn || { kind: "trade", counter: !!ui.tradeCounter };
     queueRender();
@@ -540,15 +553,39 @@ function auxiliary(p) {
         title: "Atur VS Bot",
         html:
           lead("gear", "Teman Berpetualang", "") +
-          `<div class="profile-name-row"><span>Nama kamu: <b>${esc(ui.name || "Belum diisi")}</b></span>${btn("Atur nama", "myProfile")}</div><div class="setup-controls"><div class="setup-row"><span>Peserta</span><div class="segments">${[2, 3, 4].map((n) => `<button data-action="count" data-value="${n}" aria-pressed="${n === ui.count}">${n}</button>`).join("")}</div></div>${btn("Pilih pion", "pawn")}</div>` +
-          ui.botSlots.slice(0, ui.count - 1)
-            .map(
-              (id, i) => { const p = PERSONAS.find(x => x.id === id); return `<div class="bot-setting">${avatar(i + 1)}<span><b>${esc(p.name)}</b><small>${esc(p.role)}</small></span><select name="persona-${i}" aria-label="Karakter bot ${i + 1}">${PERSONAS.map(x => `<option value="${x.id}" ${x.id === id ? "selected" : ""} ${ui.botSlots.slice(0, ui.count - 1).includes(x.id) && x.id !== id ? "disabled" : ""}>${esc(x.name)} · ${esc(x.role)}</option>`).join("")}</select><select name="level-${id}" aria-label="Kesulitan bot ${i + 1}">${MODELS.map(m => `<option value="${m.id}" ${ui.levels[id] === m.id ? "selected" : ""}>${m.label}</option>`).join("")}</select></div>`; },
-            )
-            .join("") +
+          `<div class="profile-name-row"><span>Nama kamu: <b>${esc(ui.name || "Belum diisi")}</b></span>${btn("Atur nama", "myProfile")}</div><div class="setup-controls"><div class="setup-row"><span>Peserta</span><div class="segments">${[2, 3, 4, 5, 6].map((n) => `<button data-action="count" data-value="${n}" aria-pressed="${n === ui.count}">${n}</button>`).join("")}</div></div>${btn("Pilih pion", "pawn")}</div><p class="bot-section-caption">Pilih karakter AI dan tingkat kesulitan untuk setiap kursi.</p>` +
+          selectedBots().map((botId, i) => {
+            const p = botFor(botId);
+            return `<div class="bot-setting">${avatar(i + 1)}<span class="bot-seat-desc"><small>KURSI ${i + 2}</small><b>${esc(p.name)}</b><small>${esc(p.role)}</small></span><div class="bot-seat-controls"><button type="button" data-action="pickBot" data-slot="${i}" class="bot-config-pill bot-persona-pill" aria-label="Pilih model bot untuk kursi ${i + 2}">${icon("people", 14)}${esc(p.name)} ${icon("arrow", 12)}</button><button type="button" data-action="pickLevel" data-slot="${i}" class="bot-config-pill" aria-label="Pilih kesulitan ${p.name}">${esc(levelLabel(ui.levels[p.id]))} ${icon("arrow", 12)}</button></div></div>`;
+          }).join("") +
           `<label class="field">Aturan sewa<select name="rules"><option value="digital" ${ui.rules === "digital" ? "selected" : ""}>Digital · otomatis</option><option value="classic" ${ui.rules === "classic" ? "selected" : ""}>Meja Klasik · tagih manual</option></select></label><label class="toggle">Advisor Groq<input type="checkbox" name="advisor" ${ui.advisor ? "checked" : ""} ${!session.configured ? "disabled" : ""}></label><p class="inline-note">${session.configured ? "Opsional; koneksi advisor diperiksa saat dipakai." : "Advisor belum dikonfigurasi."} Bot lokal tetap mandiri.</p>`,
         footer: btn("Selesai", "close", { primary: true }),
       };
+    case "botChoice": {
+      const room = p.slot === "online";
+      const current = room ? availableRoomPersona()?.id : ui.botIds[p.slot];
+      const taken = new Set(room
+        ? (session.online?.seats || []).filter((seat) => seat.controller === "bot").map((seat) => seat.botPersona)
+        : selectedBots().filter((_, i) => i !== p.slot));
+      return {
+        title: "Pilih Model Bot",
+        html: lead("people", "Pilih Model Bot", "Enam strategi independen. Satu karakter per kursi.") +
+          `<div class="bot-choice-grid">${PERSONAS.map((persona) => botCard(persona, current === persona.id, taken.has(persona.id))).join("")}</div>`,
+        footer: btn("Kembali", "close", {primary: true}),
+      };
+    }
+    case "botLevelChoice": {
+      const room = p.slot === "online";
+      const persona = room ? availableRoomPersona() : botFor(ui.botIds[p.slot]);
+      const chosen = room ? (ui.nextBotLevel || "medium") : ui.levels[persona.id];
+      const descriptions = {easy:"Santai · eksplorasi",medium:"Ekonomi seimbang",hard:"Taktis dan agresif",hardcore:"Pencarian lebih dalam"};
+      return {
+        title: "Kesulitan Bot",
+        html: lead("gear", "Tingkat Kesulitan", `Khusus ${persona?.name || "Bot"}. Tidak mengubah identitas model.`) +
+          `<div class="bot-level-grid">${MODELS.map(m => `<button class="bot-level-card ${m.id === chosen ? "selected" : ""}" data-action="chooseBotLevel" data-value="${m.id}" aria-pressed="${m.id === chosen}"><span><b>${esc(m.label)}</b><small>${esc(descriptions[m.id] || m.algorithm)}</small></span>${m.id === chosen ? icon("check", 18) : icon("arrow", 16)}</button>`).join("")}</div>`,
+        footer: btn("Kembali", "close", {primary: true}),
+      };
+    }
     case "pawn": {
       const selected = session.room ? session.online.seats[own]?.pawn : ui.pawn,
         used = new Map(
@@ -723,9 +760,9 @@ function auxiliary(p) {
           lead(
             "people",
             "Bot di Room",
-            "Pilih algoritma bot tanpa duplikasi karakter.",
+            "Persona berikutnya dipilih backend, tanpa duplikasi.",
           ) +
-          `<label class="field">Karakter bot<select name="nextBotPersona">${PERSONAS.filter(p=>!session.online?.seats?.some(s=>s.botPersona===p.id)).map(p=>`<option value="${p.id}" ${p.id===(ui.nextBotPersona||"nusa")?"selected":""}>${esc(p.name)} · ${esc(p.role)}</option>`).join("")}</select></label><label class="field">Kesulitan<select name="nextBotLevel">${MODELS.map((x) => `<option value="${x.id}" ${x.id === (ui.nextBotLevel || "medium") ? "selected" : ""}>${x.label}</option>`).join("")}</select></label><p class="inline-note">Bot hanya ditambahkan sebelum mulai. Tidak menggantikan manusia yang terputus.</p>`,
+          `<div class="bot-room-settings"><div><small>PERSONA BOT</small><button type="button" class="bot-config-row" data-action="pickBotOnline">${esc(availableRoomPersona()?.name || "Tidak tersedia")}${icon("arrow", 16)}</button></div><div><small>KESULITAN</small><button type="button" class="bot-config-row" data-action="pickLevelOnline">${esc(levelLabel(ui.nextBotLevel || "medium"))}${icon("arrow", 16)}</button></div></div><p class="inline-note">Pilih salah satu dari enam model unik. Maksimal tiga bot per room, dan minimal dua pemain manusia.</p>`,
         footer: btn("Tambahkan bot", "addBot", {
           primary: true,
           disabled: session.pending,
@@ -889,6 +926,44 @@ async function perform(action, el) {
         close();
         break;
       }
+      case "pickBot":
+        open({ kind: "botChoice", slot: Number(el.dataset.slot) });
+        return;
+      case "pickLevel":
+        open({ kind: "botLevelChoice", slot: Number(el.dataset.slot) });
+        return;
+      case "pickBotOnline":
+        open({ kind: "botChoice", slot: "online" });
+        return;
+      case "pickLevelOnline":
+        open({ kind: "botLevelChoice", slot: "online" });
+        return;
+      case "chooseBotPersona": {
+        const chosen = el.dataset.value;
+        if (!botFor(chosen) || ui.popup?.kind !== "botChoice") return;
+        if (ui.popup.slot === "online") {
+          const taken = (session.online?.seats || []).some(seat => seat.controller === "bot" && seat.botPersona === chosen);
+          if (taken) return;
+          ui.nextBotPersona = chosen;
+        } else {
+          const slot = ui.popup.slot;
+          if (!Number.isInteger(slot) || slot < 0 || slot >= ui.count - 1 || selectedBots().some((x, i) => i !== slot && x === chosen)) return;
+          const old = ui.botIds[slot];
+          const elsewhere = ui.botIds.indexOf(chosen);
+          if (elsewhere >= 0 && elsewhere !== slot) ui.botIds[elsewhere] = old;
+          ui.botIds[slot] = chosen;
+        }
+        close();
+        return;
+      }
+      case "chooseBotLevel": {
+        const choice = el.dataset.value;
+        if (!MODELS.some(m => m.id === choice) || ui.popup?.kind !== "botLevelChoice") return;
+        if (ui.popup.slot === "online") ui.nextBotLevel = choice;
+        else ui.levels[ui.botIds[ui.popup.slot]] = choice;
+        close();
+        return;
+      }
       case "count":
         ui.count = Number(el.dataset.value);
         ui.trade = null;
@@ -927,7 +1002,7 @@ async function perform(action, el) {
           pawn: ui.pawn,
           rules: ui.rules,
           levels: ui.levels,
-          botPersonas: ui.botSlots,
+          botIds: selectedBots(),
           advisorEnabled: ui.advisor,
         });
         break;
@@ -1008,10 +1083,12 @@ async function perform(action, el) {
         if (
           await session.roomOp("ADD_BOT", {
             difficulty: ui.nextBotLevel || "medium",
-            persona: session.online?.seats?.some(s=>s.botPersona===ui.nextBotPersona) ? PERSONAS.find(p=>!session.online.seats.some(s=>s.botPersona===p.id))?.id : (ui.nextBotPersona || "nusa"),
+            persona: availableRoomPersona()?.id,
           })
-        )
+        ) {
+          ui.nextBotPersona = null;
           close();
+        }
         break;
       case "copyRoom":
         await navigator.clipboard.writeText(
@@ -1430,13 +1507,11 @@ document.addEventListener("change", async (e) => {
     if (name?.startsWith("buildCount-")) {
       ui.buildCounts[Number(name.slice(11))] = Number(el.value);
       queueRender();
-    } else if (name?.startsWith("persona-")) { const i = Number(name.slice(8)); if(PERSONAS.some(p=>p.id===el.value)&&!ui.botSlots.slice(0,ui.count-1).some((v,j)=>i!==j&&v===el.value)) {ui.botSlots[i]=el.value;queueRender();} }
-    else if (name?.startsWith("level-")) ui.levels[name.slice(6)] = el.value;
+    } else if (name?.startsWith("level-")) ui.levels[name.slice(6)] = el.value;
     else if (name === "rules") ui.rules = el.value;
     else if (name === "advisor") ui.advisor = el.checked;
     else if (name === "capacity") ui.capacity = Number(el.value);
     else if (name === "nextBotLevel") ui.nextBotLevel = el.value;
-    else if (name === "nextBotPersona") ui.nextBotPersona = el.value;
     else if (name === "assetOwner")
       open({ kind: "assets", id: Number(el.value) });
     else if (name === "tradeOpponent") {

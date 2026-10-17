@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T10:50:51.825Z",
+  "generatedAt": "2026-10-17T15:49:46.161Z",
   "node": "v22.16.0",
   "files": [
     "tests/bank-economy.test.mjs",
@@ -32,8 +32,8 @@
     "tests/headless-package.test.mjs",
     "tests/frontend.test.mjs"
   ],
-  "tests": 480,
-  "passed": 480,
+  "tests": 484,
+  "passed": 484,
   "failed": 0,
   "skipped": 0,
   "failures": [],

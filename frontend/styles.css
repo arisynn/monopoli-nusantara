@@ -1518,19 +1518,6 @@ img {
   padding: 8px;
   width: 110px;
 }
-/* V4.11: responsive bot algorithm selector. Never overflow portrait popup. */
-.bot-setting { flex-wrap: wrap; }
-.bot-setting select[name^="persona-"] {
-  flex: 1 1 100%;
-  width: 100%;
-  min-width: 0;
-  order: 3;
-}
-.bot-setting select[name^="level-"] {
-  flex: 0 0 104px;
-  width: 104px;
-}
-
 .toggle {
   display: flex;
   align-items: center;
@@ -4549,3 +4536,32 @@ select[hidden] {
 .room-members > .room-member {min-height:52px;}
 .popup[data-density="compact"] .room-members > .room-member {min-height:44px;}
 @media (max-width:359px) {.connection-note > button {height:34px;min-height:34px;font-size:10px;} .room-members > div > .avatar{flex-basis:32px;width:32px;height:32px;}}
+
+/* v4.11: six independent AI personas, native accessible selection dialogs. */
+.bot-section-caption { color:#547d96; font-size:12px; padding:10px 2px 3px; line-height:1.45; }
+.bot-setting { gap:8px; min-height:76px; }
+.bot-setting .bot-seat-desc { min-width:0; flex:1 1 auto; }
+.bot-seat-controls { display:flex; flex-direction:column; gap:5px; flex:0 0 125px; min-width:0; }
+.bot-config-pill { display:flex; align-items:center; justify-content:space-between; gap:4px; border:1px solid #caddf1; border-radius:9px; padding:6px 8px; min-height:33px; background:#fff; color:#32698b; font-size:11px; font-weight:700; }
+.bot-persona-pill { background:#e9f4ff; border-color:#bbd9f5; color:#17609c; }
+.bot-choice-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; padding:10px 1px 3px; }
+.bot-choice-card { display:flex; flex-direction:column; gap:7px; align-items:flex-start; text-align:left; min-height:132px; padding:11px; border:1px solid #cde1f2; border-radius:17px; background:linear-gradient(145deg,#fff,#edf7ff); box-shadow:0 3px 12px #2d78970d; }
+.bot-choice-card.selected { border:2px solid #2785d8; background:linear-gradient(140deg,#e2f3ff,#f7fcff); padding:10px; box-shadow:0 0 0 3px #2e89d514; }
+.bot-choice-card:disabled { opacity:.42; }
+.bot-choice-emblem { width:34px; height:34px; display:grid; place-items:center; font-size:17px; font-weight:800; color:#1d70ae; border-radius:11px; background:#daeeff; }
+.bot-choice-details { display:flex; flex-direction:column; gap:4px; min-width:0; }
+.bot-choice-details b { font-size:13px; color:#245169; }
+.bot-choice-details small { font-size:10px; color:#62879c; line-height:1.3; }
+.bot-choice-indicator { display:flex; justify-content:flex-end; width:100%; margin-top:auto; color:#2584c7; font-size:10px; }
+.bot-level-grid { display:grid; gap:9px; padding:10px 0 4px; }
+.bot-level-card { display:flex; align-items:center; justify-content:space-between; width:100%; min-height:62px; padding:12px 15px; border:1px solid #cde1f2; border-radius:13px; background:#f7fbff; text-align:left; }
+.bot-level-card.selected { border:2px solid #2683cb; background:#e6f3ff; padding:11px 14px; }
+.bot-level-card > span { display:flex; flex-direction:column; gap:4px; }
+.bot-level-card b { font-size:13px; }
+.bot-level-card small { font-size:11px; color:#65849a; }
+.bot-room-settings { display:grid; gap:10px; margin:10px 0 14px; }
+.bot-room-settings > div { display:flex; flex-direction:column; gap:5px; }
+.bot-room-settings small { color:#7195aa; font-weight:700; letter-spacing:.04em; font-size:10px; }
+.bot-config-row { display:flex; justify-content:space-between; align-items:center; min-height:47px; padding:12px; border:1px solid #c9e1f1; border-radius:12px; background:#edf8ff; font-weight:750; }
+.popup[data-kind="botChoice"], .popup[data-kind="botLevelChoice"] { width:min(440px,calc(100vw - 20px)); }
+@media (max-width:350px) { .bot-setting { padding:8px; } .bot-seat-controls { flex-basis:107px; } .bot-config-pill { padding:5px; } .bot-choice-grid {gap:7px;} .bot-choice-card {padding:8px; min-height:124px;} }

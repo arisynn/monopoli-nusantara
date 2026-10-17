@@ -30,17 +30,14 @@ for (const name of await readdir(new URL("frontend/", root))) {
     );
 }
 await mkdir(new URL("lib/bot/", dist), { recursive: true });
+await mkdir(new URL("lib/bot/nusa-v7/", dist), { recursive: true });
 const allowed = [];
-for (const dir of ["lib/", "lib/bot/"])
+for (const dir of ["lib/", "lib/bot/", "lib/bot/nusa-v7/"])
   for (const name of await readdir(new URL(dir, root))) {
     if (!name.endsWith(".mjs")) continue;
     allowed.push(dir + name);
     await cp(new URL(dir + name, root), new URL(dir + name, dist));
   }
-// NUSA V7.2 is modular: preserve the full nested model directory in production.
-await cp(new URL("lib/bot/nusa-v7/",root),new URL("lib/bot/nusa-v7/",dist),{recursive:true});
-for(const name of await readdir(new URL("lib/bot/nusa-v7/",root)))
-  if(name.endsWith('.mjs'))allowed.push('lib/bot/nusa-v7/'+name);
 await writeFile(
   new URL("lib/storage.mjs", dist),
   stripTypeScriptTypes(
