@@ -1,18 +1,7 @@
 {
-  "release": "4.10.1 Multiplayer & Result UI Fix",
-  "generatedAt": "2026-10-17T02:32:20.671509+00:00",
-  "basisVersion": "4.9.1",
-  "hashedFileCount": 527,
-  "selfHash": "Excluded to avoid a circular digest",
-  "excluded": [
-    ".env and private env files",
-    "node_modules",
-    "dist",
-    "server-dist",
-    ".git",
-    "logs",
-    "ZIP files"
-  ],
+  "release": "4.10.1 Connectify Cloud Auth + Bot Worker v2",
+  "generatedAt": "2026-10-17T02:47:57.378488+00:00",
+  "hashedFileCount": 531,
   "files": [
     {
       "path": ".env.example",
@@ -36,8 +25,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7899,
-      "sha256": "923e5c6b52bbf1d7b793abc6bf47df057f5842ea9a3fa5f3e6e06221ee58da33"
+      "bytes": 8225,
+      "sha256": "18580d2aef5c46a6ac45b9e2db39cc4fe9c1930aae78de66d7940f4c3eb24563"
     },
     {
       "path": "UI_REBUILD_BRIEF.md",
@@ -950,6 +939,16 @@
       "sha256": "a55165ed351146c2a9d1b3a112812e0a7fac9b0ff7512366000fdc8d8d5f4c4e"
     },
     {
+      "path": "docs/CONNECTIFY_DEPLOYED_20261017.md",
+      "bytes": 3237,
+      "sha256": "59d7e9b1f428cb345b8bccc88c4cb2727786aa1e2c9d84f117937a4693c06c9d"
+    },
+    {
+      "path": "docs/CONNECTIFY_DEPLOYMENT_20261017.md",
+      "bytes": 1823,
+      "sha256": "6a0771d8dcabc846c32d8e2ddece61bd44e6643c3689e8fc140fd3d53855393b"
+    },
+    {
       "path": "docs/CONTRACTS.json",
       "bytes": 4067,
       "sha256": "fa03959f16df7ff75fadce52af08df885d31054917156762e9358608b4df86f4"
@@ -1171,8 +1170,8 @@
     },
     {
       "path": "docs/RELEASE_4101.md",
-      "bytes": 4809,
-      "sha256": "cea767b3ef2c949d50f26fed44143ccfe5d7ce35c233929c9e9eb6208cab2c6a"
+      "bytes": 5054,
+      "sha256": "633234a412f912aa709ec1be2c54b69201100c0b26aa34fc04af54713283c16a"
     },
     {
       "path": "docs/RELEASE_490.md",
@@ -1335,26 +1334,6 @@
       "sha256": "f2aefee5176bd23fc85bad5f9241dfa3b4a57f80a6b98ff7adbfc0f7a974e25b"
     },
     {
-      "path": "docs/screenshots/dice-result.png",
-      "bytes": 174696,
-      "sha256": "d89728f37a922cf58f5dee780c70221b40caef515e21617bcb9ea65b04a62908"
-    },
-    {
-      "path": "docs/screenshots/gameplay-6.png",
-      "bytes": 213863,
-      "sha256": "f05ec2f8e3d73c2ba65b7c67f98294a24d4532d888601d30d284c58a653d800c"
-    },
-    {
-      "path": "docs/screenshots/landscape-667x375.png",
-      "bytes": 71014,
-      "sha256": "da6188d914776bf883040ca9c4d9175090e7aa323e6f6608981fe69e908f2d9e"
-    },
-    {
-      "path": "docs/screenshots/lobby.png",
-      "bytes": 240651,
-      "sha256": "5e860c096d9b442b729d9a50ea67419aa17fa8665b196ae1a8ea7d036d78e7f5"
-    },
-    {
       "path": "docs/screenshots-490/lobby.png",
       "bytes": 159607,
       "sha256": "d29b984f9621bb68619ad72cb1a0633564aa957bd48e153c57e32f8f39ae9b2d"
@@ -1408,6 +1387,26 @@
       "path": "docs/screenshots-491/sewa-padang.png",
       "bytes": 101448,
       "sha256": "d54e61b91e86b2762d1ff6562cbbe9145b4f303e7f4979dd2ab8473dff30a7e1"
+    },
+    {
+      "path": "docs/screenshots/dice-result.png",
+      "bytes": 174696,
+      "sha256": "d89728f37a922cf58f5dee780c70221b40caef515e21617bcb9ea65b04a62908"
+    },
+    {
+      "path": "docs/screenshots/gameplay-6.png",
+      "bytes": 213863,
+      "sha256": "f05ec2f8e3d73c2ba65b7c67f98294a24d4532d888601d30d284c58a653d800c"
+    },
+    {
+      "path": "docs/screenshots/landscape-667x375.png",
+      "bytes": 71014,
+      "sha256": "da6188d914776bf883040ca9c4d9175090e7aa323e6f6608981fe69e908f2d9e"
+    },
+    {
+      "path": "docs/screenshots/lobby.png",
+      "bytes": 240651,
+      "sha256": "5e860c096d9b442b729d9a50ea67419aa17fa8665b196ae1a8ea7d036d78e7f5"
     },
     {
       "path": "drizzle/0000_green_paper_doll.sql",
@@ -2436,8 +2435,8 @@
     },
     {
       "path": "supabase/functions/monopoli-bots/index.ts",
-      "bytes": 1502,
-      "sha256": "da796c1d84c6dad675653832cb6346a689f1a40ec6b6953b704cc80f87ae204a"
+      "bytes": 2490,
+      "sha256": "ea4469aba9a80fbc0b79eb31ee9ec3e669fc268e405227c62d0098bb499e2ab2"
     },
     {
       "path": "supabase/migrations/202610160001_persistent_online.sql",
@@ -2453,6 +2452,16 @@
       "path": "supabase/migrations/202610160003_nusa_mind_settings.sql",
       "bytes": 2153,
       "sha256": "ee2312867ef2fd6f654cb4cf5644d31515759a9c662ab9635671bfdbb6c8aa8e"
+    },
+    {
+      "path": "supabase/migrations/202610170004_bot_worker_vault_auth.sql",
+      "bytes": 820,
+      "sha256": "f621ccd724b6393761cf68c87697d17afc0d1b70ebce8275bc8212723b1944df"
+    },
+    {
+      "path": "supabase/migrations/202610170005_bot_worker_vault_scheduler.sql",
+      "bytes": 897,
+      "sha256": "6b9e2f7b4526dd85dcb3c798e1ba5e1f8c63439cac7baaab796704958368def6"
     },
     {
       "path": "supabase/scheduler_setup.sql",

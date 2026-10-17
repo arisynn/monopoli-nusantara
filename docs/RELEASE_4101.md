@@ -40,3 +40,7 @@ Jangan menampilkan kolom `decrypted_secret`, token, cookie sesi, ataupun seluruh
 ## Batas verifikasi
 
 Pengujian Node headless tidak menggantikan pemeriksaan browser Android yang sesungguhnya, koneksi Supabase Auth/Realtime, pg_net HTTP, dan worker yang telah ter-deploy. Tidak ada perubahan database atau pengaktifan ENV produksi otomatis dalam rilis ZIP ini. Aturan ekonomi, komposisi 2–6 pemain (minimal dua manusia saat online), voting jeda, batas disconnect 90 detik, dan algoritma inti NUSA MIND tetap dipertahankan.
+
+## Pembaruan status cloud 17 Oktober 2026
+
+Baca [CONNECTIFY_DEPLOYMENT_20261017.md](CONNECTIFY_DEPLOYMENT_20261017.md) untuk hasil deployment fungsi versi 2, aktivasi Vault/cron, uji 200/401, Auth email+guest aktif, dan batas akses Vercel 403.
