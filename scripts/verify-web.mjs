@@ -5,7 +5,7 @@ import {resolve,dirname,extname,relative} from 'node:path';
 const root=resolve(import.meta.dirname,'..'),failures=[],checked=[];
 async function walk(dir){return (await Promise.all((await readdir(dir,{withFileTypes:true})).map(async e=>e.isDirectory()?walk(resolve(dir,e.name)):[resolve(dir,e.name)]))).flat();}
 async function exists(path){try{return (await stat(path)).isFile()}catch{return false}}
-for(const dir of ['frontend','lib','app','api','adapters','tests','scripts','examples','benchmarks','dist'])for(const path of await walk(resolve(root,dir))){
+for(const dir of ['frontend','lib','app','api','adapters','tests','scripts','examples','benchmarks','dist','server-dist'])for(const path of await walk(resolve(root,dir))){
  if(!['.js','.mjs','.ts'].includes(extname(path)))continue;
  try{let code=await readFile(path,'utf8');if(extname(path)==='.ts')code=stripTypeScriptTypes(code,{mode:'strip'});const module=new SourceTextModule(code,{identifier:path});checked.push(relative(root,path));
  for(const spec of module.dependencySpecifiers){if(!spec.startsWith('.')&&!spec.startsWith('@/')){if(path.startsWith(resolve(root,'dist'))&&!spec.startsWith('/'))failures.push({path:relative(root,path),error:'Non-browser dependency '+spec});continue;}let target=spec.startsWith('@/')?resolve(root,spec.slice(2)):resolve(dirname(path),spec);if(!(await Promise.all([target,target+'.ts',target+'.mjs'].map(exists))).some(Boolean))failures.push({path:relative(root,path),error:'Missing import '+spec});}

@@ -1,0 +1,18 @@
+{
+  "basisCommit": "5b3ddd8517a66f24f87c58f48a54c61dded3341e",
+  "checks": {
+    "content": true,
+    "legacyEngine": true,
+    "currency": true,
+    "rentCalculation": true,
+    "fullCertificate": true,
+    "boardTilesAndPawns": true,
+    "learnedModelNull": true,
+    "publicAssetsUnchanged": true
+  },
+  "publicAssetCount": 17,
+  "notes": [
+    "Gameplay rules unchanged. Additive accounting in note() and initialization in createGame()/command().",
+    "BoardView follows camera coordinates for one compact bank control; gestures on controls are ignored."
+  ]
+}

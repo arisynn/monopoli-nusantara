@@ -1,0 +1,121 @@
+{
+  "environment": "Same Chromium, fonts, DPR=1; mouse moved to 0,0; screenshots with animations disabled.",
+  "protected": [
+    {
+      "id": "game-320",
+      "baselineSha256": "62ded8950e4c97621c1de5fecfa25e6b02d952d94600dbf484219809c7b7aede",
+      "currentSha256": "62ded8950e4c97621c1de5fecfa25e6b02d952d94600dbf484219809c7b7aede",
+      "byteIdentical": true
+    },
+    {
+      "id": "game-360",
+      "baselineSha256": "d3a5fe9845e91b03234ddb242ed5a11074f1e09d40058d8f1e7b88fa8067f26f",
+      "currentSha256": "d3a5fe9845e91b03234ddb242ed5a11074f1e09d40058d8f1e7b88fa8067f26f",
+      "byteIdentical": true
+    },
+    {
+      "id": "game-390",
+      "baselineSha256": "d33ae4ae68d53a16ad42ab522249ba8c2f36d1987b6a4c5b4330db903bb2bbf8",
+      "currentSha256": "d33ae4ae68d53a16ad42ab522249ba8c2f36d1987b6a4c5b4330db903bb2bbf8",
+      "byteIdentical": true
+    },
+    {
+      "id": "game-430",
+      "baselineSha256": "19b3ff2c344eba2afc7892864102d2280bfc55156a5bec9ba68ef4aee99baef5",
+      "currentSha256": "19b3ff2c344eba2afc7892864102d2280bfc55156a5bec9ba68ef4aee99baef5",
+      "byteIdentical": true
+    },
+    {
+      "id": "chance",
+      "baselineSha256": "4108f9c8aebe435bf291b59c38e81e809df18db424182e75f8d8186e2d8f648a",
+      "currentSha256": "4108f9c8aebe435bf291b59c38e81e809df18db424182e75f8d8186e2d8f648a",
+      "byteIdentical": true
+    },
+    {
+      "id": "community",
+      "baselineSha256": "ace6059d95bd07a926729150ee77a0044acaad12673ae93745e0411eb0e87517",
+      "currentSha256": "ace6059d95bd07a926729150ee77a0044acaad12673ae93745e0411eb0e87517",
+      "byteIdentical": true
+    },
+    {
+      "id": "certificate",
+      "baselineSha256": "d67da06a6edd45d567ee789e307e794d5e831f85e9f7f07a47c41a60ac79c8fe",
+      "currentSha256": "d67da06a6edd45d567ee789e307e794d5e831f85e9f7f07a47c41a60ac79c8fe",
+      "byteIdentical": true
+    },
+    {
+      "id": "buy",
+      "baselineSha256": "439b24ccaac8dfe70667eaf90acb0b3c9835d55512bb786d1a855fff89ba0150",
+      "currentSha256": "439b24ccaac8dfe70667eaf90acb0b3c9835d55512bb786d1a855fff89ba0150",
+      "byteIdentical": true
+    },
+    {
+      "id": "chance-catalog",
+      "baselineSha256": "c4e99d42e13de925253dbfccfb4a43b2409195a70e9a05e5e58835cb9e77d1c2",
+      "currentSha256": "c4e99d42e13de925253dbfccfb4a43b2409195a70e9a05e5e58835cb9e77d1c2",
+      "byteIdentical": true
+    },
+    {
+      "id": "community-catalog",
+      "baselineSha256": "0c3df11c05a31232c0b3cbcfe3ed09041d63a5d362053d45817f2ead75f4e4b0",
+      "currentSha256": "0c3df11c05a31232c0b3cbcfe3ed09041d63a5d362053d45817f2ead75f4e4b0",
+      "byteIdentical": true
+    }
+  ],
+  "compactHeights": [
+    {
+      "id": "lobby",
+      "baselineHeight": 550.890625,
+      "currentHeight": 372.390625,
+      "reductionPercent": 32.4
+    },
+    {
+      "id": "setup",
+      "baselineHeight": 640,
+      "currentHeight": 543.78125,
+      "reductionPercent": 15.0
+    },
+    {
+      "id": "menu",
+      "baselineHeight": 268.46875,
+      "currentHeight": 263,
+      "reductionPercent": 2.0
+    },
+    {
+      "id": "settings",
+      "baselineHeight": 415.6875,
+      "currentHeight": 333.78125,
+      "reductionPercent": 19.7
+    },
+    {
+      "id": "profile",
+      "baselineHeight": 382.1875,
+      "currentHeight": 317.96875,
+      "reductionPercent": 16.8
+    },
+    {
+      "id": "assets",
+      "baselineHeight": 458.6875,
+      "currentHeight": 395,
+      "reductionPercent": 13.9
+    },
+    {
+      "id": "trade",
+      "baselineHeight": 580.6875,
+      "currentHeight": 533.265625,
+      "reductionPercent": 8.2
+    },
+    {
+      "id": "jail",
+      "baselineHeight": 390.0625,
+      "currentHeight": 313.625,
+      "reductionPercent": 19.6
+    },
+    {
+      "id": "debt",
+      "baselineHeight": 465.546875,
+      "currentHeight": 351.875,
+      "reductionPercent": 24.4
+    }
+  ]
+}

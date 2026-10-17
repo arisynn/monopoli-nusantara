@@ -1,5 +1,6 @@
 import {getRuntime} from '@/lib/server/runtime';
 import {supabaseConfig, createSupabaseStore, authenticate} from '@/lib/server/supabase-store.mjs';
+import {supabaseConfigurationStatus} from '@/lib/server/supabase-config.mjs';
 import {createOnlineService, digest} from '@/lib/server/online-service.mjs';
 import {RoomError, check} from '@/lib/server/online-room.mjs';
 export const dynamic = 'force-dynamic';
@@ -18,6 +19,8 @@ export async function GET(request: Request) {
  try {
   const url = new URL(request.url);
   if (url.searchParams.has('config')) {
+   const configuration=supabaseConfigurationStatus(getRuntime().env);
+   if(!configuration.configured)return json({online:false,provider:'supabase',configuration});
    const config = supabaseConfig(getRuntime().env);
    return json(config ? {online: true, provider: 'supabase', onlineBots:getRuntime().env.MN_ONLINE_BOTS_ENABLED==='true', url: config.url, key: config.key} : {online: false, provider: 'supabase'});
   }

@@ -1,0 +1,85 @@
+{
+  "checks": [
+    {
+      "name": "2 participants 320",
+      "passed": true,
+      "columns": 2
+    },
+    {
+      "name": "4 participants 320",
+      "passed": true,
+      "columns": 2
+    },
+    {
+      "name": "6 participants 320",
+      "passed": true,
+      "columns": 2
+    },
+    {
+      "name": "2 participants 360",
+      "passed": true,
+      "columns": 2
+    },
+    {
+      "name": "4 participants 360",
+      "passed": true,
+      "columns": 2
+    },
+    {
+      "name": "6 participants 360",
+      "passed": true,
+      "columns": 3
+    },
+    {
+      "name": "2 participants 390",
+      "passed": true,
+      "columns": 2
+    },
+    {
+      "name": "4 participants 390",
+      "passed": true,
+      "columns": 2
+    },
+    {
+      "name": "6 participants 390",
+      "passed": true,
+      "columns": 3
+    },
+    {
+      "name": "2 participants 430",
+      "passed": true,
+      "columns": 2
+    },
+    {
+      "name": "4 participants 430",
+      "passed": true,
+      "columns": 2
+    },
+    {
+      "name": "6 participants 430",
+      "passed": true,
+      "columns": 3
+    },
+    {
+      "name": "human-reentry",
+      "passed": true
+    },
+    {
+      "name": "bot-reentry",
+      "passed": true
+    },
+    {
+      "name": "winning payment keeps dialog open until one result and charges once",
+      "passed": true
+    },
+    {
+      "name": "bankruptcy auction chain stays open and resets previous bid amount",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium emulation with real local engine/save; not a live online room.",
+    "Bot idle scheduler held only in the fixture to inspect re-entry deterministically; core tests also verify bot eligibility after a raised bid."
+  ]
+}

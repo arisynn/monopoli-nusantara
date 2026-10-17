@@ -1,0 +1,32 @@
+{
+  "package": "lucide-static",
+  "version": "1.58.0",
+  "license": "ISC",
+  "sources": {
+    "menu": "https://unpkg.com/lucide-static@1.58.0/icons/menu.svg",
+    "close": "https://unpkg.com/lucide-static@1.58.0/icons/x.svg",
+    "arrow": "https://unpkg.com/lucide-static@1.58.0/icons/chevron-right.svg",
+    "back": "https://unpkg.com/lucide-static@1.58.0/icons/chevron-left.svg",
+    "home": "https://unpkg.com/lucide-static@1.58.0/icons/house.svg",
+    "assets": "https://unpkg.com/lucide-static@1.58.0/icons/landmark.svg",
+    "trade": "https://unpkg.com/lucide-static@1.58.0/icons/arrow-left-right.svg",
+    "history": "https://unpkg.com/lucide-static@1.58.0/icons/history.svg",
+    "gear": "https://unpkg.com/lucide-static@1.58.0/icons/settings.svg",
+    "dice": "https://unpkg.com/lucide-static@1.58.0/icons/dices.svg",
+    "gavel": "https://unpkg.com/lucide-static@1.58.0/icons/gavel.svg",
+    "people": "https://unpkg.com/lucide-static@1.58.0/icons/users-round.svg",
+    "trophy": "https://unpkg.com/lucide-static@1.58.0/icons/trophy.svg",
+    "map": "https://unpkg.com/lucide-static@1.58.0/icons/map.svg",
+    "save": "https://unpkg.com/lucide-static@1.58.0/icons/save.svg",
+    "pause": "https://unpkg.com/lucide-static@1.58.0/icons/pause.svg",
+    "play": "https://unpkg.com/lucide-static@1.58.0/icons/play.svg",
+    "check": "https://unpkg.com/lucide-static@1.58.0/icons/check.svg",
+    "plus": "https://unpkg.com/lucide-static@1.58.0/icons/plus.svg",
+    "minus": "https://unpkg.com/lucide-static@1.58.0/icons/minus.svg",
+    "copy": "https://unpkg.com/lucide-static@1.58.0/icons/copy.svg",
+    "bank": "https://unpkg.com/lucide-static@1.58.0/icons/landmark.svg",
+    "info": "https://unpkg.com/lucide-static@1.58.0/icons/info.svg",
+    "flag": "https://unpkg.com/lucide-static@1.58.0/icons/flag.svg",
+    "bolt": "https://unpkg.com/lucide-static@1.58.0/icons/zap.svg"
+  }
+}

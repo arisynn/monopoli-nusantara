@@ -159,6 +159,7 @@ export class BoardView {
     container.addEventListener(
       "wheel",
       (e) => {
+        if (e.target.closest("[data-action]")) return;
         e.preventDefault();
         this.mode = "manual";
         this.camera = zoomCamera(
@@ -183,6 +184,7 @@ export class BoardView {
     return { x: e.clientX - r.left, y: e.clientY - r.top };
   }
   down(e) {
+    if (e.target.closest("[data-action]")) return;
     this.dragged = false;
     this.downTile = e.target.closest("[data-tile]")?.dataset.tile;
     this.points.set(e.pointerId, this.point(e));
@@ -231,11 +233,29 @@ export class BoardView {
     this.downTile = undefined;
   }
   transform() {
-    if (this.camera)
+    if (this.camera) {
       this.world.setAttribute(
         "transform",
         `translate(${this.camera.x} ${this.camera.y}) scale(${this.camera.scale})`,
       );
+      // Anchor the readable HTML control to the empty board center, including
+      // when panning/following. Never dock it over a property or pawn.
+      const bank = this.container.querySelector(".bank-indicator");
+      if (bank) {
+        const x = this.camera.x + 500 * this.camera.scale,
+          y = this.camera.y + 640 * this.camera.scale;
+        const width = bank.offsetWidth || this.bankWidth || 140,
+          height = bank.offsetHeight || 44;
+        this.bankWidth = width;
+        bank.style.left = `${x}px`;
+        bank.style.top = `${y - height / 2}px`;
+        bank.hidden =
+          x - width / 2 < 0 ||
+          x + width / 2 > this.camera.width ||
+          y - height / 2 < 0 ||
+          y + height / 2 > this.camera.height;
+      }
+    }
   }
   setMode(mode) {
     this.mode = mode;

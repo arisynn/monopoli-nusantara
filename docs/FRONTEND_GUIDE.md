@@ -1,6 +1,12 @@
+> Update 4.10.0: satu bank-indicator di board-stage, data dari state committed. bank-view.mjs merender details tertutup; ekspansi, scroll dan navigasi certificate dipertahankan. Bank tidak mengirim command. BoardView mengabaikan gesture dari kontrol data-action. Lihat RELEASE_4100.md.
+
+> Update 4.9.1: propertyHero memakai mini-deed dengan data rulepack. Tombol certificate membuka property preview read-only. app.mjs menyimpan popup manual asal, matchId, dan scroll; close/Escape/Back mengembalikannya tanpa menyimpan popup otomatis lama atau memanggil ACK/aksi ekonomi. Konteks match yang berubah dibuang. Pemilih barter memisahkan tombol detail dari label checkbox; draft/tawaran masuk memakai tombol detail terpisah dari hapus. Klasifikasi density mencocokkan token class penuh agar mini-deed tidak keliru dianggap deed. Lihat RELEASE_491.md.
+
+> Update 4.9.0: mobile portrait menjadi prioritas. `app.mjs` menetapkan data-density compact pada dialog umum dan preserved pada sertifikat/kartu/katalog. Hanya subtree lobi dan dialog compact diproses oleh lucide-icons.mjs; gameplay tetap memakai renderer sebelumnya. CSS tambahan dibatasi selector tersebut. server-dist adalah output privat native ESM untuk Vercel, bukan static output. Panduan deployment aktif: ../ENV_REQUIRED.md.
+
 > Update 4.8.3: LocalSessionLease mengunci tab penulis lokal. storage.ts memakai envelope saveRevision dan CAS atomik; session.saved menyimpan revision terakhir yang sukses. APP_VERSION dipakai UI/health/build; hash output mencakup seluruh aset/modul. Lihat STABILITY_REPORT.md.
 
-# Peta frontend aktif 4.8.2
+# Peta frontend — dasar 4.8.2 dengan update 4.9.0
 
 Frontend memakai ES modules/CSS, bukan React/Next lama. `app/api` tetap backend Fetch handler. Hanya lobby dan gameplay menjadi layar penuh. Semua fitur lain dalam satu elemen `<dialog>` yang dimiliki aplikasi; kontrol pemilihan tidak memakai popup browser.
 
@@ -25,7 +31,7 @@ Frontend memakai ES modules/CSS, bukan React/Next lama. `app/api` tetap backend 
 | `frontend/dice-view.mjs` | Pengacakan pip dekoratif, reveal sah, pembatalan callback usang |
 | `frontend/art.mjs` | Crop atlas PNG hewan/pion/kartu/bangunan dan PNG mask glyph UI |
 | `frontend/styles.css` | Portrait, desktop, safe area, popup compact dan reduced motion |
-| `frontend/service-worker.js` | Cache publik v482; tidak menyimpan API/identitas/state room |
+| `frontend/service-worker.js` | Cache publik v490; tidak menyimpan API/identitas/state room |
 | `frontend/cache-migration.mjs` | Cleanup worker/cache UI Nusantara lama, tanpa menyentuh save |
 | `scripts/build-web.mjs` | Output dist terpisah, precache berdasarkan aset aktual, tanpa modul server |
 | `scripts/diagnose-online.mjs` | Audit ENV lokal tanpa mencetak nilainya atau menghubungi Supabase |

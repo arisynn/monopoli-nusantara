@@ -1,0 +1,112 @@
+{
+  "checks": [
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "passed": true,
+      "metrics": {
+        "top": 110.40625,
+        "bottom": 497.59375,
+        "left": 10,
+        "right": 310,
+        "centerOffset": 0,
+        "scrollHeight": 528,
+        "clientHeight": 528,
+        "horizontalOverflow": false,
+        "roster": 4
+      }
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "passed": true,
+      "metrics": {
+        "top": 143.296875,
+        "bottom": 536.6875,
+        "left": 10,
+        "right": 350,
+        "centerOffset": 0.0078125,
+        "scrollHeight": 600,
+        "clientHeight": 600,
+        "horizontalOverflow": false,
+        "roster": 4
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true,
+      "metrics": {
+        "top": 248.296875,
+        "bottom": 641.6875,
+        "left": 10,
+        "right": 380,
+        "centerOffset": 0.0078125,
+        "scrollHeight": 798,
+        "clientHeight": 798,
+        "horizontalOverflow": false,
+        "roster": 4
+      }
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "passed": true,
+      "metrics": {
+        "top": 292.296875,
+        "bottom": 685.6875,
+        "left": 10,
+        "right": 420,
+        "centerOffset": 0.0078125,
+        "scrollHeight": 886,
+        "clientHeight": 886,
+        "horizontalOverflow": false,
+        "roster": 4
+      }
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 420
+      },
+      "passed": true,
+      "metrics": {
+        "top": 46,
+        "bottom": 439.390625,
+        "left": 10,
+        "right": 350,
+        "centerOffset": 12.6953125,
+        "scrollHeight": 405,
+        "clientHeight": 380,
+        "horizontalOverflow": false,
+        "roster": 4
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "passed": true,
+      "metrics": {
+        "top": 228.296875,
+        "bottom": 621.6875,
+        "left": 360,
+        "right": 920,
+        "centerOffset": 0.0078125,
+        "scrollHeight": 750,
+        "clientHeight": 750,
+        "horizontalOverflow": false,
+        "roster": 4
+      }
+    }
+  ]
+}

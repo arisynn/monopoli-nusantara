@@ -1,5 +1,5 @@
 // Public shell/assets only. Auth, room state, API responses and local saves are never cached here.
-const CACHE = "nusantara-classic-v483-__BUILD_ID__",
+const CACHE = "nusantara-classic-v4100-__BUILD_ID__",
   safe = (url) =>
     url.origin === self.location.origin &&
     !/^\/(api(?:\/|$)|auth|signin|signout|callback)/.test(url.pathname);

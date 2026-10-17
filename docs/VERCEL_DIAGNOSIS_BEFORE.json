@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-10-16T23:15:34.039Z",
+  "origin": "https://monopoli-nusantara-eight.vercel.app",
+  "checks": [
+    {
+      "path": "/build.json",
+      "status": 200,
+      "json": true,
+      "version": "4.8.3",
+      "build": "9d8933c1b584c0e1"
+    },
+    {
+      "path": "/api/online?config=1",
+      "status": 500,
+      "json": false,
+      "error": "FUNCTION_INVOCATION_FAILED"
+    },
+    {
+      "path": "/api/bot",
+      "status": 500,
+      "json": false,
+      "error": "FUNCTION_INVOCATION_FAILED"
+    }
+  ],
+  "credentialsPrinted": false
+}

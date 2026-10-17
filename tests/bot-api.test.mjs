@@ -8,7 +8,7 @@ test('standalone bot status and advice work without Redis or Supabase',async t=>
 test('configured means ENV available, not provider success',async t=>{setup(t);globalThis.__botApiRuntime.env.GROQ_API_KEY='fake-key';const v=await (await route.GET()).json();assert.equal(v.status,'configured');assert(!JSON.stringify(v).includes('fake-key'));});
 test('advisor refuses online mutation fields, wrong actor, malformed snapshots, oversized and cross-origin payloads',async t=>{const s=setup(t);assert.equal((await post({state:s,actor:1,code:'ABCDEFGH'})).status,400);assert.equal((await post({state:s,actor:0})).status,400);assert.equal((await post({state:{players:[null]},actor:1})).status,400);assert.equal((await post({padding:'x'.repeat(140000)})).status,413);assert.equal((await post({state:s,actor:1},{Origin:'https://bad.test'})).status,403);});
 test('actual endpoint returns typed safe fallback on provider error and does not mutate local state',async t=>{
- let s=setup(t);s.phase='buy';s.buy=19;s=command(s,1,{type:'AUCTION'});globalThis.__botApiRuntime.env.GROQ_API_KEY='fake-key';
+ let s=setup(t);s.advisorEnabled=true;s.assets[16].owner=1;s.assets[18].owner=1;s.phase='buy';s.buy=19;s=command(s,1,{type:'AUCTION'});globalThis.__botApiRuntime.env.GROQ_API_KEY='fake-key';
  const old=globalThis.fetch;t.after(()=>{globalThis.fetch=old});globalThis.fetch=async()=>Response.json({error:{message:'secret server trace'}},{status:401});
  const before=JSON.stringify(s),r=await post({state:strategyView(s,1),actor:1});assert.equal(r.status,200);const v=await r.json();assert.equal(v.status,'fallback');assert.equal(v.reason,'unauthorized');assert(v.action);assert(!JSON.stringify(v).includes('secret'));assert.equal(JSON.stringify(s),before);
 });

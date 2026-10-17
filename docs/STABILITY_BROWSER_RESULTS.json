@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T17:59:25.199Z",
+  "generatedAt": "2026-10-16T23:49:21.679Z",
   "checks": [
     {
       "name": "one writer tab; rejected resume/start; closing owner releases lock and latest revision resumes",

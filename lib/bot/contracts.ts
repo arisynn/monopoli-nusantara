@@ -1,6 +1,8 @@
 export type BotReason = 'not_configured'|'simple'|'budget'|'circuit_open'|'timeout'|'unauthorized'|'forbidden'|'rate_limited'|'provider_error'|'invalid_response'|'illegal_action'|'economic_guard'|'network_error';
 export type BotStatus = 'local'|'configured'|'consulting'|'hybrid'|'fallback';
 export type BotDifficulty='easy'|'medium'|'hard'|'hardcore';
+export interface TinyValueNetwork {hidden:number;input:number;weights:number[];bias:number[];output:number[];offset:number}
+export interface LearningModel {schema:number;rulepack:string;status:'candidate'|'promoted';valueFeatures:string[];policyFeatures:string[];value:number[];policy:number[];valueNetwork?:TinyValueNetwork|null;training?:{games:number;seedRanges:unknown[];[key:string]:unknown};[key:string]:unknown}
 export interface BotTrade {to:number;give:number[];take:number[];giveCash:number;takeCash:number;giveCards:number;takeCards:number}
 export interface BotAction {type:string;tile?:number;amount?:number;cardIndex?:number;claimId?:string;trade?:BotTrade;actionId?:string}
 export interface BotDecisionResult {
@@ -25,9 +27,9 @@ export interface BotGameState {
 }
 export interface MindPlan {
  action:BotAction|null;
- candidates:Array<{id:string;action:BotAction;score:number}>;
+ candidates:Array<{id:string;action:BotAction;score:number;macro?:BotAction[]}>;
  shouldConsult:boolean;
  summary:Record<string,unknown>;
- diagnostics:{version:string;model:string;algorithm:string;selectedBy:string;actor:number;persona:string;elapsedMs:number;nodes:number;samples:number;interrupted:boolean;budgetExhausted:boolean;selected?:string;workerFallback?:boolean;search:Array<{id:string;mean:number|null;tail:number|null;samples:number}>};
+ diagnostics:{version:string;model:string;algorithm:string;selectedBy:string;actor:number;persona:string;elapsedMs:number;nodes:number;samples:number;interrupted:boolean;budgetExhausted:boolean;selected?:string;workerFallback?:boolean;learning?:{enabled:boolean;status:string;policyUsed:boolean;valueUsed:boolean};search:Array<{id:string;mean:number|null;tail:number|null;samples:number}>};
 }
 export interface MindClient {decide(state:BotGameState,actor:number,options?:{signal?:AbortSignal}):Promise<MindPlan|null>;dispose():void}

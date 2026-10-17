@@ -1,0 +1,163 @@
+{
+  "name": "NUSA_MIND_v4.9_BOT_ONLY",
+  "createdAt": "2026-10-16T23:00:37.576226+00:00",
+  "status": "Integration payload; learned model disabled pending retraining and verification",
+  "files": {
+    "BOT_ONLY.patch": {
+      "sha256": "f9bdb8f851ac9ae73d5cb040dd5beb1cc06c93349b863a262696817c11c5a5b5",
+      "bytes": 49274
+    },
+    "README_UNTUK_AI.md": {
+      "sha256": "5c0b523607e78167cf2374516f119d012b6db9aabb71068fb2010966d75fa7b9",
+      "bytes": 7473
+    },
+    "payload/lib/bot/analysis.mjs": {
+      "sha256": "f0ae79e4d8e8522a91dd886710f73418f8c317b575dd1ef7c65aa3a1e79cd693",
+      "bytes": 6944
+    },
+    "payload/lib/bot/candidates.mjs": {
+      "sha256": "6916041216962661a1dae818fdb20463ec948ee9a36eff84f4210464bc05a948",
+      "bytes": 3635
+    },
+    "payload/lib/bot/contracts.ts": {
+      "sha256": "fe40f6d2131e5cd0f583e25227c63f68d7cbac5fe7c876b7a6ec21318da62b2a",
+      "bytes": 2454
+    },
+    "payload/lib/bot/development.mjs": {
+      "sha256": "4d2e1da245052f3798745f1063430e08ba20defd3551d17c94f8fffe7b8e333d",
+      "bytes": 1943
+    },
+    "payload/lib/bot/learned-model.mjs": {
+      "sha256": "5f2a315bc8c7b1be5eb2a783bd29de15f06a2514bff18b2718741aaa52c4d460",
+      "bytes": 120
+    },
+    "payload/lib/bot/learning.mjs": {
+      "sha256": "fbe38dc694dfdab7a3c247c55fe742d18f5720d89fd8cf2be73d1e1778de48cd",
+      "bytes": 8828
+    },
+    "payload/lib/bot/liquidation.mjs": {
+      "sha256": "d6cb4ce8a21d914a06dbf2a1219cfa2d3c0918beaed61c10923cdf5c03f7444c",
+      "bytes": 4789
+    },
+    "payload/lib/bot/memory.mjs": {
+      "sha256": "2b807078aaef0eebf6afa9be8281fa88728a2d03678b03d907afe5e8c245dcbe",
+      "bytes": 3193
+    },
+    "payload/lib/bot/mind-client.mjs": {
+      "sha256": "c90eff416ceb3401af4cfec29f063ade1cf55c51d578685ab9c0f0af52dd499d",
+      "bytes": 2030
+    },
+    "payload/lib/bot/mind-config.mjs": {
+      "sha256": "e6487ffce445573e78f424f357930eca5c034692030a304d34b4bddb221206db",
+      "bytes": 741
+    },
+    "payload/lib/bot/mind.mjs": {
+      "sha256": "f0fa6f3d931d349284de8c1a66361721b1c4dc64c39e3f36ec34f13b3becc50a",
+      "bytes": 13893
+    },
+    "payload/lib/bot/mind.worker.mjs": {
+      "sha256": "53da52b7e1c2f1beee0e538545f791f27f6937d16e4c047c6895b96352485554",
+      "bytes": 292
+    },
+    "payload/lib/bot/negotiation.mjs": {
+      "sha256": "299f2c12413609d34e24d231b0539456a05e4b5cd63d1af46de3fa4643b827e8",
+      "bytes": 8542
+    },
+    "payload/lib/bot/personas.mjs": {
+      "sha256": "170f9783488546ac6f194787d06650819a6aa9cbabfd55ec744fe222016127db",
+      "bytes": 1392
+    },
+    "payload/lib/bot/probability.mjs": {
+      "sha256": "17a940e3c66ee3fb0dbf2db6dcbb6e414128b519768a98d4a28b4c90660032ae",
+      "bytes": 4054
+    },
+    "payload/lib/bot/strategy.mjs": {
+      "sha256": "c0087115aa84066d78401e35e3a683829435a9fe2771605dc9f5f886abc0ba40",
+      "bytes": 6954
+    },
+    "reference-tests/bot-strategy.test.mjs": {
+      "sha256": "0898b1c5bc653d8bea52bef5b43fc9b5d48231329fa1a9600cf0353ae41ef90d",
+      "bytes": 8306
+    },
+    "reference-tests/mind-learning-online.test.mjs": {
+      "sha256": "cd9ffc654383ed5b4cc2b39726b7b3dded110aeb5c9cb76ccd152c9a8b69e711",
+      "bytes": 3413
+    },
+    "reference-tests/mind-learning.test.mjs": {
+      "sha256": "8f2d158c9911ca74929136d5f93fa7ee9dea6e5cfde6fa24e1dd5ddb97aa5cc5",
+      "bytes": 11198
+    },
+    "reports/CLASSIC_TEST_RESULTS.json": {
+      "sha256": "e8afdd00924c60bde47ef1fd1a6bfe1255b466972aa1560d0d47230266b7c45c",
+      "bytes": 1272
+    },
+    "reports/ENGINE_CONTRACT.json": {
+      "sha256": "68f9fc009661ccc5af9c74cbfc7d6d6986652eeeb0b0592ff2d7ba43adda129f",
+      "bytes": 1816
+    },
+    "reports/MIND_LAB_EQUIVALENCE.json": {
+      "sha256": "712d1556a0c73cd19de3dcbea7b80ab2587e6b2cd86aa9c8eab86b88dcf1175c",
+      "bytes": 775
+    },
+    "reports/MIND_LEARNING_BROWSER_RESULTS.json": {
+      "sha256": "df86dbbd84146154ecb719dc17fc2b1c850f75a92859070d4934f50313026699",
+      "bytes": 649
+    },
+    "reports/STATUS_IMPLEMENTASI.md": {
+      "sha256": "bf07a5dd8e67573f2e26f7a3dda92dda7afad7cb013dd76aa7bb5d4b5586df20",
+      "bytes": 1689
+    },
+    "research/REFERENCE_MIND_LEARNING_EVALUATION.json": {
+      "sha256": "89ef95bcc3ee43e8367bfcdb9424ca9d14a539a8730f17e3e5bb3330511427dd",
+      "bytes": 167539
+    },
+    "research/REFERENCE_MIND_LEARNING_SEARCH_INTEGRATION.json": {
+      "sha256": "3bf78d7f821175d83a294027e38e819da1318ccfdbf075480a0ed0ee14df6012",
+      "bytes": 27182
+    },
+    "research/REFERENCE_MIND_LEARNING_TRAINING.json": {
+      "sha256": "feeb31b6752b4c40481bb2bbc994840cbbe8154715728de7931f16659502cd77",
+      "bytes": 84614
+    },
+    "research/REFERENCE_MIND_LEARNING_TRAINING.model.json": {
+      "sha256": "5c657a847e4c5b5b712faa7c493917affd2624001989fe9216bbeccb67ef49db",
+      "bytes": 2888
+    },
+    "research/TRAINING_INTERRUPTED.log": {
+      "sha256": "bca6f72a97f87e9dcf234a0cdb7d5eb7d8c7ab8bf7d4e0303c2933e7a02cfd0e",
+      "bytes": 3847
+    },
+    "research/learned-model.candidate-reference.mjs": {
+      "sha256": "7fb0513090078146c976345df9e5d40a04e176256648189627c2cd247de3b1bf",
+      "bytes": 3015
+    },
+    "tooling/scripts/benchmark-learning.mjs": {
+      "sha256": "856c7fe16c9282445c6824d93eefad0987c4c6cba1c6188af01446a3defbdd53",
+      "bytes": 9639
+    },
+    "tooling/scripts/mind-lab-utils.mjs": {
+      "sha256": "26178e921355cd23dd2bb9a21c669e11c26013eb91113c71864403b7e260fd24",
+      "bytes": 1457
+    },
+    "tooling/scripts/mind-learning-lab.mjs": {
+      "sha256": "7adee9f042d334153d59490d87693a83bc818de92771f192b6e786e473489ea5",
+      "bytes": 6579
+    },
+    "tooling/scripts/mind-match-worker.mjs": {
+      "sha256": "a99512b325544639fc1b6b7e836d98af06851e4ae1ee459d3c0c99cf7341d92f",
+      "bytes": 927
+    },
+    "tooling/scripts/mind-provenance.mjs": {
+      "sha256": "e0dfc22e0771fe4586be8e0f82b4e3960e3acd4563ee89f49d1fa7c1f98408d3",
+      "bytes": 593
+    },
+    "tooling/scripts/promote-mind.mjs": {
+      "sha256": "8bb605f4c02dbbf0f70f01801576a845030454bdb0a995c536914431db0d01dd",
+      "bytes": 1304
+    },
+    "tooling/scripts/train-mind.mjs": {
+      "sha256": "d15cb002f874fb34c718312c67d26e91e69abd956c06d2797c9b48187c232908",
+      "bytes": 4439
+    }
+  }
+}

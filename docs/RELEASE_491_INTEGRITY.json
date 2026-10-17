@@ -1,0 +1,79 @@
+{
+  "basisCommit": "604342c",
+  "version": "4.9.1",
+  "checks": [
+    {
+      "path": "lib/game.mjs",
+      "baselineSha256": "d8452c74d4f18522c237dd787102daf66ad06823db92ae69c577eb14102fdb8f",
+      "currentSha256": "d8452c74d4f18522c237dd787102daf66ad06823db92ae69c577eb14102fdb8f",
+      "identical": true
+    },
+    {
+      "path": "lib/content.mjs",
+      "baselineSha256": "4e87e3b37db870f45de641cb897bcd290ef131e7363a55f74b53d95113674bbd",
+      "currentSha256": "4e87e3b37db870f45de641cb897bcd290ef131e7363a55f74b53d95113674bbd",
+      "identical": true
+    },
+    {
+      "path": "frontend/board.mjs",
+      "baselineSha256": "bbe4df65e09ac01d8d874ea70168e622258ea8ee4e87ff4fd6ba3d59f044263b",
+      "currentSha256": "bbe4df65e09ac01d8d874ea70168e622258ea8ee4e87ff4fd6ba3d59f044263b",
+      "identical": true
+    },
+    {
+      "path": "frontend/art.mjs",
+      "baselineSha256": "a8d3ce90f616524cb555b246dab4afb92a72a7ee00924ab4e34e7d80074b1ae3",
+      "currentSha256": "a8d3ce90f616524cb555b246dab4afb92a72a7ee00924ab4e34e7d80074b1ae3",
+      "identical": true
+    },
+    {
+      "path": "frontend/domain.mjs",
+      "baselineSha256": "741b38db834af60f1c23cac4b4d9fd64588ac46292684edbfc6ca6ededbf3a5c",
+      "currentSha256": "f2796a617151a5e1b6889d5fa5be24c245c632da3e66671cd52a47c00c27ac43",
+      "identical": false
+    },
+    {
+      "path": "frontend/session.mjs",
+      "baselineSha256": "38c1ac5494a49e83d7d0630dec112ffbc89952431cbb12562beee9673627e992",
+      "currentSha256": "38c1ac5494a49e83d7d0630dec112ffbc89952431cbb12562beee9673627e992",
+      "identical": true
+    },
+    {
+      "path": "lib/server/bot-worker.mjs",
+      "baselineSha256": "310824f9a1616c64991a42f7d7b3e754cc8df42b4502925acdfb5cc0e4626a54",
+      "currentSha256": "310824f9a1616c64991a42f7d7b3e754cc8df42b4502925acdfb5cc0e4626a54",
+      "identical": true
+    },
+    {
+      "path": "lib/server/online-room.mjs",
+      "baselineSha256": "533a145522afc69791ecca3f0776be7ab11130dc428444ec6ede9e8df1002b1c",
+      "currentSha256": "533a145522afc69791ecca3f0776be7ab11130dc428444ec6ede9e8df1002b1c",
+      "identical": true
+    },
+    {
+      "path": "lib/server/online-service.mjs",
+      "baselineSha256": "351ddb85283314f4242c5df81a502d6e424c7428530be2aa4a7589c436d7e02c",
+      "currentSha256": "351ddb85283314f4242c5df81a502d6e424c7428530be2aa4a7589c436d7e02c",
+      "identical": true
+    },
+    {
+      "path": "app/api/online/route.ts",
+      "baselineSha256": "75437244c7e8815dee93cbb6b32d5bca0cda308ddbbaee83566890a9b0adcc97",
+      "currentSha256": "75437244c7e8815dee93cbb6b32d5bca0cda308ddbbaee83566890a9b0adcc97",
+      "identical": true
+    },
+    {
+      "path": "app/api/bot/route.ts",
+      "baselineSha256": "21143bf7950c9eb4eeb14b2190056f8a264f7e38560dd4bda57a413d6462cb87",
+      "currentSha256": "21143bf7950c9eb4eeb14b2190056f8a264f7e38560dd4bda57a413d6462cb87",
+      "identical": true
+    }
+  ],
+  "publicAssetsIdentical": true,
+  "publicFileCount": 17,
+  "botModulesIdentical": true,
+  "fullCertificateRendererIdentical": true,
+  "schemaOrMigrationChanged": false,
+  "protectedScreenshotsIdentical": 10,
+  "intentionalPresentationChange": "frontend/domain.mjs retains read-only auction dialog during its committed winning payment"
+}

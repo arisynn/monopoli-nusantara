@@ -105,8 +105,9 @@ test('Groq opt-in defaults off even when configured; no unsolicited provider req
  let calls=0;const r=await aiDecision(auction(),1,{GROQ_API_KEY:'fake'},{transport:async()=>{calls++;throw Error('must not call')}});assert.equal(calls,0);assert(r.action);
 });
 test('Groq ignoring AbortSignal is still bounded by the local timeout',async()=>{
- const s=auction();s.advisorEnabled=true;
- const r=await aiDecision(s,1,{GROQ_API_KEY:'fake',GROQ_TIMEOUT_MS:'1500'},{circuitKey:crypto.randomUUID(),transport:async()=>new Promise(()=>{})});assert.equal(r.reason,'timeout');assert(r.action);
+ const s=setup();s.phase='buy';s.buy=1;s.advisorEnabled=true;const contested=command(s,0,{type:'AUCTION'});
+ assert(decideMind(contested,1).shouldConsult,'timeout fixture must reach provider consultation');
+ const r=await aiDecision(contested,1,{GROQ_API_KEY:'fake',GROQ_TIMEOUT_MS:'1500'},{circuitKey:crypto.randomUUID(),transport:async()=>new Promise(()=>{})});assert.equal(r.reason,'timeout');assert(r.action);
 });
 test('online worker escapes a hung advisor and commits exactly one local command',async()=>{
  const clock=()=>1000000,store=new BotJobStore(clock),service=createOnlineService({store,clock,botsEnabled:true,generateCode:()=> 'ABCDEFGH',rng:()=>.2});

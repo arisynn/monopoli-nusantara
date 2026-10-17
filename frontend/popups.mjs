@@ -1,3 +1,5 @@
+import { bankContent } from "./bank-view.mjs";
+import { estimateTrade } from "./trade-value.mjs";
 import { renderAssetPanel } from "./asset-panel.mjs";
 import { specialTileInfo } from "./tile-info.mjs";
 import { playerLedger, publicEvents } from "./economy-view.mjs";
@@ -26,14 +28,7 @@ import {
   bidMinimum,
   roomEligibility,
 } from "./domain.mjs";
-import {
-  icon,
-  avatar,
-  tileArt,
-  pawnArt,
-  buildingArt,
-  eventArt,
-} from "./art.mjs";
+import { icon, avatar, pawnArt, buildingArt, eventArt } from "./art.mjs";
 const btn = (
   label,
   action,
@@ -60,7 +55,33 @@ const lead = (iconName, title, desc = "") =>
   `<div class="popup-title"><span class="title-icon">${icon(iconName, 30)}</span><div><h2 id="popup-title">${esc(title)}</h2>${desc ? `<p>${esc(desc)}</p>` : ""}</div></div>`;
 function propertyHero(t, s) {
   const a = s.assets[t.id];
-  return `<div class="property-hero">${t.type === "city" ? tileArt(t, "hero-art") : `<img class="hero-art" src="/assets/classic/${t.type === "station" ? "station" : t.id === 12 ? "electric" : "water"}.png" alt="">`}<div><span class="group-label" style="--group:${t.color}">${esc(t.group >= 0 ? GROUPS[t.group].name : t.type === "station" ? "Transportasi" : "Utilitas")}</span><h3>${esc(t.name)}</h3><p>${a?.owner != null ? "Milik " + esc(s.players[a.owner].name) : "Tersedia di bank"}</p><strong>${esc(money(t.price))}</strong></div></div>`;
+  const city = t.type === "city",
+    graphic = city
+      ? ""
+      : t.type === "station"
+        ? eventArt(3, "mini-deed-logo")
+        : t.id === 12
+          ? eventArt(7, "mini-deed-logo")
+          : '<img class="mini-deed-logo" src="/assets/classic/water.png" alt="">',
+    rows = city
+      ? [
+          ["Sewa", money(t.rents[0])],
+          ["1 rumah", money(t.rents[1])],
+          ["Gadai", money(t.mortgage)],
+        ]
+      : t.type === "station"
+        ? [
+            ["1 stasiun", money(250)],
+            ["2 stasiun", money(500)],
+            ["Gadai", money(t.mortgage)],
+          ]
+        : [
+            ["1 utilitas", "4 × dadu"],
+            ["2 utilitas", "10 × dadu"],
+            ["Gadai", money(t.mortgage)],
+          ];
+  const miniature = `<button type="button" class="mini-deed" data-action="certificate" data-id="${t.id}" aria-label="Lihat sertifikat ${esc(t.name)}"><span class="mini-deed-paper" aria-hidden="true"><span class="mini-deed-heading ${city ? "" : "mini-deed-special"}" style="--deed-color:${city ? t.color : "#fffcf5"}"><small>SERTIFIKAT</small>${graphic}<b>${esc(t.name)}</b></span><span class="mini-deed-rows">${rows.map(([label, value]) => `<span><span>${label}</span><b>${esc(value)}</b></span>`).join("")}</span></span><span class="mini-deed-caption">Lihat detail</span></button>`;
+  return `<div class="property-hero">${miniature}<div><span class="group-label" style="--group:${t.color}">${esc(t.group >= 0 ? GROUPS[t.group].name : t.type === "station" ? "Transportasi" : "Utilitas")}</span><h3>${esc(t.name)}</h3><p>${a?.owner != null ? "Milik " + esc(s.players[a.owner].name) : "Tersedia di bank"}${a?.mortgaged ? " · Digadai" : ""}</p><span class="property-price-label">${city ? "Harga tanah" : t.type === "station" ? "Harga stasiun" : "Harga utilitas"}</span><strong>${esc(money(t.price))}</strong></div></div>`;
 }
 
 function certificate(t, s) {
@@ -114,8 +135,9 @@ function property(c, p) {
   return {
     title: t.name,
     html: certificate(t, c.s),
-    footer:
-      a?.owner === c.seat
+    footer: p.preview
+      ? btn("Kembali", "close", { sym: "back" })
+      : a?.owner === c.seat
         ? btn("Kelola di Aset Saya", "manage", {
             primary: true,
             extra: `data-id="${t.id}"`,
@@ -126,6 +148,47 @@ function property(c, p) {
 }
 function assetList(c, p) {
   return renderAssetPanel({ ...c, popup: p }, { btn, lead, amount });
+}
+
+function tradePropertyDetail(s, id) {
+  const t = BOARD[id],
+    a = s.assets[id];
+  const status = a?.mortgaged
+    ? `Digadai · jika diterima: bunga ${money(Math.ceil(t.mortgage / 10))} atau tebus ${money(redemption(id))}`
+    : a?.level > 0
+      ? a.level === 5
+        ? "1 hotel"
+        : `${a.level} rumah`
+      : "Tidak digadai";
+  return `<button type="button" class="trade-property-detail" data-action="certificate" data-id="${id}" aria-label="Lihat sertifikat ${esc(t.name)}"><b>${esc(t.name)}</b><small>Harga beli ${esc(money(t.price || 0))}</small><small>Nilai gadai ${esc(money(t.mortgage || 0))}</small><small class="trade-property-status ${a?.mortgaged ? "is-mortgaged" : ""}">${esc(status)}</small></button>`;
+}
+function tradeProperty(s, id, side = null) {
+  return `<div class="trade-asset trade-property"><i style="background:${BOARD[id].color}"></i>${tradePropertyDetail(s, id)}${side ? `<button type="button" class="trade-property-remove" data-action="tradeRemove" data-side="${side}" data-id="${id}" aria-label="Hapus ${esc(BOARD[id].name)}">${icon("close", 16)}</button>` : ""}</div>`;
+}
+function tradeValue(s, ids) {
+  return ids.length
+    ? `<p class="trade-value-summary">Nilai beli aset <b>${esc(money(ids.reduce((sum, id) => sum + (BOARD[id]?.price || 0), 0)))}</b></p>`
+    : "";
+}
+
+export function tradeEstimateMarkup(s, trade, seat) {
+  const estimate = estimateTrade(s, trade, seat);
+  if (!estimate)
+    return '<p class="trade-estimate-empty">Tambahkan aset atau uang yang valid untuk melihat estimasi.</p>';
+  const direction =
+      estimate.delta > 0 ? "gain" : estimate.delta < 0 ? "loss" : "even",
+    label =
+      estimate.delta > 0
+        ? "Estimasi laba"
+        : estimate.delta < 0
+          ? "Estimasi rugi"
+          : "Selisih acuan",
+    sign = estimate.delta > 0 ? "+ " : estimate.delta < 0 ? "− " : "",
+    who =
+      estimate.perspective === seat
+        ? "Anda"
+        : s.players[estimate.perspective].name;
+  return `<div class="trade-estimate-heading ${direction}"><b>${label}</b><strong>${sign}${esc(money(Math.abs(estimate.delta)))}</strong></div><small>Nilai acuan untuk ${esc(who)}</small><div class="trade-estimate-values"><div><span>Nilai diterima</span>${amount(estimate.received)}</div><div><span>Nilai diberikan</span>${amount(estimate.given)}</div></div>${estimate.unpricedCards ? "<small>Kartu bebas penjara belum diberi nilai.</small>" : ""}<details><summary>Dasar perhitungan</summary><p>Harga beli properti + uang. Properti tergadai dikurangi biaya tebus saat diterima. Potensi sewa, monopoli dan kartu bebas penjara belum dinilai. Ini acuan barter, bukan laba pasti.</p></details>`;
 }
 
 function trade(c, p) {
@@ -149,7 +212,7 @@ function trade(c, p) {
       lead(
         "trade",
         p.counter ? "Tawaran Balik" : "Perdagangan",
-        "Tukar properti dan Nusa dengan pemain lain.",
+        "Ketuk properti untuk melihat sertifikat. Harga beli menjadi acuan barter.",
       ) +
       `<label class="field">Pemain tujuan<select name="tradeOpponent" ${p.counter ? "disabled" : ""}>${c.s.players
         .filter((x) => x.id !== from && !x.out)
@@ -163,11 +226,11 @@ function trade(c, p) {
       ]
         .map(
           ([side, owner, label]) =>
-            `<section class="trade-side"><div class="trade-person">${avatar(owner)}<b>${esc(label)}</b></div>${draft[side].map((id) => `<div class="trade-asset"><i style="background:${BOARD[id].color}"></i><b>${esc(BOARD[id].name)}</b><button data-action="tradeRemove" data-side="${side}" data-id="${id}" aria-label="Hapus ${esc(BOARD[id].name)}">${icon("close", 16)}</button></div>`).join("")}<button class="add-asset" data-action="tradePicker" data-side="${side}" data-owner="${owner}">${icon("plus", 16)}Tambah properti</button><label class="field">Nusa<input name="${side}Cash" inputmode="decimal" value="${esc(c.ui.tradeInputs?.[side + "Cash"] ?? (Number.isFinite(draft[side + "Cash"]) ? draft[side + "Cash"] / 10 : ""))}" aria-label="${label} Nusa"></label><label class="field">Kartu bebas penjara<select name="${side}Cards">${Array.from({ length: c.s.players[owner]?.cards.length + 1 || 1 }, (_, n) => `<option value="${n}" ${n === draft[side + "Cards"] ? "selected" : ""}>${n} kartu</option>`).join("")}</select></label></section>`,
+            `<section class="trade-side"><div class="trade-person">${avatar(owner)}<b>${esc(label)}</b></div>${draft[side].map((id) => tradeProperty(c.s, id, side)).join("")}${tradeValue(c.s, draft[side])}<button class="add-asset" data-action="tradePicker" data-side="${side}" data-owner="${owner}">${icon("plus", 16)}Tambah properti</button><label class="field">Nusa<input name="${side}Cash" inputmode="decimal" value="${esc(c.ui.tradeInputs?.[side + "Cash"] ?? (Number.isFinite(draft[side + "Cash"]) ? draft[side + "Cash"] / 10 : ""))}" aria-label="${label} Nusa"></label><label class="field">Kartu bebas penjara<select name="${side}Cards">${Array.from({ length: c.s.players[owner]?.cards.length + 1 || 1 }, (_, n) => `<option value="${n}" ${n === draft[side + "Cards"] ? "selected" : ""}>${n} kartu</option>`).join("")}</select></label></section>`,
         )
         .join(
           "",
-        )}</div><button class="link-button" data-action="discardTradeDraft">Kosongkan draft</button><p class="draft-status" data-draft-status>${c.ui.draftPersistent ? "Draft tersimpan di perangkat · belum dikirim" : "Draft sesi · belum dikirim"}</p><p class="inline-note" data-trade-status>${esc(status.reason || "Kepemilikan dan saldo diperiksa kembali saat transaksi.")}</p>`,
+        )}</div><section class="trade-estimate" data-trade-estimate>${tradeEstimateMarkup(c.s, { ...draft, from }, c.seat)}</section><button class="link-button" data-action="discardTradeDraft">Kosongkan draft</button><p class="draft-status" data-draft-status>${c.ui.draftPersistent ? "Draft tersimpan di perangkat · belum dikirim" : "Draft sesi · belum dikirim"}</p><p class="inline-note" data-trade-status>${esc(status.reason || "Kepemilikan dan saldo diperiksa kembali saat transaksi.")}</p>`,
     footer:
       btn(p.counter ? "Kirim balasan" : "Ajukan tawaran", "submitTrade", {
         primary: true,
@@ -186,7 +249,7 @@ function incoming(c) {
   const t = c.s.trade,
     own = t.to === c.seat,
     side = (ids, cash, cards) =>
-      `${ids.map((i) => `<div class="trade-asset"><i style="background:${BOARD[i].color}"></i><b>${esc(BOARD[i].name)}</b></div>`).join("")}${cash ? `<div class="trade-asset">${amount(cash)}</div>` : ""}${cards ? `<p>${cards} kartu bebas penjara</p>` : ""}`;
+      `${ids.map((id) => tradeProperty(c.s, id)).join("")}${tradeValue(c.s, ids)}${cash ? `<div class="trade-asset">${amount(cash)}</div>` : ""}${cards ? `<p>${cards} kartu bebas penjara</p>` : ""}`;
   return {
     title: "Tawaran Barter",
     html:
@@ -195,7 +258,7 @@ function incoming(c) {
         "Tawaran Barter",
         `${c.s.players[t.from].name} → ${c.s.players[t.to].name}`,
       ) +
-      `<div class="trade-columns"><section class="trade-side"><h3>${own ? "Anda menerima" : "Pengirim memberi"}</h3>${side(t.give, t.giveCash, t.giveCards)}</section><section class="trade-side"><h3>${own ? "Anda memberi" : "Pengirim meminta"}</h3>${side(t.take, t.takeCash, t.takeCards)}</section></div>`,
+      `<div class="trade-columns"><section class="trade-side"><h3>${own ? "Anda menerima" : "Pengirim memberi"}</h3>${side(t.give, t.giveCash, t.giveCards)}</section><section class="trade-side"><h3>${own ? "Anda memberi" : "Pengirim meminta"}</h3>${side(t.take, t.takeCash, t.takeCards)}</section></div><section class="trade-estimate" data-trade-estimate>${tradeEstimateMarkup(c.s, t, c.seat)}</section>`,
     footer: own
       ? commandButton("Terima", "TRADE_ACCEPT", c, {}, true) +
         btn("Tawar balik", "counter", { disabled: c.session.busy }) +
@@ -219,14 +282,14 @@ function picker(c, p) {
       (rows
         .map(
           (t) =>
-            `<label class="choice-row"><i style="background:${t.color}"></i><span><b>${esc(t.label)}</b><small>${esc(t.detail)}</small></span><input type="checkbox" name="tradeAsset" value="${t.id}" data-side="${p.side}" ${draft[p.side].includes(t.id) ? "checked" : ""} ${t.disabled ? "disabled" : ""}></label>`,
+            `<div class="choice-row trade-choice"><i style="background:${t.color}"></i><div class="trade-choice-info">${tradePropertyDetail(c.s, t.id)}${t.detail.startsWith("Harga") || t.detail === "Digadai" ? "" : `<small class="trade-choice-warning">${esc(t.detail)}</small>`}</div><label class="trade-choice-select"><input type="checkbox" name="tradeAsset" value="${t.id}" data-side="${p.side}" aria-label="Pilih ${esc(t.label)}" ${draft[p.side].includes(t.id) ? "checked" : ""} ${t.disabled ? "disabled" : ""}></label></div>`,
         )
         .join("") ||
         '<p class="empty">Belum ada properti yang dapat ditukar.</p>'),
     footer: btn("Selesai", "pickerDone", { primary: true }),
   };
 }
-function auction(c) {
+function auction(c, p) {
   const a = c.s.auction,
     id =
       a.kind === "building"
@@ -236,8 +299,8 @@ function auction(c) {
     min = bidMinimum(c.s),
     offer = Math.max(min, c.ui.bid || 0),
     can =
+      !p.settling &&
       a.participants.includes(c.seat) &&
-      !a.passed.includes(c.seat) &&
       a.highest !== c.seat &&
       c.s.players[c.seat].controller === "human" &&
       !c.s.players[c.seat].out;
@@ -247,16 +310,26 @@ function auction(c) {
       lead(
         "gavel",
         a.kind === "building" ? "Lelang Bangunan" : "Lelang Properti",
-        "Penawaran terbuka · tanpa timer paksa.",
+        p.settling
+          ? "Tawaran ditutup · menampilkan hasil."
+          : "Penawaran terbuka · tanpa timer paksa.",
       ) +
       propertyHero(t, c.s) +
-      `<div class="auction-bid"><span>Tawaran tertinggi saat ini</span>${amount(a.amount)}<small>${a.highest === null ? "Belum ada penawaran" : "Oleh " + esc(c.s.players[a.highest].name)}</small></div><div class="auction-people">${a.participants.map((i) => `<div class="${i === a.highest ? "selected" : ""}">${avatar(i)}<b>${esc(c.s.players[i].name)}</b><small>${i === a.highest ? "Tertinggi" : a.passed.includes(i) ? "Lewati" : "Aktif"}</small></div>`).join("")}</div><label class="field">Tawaran Nusa (minimal ${esc(money(min))})<input name="bid" type="number" min="${min / 10}" step="${AUCTION_RULES.increment / 10}" value="${offer / 10}" inputmode="decimal"></label><div class="chips">${[10, 20, 50, 100].map((n) => `<button data-action="bidStep" data-amount="${n * 10}">+ N ${n}</button>`).join("")}</div><p class="inline-note">Kas Anda ${esc(money(c.s.players[c.seat].cash))}. ${a.highest === c.seat ? "Tawaran Anda sedang tertinggi." : ""}</p>`,
+      `<div class="auction-bid"><span>Tawaran tertinggi saat ini</span>${amount(a.amount)}<small>${a.highest === null ? "Belum ada penawaran" : "Oleh " + esc(c.s.players[a.highest].name)}</small></div><div class="auction-people" data-count="${a.participants.length}">${a.participants.map((i) => `<div data-auction-player="${i}" class="${i === a.highest ? "selected" : ""}">${avatar(i)}<b>${esc(c.s.players[i].name)}</b><small>${i === a.highest ? (p.settling ? "Menang" : "Tertinggi") : p.settling ? "Selesai" : a.passed.includes(i) ? "Lewati" : i === a.bidder ? "Berikutnya" : "Aktif"}</small></div>`).join("")}</div><label class="field"><span>Tawaran Nusa (minimal ${esc(money(min))})</span><input name="bid" type="number" min="${min / 10}" step="${AUCTION_RULES.increment / 10}" value="${offer / 10}" inputmode="decimal" ${p.settling ? "disabled" : ""}></label><div class="chips">${[10, 20, 50, 100].map((n) => `<button data-action="bidStep" data-amount="${n * 10}" ${p.settling ? "disabled" : ""}>+ N ${n}</button>`).join("")}</div><p class="inline-note">Kas Anda ${esc(money(c.s.players[c.seat].cash))}. ${p.settling ? "Pembayaran pemenang sedang ditampilkan." : a.highest === c.seat ? "Tawaran Anda sedang tertinggi." : a.passed.includes(c.seat) ? "Anda masih boleh menawar lagi selama lelang terbuka." : ""}</p>`,
     footer:
       btn("Tawar", "bid", {
         primary: true,
         disabled: c.session.busy || !can || offer > c.s.players[c.seat].cash,
         sym: "gavel",
-      }) + commandButton("Lewati", "PASS", c, {}, false, !can),
+      }) +
+      commandButton(
+        "Lewati",
+        "PASS",
+        c,
+        {},
+        false,
+        !can || a.passed.includes(c.seat),
+      ),
   };
 }
 function jail(c) {
@@ -349,12 +422,12 @@ function settlement(c, p) {
         t.kind === "tax" ? "Pembayaran Pajak" : "Pembayaran Sewa",
         t.kind === "tax"
           ? "Pajak tetap ke Bank, bukan Parkir Bebas. Tidak dihitung dari kekayaan."
-          : "Transaksi sudah disahkan engine. Tidak perlu membayar ulang.",
+          : "Pembayaran sudah tercatat.",
       ) +
       (t.tile !== undefined && BOARD[t.tile].price
         ? propertyHero(BOARD[t.tile], c.s)
         : "") +
-      `<div class="big-amount">${amount(t.amount)}</div><div class="fact-row"><span>Saldo sebelum</span>${amount(after + t.amount)}</div><div class="fact-row"><span>Saldo setelah</span>${amount(after)}</div>${t.to !== null ? `<div class="fact-row"><span>Diterima ${esc(c.s.players[t.to].name)}</span><b class="positive">+ ${esc(money(t.amount))}</b></div>` : ""}`,
+      `<div class="big-amount settlement-amount"><span class="settlement-label">${t.kind === "tax" ? "Pajak dibayar" : "Sewa dibayar"}</span>${amount(t.amount)}</div><div class="fact-row"><span>Saldo sebelum</span>${amount(after + t.amount)}</div><div class="fact-row"><span>Saldo setelah</span>${amount(after)}</div>${t.to !== null ? `<div class="fact-row"><span>Diterima ${esc(c.s.players[t.to].name)}</span><b class="positive">+ ${esc(money(t.amount))}</b></div>` : ""}`,
     footer: btn("Selesai", "dismissEvent", { primary: true }),
   };
 }
@@ -473,7 +546,7 @@ function results(c) {
     title: "Hasil Akhir",
     html:
       lead("trophy", "Hasil Akhir", "Petualangan Nusantara telah selesai.") +
-      `<div class="winner">${icon("trophy", 45)}<h3>${esc(winner.name)} menang!</h3></div>${sorted.map((p) => `<div class="result-row ${p.id === winner.id ? "champion" : ""}">${avatar(p.id)}<span><b>${esc(p.name)}</b><small>${p.id === winner.id ? "Pemenang" : "Ringkasan aset akhir"}</small></span>${amount(worth(c.s, p.id))}</div>`).join("")}`,
+      `<div class="winner">${icon("trophy", 45)}<h3>${esc(winner.name)} menang!</h3></div><div class="result-list" aria-label="Peringkat akhir pemain">${sorted.map((p) => `<div class="result-row ${p.id === winner.id ? "champion" : ""}">${avatar(p.id)}<span class="result-identity"><b>${esc(p.name)}</b><small>${p.id === winner.id ? "Pemenang" : p.out ? "Bangkrut" : "Total kekayaan akhir"}</small></span><span class="result-worth">${amount(worth(c.s, p.id))}</span></div>`).join("")}</div>`,
     footer: btn("Kembali ke lobby", "lobby", { primary: true, sym: "home" }),
   };
 }
@@ -505,7 +578,7 @@ export function renderPopup(session, ui, p) {
       content = assetList(c, p);
       break;
     case "property":
-      content = property(c, p);
+      content = property(p.bankContext ? { ...c, s: session.state } : c, p);
       break;
     case "manage":
       content = assetList(c, { id: c.s.assets[p.id]?.owner ?? c.seat });
@@ -526,7 +599,7 @@ export function renderPopup(session, ui, p) {
       content = picker(c, p);
       break;
     case "auction":
-      content = auction(c);
+      content = auction(c, p);
       break;
     case "jail":
       content = jail(c);
@@ -547,6 +620,9 @@ export function renderPopup(session, ui, p) {
       break;
     case "settlement":
       content = settlement(c, p);
+      break;
+    case "bank":
+      content = bankContent(session.state);
       break;
     case "history":
       content = history(c);

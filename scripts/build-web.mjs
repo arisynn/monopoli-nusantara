@@ -1,3 +1,5 @@
+import "./verify-learning-artifact.mjs";
+import "./build-server.mjs";
 import { mkdir, readFile, writeFile, cp, readdir, rm } from "node:fs/promises";
 import { stripTypeScriptTypes } from "node:module";
 import { outputFingerprint } from "./build-fingerprint.mjs";

@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-10-16T23:54:20.968Z",
+  "checks": [
+    {
+      "name": "draft at 320x568",
+      "passed": true,
+      "draftAndSelectionPreserved": true,
+      "authoritativeStateUnchanged": true
+    },
+    {
+      "name": "incoming at 320x568",
+      "passed": true,
+      "draftAndSelectionPreserved": true,
+      "authoritativeStateUnchanged": true
+    },
+    {
+      "name": "counter at 320x568",
+      "passed": true,
+      "draftAndSelectionPreserved": true,
+      "authoritativeStateUnchanged": true
+    },
+    {
+      "name": "draft at 360x640",
+      "passed": true,
+      "draftAndSelectionPreserved": true,
+      "authoritativeStateUnchanged": true
+    },
+    {
+      "name": "incoming at 360x640",
+      "passed": true,
+      "draftAndSelectionPreserved": true,
+      "authoritativeStateUnchanged": true
+    },
+    {
+      "name": "counter at 360x640",
+      "passed": true,
+      "draftAndSelectionPreserved": true,
+      "authoritativeStateUnchanged": true
+    },
+    {
+      "name": "draft at 390x844",
+      "passed": true,
+      "draftAndSelectionPreserved": true,
+      "authoritativeStateUnchanged": true
+    },
+    {
+      "name": "incoming at 390x844",
+      "passed": true,
+      "draftAndSelectionPreserved": true,
+      "authoritativeStateUnchanged": true
+    },
+    {
+      "name": "counter at 390x844",
+      "passed": true,
+      "draftAndSelectionPreserved": true,
+      "authoritativeStateUnchanged": true
+    },
+    {
+      "name": "draft at 430x932",
+      "passed": true,
+      "draftAndSelectionPreserved": true,
+      "authoritativeStateUnchanged": true
+    },
+    {
+      "name": "incoming at 430x932",
+      "passed": true,
+      "draftAndSelectionPreserved": true,
+      "authoritativeStateUnchanged": true
+    },
+    {
+      "name": "counter at 430x932",
+      "passed": true,
+      "draftAndSelectionPreserved": true,
+      "authoritativeStateUnchanged": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium mobile emulation, not physical devices.",
+    "Local real engine and draft storage; no live trade is sent to Supabase."
+  ]
+}

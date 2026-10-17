@@ -1,3 +1,5 @@
+> Arsip konfigurasi rilis sebelumnya. Untuk 4.9.0 ikuti [ENV_REQUIRED.md](../ENV_REQUIRED.md): native ESM Vercel, key modern/alias didukung, Redis tidak dipakai runtime aktif.
+
 > Panduan historis. Untuk perintah build/runtime dan status database terbaru gunakan [DEPLOY_483.md](DEPLOY_483.md).
 
 > Bot online memerlukan migration 002 dan scheduler backend; ikuti [DEPLOY_HYBRID.md](DEPLOY_HYBRID.md). Panduan ini tetap menjadi fondasi room/Auth manusia.

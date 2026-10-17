@@ -1,4 +1,8 @@
+import { bankSnapshot } from "../lib/bank-economy.mjs";
+import { lucideIcon } from "./lucide-icons.mjs";
+import { auctionIdentity } from "../lib/auction-presentation.mjs";
 import { APP_VERSION } from "../lib/version.mjs";
+import { upgradeIcons } from "./lucide-icons.mjs";
 import { activitySummary, capsuleFeedback } from "./economy-view.mjs";
 import { onlineStatus } from "./online-status.mjs";
 import { decorateCurrency } from "./currency-view.mjs";
@@ -22,7 +26,7 @@ import {
   roomEligibility,
 } from "./domain.mjs";
 import { icon, avatar, colors, pawnArt } from "./art.mjs";
-import { renderPopup, btn, lead } from "./popups.mjs";
+import { renderPopup, btn, lead, tradeEstimateMarkup } from "./popups.mjs";
 import { localPlayers, PERSONAS } from "../lib/bot/personas.mjs";
 import { MODELS } from "../lib/bot/mind-config.mjs";
 import { TOKENS, pawnFor, availablePawn } from "../lib/pawns.mjs";
@@ -94,7 +98,7 @@ function lobbyHTML() {
   return `${topbar()}<main class="lobby"><section class="lobby-panel" aria-label="Lobby permainan"><div id="lobby-content"></div></section><p class="version-line">Monopoli Nusantara · Klasik ${APP_VERSION}</p></main><div id="page-status" class="page-status" role="status"></div>`;
 }
 function gameplayHTML() {
-  return `${topbar()}<main class="gameplay"><section class="players" aria-label="Pemain"></section><div class="connection-note" hidden></div><section class="board-stage" aria-label="Papan 40 petak"><div class="board-view" tabindex="0" aria-label="Papan Nusantara, ketuk petak, geser atau cubit untuk menjelajah"><svg role="group" aria-label="Papan permainan"><g></g></svg></div></section><button class="activity" data-action="history" aria-label="Riwayat aktivitas dan transaksi"><span id="activity-text"></span><span id="activity-money"></span></button><button class="tile-caption" data-action="selectedProperty"></button><section class="action-console" aria-label="Aksi permainan"><div class="turn-heading"></div><div class="console-row"><div class="quick-actions"><button class="property-button" data-action="ownAssets" aria-label="Properti Saya" title="Properti Saya">${icon("assets", 22)}<span>Aset</span></button><button class="property-button" data-action="trade" aria-label="Perdagangan dan barter" title="Barter">${icon("trade", 22)}<span>Barter</span></button></div><div class="dice-tray" aria-live="polite"></div><button class="roll-button primary" data-action="primary"></button></div><div id="page-status" class="page-status" role="status"></div></section></main>`;
+  return `${topbar()}<main class="gameplay"><section class="players" aria-label="Pemain"></section><div class="connection-note" hidden></div><section class="board-stage" aria-label="Papan 40 petak"><div class="board-view" tabindex="0" aria-label="Papan Nusantara, ketuk petak, geser atau cubit untuk menjelajah"><svg role="group" aria-label="Papan permainan"><g></g></svg></div><button type="button" class="bank-indicator" data-action="bank" aria-label="Bank Nusantara, lihat rincian ekonomi">${lucideIcon("bank", 18)}<span><small>Nusa beredar</small><b id="bank-circulation"></b></span>${lucideIcon("arrow", 12)}</button></section><button class="activity" data-action="history" aria-label="Riwayat aktivitas dan transaksi"><span id="activity-text"></span><span id="activity-money"></span></button><button class="tile-caption" data-action="selectedProperty"></button><section class="action-console" aria-label="Aksi permainan"><div class="turn-heading"></div><div class="console-row"><div class="quick-actions"><button class="property-button" data-action="ownAssets" aria-label="Properti Saya" title="Properti Saya">${icon("assets", 22)}<span>Aset</span></button><button class="property-button" data-action="trade" aria-label="Perdagangan dan barter" title="Barter">${icon("trade", 22)}<span>Barter</span></button></div><div class="dice-tray" aria-live="polite"></div><button class="roll-button primary" data-action="primary"></button></div><div id="page-status" class="page-status" role="status"></div></section></main>`;
 }
 function lobbyContent() {
   const r = session.online,
@@ -207,6 +211,9 @@ function render() {
         reduced: session.reduced,
         selected: ui.selected,
       });
+      page.querySelector("#bank-circulation").textContent = money(
+        bankSnapshot(session.state).circulation,
+      );
       drawDice();
       const primary = primaryAction(
           s,
@@ -240,6 +247,7 @@ function render() {
     }
     page.querySelector("#page-status").textContent = session.error || "";
     decorateCurrency(page);
+    if (screen === "lobby") upgradeIcons(page);
     renderDialog();
     document.documentElement.classList.toggle("reduced", session.reduced);
     document.documentElement.classList.toggle("playing", screen === "gameplay");
@@ -368,6 +376,29 @@ function open(p) {
 }
 function close() {
   persistTradeDraft();
+  if (ui.popup?.kind === "property" && ui.popup.preview) {
+    const origin = ui.certificateReturn,
+      tile = ui.popup.id,
+      sameMatch = origin?.matchId === session.state?.matchId;
+    ui.certificateReturn = null;
+    ui.popup = sameMatch ? origin.popup : null;
+    session.setCovered(!!ui.popup);
+    queueRender();
+    if (sameMatch)
+      requestAnimationFrame(() => {
+        for (const [key, expanded] of origin.details || []) {
+          const node = dialogBody.querySelector(
+            `[data-asset-key="${CSS.escape(key)}"]`,
+          );
+          if (node) node.open = expanded;
+        }
+        dialogBody.scrollTop = origin.scroll;
+        dialogBody
+          .querySelector(`[data-action="certificate"][data-id="${tile}"]`)
+          ?.focus({ preventScroll: true });
+      });
+    return;
+  }
   if (ui.popup?.kind === "picker") {
     ui.popup = ui.pickerReturn || { kind: "trade", counter: !!ui.tradeCounter };
     queueRender();
@@ -384,6 +415,14 @@ function close() {
   queueRender();
 }
 function currentPopup() {
+  if (
+    ui.popup?.preview &&
+    ui.certificateReturn?.matchId !== session.state?.matchId
+  ) {
+    ui.certificateReturn = null;
+    ui.popup = null;
+    session.setCovered(false);
+  }
   if (ui.popup?.kind === "assets" && session.assetInterruption) {
     session.assetInterruption = false;
     ui.popup = null;
@@ -442,11 +481,7 @@ function auxiliary(p) {
       return {
         title: "Menu Permainan",
         html:
-          lead(
-            "menu",
-            "Meja Nusantara",
-            "Semua fitur, tanpa meninggalkan papan.",
-          ) +
+          lead("menu", "Meja Nusantara", "") +
           `${session.botBlocked ? btn("Coba ulang bot", "retryBot", { primary: true }) : ""}${claimableRent(s, own).length ? btn("Tagih sewa (" + claimableRent(s, own).length + ")", "rentClaims", { primary: true }) : ""}<div class="menu-grid">${(s
             ? [
                 ["room", "Room & koneksi", "people"],
@@ -481,19 +516,15 @@ function auxiliary(p) {
       return {
         title: "Atur VS Bot",
         html:
-          lead(
-            "gear",
-            "Teman Berpetualang",
-            "Persona tetap, model kecerdasan bisa dipilih.",
-          ) +
-          `<label class="field">Nama pemain<input name="playerName" value="${esc(ui.name)}" maxlength="24"></label><div class="setup-row"><span>Total peserta</span><div class="segments">${[2, 3, 4].map((n) => `<button data-action="count" data-value="${n}" aria-pressed="${n === ui.count}">${n}</button>`).join("")}</div></div>${btn("Pilih pion", "pawn")}` +
+          lead("gear", "Teman Berpetualang", "") +
+          `<label class="field">Nama pemain<input name="playerName" value="${esc(ui.name)}" maxlength="24"></label><div class="setup-controls"><div class="setup-row"><span>Peserta</span><div class="segments">${[2, 3, 4].map((n) => `<button data-action="count" data-value="${n}" aria-pressed="${n === ui.count}">${n}</button>`).join("")}</div></div>${btn("Pilih pion", "pawn")}</div>` +
           PERSONAS.slice(0, ui.count - 1)
             .map(
               (p, i) =>
                 `<label class="bot-setting">${avatar(i + 1)}<span><b>${esc(p.name)}</b><small>${p.role}</small></span><select name="level-${p.id}">${MODELS.map((m) => `<option value="${m.id}" ${ui.levels[p.id] === m.id ? "selected" : ""}>${m.label}</option>`).join("")}</select></label>`,
             )
             .join("") +
-          `<label class="field">Aturan sewa<select name="rules"><option value="digital" ${ui.rules === "digital" ? "selected" : ""}>Digital · otomatis</option><option value="classic" ${ui.rules === "classic" ? "selected" : ""}>Meja Klasik · tagih manual</option></select></label><label class="toggle">Groq opsional<input type="checkbox" name="advisor" ${ui.advisor ? "checked" : ""} ${!session.configured ? "disabled" : ""}></label><p class="inline-note">${session.configured ? "Terkonfigurasi; belum berarti request berhasil." : "Groq belum tersedia."} Bot lokal tetap mandiri.</p>`,
+          `<label class="field">Aturan sewa<select name="rules"><option value="digital" ${ui.rules === "digital" ? "selected" : ""}>Digital · otomatis</option><option value="classic" ${ui.rules === "classic" ? "selected" : ""}>Meja Klasik · tagih manual</option></select></label><label class="toggle">Advisor Groq<input type="checkbox" name="advisor" ${ui.advisor ? "checked" : ""} ${!session.configured ? "disabled" : ""}></label><p class="inline-note">${session.configured ? "Opsional; koneksi advisor diperiksa saat dipakai." : "Advisor belum dikonfigurasi."} Bot lokal tetap mandiri.</p>`,
         footer: btn("Selesai", "close", { primary: true }),
       };
     case "pawn": {
@@ -506,7 +537,7 @@ function auxiliary(p) {
       return {
         title: "Pilih Pion",
         html:
-          lead("people", "Pilih Pion", "Identitas perjalananmu di Nusantara.") +
+          lead("people", "Pilih Pion") +
           `<div class="pawn-grid">${TOKENS.map((t) => `<button data-action="choosePawn" data-id="${t.id}" ${used.has(t.id) ? "disabled" : ""} class="${t.id === selected ? "selected" : ""}">${pawnArt(t.id, t.name)}<b>${t.name}</b><small>${esc(used.get(t.id) || "Tersedia")}</small></button>`).join("")}</div>`,
         footer: btn("Selesai", "close", { primary: true }),
       };
@@ -532,7 +563,7 @@ function auxiliary(p) {
             )
             .join(
               "",
-            )}</div>${ui.roomMode === "create" ? `<label class="field">Kapasitas room<select name="capacity">${[2, 3, 4, 5, 6].map((n) => `<option value="${n}" ${n === (ui.capacity || 6) ? "selected" : ""}>${n} peserta</option>`).join("")}</select></label><p class="body-copy">Undang teman dengan kode room setelah dibuat. Identitas pemain memakai akun masing-masing.</p>` : ui.roomMode === "join" ? `<label class="field">Kode room<input name="joinCode" value="${esc(ui.joinCode)}" maxlength="8" placeholder="ABCDEFGH" autocomplete="off" autocapitalize="characters"></label><p class="inline-note">8 karakter. Kode room bukan bukti kepemilikan kursi.</p>` : '<p class="body-copy">Masuk dengan identitas pemilik pertandingan untuk melanjutkan.</p>'}<div class="identity-chip">${icon("people", 19)}<span>${session.auth?.session() ? "Identitas tersedia" : "Belum masuk"}</span><button data-action="auth">${session.auth?.session() ? "Akun" : "Masuk / Tamu"}</button></div><div class="online-status" data-online-status="${status.code}" role="status"><b>${esc(status.label)}</b><p>${esc(status.detail)}</p></div>${btn("Periksa ulang", "retryOnline", { disabled: session.configStatus === "loading" })}`,
+            )}</div>${ui.roomMode === "create" ? `<label class="field">Kapasitas room<select name="capacity">${[2, 3, 4, 5, 6].map((n) => `<option value="${n}" ${n === (ui.capacity || 6) ? "selected" : ""}>${n} peserta</option>`).join("")}</select></label><p class="inline-note">Bagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.</p>` : ui.roomMode === "join" ? `<label class="field">Kode room<input name="joinCode" value="${esc(ui.joinCode)}" maxlength="8" placeholder="ABCDEFGH" autocomplete="off" autocapitalize="characters"></label><p class="inline-note">8 karakter. Kode room bukan bukti kepemilikan kursi.</p>` : '<p class="body-copy">Masuk dengan identitas pemilik pertandingan untuk melanjutkan.</p>'}<div class="identity-chip">${icon("people", 19)}<span>${session.auth?.session() ? "Identitas tersedia" : "Belum masuk"}</span><button data-action="auth">${session.auth?.session() ? "Akun" : "Masuk / Tamu"}</button></div><div class="online-status" data-online-status="${status.code}" role="status"><b>${esc(status.label)}</b><p>${esc(status.detail)}</p></div>${btn("Periksa ulang", "retryOnline", { disabled: session.configStatus === "loading" })}`,
         footer: btn(
           ui.roomMode === "create"
             ? "Buat Room"
@@ -601,7 +632,7 @@ function auxiliary(p) {
       return {
         title: "Pengaturan",
         html:
-          lead("gear", "Pengaturan", "Sesuaikan kenyamanan bermain.") +
+          lead("gear", "Pengaturan") +
           `<label class="toggle">Efek suara<input type="checkbox" name="sound" ${ui.sound ? "checked" : ""}></label><label class="toggle">Animasi cepat<input type="checkbox" name="fast" ${session.fast ? "checked" : ""}></label><label class="toggle">Kurangi gerakan<input type="checkbox" name="reduced" ${session.reduced ? "checked" : ""}></label><p class="inline-note">Pengaturan disimpan pada perangkat ini. Preferensi reduced motion sistem tetap dihormati.</p><div class="fact-row"><span>Versi</span><b>${APP_VERSION} · Papan Klasik</b></div>`,
         footer: btn("Selesai", "close", { primary: true }),
       };
@@ -694,6 +725,13 @@ function renderDialog() {
     footerHTML = "";
     return;
   }
+  if (p.kind === "auction") {
+    const identity = auctionIdentity(session.view);
+    if (ui.auctionId !== identity) {
+      ui.auctionId = identity;
+      ui.bid = 0;
+    }
+  }
   let content = auxiliary(p);
   if (!content && (session.view || p.kind === "room"))
     content = renderPopup(session, ui, p);
@@ -701,6 +739,14 @@ function renderDialog() {
     close();
     return;
   }
+  // Cards, certificates and deck catalogs keep their existing visual contract.
+  const compact =
+    !/class="(?:[^"]*\s)?(?:deed|retro-card|deck-catalog)(?:\s|")/.test(
+      content.html,
+    );
+  const density = compact ? "compact" : "preserved";
+  const densityChanged = dialog.dataset.density !== density;
+  dialog.dataset.density = density;
   const key = p.key || p.kind + ":" + (p.id ?? ""),
     markup = `${content.html}${session.error ? `<p class="dialog-status" role="status">${esc(session.error)}</p>` : ""}`;
   if (popupKey !== key) {
@@ -709,7 +755,7 @@ function renderDialog() {
     popupKey = key;
   }
   const assetStates =
-    popupKey === key && dialog.dataset.kind === "assets"
+    popupKey === key && ["assets", "bank"].includes(dialog.dataset.kind)
       ? [...dialogBody.querySelectorAll("[data-asset-key]")].map((n) => [
           n.dataset.assetKey,
           n.open,
@@ -722,7 +768,7 @@ function renderDialog() {
     start = focused?.selectionStart,
     end = focused?.selectionEnd,
     scroll = dialogBody.scrollTop;
-  if (popupHTML !== markup) {
+  if (popupHTML !== markup || densityChanged) {
     dialogBody.innerHTML = markup;
     enhanceSelections(dialogBody);
     decorateCurrency(dialogBody);
@@ -741,7 +787,7 @@ function renderDialog() {
     !/data-action="(?:close|saveTradeDraft|pickerDone)"/.test(footer)
   )
     footer += btn("Selesai", "close");
-  if (footerHTML !== footer) {
+  if (footerHTML !== footer || densityChanged) {
     dialogFooter.innerHTML = footer;
     decorateCurrency(dialogFooter);
     footerHTML = footer;
@@ -751,6 +797,13 @@ function renderDialog() {
   dialogClose.disabled = false;
   dialogClose.hidden = !!dialogFooter.querySelector("button");
   dialog.classList.toggle("has-close", !dialogClose.hidden);
+  if (compact) {
+    upgradeIcons(dialogBody);
+    upgradeIcons(dialogFooter);
+  }
+  dialogFooter.dataset.actions = String(
+    dialogFooter.querySelectorAll(":scope > button").length,
+  );
   if (!dialog.open) dialog.showModal();
   if (name) {
     const replacement =
@@ -984,6 +1037,7 @@ async function perform(action, el) {
         });
         return;
       case "history":
+      case "bank":
       case "room":
       case "allTiles":
       case "rentClaims":
@@ -992,6 +1046,24 @@ async function perform(action, el) {
         return;
       case "selectedProperty":
         open({ kind: "property", id: ui.selected });
+        return;
+      case "certificate":
+        if (!BOARD[id]?.price || !session.state || ui.popup?.preview) return;
+        persistTradeDraft();
+        ui.certificateReturn = {
+          popup: ui.popup,
+          matchId: session.state.matchId,
+          scroll: dialogBody.scrollTop,
+          details: [...dialogBody.querySelectorAll("[data-asset-key]")].map(
+            (n) => [n.dataset.assetKey, n.open],
+          ),
+        };
+        open({
+          kind: "property",
+          id,
+          preview: true,
+          bankContext: ui.popup?.kind === "bank",
+        });
         return;
       case "property":
       case "manage":
@@ -1285,6 +1357,21 @@ document.addEventListener("input", (e) => {
       const status = tradeDraftStatus(session.view, session.seat, ui.trade),
         b = dialog.querySelector("[data-action=submitTrade]");
       if (b) b.disabled = status.invalid || !status.hasValue;
+      const estimate = dialog.querySelector("[data-trade-estimate]");
+      if (estimate) {
+        const expanded = estimate.querySelector("details")?.open;
+        estimate.innerHTML = tradeEstimateMarkup(
+          session.view,
+          {
+            ...ui.trade,
+            from: ui.tradeCounter ? session.view.trade?.to : session.seat,
+          },
+          session.seat,
+        );
+        if (expanded && estimate.querySelector("details"))
+          estimate.querySelector("details").open = true;
+        decorateCurrency(estimate);
+      }
       dialog.querySelector("[data-trade-status]").textContent =
         status.reason ||
         "Kepemilikan dan saldo diperiksa kembali saat transaksi.";

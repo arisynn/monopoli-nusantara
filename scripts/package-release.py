@@ -16,7 +16,7 @@ version = json.loads((root / 'package.json').read_text())['version']
 def included(path):
     parts = path.relative_to(root).parts
     return not (
-        any(p in {'node_modules', 'dist', '.git', '__pycache__'} for p in parts)
+        any(p in {'node_modules', 'dist', 'server-dist', '.git', '__pycache__'} for p in parts)
         or (path.name.startswith('.env') and path.name != '.env.example')
         or path.suffix in {'.zip', '.log', '.tsbuildinfo', '.pyc'}
         or path.name == 'PACKAGE_MANIFEST.json'
@@ -27,7 +27,7 @@ secrets = []
 if (root / '.env').exists():
     for line in (root / '.env').read_text().splitlines():
         name, sep, value = line.partition('=')
-        if sep and any(x in name for x in ['TOKEN', 'API_KEY', 'SERVICE_ROLE_KEY']) and len(value) > 15:
+        if sep and any(x in name for x in ['TOKEN', 'API_KEY', 'SERVICE_ROLE_KEY', 'SECRET_KEY']) and len(value) > 15:
             secrets.append(value.encode())
 entries = []
 for path in files:
@@ -36,12 +36,12 @@ for path in files:
         raise SystemExit('Secret detected in source file: ' + str(path.relative_to(root)))
     entries.append({'path': path.relative_to(root).as_posix(), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
 manifest = {
-    'release': version + ' Stability',
+    'release': version + ' Multiplayer & Result UI Fix',
     'generatedAt': datetime.now(timezone.utc).isoformat(),
-    'basisVersion': '4.8.2',
+    'basisVersion': '4.9.1',
     'hashedFileCount': len(entries),
     'selfHash': 'Excluded to avoid a circular digest',
-    'excluded': ['.env and private env files', 'node_modules', 'dist', '.git', 'logs', 'ZIP files'],
+    'excluded': ['.env and private env files', 'node_modules', 'dist', 'server-dist', '.git', 'logs', 'ZIP files'],
     'files': entries,
 }
 manifest_path = root / 'PACKAGE_MANIFEST.json'

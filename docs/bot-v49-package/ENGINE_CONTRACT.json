@@ -1,0 +1,76 @@
+{
+  "base": "workspace Monopoli Nusantara 4.8.2 / game schema 2 / nusantara-c1009-2",
+  "warning": "Audit target exports/state before merge. Do not replace target engine or backend.",
+  "runtimeImports": {
+    "../game.mjs": [
+      "command",
+      "decisionActor",
+      "chooseBot",
+      "rent",
+      "assets",
+      "complete",
+      "stock",
+      "redemption",
+      "interest",
+      "canTrade",
+      "canManage",
+      "managementError",
+      "botCandidates"
+    ],
+    "../content.mjs": [
+      "BOARD",
+      "GROUPS",
+      "DECKS",
+      "RULEPACK",
+      "AUCTION_RULES"
+    ]
+  },
+  "stateFields": [
+    "schemaVersion",
+    "matchId",
+    "version",
+    "players",
+    "assets",
+    "turn",
+    "turnSerial",
+    "round",
+    "phase",
+    "doubles",
+    "dice",
+    "bank",
+    "debt",
+    "auction",
+    "card",
+    "trade",
+    "mortgageDecision",
+    "buildOffer",
+    "rentClaims",
+    "queue",
+    "botMemory (optional)",
+    "advisorEnabled (optional)"
+  ],
+  "playerFields": [
+    "id (array index integer)",
+    "cash (internal Nusa units)",
+    "pos (0..39)",
+    "inJail",
+    "jail",
+    "out",
+    "cards",
+    "botPersona (optional)",
+    "botDifficulty (optional)"
+  ],
+  "assetFields": [
+    "owner (number|null)",
+    "level (0..5)",
+    "mortgaged (boolean)"
+  ],
+  "coreReturns": {
+    "decideMind": "MindPlan with action, candidates, diagnostics",
+    "planDecision": "economic plan with action/candidates/summary",
+    "chooseSmartBot": "action|null"
+  },
+  "memoryHook": "recordBotMemory(next, previous, actor, action), exactly once after successful command",
+  "runtimeDependencies": "No new npm runtime dependencies. Browser Worker/performance/structuredClone and supported modern JS required.",
+  "tooling": "Node24 scripts; target repo decides build/TypeScript runner."
+}

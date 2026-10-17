@@ -1,0 +1,555 @@
+{
+  "version": "4.9.0",
+  "generatedAt": "2026-10-16T23:18:31.986Z",
+  "split": "tuning",
+  "command": [
+    "/workspace/monopoli-nusantara-v4.9.0/scripts/benchmark-learning.mjs",
+    "--model=docs/BOT_INTEGRATION_UNTRAINED.model.json",
+    "--variants=foundation",
+    "--seeds=2",
+    "--players=2",
+    "--workers=2",
+    "--split=tuning",
+    "--seed-base=1430000",
+    "--output=docs/BOT_INTEGRATION_SMOKE.json"
+  ],
+  "provenance": {
+    "sourceHash": "63f883f3b9c768182149797a2c35ab9408326e820ec8aa2440a329b6d9e49740",
+    "files": {
+      "lib/game.mjs": "d8452c74d4f18522c237dd787102daf66ad06823db92ae69c577eb14102fdb8f",
+      "lib/content.mjs": "4e87e3b37db870f45de641cb897bcd290ef131e7363a55f74b53d95113674bbd",
+      "lib/bot/analysis.mjs": "f0ae79e4d8e8522a91dd886710f73418f8c317b575dd1ef7c65aa3a1e79cd693",
+      "lib/bot/candidates.mjs": "6916041216962661a1dae818fdb20463ec948ee9a36eff84f4210464bc05a948",
+      "lib/bot/development.mjs": "4d2e1da245052f3798745f1063430e08ba20defd3551d17c94f8fffe7b8e333d",
+      "lib/bot/learning.mjs": "fbe38dc694dfdab7a3c247c55fe742d18f5720d89fd8cf2be73d1e1778de48cd",
+      "lib/bot/liquidation.mjs": "d6cb4ce8a21d914a06dbf2a1219cfa2d3c0918beaed61c10923cdf5c03f7444c",
+      "lib/bot/memory.mjs": "2b807078aaef0eebf6afa9be8281fa88728a2d03678b03d907afe5e8c245dcbe",
+      "lib/bot/mind-client.mjs": "c90eff416ceb3401af4cfec29f063ade1cf55c51d578685ab9c0f0af52dd499d",
+      "lib/bot/mind-config.mjs": "e6487ffce445573e78f424f357930eca5c034692030a304d34b4bddb221206db",
+      "lib/bot/mind.mjs": "f0fa6f3d931d349284de8c1a66361721b1c4dc64c39e3f36ec34f13b3becc50a",
+      "lib/bot/mind.worker.mjs": "53da52b7e1c2f1beee0e538545f791f27f6937d16e4c047c6895b96352485554",
+      "lib/bot/negotiation.mjs": "299f2c12413609d34e24d231b0539456a05e4b5cd63d1af46de3fa4643b827e8",
+      "lib/bot/personas.mjs": "170f9783488546ac6f194787d06650819a6aa9cbabfd55ec744fe222016127db",
+      "lib/bot/probability.mjs": "17a940e3c66ee3fb0dbf2db6dcbb6e414128b519768a98d4a28b4c90660032ae",
+      "lib/bot/strategy.mjs": "c0087115aa84066d78401e35e3a683829435a9fe2771605dc9f5f886abc0ba40"
+    }
+  },
+  "protocol": {
+    "scripts/benchmark-learning.mjs": "856c7fe16c9282445c6824d93eefad0987c4c6cba1c6188af01446a3defbdd53",
+    "scripts/mind-match-worker.mjs": "a99512b325544639fc1b6b7e836d98af06851e4ae1ee459d3c0c99cf7341d92f",
+    "scripts/mind-learning-lab.mjs": "7adee9f042d334153d59490d87693a83bc818de92771f192b6e786e473489ea5",
+    "scripts/mind-lab-utils.mjs": "26178e921355cd23dd2bb9a21c669e11c26013eb91113c71864403b7e260fd24"
+  },
+  "resume": null,
+  "sourceHash": "63f883f3b9c768182149797a2c35ab9408326e820ec8aa2440a329b6d9e49740",
+  "modelHash": "9d6a48972750a5a3ab01ebfa5da5888023e42f12c3b4ee890f050426f6546b09",
+  "seedBase": 1430000,
+  "seeds": 2,
+  "sizes": [
+    2
+  ],
+  "variants": [
+    "foundation"
+  ],
+  "pool": "baseline",
+  "workers": 2,
+  "modelTraining": {
+    "games": 0,
+    "seedRanges": [],
+    "sourceHash": "63f883f3b9c768182149797a2c35ab9408326e820ec8aa2440a329b6d9e49740"
+  },
+  "wallSeconds": 48.572341396,
+  "byVariant": {
+    "foundation": {
+      "games": 4,
+      "finished": 4,
+      "wins": 1,
+      "winRate": 0.25,
+      "illegal": 0,
+      "failures": 0,
+      "bankrupt": 3,
+      "medianPerMatchDecisionP50": 8.76952899999742,
+      "medianPerMatchDecisionP95": 65.60651399999915
+    }
+  },
+  "bySize": {
+    "2": {
+      "foundation": {
+        "games": 4,
+        "finished": 4,
+        "wins": 1,
+        "winRate": 0.25,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 3,
+        "medianPerMatchDecisionP50": 8.76952899999742,
+        "medianPerMatchDecisionP95": 65.60651399999915
+      }
+    }
+  },
+  "byPersona": {
+    "raka": {
+      "foundation": {
+        "games": 2,
+        "finished": 2,
+        "wins": 1,
+        "winRate": 0.5,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 1,
+        "medianPerMatchDecisionP50": 24.189430000002176,
+        "medianPerMatchDecisionP95": 99.31651200000124
+      }
+    },
+    "bima": {
+      "foundation": {
+        "games": 1,
+        "finished": 1,
+        "wins": 0,
+        "winRate": 0,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 1,
+        "medianPerMatchDecisionP50": 4.535511000001861,
+        "medianPerMatchDecisionP95": 20.355314000000362
+      }
+    },
+    "sari": {
+      "foundation": {
+        "games": 1,
+        "finished": 1,
+        "wins": 0,
+        "winRate": 0,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 1,
+        "medianPerMatchDecisionP50": 6.616546000004746,
+        "medianPerMatchDecisionP95": 47.185018000003765
+      }
+    }
+  },
+  "pairedVsControl": {
+    "foundation": {
+      "pairs": 4,
+      "independentSeedSizeClusters": 2,
+      "delta": -0.25,
+      "clusterBootstrap95": [
+        -0.5,
+        0
+      ]
+    }
+  },
+  "learningVsFoundation": {
+    "pairs": 0,
+    "independentSeedSizeClusters": 0,
+    "delta": null,
+    "clusterBootstrap95": [
+      null,
+      null
+    ]
+  },
+  "runtimeVsSearch": {
+    "pairs": 0,
+    "independentSeedSizeClusters": 0,
+    "delta": null,
+    "clusterBootstrap95": [
+      null,
+      null
+    ]
+  },
+  "componentPromotion": {
+    "promote": false,
+    "reasons": [
+      "not_final_holdout",
+      "insufficient_held_out_games",
+      "insufficient_independent_clusters",
+      "invalid_or_missing_action_results",
+      "finish_rate_below_99_percent",
+      "learning_superiority_not_established"
+    ]
+  },
+  "promotion": {
+    "promote": false,
+    "reasons": [
+      "not_final_holdout",
+      "insufficient_runtime_comparisons",
+      "insufficient_independent_clusters",
+      "runtime_health_not_established",
+      "runtime_learning_superiority_not_established"
+    ],
+    "evidenceScope": "learned-search",
+    "automaticProductionChanges": false
+  },
+  "controls": [
+    {
+      "seed": 1430000,
+      "n": 2,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 322,
+      "actionHash": "def4cb2408166365147c1f3593270e2032c40e613ef8e85a77783949a406830d",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 30393.432645999997,
+      "metrics": {
+        "builds": 22,
+        "trades": 3,
+        "offers": 5,
+        "auctions": 10,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 26.32524099999955,
+        "p95": 160.66977699999916,
+        "max": 3034.6196339999988
+      },
+      "latencyByPolicy": {
+        "baseline": {
+          "samples": 322,
+          "p50": 26.32524099999955,
+          "p95": 160.66977699999916,
+          "max": 3034.6196339999988
+        }
+      },
+      "bankrupt": [
+        true,
+        false
+      ],
+      "seat": 0,
+      "won": false
+    },
+    {
+      "seed": 1430000,
+      "n": 2,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 322,
+      "actionHash": "def4cb2408166365147c1f3593270e2032c40e613ef8e85a77783949a406830d",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 30393.432645999997,
+      "metrics": {
+        "builds": 22,
+        "trades": 3,
+        "offers": 5,
+        "auctions": 10,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 26.32524099999955,
+        "p95": 160.66977699999916,
+        "max": 3034.6196339999988
+      },
+      "latencyByPolicy": {
+        "baseline": {
+          "samples": 322,
+          "p50": 26.32524099999955,
+          "p95": 160.66977699999916,
+          "max": 3034.6196339999988
+        }
+      },
+      "bankrupt": [
+        true,
+        false
+      ],
+      "seat": 1,
+      "won": true
+    },
+    {
+      "seed": 1430997,
+      "n": 2,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 618,
+      "actionHash": "ffcdc0faf45d4f6cc1fe7cc34949feb27ec70266e33ec871cc375e42b5e4bdac",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 20068.932831,
+      "metrics": {
+        "builds": 36,
+        "trades": 3,
+        "offers": 3,
+        "auctions": 22,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 13.906670999999733,
+        "p95": 82.88873600000079,
+        "max": 817.8353889999999
+      },
+      "latencyByPolicy": {
+        "baseline": {
+          "samples": 618,
+          "p50": 13.906670999999733,
+          "p95": 82.88873600000079,
+          "max": 817.8353889999999
+        }
+      },
+      "bankrupt": [
+        false,
+        true
+      ],
+      "seat": 0,
+      "won": true
+    },
+    {
+      "seed": 1430997,
+      "n": 2,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 618,
+      "actionHash": "ffcdc0faf45d4f6cc1fe7cc34949feb27ec70266e33ec871cc375e42b5e4bdac",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 20068.932831,
+      "metrics": {
+        "builds": 36,
+        "trades": 3,
+        "offers": 3,
+        "auctions": 22,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 13.906670999999733,
+        "p95": 82.88873600000079,
+        "max": 817.8353889999999
+      },
+      "latencyByPolicy": {
+        "baseline": {
+          "samples": 618,
+          "p50": 13.906670999999733,
+          "p95": 82.88873600000079,
+          "max": 817.8353889999999
+        }
+      },
+      "bankrupt": [
+        false,
+        true
+      ],
+      "seat": 1,
+      "won": false
+    }
+  ],
+  "runs": [
+    {
+      "seed": 1430000,
+      "n": 2,
+      "policies": [
+        "economic",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 266,
+      "actionHash": "bdac4ceb578e14002f62877e7eb465392ed17186d9ed4a2fb78beb2e72f32ac3",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 2885.9844529999973,
+      "metrics": {
+        "builds": 19,
+        "trades": 2,
+        "offers": 3,
+        "auctions": 11,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 5.685523000000103,
+        "p95": 44.71800500000245,
+        "max": 83.69586200000049
+      },
+      "latencyByPolicy": {
+        "economic": {
+          "samples": 136,
+          "p50": 6.616546000004746,
+          "p95": 47.185018000003765,
+          "max": 67.51349800000025
+        },
+        "baseline": {
+          "samples": 130,
+          "p50": 5.24229799999739,
+          "p95": 40.621406999998726,
+          "max": 83.69586200000049
+        }
+      },
+      "bankrupt": [
+        true,
+        false
+      ],
+      "seat": 0,
+      "variant": "foundation",
+      "won": false
+    },
+    {
+      "seed": 1430000,
+      "n": 2,
+      "policies": [
+        "baseline",
+        "economic"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 391,
+      "actionHash": "bce26d182deb160bf40c1fbdbbac2bc4dc0e8dc284a326e6ed461c1c8ec94c1a",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 7506.6731230000005,
+      "metrics": {
+        "builds": 27,
+        "trades": 3,
+        "offers": 5,
+        "auctions": 12,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 10.281050000005052,
+        "p95": 61.72043500000291,
+        "max": 317.9287699999986
+      },
+      "latencyByPolicy": {
+        "baseline": {
+          "samples": 205,
+          "p50": 11.976009999998496,
+          "p95": 59.58542899999884,
+          "max": 317.9287699999986
+        },
+        "economic": {
+          "samples": 186,
+          "p50": 8.76952899999742,
+          "p95": 65.60651399999915,
+          "max": 142.4543180000037
+        }
+      },
+      "bankrupt": [
+        false,
+        true
+      ],
+      "seat": 1,
+      "variant": "foundation",
+      "won": false
+    },
+    {
+      "seed": 1430997,
+      "n": 2,
+      "policies": [
+        "economic",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 595,
+      "actionHash": "947ce9cc281261b9fc67d3fc8c29491e752af90429b9f0d3e95ff2b0aba8dfa6",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 20906.123332000003,
+      "metrics": {
+        "builds": 57,
+        "trades": 3,
+        "offers": 4,
+        "auctions": 17,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 18.378702000001795,
+        "p95": 96.68167499999981,
+        "max": 544.277052999998
+      },
+      "latencyByPolicy": {
+        "economic": {
+          "samples": 319,
+          "p50": 24.189430000002176,
+          "p95": 99.31651200000124,
+          "max": 187.51492299999518
+        },
+        "baseline": {
+          "samples": 276,
+          "p50": 14.391091000001325,
+          "p95": 93.83190000000104,
+          "max": 544.277052999998
+        }
+      },
+      "bankrupt": [
+        false,
+        true
+      ],
+      "seat": 0,
+      "variant": "foundation",
+      "won": true
+    },
+    {
+      "seed": 1430997,
+      "n": 2,
+      "policies": [
+        "baseline",
+        "economic"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 519,
+      "actionHash": "e9010ef08596369e45d6fce4e901f1e8f72bc9ca107a3e80b33b28ebc4f47062",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 7166.865459999994,
+      "metrics": {
+        "builds": 34,
+        "trades": 3,
+        "offers": 3,
+        "auctions": 16,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 6.384749999997439,
+        "p95": 46.27129699999932,
+        "max": 220.53907599999366
+      },
+      "latencyByPolicy": {
+        "baseline": {
+          "samples": 254,
+          "p50": 13.31250700000237,
+          "p95": 57.99458600000071,
+          "max": 220.53907599999366
+        },
+        "economic": {
+          "samples": 265,
+          "p50": 4.535511000001861,
+          "p95": 20.355314000000362,
+          "max": 54.60171899999841
+        }
+      },
+      "bankrupt": [
+        false,
+        true
+      ],
+      "seat": 1,
+      "variant": "foundation",
+      "won": false
+    }
+  ],
+  "limitations": [
+    "Real local engine; no live Groq or Supabase.",
+    "Paired seeds share initial RNG; action policies can consume different later RNG values.",
+    "Clustered bootstrap groups seat rotations by seed and participant count.",
+    "Unfinished games receive no invented winner and count as zero wins.",
+    "Reported latency is cloud CPU with the declared worker count, not Android.",
+    "Self-play lab can repeat persona labels at six seats; production room limits are unchanged."
+  ]
+}

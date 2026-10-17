@@ -1,0 +1,101 @@
+{
+  "base": "reference engine C1009/schema 2, bot 4.10.0, model schema 2",
+  "warning": "Audit target exports/state before merge. Do not replace target engine or backend.",
+  "runtimeImports": {
+    "../content.mjs": [
+      "AUCTION_RULES",
+      "BOARD",
+      "DECKS",
+      "GROUPS",
+      "RULEPACK"
+    ],
+    "../game.mjs": [
+      "BOARD",
+      "GROUPS",
+      "assets",
+      "botCandidates",
+      "canManage",
+      "canTrade",
+      "chooseBot",
+      "command",
+      "complete",
+      "decisionActor",
+      "interest",
+      "managementError",
+      "redemption",
+      "rent",
+      "stock"
+    ]
+  },
+  "stateFields": [
+    "schemaVersion",
+    "matchId",
+    "version",
+    "players",
+    "assets",
+    "turn",
+    "turnSerial",
+    "round",
+    "phase",
+    "doubles",
+    "dice",
+    "bank",
+    "debt",
+    "auction",
+    "card",
+    "trade",
+    "mortgageDecision",
+    "buildOffer",
+    "rentClaims",
+    "queue",
+    "botMemory (optional)",
+    "advisorEnabled (optional)"
+  ],
+  "playerFields": [
+    "id (array index integer)",
+    "cash (internal Nusa units)",
+    "pos (0..39)",
+    "inJail",
+    "jail",
+    "out",
+    "cards",
+    "botPersona (optional)",
+    "botDifficulty (optional)"
+  ],
+  "assetFields": [
+    "owner (number|null)",
+    "level (0..5)",
+    "mortgaged (boolean)"
+  ],
+  "coreReturns": {
+    "decideMind": "MindPlan with action, candidates, diagnostics",
+    "planDecision": "economic plan with action/candidates/summary",
+    "chooseSmartBot": "action|null"
+  },
+  "memoryHook": "recordBotMemory(next, previous, actor, action), exactly once after successful command",
+  "runtimeDependencies": "No new npm runtime dependencies. Browser Worker/performance/structuredClone and supported modern JS required.",
+  "tooling": "Node24 scripts; target repo decides build/TypeScript runner.",
+  "sourceHash": "a4ca7ebbdbc02b9eb9519feb8ce79ce0a931705f2eb164bd11ffdcea325fcbe6",
+  "learning": {
+    "schema": 2,
+    "valueFeatures": 88,
+    "policyFeatures": 30,
+    "network": "optional tanh residual, width <= 32",
+    "runtimeBundledWeights": null
+  },
+  "candidates": "macro?: BotAction[] is sandbox metadata, not a new engine command",
+  "runtimeNewModules": [
+    "economy.mjs",
+    "risk.mjs",
+    "allocation.mjs",
+    "concessions.mjs",
+    "scenario-random.mjs"
+  ],
+  "rulesVerified": {
+    "auctionPass": "can re-enter after a subsequent BID clears passed; all remaining passes can end auction",
+    "mortgageTransfer": "MORTGAGE_KEEP queues interest debt; MORTGAGE_REDEEM pays redemption directly",
+    "hotelSale": "SELL needs 4 bank houses; SELL_SET removes all group buildings",
+    "construction": "BUILD is one level; scarce supply can open buildOffer/building auction"
+  },
+  "currencyAdapter": "C1009 fallback salary = 200 * RULEPACK.scale, startingCash = 7.5 * salary. Audit target constants."
+}

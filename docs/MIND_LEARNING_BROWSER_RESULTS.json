@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-10-17T00:45:28.493Z",
+  "checks": [
+    {
+      "name": "real browser module worker runs the schema-2 tiny-network candidate off-thread with legal action and matching revision",
+      "passed": true,
+      "mainThreadTicks": 135
+    },
+    {
+      "name": "pre-cached local bot and worker execute with browser network offline; no Groq/Supabase/Redis dependency",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium mobile emulation, not physical Android.",
+    "Candidate model is explicitly supplied for this research test; runtime promotion remains gated.",
+    "No live multiplayer or Groq was contacted."
+  ]
+}

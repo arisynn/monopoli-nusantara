@@ -1,0 +1,198 @@
+{
+  "schema": 1,
+  "version": "4.10.0",
+  "generatedAt": "2026-10-17T00:32:41.787485+00:00",
+  "sourceHash": "a4ca7ebbdbc02b9eb9519feb8ce79ce0a931705f2eb164bd11ffdcea325fcbe6",
+  "scope": "bot-only",
+  "runtimeModel": "null; candidate research weights separate",
+  "files": {
+    "BOT_ONLY.patch": {
+      "bytes": 84748,
+      "sha256": "4f6b897932a33b9d10feecbf1af6cdbeed5b6cf358e0dc398674182c63c38e73"
+    },
+    "README_UNTUK_AI.md": {
+      "bytes": 9226,
+      "sha256": "cd95099d9fe584a27381cc49e4111af35a993a384f76e1913e85354156fc48aa"
+    },
+    "payload/lib/bot/allocation.mjs": {
+      "bytes": 4485,
+      "sha256": "09b84ff5338256a12abb041536a2457a65654ee5abb1041df0a50165570f0d2a"
+    },
+    "payload/lib/bot/analysis.mjs": {
+      "bytes": 7946,
+      "sha256": "3998cabdaa773af80e22c25d586ca23cee2da63bb7378dc36d5e57377c1deaeb"
+    },
+    "payload/lib/bot/candidates.mjs": {
+      "bytes": 3531,
+      "sha256": "319cabb72f89384d5f709e31a837536e38f0a228945ebdd03a000149ac0dfb22"
+    },
+    "payload/lib/bot/concessions.mjs": {
+      "bytes": 1494,
+      "sha256": "7eb04bdd95a10b9ce92281864a49b27c10c30f68924bb0e2fcc5bf5691ee4e57"
+    },
+    "payload/lib/bot/contracts.ts": {
+      "bytes": 2633,
+      "sha256": "086f855774935e269f43c63db073e556e528344acbfcabdb226a684b1d20f7bd"
+    },
+    "payload/lib/bot/development.mjs": {
+      "bytes": 2894,
+      "sha256": "58b6f1a1ebbd0f1f8d216283c5919885e4baf9362a7d0945c98d1a10c62ac9bf"
+    },
+    "payload/lib/bot/economy.mjs": {
+      "bytes": 2094,
+      "sha256": "7cad3c30a0733df1edba98b3fb1269fde4458200a4fbfe9b46c8ab00a3394725"
+    },
+    "payload/lib/bot/learned-model.mjs": {
+      "bytes": 187,
+      "sha256": "2b20e2864348fc810529bab1fcae588b90f0577a858690eba195942af81f0380"
+    },
+    "payload/lib/bot/learning.mjs": {
+      "bytes": 15640,
+      "sha256": "28a6789795756b63caabe640e2cc9f474f95d5025ed24513587052358e4aeb07"
+    },
+    "payload/lib/bot/liquidation.mjs": {
+      "bytes": 6992,
+      "sha256": "c2f9a34d4b1dae8011fa29bd2364210e59302601a166d50baaa42438026a9970"
+    },
+    "payload/lib/bot/memory.mjs": {
+      "bytes": 4023,
+      "sha256": "7ed7d89398c479d3b1238bda739ca5dfbacf7c3f256a257990b34d44e3871e1f"
+    },
+    "payload/lib/bot/mind-client.mjs": {
+      "bytes": 2030,
+      "sha256": "c90eff416ceb3401af4cfec29f063ade1cf55c51d578685ab9c0f0af52dd499d"
+    },
+    "payload/lib/bot/mind-config.mjs": {
+      "bytes": 743,
+      "sha256": "d01e87ed3c043e225bf675f3f326442e12e185401ed8da5e7279f7422782f605"
+    },
+    "payload/lib/bot/mind.mjs": {
+      "bytes": 15362,
+      "sha256": "d2e3ce8de79d6286cad019ba2449d61e8c19c594729ceb307a57d9cc100881a7"
+    },
+    "payload/lib/bot/mind.worker.mjs": {
+      "bytes": 292,
+      "sha256": "53da52b7e1c2f1beee0e538545f791f27f6937d16e4c047c6895b96352485554"
+    },
+    "payload/lib/bot/negotiation.mjs": {
+      "bytes": 13099,
+      "sha256": "cec17726919d072cb4c7b88130951d9fba04a4719df0385cf3ebcffad79e33d0"
+    },
+    "payload/lib/bot/personas.mjs": {
+      "bytes": 1477,
+      "sha256": "f6825a8ff7118825a74ebbe382de8b7a50e21110f32b08b1367c396223dbfbf2"
+    },
+    "payload/lib/bot/probability.mjs": {
+      "bytes": 4054,
+      "sha256": "17a940e3c66ee3fb0dbf2db6dcbb6e414128b519768a98d4a28b4c90660032ae"
+    },
+    "payload/lib/bot/risk.mjs": {
+      "bytes": 5906,
+      "sha256": "3e2dff6820dc6825400ee1fdf6457950f7885a350922d86f8c191cfad05f1094"
+    },
+    "payload/lib/bot/scenario-random.mjs": {
+      "bytes": 1269,
+      "sha256": "51661f79f344ef2179b36761850170a8ab7d77398ee09a383fe3a08f3005f067"
+    },
+    "payload/lib/bot/strategy.mjs": {
+      "bytes": 7302,
+      "sha256": "6c3814f2fe5e55abd21a612bb16da8a970fa95f59e5587c7a6a79052b339c077"
+    },
+    "reference-tests/bot-strategy.test.mjs": {
+      "bytes": 8306,
+      "sha256": "0898b1c5bc653d8bea52bef5b43fc9b5d48231329fa1a9600cf0353ae41ef90d"
+    },
+    "reference-tests/mind-hybrid.test.mjs": {
+      "bytes": 14287,
+      "sha256": "ff96187ce42aae343d6cea34dc311419c656b041fc86a72299cf017ac09de54e"
+    },
+    "reference-tests/mind-learning-online.test.mjs": {
+      "bytes": 3413,
+      "sha256": "cd9ffc654383ed5b4cc2b39726b7b3dded110aeb5c9cb76ccd152c9a8b69e711"
+    },
+    "reference-tests/mind-learning.test.mjs": {
+      "bytes": 11445,
+      "sha256": "e6d6e130736efffd2408b6743fe4eadba5ec57ef19523de8ccef9ba22690c563"
+    },
+    "reports/BROWSER_WORKER.json": {
+      "bytes": 663,
+      "sha256": "33a0ab8914bad3814938ec059bf0464779d187cc7a6e1b43d6b0bf729fe08233"
+    },
+    "reports/CRN_PROBE.json": {
+      "bytes": 4214,
+      "sha256": "2d42fd5ccafc885b5e73c9350ea265c9ba342652d44c305f64b60f6e226d5d0e"
+    },
+    "reports/ENGINE_CONTRACT.json": {
+      "bytes": 2857,
+      "sha256": "7d4688a19a088fb9bfcb8e597b57d503cdf6f1e403ad6e8be8f8ba903462930f"
+    },
+    "reports/REGRESSION_WORKSPACE.json": {
+      "bytes": 1306,
+      "sha256": "26dd119d1ece6ce2f935c8056c0b5e99d7abd3879c9d1806df14cdf550d5e7df"
+    },
+    "reports/STATUS_IMPLEMENTASI.md": {
+      "bytes": 3264,
+      "sha256": "a0d380209ef055efd60bba758d6297999da45b1fa8ddc2e20d2181af1a608ad2"
+    },
+    "reports/TUNING.json": {
+      "bytes": 92026,
+      "sha256": "8ac2e9b7d2d96b3623bc1eff2c8f98714bea3dbaacde7a7de121aee2c7437b81"
+    },
+    "reports/VERIFICATION.json": {
+      "bytes": 3276,
+      "sha256": "c12a1df8133535c33dbaf5c058171386aa05dc4e07960aef5f245229eae450c6"
+    },
+    "research/LEAGUE_PILOT.json": {
+      "bytes": 52847,
+      "sha256": "9f58c688c3db6163df4e84dd9e2a00265e3b98ff26f95c530a4511527cc2b3ca"
+    },
+    "research/LEAGUE_PILOT.model.json": {
+      "bytes": 27116,
+      "sha256": "794f8c742452f5b423edd36f8748212445df0872c46b6a037aaefb97341bf5ca"
+    },
+    "tooling/scripts/benchmark-crn.mjs": {
+      "bytes": 2919,
+      "sha256": "6cc66d8f221a656cec8af8b75b2288be9e797889553f99584a1808d5838fa8bf"
+    },
+    "tooling/scripts/benchmark-hybrid.mjs": {
+      "bytes": 5924,
+      "sha256": "2c9c5409af78d07ad18f02b4b23f71933bfcb86e4ceecbc77c1e03cd9faad40c"
+    },
+    "tooling/scripts/benchmark-learning.mjs": {
+      "bytes": 9639,
+      "sha256": "856c7fe16c9282445c6824d93eefad0987c4c6cba1c6188af01446a3defbdd53"
+    },
+    "tooling/scripts/mind-lab-utils.mjs": {
+      "bytes": 1451,
+      "sha256": "60e7901c7b74ce9fe3c8126ff801cfa1082ddc115ae1751b11ccc5b75c810606"
+    },
+    "tooling/scripts/mind-league.mjs": {
+      "bytes": 1831,
+      "sha256": "55942a19cf743b2fca881326ef2a0c3655f05c958847d341f01060e46cf46ae5"
+    },
+    "tooling/scripts/mind-learning-lab.mjs": {
+      "bytes": 7191,
+      "sha256": "73502d7e900a0f4be20d36e082d364394a5cdbdeea97e2d38859c574b0799f17"
+    },
+    "tooling/scripts/mind-match-worker.mjs": {
+      "bytes": 927,
+      "sha256": "a99512b325544639fc1b6b7e836d98af06851e4ae1ee459d3c0c99cf7341d92f"
+    },
+    "tooling/scripts/mind-provenance.mjs": {
+      "bytes": 593,
+      "sha256": "e0dfc22e0771fe4586be8e0f82b4e3960e3acd4563ee89f49d1fa7c1f98408d3"
+    },
+    "tooling/scripts/promote-mind.mjs": {
+      "bytes": 1304,
+      "sha256": "8bb605f4c02dbbf0f70f01801576a845030454bdb0a995c536914431db0d01dd"
+    },
+    "tooling/scripts/test-learning-browser.mjs": {
+      "bytes": 3633,
+      "sha256": "be6d6184db63c545313ce0c2761cf9602a4b46254099110b673f81f2406b9375"
+    },
+    "tooling/scripts/train-hybrid.mjs": {
+      "bytes": 6845,
+      "sha256": "3920a1f7b41b0126efeac0633465d82c040d1a83b8fb0599ef34244beb6366a8"
+    }
+  }
+}

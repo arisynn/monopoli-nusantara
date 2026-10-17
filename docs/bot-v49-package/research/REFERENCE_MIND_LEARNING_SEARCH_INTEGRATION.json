@@ -1,0 +1,1251 @@
+{
+  "version": "4.9.0",
+  "generatedAt": "2026-10-16T17:08:55.849Z",
+  "split": "tuning",
+  "command": [
+    "/workspace/monopoli-nusantara/scripts/benchmark-learning.mjs",
+    "--seeds=1",
+    "--players=2,3,4,6",
+    "--workers=1",
+    "--variants=search,learned-search",
+    "--budget=90",
+    "--nodes=120",
+    "--model=docs/MIND_LEARNING_TRAINING.model.json",
+    "--split=tuning",
+    "--seed-base=1100000",
+    "--resume=docs/MIND_LEARNING_DIAGNOSTIC_SEARCH.json",
+    "--output=docs/MIND_LEARNING_SEARCH_INTEGRATION.json"
+  ],
+  "provenance": {
+    "sourceHash": "4199dfb632f392c984a792605786080b29b3a938f528f254a144d2a9a6cedf7d",
+    "files": {
+      "lib/game.mjs": "d8452c74d4f18522c237dd787102daf66ad06823db92ae69c577eb14102fdb8f",
+      "lib/content.mjs": "4e87e3b37db870f45de641cb897bcd290ef131e7363a55f74b53d95113674bbd",
+      "lib/bot/analysis.mjs": "f0ae79e4d8e8522a91dd886710f73418f8c317b575dd1ef7c65aa3a1e79cd693",
+      "lib/bot/candidates.mjs": "6916041216962661a1dae818fdb20463ec948ee9a36eff84f4210464bc05a948",
+      "lib/bot/development.mjs": "871ade14ac3eb35ac56910143ec9277cea45605e02141ee897e90113e5da419d",
+      "lib/bot/learning.mjs": "fbe38dc694dfdab7a3c247c55fe742d18f5720d89fd8cf2be73d1e1778de48cd",
+      "lib/bot/liquidation.mjs": "d6cb4ce8a21d914a06dbf2a1219cfa2d3c0918beaed61c10923cdf5c03f7444c",
+      "lib/bot/memory.mjs": "2b807078aaef0eebf6afa9be8281fa88728a2d03678b03d907afe5e8c245dcbe",
+      "lib/bot/mind-client.mjs": "c90eff416ceb3401af4cfec29f063ade1cf55c51d578685ab9c0f0af52dd499d",
+      "lib/bot/mind-config.mjs": "e6487ffce445573e78f424f357930eca5c034692030a304d34b4bddb221206db",
+      "lib/bot/mind.mjs": "f0fa6f3d931d349284de8c1a66361721b1c4dc64c39e3f36ec34f13b3becc50a",
+      "lib/bot/mind.worker.mjs": "53da52b7e1c2f1beee0e538545f791f27f6937d16e4c047c6895b96352485554",
+      "lib/bot/negotiation.mjs": "033dea4f4607b811d166af88e63b050b0e70f9ef040d52afa26971d7d04187ab",
+      "lib/bot/personas.mjs": "170f9783488546ac6f194787d06650819a6aa9cbabfd55ec744fe222016127db",
+      "lib/bot/probability.mjs": "17a940e3c66ee3fb0dbf2db6dcbb6e414128b519768a98d4a28b4c90660032ae",
+      "lib/bot/strategy.mjs": "c0087115aa84066d78401e35e3a683829435a9fe2771605dc9f5f886abc0ba40"
+    }
+  },
+  "protocol": {
+    "scripts/benchmark-learning.mjs": "c0f9c476da44f89841277bc2344a610ec5bc44fbf8fb5c46b1a3dcc9598d3293",
+    "scripts/mind-match-worker.mjs": "a99512b325544639fc1b6b7e836d98af06851e4ae1ee459d3c0c99cf7341d92f",
+    "scripts/mind-learning-lab.mjs": "27e7d2f37576ede5451c7ec388fc3ecf65320516e2da9ceb0efc022975b38d7c",
+    "scripts/mind-lab-utils.mjs": "26178e921355cd23dd2bb9a21c669e11c26013eb91113c71864403b7e260fd24"
+  },
+  "resume": {
+    "file": "docs/MIND_LEARNING_DIAGNOSTIC_SEARCH.json",
+    "completedGroups": 2
+  },
+  "sourceHash": "4199dfb632f392c984a792605786080b29b3a938f528f254a144d2a9a6cedf7d",
+  "modelHash": "809c37020f7acb871bb444a1ef1c758403360b565777de90630aed440f1730b9",
+  "seedBase": 1100000,
+  "seeds": 1,
+  "sizes": [
+    2,
+    3,
+    4,
+    6
+  ],
+  "variants": [
+    "search",
+    "learned-search"
+  ],
+  "pool": "baseline",
+  "workers": 1,
+  "modelTraining": {
+    "games": 120,
+    "attemptedGames": 120,
+    "seedRanges": [
+      {
+        "stage": "warmup",
+        "base": 730000,
+        "count": 72,
+        "stride": 997
+      },
+      {
+        "stage": "policy",
+        "base": 830000,
+        "count": 48,
+        "stride": 997
+      }
+    ],
+    "valueSamples": 5018,
+    "validationSamples": 720,
+    "policyUpdates": 2374,
+    "sourceHash": "4199dfb632f392c984a792605786080b29b3a938f528f254a144d2a9a6cedf7d"
+  },
+  "wallSeconds": 88.763528937,
+  "byVariant": {
+    "search": {
+      "games": 9,
+      "finished": 9,
+      "wins": 2,
+      "winRate": 0.2222222222222222,
+      "illegal": 0,
+      "failures": 0,
+      "bankrupt": 7,
+      "latencyP95Median": 95.9965979999979
+    },
+    "learned-search": {
+      "games": 9,
+      "finished": 9,
+      "wins": 2,
+      "winRate": 0.2222222222222222,
+      "illegal": 0,
+      "failures": 0,
+      "bankrupt": 7,
+      "latencyP95Median": 96.48750600000494
+    }
+  },
+  "bySize": {
+    "2": {
+      "search": {
+        "games": 2,
+        "finished": 2,
+        "wins": 1,
+        "winRate": 0.5,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 1,
+        "latencyP95Median": 98.73266099999455
+      },
+      "learned-search": {
+        "games": 2,
+        "finished": 2,
+        "wins": 1,
+        "winRate": 0.5,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 1,
+        "latencyP95Median": 99.70836799999961
+      }
+    },
+    "3": {
+      "search": {
+        "games": 3,
+        "finished": 3,
+        "wins": 0,
+        "winRate": 0,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 3,
+        "latencyP95Median": 97.64527099998668
+      },
+      "learned-search": {
+        "games": 3,
+        "finished": 3,
+        "wins": 0,
+        "winRate": 0,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 3,
+        "latencyP95Median": 96.48750600000494
+      }
+    },
+    "4": {
+      "search": {
+        "games": 4,
+        "finished": 4,
+        "wins": 1,
+        "winRate": 0.25,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 3,
+        "latencyP95Median": 94.27215799999976
+      },
+      "learned-search": {
+        "games": 4,
+        "finished": 4,
+        "wins": 1,
+        "winRate": 0.25,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 3,
+        "latencyP95Median": 91.62623599999642
+      }
+    },
+    "6": {
+      "search": {
+        "games": 0,
+        "finished": 0,
+        "wins": 0,
+        "winRate": null,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 0,
+        "latencyP95Median": null
+      },
+      "learned-search": {
+        "games": 0,
+        "finished": 0,
+        "wins": 0,
+        "winRate": null,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 0,
+        "latencyP95Median": null
+      }
+    }
+  },
+  "byPersona": {
+    "raka": {
+      "search": {
+        "games": 3,
+        "finished": 3,
+        "wins": 2,
+        "winRate": 0.6666666666666666,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 1,
+        "latencyP95Median": 98.73266099999455
+      },
+      "learned-search": {
+        "games": 3,
+        "finished": 3,
+        "wins": 2,
+        "winRate": 0.6666666666666666,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 1,
+        "latencyP95Median": 99.70836799999961
+      }
+    },
+    "bima": {
+      "search": {
+        "games": 2,
+        "finished": 2,
+        "wins": 0,
+        "winRate": 0,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 2,
+        "latencyP95Median": 97.64527099998668
+      },
+      "learned-search": {
+        "games": 2,
+        "finished": 2,
+        "wins": 0,
+        "winRate": 0,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 2,
+        "latencyP95Median": 98.17903100000694
+      }
+    },
+    "sari": {
+      "search": {
+        "games": 4,
+        "finished": 4,
+        "wins": 0,
+        "winRate": 0,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 4,
+        "latencyP95Median": 94.27215799999976
+      },
+      "learned-search": {
+        "games": 4,
+        "finished": 4,
+        "wins": 0,
+        "winRate": 0,
+        "illegal": 0,
+        "failures": 0,
+        "bankrupt": 4,
+        "latencyP95Median": 93.49587300000712
+      }
+    }
+  },
+  "pairedVsControl": {
+    "search": {
+      "pairs": 9,
+      "independentSeedSizeClusters": 3,
+      "delta": -0.1111111111111111,
+      "clusterBootstrap95": [
+        -0.3333333333333333,
+        0
+      ]
+    },
+    "learned-search": {
+      "pairs": 9,
+      "independentSeedSizeClusters": 3,
+      "delta": -0.1111111111111111,
+      "clusterBootstrap95": [
+        -0.3333333333333333,
+        0
+      ]
+    }
+  },
+  "learningVsFoundation": {
+    "pairs": 0,
+    "independentSeedSizeClusters": 0,
+    "delta": null,
+    "clusterBootstrap95": [
+      null,
+      null
+    ]
+  },
+  "promotion": {
+    "promote": false,
+    "reasons": [
+      "not_final_holdout",
+      "insufficient_held_out_games",
+      "evaluation_incomplete",
+      "insufficient_independent_clusters",
+      "invalid_or_missing_action_results",
+      "finish_rate_below_99_percent",
+      "learning_superiority_not_established"
+    ],
+    "automaticProductionChanges": false
+  },
+  "controls": [
+    {
+      "seed": 1100000,
+      "n": 2,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 445,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 10209.239587999999,
+      "metrics": {
+        "builds": 31,
+        "trades": 4,
+        "offers": 5,
+        "auctions": 21,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 8.996467999999368,
+        "p95": 61.676708999999846,
+        "max": 522.5678239999997
+      },
+      "bankrupt": [
+        true,
+        false
+      ],
+      "seat": 0,
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 2,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 445,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 10209.239587999999,
+      "metrics": {
+        "builds": 31,
+        "trades": 4,
+        "offers": 5,
+        "auctions": 21,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 8.996467999999368,
+        "p95": 61.676708999999846,
+        "max": 522.5678239999997
+      },
+      "bankrupt": [
+        true,
+        false
+      ],
+      "seat": 1,
+      "won": true
+    },
+    {
+      "seed": 1100000,
+      "n": 3,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 1005,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 16316.124511000002,
+      "metrics": {
+        "builds": 61,
+        "trades": 5,
+        "offers": 7,
+        "auctions": 13,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 3.867948000006436,
+        "p95": 43.337460000002466,
+        "max": 546.5349570000035
+      },
+      "bankrupt": [
+        false,
+        true,
+        true
+      ],
+      "seat": 0,
+      "won": true
+    },
+    {
+      "seed": 1100000,
+      "n": 3,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 1005,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 16316.124511000002,
+      "metrics": {
+        "builds": 61,
+        "trades": 5,
+        "offers": 7,
+        "auctions": 13,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 3.867948000006436,
+        "p95": 43.337460000002466,
+        "max": 546.5349570000035
+      },
+      "bankrupt": [
+        false,
+        true,
+        true
+      ],
+      "seat": 1,
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 3,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 1005,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 16316.124511000002,
+      "metrics": {
+        "builds": 61,
+        "trades": 5,
+        "offers": 7,
+        "auctions": 13,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 3.867948000006436,
+        "p95": 43.337460000002466,
+        "max": 546.5349570000035
+      },
+      "bankrupt": [
+        false,
+        true,
+        true
+      ],
+      "seat": 2,
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 4,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 400,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 7187.786631,
+      "metrics": {
+        "builds": 30,
+        "trades": 3,
+        "offers": 6,
+        "auctions": 6,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 5.243524999999863,
+        "p95": 63.879620000000045,
+        "max": 359.46136099999967
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 0,
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 4,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 400,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 7187.786631,
+      "metrics": {
+        "builds": 30,
+        "trades": 3,
+        "offers": 6,
+        "auctions": 6,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 5.243524999999863,
+        "p95": 63.879620000000045,
+        "max": 359.46136099999967
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 1,
+      "won": true
+    },
+    {
+      "seed": 1100000,
+      "n": 4,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 400,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 7187.786631,
+      "metrics": {
+        "builds": 30,
+        "trades": 3,
+        "offers": 6,
+        "auctions": 6,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 5.243524999999863,
+        "p95": 63.879620000000045,
+        "max": 359.46136099999967
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 2,
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 4,
+      "policies": [
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 400,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 7187.786631,
+      "metrics": {
+        "builds": 30,
+        "trades": 3,
+        "offers": 6,
+        "auctions": 6,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 5.243524999999863,
+        "p95": 63.879620000000045,
+        "max": 359.46136099999967
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 3,
+      "won": false
+    }
+  ],
+  "runs": [
+    {
+      "seed": 1100000,
+      "n": 2,
+      "policies": [
+        "learned-search",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 464,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 12320.232942999999,
+      "metrics": {
+        "builds": 30,
+        "trades": 3,
+        "offers": 5,
+        "auctions": 14,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 7.600570999999036,
+        "p95": 97.45175800000288,
+        "max": 256.70900000000256
+      },
+      "bankrupt": [
+        true,
+        false
+      ],
+      "seat": 0,
+      "variant": "learned-search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 2,
+      "policies": [
+        "search",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 464,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 12160.507078999999,
+      "metrics": {
+        "builds": 30,
+        "trades": 3,
+        "offers": 5,
+        "auctions": 14,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 7.569743999996717,
+        "p95": 97.11798600000111,
+        "max": 203.70990600000005
+      },
+      "bankrupt": [
+        true,
+        false
+      ],
+      "seat": 0,
+      "variant": "search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 2,
+      "policies": [
+        "baseline",
+        "learned-search"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 371,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 10060.391131999997,
+      "metrics": {
+        "builds": 28,
+        "trades": 3,
+        "offers": 3,
+        "auctions": 17,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 6.784449000006134,
+        "p95": 99.70836799999961,
+        "max": 306.1080340000044
+      },
+      "bankrupt": [
+        true,
+        false
+      ],
+      "seat": 1,
+      "variant": "learned-search",
+      "won": true
+    },
+    {
+      "seed": 1100000,
+      "n": 2,
+      "policies": [
+        "baseline",
+        "search"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 371,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 9818.723709999998,
+      "metrics": {
+        "builds": 28,
+        "trades": 3,
+        "offers": 3,
+        "auctions": 17,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 6.774985000003653,
+        "p95": 98.73266099999455,
+        "max": 392.1929369999998
+      },
+      "bankrupt": [
+        true,
+        false
+      ],
+      "seat": 1,
+      "variant": "search",
+      "won": true
+    },
+    {
+      "seed": 1100000,
+      "n": 3,
+      "policies": [
+        "learned-search",
+        "baseline",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 2,
+      "actions": 766,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 12124.272786000001,
+      "metrics": {
+        "builds": 66,
+        "trades": 6,
+        "offers": 9,
+        "auctions": 11,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 5.2904750000016065,
+        "p95": 93.49587300000712,
+        "max": 231.6610240000009
+      },
+      "bankrupt": [
+        true,
+        true,
+        false
+      ],
+      "seat": 0,
+      "variant": "learned-search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 3,
+      "policies": [
+        "search",
+        "baseline",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 2,
+      "actions": 766,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 11768.169180000012,
+      "metrics": {
+        "builds": 66,
+        "trades": 6,
+        "offers": 9,
+        "auctions": 11,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 4.788107000000309,
+        "p95": 91.52223400000366,
+        "max": 364.2024919999967
+      },
+      "bankrupt": [
+        true,
+        true,
+        false
+      ],
+      "seat": 0,
+      "variant": "search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 3,
+      "policies": [
+        "baseline",
+        "learned-search",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 927,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 21012.09908999999,
+      "metrics": {
+        "builds": 58,
+        "trades": 5,
+        "offers": 6,
+        "auctions": 14,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 4.715127000003122,
+        "p95": 96.48750600000494,
+        "max": 268.02584200000274
+      },
+      "bankrupt": [
+        false,
+        true,
+        true
+      ],
+      "seat": 1,
+      "variant": "learned-search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 3,
+      "policies": [
+        "baseline",
+        "search",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 929,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 30304.443587999995,
+      "metrics": {
+        "builds": 58,
+        "trades": 5,
+        "offers": 5,
+        "auctions": 14,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 8.659070000008796,
+        "p95": 99.86795899999561,
+        "max": 655.8835469999904
+      },
+      "bankrupt": [
+        false,
+        true,
+        true
+      ],
+      "seat": 1,
+      "variant": "search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 3,
+      "policies": [
+        "baseline",
+        "baseline",
+        "learned-search"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 957,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 20285.679913,
+      "metrics": {
+        "builds": 60,
+        "trades": 5,
+        "offers": 7,
+        "auctions": 14,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 4.445670999994036,
+        "p95": 98.17903100000694,
+        "max": 277.70521000001463
+      },
+      "bankrupt": [
+        false,
+        true,
+        true
+      ],
+      "seat": 2,
+      "variant": "learned-search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 3,
+      "policies": [
+        "baseline",
+        "baseline",
+        "search"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 1006,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 22040.215303000004,
+      "metrics": {
+        "builds": 74,
+        "trades": 5,
+        "offers": 6,
+        "auctions": 14,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 5.054080000001704,
+        "p95": 97.64527099998668,
+        "max": 227.29010999997263
+      },
+      "bankrupt": [
+        false,
+        true,
+        true
+      ],
+      "seat": 2,
+      "variant": "search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 4,
+      "policies": [
+        "learned-search",
+        "baseline",
+        "baseline",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 465,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 8792.831558000002,
+      "metrics": {
+        "builds": 35,
+        "trades": 7,
+        "offers": 11,
+        "auctions": 6,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 5.132147000000259,
+        "p95": 91.21117999999842,
+        "max": 153.14905
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 0,
+      "variant": "learned-search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 4,
+      "policies": [
+        "search",
+        "baseline",
+        "baseline",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 465,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 10064.138363999999,
+      "metrics": {
+        "builds": 35,
+        "trades": 7,
+        "offers": 11,
+        "auctions": 6,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 5.87965499999973,
+        "p95": 94.27215799999976,
+        "max": 192.6184600000015
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 0,
+      "variant": "search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 4,
+      "policies": [
+        "baseline",
+        "learned-search",
+        "baseline",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 360,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 9713.882625999999,
+      "metrics": {
+        "builds": 30,
+        "trades": 5,
+        "offers": 8,
+        "auctions": 4,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 4.697701000004599,
+        "p95": 102.83302900000126,
+        "max": 329.2226640000008
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 1,
+      "variant": "learned-search",
+      "won": true
+    },
+    {
+      "seed": 1100000,
+      "n": 4,
+      "policies": [
+        "baseline",
+        "search",
+        "baseline",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 358,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 9133.370266000002,
+      "metrics": {
+        "builds": 32,
+        "trades": 4,
+        "offers": 6,
+        "auctions": 4,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 4.891843000001245,
+        "p95": 95.9965979999979,
+        "max": 337.4706950000036
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 1,
+      "variant": "search",
+      "won": true
+    },
+    {
+      "seed": 1100000,
+      "n": 4,
+      "policies": [
+        "baseline",
+        "baseline",
+        "learned-search",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 743,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 13919.277729999994,
+      "metrics": {
+        "builds": 66,
+        "trades": 4,
+        "offers": 6,
+        "auctions": 5,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 4.464447999998811,
+        "p95": 91.62623599999642,
+        "max": 536.5648130000045
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 2,
+      "variant": "learned-search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 4,
+      "policies": [
+        "baseline",
+        "baseline",
+        "search",
+        "baseline"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 743,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 13945.514907999997,
+      "metrics": {
+        "builds": 66,
+        "trades": 4,
+        "offers": 6,
+        "auctions": 5,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 4.561894999998913,
+        "p95": 91.30824999999459,
+        "max": 541.3429550000001
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 2,
+      "variant": "search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 4,
+      "policies": [
+        "baseline",
+        "baseline",
+        "baseline",
+        "learned-search"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 410,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 8294.348203000001,
+      "metrics": {
+        "builds": 31,
+        "trades": 4,
+        "offers": 7,
+        "auctions": 6,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 4.2974189999949886,
+        "p95": 90.27078599999368,
+        "max": 502.26631700000144
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 3,
+      "variant": "learned-search",
+      "won": false
+    },
+    {
+      "seed": 1100000,
+      "n": 4,
+      "policies": [
+        "baseline",
+        "baseline",
+        "baseline",
+        "search"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 410,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 7638.449499000009,
+      "metrics": {
+        "builds": 31,
+        "trades": 4,
+        "offers": 7,
+        "auctions": 6,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 4.190635000006296,
+        "p95": 90.29192499999772,
+        "max": 443.995802999998
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 3,
+      "variant": "search",
+      "won": false
+    }
+  ],
+  "limitations": [
+    "Real local engine; no live Groq or Supabase.",
+    "Paired seeds share initial RNG; action policies can consume different later RNG values.",
+    "Clustered bootstrap groups seat rotations by seed and participant count.",
+    "Unfinished games receive no invented winner and count as zero wins.",
+    "Reported latency is cloud CPU with the declared worker count, not Android.",
+    "Self-play lab can repeat persona labels at six seats; production room limits are unchanged."
+  ]
+}

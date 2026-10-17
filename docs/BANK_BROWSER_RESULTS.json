@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2026-10-17T00:46:00.968Z",
+  "checks": [
+    {
+      "name": "bank 320x568",
+      "passed": true,
+      "metrics": {
+        "left": 19,
+        "right": 301,
+        "top": 47.734375,
+        "bottom": 520.265625,
+        "footer": 519.265625,
+        "overflow": false
+      },
+      "readOnlyNavigation": true,
+      "detailsRestored": true,
+      "persistedTotals": true
+    },
+    {
+      "name": "bank 360x640",
+      "passed": true,
+      "metrics": {
+        "left": 19,
+        "right": 341,
+        "top": 83.734375,
+        "bottom": 556.265625,
+        "footer": 555.265625,
+        "overflow": false
+      },
+      "readOnlyNavigation": true,
+      "detailsRestored": true,
+      "persistedTotals": true
+    },
+    {
+      "name": "bank 390x844",
+      "passed": true,
+      "metrics": {
+        "left": 19,
+        "right": 371,
+        "top": 185.734375,
+        "bottom": 658.265625,
+        "footer": 657.265625,
+        "overflow": false
+      },
+      "readOnlyNavigation": true,
+      "detailsRestored": true,
+      "persistedTotals": true
+    },
+    {
+      "name": "bank 430x932",
+      "passed": true,
+      "metrics": {
+        "left": 19,
+        "right": 411,
+        "top": 229.734375,
+        "bottom": 702.265625,
+        "footer": 701.265625,
+        "overflow": false
+      },
+      "readOnlyNavigation": true,
+      "detailsRestored": true,
+      "persistedTotals": true
+    },
+    {
+      "name": "bank 360x420",
+      "passed": true,
+      "metrics": {
+        "left": 19,
+        "right": 341,
+        "top": 12,
+        "bottom": 408,
+        "footer": 407,
+        "overflow": false
+      },
+      "readOnlyNavigation": true,
+      "detailsRestored": true,
+      "persistedTotals": true
+    },
+    {
+      "name": "bank 1280x800",
+      "passed": true,
+      "metrics": {
+        "left": 440,
+        "right": 840,
+        "top": 163.734375,
+        "bottom": 636.265625,
+        "footer": 635.265625,
+        "overflow": false
+      },
+      "readOnlyNavigation": true,
+      "detailsRestored": true,
+      "persistedTotals": true
+    },
+    {
+      "name": "old save current holdings shown with partial-history explanation; opening does not migrate state",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium emulation; no physical Android/iOS.",
+    "Local authoritative engine state. No live room/account/database modifications."
+  ]
+}

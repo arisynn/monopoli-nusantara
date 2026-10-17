@@ -1,7 +1,7 @@
-import {createSupabaseStore} from '../../../lib/server/supabase-store.mjs';
-import {runBotWorker,workerAuthorized} from '../../../lib/server/bot-worker.mjs';
-import {aiDecision} from '../../../lib/groq.ts';
-import type {BotGameState} from '../../../lib/bot/contracts.ts';
+import {createSupabaseStore} from './_shared/lib/server/supabase-store.mjs';
+import {runBotWorker,workerAuthorized} from './_shared/lib/server/bot-worker.mjs';
+import {aiDecision} from './_shared/lib/groq.ts';
+import type {BotGameState} from './_shared/lib/bot/contracts.ts';
 // Deno's standard env/serve surface is declared without weakening the application's TS strictness.
 declare const Deno:{env:{get(name:string):string|undefined};serve(handler:(request:Request)=>Promise<Response>):void};
 Deno.serve(async(request:Request)=>{

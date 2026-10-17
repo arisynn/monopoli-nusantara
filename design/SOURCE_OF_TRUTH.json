@@ -1,7 +1,7 @@
 {
   "basisArchive": "Monopoli_Nusantara_Logic_v4.6.1-no-frontend.zip",
   "sha256": "75f88c097e9356f6ebc6a602d3f04c5a744f1a26a87bf3416605e9e6d1f0689e",
-  "activeSource": "/workspace/monopoli-nusantara",
+  "activeSource": ".",
   "excludedReferences": "Previous first five mockups and rejected generated mockup",
   "constraints": [
     "Only lobby and gameplay are full-screen; all other features use popups",
@@ -12,7 +12,7 @@
     "Aset and Barter side by side in the lower action console",
     "Pip-only dice shuffle without spinning, authoritative reveal before pawn motion",
     "Blurred scene on lobby only; calm mint game surface; mobile portrait",
-    "Rules, IDs, prices, bots and server authorization preserved",
+    "Rules, IDs, prices and server authorization preserved; bot upgrade explicitly authorized in 4.9.0",
     "Tile face orientation follows reference 1251174: inward-facing labels at 0/90/180/270 degrees; original Nusantara names and prices retained",
     "Retire all old runtime art outside the board; later instructions authorize new small PNG sprites for cards and buildings",
     "All 32 revealed cards explicitly map to contextual PNG illustrations; text and economy stay in engine",
@@ -45,10 +45,29 @@
     "1251173",
     "1251174"
   ],
-  "release": "4.8.2 Assets & Board Info",
+  "release": "4.10.0 Bank Nusantara",
   "supportingReferences": [
     "1251193",
     "1251192",
     "1251194"
+  ],
+  "currentBasisVersion": "4.9.1",
+  "activeVersion": "4.10.0",
+  "latestUserInstructions": [
+    "Mobile portrait first; desktop follows",
+    "Keep gameplay, Chance/Community cards, property certificates and deck catalogs unchanged",
+    "Compact other dialogs and use official Lucide glyphs for lobby/dialog controls",
+    "Center the compact lobby with restrained decoration; allow top-aligned scrolling if the content is taller than the screen",
+    "Merge NUSA MIND 4.9 BOT ONLY selectively after reading its README; learned model remains null pending final held-out training/evaluation",
+    "Remove Redis from active Node/Vercel runtime and document required Supabase ENV",
+    "Push this completed update to arisynn/monopoli-nusantara on GitHub",
+    "Mini certificate in shared property summaries; tap full original deed and return without executing an action",
+    "Property prices, mortgage costs and tappable certificates in trade picker, draft, incoming and counteroffer; preserve draft and raw money input",
+    "Show player-perspective estimated trade surplus/loss using declared purchase-price/net-redemption and cash basis; do not claim certain profit or silently price rental strategy or jail cards",
+    "Auction: compact adaptive roster, four seats in a 2x2 grid; passing must not block legal re-entry while auction remains open",
+    "Keep auction dialog visible through winning payment/result and reset input when auction identity changes",
+    "Add one compact bank circulation indicator to the board; full read-only economic details stay inside popup",
+    "Integrate user bot-only NUSA MIND 4.10; retain null learned model",
+    "Construction bots preserve N50..N200 cash after direct builds, participation and building bids according to public risk"
   ]
 }

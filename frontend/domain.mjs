@@ -141,6 +141,14 @@ export function autoPopup(s, full, head, seat, dismissed) {
       event: head.event,
       interactive: liveCardDecision(head.event, full, seat),
     };
+  // Keep the same dialog through the committed winning payment, then show its result.
+  if (
+    head?.finance?.kind === "auction" &&
+    s?.phase === "auction" &&
+    s.auction &&
+    canPresentDecision(s, seat)
+  )
+    return { kind: "auction", key: gameplayDecision(s).key, settling: true };
   if (
     head?.finance &&
     head.finance.from === seat &&

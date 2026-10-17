@@ -1,0 +1,31 @@
+import assert from'node:assert/strict';import{createRequire}from'node:module';import{writeFile}from'node:fs/promises';import{createGame,command,stock}from'../lib/game.mjs';
+const{chromium}=createRequire(import.meta.url)(process.env.MN_BROWSER_MODULE||'playwright'),origin=process.env.MN_TEST_ORIGIN||'http://127.0.0.1:8787';
+const browser=await chromium.launch({executablePath:process.env.MN_CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox','--disable-dev-shm-usage']}),checks=[],errors=[];
+function auction(n=4,bots=false){let s=createGame({players:Array.from({length:n},(_,i)=>({name:'P'+i,controller:bots&&i?'bot':'human'})),startingRoll:false},()=>.2);s.phase='buy';s.buy=13;return command(s,0,{type:'AUCTION'})}
+async function pageFor(s,viewport={width:390,height:844}){
+ const context=await browser.newContext({viewport,isMobile:true,hasTouch:true,serviceWorkers:'block',deviceScaleFactor:1});
+ // Hold only the local bot idle delay so a human re-entry can be inspected deterministically.
+ await context.addInitScript(()=>{const delay=setTimeout;window.setTimeout=(fn,ms,...args)=>delay(fn,ms===480?60000:ms,...args)});
+ const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(origin,{waitUntil:'networkidle'});await page.evaluate(state=>localStorage.setItem('nusantara-save-v1',JSON.stringify({state,room:null,persistedAt:Date.now()})),s);await page.reload({waitUntil:'networkidle'});await page.locator('[data-action=resume]').click();await page.locator('dialog[data-kind=auction] .auction-people').waitFor();await page.locator('dialog').evaluate(async n=>Promise.all(n.getAnimations().map(a=>a.finished.catch(()=>{}))));return{context,page};
+}
+const read=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('nusantara-save-v1')).state);
+async function watch(page){await page.evaluate(()=>{window.auctionHidden=0;const d=document.querySelector('dialog');new MutationObserver(records=>{for(const r of records)if(r.attributeName==='open'&&!d.open)window.auctionHidden++}).observe(d,{attributes:true,attributeFilter:['open']})})}
+try{
+ for(const viewport of[{width:320,height:568},{width:360,height:640},{width:390,height:844},{width:430,height:932}])for(const n of[2,4,6]){
+  const{context,page}=await pageFor(auction(n),viewport);const grid=await page.locator('.auction-people').evaluate(el=>({cols:getComputedStyle(el).gridTemplateColumns.split(' ').length,boxes:[...el.children].map(c=>{const r=c.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height}})}));assert.equal(grid.cols,n<=4||viewport.width<360?2:3);if(n===4){assert.equal(grid.boxes[0].y,grid.boxes[1].y);assert(grid.boxes[2].y>grid.boxes[0].y);assert.equal(grid.boxes[2].y,grid.boxes[3].y)}
+  const b=await page.locator('dialog').boundingBox();assert(b.x>=0&&b.y>=0&&b.x+b.width<=viewport.width+1&&b.y+b.height<=viewport.height+1);assert(await page.locator('.popup-body').evaluate(el=>el.scrollWidth<=el.clientWidth+1));const footer=await page.locator('.popup-footer').boundingBox();assert(footer.y+footer.height<=viewport.height+1);
+  if(n===4&&viewport.width===390){await page.mouse.move(0,0);await page.screenshot({path:'docs/screenshots-491/lelang-4-pemain.png',animations:'disabled'});}checks.push({name:`${n} participants ${viewport.width}`,passed:true,columns:grid.cols});await context.close();
+ }
+ for(const mode of['human-reentry','bot-reentry']){
+  let s=auction(4,true);if(mode==='human-reentry')s=command(s,0,{type:'PASS'});else for(const id of[1,2,3])s=command(s,id,{type:'PASS'});
+  const{context,page}=await pageFor(s);assert(await page.locator('[data-action=bid]').isEnabled());await page.locator('[data-action=bid]').click();await page.waitForFunction(v=>JSON.parse(localStorage.getItem('nusantara-save-v1')).state.version>v,s.version);const next=await read(page);assert.equal(next.auction.highest,0);assert.deepEqual(next.auction.passed,[]);assert.equal(await page.locator('.auction-people small').evaluateAll(nodes=>nodes.filter(n=>n.textContent==='Lewati').length),0);checks.push({name:mode,passed:true});await context.close();
+ }
+ {
+  let s=auction(2);s=command(s,1,{type:'BID',amount:100});const{context,page}=await pageFor(s);await watch(page);await page.locator('[data-type=PASS]').click();await page.locator('dialog[data-kind=auction] [name=bid]:disabled').waitFor();await page.locator('dialog[data-kind=event] .result-hero').waitFor();assert.equal(await page.evaluate(()=>window.auctionHidden),0);const done=await read(page);assert.equal(done.players[1].cash,s.players[1].cash-100);assert.equal(done.assets[13].owner,1);checks.push({name:'winning payment keeps dialog open until one result and charges once',passed:true});await context.close();
+ }
+ {
+  let s=createGame({players:[0,1,2].map(i=>({name:'P'+i,controller:'human'})),startingRoll:false},()=>.2);for(const id of[13,15])s.assets[id]={owner:0,level:0,mortgaged:false};s.players[0].cash=0;s.phase='debt';s.debt={from:0,to:null,amount:500000,label:'Bank'};s.bank=stock(s);s=command(s,0,{type:'BANKRUPT'});s=command(s,2,{type:'BID',amount:100});const{context,page}=await pageFor(s);await page.locator('[name=bid]').fill('999');await watch(page);await page.locator('[data-type=PASS]').click();await page.locator('dialog[data-kind=event] .result-hero').waitFor();assert.equal(await page.evaluate(()=>window.auctionHidden),0);await page.locator('[data-action=dismissEvent]').click();await page.locator('dialog[data-kind=auction] [data-action=certificate][data-id="15"]').waitFor();assert.equal(await page.locator('[name=bid]').inputValue(),'10');assert.equal(await page.evaluate(()=>window.auctionHidden),0);checks.push({name:'bankruptcy auction chain stays open and resets previous bid amount',passed:true});await context.close();
+ }
+ assert.deepEqual(errors,[]);console.log(`${checks.length} auction layout/re-entry/transition scenarios passed.`);
+}catch(e){checks.push({passed:false,error:e.stack});console.error(e);process.exitCode=1;}
+finally{await browser.close();await writeFile('docs/AUCTION_BROWSER_RESULTS.json',JSON.stringify({checks,errors,limits:['Chromium emulation with real local engine/save; not a live online room.','Bot idle scheduler held only in the fixture to inspect re-entry deterministically; core tests also verify bot eligibility after a raised bid.']},null,2)+'\n');}

@@ -59,7 +59,7 @@ for(const n of [2,4,6])test(`${n} real frontend sessions: public cards ordered o
  for(let i=0;i<n;i++)await invoke(i,'RESUME_READY',{cycle:paused.pause.cycle,ready:true});const resumed=await service.read('ABCDEFGH',users[0]);assert.equal(resumed.status,'playing');assert.equal(JSON.stringify(resumed.state),fingerprint);
 });
 
-import vercelHandler from '../api/index.ts';
+import vercelHandler from '../api/index.mjs';
 import {Readable} from 'node:stream';
 test('Vercel transport serves real configuration endpoint, preserves origin checks, bounds bodies and unknown paths',async()=>{
  async function call(path,{method='GET',body='',origin='https://game.test'}={}){const req=Readable.from(body?[Buffer.from(body)]:[]);Object.assign(req,{url:path,method,headers:{host:'game.test','content-type':'application/json',origin}});const result={headers:{},statusCode:200,setHeader(k,v){this.headers[k]=v},end(value){this.body=value?.toString()||''}};await vercelHandler(req,result);return result;}
@@ -152,4 +152,18 @@ test('overlapping saves within one session serialize using the latest successful
   return {...value,saveRevision:++revision};
  }});
  await Promise.all([s.saveCurrent(),s.saveCurrent()]);assert.equal(revision,2);assert.equal(s.saved.saveRevision,2);
+});
+test('final results layout protects six square avatars and a separate Nusa value',()=>{
+ const s=createGame({players:Array.from({length:6},(_,i)=>({name:'P'+i,controller:'human'})),startingRoll:false},()=>.2);s.phase='won';s.winner=0;s.players[0].name='Sang Juara Dengan Nama Panjang';
+ for(const p of s.players.slice(1)){p.out=true;p.cash=0;}
+ const result=renderPopup(c(s),{},{kind:'won'}),css=readFileSync(new URL('../frontend/styles.css',import.meta.url),'utf8');
+ assert.equal((result.html.match(/class="result-row /g)||[]).length,6);
+ assert.equal((result.html.match(/class="result-identity"/g)||[]).length,6);
+ assert.equal((result.html.match(/class="result-worth"/g)||[]).length,6);
+ assert.equal((result.html.match(/class="avatar animal-avatar"/g)||[]).length,6);
+ assert(result.html.includes('Sang Juara Dengan Nama Panjang'));
+ assert(result.html.includes('Bangkrut'));
+ assert.match(css,/\.result-row > \.avatar \{[^}]*aspect-ratio:\s*1\s*\/\s*1/s);
+ assert(!css.includes('.result-row > span {'));
+ assert(result.footer.includes('lobby'));
 });

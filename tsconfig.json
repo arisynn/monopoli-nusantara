@@ -31,7 +31,8 @@
     "lib/presentation-types.ts",
     "lib/server/runtime.ts",
     "tests/types/**/*.ts",
-    "api/**/*.ts"
+    "api/**/*.ts",
+    "adapters/vercel/**/*.ts"
   ],
   "exclude": [
     "lib/server/runtime-sites.ts",

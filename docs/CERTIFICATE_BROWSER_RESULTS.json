@@ -1,0 +1,631 @@
+{
+  "generatedAt": "2026-10-16T23:41:52.876Z",
+  "checks": [
+    {
+      "name": "rent 11 at 320x568",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 65.171875,
+        "right": 301,
+        "bottom": 502.8125,
+        "footerBottom": 501.8125,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 5 at 320x568",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 56.625,
+        "right": 301,
+        "bottom": 511.359375,
+        "footerBottom": 510.359375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 12 at 320x568",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 57.515625,
+        "right": 301,
+        "bottom": 510.46875,
+        "footerBottom": 509.46875,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 28 at 320x568",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 62.3125,
+        "right": 301,
+        "bottom": 505.671875,
+        "footerBottom": 504.671875,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "auction 11 at 320x568",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 12,
+        "right": 301,
+        "bottom": 556,
+        "footerBottom": 555,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "building 11 at 320x568",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 12,
+        "right": 301,
+        "bottom": 556,
+        "footerBottom": 555,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "mortgage 11 at 320x568",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 128.140625,
+        "right": 301,
+        "bottom": 439.859375,
+        "footerBottom": 438.859375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 11 at 360x640",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 101.171875,
+        "right": 341,
+        "bottom": 538.8125,
+        "footerBottom": 537.8125,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 5 at 360x640",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 92.625,
+        "right": 341,
+        "bottom": 547.359375,
+        "footerBottom": 546.359375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 12 at 360x640",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 93.515625,
+        "right": 341,
+        "bottom": 546.46875,
+        "footerBottom": 545.46875,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 28 at 360x640",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 98.3125,
+        "right": 341,
+        "bottom": 541.671875,
+        "footerBottom": 540.671875,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "auction 11 at 360x640",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 20.890625,
+        "right": 341,
+        "bottom": 619.109375,
+        "footerBottom": 618.109375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "building 11 at 360x640",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 20.890625,
+        "right": 341,
+        "bottom": 619.109375,
+        "footerBottom": 618.109375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "mortgage 11 at 360x640",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 164.140625,
+        "right": 341,
+        "bottom": 475.859375,
+        "footerBottom": 474.859375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 11 at 390x844",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 203.171875,
+        "right": 371,
+        "bottom": 640.8125,
+        "footerBottom": 639.8125,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 5 at 390x844",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 194.625,
+        "right": 371,
+        "bottom": 649.359375,
+        "footerBottom": 648.359375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 12 at 390x844",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 195.515625,
+        "right": 371,
+        "bottom": 648.46875,
+        "footerBottom": 647.46875,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 28 at 390x844",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 200.3125,
+        "right": 371,
+        "bottom": 643.671875,
+        "footerBottom": 642.671875,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "auction 11 at 390x844",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 122.890625,
+        "right": 371,
+        "bottom": 721.109375,
+        "footerBottom": 720.109375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "building 11 at 390x844",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 122.890625,
+        "right": 371,
+        "bottom": 721.109375,
+        "footerBottom": 720.109375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "mortgage 11 at 390x844",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 274.828125,
+        "right": 371,
+        "bottom": 569.15625,
+        "footerBottom": 568.15625,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 11 at 430x932",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 247.171875,
+        "right": 411,
+        "bottom": 684.8125,
+        "footerBottom": 683.8125,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 5 at 430x932",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 238.625,
+        "right": 411,
+        "bottom": 693.359375,
+        "footerBottom": 692.359375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 12 at 430x932",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 239.515625,
+        "right": 411,
+        "bottom": 692.46875,
+        "footerBottom": 691.46875,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 28 at 430x932",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 244.3125,
+        "right": 411,
+        "bottom": 687.671875,
+        "footerBottom": 686.671875,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "auction 11 at 430x932",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 166.890625,
+        "right": 411,
+        "bottom": 765.109375,
+        "footerBottom": 764.109375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "building 11 at 430x932",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 166.890625,
+        "right": 411,
+        "bottom": 765.109375,
+        "footerBottom": 764.109375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "mortgage 11 at 430x932",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 318.828125,
+        "right": 411,
+        "bottom": 613.15625,
+        "footerBottom": 612.15625,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 11 at 360x420",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 12,
+        "right": 341,
+        "bottom": 408,
+        "footerBottom": 407,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "mortgage 11 at 360x420",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 19,
+        "y": 54.140625,
+        "right": 341,
+        "bottom": 365.859375,
+        "footerBottom": 364.859375,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    },
+    {
+      "name": "rent 11 at 1280x800",
+      "passed": true,
+      "returnMethods": [
+        "button",
+        "Escape",
+        "browser Back"
+      ],
+      "authoritativeStateUnchanged": true,
+      "metrics": {
+        "x": 440,
+        "y": 181.171875,
+        "right": 840,
+        "bottom": 618.8125,
+        "footerBottom": 617.8125,
+        "overflow": false,
+        "density": "compact",
+        "titles": 1
+      }
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium emulation, not a physical device.",
+    "Real local engine commands and persisted state; no live room or database changes.",
+    "Legacy standalone confirmAsset renderer is covered by core tests; Assets confirmation remains inline."
+  ]
+}

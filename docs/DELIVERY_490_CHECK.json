@@ -1,0 +1,10 @@
+{
+  "scope": "Source ZIP extracted into clean GitHub checkout without ENV or node_modules; build and native Node HTTP Vercel entry",
+  "version": "4.9.0",
+  "build": "c919b2883362b5de",
+  "onlineConfigHTTP": 200,
+  "missingEnvHandledAsJSON": true,
+  "botHTTP": 200,
+  "privateModulesAbsentFromStaticOutput": true,
+  "passed": true
+}

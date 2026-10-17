@@ -1,0 +1,242 @@
+{
+  "generatedAt": "2026-10-17T00:01:03.304Z",
+  "referenceUsed": true,
+  "checks": [
+    {
+      "name": "preserved game-320",
+      "passed": true,
+      "sha256": "62ded8950e4c97621c1de5fecfa25e6b02d952d94600dbf484219809c7b7aede",
+      "pixelCompared": true
+    },
+    {
+      "name": "preserved game-360",
+      "passed": true,
+      "sha256": "d3a5fe9845e91b03234ddb242ed5a11074f1e09d40058d8f1e7b88fa8067f26f",
+      "pixelCompared": true
+    },
+    {
+      "name": "preserved game-390",
+      "passed": true,
+      "sha256": "d33ae4ae68d53a16ad42ab522249ba8c2f36d1987b6a4c5b4330db903bb2bbf8",
+      "pixelCompared": true
+    },
+    {
+      "name": "preserved game-430",
+      "passed": true,
+      "sha256": "19b3ff2c344eba2afc7892864102d2280bfc55156a5bec9ba68ef4aee99baef5",
+      "pixelCompared": true
+    },
+    {
+      "name": "preserved chance",
+      "passed": true,
+      "sha256": "4108f9c8aebe435bf291b59c38e81e809df18db424182e75f8d8186e2d8f648a",
+      "pixelCompared": true
+    },
+    {
+      "name": "preserved community",
+      "passed": true,
+      "sha256": "ace6059d95bd07a926729150ee77a0044acaad12673ae93745e0411eb0e87517",
+      "pixelCompared": true
+    },
+    {
+      "name": "preserved certificate",
+      "passed": true,
+      "sha256": "d67da06a6edd45d567ee789e307e794d5e831f85e9f7f07a47c41a60ac79c8fe",
+      "pixelCompared": true
+    },
+    {
+      "name": "preserved buy",
+      "passed": true,
+      "sha256": "439b24ccaac8dfe70667eaf90acb0b3c9835d55512bb786d1a855fff89ba0150",
+      "pixelCompared": true
+    },
+    {
+      "name": "preserved chance-catalog",
+      "passed": true,
+      "sha256": "c4e99d42e13de925253dbfccfb4a43b2409195a70e9a05e5e58835cb9e77d1c2",
+      "pixelCompared": true
+    },
+    {
+      "name": "preserved community-catalog",
+      "passed": true,
+      "sha256": "0c3df11c05a31232c0b3cbcfe3ed09041d63a5d362053d45817f2ead75f4e4b0",
+      "pixelCompared": true
+    },
+    {
+      "name": "trade 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 544,
+        "x": 19,
+        "y": 12,
+        "bottom": 556,
+        "right": 301,
+        "footerBottom": 555,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auction 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 536.03125,
+        "x": 19,
+        "y": 15.984375,
+        "bottom": 552.015625,
+        "right": 301,
+        "footerBottom": 551.015625,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "trade 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 603.890625,
+        "x": 19,
+        "y": 18.046875,
+        "bottom": 621.9375,
+        "right": 341,
+        "footerBottom": 620.9375,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auction 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 536.03125,
+        "x": 19,
+        "y": 51.984375,
+        "bottom": 588.015625,
+        "right": 341,
+        "footerBottom": 587.015625,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "trade 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 588.5,
+        "x": 19,
+        "y": 127.75,
+        "bottom": 716.25,
+        "right": 371,
+        "footerBottom": 715.25,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auction 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 536.03125,
+        "x": 19,
+        "y": 153.984375,
+        "bottom": 690.015625,
+        "right": 371,
+        "footerBottom": 689.015625,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "trade 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 588.5,
+        "x": 19,
+        "y": 171.75,
+        "bottom": 760.25,
+        "right": 411,
+        "footerBottom": 759.25,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auction 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 536.03125,
+        "x": 19,
+        "y": 197.984375,
+        "bottom": 734.015625,
+        "right": 411,
+        "footerBottom": 733.015625,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auth with reduced viewport 360x420",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 354.625,
+        "x": 19,
+        "y": 32.6875,
+        "bottom": 387.3125,
+        "right": 341,
+        "footerBottom": 386.3125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "desktop setup 1280x800",
+      "passed": true,
+      "metrics": {
+        "width": 400,
+        "height": 528.390625,
+        "x": 440,
+        "y": 135.796875,
+        "bottom": 664.1875,
+        "right": 840,
+        "footerBottom": 663.1875,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium mobile emulation; no physical Android or iOS device.",
+    "Online forms tested locally; no real account is created.",
+    "Pixel equality is compared only against a reference captured in the same environment."
+  ]
+}

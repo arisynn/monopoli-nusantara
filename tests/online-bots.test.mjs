@@ -81,3 +81,13 @@ test('manual rent owed to a bot is claimed before the next human roll can expire
  assert.equal(botActor(f.room().state),2);await assert.rejects(f.call(0,'ACTION',{action:{type:'ROLL',id:crypto.randomUUID(),expectedVersion:0}}));
  const before=f.room().state.players[2].cash;assert.equal((await runBotWorker({store:f.store,clock:f.clock,maxSteps:1})).committed,1);assert.equal(f.room().state.players[2].cash,before+100);assert.equal(f.room().state.rentClaims.length,0);
 });
+test('online bot advisor outage continues with local NUSA MIND, without duplicate commits',async()=>{
+ const f=await fixture(2,1);await f.engine(s=>{s.turn=2});
+ const result=await runBotWorker({store:f.store,clock:f.clock,maxSteps:1,rng:()=>.2,decide:async()=>{throw Error('provider unavailable');}});
+ assert.equal(result.committed,1);assert.equal(f.room().state.version,1);assert.equal(f.room().state.aiStatus,'local');assert.equal(f.store.botActions.size,1);
+});
+test('invalid online bot suggestion falls back to a legal local decision',async()=>{
+ const f=await fixture(2,1);await f.engine(s=>{s.turn=2});
+ const result=await runBotWorker({store:f.store,clock:f.clock,maxSteps:1,rng:()=>.2,decide:async()=>({action:{type:'NONEXISTENT'},status:'hybrid'})});
+ assert.equal(result.committed,1);assert.equal(f.room().state.version,1);assert.equal(f.room().state.aiStatus,'local');assert.equal(f.store.botActions.size,1);
+});

@@ -1,0 +1,102 @@
+{
+  "baseline": "Monopoli Nusantara 4.8.3 Stability",
+  "release": "4.9.0",
+  "unchangedSource": [
+    {
+      "path": "lib/game.mjs",
+      "baseline": "d8452c74d4f18522c237dd787102daf66ad06823db92ae69c577eb14102fdb8f",
+      "current": "d8452c74d4f18522c237dd787102daf66ad06823db92ae69c577eb14102fdb8f",
+      "identical": true
+    },
+    {
+      "path": "lib/content.mjs",
+      "baseline": "4e87e3b37db870f45de641cb897bcd290ef131e7363a55f74b53d95113674bbd",
+      "current": "4e87e3b37db870f45de641cb897bcd290ef131e7363a55f74b53d95113674bbd",
+      "identical": true
+    },
+    {
+      "path": "frontend/board.mjs",
+      "baseline": "bbe4df65e09ac01d8d874ea70168e622258ea8ee4e87ff4fd6ba3d59f044263b",
+      "current": "bbe4df65e09ac01d8d874ea70168e622258ea8ee4e87ff4fd6ba3d59f044263b",
+      "identical": true
+    },
+    {
+      "path": "frontend/popups.mjs",
+      "baseline": "8b73515711d1e80439b598c4fd0922cbb4c03f8d6a076ad0f9d9c3ade4fdf3b0",
+      "current": "8b73515711d1e80439b598c4fd0922cbb4c03f8d6a076ad0f9d9c3ade4fdf3b0",
+      "identical": true
+    },
+    {
+      "path": "frontend/session.mjs",
+      "baseline": "38c1ac5494a49e83d7d0630dec112ffbc89952431cbb12562beee9673627e992",
+      "current": "38c1ac5494a49e83d7d0630dec112ffbc89952431cbb12562beee9673627e992",
+      "identical": true
+    },
+    {
+      "path": "frontend/domain.mjs",
+      "baseline": "741b38db834af60f1c23cac4b4d9fd64588ac46292684edbfc6ca6ededbf3a5c",
+      "current": "741b38db834af60f1c23cac4b4d9fd64588ac46292684edbfc6ca6ededbf3a5c",
+      "identical": true
+    },
+    {
+      "path": "frontend/art.mjs",
+      "baseline": "a8d3ce90f616524cb555b246dab4afb92a72a7ee00924ab4e34e7d80074b1ae3",
+      "current": "a8d3ce90f616524cb555b246dab4afb92a72a7ee00924ab4e34e7d80074b1ae3",
+      "identical": true
+    },
+    {
+      "path": "lib/bot/mind-client.mjs",
+      "baseline": "c90eff416ceb3401af4cfec29f063ade1cf55c51d578685ab9c0f0af52dd499d",
+      "current": "c90eff416ceb3401af4cfec29f063ade1cf55c51d578685ab9c0f0af52dd499d",
+      "identical": true
+    },
+    {
+      "path": "lib/bot/mind.worker.mjs",
+      "baseline": "53da52b7e1c2f1beee0e538545f791f27f6937d16e4c047c6895b96352485554",
+      "current": "53da52b7e1c2f1beee0e538545f791f27f6937d16e4c047c6895b96352485554",
+      "identical": true
+    },
+    {
+      "path": "lib/server/bot-worker.mjs",
+      "baseline": "310824f9a1616c64991a42f7d7b3e754cc8df42b4502925acdfb5cc0e4626a54",
+      "current": "310824f9a1616c64991a42f7d7b3e754cc8df42b4502925acdfb5cc0e4626a54",
+      "identical": true
+    },
+    {
+      "path": "lib/server/online-room.mjs",
+      "baseline": "533a145522afc69791ecca3f0776be7ab11130dc428444ec6ede9e8df1002b1c",
+      "current": "533a145522afc69791ecca3f0776be7ab11130dc428444ec6ede9e8df1002b1c",
+      "identical": true
+    },
+    {
+      "path": "lib/server/online-service.mjs",
+      "baseline": "351ddb85283314f4242c5df81a502d6e424c7428530be2aa4a7589c436d7e02c",
+      "current": "351ddb85283314f4242c5df81a502d6e424c7428530be2aa4a7589c436d7e02c",
+      "identical": true
+    }
+  ],
+  "allPublicAssetsIdentical": true,
+  "publicFileCount": 17,
+  "botModulesChangedOrAdded": [
+    "analysis.mjs",
+    "candidates.mjs",
+    "contracts.ts",
+    "development.mjs",
+    "learned-model.mjs",
+    "learning.mjs",
+    "liquidation.mjs",
+    "memory.mjs",
+    "mind-config.mjs",
+    "mind.mjs",
+    "negotiation.mjs",
+    "probability.mjs",
+    "strategy.mjs"
+  ],
+  "baselineLibFrozenBeforeMerge": true,
+  "learningArtifact": {
+    "enabled": false,
+    "runtimeExport": "null",
+    "moduleSha256": "5f2a315bc8c7b1be5eb2a783bd29de15f06a2514bff18b2718741aaa52c4d460",
+    "sourceHash": "63f883f3b9c768182149797a2c35ab9408326e820ec8aa2440a329b6d9e49740"
+  }
+}

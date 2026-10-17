@@ -1,3 +1,5 @@
+> Arsip konfigurasi rilis sebelumnya. Untuk 4.9.0 ikuti [ENV_REQUIRED.md](../ENV_REQUIRED.md): native ESM Vercel, key modern/alias didukung, Redis tidak dipakai runtime aktif.
+
 # Deployment aktif 4.8.3
 
 Dokumen ini menggantikan perintah frontend/build pada panduan deployment historis. Source asal pengguna adalah 4.8.2; nama arsip 4.8.1 merupakan typo.

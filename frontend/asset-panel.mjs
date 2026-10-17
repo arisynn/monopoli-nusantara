@@ -123,7 +123,7 @@ export function renderAssetPanel(c, { btn, lead, amount }) {
         })
         .join(
           "",
-        )}${max ? `<div class="build-order"><label>Tambah pada kelompok<select name="buildCount-${g.id}" ${busy ? "disabled" : ""}>${Array.from({ length: max }, (_, n) => `<option value="${n + 1}" ${n + 1 === selected ? "selected" : ""}>${n + 1} bangunan</option>`).join("")}</select></label>${btn("Bangun " + selected + " · " + money(estimate.cost), "buildMany", { primary: true, disabled: busy, extra: `data-group="${g.id}" data-count="${selected}"` })}<small>Dibagi merata. Setiap pembelian diperiksa ulang; berhenti jika kondisi berubah.</small></div>` : ""}</details>`;
+        )}${max ? `<div class="build-order"><label>Tambah pada kelompok<select name="buildCount-${g.id}" ${busy ? "disabled" : ""}>${Array.from({ length: max }, (_, n) => `<option value="${n + 1}" ${n + 1 === selected ? "selected" : ""}>${n + 1} bangunan</option>`).join("")}</select></label>${btn("Bangun " + selected + " · " + money(estimate.cost), "buildMany", { primary: true, disabled: busy, extra: `data-group="${g.id}" data-count="${selected}"` })}<small>Dibangun merata, diperiksa satu per satu.</small></div>` : ""}</details>`;
     })
     .join("");
   const planStatus = plan
@@ -137,9 +137,7 @@ export function renderAssetPanel(c, { btn, lead, amount }) {
       lead(
         "assets",
         own ? "Aset Saya" : `Aset ${player.name}`,
-        own
-          ? "Properti, pembangunan dan gadai dalam satu panel."
-          : "Aset pemain lain hanya dapat dilihat.",
+        own ? "" : "Aset pemain lain hanya dapat dilihat.",
       ) +
       `<div class="portfolio-total">${avatar(owner)}<div><b>${esc(player.name)}</b><small>${assets(c.s, owner).length} properti</small></div>${amount(player.cash)}</div><div class="chips asset-tabs">${[
         ["all", "Properti"],
@@ -157,7 +155,7 @@ export function renderAssetPanel(c, { btn, lead, amount }) {
         )
         .join(
           "",
-        )}</div>${planStatus}${tab === "auto" && own ? `<section class="auto-mortgage"><p class="tile-explanation">Pilih dana tambahan yang dibutuhkan. Sistem menjaga set lengkap bila aset lain cukup, lalu mengurangi kehilangan potensi sewa.</p><label class="field">Kebutuhan tambahan Nusa<input name="mortgageTarget" inputmode="decimal" value="${esc(target)}"></label><p class="inline-note">${esc(advice.reason)}</p><ul class="mortgage-preview">${advice.tiles.map((id) => `<li><span>${esc(BOARD[id].name)}</span><b>+ ${esc(money(BOARD[id].mortgage))}</b></li>`).join("")}</ul>${advice.tiles.length ? btn("Gadai " + advice.tiles.length + " properti · + " + money(advice.amount), "autoMortgage", { primary: true, disabled: busy || reviewed, extra: `data-target="${parseNusa(target)}" data-version="${c.s.version}" data-tiles="${advice.tiles.join(",")}"` }) : ""}${reviewed ? btn("Hitung rekomendasi baru", "refreshMortgageAdvice", { disabled: busy }) : ""}<p class="inline-note">Bukan penjualan aset. Sewa pada aset yang digadai berhenti; penebusan mengikuti biaya engine. Pilihan diperiksa ulang pada setiap transaksi.</p></section>` : ""}${tab === "auto" ? "" : tab === "build" && own ? `<div class="development-bank"><span>${buildingArt()} ${bank.houses} rumah</span><span>${buildingArt("hotel")} ${bank.hotels} hotel</span></div><div class="development-groups">${build}</div>` : `<label class="field">Cari properti<input name="assetSearch" type="search" value="${esc(c.ui.assetQuery || "")}" placeholder="Nama properti"></label><div class="asset-list">${portfolio}</div>`}`,
+        )}</div>${planStatus}${tab === "auto" && own ? `<section class="auto-mortgage"><p class="tile-explanation">Tentukan dana tambahan, lalu periksa daftar gadai.</p><label class="field">Kebutuhan tambahan Nusa<input name="mortgageTarget" inputmode="decimal" value="${esc(target)}"></label><p class="inline-note">${esc(advice.reason)}</p><ul class="mortgage-preview">${advice.tiles.map((id) => `<li><span>${esc(BOARD[id].name)}</span><b>+ ${esc(money(BOARD[id].mortgage))}</b></li>`).join("")}</ul>${advice.tiles.length ? btn("Gadai " + advice.tiles.length + " properti · + " + money(advice.amount), "autoMortgage", { primary: true, disabled: busy || reviewed, extra: `data-target="${parseNusa(target)}" data-version="${c.s.version}" data-tiles="${advice.tiles.join(",")}"` }) : ""}${reviewed ? btn("Hitung rekomendasi baru", "refreshMortgageAdvice", { disabled: busy }) : ""}<details class="compact-help"><summary>Info gadai otomatis</summary><p>Set lengkap dijaga bila aset lain cukup. Properti tetap milik Anda, tetapi sewanya berhenti sampai ditebus. Setiap transaksi diperiksa ulang.</p></details></section>` : ""}${tab === "auto" ? "" : tab === "build" && own ? `<div class="development-bank"><span>${buildingArt()} ${bank.houses} rumah</span><span>${buildingArt("hotel")} ${bank.hotels} hotel</span></div><div class="development-groups">${build}</div>` : `<label class="field">Cari properti<input name="assetSearch" type="search" value="${esc(c.ui.assetQuery || "")}" placeholder="Nama properti"></label><div class="asset-list">${portfolio}</div>`}`,
     footer:
       btn("Seluruh petak", "allTiles", { sym: "map" }) +
       btn("Selesai", "close", { primary: true }),

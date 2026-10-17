@@ -1,0 +1,57 @@
+{
+  "generatedAt": "2026-10-17T00:49:14.818Z",
+  "result": {
+    "seed": 536870912,
+    "n": 6,
+    "policies": [
+      "economic",
+      "frozen-490"
+    ],
+    "finished": true,
+    "winner": 4,
+    "actions": 2089,
+    "actionHash": "71664dbd7fec1ba409153c7543b0728ee72eb8ea1158ce67ca31327d9df19b65",
+    "simulationLogLimit": 80,
+    "illegal": 0,
+    "failure": null,
+    "wallMs": 17020.652226000002,
+    "metrics": {
+      "builds": 87,
+      "trades": 10,
+      "offers": 16,
+      "auctions": 5,
+      "monopolies": 0
+    },
+    "latencyMs": {
+      "p50": 4.333764999999403,
+      "p95": 25.233963000000585,
+      "max": 966.724354
+    },
+    "latencyByPolicy": {
+      "economic": {
+        "samples": 1106,
+        "p50": 4.183702000000267,
+        "p95": 28.868451000000277,
+        "max": 966.724354
+      },
+      "frozen-490": {
+        "samples": 983,
+        "p50": 4.432460999998511,
+        "p95": 20.212876999998116,
+        "max": 104.67066500000146
+      }
+    },
+    "bankrupt": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      true
+    ]
+  },
+  "limits": [
+    "Single real local six-seat engine run; not a strength benchmark or Android measurement.",
+    "Earlier 12-second stress budget expired before six-seat matches completed."
+  ]
+}

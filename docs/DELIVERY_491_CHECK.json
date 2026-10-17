@@ -1,0 +1,11 @@
+{
+  "version": "4.9.1",
+  "build": "fe246c990e55a6cf",
+  "cleanSourceZipBuild": true,
+  "withoutEnvOrDependencies": true,
+  "nativeApiHTTP": 200,
+  "missingEnvHandledAsJSON": true,
+  "privateModulesAbsentFromPublicOutput": true,
+  "tradeEstimateOfflineModuleIncluded": true,
+  "passed": true
+}

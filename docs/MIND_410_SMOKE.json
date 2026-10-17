@@ -1,0 +1,1151 @@
+{
+  "version": "4.10.0",
+  "generatedAt": "2026-10-17T00:47:41.210Z",
+  "sourceHash": "6c3bab85c801e9ad7c93ebdfe5a3c5183564f09cc4c9d63174c5caa41b6a5e04",
+  "provenance": {
+    "sourceHash": "6c3bab85c801e9ad7c93ebdfe5a3c5183564f09cc4c9d63174c5caa41b6a5e04",
+    "files": {
+      "lib/game.mjs": "88a9caffb96474d36d683d0a3134b6aa47f107cae21764ed035f96e9808e6ccc",
+      "lib/content.mjs": "4e87e3b37db870f45de641cb897bcd290ef131e7363a55f74b53d95113674bbd",
+      "lib/bank-economy.mjs": "4465f446c3bc9b3ebca270e08d3bdd0e5b342dcd953199e6b1a36c6e6f39ed18",
+      "lib/finance.mjs": "f267b9773a43abc170b0ae29fcf57ae780ee598a5304630c9398054e53aed5ae",
+      "lib/currency.mjs": "b7c30a2ca47c827ad28582bb2aa8f487667bdb99eae6ccd31a3220f829818b53",
+      "lib/bot/allocation.mjs": "95a62a9cbe15c0160bc3999ac62a7c24901c9a67ba19b487eeb7dfccabe1248d",
+      "lib/bot/analysis.mjs": "3998cabdaa773af80e22c25d586ca23cee2da63bb7378dc36d5e57377c1deaeb",
+      "lib/bot/candidates.mjs": "ddea25021ca08d30e451372d07e7f9b299004bc961e7023d31b0f7de5d47954e",
+      "lib/bot/concessions.mjs": "7eb04bdd95a10b9ce92281864a49b27c10c30f68924bb0e2fcc5bf5691ee4e57",
+      "lib/bot/development.mjs": "725fdded9e252b7014d08bd5b8ced981a4f56de58e01200fec4912702e95af34",
+      "lib/bot/economy.mjs": "76f377a62cc2843890459da70c6cd52e1eeebfe40f2c7e280509518502fd6f9b",
+      "lib/bot/learning.mjs": "28a6789795756b63caabe640e2cc9f474f95d5025ed24513587052358e4aeb07",
+      "lib/bot/liquidation.mjs": "c2f9a34d4b1dae8011fa29bd2364210e59302601a166d50baaa42438026a9970",
+      "lib/bot/memory.mjs": "7ed7d89398c479d3b1238bda739ca5dfbacf7c3f256a257990b34d44e3871e1f",
+      "lib/bot/mind-client.mjs": "c90eff416ceb3401af4cfec29f063ade1cf55c51d578685ab9c0f0af52dd499d",
+      "lib/bot/mind-config.mjs": "d01e87ed3c043e225bf675f3f326442e12e185401ed8da5e7279f7422782f605",
+      "lib/bot/mind.mjs": "d2e3ce8de79d6286cad019ba2449d61e8c19c594729ceb307a57d9cc100881a7",
+      "lib/bot/mind.worker.mjs": "53da52b7e1c2f1beee0e538545f791f27f6937d16e4c047c6895b96352485554",
+      "lib/bot/negotiation.mjs": "cec17726919d072cb4c7b88130951d9fba04a4719df0385cf3ebcffad79e33d0",
+      "lib/bot/personas.mjs": "f6825a8ff7118825a74ebbe382de8b7a50e21110f32b08b1367c396223dbfbf2",
+      "lib/bot/probability.mjs": "17a940e3c66ee3fb0dbf2db6dcbb6e414128b519768a98d4a28b4c90660032ae",
+      "lib/bot/risk.mjs": "3e2dff6820dc6825400ee1fdf6457950f7885a350922d86f8c191cfad05f1094",
+      "lib/bot/scenario-random.mjs": "51661f79f344ef2179b36761850170a8ab7d77398ee09a383fe3a08f3005f067",
+      "lib/bot/strategy.mjs": "6c3814f2fe5e55abd21a612bb16da8a970fa95f59e5587c7a6a79052b339c077"
+    }
+  },
+  "config": {
+    "seeds": 1,
+    "seedBase": 536870912,
+    "sizes": [
+      2,
+      4,
+      6
+    ],
+    "candidate": "economic",
+    "maxMs": 12000,
+    "maxActions": 4000,
+    "budget": 80,
+    "nodes": 160,
+    "split": "tuning"
+  },
+  "complete": true,
+  "wallMs": 136103.81167199998,
+  "bySize": {
+    "2": {
+      "scheduledGames": 2,
+      "attemptedGames": 2,
+      "finishedGames": 2,
+      "wins": 1,
+      "winRate": 0.5,
+      "illegal": 0,
+      "failures": 0,
+      "independentSeedClusters": 1,
+      "pairedDelta": 0,
+      "clusterBootstrap95": null,
+      "medianMatchDecisionP50": 14.629409000001033,
+      "medianMatchDecisionP95": 62.682348999998794
+    },
+    "4": {
+      "scheduledGames": 4,
+      "attemptedGames": 4,
+      "finishedGames": 4,
+      "wins": 2,
+      "winRate": 0.5,
+      "illegal": 0,
+      "failures": 0,
+      "independentSeedClusters": 1,
+      "pairedDelta": 0.25,
+      "clusterBootstrap95": null,
+      "medianMatchDecisionP50": 14.556937000001199,
+      "medianMatchDecisionP95": 49.81245499999932
+    },
+    "6": {
+      "scheduledGames": 6,
+      "attemptedGames": 6,
+      "finishedGames": 0,
+      "wins": 0,
+      "winRate": 0,
+      "illegal": 0,
+      "failures": 6,
+      "independentSeedClusters": 1,
+      "pairedDelta": -0.16666666666666666,
+      "clusterBootstrap95": null,
+      "medianMatchDecisionP50": 9.323800999991363,
+      "medianMatchDecisionP95": 60.58573200000683
+    }
+  },
+  "promotion": {
+    "promote": false,
+    "reasons": [
+      "not_holdout",
+      "insufficient_clusters_2",
+      "superiority_unproven_2",
+      "insufficient_clusters_4",
+      "superiority_unproven_4",
+      "insufficient_clusters_6",
+      "health_gate_6",
+      "superiority_unproven_6"
+    ],
+    "automaticProductionChanges": false
+  },
+  "runs": [
+    {
+      "seed": 536870912,
+      "n": 2,
+      "policies": [
+        "economic",
+        "frozen-490"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 274,
+      "actionHash": "ffc87a0f1d654bc417aa574a42a1d589895d88c110f69b517976afdd469ccfc9",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 4801.298558999999,
+      "metrics": {
+        "builds": 22,
+        "trades": 1,
+        "offers": 7,
+        "auctions": 11,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 10.13053299999956,
+        "p95": 46.97407899999962,
+        "max": 226.9274289999994
+      },
+      "latencyByPolicy": {
+        "economic": {
+          "samples": 137,
+          "p50": 14.629409000001033,
+          "p95": 55.07060300000012,
+          "max": 109.84052499999962
+        },
+        "frozen-490": {
+          "samples": 137,
+          "p50": 7.274444000000585,
+          "p95": 38.00100800000109,
+          "max": 226.9274289999994
+        }
+      },
+      "bankrupt": [
+        false,
+        true
+      ],
+      "seat": 0,
+      "won": true
+    },
+    {
+      "seed": 536870912,
+      "n": 2,
+      "policies": [
+        "frozen-490",
+        "economic"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 304,
+      "actionHash": "d087f06a1c9403468c7634bcbc313ab46cedd5d2ab52db2f933f3a8944bb7f1f",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 5131.854925,
+      "metrics": {
+        "builds": 20,
+        "trades": 3,
+        "offers": 9,
+        "auctions": 11,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 10.239097000001493,
+        "p95": 53.91243000000031,
+        "max": 160.69225500000175
+      },
+      "latencyByPolicy": {
+        "frozen-490": {
+          "samples": 147,
+          "p50": 7.315730000000258,
+          "p95": 30.51899599999888,
+          "max": 64.32960099999764
+        },
+        "economic": {
+          "samples": 157,
+          "p50": 13.544417000000976,
+          "p95": 62.682348999998794,
+          "max": 160.69225500000175
+        }
+      },
+      "bankrupt": [
+        false,
+        true
+      ],
+      "seat": 1,
+      "won": false
+    },
+    {
+      "seed": 536870912,
+      "n": 4,
+      "policies": [
+        "economic",
+        "frozen-490",
+        "frozen-490",
+        "frozen-490"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 594,
+      "actionHash": "90c044f314fa445643934f3bd3f09f134fd37cca7e8c28e53cba1635ebb5e06e",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 7426.789471999997,
+      "metrics": {
+        "builds": 76,
+        "trades": 8,
+        "offers": 11,
+        "auctions": 10,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 8.64688500000193,
+        "p95": 36.409741999999824,
+        "max": 74.02782200000001
+      },
+      "latencyByPolicy": {
+        "economic": {
+          "samples": 164,
+          "p50": 14.0960699999996,
+          "p95": 43.76092300000164,
+          "max": 74.02782200000001
+        },
+        "frozen-490": {
+          "samples": 430,
+          "p50": 7.189206999999442,
+          "p95": 33.93915600000037,
+          "max": 58.987851999998384
+        }
+      },
+      "bankrupt": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "seat": 0,
+      "won": true
+    },
+    {
+      "seed": 536870912,
+      "n": 4,
+      "policies": [
+        "frozen-490",
+        "economic",
+        "frozen-490",
+        "frozen-490"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 438,
+      "actionHash": "fdb72f1266935e7897034ff055986084cebb3a9bf62f66779ad963b196e3b025",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 6040.101721999999,
+      "metrics": {
+        "builds": 58,
+        "trades": 7,
+        "offers": 9,
+        "auctions": 4,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 6.663010000003851,
+        "p95": 40.72648599999957,
+        "max": 90.26152499999444
+      },
+      "latencyByPolicy": {
+        "frozen-490": {
+          "samples": 281,
+          "p50": 4.7261060000018915,
+          "p95": 28.440120999999635,
+          "max": 66.97173699999985
+        },
+        "economic": {
+          "samples": 157,
+          "p50": 21.179088999997475,
+          "p95": 63.59105900000577,
+          "max": 90.26152499999444
+        }
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 1,
+      "won": true
+    },
+    {
+      "seed": 536870912,
+      "n": 4,
+      "policies": [
+        "frozen-490",
+        "frozen-490",
+        "economic",
+        "frozen-490"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 771,
+      "actionHash": "3cb77c83a7943623cff9142580fd7efba3c316de5878c2d4fae6f14028493f07",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 8341.987616999999,
+      "metrics": {
+        "builds": 91,
+        "trades": 6,
+        "offers": 9,
+        "auctions": 4,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 7.839854000005289,
+        "p95": 26.319823999998334,
+        "max": 57.34954500000458
+      },
+      "latencyByPolicy": {
+        "frozen-490": {
+          "samples": 511,
+          "p50": 5.621610000001965,
+          "p95": 16.82951000000321,
+          "max": 42.44963699999789
+        },
+        "economic": {
+          "samples": 260,
+          "p50": 14.556937000001199,
+          "p95": 45.73968199999945,
+          "max": 57.34954500000458
+        }
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 2,
+      "won": false
+    },
+    {
+      "seed": 536870912,
+      "n": 4,
+      "policies": [
+        "frozen-490",
+        "frozen-490",
+        "frozen-490",
+        "economic"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 348,
+      "actionHash": "8d1642d0bfa980e854581bb2460ab37d3bca1a3b110ac9fe0269d469549b58cf",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 6280.985364,
+      "metrics": {
+        "builds": 58,
+        "trades": 7,
+        "offers": 8,
+        "auctions": 1,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 10.09655400000338,
+        "p95": 70.24907900000107,
+        "max": 117.1251540000012
+      },
+      "latencyByPolicy": {
+        "frozen-490": {
+          "samples": 289,
+          "p50": 9.575203000000329,
+          "p95": 77.33998999999312,
+          "max": 117.1251540000012
+        },
+        "economic": {
+          "samples": 59,
+          "p50": 11.116547999998147,
+          "p95": 49.81245499999932,
+          "max": 59.79046099999687
+        }
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "seat": 3,
+      "won": false
+    },
+    {
+      "seed": 536870912,
+      "n": 6,
+      "policies": [
+        "economic",
+        "frozen-490",
+        "frozen-490",
+        "frozen-490",
+        "frozen-490",
+        "frozen-490"
+      ],
+      "finished": false,
+      "winner": null,
+      "actions": 1843,
+      "actionHash": "416547fa12aab404b76101b883e67cbe02d808b18c9316e6ebd8b678d6051eab",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": "wall_budget",
+      "wallMs": 12003.624451000003,
+      "metrics": {
+        "builds": 84,
+        "trades": 7,
+        "offers": 11,
+        "auctions": 3,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 3.8403790000011213,
+        "p95": 15.566695000001346,
+        "max": 104.32960100000491
+      },
+      "latencyByPolicy": {
+        "economic": {
+          "samples": 334,
+          "p50": 2.416066999998293,
+          "p95": 9.507814999989932,
+          "max": 34.287916999994195
+        },
+        "frozen-490": {
+          "samples": 1509,
+          "p50": 4.126887999998871,
+          "p95": 18.73563799999829,
+          "max": 104.32960100000491
+        }
+      },
+      "bankrupt": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        false
+      ],
+      "failureState": {
+        "phase": "debt",
+        "turn": 5,
+        "serial": 105,
+        "auction": null,
+        "trade": null,
+        "players": [
+          {
+            "id": 0,
+            "cash": 0,
+            "out": true
+          },
+          {
+            "id": 1,
+            "cash": 0,
+            "out": true
+          },
+          {
+            "id": 2,
+            "cash": 0,
+            "out": true
+          },
+          {
+            "id": 3,
+            "cash": 0,
+            "out": true
+          },
+          {
+            "id": 4,
+            "cash": 23694,
+            "out": false
+          },
+          {
+            "id": 5,
+            "cash": 5401,
+            "out": false
+          }
+        ]
+      },
+      "seat": 0,
+      "won": false
+    },
+    {
+      "seed": 536870912,
+      "n": 6,
+      "policies": [
+        "frozen-490",
+        "economic",
+        "frozen-490",
+        "frozen-490",
+        "frozen-490",
+        "frozen-490"
+      ],
+      "finished": false,
+      "winner": null,
+      "actions": 1204,
+      "actionHash": "970c87fd4b8e06904cc13df5b473dde613cd52f25841ae067577da2125394a81",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": "wall_budget",
+      "wallMs": 12005.145913,
+      "metrics": {
+        "builds": 111,
+        "trades": 8,
+        "offers": 13,
+        "auctions": 6,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 5.174013999989256,
+        "p95": 33.82975799999258,
+        "max": 107.45181699999375
+      },
+      "latencyByPolicy": {
+        "frozen-490": {
+          "samples": 927,
+          "p50": 5.065373000004911,
+          "p95": 33.82539199999883,
+          "max": 107.45181699999375
+        },
+        "economic": {
+          "samples": 277,
+          "p50": 5.6511739999987185,
+          "p95": 38.17401400000381,
+          "max": 102.52302999999665
+        }
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "failureState": {
+        "phase": "buildOffer",
+        "turn": 4,
+        "serial": 89,
+        "auction": null,
+        "trade": null,
+        "players": [
+          {
+            "id": 0,
+            "cash": 0,
+            "out": true
+          },
+          {
+            "id": 1,
+            "cash": 2382,
+            "out": false
+          },
+          {
+            "id": 2,
+            "cash": 0,
+            "out": true
+          },
+          {
+            "id": 3,
+            "cash": 14,
+            "out": false
+          },
+          {
+            "id": 4,
+            "cash": 523,
+            "out": false
+          },
+          {
+            "id": 5,
+            "cash": 116,
+            "out": false
+          }
+        ]
+      },
+      "seat": 1,
+      "won": false
+    },
+    {
+      "seed": 536870912,
+      "n": 6,
+      "policies": [
+        "frozen-490",
+        "frozen-490",
+        "economic",
+        "frozen-490",
+        "frozen-490",
+        "frozen-490"
+      ],
+      "finished": false,
+      "winner": null,
+      "actions": 818,
+      "actionHash": "f636c4e6487b44602430d0ea0502b189bd2d39a36e68413e3764ad8cab6b7ce4",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": "wall_budget",
+      "wallMs": 12003.220276000007,
+      "metrics": {
+        "builds": 41,
+        "trades": 4,
+        "offers": 7,
+        "auctions": 2,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 6.383156000010786,
+        "p95": 51.255948000005446,
+        "max": 285.22706299999845
+      },
+      "latencyByPolicy": {
+        "frozen-490": {
+          "samples": 650,
+          "p50": 6.0025170000008075,
+          "p95": 52.04463800000667,
+          "max": 285.22706299999845
+        },
+        "economic": {
+          "samples": 168,
+          "p50": 7.474421999999322,
+          "p95": 45.8650270000071,
+          "max": 94.71749200001068
+        }
+      },
+      "bankrupt": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "failureState": {
+        "phase": "auction",
+        "turn": 5,
+        "serial": 58,
+        "auction": {
+          "id": "learn-536870912-6:auction:900",
+          "kind": "property",
+          "tile": 26,
+          "participants": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "highest": 0,
+          "amount": 2950,
+          "passed": [],
+          "bidder": 5
+        },
+        "trade": null,
+        "players": [
+          {
+            "id": 0,
+            "cash": 6400,
+            "out": false
+          },
+          {
+            "id": 1,
+            "cash": 2735,
+            "out": false
+          },
+          {
+            "id": 2,
+            "cash": 1312,
+            "out": false
+          },
+          {
+            "id": 3,
+            "cash": 9553,
+            "out": false
+          },
+          {
+            "id": 4,
+            "cash": 23055,
+            "out": false
+          },
+          {
+            "id": 5,
+            "cash": 1495,
+            "out": false
+          }
+        ]
+      },
+      "seat": 2,
+      "won": false
+    },
+    {
+      "seed": 536870912,
+      "n": 6,
+      "policies": [
+        "frozen-490",
+        "frozen-490",
+        "frozen-490",
+        "economic",
+        "frozen-490",
+        "frozen-490"
+      ],
+      "finished": false,
+      "winner": null,
+      "actions": 756,
+      "actionHash": "7fbcc4fd308786adff909aa615c7a172b1e14906c9906649a8ad2b5fcee3e334",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": "wall_budget",
+      "wallMs": 12004.12677599999,
+      "metrics": {
+        "builds": 55,
+        "trades": 7,
+        "offers": 8,
+        "auctions": 2,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 8.168427999989945,
+        "p95": 54.74737299999106,
+        "max": 178.14418099999602
+      },
+      "latencyByPolicy": {
+        "frozen-490": {
+          "samples": 653,
+          "p50": 8.122894000000088,
+          "p95": 51.77743900001224,
+          "max": 169.49137400000473
+        },
+        "economic": {
+          "samples": 103,
+          "p50": 9.323800999991363,
+          "p95": 60.58573200000683,
+          "max": 178.14418099999602
+        }
+      },
+      "bankrupt": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "failureState": {
+        "phase": "roll",
+        "turn": 1,
+        "serial": 60,
+        "auction": null,
+        "trade": null,
+        "players": [
+          {
+            "id": 0,
+            "cash": 1489,
+            "out": false
+          },
+          {
+            "id": 1,
+            "cash": 1735,
+            "out": false
+          },
+          {
+            "id": 2,
+            "cash": 1011,
+            "out": false
+          },
+          {
+            "id": 3,
+            "cash": 5462,
+            "out": false
+          },
+          {
+            "id": 4,
+            "cash": 5570,
+            "out": false
+          },
+          {
+            "id": 5,
+            "cash": 8353,
+            "out": false
+          }
+        ]
+      },
+      "seat": 3,
+      "won": false
+    },
+    {
+      "seed": 536870912,
+      "n": 6,
+      "policies": [
+        "frozen-490",
+        "frozen-490",
+        "frozen-490",
+        "frozen-490",
+        "economic",
+        "frozen-490"
+      ],
+      "finished": false,
+      "winner": null,
+      "actions": 949,
+      "actionHash": "8f66ceb4dd5b0cb1985819c8255ef90216f377f334f20a42baec263b52ab1094",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": "wall_budget",
+      "wallMs": 12001.320896000005,
+      "metrics": {
+        "builds": 83,
+        "trades": 8,
+        "offers": 11,
+        "auctions": 6,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 4.993350999997347,
+        "p95": 47.239933000004385,
+        "max": 120.78498899999249
+      },
+      "latencyByPolicy": {
+        "frozen-490": {
+          "samples": 795,
+          "p50": 4.357554000001983,
+          "p95": 39.55124300000898,
+          "max": 120.78498899999249
+        },
+        "economic": {
+          "samples": 154,
+          "p50": 13.54234900001029,
+          "p95": 81.61048299999675,
+          "max": 106.7140320000035
+        }
+      },
+      "bankrupt": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false
+      ],
+      "failureState": {
+        "phase": "end",
+        "turn": 0,
+        "serial": 94,
+        "auction": null,
+        "trade": null,
+        "players": [
+          {
+            "id": 0,
+            "cash": 1929,
+            "out": false
+          },
+          {
+            "id": 1,
+            "cash": 0,
+            "out": true
+          },
+          {
+            "id": 2,
+            "cash": 0,
+            "out": true
+          },
+          {
+            "id": 3,
+            "cash": 0,
+            "out": true
+          },
+          {
+            "id": 4,
+            "cash": 3348,
+            "out": false
+          },
+          {
+            "id": 5,
+            "cash": 103,
+            "out": false
+          }
+        ]
+      },
+      "seat": 4,
+      "won": false
+    },
+    {
+      "seed": 536870912,
+      "n": 6,
+      "policies": [
+        "frozen-490",
+        "frozen-490",
+        "frozen-490",
+        "frozen-490",
+        "frozen-490",
+        "economic"
+      ],
+      "finished": false,
+      "winner": null,
+      "actions": 829,
+      "actionHash": "f971e2c3c0ef5df470477ac76192bb7f74e87fe5d7d3b149c719b18a03960367",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": "wall_budget",
+      "wallMs": 12005.52728200001,
+      "metrics": {
+        "builds": 41,
+        "trades": 5,
+        "offers": 5,
+        "auctions": 1,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 7.769545000017388,
+        "p95": 48.62668400001712,
+        "max": 184.8007670000079
+      },
+      "latencyByPolicy": {
+        "frozen-490": {
+          "samples": 785,
+          "p50": 7.763517999992473,
+          "p95": 46.07123899999715,
+          "max": 152.96225799999957
+        },
+        "economic": {
+          "samples": 44,
+          "p50": 10.832388999988325,
+          "p95": 83.5336440000101,
+          "max": 184.8007670000079
+        }
+      },
+      "bankrupt": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "failureState": {
+        "phase": "auction",
+        "turn": 1,
+        "serial": 54,
+        "auction": {
+          "id": "learn-536870912-6:auction:590",
+          "kind": "property",
+          "tile": 39,
+          "participants": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "highest": 4,
+          "amount": 3990,
+          "passed": [],
+          "bidder": 5
+        },
+        "trade": null,
+        "players": [
+          {
+            "id": 0,
+            "cash": 4419,
+            "out": false
+          },
+          {
+            "id": 1,
+            "cash": 935,
+            "out": false
+          },
+          {
+            "id": 2,
+            "cash": 304,
+            "out": false
+          },
+          {
+            "id": 3,
+            "cash": 7869,
+            "out": false
+          },
+          {
+            "id": 4,
+            "cash": 18155,
+            "out": false
+          },
+          {
+            "id": 5,
+            "cash": 7418,
+            "out": false
+          }
+        ]
+      },
+      "seat": 5,
+      "won": false
+    }
+  ],
+  "controls": [
+    {
+      "seed": 536870912,
+      "n": 2,
+      "policies": [
+        "frozen-490"
+      ],
+      "finished": true,
+      "winner": 0,
+      "actions": 426,
+      "actionHash": "e5ea3cde800ddd30de84e4aee8842672d0129be51b16083ab31aff6b49c9b5f6",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 8416.097213,
+      "metrics": {
+        "builds": 37,
+        "trades": 1,
+        "offers": 1,
+        "auctions": 20,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 11.003069999999752,
+        "p95": 56.827448000000004,
+        "max": 188.8013430000001
+      },
+      "latencyByPolicy": {
+        "frozen-490": {
+          "samples": 426,
+          "p50": 11.003069999999752,
+          "p95": 56.827448000000004,
+          "max": 188.8013430000001
+        }
+      },
+      "bankrupt": [
+        false,
+        true
+      ]
+    },
+    {
+      "seed": 536870912,
+      "n": 4,
+      "policies": [
+        "frozen-490"
+      ],
+      "finished": true,
+      "winner": 1,
+      "actions": 615,
+      "actionHash": "e5a7f0c83ff2ca13eade4215add9ba8cddbfe26d6a153e3d15aa5755ea720f7c",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 6689.742036,
+      "metrics": {
+        "builds": 79,
+        "trades": 7,
+        "offers": 8,
+        "auctions": 5,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 7.899301000001287,
+        "p95": 30.153628000000026,
+        "max": 61.78961100000015
+      },
+      "latencyByPolicy": {
+        "frozen-490": {
+          "samples": 615,
+          "p50": 7.899301000001287,
+          "p95": 30.153628000000026,
+          "max": 61.78961100000015
+        }
+      },
+      "bankrupt": [
+        true,
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "seed": 536870912,
+      "n": 6,
+      "policies": [
+        "frozen-490"
+      ],
+      "finished": true,
+      "winner": 4,
+      "actions": 1046,
+      "actionHash": "712987a205cacd6b888fdeeb6528d51cb7c0a9b56a06a84bbd467c909885da08",
+      "simulationLogLimit": 80,
+      "illegal": 0,
+      "failure": null,
+      "wallMs": 10869.059033000005,
+      "metrics": {
+        "builds": 99,
+        "trades": 8,
+        "offers": 13,
+        "auctions": 7,
+        "monopolies": 0
+      },
+      "latencyMs": {
+        "p50": 5.519780000002356,
+        "p95": 31.97419400000217,
+        "max": 118.79280799999833
+      },
+      "latencyByPolicy": {
+        "frozen-490": {
+          "samples": 1046,
+          "p50": 5.519780000002356,
+          "p95": 31.97419400000217,
+          "max": 118.79280799999833
+        }
+      },
+      "bankrupt": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        true
+      ]
+    }
+  ],
+  "limitations": [
+    "Cloud Node.js CPU, not Android/Termux measurements.",
+    "Frozen baseline is target v4.9.1; target integrators must freeze their own pre-merge bot.",
+    "Each seed rotates the candidate through every seat. Confidence intervals resample whole seed clusters per participant count.",
+    "Intervals withheld below five complete clusters; a smoke run cannot establish superiority.",
+    "Action-cap, timeout and errors remain zero-win outcomes in the scheduled denominator.",
+    "Paired initial seeds do not guarantee identical later real-game dice after policies diverge. Sandbox CRN does not alter authoritative match RNG.",
+    "Six-seat lab permits repeated persona labels; online production seat/controller limits remain unchanged."
+  ]
+}

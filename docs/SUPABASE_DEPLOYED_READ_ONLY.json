@@ -1,0 +1,17 @@
+{
+  "projectHost": "ymunfgclqfdqaczluqti.supabase.co",
+  "expectedConnectify": true,
+  "auth": {
+    "status": 200,
+    "emailEnabled": true,
+    "signupDisabled": false,
+    "anonymousEnabled": true
+  },
+  "roomTableReadOnlyCheck": {
+    "status": 401,
+    "errorCode": "42501",
+    "rowsExposed": 0,
+    "interpretation": "Private table rejects anonymous access as intended; not a logged-in room transaction test."
+  },
+  "dataMutated": false
+}
