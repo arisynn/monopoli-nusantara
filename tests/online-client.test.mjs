@@ -12,12 +12,12 @@ function storage(t){
 }
 test('guest Auth is persistent in browser; connection IDs survive refresh and identify one tab',async t=>{
  storage(t);let calls=0;
- const auth=new OnlineAuth(config,async(url,options)=>{calls++;assert(url.endsWith('/auth/v1/signup'));assert.equal(options.headers.apikey,config.key);assert(!JSON.stringify(options).includes(config.secret));return Response.json({access_token:'guest-access-token',refresh_token:'refresh',expires_in:3600,user:{id:'user-one',is_anonymous:true}})});
+ const auth=new OnlineAuth(config,async(url,options)=>{calls++;assert.equal(url,'/api/auth?op=guest');assert(!('apikey' in options.headers));assert(!JSON.stringify(options).includes(config.secret));return Response.json({access_token:'guest-access-token',refresh_token:'refresh',expires_in:3600,user:{id:'user-one',is_anonymous:true}})});
  await auth.guest();assert.equal(auth.session().user.is_anonymous,true);assert.equal(await new OnlineAuth(config).token(),'guest-access-token');assert.equal(calls,1);assert.equal(connectionId(),connectionId());
 });
 test('expired access token uses rotating refresh token and never sends a room snapshot to Auth',async t=>{
  storage(t);localStorage.setItem(`nusantara-auth:${config.url}`,JSON.stringify({access_token:'expired',expires_at:0,refresh_token:'refresh-one',user:{id:'one'}}));
- const auth=new OnlineAuth(config,async(url,options)=>{assert(url.endsWith('token?grant_type=refresh_token'));assert.deepEqual(JSON.parse(options.body),{refresh_token:'refresh-one'});return Response.json({access_token:'new-token',refresh_token:'refresh-two',expires_in:3600,user:{id:'one'}})});
+ const auth=new OnlineAuth(config,async(url,options)=>{assert.equal(url,'/api/auth?op=refresh');assert.deepEqual(JSON.parse(options.body),{refresh_token:'refresh-one'});return Response.json({access_token:'new-token',refresh_token:'refresh-two',expires_in:3600,user:{id:'one'}})});
  assert.equal(await auth.token(),'new-token');assert.equal(auth.session().refresh_token,'refresh-two');
 });
 test('Auth provider and connection failures stay distinct and do not destroy an existing identity',async t=>{
@@ -68,7 +68,7 @@ test('email confirmation verifies callback identity and removes tokens from the 
  globalThis.location={hash:'#access_token=confirmed-access-token&refresh_token=confirmed-refresh-token&expires_in=3600',pathname:'/',search:'?room=ABCDEFGH'};
  globalThis.history={state:null,replaceState:(_state,_title,url)=>{cleaned=url}};
  t.after(()=>{globalThis.location=oldLocation;globalThis.history=oldHistory});
- const auth=new OnlineAuth(config,async(url,options)=>{assert(url.endsWith('/auth/v1/user'));assert.equal(options.headers.Authorization,'Bearer confirmed-access-token');return Response.json({id:'confirmed-user',is_anonymous:false})});
+ const auth=new OnlineAuth(config,async(url,options)=>{assert.equal(url,'/api/auth?op=user');assert.equal(options.headers.Authorization,'Bearer confirmed-access-token');return Response.json({id:'confirmed-user',is_anonymous:false})});
  await auth.consumeRedirect();assert.equal(auth.session().user.id,'confirmed-user');assert.equal(auth.session().refresh_token,'confirmed-refresh-token');assert.equal(cleaned,'/?room=ABCDEFGH');
 });
 
@@ -77,4 +77,16 @@ test('reconnect replaces an untrusted browser cache even when its stored version
  const cached={matchId:'match',version:999999,players:[{cash:999999}]},server={matchId:'match',version:12,players:[{cash:15000}]};
  assert.equal(mergeState(cached,server,true),server);
  const current={...server,version:13};assert.equal(mergeState(current,server),current);
+});
+
+test('email login and signup use same-origin relay and show provider errors',async t=>{
+ storage(t);const operations=[];const auth=new OnlineAuth(config,async(url,options)=>{operations.push([url,options]);return Response.json({error:'Email address not confirmed'},{status:400})});
+ await assert.rejects(auth.login('person@example.com','password123'),/Email address not confirmed/);
+ await assert.rejects(auth.signup('person@example.com','password123'),/Email address not confirmed/);
+ assert.deepEqual(operations.map(([url])=>url),['/api/auth?op=login','/api/auth?op=signup']);
+ assert(operations.every(([,o])=>!('apikey' in o.headers)&&!JSON.stringify(o).includes(config.secret)));
+});
+test('browser transport errors distinguish timeout without treating Auth 400 as connection loss',async t=>{
+ storage(t);const auth=new OnlineAuth(config,async()=>{throw Object.assign(new Error('timeout'),{name:'TimeoutError'})});
+ await assert.rejects(auth.guest(),e=>e instanceof ConnectionError&&/terlalu lama/.test(e.message));
 });

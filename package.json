@@ -12,7 +12,7 @@
     "start": "node --env-file-if-exists=.env --experimental-strip-types --import ./adapters/node/aliases.mjs adapters/node/server.mjs",
     "demo": "node examples/local-game.mjs",
     "selfplay": "node examples/self-play.mjs",
-    "test:online": "node --experimental-strip-types --test --test-isolation=none tests/online.test.mjs tests/online-client.test.mjs tests/online-api.test.mjs tests/online-bots.test.mjs",
+    "test:online": "node --experimental-strip-types --test --test-isolation=none tests/online.test.mjs tests/online-client.test.mjs tests/auth-proxy.test.mjs tests/online-api.test.mjs tests/online-bots.test.mjs",
     "prepare:edge": "node scripts/prepare-edge-worker.mjs",
     "benchmark:mind": "node scripts/benchmark-mind.mjs",
     "benchmark:bots": "node scripts/benchmark-bots.mjs",

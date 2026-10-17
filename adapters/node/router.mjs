@@ -5,10 +5,12 @@ import {
   RULEPACK_VERSION,
 } from "../../lib/version.mjs";
 import * as online from "../../app/api/online/route.ts";
+import * as auth from "../../app/api/auth/route.ts";
 import * as advisor from "../../app/api/bot/route.ts";
 import * as legacy from "../../app/api/game/route.ts";
 const routes = new Map([
   ["/api/online", online],
+  ["/api/auth", auth],
   ["/api/bot", advisor],
   ["/api/game", legacy],
 ]);
