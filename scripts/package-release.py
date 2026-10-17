@@ -36,9 +36,9 @@ for path in files:
         raise SystemExit('Secret detected in source file: ' + str(path.relative_to(root)))
     entries.append({'path': path.relative_to(root).as_posix(), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
 manifest = {
-    'release': version + ' Multiplayer & Result UI Fix',
+    'release': version + ' Multi-AI Persona Edition',
     'generatedAt': datetime.now(timezone.utc).isoformat(),
-    'basisVersion': '4.9.1',
+    'basisVersion': '4.10.2',
     'hashedFileCount': len(entries),
     'selfHash': 'Excluded to avoid a circular digest',
     'excluded': ['.env and private env files', 'node_modules', 'dist', 'server-dist', '.git', 'logs', 'ZIP files'],

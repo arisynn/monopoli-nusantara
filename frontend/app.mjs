@@ -54,7 +54,9 @@ const ui = {
   count: 4,
   pawn: 0,
   rules: "digital",
-  levels: { raka: "medium", bima: "medium", sari: "medium" },
+  levels: { raka: "medium", bima: "medium", sari: "medium", nusa: "hard", apex: "hard" },
+  botSlots: ["nusa", "apex", "raka"],
+  nextBotPersona: "nusa",
   advisor: false,
   popup: null,
   dismissed: "",
@@ -107,9 +109,9 @@ function lobbyContent() {
     isRoom = !!session.room,
     players = isRoom
       ? r.seats
-      : (ui.name ? localPlayers(ui.name, ui.count, ui.pawn, ui.levels) :
+      : (ui.name ? localPlayers(ui.name, ui.count, ui.pawn, ui.levels, ui.botSlots) :
           [{name: "Isi nama di Profil Saya", controller: "human", pawn: ui.pawn},
-           ...PERSONAS.slice(0, ui.count - 1).map(p => ({name: p.name, controller: "bot", botPersona: p.id, botDifficulty: ui.levels[p.id], pawn: p.pawn}))]).map((p, id) => ({
+           ...ui.botSlots.slice(0, ui.count - 1).map(id => PERSONAS.find(p => p.id === id)).map(p => ({name: p.name, controller: "bot", botPersona: p.id, botDifficulty: ui.levels[p.id], pawn: p.pawn}))]).map((p, id) => ({
           ...p,
           id,
           ready: true,
@@ -128,7 +130,7 @@ function lobbyContent() {
     (_, i) => {
       const p = players[i];
       return p
-        ? `<button class="lobby-player ${i === (isRoom ? session.room.seat : 0) ? "own" : ""}" data-action="${isRoom ? "room" : "setup"}" style="--player:${colors[pawnFor(p)]}"><span class="player-number">P${i + 1}${isRoom && i === r.host ? " · HOST" : ""}</span><div class="roster-art">${avatar(i)}${pawnArt(pawnFor(p), TOKENS[pawnFor(p)].name)}</div><b>${esc(p.name)}</b><small class="ready-pill ${p.ready || p.controller === "bot" ? "ready" : ""}">${p.controller === "bot" ? "Bot · " + esc(MODELS.find((m) => m.id === p.botDifficulty)?.label || "Medium") : p.ready ? "Siap" : "Belum siap"}</small></button>`
+        ? `<button class="lobby-player ${i === (isRoom ? session.room.seat : 0) ? "own" : ""}" data-action="${isRoom ? "room" : "setup"}" style="--player:${colors[pawnFor(p)]}"><span class="player-number">P${i + 1}${isRoom && i === r.host ? " · HOST" : ""}</span><div class="roster-art">${avatar(i)}${pawnArt(pawnFor(p), TOKENS[pawnFor(p)].name)}</div><b>${esc(p.name)}</b><small class="ready-pill ${p.ready || p.controller === "bot" ? "ready" : ""}">${p.controller === "bot" ? "Bot · " + esc(PERSONAS.find(x=>x.id===p.botPersona)?.name||p.name) + " · " + esc(MODELS.find((m) => m.id === p.botDifficulty)?.label || "Medium") : p.ready ? "Siap" : "Belum siap"}</small></button>`
         : `<div class="lobby-player empty-seat"><span>P${i + 1}</span>${icon("plus", 25)}<small>Kursi kosong</small></div>`;
     },
   ).join(
@@ -539,10 +541,9 @@ function auxiliary(p) {
         html:
           lead("gear", "Teman Berpetualang", "") +
           `<div class="profile-name-row"><span>Nama kamu: <b>${esc(ui.name || "Belum diisi")}</b></span>${btn("Atur nama", "myProfile")}</div><div class="setup-controls"><div class="setup-row"><span>Peserta</span><div class="segments">${[2, 3, 4].map((n) => `<button data-action="count" data-value="${n}" aria-pressed="${n === ui.count}">${n}</button>`).join("")}</div></div>${btn("Pilih pion", "pawn")}</div>` +
-          PERSONAS.slice(0, ui.count - 1)
+          ui.botSlots.slice(0, ui.count - 1)
             .map(
-              (p, i) =>
-                `<label class="bot-setting">${avatar(i + 1)}<span><b>${esc(p.name)}</b><small>${p.role}</small></span><select name="level-${p.id}">${MODELS.map((m) => `<option value="${m.id}" ${ui.levels[p.id] === m.id ? "selected" : ""}>${m.label}</option>`).join("")}</select></label>`,
+              (id, i) => { const p = PERSONAS.find(x => x.id === id); return `<div class="bot-setting">${avatar(i + 1)}<span><b>${esc(p.name)}</b><small>${esc(p.role)}</small></span><select name="persona-${i}" aria-label="Karakter bot ${i + 1}">${PERSONAS.map(x => `<option value="${x.id}" ${x.id === id ? "selected" : ""} ${ui.botSlots.slice(0, ui.count - 1).includes(x.id) && x.id !== id ? "disabled" : ""}>${esc(x.name)} · ${esc(x.role)}</option>`).join("")}</select><select name="level-${id}" aria-label="Kesulitan bot ${i + 1}">${MODELS.map(m => `<option value="${m.id}" ${ui.levels[id] === m.id ? "selected" : ""}>${m.label}</option>`).join("")}</select></div>`; },
             )
             .join("") +
           `<label class="field">Aturan sewa<select name="rules"><option value="digital" ${ui.rules === "digital" ? "selected" : ""}>Digital · otomatis</option><option value="classic" ${ui.rules === "classic" ? "selected" : ""}>Meja Klasik · tagih manual</option></select></label><label class="toggle">Advisor Groq<input type="checkbox" name="advisor" ${ui.advisor ? "checked" : ""} ${!session.configured ? "disabled" : ""}></label><p class="inline-note">${session.configured ? "Opsional; koneksi advisor diperiksa saat dipakai." : "Advisor belum dikonfigurasi."} Bot lokal tetap mandiri.</p>`,
@@ -722,9 +723,9 @@ function auxiliary(p) {
           lead(
             "people",
             "Bot di Room",
-            "Persona berikutnya dipilih backend, tanpa duplikasi.",
+            "Pilih algoritma bot tanpa duplikasi karakter.",
           ) +
-          `<label class="field">Model bot<select name="nextBotLevel">${MODELS.map((x) => `<option value="${x.id}" ${x.id === (ui.nextBotLevel || "medium") ? "selected" : ""}>${x.label}</option>`).join("")}</select></label><p class="inline-note">Bot hanya ditambahkan sebelum mulai. Tidak menggantikan manusia yang terputus.</p>`,
+          `<label class="field">Karakter bot<select name="nextBotPersona">${PERSONAS.filter(p=>!session.online?.seats?.some(s=>s.botPersona===p.id)).map(p=>`<option value="${p.id}" ${p.id===(ui.nextBotPersona||"nusa")?"selected":""}>${esc(p.name)} · ${esc(p.role)}</option>`).join("")}</select></label><label class="field">Kesulitan<select name="nextBotLevel">${MODELS.map((x) => `<option value="${x.id}" ${x.id === (ui.nextBotLevel || "medium") ? "selected" : ""}>${x.label}</option>`).join("")}</select></label><p class="inline-note">Bot hanya ditambahkan sebelum mulai. Tidak menggantikan manusia yang terputus.</p>`,
         footer: btn("Tambahkan bot", "addBot", {
           primary: true,
           disabled: session.pending,
@@ -926,6 +927,7 @@ async function perform(action, el) {
           pawn: ui.pawn,
           rules: ui.rules,
           levels: ui.levels,
+          botPersonas: ui.botSlots,
           advisorEnabled: ui.advisor,
         });
         break;
@@ -1006,6 +1008,7 @@ async function perform(action, el) {
         if (
           await session.roomOp("ADD_BOT", {
             difficulty: ui.nextBotLevel || "medium",
+            persona: session.online?.seats?.some(s=>s.botPersona===ui.nextBotPersona) ? PERSONAS.find(p=>!session.online.seats.some(s=>s.botPersona===p.id))?.id : (ui.nextBotPersona || "nusa"),
           })
         )
           close();
@@ -1427,11 +1430,13 @@ document.addEventListener("change", async (e) => {
     if (name?.startsWith("buildCount-")) {
       ui.buildCounts[Number(name.slice(11))] = Number(el.value);
       queueRender();
-    } else if (name?.startsWith("level-")) ui.levels[name.slice(6)] = el.value;
+    } else if (name?.startsWith("persona-")) { const i = Number(name.slice(8)); if(PERSONAS.some(p=>p.id===el.value)&&!ui.botSlots.slice(0,ui.count-1).some((v,j)=>i!==j&&v===el.value)) {ui.botSlots[i]=el.value;queueRender();} }
+    else if (name?.startsWith("level-")) ui.levels[name.slice(6)] = el.value;
     else if (name === "rules") ui.rules = el.value;
     else if (name === "advisor") ui.advisor = el.checked;
     else if (name === "capacity") ui.capacity = Number(el.value);
     else if (name === "nextBotLevel") ui.nextBotLevel = el.value;
+    else if (name === "nextBotPersona") ui.nextBotPersona = el.value;
     else if (name === "assetOwner")
       open({ kind: "assets", id: Number(el.value) });
     else if (name === "tradeOpponent") {

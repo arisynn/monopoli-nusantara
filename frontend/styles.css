@@ -1518,6 +1518,19 @@ img {
   padding: 8px;
   width: 110px;
 }
+/* V4.11: responsive bot algorithm selector. Never overflow portrait popup. */
+.bot-setting { flex-wrap: wrap; }
+.bot-setting select[name^="persona-"] {
+  flex: 1 1 100%;
+  width: 100%;
+  min-width: 0;
+  order: 3;
+}
+.bot-setting select[name^="level-"] {
+  flex: 0 0 104px;
+  width: 104px;
+}
+
 .toggle {
   display: flex;
   align-items: center;
