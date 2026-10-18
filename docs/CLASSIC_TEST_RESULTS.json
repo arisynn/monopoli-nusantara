@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-18T17:50:08.060Z",
-  "node": "v24.19.0",
+  "generatedAt": "2026-10-18T19:26:34.873Z",
+  "node": "v24.18.0",
   "files": [
     "tests/stability-guard.test.mjs",
     "tests/finance-auction-regression.test.mjs",
