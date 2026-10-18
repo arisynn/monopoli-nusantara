@@ -1,6 +1,6 @@
 import {validDifficulty} from '../bot/mind-config.mjs';
 import {requirePlayerName} from '../player-name.mjs';
-import {createGame, command, publicState, decisionActor} from '../game.mjs';
+import {createGame, command, publicState} from '../game.mjs';
 import {PERSONAS} from '../bot/personas.mjs';
 import {availablePawn, setSeatPawn} from '../pawns.mjs';
 
@@ -9,11 +9,11 @@ export const DISCONNECT_MS = 90000;
 export const VOTE_MS = 60000;
 export const VOTE_COOLDOWN_MS = 30000;
 export class RoomError extends Error {
- constructor(message, status = 400) { super(message); this.status = status; }
+ constructor(message, status = 400, code) { super(message); this.status = status; this.code = code; }
 }
 export function check(ok, message, status = 400) { if (!ok) throw new RoomError(message, status); }
 export const activeSeats = room => room.seats.map((_, i) => i).filter(i => room.seats[i].controller==='human'&&!room.state?.players[i]?.out);
-export const lastSeen = seat => Math.max(0, ...Object.values(seat.connections || {}));
+export const lastSeen = seat => Math.max(0, ...Object.values(seat?.connections || {}));
 export const isConnected = (seat, now) => lastSeen(seat) > now - LEASE_MS;
 export const seatFor = (room, userId) => room.seats.findIndex(s => s.userId === userId);
 export function touch(room, seat, clientId, now) {
@@ -27,7 +27,7 @@ export function touch(room, seat, clientId, now) {
  s.connections[clientId] = now;
 }
 function newSeat(body, room, userId, clientId, now) {
- return {userId, name: requirePlayerName(body.name),
+ return {userId, memberId:crypto.randomUUID(), name: requirePlayerName(body.name),
   controller: 'human', ready: false, pawn: availablePawn(room.seats, body.pawn), connections: {[clientId]: now}};
 }
 export function newRoom(body, code, userId, clientId, now) {
@@ -48,6 +48,8 @@ function pause(room, reason, now) {
  if (room.vote?.status === 'open') room.vote.status = 'cancelled';
 }
 export function reconcile(room, now) {
+ if(room.closed)return room;
+ for(const member of room.seats)member.memberId ||= crypto.randomUUID();
  if (room.state?.phase === 'won') room.status = 'finished';
  const active = activeSeats(room);
  if (room.status === 'playing') {
@@ -104,7 +106,30 @@ export function applyOperation(room, seat, body, now, rng, options={botsEnabled:
  const type = body.type;
  if (type === 'JOIN') return;
  if (type === 'HEARTBEAT') return;
- if (type === 'RENAME') {
+ if(type==='DISCONNECT'){
+  delete room.seats[seat].connections[body.clientId];
+  room.seats[seat].ready=false;
+  if(!isConnected(room.seats[seat],now)&&activeSeats(room).includes(seat))pause(room,'leave',now);
+  reconcile(room,now);
+ } else if(type==='LEAVE'||type==='KICK'){
+  check(room.status==='waiting','Peserta hanya dapat dikeluarkan sebelum permainan dimulai.',409);
+  let target=seat;
+  if(type==='KICK'){
+   check(seat===room.host,'Hanya host dapat mengeluarkan peserta.',403);
+   check(typeof body.memberId==='string','Identitas peserta diperlukan.');
+   target=room.seats.findIndex(s=>s.memberId===body.memberId);
+   check(target>=0,'Peserta sudah keluar. Muat kondisi room terbaru.',409);
+   check(target!==seat,'Gunakan Keluar room untuk meninggalkan kursi sendiri.');
+  }
+  const host=room.seats[room.host];
+  room.seats.splice(target,1);
+  if(!room.seats.some(s=>s.controller==='human')){
+   room.seats=[];room.host=null;room.closed=true;room.status='finished';room.advisorEnabled=false;
+  }else{
+   room.host=room.seats.includes(host)?room.seats.indexOf(host):room.seats.findIndex(s=>s.controller==='human');
+   for(const member of room.seats)member.ready=false;
+  }
+ } else if (type === 'RENAME') {
   check(room.seats[seat].controller === 'human', 'Nama bot tidak dapat diubah.', 403);
   const name = requirePlayerName(body.name);
   room.seats[seat].name = name;
@@ -120,7 +145,7 @@ export function applyOperation(room, seat, body, now, rng, options={botsEnabled:
   check(body.persona===undefined||PERSONAS.some(p=>p.id===body.persona),'Persona bot tidak valid.');
   const persona=PERSONAS.find(p=>p.id===(body.persona||PERSONAS.find(p=>!room.seats.some(s=>s.botPersona===p.id))?.id));
   check(persona&&!room.seats.some(s=>s.botPersona===persona.id),'Persona bot sudah digunakan di room.',409);
-  room.seats.push({controller:'bot',botPersona:persona.id,botDifficulty:body.difficulty||'medium',name:persona.name,pawn:availablePawn(room.seats,persona.pawn),ready:false,userId:null,connections:{}});
+  room.seats.push({controller:'bot',memberId:crypto.randomUUID(),botPersona:persona.id,botDifficulty:body.difficulty||'medium',name:persona.name,pawn:availablePawn(room.seats,persona.pawn),ready:false,userId:null,connections:{}});
  } else if (type === 'READY') {
   check(room.status === 'waiting', 'Pertandingan sudah dimulai.');
   check(typeof body.ready === 'boolean', 'Status siap tidak valid.');
@@ -172,6 +197,7 @@ export function applyOperation(room, seat, body, now, rng, options={botsEnabled:
  } else throw new RoomError('Permintaan tidak dikenal.');
 }
 export function joinSeat(room, body, userId, clientId, now) {
+ check(!room.closed,'Room sudah ditutup.',410);
  const previous = seatFor(room, userId);
  if (previous >= 0) return previous;
  check(room.status === 'waiting', 'Pertandingan sudah dimulai.');
@@ -181,11 +207,11 @@ export function joinSeat(room, body, userId, clientId, now) {
 }
 export function roomView(row, userId, now) {
  const room = row.data, seat = seatFor(room, userId);
- check(seat >= 0, 'Bukan peserta room.', 403);
+ if(seat<0||room.closed)throw new RoomError('Bukan peserta room. Kursi sudah tidak tersedia untuk identitas ini.',403,'room_membership_ended');
  return {provider: 'supabase', online: true, roomRevision: row.revision, code: room.code, mode: 'online', seat,
   capacity: room.capacity,advisorEnabled:room.advisorEnabled===true, host: room.host, status: room.status, rules: room.rules, created: room.created, serverNow: now,
   held: room.status === 'playing' && gameplayHeld(room, now),
-  seats: room.seats.map((s, i) => ({id: i, name: s.name, ready: s.ready, controller: s.controller, botPersona:s.botPersona,botDifficulty:s.botDifficulty, pawn: s.pawn,
+  seats: room.seats.map((s, i) => ({id: i, memberId:s.memberId, name: s.name, ready: s.ready, controller: s.controller, botPersona:s.botPersona,botDifficulty:s.botDifficulty, pawn: s.pawn,
    connected: s.controller==='bot'||isConnected(s, now), lastSeen: lastSeen(s), out: !!room.state?.players[i]?.out})),
   vote: room.vote, pause: room.pause, state: room.state ? publicState(room.state) : null};
 }

@@ -581,9 +581,9 @@ function room(c) {
         r.status === "paused" ? "Permainan Dijeda" : "Room " + r.code,
         "Progres tersimpan di backend.",
       ) +
-      `<button class="room-code" data-action="copyRoom">${esc(r.code)}${icon("copy", 18)}</button><div class="room-members">${r.seats.map((p) => `<div class="room-member">${playerAvatar(p, c.s.players)}<span class="room-member-identity"><b><em>P${p.id + 1}</em> ${esc(p.name)}${p.id === r.host ? " · Host" : ""}</b><small>${p.controller === "bot" ? "Bot · mengikuti room" : !p.connected ? "Terputus" : r.pause?.ready.includes(p.id) ? "Siap lanjut" : "Terhubung"}${p.out ? " · penonton" : ""}</small></span><i class="connection ${p.connected ? "on" : ""}"></i></div>`).join("")}</div>${r.held ? '<p class="inline-note">Hak keputusan ditahan. Auto-pause 90 detik sejak heartbeat terakhir.</p>' : ""}${r.status === "paused" ? `<div class="ready-summary">${info.ready}/${info.humans.length} manusia siap lanjut</div><p class="body-copy">Semua pemain manusia aktif harus siap. Bot tidak ikut voting.</p>` : v?.status === "open" ? `<div class="ready-summary">${Object.values(v.votes).filter(Boolean).length}/${info.needed} persetujuan jeda</div><p class="body-copy">Satu suara per manusia aktif. Pemain offline tetap dihitung.</p>` : ""}`,
+      `<button class="room-code" data-action="copyRoom">${esc(r.code)}${icon("copy", 18)}</button><div class="room-members">${r.seats.map((p) => `<div class="room-member">${playerAvatar(p, c.s?.players || r.seats)}<span class="room-member-identity"><b><em>P${p.id + 1}</em> ${esc(p.name)}${p.id === r.host ? " · Host" : ""}</b><small>${p.controller === "bot" ? "Bot · mengikuti room" : !p.connected ? "Terputus" : r.pause?.ready.includes(p.id) ? "Siap lanjut" : "Terhubung"}${p.out ? " · penonton" : ""}</small></span>${r.status === "waiting" && r.host === r.seat && p.id !== r.seat ? btn("Keluarkan", "kickPlayer", { extra: `data-member="${esc(p.memberId)}"`, disabled: c.session.pending }) : `<i class="connection ${p.connected ? "on" : ""}"></i>`}</div>`).join("")}</div>${r.held ? '<p class="inline-note">Hak keputusan ditahan. Auto-pause 90 detik sejak heartbeat terakhir.</p>' : ""}${r.status === "paused" ? `<div class="ready-summary">${info.ready}/${info.humans.length} manusia siap lanjut</div><p class="body-copy">Semua pemain manusia aktif harus siap. Bot tidak ikut voting.</p>` : v?.status === "open" ? `<div class="ready-summary">${Object.values(v.votes).filter(Boolean).length}/${info.needed} persetujuan jeda</div><p class="body-copy">Satu suara per manusia aktif. Pemain offline tetap dihitung.</p>` : ""}`,
     footer:
-      r.status === "paused" && !own.out && own.controller === "human"
+      (r.status === "paused" && !own.out && own.controller === "human"
         ? btn(
             r.pause.ready.includes(r.seat) ? "Batalkan siap" : "Siap lanjut",
             "resumeReady",
@@ -595,7 +595,16 @@ function room(c) {
           ? btn("Setuju", "voteYes", { primary: true }) + btn("Tolak", "voteNo")
           : r.status === "playing" && !own.out
             ? btn("Ajukan jeda", "pauseRequest")
-            : "",
+            : "") +
+      btn("Kembali ke lobi", "lobby", {
+        sym: "home",
+        disabled: c.session.pending,
+      }) +
+      (r.status === "waiting"
+        ? btn("Keluar room", "leaveRoomConfirm", {
+            disabled: c.session.pending,
+          })
+        : ""),
   };
 }
 function results(c) {

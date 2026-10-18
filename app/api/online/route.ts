@@ -13,7 +13,7 @@ function context() {
  return {config: config!, store, service: createOnlineService({store,botsEnabled:runtime.env.MN_ONLINE_BOTS_ENABLED==='true'}), runtime};
 }
 function failure(error: unknown) {
- return error instanceof RoomError ? json({error: error.message}, error.status) : json({error: 'Permintaan belum dapat diproses. Ambil kondisi terbaru lalu coba kembali.'}, 400);
+ return error instanceof RoomError ? json({error: error.message,code:error.code}, error.status) : json({error: 'Permintaan belum dapat diproses. Ambil kondisi terbaru lalu coba kembali.'}, 400);
 }
 export async function GET(request: Request) {
  try {
@@ -26,6 +26,10 @@ export async function GET(request: Request) {
   }
   const {config, service, store} = context(), user = await authenticate(request, config);
   check(await store.quota(`read:${user.id}`, 60) <= 120, 'Terlalu banyak pemuatan room. Coba lagi nanti.', 429);
+  if(url.searchParams.has('diagnostics')){
+   try{return json({onlineBots:getRuntime().env.MN_ONLINE_BOTS_ENABLED==='true',capabilities:await store.onlineCapabilities()});}
+   catch{return json({onlineBots:getRuntime().env.MN_ONLINE_BOTS_ENABLED==='true',capabilities:null,code:'online_migration_required'});}
+  }
   if (url.searchParams.has('rooms')) return json({rooms: await service.list(user.id)});
   return json(await service.read((url.searchParams.get('code') || '').toUpperCase(), user.id));
  } catch (error) { return failure(error); }
@@ -46,6 +50,12 @@ export async function POST(request: Request) {
   check(request.headers.get('Content-Type')?.split(';')[0] === 'application/json', 'Gunakan JSON.');
   const {config, service, store, runtime} = context(), user = await authenticate(request, config);
   const body = await readBody(request);
+  if(['LEAVE','KICK'].includes(body.type)||body.type==='ADD_BOT'&&runtime.env.MN_ONLINE_BOTS_ENABLED==='true'){
+   let capabilities;
+   try{capabilities=await store.onlineCapabilities();}catch{throw new RoomError('Layanan room perlu diperbarui sebelum fitur ini tersedia.',503,'online_migration_required');}
+   if(!capabilities?.lobbyManagement||capabilities.schemaVersion<6)throw new RoomError('Layanan room perlu diperbarui sebelum fitur ini tersedia.',503,'online_migration_required');
+   if(body.type==='ADD_BOT'&&(!capabilities.workerConfigured||!capabilities.schedulerConfigured))throw new RoomError('Bot online belum siap. Layanan bot di server perlu diaktifkan dahulu.',503,'online_worker_unavailable');
+  }
   if (body.type === 'CREATE' || body.type === 'JOIN') {
    let source = 'unidentified'; try { source = runtime.creatorId(request); } catch { /* public deployment uses a conservative shared bucket */ }
    check(await store.quota(`entry:${await digest(source)}`, 60) <= 120, 'Terlalu banyak percobaan masuk. Coba lagi nanti.', 429);

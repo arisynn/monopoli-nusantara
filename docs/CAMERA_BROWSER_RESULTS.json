@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-10-18T09:56:27.624Z",
+  "checks": [
+    {
+      "name": "Popup freezes an in-progress camera transition; closing resumes to the correct target",
+      "passed": true
+    },
+    {
+      "name": "Drag cancels following, label reflects manual mode, and overview resumes only on explicit request",
+      "passed": true
+    },
+    {
+      "name": "Reduced motion applies camera changes immediately; resizing keeps the pawn visible",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Local Chromium viewport emulation; not a physical-phone performance measurement."
+  ]
+}

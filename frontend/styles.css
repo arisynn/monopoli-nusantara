@@ -4382,6 +4382,22 @@ select[hidden] {
 .room-members > .room-member {
   min-height: 52px;
 }
+.room-member > button {
+  flex: none;
+  min-height: 40px;
+  padding: 6px 9px;
+  font-size: 11px;
+}
+.room-lobby-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+.room-lobby-actions > button {
+  min-width: 0;
+  font-size: 12px;
+}
 .popup[data-density="compact"] .room-members > .room-member {
   min-height: 44px;
 }

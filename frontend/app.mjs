@@ -145,7 +145,6 @@ function lobbyContent() {
         ).map((p, id) => ({
           ...p,
           name: !ui.name && id === 0 ? "Isi nama di Profil Saya" : p.name,
-          ...p,
           id,
           ready: true,
           connected: true,
@@ -168,7 +167,7 @@ function lobbyContent() {
     },
   ).join(
     "",
-  )}</div>${isRoom ? `<div class="lobby-tools">${btn(r.seats[r.seat]?.ready ? "Batalkan siap" : "Saya siap", "ready", { primary: true, disabled: session.pending || !session.connected })}${btn("Pilih pion", "pawn", { disabled: session.pending })}${host ? btn("Tambah bot", "addBotPopup", { disabled: session.pending || !session.config?.onlineBots || players.filter((p) => p.controller === "bot").length >= 3 || players.length + 1 + Math.max(0, 2 - humanCount) > r.capacity }) : ""}</div>${host ? btn("Mulai permainan", "startRoom", { primary: true, disabled: session.pending || !canStart, sym: "play" }) : '<p class="inline-note">Menunggu host memulai pertandingan.</p>'}<p class="lobby-hint">Minimal dua manusia. Semua manusia harus siap dan terhubung.</p>` : `${btn("Mulai VS Bot", "startLocal", { primary: true, disabled: session.pending, sym: "play" })}<div class="lobby-secondary">${btn("Main Online", "onlineEntry", { sym: "people" })}${btn("Lanjutkan", "resume", { sym: "save", disabled: !session.saved || session.pending })}</div>`}`;
+  )}</div>${isRoom ? `<div class="lobby-tools">${btn(r.seats[r.seat]?.ready ? "Batalkan siap" : "Saya siap", "ready", { primary: true, disabled: session.pending || !session.connected })}${btn("Pilih pion", "pawn", { disabled: session.pending })}${host ? btn(session.config?.onlineBots ? "Tambah bot" : "Status bot", "addBotPopup", { disabled: session.pending || (session.config?.onlineBots && (players.filter((p) => p.controller === "bot").length >= 3 || players.length + 1 + Math.max(0, 2 - humanCount) > r.capacity)) }) : ""}</div>${host ? btn("Mulai permainan", "startRoom", { primary: true, disabled: session.pending || !canStart, sym: "play" }) : '<p class="inline-note">Menunggu host memulai pertandingan.</p>'}<div class="room-lobby-actions">${btn("Kelola room", "room", { sym: "people" })}${btn("Keluar room", "leaveRoomConfirm", { disabled: session.pending, sym: "home" })}</div><p class="lobby-hint">Minimal dua manusia. Semua manusia harus siap dan terhubung.</p>` : `${btn("Mulai VS Bot", "startLocal", { primary: true, disabled: session.pending, sym: "play" })}<div class="lobby-secondary">${btn("Main Online", "onlineEntry", { sym: "people" })}${btn("Lanjutkan", "resume", { sym: "save", disabled: (!session.saved?.room && !session.saved?.state) || session.pending })}</div>`}`;
 }
 function playerCards() {
   const s = session.view,
@@ -210,6 +209,19 @@ function drawDice() {
     reduced: session.reduced,
   });
 }
+function syncCameraButton() {
+  const mode = board?.mode || ui.camera,
+    button = page.querySelector("[data-action=camera]");
+  button?.setAttribute("aria-pressed", String(mode === "follow"));
+  button?.setAttribute(
+    "aria-label",
+    mode === "manual"
+      ? "Kamera manual: tampilkan seluruh papan"
+      : mode === "follow"
+        ? "Kamera mengikuti pion: tampilkan seluruh papan"
+        : "Kamera: ikuti pion",
+  );
+}
 function render() {
   renderQueued = false;
   try {
@@ -228,7 +240,9 @@ function render() {
             open({ kind: "property", id });
           },
           (id) => session.complete(id),
+          syncCameraButton,
         );
+        board.setMode(ui.camera);
       } else {
         board = null;
         diceView = null;
@@ -245,7 +259,7 @@ function render() {
       );
       renderPlayers(roster);
       board.update(s, session.head, {
-        paused: session.covered || session.paused,
+        paused: session.covered || session.paused || session.hidden,
         fast: session.fast,
         reduced: session.reduced,
         selected: ui.selected,
@@ -320,6 +334,11 @@ function queueRender() {
     queueMicrotask(render);
   }
 }
+session.addEventListener("roomexit", () => {
+  ui.popup = null;
+  ui.dismissed = "";
+  queueRender();
+});
 function persistTradeDraft() {
   if (
     !session.state ||
@@ -560,7 +579,8 @@ function auxiliary(p) {
         title: "Menu Permainan",
         html:
           lead("menu", "Meja Nusantara", "") +
-          `${session.botBlocked ? btn("Coba ulang bot", "retryBot", { primary: true }) : ""}${claimableRent(s, own).length ? btn("Tagih sewa (" + claimableRent(s, own).length + ")", "rentClaims", { primary: true }) : ""}<div class="menu-grid">${(s
+          `${session.botBlocked ? btn("Coba ulang bot", "retryBot", { primary: true }) : ""}${s && claimableRent(s, own).length ? btn("Tagih sewa (" + claimableRent(s, own).length + ")", "rentClaims", { primary: true }) : ""}<div class="menu-grid">${(s ||
+          session.room
             ? [
                 ["myProfile", "Profil saya", "people"],
                 ["room", "Room & koneksi", "people"],
@@ -588,8 +608,17 @@ function auxiliary(p) {
                     { sym: session.localPaused ? "play" : "pause" },
                   )
                 : "") +
-              btn("Simpan & ke lobby", "lobby", { primary: true, sym: "home" })
-            : btn("Tutup", "close"),
+              btn(
+                session.room ? "Kembali ke lobi" : "Simpan & ke lobi",
+                "lobby",
+                { primary: true, sym: "home" },
+              )
+            : session.room
+              ? btn("Kembali ke lobi", "lobby", {
+                  primary: true,
+                  sym: "home",
+                }) + btn("Keluar room", "leaveRoomConfirm", { sym: "home" })
+              : btn("Tutup", "close"),
       };
     case "setup":
       return {
@@ -796,13 +825,30 @@ function auxiliary(p) {
         footer: btn("Tutup", "close"),
       };
     case "addBotPopup":
+      if (!session.config?.onlineBots)
+        return {
+          title: "Bot Online",
+          html:
+            lead(
+              "people",
+              "Bot online belum aktif",
+              "Room ini tetap dapat dimainkan bersama pemain manusia.",
+            ) +
+            `<p class="body-copy">${ui.botHealth?.capabilities ? (!ui.botHealth.capabilities.workerConfigured || !ui.botHealth.capabilities.schedulerConfigured ? "Layanan bot belum selesai disiapkan di server." : "Layanan sudah terpasang; bot online belum diaktifkan oleh server.") : ui.botHealth?.code === "online_migration_required" ? "Server room perlu diperbarui agar bot dan pengelolaan room tersedia." : ui.botHealth?.unavailable ? "Status layanan belum dapat diperiksa. Coba lagi." : "Layanan bot online belum tersedia di server. Periksa lagi setelah layanan diaktifkan."}</p>`,
+          footer:
+            btn(
+              ui.botChecking ? "Memeriksa…" : "Periksa ulang",
+              "retryOnline",
+              { disabled: ui.botChecking },
+            ) + btn("Selesai", "close"),
+        };
       return {
         title: "Tambah Bot",
         html:
           lead(
             "people",
             "Bot di Room",
-            "Persona berikutnya dipilih backend, tanpa duplikasi.",
+            "Pilih karakter untuk kursi kosong, tanpa duplikasi.",
           ) +
           `<div class="bot-room-settings"><div><small>KARAKTER BOT</small><button type="button" class="bot-config-row" data-action="pickBotOnline">${esc(availableRoomPersona()?.name || "Tidak tersedia")}${icon("arrow", 16)}</button></div></div><p class="inline-note">Pilih salah satu dari enam model unik. Maksimal tiga bot per room, dan minimal dua pemain manusia.</p>`,
         footer: btn("Tambahkan bot", "addBot", {
@@ -810,6 +856,44 @@ function auxiliary(p) {
           disabled: session.pending,
         }),
       };
+    case "leaveRoomConfirm":
+      return {
+        title: "Keluar Room",
+        html: lead(
+          "people",
+          "Keluar dari room?",
+          "Kursi Anda akan dikosongkan. Pemain yang tersisa memilih siap kembali; jika Anda host, host berpindah ke pemain manusia berikutnya.",
+        ),
+        footer:
+          btn("Batal", "close") +
+          btn("Keluar room", "leaveRoom", {
+            primary: true,
+            disabled: session.pending,
+          }),
+      };
+    case "kickConfirm": {
+      const member = session.online?.seats.find(
+        (s) => s.memberId === p.memberId,
+      );
+      return {
+        title: "Keluarkan Peserta",
+        html: lead(
+          "people",
+          member ? `Keluarkan ${member.name}?` : "Peserta sudah keluar",
+          member
+            ? "Kursinya dikosongkan dan status siap room diatur ulang."
+            : "Daftar peserta sudah berubah.",
+        ),
+        footer:
+          btn("Batal", "close") +
+          (member
+            ? btn("Keluarkan", "kickMember", {
+                primary: true,
+                disabled: session.pending,
+              })
+            : ""),
+      };
+    }
   }
   return null;
 }
@@ -918,7 +1002,19 @@ function renderDialog() {
     p.kind === "auction" || !!p.event?.auctionResult,
   );
   dialogClose.disabled = false;
-  dialogClose.hidden = !!dialogFooter.querySelector("button");
+  const navigableDecision =
+    !ui.popup &&
+    [
+      "buy",
+      "debt",
+      "auction",
+      "buildOffer",
+      "jail",
+      "mortgage",
+      "trade",
+    ].includes(p.kind);
+  dialogClose.hidden =
+    !!dialogFooter.querySelector("button") && !navigableDecision;
   dialog.classList.toggle("has-close", !dialogClose.hidden);
   dialogFooter.dataset.actions = String(
     dialogFooter.querySelectorAll(":scope > button").length,
@@ -1149,6 +1245,19 @@ async function perform(action, el) {
           ready: !session.online.seats[session.seat].ready,
         });
         break;
+      case "leaveRoomConfirm":
+        open({ kind: "leaveRoomConfirm" });
+        return;
+      case "kickPlayer":
+        open({ kind: "kickConfirm", memberId: el.dataset.member });
+        return;
+      case "kickMember":
+        if (await session.roomOp("KICK", { memberId: ui.popup?.memberId }))
+          open({ kind: "room" });
+        break;
+      case "leaveRoom":
+        if (await session.roomOp("LEAVE")) close();
+        break;
       case "startRoom":
         if (await session.roomOp("START")) close();
         break;
@@ -1177,16 +1286,7 @@ async function perform(action, el) {
               ? "follow"
               : "overview";
         board?.setMode(ui.camera);
-        page
-          .querySelector("[data-action=camera]")
-          .setAttribute("aria-pressed", String(ui.camera === "follow"));
-        page
-          .querySelector("[data-action=camera]")
-          .setAttribute(
-            "aria-label",
-            "Kamera: " +
-              (ui.camera === "overview" ? "lihat dekat" : "seluruh papan"),
-          );
+        syncCameraButton();
         break;
       case "primary": {
         if (session.pending) break;
@@ -1263,9 +1363,23 @@ async function perform(action, el) {
       case "manage":
         open({ kind: action, id });
         return;
-      case "retryOnline":
+      case "retryOnline": {
+        const checkBots =
+          ui.popup?.kind === "addBotPopup" && session.auth?.session();
+        if (checkBots) ui.botChecking = true;
         await session.refreshConfig();
+        if (checkBots) {
+          try {
+            ui.botHealth = await session.auth.request("?diagnostics=1");
+          } catch {
+            ui.botHealth = { unavailable: true };
+          } finally {
+            ui.botChecking = false;
+            queueRender();
+          }
+        }
         return;
+      }
       case "assetTab":
         ui.assetTab = el.dataset.value;
         if (el.dataset.group !== undefined)

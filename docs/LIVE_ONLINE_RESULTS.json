@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-10-18T09:20:43.829Z",
+  "origin": "https://monopoli-nusantara-eight.vercel.app/",
+  "build": "2ca577fe30461ce6",
+  "checks": [
+    {
+      "name": "Live room restores after refresh",
+      "passed": true
+    },
+    {
+      "name": "Second human joins; host receives synchronized roster",
+      "passed": true
+    },
+    {
+      "name": "Both humans ready and start same online game",
+      "passed": true
+    },
+    {
+      "name": "Return to main lobby from online gameplay",
+      "passed": true
+    },
+    {
+      "name": "Resume same online match after returning to main lobby",
+      "passed": true
+    }
+  ],
+  "findings": [
+    {
+      "code": "online_bots_disabled",
+      "evidence": "Public configuration onlineBots=false; authenticated ADD_BOT returns HTTP 503: Worker bot online belum diaktifkan."
+    },
+    {
+      "code": "waiting_lobby_management_missing",
+      "evidence": "Waiting-room menu has no Room entry; served source has no LEAVE/KICK operations."
+    },
+    {
+      "code": "resume_before_config_ready",
+      "evidence": "Immediate resume after navigation reports Supabase belum tersedia; waiting for config allows the same saved room to resume."
+    },
+    {
+      "code": "stock_mapping_fix_present",
+      "evidence": "Deployed popup maps buildTargets numeric IDs through BOARD[id] and has waiting/fallback messages."
+    }
+  ],
+  "limits": [
+    "Two separate anonymous test identities and one isolated QA room were used. Other rooms were not modified.",
+    "QA match was left paused. No live bot action could be tested while onlineBots=false.",
+    "Administrative Vercel/Supabase access is unavailable; no environment, migration, scheduler or Edge deployment was changed.",
+    "An initial test-script selector ambiguity was corrected for the successful navigation check; it was not a product failure."
+  ]
+}

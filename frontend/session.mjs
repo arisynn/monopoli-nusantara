@@ -314,8 +314,9 @@ export class GameSession extends EventTarget {
   async resume() {
     try {
       this.saved = (await this.load()) || this.saved;
-      if (!this.saved) return;
+      if (!this.saved?.room && !this.saved?.state) return;
       if (this.saved.room) {
+        if (this.configStatus !== "ready") await this.refreshConfig();
         if (!this.auth) throw Error("Supabase belum tersedia.");
         await this.auth.token();
         if (this.saved.room.userId !== this.auth.session()?.user.id)
@@ -874,10 +875,30 @@ export class GameSession extends EventTarget {
     if (this.pending) return;
     this.pending = true;
     try {
-      if (this.saveConflict) {
+      if (this.room) {
+        try {
+          await this.saveCurrent();
+        } catch {
+          this.error =
+            "Progres online tetap tersimpan di server. Buka Main Online lalu Lanjutkan untuk menemukan room kembali.";
+        }
+      } else if (this.saveConflict) {
         this.saved = await this.load();
       } else await this.saveCurrent();
       this.stopBot();
+      if (this.room && this.auth?.request) {
+        try {
+          await this.auth.request("", {
+            type: "DISCONNECT",
+            code: this.room.code,
+            clientId: this.clientId,
+            requestId: crypto.randomUUID(),
+          });
+        } catch {
+          this.error =
+            "Kembali ke lobi. Server belum menerima pelepasan koneksi; kursi tetap dapat dilanjutkan.";
+        }
+      }
       this.disconnect();
       if (this.room) {
         this.room = null;
@@ -937,6 +958,13 @@ export class GameSession extends EventTarget {
         ...(this.room ? { code: this.room.code } : {}),
         ...data,
       });
+      if (result.left) {
+        await this.exitOnline(result.code, {
+          forget: true,
+          message: "Anda sudah keluar dari room.",
+        });
+        return true;
+      }
       this.takeRoom(result, { baseline: ["CREATE", "JOIN"].includes(type) });
       if (["CREATE", "JOIN"].includes(type)) {
         this.localLease.release();
@@ -944,12 +972,54 @@ export class GameSession extends EventTarget {
       }
       return true;
     } catch (e) {
+      if (e.code === "room_membership_ended")
+        await this.exitOnline(this.room?.code || data.code, {
+          forget: true,
+          message: e.message,
+        });
       this.error = e.message;
       return false;
     } finally {
       this.pending = false;
       this.notify();
     }
+  }
+  async exitOnline(code, { forget = false, message = "" } = {}) {
+    const userId = this.room?.userId || this.auth?.session()?.user.id;
+    this.stopBot();
+    this.stopAssetPlan("Room ditutup.");
+    this.disconnect();
+    this.cancelTimer();
+    this.room = null;
+    this.online = null;
+    this.state = null;
+    this.model = null;
+    this.connected = false;
+    this.screen = "lobby";
+    this.covered = false;
+    this.assetPanel = false;
+    this.epoch++;
+    if (forget) {
+      await this.saveQueue?.catch(() => {});
+      try {
+        const latest = (await this.load()) || this.saved;
+        if (latest?.room?.code === code && latest.room.userId === userId) {
+          const cleared = await this.persist(
+            { state: null, room: null },
+            { expectedRevision: saveRevision(latest) },
+          );
+          this.saved =
+            cleared && typeof cleared === "object"
+              ? cleared
+              : { state: null, room: null };
+        } else this.saved = latest;
+      } catch {
+        this.saved = null;
+      }
+    }
+    this.error = message;
+    this.dispatchEvent(new Event("roomexit"));
+    this.notify();
   }
   takeRoom(result, { baseline = false } = {}) {
     if (this.room && !baseline && result.code !== this.room.code) return;
@@ -1029,7 +1099,14 @@ export class GameSession extends EventTarget {
       if (epoch !== this.connectionEpoch) return;
       await this.readRoom(true);
       if (epoch === this.connectionEpoch)
-        this.heartbeat = setTimeout(pulse, this.connected ? 20000 : 5000);
+        this.heartbeat = setTimeout(
+          pulse,
+          this.connected
+            ? this.online?.status === "waiting"
+              ? 10000
+              : 20000
+            : 5000,
+        );
     };
     void pulse();
   }
@@ -1050,8 +1127,12 @@ export class GameSession extends EventTarget {
       if (epoch !== this.connectionEpoch || this.room?.code !== code) return;
       const reconnect = !this.connected;
       this.takeRoom(result, { baseline: reconnect });
-    } catch {
+    } catch (error) {
       if (epoch === this.connectionEpoch) {
+        if (error.code === "room_membership_ended") {
+          await this.exitOnline(code, { forget: true, message: error.message });
+          return;
+        }
         this.connected = false;
         this.resetPresentation();
         this.notify();

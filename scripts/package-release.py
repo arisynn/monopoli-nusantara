@@ -40,7 +40,7 @@ for path in files:
         raise SystemExit('Secret detected in source file: ' + str(path.relative_to(root)))
     entries.append({'path': path.relative_to(root).as_posix(), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
 manifest = {
-    'release': version + ' NUSA V20, PWA, Flat Dice and Smart Settlement',
+    'release': version + ' NUSA V20, PWA, Online Rooms and Smooth Camera',
     'generatedAt': datetime.now(timezone.utc).isoformat(),
     'basisVersion': '4.11.0',
     'hashedFileCount': len(entries),

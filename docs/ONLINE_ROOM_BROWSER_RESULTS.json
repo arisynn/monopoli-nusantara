@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-10-18T09:57:17.988Z",
+  "checks": [
+    {
+      "name": "320: bot disabled has clear status; refresh enables NUSA selection and synchronizes roster",
+      "passed": true
+    },
+    {
+      "name": "320: host-only kick, confirmation and kicked-client recovery to main lobby",
+      "passed": true
+    },
+    {
+      "name": "320: leave frees seat, transfers host, removes bot and closes last-human lobby",
+      "passed": true
+    },
+    {
+      "name": "320: camera zoom transitions and follows pawn continuously across a corner",
+      "passed": true,
+      "distinctCameraFrames": 5
+    },
+    {
+      "name": "320: gameplay return releases lease, pauses room and resumes without replay",
+      "passed": true
+    },
+    {
+      "name": "320: online house stock popup has names, PNG art, waiting text and legal choice",
+      "passed": true
+    },
+    {
+      "name": "320: online hotel stock popup has names, PNG art, waiting text and legal choice",
+      "passed": true
+    },
+    {
+      "name": "390: bot disabled has clear status; refresh enables NUSA selection and synchronizes roster",
+      "passed": true
+    },
+    {
+      "name": "390: host-only kick, confirmation and kicked-client recovery to main lobby",
+      "passed": true
+    },
+    {
+      "name": "390: leave frees seat, transfers host, removes bot and closes last-human lobby",
+      "passed": true
+    },
+    {
+      "name": "390: camera zoom transitions and follows pawn continuously across a corner",
+      "passed": true,
+      "distinctCameraFrames": 5
+    },
+    {
+      "name": "390: gameplay return releases lease, pauses room and resumes without replay",
+      "passed": true
+    },
+    {
+      "name": "390: online house stock popup has names, PNG art, waiting text and legal choice",
+      "passed": true
+    },
+    {
+      "name": "390: online hotel stock popup has names, PNG art, waiting text and legal choice",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Local HTTP and real application/service; Auth and Realtime revision hints use isolated contract doubles. Actual live human-room results are recorded separately. Stock states are isolated fixtures; production data is not modified."
+  ]
+}

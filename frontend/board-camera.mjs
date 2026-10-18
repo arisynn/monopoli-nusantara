@@ -42,3 +42,14 @@ export function zoomCamera(c, factor, anchor) {
     y: anchor.y - p.y * scale,
   });
 }
+
+export function interpolateCamera(from, to, progress) {
+  const t = Math.max(0, Math.min(1, progress)),
+    ease = t * t * (3 - 2 * t);
+  return clampCamera({
+    ...to,
+    x: from.x + (to.x - from.x) * ease,
+    y: from.y + (to.y - from.y) * ease,
+    scale: from.scale + (to.scale - from.scale) * ease,
+  });
+}

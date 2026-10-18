@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { command, GROUPS, buildTargets, BOARD } from "../lib/game.mjs";
 import { renderPopup } from "../frontend/popups.mjs";
 import { stockFixture } from "./helpers/gameplay-update-fixtures.mjs";
+import { canPresentDecision } from "../lib/gameplay-presentation.mjs";
 const popup = (s, seat = 0) =>
   renderPopup(
     { state: s, view: s, seat, pending: false, paused: false },
@@ -14,6 +15,16 @@ for (const kind of ["house", "hotel"])
     const s = stockFixture(kind);
     assert.equal(s.phase, "buildOffer");
     assert.equal(s.buildOffer.kind, kind);
+    assert(canPresentDecision(s, 0));
+    assert(
+      canPresentDecision(s, 1),
+      "Initiating human can read the waiting notice",
+    );
+    for (const id of s.buildOffer.pending)
+      assert(
+        canPresentDecision(s, id),
+        "Every pending human can reply from their own online client",
+      );
     const p = popup(s);
     assert(p.html.includes("building-stock-notice"));
     assert(p.html.includes("building-icons.png"));

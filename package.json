@@ -3,7 +3,7 @@
   "version": "4.11.0",
   "private": true,
   "type": "module",
-  "description": "Nusantara — Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
+  "description": "Nusantara \u2014 Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
   "engines": {
     "node": "24.x"
   },
@@ -53,7 +53,11 @@
     "test:polish:browser": "node scripts/test-polish-browser.mjs",
     "test:pwa:browser": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-pwa-browser.mjs",
     "test:dice:layout": "node scripts/test-dice-layout-browser.mjs",
-    "test:gameplay:update": "node scripts/test-gameplay-update-browser.mjs"
+    "test:gameplay:update": "node scripts/test-gameplay-update-browser.mjs",
+    "test:online:rooms": "node --experimental-strip-types scripts/test-online-room-browser.mjs",
+    "test:online:postgres": "node scripts/test-room-postgres.mjs",
+    "test:camera:browser": "node scripts/test-camera-browser.mjs",
+    "test:stock:live": "node scripts/test-stock-live-renderer.mjs"
   },
   "devDependencies": {
     "@types/node": "22.19.19",

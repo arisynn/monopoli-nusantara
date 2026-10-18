@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-10-18T08:55:21.288Z",
+  "generatedAt": "2026-10-18T09:53:20.490Z",
   "node": "v24.19.0",
   "files": [
+    "tests/room-management.test.mjs",
     "tests/debt-payment.test.mjs",
     "tests/random.test.mjs",
     "tests/building-stock-popup.test.mjs",
@@ -41,8 +42,8 @@
     "tests/headless-package.test.mjs",
     "tests/frontend.test.mjs"
   ],
-  "tests": 535,
-  "passed": 535,
+  "tests": 548,
+  "passed": 548,
   "failed": 0,
   "skipped": 0,
   "failures": [],

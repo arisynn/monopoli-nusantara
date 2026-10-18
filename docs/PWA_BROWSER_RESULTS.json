@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T08:56:26.864Z",
+  "generatedAt": "2026-10-18T09:52:49.528Z",
   "checks": [
     {
       "name": "Manifest, install icons, standalone metadata and logo load in Chromium at 390px",

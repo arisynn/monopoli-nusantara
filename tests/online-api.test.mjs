@@ -26,6 +26,7 @@ function setup(t){
   if(u.pathname.endsWith('/mn_commands')){const r=await store.receipt(u.searchParams.get('user_id').slice(3),u.searchParams.get('request_id').slice(3));return Response.json(r?[r]:[])}
   if(u.pathname.endsWith('/mn_members')){const codes=await store.list(u.searchParams.get('user_id').slice(3));return Response.json(codes.map(code=>({code})))}
   if(u.pathname.endsWith('/mn_take_quota'))return Response.json(await store.quota(body.p_key,body.p_seconds));
+  if(u.pathname.endsWith('/mn_online_capabilities'))return Response.json({schemaVersion:6,lobbyManagement:true,workerConfigured:false,schedulerConfigured:false});
   if(u.pathname.endsWith('/mn_commit_room'))return Response.json(await store.commit({revision:body.p_expected_revision},body.p_data,{userId:body.p_actor,requestId:body.p_request_id,hash:body.p_hash,type:body.p_type,notify:body.p_notify}));
   throw Error('Unexpected request '+u.pathname);
  };
@@ -44,6 +45,14 @@ test('API rejects unauthenticated, invalid-session, cross-origin and oversized r
  assert.equal((await GET(new Request('https://game.test/api/online?rooms=1',{headers:{Authorization:'Bearer invalid-access-token-example'}}))).status,401);
  assert.equal((await POST(new Request('https://game.test/api/online',{method:'POST',headers:{...f.headers(0),Origin:'https://attacker.test'},body:'{}'}))).status,403);
  assert.equal((await POST(new Request('https://game.test/api/online',{method:'POST',headers:f.headers(0),body:JSON.stringify({padding:'x'.repeat(17000)})}))).status,413);
+});
+test('online diagnostics are authenticated and bot preflight rejects an unavailable worker',async t=>{
+ const f=setup(t);
+ assert.equal((await GET(new Request('https://game.test/api/online?diagnostics=1'))).status,401);
+ const r=await GET(new Request('https://game.test/api/online?diagnostics=1',{headers:f.headers(0)}));
+ const d=await r.json();assert.equal(d.capabilities.schemaVersion,6);assert.equal(d.capabilities.workerConfigured,false);assert(!JSON.stringify(d).includes(testSecret));
+ const created=await f.post(0,'CREATE',{name:'QA Host'});globalThis.__mnTestRuntime.env.MN_ONLINE_BOTS_ENABLED='true';
+ const blocked=await f.post(0,'ADD_BOT',{code:created.data.code,persona:'nusa'});assert.equal(blocked.status,503);assert.equal(blocked.data.code,'online_worker_unavailable');
 });
 for(const n of [2,3,6])test(`actual route: ${n} human identities, ready/start, dice validation and cross-room access`,async t=>{
  const f=setup(t),a=await f.post(0,'CREATE',{capacity:n,name:'Ayu'});assert.equal(a.status,200);const code=a.data.code;

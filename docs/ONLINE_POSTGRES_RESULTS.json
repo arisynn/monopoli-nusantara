@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-10-18T09:35:43.231Z",
+  "postgres": "17, isolated Docker container",
+  "checks": [
+    {
+      "name": "All six bot personas pass actual SQL validation; remove bots and close last-human room",
+      "passed": true
+    },
+    {
+      "name": "Kick atomically removes membership and compacts remaining seats",
+      "passed": true
+    },
+    {
+      "name": "Host leave, receipt retry, ownership transfer and room closure",
+      "passed": true
+    },
+    {
+      "name": "Active game seats stay immutable; explicit disconnect preserves full game and pauses",
+      "passed": true
+    },
+    {
+      "name": "Authenticated clients cannot call service RPCs or read private rooms; diagnostics return booleans",
+      "passed": true
+    }
+  ],
+  "limits": [
+    "Does not connect to production Supabase. pg_net/cron and the deployed Edge worker are not exercised."
+  ]
+}

@@ -14,7 +14,7 @@ export function createOnlineService({store, clock = Date.now, rng = secureRandom
  async function recover(code, userId) {
   for (let attempt = 0; attempt < 8; attempt++) {
    const row = await store.get(code); check(row, 'Room tidak ditemukan.', 404);
-   check(seatFor(row.data, userId) >= 0, 'Bukan peserta room.', 403);
+   if(seatFor(row.data,userId)<0||row.data.closed)throw new RoomError('Bukan peserta room. Kursi sudah tidak tersedia untuk identitas ini.',403,'room_membership_ended');
    const before = JSON.stringify(row.data), now = clock(); reconcile(row.data, now);
    if (before === JSON.stringify(row.data)) return row;
    const committed = await store.commit(row, row.data, {notify: true});
@@ -27,7 +27,7 @@ export function createOnlineService({store, clock = Date.now, rng = secureRandom
    const codes = await store.list(userId);
    // List is paginated by the store; do not expose a stale Playing state after a long absence.
    const result = [];
-   for (const code of codes) { const row = await recover(code, userId); const view = roomView(row, userId, clock()); result.push({code, status: view.status, created: view.created, players: view.seats.length, capacity: view.capacity, revision: view.roomRevision}); }
+   for (const code of codes) { try {const row = await recover(code, userId); const view = roomView(row, userId, clock()); result.push({code, status: view.status, created: view.created, players: view.seats.length, capacity: view.capacity, revision: view.roomRevision});}catch(error){if(![403,404].includes(error.status))throw error;} }
    return result;
   },
   async read(code, userId) {
@@ -44,6 +44,7 @@ export function createOnlineService({store, clock = Date.now, rng = secureRandom
     const receipt = await store.receipt(userId, body.requestId);
     if (receipt) {
      check(receipt.request_hash === hash, 'ID permintaan sudah dipakai untuk isi berbeda.', 409);
+     if(body.type==='LEAVE')return {left:true,code:receipt.code,resumable:false};
      return roomView(await recover(receipt.code, userId), userId, clock());
     }
    }
@@ -58,7 +59,7 @@ export function createOnlineService({store, clock = Date.now, rng = secureRandom
     check(row, 'Room tidak ditemukan.', 404);
     const room = row.data;
     let seat = seatFor(room, userId);
-    if (body.type !== 'CREATE' && body.type !== 'JOIN') check(seat >= 0, 'Bukan peserta room.', 403);
+    if (body.type !== 'CREATE' && body.type !== 'JOIN' && seat<0)throw new RoomError('Bukan peserta room. Kursi sudah tidak tersedia untuk identitas ini.',403,'room_membership_ended');
     // Reconcile BEFORE accepting a returning heartbeat. All-offline expiry must survive reconnect.
     const before = JSON.stringify(room);
     reconcile(room, now);
@@ -84,9 +85,10 @@ export function createOnlineService({store, clock = Date.now, rng = secureRandom
     const committed = await store.commit(row, room, meta);
     if (committed.duplicate) {
      check(committed.hash === hash, 'ID permintaan sudah dipakai untuk isi berbeda.', 409);
+     if(body.type==='LEAVE')return {left:true,code:committed.code,resumable:false};
      return roomView(await recover(committed.code, userId), userId, clock());
     }
-    if (committed.ok) return roomView({...row, data: room, revision: committed.revision}, userId, now);
+    if (committed.ok) return body.type==='LEAVE'?{left:true,code,roomRevision:committed.revision,resumable:false}:roomView({...row, data: room, revision: committed.revision}, userId, now);
     // Retry CAS only after reloading and revalidating intent. Stale gameplay versions fail above.
    }
    throw new RoomError('State berubah bersamaan. Ambil kondisi terbaru lalu coba lagi.', 409);

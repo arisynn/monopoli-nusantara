@@ -1,5 +1,7 @@
 # Dokumen aktif
 
+Pemeriksaan online dan penerapan migrasi 006: [ONLINE_ROOM_FIX.md](ONLINE_ROOM_FIX.md). Hasil live, PostgreSQL, browser beberapa klien dan kamera disertakan sebagai laporan terpisah.
+
 Gameplay terbaru: [dadu, RNG, popup stok, pelunasan otomatis dan Aset Saya](GAMEPLAY_UPDATE.md).
 
 Pembaruan terbaru: [bot Edge, memori barter, pengamatan NUSA, PWA dan logo](EDGE_MEMORY_PWA.md). Hasil PWA browser ada di `PWA_BROWSER_RESULTS.json`.

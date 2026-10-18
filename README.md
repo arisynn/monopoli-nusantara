@@ -1,10 +1,12 @@
 # Frontend polish — papan dan popup yang lebih bersih
 
+Pemeriksaan online terbaru: penyebab bot nonaktif, perbaikan keluar/kick/host, popup stok, serta kamera mengikuti pion. Pengelolaan room memerlukan migrasi **006**, dan bot live memerlukan aktivasi worker serta `MN_ONLINE_BOTS_ENABLED=true`. Hasil uji dan langkah penerapan: [ONLINE_ROOM_FIX.md](docs/ONLINE_ROOM_FIX.md).
+
 Update gameplay terbaru: dadu PNG transparan 2D dipindahkan ke kanan riwayat agar tombol aksi lebih panjang; RNG memakai Web Crypto tanpa bias; popup stok diperbaiki; pelunasan otomatis menggantikan gadai otomatis lama. Panduan dan hasil uji: [GAMEPLAY_UPDATE.md](docs/GAMEPLAY_UPDATE.md).
 
 Update terbaru: bot online tetap di Supabase Edge, memori penolakan barter dan revisi berlaku untuk keenam persona, NUSA mengamati aksi lawan dalam batch kecil, serta logo PNG dan PWA tersedia. Catatan arsitektur, pemasangan, dan verifikasi: [EDGE_MEMORY_PWA.md](docs/EDGE_MEMORY_PWA.md).
 
-Papan menampilkan angka sewa tanpa simbol/latar hanya setelah properti dimiliki. Kepemilikan mengikuti warna pion, rumah/hotel memakai gambar, dan popup Aset/Barter dibuat ringkas dengan scroll internal. Input nominal memakai keyboard angka/desimal bawaan dengan normalisasi nol di depan. Avatar manusia baru dan aset WebP melengkapi enam peserta berbeda. NUSA kini memakai V20 dengan 46 pakar; aturan permainan tetap sama.
+Papan menampilkan sewa seperti `₦ 6` tanpa latar hanya setelah properti dimiliki; nominal ribuan diringkas seperti `₦ 1,2k`. Kepemilikan mengikuti warna pion, rumah/hotel memakai gambar, dan popup Aset/Barter dibuat ringkas dengan scroll internal. Input nominal memakai keyboard angka/desimal bawaan dengan normalisasi nol di depan. Avatar manusia baru dan aset WebP melengkapi enam peserta berbeda. NUSA kini memakai V20 dengan 46 pakar; aturan permainan tetap sama.
 
 Panduan perubahan, pembersihan source, dan verifikasi: [FRONTEND_POLISH.md](docs/FRONTEND_POLISH.md). Build publik hanya memuat graph modul browser aktif; source runtime NUSA berada di `lib/bot/nusa-v7/`.
 

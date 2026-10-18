@@ -26,7 +26,7 @@ Sesudah mengubah ENV, **redeploy** agar function memakai nilai baru. Pilih envir
 6. Supabase Auth → URL Configuration: tambahkan origin Vercel aplikasi ke Site URL / Redirect URLs. Anonymous sign-in perlu aktif untuk Main sebagai tamu.
 7. Setelah masuk, tes buat room, gabung dari perangkat/akun kedua, siap, mulai, refresh dan reconnect.
 
-**SQL:** tiga migrasi mn_* sudah diterapkan di connectify pada update 4.8.3. Update UI/bot 4.9 ini tidak memerlukan SQL baru. Jangan menjalankan ulang CREATE TABLE yang sudah ada. Room legacy mp_rooms tidak dihapus.
+**SQL terbaru:** pengelolaan room dan keenam persona bot membutuhkan `202610180006_online_room_management.sql`. Periksa riwayat migrasi proyek; pada proyek dengan migrasi 001–005, jalankan hanya 006. Jangan menjalankan ulang CREATE TABLE yang sudah ada. Panduan dan hasil uji live: [docs/ONLINE_ROOM_FIX.md](docs/ONLINE_ROOM_FIX.md).
 
 ## Opsional
 

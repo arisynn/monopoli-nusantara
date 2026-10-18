@@ -1,0 +1,70 @@
+{
+  "generatedAt": "2026-10-18T09:48:41.306Z",
+  "origin": "https://monopoli-nusantara-eight.vercel.app",
+  "checks": [
+    {
+      "name": "Live house renderer 320px seat 0: populated content and valid choices/waiting message",
+      "passed": true,
+      "choices": 2
+    },
+    {
+      "name": "Live house renderer 320px seat 1: populated content and valid choices/waiting message",
+      "passed": true,
+      "choices": 0
+    },
+    {
+      "name": "Live house renderer 320px seat 2: populated content and valid choices/waiting message",
+      "passed": true,
+      "choices": 10
+    },
+    {
+      "name": "Live hotel renderer 320px seat 0: populated content and valid choices/waiting message",
+      "passed": true,
+      "choices": 2
+    },
+    {
+      "name": "Live hotel renderer 320px seat 1: populated content and valid choices/waiting message",
+      "passed": true,
+      "choices": 0
+    },
+    {
+      "name": "Live hotel renderer 320px seat 2: populated content and valid choices/waiting message",
+      "passed": true,
+      "choices": 0
+    },
+    {
+      "name": "Live house renderer 390px seat 0: populated content and valid choices/waiting message",
+      "passed": true,
+      "choices": 2
+    },
+    {
+      "name": "Live house renderer 390px seat 1: populated content and valid choices/waiting message",
+      "passed": true,
+      "choices": 0
+    },
+    {
+      "name": "Live house renderer 390px seat 2: populated content and valid choices/waiting message",
+      "passed": true,
+      "choices": 10
+    },
+    {
+      "name": "Live hotel renderer 390px seat 0: populated content and valid choices/waiting message",
+      "passed": true,
+      "choices": 2
+    },
+    {
+      "name": "Live hotel renderer 390px seat 1: populated content and valid choices/waiting message",
+      "passed": true,
+      "choices": 0
+    },
+    {
+      "name": "Live hotel renderer 390px seat 2: populated content and valid choices/waiting message",
+      "passed": true,
+      "choices": 0
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Uses deployed JavaScript and CSS with deterministic DOM-only fixtures. Does not alter any live room or simulate a naturally depleted live game."
+  ]
+}

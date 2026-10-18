@@ -1,8 +1,8 @@
 {
-  "release": "4.11.0 NUSA V20, PWA, Flat Dice and Smart Settlement",
-  "generatedAt": "2026-10-18T08:57:09.102068+00:00",
+  "release": "4.11.0 NUSA V20, PWA, Online Rooms and Smooth Camera",
+  "generatedAt": "2026-10-18T09:58:43.505462+00:00",
   "basisVersion": "4.11.0",
-  "hashedFileCount": 659,
+  "hashedFileCount": 671,
   "selfHash": "Excluded to avoid a circular digest",
   "excluded": [
     ".env and private env files",
@@ -26,8 +26,8 @@
     },
     {
       "path": "ENV_REQUIRED.md",
-      "bytes": 3321,
-      "sha256": "b625e8a0ec320decb107e382feac8570e9052261bdff7e048136a12a608cee96"
+      "bytes": 3441,
+      "sha256": "62779c91f202574de82c2e9f33bc141af2fded012b14296aed74c61af84a764f"
     },
     {
       "path": "INTEGRASI_NUSA_V17.md",
@@ -66,8 +66,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 10823,
-      "sha256": "252df86230173b5dd08a81f80ca1d0543aa4929f76622c83fb64416650ce96df"
+      "bytes": 11194,
+      "sha256": "88cca9b67e9516458a4462b416e8f20f8cbb63e326cba80b0c884f864eac2fdb"
     },
     {
       "path": "UI_REBUILD_BRIEF.md",
@@ -126,8 +126,8 @@
     },
     {
       "path": "app/api/online/route.ts",
-      "bytes": 3569,
-      "sha256": "75437244c7e8815dee93cbb6b32d5bca0cda308ddbbaee83566890a9b0adcc97"
+      "bytes": 4615,
+      "sha256": "d14b464038eb9903902976ed62a90c3b7ff308d05e14f10e00c93a24a04e70f8"
     },
     {
       "path": "benchmarks/frozen-v45/MANIFEST.json",
@@ -1155,6 +1155,11 @@
       "sha256": "3bde457e0ed502ef17dbf7e2951d3fe266d60eb9b5f28d9f861dc2d41d125cd1"
     },
     {
+      "path": "docs/CAMERA_BROWSER_RESULTS.json",
+      "bytes": 608,
+      "sha256": "b92134c21c856423686aab37bf25b42da2de51efc1cfcd8f8cd6d61bd049b04d"
+    },
+    {
       "path": "docs/CARD_ASSET_MAP.json",
       "bytes": 9174,
       "sha256": "51c4da5d51b2daf600329f27f045fb4926d79712574851ab64a6606a0124ecd6"
@@ -1192,12 +1197,12 @@
     {
       "path": "docs/CLASSIC_SYNTAX_IMPORTS.json",
       "bytes": 199,
-      "sha256": "b786353685b0da06ea4aecd5ef03f1314ecfe00a1d1f25a29c35fafe94f1e933"
+      "sha256": "5349ee9ef5f81f556f1efb1efa65f8d5adb7bc813e562095e84dd655eb6fe77a"
     },
     {
       "path": "docs/CLASSIC_TEST_RESULTS.json",
-      "bytes": 2001,
-      "sha256": "1125e21a5cb7109b3b1471ac0e88162f151919f7fb6c7e4cf6da9d675a8c9c9b"
+      "bytes": 2039,
+      "sha256": "6e23f02aaacd80ac5db408b8bb01cc1c10eed510738576bb60887d2f1fed1ef6"
     },
     {
       "path": "docs/CLASSIC_VERIFICATION.json",
@@ -1390,6 +1395,16 @@
       "sha256": "cc7ab7aae26d60096eb28b1d533094737e8f8b7eaed9439d58d001f8e3c8c6ad"
     },
     {
+      "path": "docs/LIVE_ONLINE_RESULTS.json",
+      "bytes": 1869,
+      "sha256": "3cfc5592b26275beba16599274feb46c4ce472fe518ddfc7f3e23a9db5f1f78b"
+    },
+    {
+      "path": "docs/LIVE_STOCK_RENDERER_RESULTS.json",
+      "bytes": 2196,
+      "sha256": "d2c87da68f371eb439f80d419b304a7b1d0eefdc67f24d4a0513bd368415b3f7"
+    },
+    {
       "path": "docs/LOBBY_CENTERED_RESULTS.json",
       "bytes": 7188,
       "sha256": "3e103d712ea5fd29ce8d54c1fdf7b9756145344c7e6b4129561ba5838c594155"
@@ -1450,6 +1465,21 @@
       "sha256": "47b8cc5da75eae194177b89a1776e4787a4f94bf525db4181d06d41e19336149"
     },
     {
+      "path": "docs/ONLINE_POSTGRES_RESULTS.json",
+      "bytes": 891,
+      "sha256": "fb771a7733aedf70fb67980e429ec47922ca0fad33f06ac1557356f08479578e"
+    },
+    {
+      "path": "docs/ONLINE_ROOM_BROWSER_RESULTS.json",
+      "bytes": 2229,
+      "sha256": "a80a9072447e21cc87dd0c693d82d6ddb3e945bf883643cf644082f9034809b8"
+    },
+    {
+      "path": "docs/ONLINE_ROOM_FIX.md",
+      "bytes": 7732,
+      "sha256": "522e6da1e6d977aa62183b5b2b8bc9ff49c839e67c9064c6b34bef0abd6ff33c"
+    },
+    {
       "path": "docs/P0_V46_HOTFIX.md",
       "bytes": 1068,
       "sha256": "9043f2cbd2919932e64a1dc0fb059e6925b6e7019b2120c8d53c98c3b1bec376"
@@ -1477,7 +1507,7 @@
     {
       "path": "docs/PWA_BROWSER_RESULTS.json",
       "bytes": 807,
-      "sha256": "c0f55dd338902c4b78da80f09f9fe2934e39f398f2b3d786a03ff7e8bb62f85d"
+      "sha256": "4d37aa9b5cf625ce3ddee37a47579eab8da1ca3cb3cc978ce846f606bff3563d"
     },
     {
       "path": "docs/QA_KEPULAUAN_RESULTS.json",
@@ -1491,8 +1521,8 @@
     },
     {
       "path": "docs/README.md",
-      "bytes": 687,
-      "sha256": "c7696012e99cc888203b61414bc1acd2517dde183ae4de65ed09f858340a0ec0"
+      "bytes": 871,
+      "sha256": "023224772abb1314795c738d0c502b6bfd31670d1e1cae7be728e5ef49dc7ad3"
     },
     {
       "path": "docs/RELEASE_4100.md",
@@ -1816,8 +1846,8 @@
     },
     {
       "path": "frontend/app.mjs",
-      "bytes": 66725,
-      "sha256": "7c9de5b5f8c15becfb48f7d66188161a37990bd1535159253dc6df8ba6341465"
+      "bytes": 70935,
+      "sha256": "853e9b447daa18ecd0342cdf524c6b78320f53fbbaea2d1b6904c120a006d199"
     },
     {
       "path": "frontend/art.mjs",
@@ -1841,13 +1871,13 @@
     },
     {
       "path": "frontend/board-camera.mjs",
-      "bytes": 1268,
-      "sha256": "865da2fc23cec34755e1d780610e0054099ce944c19de084a7ed959cffd4bc7d"
+      "bytes": 1583,
+      "sha256": "d8fad068811a159830720d5bc4b3650e888ef415f6290d34cbc57bc324ef738c"
     },
     {
       "path": "frontend/board.mjs",
-      "bytes": 15020,
-      "sha256": "aadefededc314a77682cc6b16998f769eee8ed158111f85bfdb035ea29b028c1"
+      "bytes": 17492,
+      "sha256": "0a34d1f87cd0650411a304c476f59ccd4ac52171ee0b7e3a76c2fe68c927c566"
     },
     {
       "path": "frontend/cache-migration.mjs",
@@ -1916,8 +1946,8 @@
     },
     {
       "path": "frontend/popups.mjs",
-      "bytes": 38615,
-      "sha256": "51a1eb60bc10fa473f9abae2db08c3e1e4be968d0fbdb80aa301867c8f100d1b"
+      "bytes": 39068,
+      "sha256": "f5b2cf010c8d28629d1cd688b2612ad824a0656a71df765674218ed4523c732e"
     },
     {
       "path": "frontend/property-display.mjs",
@@ -1941,13 +1971,13 @@
     },
     {
       "path": "frontend/session.mjs",
-      "bytes": 31038,
-      "sha256": "496d6013e9bbf9d0b25616d974da0717466c0ae2f66d0c93b175bdecb82334f7"
+      "bytes": 33630,
+      "sha256": "1f46e273347abfbef6631697c011f038c3f5994e580a54b81fcc5d0e1a66a2c2"
     },
     {
       "path": "frontend/styles.css",
-      "bytes": 92340,
-      "sha256": "a0b47152167015f3080b9ff80d6f5a349092c870fdc3412ff8dd038e86b5fdac"
+      "bytes": 92632,
+      "sha256": "3e69a595755d8332da51b2cba231db3c1a5c21c61336f39cbebefdcf3e935c50"
     },
     {
       "path": "frontend/tile-info.mjs",
@@ -2191,8 +2221,8 @@
     },
     {
       "path": "lib/gameplay-presentation.mjs",
-      "bytes": 5094,
-      "sha256": "fce3f5849614731661ab44f7fe55e88659edc0ee88b351e7bf777107e9fa960f"
+      "bytes": 5288,
+      "sha256": "c26dea32dad2bcb9b2e3cd9b60393f33e497cebfb3305fc13dc00cd7fca3ed4e"
     },
     {
       "path": "lib/groq.ts",
@@ -2251,8 +2281,8 @@
     },
     {
       "path": "lib/room-client.mjs",
-      "bytes": 1377,
-      "sha256": "ee02585b82a5d8c32936aa105c3d66f15f0ac5cfb7f34ac8a3a5366c5075a012"
+      "bytes": 1448,
+      "sha256": "8cc241f8c2e98628787ec6d92a8c6834ec44004261a8b0d372e42560cc1110d7"
     },
     {
       "path": "lib/save-format.mjs",
@@ -2266,13 +2296,13 @@
     },
     {
       "path": "lib/server/online-room.mjs",
-      "bytes": 13097,
-      "sha256": "fae4013576b1dff7ed13284a59e41f28811b576eca8b148cd99c7995c45306de"
+      "bytes": 14626,
+      "sha256": "5826cec517a73ce7c00e56ab7339f7dbba5f456c46f3947b886c7595298d977b"
     },
     {
       "path": "lib/server/online-service.mjs",
-      "bytes": 6328,
-      "sha256": "a1b89e8e5a3acb77e4340df9f196a3334667462f3aff01aed1580d7c1a439267"
+      "bytes": 6831,
+      "sha256": "7d00b20ed21306382fa058f767aa6d216d1c7855cdd0d46d78452bab87a37c3e"
     },
     {
       "path": "lib/server/runtime.ts",
@@ -2286,8 +2316,8 @@
     },
     {
       "path": "lib/server/supabase-store.mjs",
-      "bytes": 3262,
-      "sha256": "978c29ee11662a38f460aed527c473f9d64d7f9540c96c4567e843478d317c45"
+      "bytes": 3339,
+      "sha256": "152e271be47018417e57e8a07f81f95bc0ab6c88aedcba3664bfb206d0c21725"
     },
     {
       "path": "lib/storage.ts",
@@ -2297,7 +2327,7 @@
     {
       "path": "lib/version.mjs",
       "bytes": 233,
-      "sha256": "67b4b911bfa7b16eb07b346030dca2dae5c9c088b6091bc3383e10acb357fe52"
+      "sha256": "9b5ebc5b1d565b7db7cbdefa4774894d51eece4978cdb03484e8a7bd098bbe06"
     },
     {
       "path": "licenses/LUCIDE.txt",
@@ -2311,8 +2341,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 4168,
-      "sha256": "f279b6a4493ade8f6253eeb8442bbcb9b64bdaf6f64471073ebd40eb39d62789"
+      "bytes": 4470,
+      "sha256": "6ff54bfeed7ba611ced38b3fffab33d66e80d11a42ef7cdfb38c72c892583423"
     },
     {
       "path": "public/Monopoli_Nusantara_Game_Logic.zip",
@@ -2561,8 +2591,8 @@
     },
     {
       "path": "scripts/diagnose-deployment.mjs",
-      "bytes": 1323,
-      "sha256": "0ae51cce068cc437bdf63c8ff7c3148e20a298a611da298e9bfd99b33878d38c"
+      "bytes": 1350,
+      "sha256": "357c6183e9eb37568c2b53bf530eddf8bc4dfc262e946d7b0552fbef5c25e528"
     },
     {
       "path": "scripts/diagnose-online.mjs",
@@ -2617,7 +2647,7 @@
     {
       "path": "scripts/package-release.py",
       "bytes": 3079,
-      "sha256": "c85ea13f55cb21c746cbfbccb3da2b59def305e142beac1cb965f60d138a2782"
+      "sha256": "6ae3df2ef6a1da2dbd5bd7249532380b6cadb73ed012c3b9d4927b34fc845946"
     },
     {
       "path": "scripts/portrait-fixtures.mjs",
@@ -2670,6 +2700,11 @@
       "sha256": "d22ffb60ce56191f3060196291d219db1d7d08cf511481cccfd900ce9251f440"
     },
     {
+      "path": "scripts/test-camera-browser.mjs",
+      "bytes": 4846,
+      "sha256": "f56e0f495c44a5583be51a431b7865866d9bce5557bd77170081880ecaf9e951"
+    },
+    {
       "path": "scripts/test-certificate-browser.mjs",
       "bytes": 6646,
       "sha256": "a1dd488dbfa5a0761a289dff3fcddc248db9cc19e401c2b53adc72ebbbf1626e"
@@ -2696,8 +2731,8 @@
     },
     {
       "path": "scripts/test-headless.mjs",
-      "bytes": 2074,
-      "sha256": "aca82fa6763c99b24a6c254a351aa30f0f5c8bf6152afc1b859da67cd2d7fd0c"
+      "bytes": 2092,
+      "sha256": "693e296228b246b41d8b76d8285d186ecf137787e7cea6d1838e0cf283dc4273"
     },
     {
       "path": "scripts/test-learning-browser.mjs",
@@ -2708,6 +2743,11 @@
       "path": "scripts/test-lobby-centered.mjs",
       "bytes": 3380,
       "sha256": "ed135eabdffdc2d20d8b4c2ecdb89fe1a8c21a7b591c0e0fdc7271d8629d62b6"
+    },
+    {
+      "path": "scripts/test-online-room-browser.mjs",
+      "bytes": 16418,
+      "sha256": "1ba14bf919913bb35f496f598ec2c6415aa4f5dcc22ccf02ec1465dafe4b0425"
     },
     {
       "path": "scripts/test-plan-browser.mjs",
@@ -2730,9 +2770,19 @@
       "sha256": "eb5f03bd055768392f0a9f6e2365cc3989a5437f3680d4253e1fb4ba8bd631ef"
     },
     {
+      "path": "scripts/test-room-postgres.mjs",
+      "bytes": 8177,
+      "sha256": "d18bdbd51da20b7652ad17cfe01d04afea9a82d30aebe723a6d312c586c5659f"
+    },
+    {
       "path": "scripts/test-stability-browser.mjs",
       "bytes": 7235,
       "sha256": "e53f56836a21ff805f9f40604b1bcc8fa4fc8771978056d4983a4dfbafd9afc4"
+    },
+    {
+      "path": "scripts/test-stock-live-renderer.mjs",
+      "bytes": 4661,
+      "sha256": "b85961e5cbe6b7d5c31f8b979a8029322f6192419e8c20ba05cb2f54e4372d77"
     },
     {
       "path": "scripts/test-trade-certificate-browser.mjs",
@@ -2996,13 +3046,13 @@
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/server/online-room.mjs",
-      "bytes": 13097,
-      "sha256": "fae4013576b1dff7ed13284a59e41f28811b576eca8b148cd99c7995c45306de"
+      "bytes": 14626,
+      "sha256": "5826cec517a73ce7c00e56ab7339f7dbba5f456c46f3947b886c7595298d977b"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/server/online-service.mjs",
-      "bytes": 6328,
-      "sha256": "a1b89e8e5a3acb77e4340df9f196a3334667462f3aff01aed1580d7c1a439267"
+      "bytes": 6831,
+      "sha256": "7d00b20ed21306382fa058f767aa6d216d1c7855cdd0d46d78452bab87a37c3e"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/server/supabase-config.mjs",
@@ -3011,8 +3061,8 @@
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/server/supabase-store.mjs",
-      "bytes": 3262,
-      "sha256": "978c29ee11662a38f460aed527c473f9d64d7f9540c96c4567e843478d317c45"
+      "bytes": 3339,
+      "sha256": "152e271be47018417e57e8a07f81f95bc0ab6c88aedcba3664bfb206d0c21725"
     },
     {
       "path": "supabase/functions/monopoli-bots/index.ts",
@@ -3043,6 +3093,11 @@
       "path": "supabase/migrations/202610170005_bot_worker_vault_scheduler.sql",
       "bytes": 897,
       "sha256": "6b9e2f7b4526dd85dcb3c798e1ba5e1f8c63439cac7baaab796704958368def6"
+    },
+    {
+      "path": "supabase/migrations/202610180006_online_room_management.sql",
+      "bytes": 12398,
+      "sha256": "96ec42fd47adec87d5440874b8c16d96052ea1b7a0149b952ad9993fd59da44d"
     },
     {
       "path": "supabase/scheduler_setup.sql",
@@ -3101,8 +3156,8 @@
     },
     {
       "path": "tests/building-stock-popup.test.mjs",
-      "bytes": 1645,
-      "sha256": "fc13232355ee43be43af28feccc9f5a970c48ebd2a2607f2af214597ebc390d0"
+      "bytes": 2030,
+      "sha256": "1b1c9e488509f8812a20e4bb6dcd1d125595aeb0ca393d3df23cb3bfc873a940"
     },
     {
       "path": "tests/certificate-preview.test.mjs",
@@ -3216,8 +3271,8 @@
     },
     {
       "path": "tests/online-api.test.mjs",
-      "bytes": 5859,
-      "sha256": "a97190984d77caf03300ff756df407d01141fd9ee104a529a77d0869f91ca74c"
+      "bytes": 6812,
+      "sha256": "2f1d11214c8d62e2a811c5cfa581424ba6e3e306e01d9decd83bd98678b57b73"
     },
     {
       "path": "tests/online-bots.test.mjs",
@@ -3258,6 +3313,11 @@
       "path": "tests/room-client.test.mjs",
       "bytes": 2192,
       "sha256": "b6ec79edad62c893cf542a6ea098230bf1f513935427d00c5a91b978cd8332a1"
+    },
+    {
+      "path": "tests/room-management.test.mjs",
+      "bytes": 9476,
+      "sha256": "d026ee02daa78432b01cc1c67ab405dd63f50739938e48fda65ccac9692cc0dc"
     },
     {
       "path": "tests/save-format.test.mjs",

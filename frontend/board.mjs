@@ -1,10 +1,11 @@
 import { BOARD, money } from "../lib/content.mjs";
-import { tileRect, tileCenter, hitTile } from "../lib/board-camera.mjs";
+import { tileRect, hitTile } from "../lib/board-camera.mjs";
 import {
   fitCamera,
   centerCamera,
   zoomCamera,
   clampCamera,
+  interpolateCamera,
 } from "./board-camera.mjs";
 import { pawnPlacement } from "../lib/pawn-layout.mjs";
 import { pawnRoute, samplePawnRoute } from "../lib/pawn-animation.mjs";
@@ -135,10 +136,11 @@ export function boardMarkup(s) {
   return `<rect width="1000" height="1000" fill="#dcebd8"/><rect x="140" y="140" width="720" height="720" fill="#dcebd8" stroke="#283e34" stroke-width="3"/><g class="board-center" pointer-events="none"><text x="500" y="490" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="61" letter-spacing="3" fill="#294b42">NUSANTARA</text><text x="500" y="523" text-anchor="middle" font-size="14" letter-spacing="4" fill="#617d6b">JELAJAH · MILIKI · BANGUN</text></g>${tiles}<g class="board-pawns">${pawns}</g>`;
 }
 export class BoardView {
-  constructor(container, onTile, onComplete) {
+  constructor(container, onTile, onComplete, onModeChange = () => {}) {
     this.container = container;
     this.onComplete = onComplete;
     this.onTile = onTile;
+    this.onModeChange = onModeChange;
     this.svg = container.querySelector("svg");
     this.world = this.svg.querySelector("g");
     this.mode = "overview";
@@ -163,7 +165,9 @@ export class BoardView {
       (e) => {
         if (e.target.closest("[data-action]")) return;
         e.preventDefault();
+        this.cancelCamera();
         this.mode = "manual";
+        this.onModeChange(this.mode);
         this.camera = zoomCamera(
           this.camera,
           Math.exp(-e.deltaY * 0.002),
@@ -179,7 +183,7 @@ export class BoardView {
     if (!rect.width || !rect.height) return;
     this.svg.setAttribute("viewBox", `0 0 ${rect.width} ${rect.height}`);
     this.camera = fitCamera(rect.width, rect.height);
-    this.applyMode();
+    this.applyMode({ immediate: true });
   }
   point(e) {
     const r = this.container.getBoundingClientRect();
@@ -187,6 +191,7 @@ export class BoardView {
   }
   down(e) {
     if (e.target.closest("[data-action]")) return;
+    this.cancelCamera();
     this.dragged = false;
     this.downTile = e.target.closest("[data-tile]")?.dataset.tile;
     this.points.set(e.pointerId, this.point(e));
@@ -218,7 +223,10 @@ export class BoardView {
         y: this.camera.y + dy,
       });
     }
-    if (this.dragged) this.mode = "manual";
+    if (this.dragged && this.mode !== "manual") {
+      this.mode = "manual";
+      this.onModeChange(this.mode);
+    }
     this.transform();
   }
   up(e) {
@@ -260,25 +268,87 @@ export class BoardView {
     }
   }
   setMode(mode) {
+    this.cancelCamera();
     this.mode = mode;
+    this.onModeChange(mode);
+    if (this.motion) {
+      this.motion.cameraFrom = { ...this.camera };
+      this.motion.cameraAt =
+        this.motion.elapsed + (this.raf ? performance.now() - this.started : 0);
+    }
     this.applyMode();
   }
-  applyMode() {
+  cancelCamera() {
+    if (this.cameraRaf) cancelAnimationFrame(this.cameraRaf);
+    this.cameraRaf = 0;
+    this.cameraSerial = (this.cameraSerial || 0) + 1;
+  }
+  cameraTarget(point) {
+    const c = fitCamera(this.camera.width, this.camera.height);
+    return centerCamera(
+      { ...c, scale: Math.min(0.9, c.scale * 1.8) },
+      point || pawnDisplayPoint(pawnPlacement(this.state, this.state.turn)),
+    );
+  }
+  applyMode({ immediate = false } = {}) {
     if (!this.camera) return;
+    let target;
     if (this.mode === "overview")
-      this.camera = fitCamera(this.camera.width, this.camera.height);
+      target = fitCamera(this.camera.width, this.camera.height);
     else if (this.mode === "follow" && this.state) {
-      const c = fitCamera(this.camera.width, this.camera.height);
-      this.camera = centerCamera(
-        { ...c, scale: Math.min(0.9, c.scale * 1.8) },
-        tileCenter(this.state.players[this.state.turn].pos),
-      );
+      if (this.head?.kind === "pawnMoving" && !this.reduced) {
+        this.transform();
+        return;
+      }
+      target = this.cameraTarget();
     }
-    this.transform();
+    if (!target) {
+      this.transform();
+      return;
+    }
+    this.cancelCamera();
+    if (
+      ["x", "y", "scale"].every(
+        (k) => Math.abs(this.camera[k] - target[k]) < 0.000001,
+      )
+    ) {
+      this.camera = target;
+      this.transform();
+      return;
+    }
+    if (immediate || this.reduced || this.paused || !this.state) {
+      this.camera = target;
+      this.transform();
+      return;
+    }
+    const from = { ...this.camera },
+      started = performance.now(),
+      serial = this.cameraSerial;
+    const frame = () => {
+      if (serial !== this.cameraSerial) return;
+      const t = Math.min(
+        1,
+        (performance.now() - started) / (this.fast ? 160 : 280),
+      );
+      this.camera = interpolateCamera(from, target, t);
+      this.transform();
+      this.cameraRaf = t < 1 ? requestAnimationFrame(frame) : 0;
+    };
+    frame();
   }
   update(state, head, { paused = false, reduced = false, fast = false } = {}) {
-    const previous = this.state;
+    const previous = this.state,
+      wasPaused = this.paused,
+      preferenceChanged = this.reduced !== reduced;
+    this.head = head;
+    this.paused = paused;
+    this.reduced = reduced;
+    this.fast = fast;
+    if (paused || reduced) this.cancelCamera();
     this.state = state;
+    if (!this.camera) this.resize();
+    if ((wasPaused && !paused) || preferenceChanged)
+      this.applyMode({ immediate: reduced });
     const key = JSON.stringify([
       state.matchId,
       state.version,
@@ -322,7 +392,10 @@ export class BoardView {
         points: pawnRoute(head.move, state).map(pawnDisplayPoint),
         elapsed: 0,
         duration: stepDuration(head, { fast, reduced }),
+        cameraFrom: { ...this.camera },
+        cameraAt: 0,
       };
+      this.cancelCamera();
     }
     if (paused) {
       if (this.raf) {
@@ -346,6 +419,14 @@ export class BoardView {
         );
       if (p && sample)
         p.setAttribute("transform", `translate(${sample.x} ${sample.y})`);
+      if (sample && this.mode === "follow") {
+        this.camera = interpolateCamera(
+          motion.cameraFrom,
+          this.cameraTarget(sample),
+          (elapsed - motion.cameraAt) / (fast ? 160 : 280),
+        );
+        this.transform();
+      }
       if (elapsed >= motion.duration) {
         this.raf = 0;
         this.onComplete(motion.id);
@@ -361,6 +442,7 @@ export class BoardView {
     this.motion = null;
   }
   dispose() {
+    this.cancelCamera();
     this.cancelMove();
     this.observer.disconnect();
   }
