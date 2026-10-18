@@ -14,7 +14,7 @@ export function botActor(s){
  const actor=decisionActor(s);return bot(actor)?actor:null;
 }
 /** Bounded worker; all durable continuation/recovery is owned by DB jobs + pg_net/cron. */
-export async function runBotWorker({store,decide,clock=Date.now,rng=secureRandom,maxSteps=4,maxMs=12000}){
+export async function runBotWorker({store,decide,clock=Date.now,rng=secureRandom,maxSteps=1,maxMs=10000}){
  const start=clock();let committed=0,claimed=0,discarded=0;
  while(claimed<maxSteps&&clock()-start<maxMs){
   const owner=crypto.randomUUID(),job=await store.claimBot(owner);if(!job)break;claimed++;
@@ -25,14 +25,15 @@ export async function runBotWorker({store,decide,clock=Date.now,rng=secureRandom
    if(room.status!=='playing'||gameplayHeld(room,clock())){await store.releaseBot(job.code,owner,room.status==='playing'?'blocked':'waiting');continue;}
    const actor=botActor(room.state);if(actor===null){await store.releaseBot(job.code,owner,'waiting');continue;}
    const version=room.state.version,matchId=room.state.matchId;
-   const local=()=>({action:decidePersona(room.state,actor,{timeBudgetMs:180}).action,status:'local',comment:null});
-   let timeout;
+   let localPlan;
+   const local=()=>{localPlan||=decidePersona(room.state,actor,{timeBudgetMs:180});return {action:localPlan.action,diagnostics:localPlan.diagnostics,status:'local',comment:null};};
+   let timeout,recovered=false;
    // An unavailable/slow advisor must not strand an online match. The shared
    // NUSA MIND planner is authoritative fallback; no second random roll occurs.
    let decision;
    try {
-    decision=decide?await Promise.race([Promise.resolve().then(()=>decide(room.state,actor)),new Promise(resolve=>{timeout=setTimeout(()=>resolve(local()),Math.max(1,maxMs-(clock()-start)-100));})]).finally(()=>clearTimeout(timeout)):local();
-   } catch { decision=local(); }
+    decision=decide?await Promise.race([Promise.resolve().then(()=>decide(room.state,actor)),new Promise(resolve=>{timeout=setTimeout(()=>{recovered=true;resolve(local());},Math.max(1,maxMs-(clock()-start)-100));})]).finally(()=>clearTimeout(timeout)):local();
+   } catch { recovered=true;decision=local(); }
    // Provider work never holds a DB transaction. Re-read the authoritative room afterwards.
    const fresh=await store.get(job.code);if(!fresh){await store.releaseBot(job.code,owner,'waiting');continue;}
    const unchanged=JSON.stringify(fresh.data);reconcile(fresh.data,clock());
@@ -48,11 +49,19 @@ export async function runBotWorker({store,decide,clock=Date.now,rng=secureRandom
    catch {
     // A stale or illegal advisor suggestion does not consume a DB revision.
     // For a local-planner error, retry once and then let durable job recovery work.
-    decision=local();applied=botCommand(decision.action);
+    recovered=true;decision=local();applied=botCommand(decision.action);
    }
    const {intent,next}=applied;
    fresh.data.state=next;
    fresh.data.state.aiStatus=decision.status||'local';fresh.data.state.aiComment=null;
+   const metrics=decision.diagnostics||{};
+   fresh.data.state.aiDiagnostics={execution:'edge',actor,sourceVersion:version,
+    model:typeof metrics.model==='string'?metrics.model.slice(0,64):null,
+    elapsedMs:Number.isFinite(metrics.elapsedMs)?Math.round(metrics.elapsedMs):null,
+    nodes:Number.isFinite(metrics.nodes)?metrics.nodes:0,
+    budgetExhausted:!!metrics.budgetExhausted,
+    fallback:recovered||decision.status==='fallback'||metrics.reason==='model_exception'||metrics.reason==='foundation_budget_exhausted',
+    reason:typeof metrics.reason==='string'?metrics.reason.slice(0,64):null};
    if(fresh.data.state.phase==='won')fresh.data.status='finished';
    if(fresh.data.vote?.status==='open'&&fresh.data.vote.eligible.some(i=>fresh.data.state.players[i].out))fresh.data.vote.status='cancelled';
    const result=await store.commit(fresh,fresh.data,{type:'BOT_ACTION',botLease:owner,botWork:{actor,sourceVersion:version,matchId,actionType:intent.type},notify:true});

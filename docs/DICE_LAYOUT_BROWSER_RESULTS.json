@@ -1,0 +1,671 @@
+{
+  "generatedAt": "2026-10-18T08:46:54.702Z",
+  "checks": [
+    {
+      "name": "Dice above extended action 320x568, 6 players",
+      "passed": true,
+      "metrics": {
+        "dice": {
+          "x": 196,
+          "y": 424.5,
+          "width": 124,
+          "height": 69,
+          "right": 320,
+          "bottom": 493.5
+        },
+        "die": {
+          "x": 203,
+          "y": 427.5,
+          "width": 48,
+          "height": 48,
+          "right": 251,
+          "bottom": 475.5
+        },
+        "info": {
+          "x": 0,
+          "y": 424,
+          "width": 320,
+          "height": 70,
+          "right": 320,
+          "bottom": 494
+        },
+        "activity": {
+          "x": 0,
+          "y": 439,
+          "width": 192,
+          "height": 40,
+          "right": 192,
+          "bottom": 479
+        },
+        "console": {
+          "x": 0,
+          "y": 494,
+          "width": 320,
+          "height": 74,
+          "right": 320,
+          "bottom": 568
+        },
+        "action": {
+          "x": 105,
+          "y": 518,
+          "width": 207,
+          "height": 44,
+          "right": 312,
+          "bottom": 562
+        },
+        "quick": {
+          "x": 8,
+          "y": 518,
+          "width": 92,
+          "height": 44,
+          "right": 100,
+          "bottom": 562
+        },
+        "board": {
+          "x": 0,
+          "y": 104,
+          "width": 320,
+          "height": 320,
+          "right": 320,
+          "bottom": 424
+        },
+        "columns": 2,
+        "overflow": false,
+        "parent": "gameplay-info",
+        "visibleImages": [
+          [
+            5
+          ],
+          [
+            6
+          ]
+        ],
+        "transparent": true
+      }
+    },
+    {
+      "name": "Dice above extended action 360x640, 4 players",
+      "passed": true,
+      "metrics": {
+        "dice": {
+          "x": 230.40625,
+          "y": 489.296875,
+          "width": 129.59375,
+          "height": 71.390625,
+          "right": 360,
+          "bottom": 560.6875
+        },
+        "die": {
+          "x": 237.8125,
+          "y": 492.296875,
+          "width": 50.390625,
+          "height": 50.390625,
+          "right": 288.203125,
+          "bottom": 542.6875
+        },
+        "info": {
+          "x": 0,
+          "y": 488,
+          "width": 360,
+          "height": 74,
+          "right": 360,
+          "bottom": 562
+        },
+        "activity": {
+          "x": 0,
+          "y": 505,
+          "width": 226.40625,
+          "height": 40,
+          "right": 226.40625,
+          "bottom": 545
+        },
+        "console": {
+          "x": 0,
+          "y": 560,
+          "width": 360,
+          "height": 80,
+          "right": 360,
+          "bottom": 640
+        },
+        "action": {
+          "x": 107,
+          "y": 586,
+          "width": 245,
+          "height": 46,
+          "right": 352,
+          "bottom": 632
+        },
+        "quick": {
+          "x": 8,
+          "y": 586,
+          "width": 92,
+          "height": 46,
+          "right": 100,
+          "bottom": 632
+        },
+        "board": {
+          "x": 0,
+          "y": 128,
+          "width": 360,
+          "height": 360,
+          "right": 360,
+          "bottom": 488
+        },
+        "columns": 2,
+        "overflow": false,
+        "parent": "gameplay-info",
+        "visibleImages": [
+          [
+            5
+          ],
+          [
+            6
+          ]
+        ],
+        "transparent": true
+      }
+    },
+    {
+      "name": "Dice above extended action 390x844, 4 players",
+      "passed": true,
+      "metrics": {
+        "dice": {
+          "x": 249.609375,
+          "y": 675.203125,
+          "width": 140.390625,
+          "height": 75.59375,
+          "right": 390,
+          "bottom": 750.796875
+        },
+        "die": {
+          "x": 258.203125,
+          "y": 678.203125,
+          "width": 54.59375,
+          "height": 54.59375,
+          "right": 312.796875,
+          "bottom": 732.796875
+        },
+        "info": {
+          "x": 0,
+          "y": 673,
+          "width": 390,
+          "height": 80,
+          "right": 390,
+          "bottom": 753
+        },
+        "activity": {
+          "x": 0,
+          "y": 679.5,
+          "width": 245.609375,
+          "height": 44,
+          "right": 245.609375,
+          "bottom": 723.5
+        },
+        "console": {
+          "x": 0,
+          "y": 753,
+          "width": 390,
+          "height": 91,
+          "right": 390,
+          "bottom": 844
+        },
+        "action": {
+          "x": 107,
+          "y": 782,
+          "width": 275,
+          "height": 50,
+          "right": 382,
+          "bottom": 832
+        },
+        "quick": {
+          "x": 8,
+          "y": 782,
+          "width": 92,
+          "height": 50,
+          "right": 100,
+          "bottom": 832
+        },
+        "board": {
+          "x": 0,
+          "y": 218.5,
+          "width": 390,
+          "height": 390,
+          "right": 390,
+          "bottom": 608.5
+        },
+        "columns": 2,
+        "overflow": false,
+        "parent": "gameplay-info",
+        "visibleImages": [
+          [
+            5
+          ],
+          [
+            6
+          ]
+        ],
+        "transparent": true
+      }
+    },
+    {
+      "name": "Dice above extended action 430x932, 6 players",
+      "passed": true,
+      "metrics": {
+        "dice": {
+          "x": 278,
+          "y": 759.8125,
+          "width": 152,
+          "height": 81.1875,
+          "right": 430,
+          "bottom": 841
+        },
+        "die": {
+          "x": 286.8125,
+          "y": 762.8125,
+          "width": 60.1875,
+          "height": 60.1875,
+          "right": 347,
+          "bottom": 823
+        },
+        "info": {
+          "x": 0,
+          "y": 759.8125,
+          "width": 430,
+          "height": 81.1875,
+          "right": 430,
+          "bottom": 841
+        },
+        "activity": {
+          "x": 0,
+          "y": 766.90625,
+          "width": 274,
+          "height": 44,
+          "right": 274,
+          "bottom": 810.90625
+        },
+        "console": {
+          "x": 0,
+          "y": 841,
+          "width": 430,
+          "height": 91,
+          "right": 430,
+          "bottom": 932
+        },
+        "action": {
+          "x": 107,
+          "y": 870,
+          "width": 315,
+          "height": 50,
+          "right": 422,
+          "bottom": 920
+        },
+        "quick": {
+          "x": 8,
+          "y": 870,
+          "width": 92,
+          "height": 50,
+          "right": 100,
+          "bottom": 920
+        },
+        "board": {
+          "x": 0,
+          "y": 241.90625,
+          "width": 430,
+          "height": 430,
+          "right": 430,
+          "bottom": 671.90625
+        },
+        "columns": 2,
+        "overflow": false,
+        "parent": "gameplay-info",
+        "visibleImages": [
+          [
+            5
+          ],
+          [
+            6
+          ]
+        ],
+        "transparent": true
+      }
+    },
+    {
+      "name": "Dice above extended action 576x1024, 4 players",
+      "passed": true,
+      "metrics": {
+        "dice": {
+          "x": 424,
+          "y": 850,
+          "width": 152,
+          "height": 83,
+          "right": 576,
+          "bottom": 933
+        },
+        "die": {
+          "x": 431,
+          "y": 853,
+          "width": 62,
+          "height": 62,
+          "right": 493,
+          "bottom": 915
+        },
+        "info": {
+          "x": 0,
+          "y": 850,
+          "width": 576,
+          "height": 83,
+          "right": 576,
+          "bottom": 933
+        },
+        "activity": {
+          "x": 0,
+          "y": 858,
+          "width": 420,
+          "height": 44,
+          "right": 420,
+          "bottom": 902
+        },
+        "console": {
+          "x": 0,
+          "y": 933,
+          "width": 576,
+          "height": 91,
+          "right": 576,
+          "bottom": 1024
+        },
+        "action": {
+          "x": 107,
+          "y": 962,
+          "width": 461,
+          "height": 50,
+          "right": 568,
+          "bottom": 1012
+        },
+        "quick": {
+          "x": 8,
+          "y": 962,
+          "width": 92,
+          "height": 50,
+          "right": 100,
+          "bottom": 1012
+        },
+        "board": {
+          "x": 0,
+          "y": 214,
+          "width": 576,
+          "height": 576,
+          "right": 576,
+          "bottom": 790
+        },
+        "columns": 2,
+        "overflow": false,
+        "parent": "gameplay-info",
+        "visibleImages": [
+          [
+            5
+          ],
+          [
+            6
+          ]
+        ],
+        "transparent": true
+      }
+    },
+    {
+      "name": "Dice above extended action 740x360, 4 players",
+      "passed": true,
+      "metrics": {
+        "dice": {
+          "x": 608,
+          "y": 117.5,
+          "width": 124,
+          "height": 73,
+          "right": 732,
+          "bottom": 190.5
+        },
+        "die": {
+          "x": 615,
+          "y": 120.5,
+          "width": 52,
+          "height": 52,
+          "right": 667,
+          "bottom": 172.5
+        },
+        "info": {
+          "x": 427.921875,
+          "y": 117,
+          "width": 304.078125,
+          "height": 74,
+          "right": 732,
+          "bottom": 191
+        },
+        "activity": {
+          "x": 427.921875,
+          "y": 128,
+          "width": 176.078125,
+          "height": 40,
+          "right": 604,
+          "bottom": 168
+        },
+        "console": {
+          "x": 427.921875,
+          "y": 191,
+          "width": 304.078125,
+          "height": 80,
+          "right": 732,
+          "bottom": 271
+        },
+        "action": {
+          "x": 518.921875,
+          "y": 218,
+          "width": 209.078125,
+          "height": 46,
+          "right": 728,
+          "bottom": 264
+        },
+        "quick": {
+          "x": 431.921875,
+          "y": 218,
+          "width": 84,
+          "height": 46,
+          "right": 515.921875,
+          "bottom": 264
+        },
+        "board": {
+          "x": 56.953125,
+          "y": 39,
+          "width": 312,
+          "height": 312,
+          "right": 368.953125,
+          "bottom": 351
+        },
+        "columns": 2,
+        "overflow": false,
+        "parent": "gameplay-info",
+        "visibleImages": [
+          [
+            5
+          ],
+          [
+            6
+          ]
+        ],
+        "transparent": true
+      }
+    },
+    {
+      "name": "Dice above extended action 844x390, 6 players",
+      "passed": true,
+      "metrics": {
+        "dice": {
+          "x": 704,
+          "y": 219,
+          "width": 124,
+          "height": 74,
+          "right": 828,
+          "bottom": 293
+        },
+        "die": {
+          "x": 711,
+          "y": 222.5,
+          "width": 52,
+          "height": 52,
+          "right": 763,
+          "bottom": 274.5
+        },
+        "info": {
+          "x": 538,
+          "y": 216,
+          "width": 290,
+          "height": 80,
+          "right": 828,
+          "bottom": 296
+        },
+        "activity": {
+          "x": 538,
+          "y": 229,
+          "width": 162,
+          "height": 44,
+          "right": 700,
+          "bottom": 273
+        },
+        "console": {
+          "x": 538,
+          "y": 296,
+          "width": 290,
+          "height": 96,
+          "right": 828,
+          "bottom": 392
+        },
+        "action": {
+          "x": 642,
+          "y": 330,
+          "width": 178,
+          "height": 50,
+          "right": 820,
+          "bottom": 380
+        },
+        "quick": {
+          "x": 546,
+          "y": 330,
+          "width": 92,
+          "height": 50,
+          "right": 638,
+          "bottom": 380
+        },
+        "board": {
+          "x": 111,
+          "y": 63,
+          "width": 316,
+          "height": 316,
+          "right": 427,
+          "bottom": 379
+        },
+        "columns": 2,
+        "overflow": false,
+        "parent": "gameplay-info",
+        "visibleImages": [
+          [
+            5
+          ],
+          [
+            6
+          ]
+        ],
+        "transparent": true
+      }
+    },
+    {
+      "name": "Dice above extended action 1280x800, 6 players",
+      "passed": true,
+      "metrics": {
+        "dice": {
+          "x": 1060,
+          "y": 219,
+          "width": 124,
+          "height": 74,
+          "right": 1184,
+          "bottom": 293
+        },
+        "die": {
+          "x": 1067,
+          "y": 222.5,
+          "width": 52,
+          "height": 52,
+          "right": 1119,
+          "bottom": 274.5
+        },
+        "info": {
+          "x": 894,
+          "y": 216,
+          "width": 290,
+          "height": 80,
+          "right": 1184,
+          "bottom": 296
+        },
+        "activity": {
+          "x": 894,
+          "y": 229,
+          "width": 162,
+          "height": 44,
+          "right": 1056,
+          "bottom": 273
+        },
+        "console": {
+          "x": 894,
+          "y": 296,
+          "width": 290,
+          "height": 96,
+          "right": 1184,
+          "bottom": 392
+        },
+        "action": {
+          "x": 998,
+          "y": 330,
+          "width": 178,
+          "height": 50,
+          "right": 1176,
+          "bottom": 380
+        },
+        "quick": {
+          "x": 902,
+          "y": 330,
+          "width": 92,
+          "height": 50,
+          "right": 994,
+          "bottom": 380
+        },
+        "board": {
+          "x": 124,
+          "y": 56,
+          "width": 726,
+          "height": 726,
+          "right": 850,
+          "bottom": 782
+        },
+        "columns": 2,
+        "overflow": false,
+        "parent": "gameplay-info",
+        "visibleImages": [
+          [
+            5
+          ],
+          [
+            6
+          ]
+        ],
+        "transparent": true
+      }
+    },
+    {
+      "name": "Six 192px PNG faces below 80 KB total",
+      "passed": true,
+      "bytes": 46937
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium mobile emulation, not physical phone performance measurements.",
+    "Presentation fixtures show a previous dice roll; no game rule or RNG is changed."
+  ]
+}

@@ -59,6 +59,13 @@ export interface BotAction {
 }
 export interface BotDecisionResult {
   action: BotAction;
+  diagnostics?: {
+    model?: string;
+    elapsedMs?: number;
+    nodes?: number;
+    budgetExhausted?: boolean;
+    reason?: string;
+  };
   status: BotStatus;
   comment: string | null;
   /** Safe diagnostic enum only. Never contains provider body, headers or a stack. */

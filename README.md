@@ -1,6 +1,18 @@
-# Monopoli Nusantara — pembaruan UI, fondasi bot dan NUSA V18
+# Frontend polish — papan dan popup yang lebih bersih
 
-Source lengkap mencakup lobi/lelang yang dirapikan, mata uang ₦, pembuka dan kenaikan lelang minimal ₦5, fondasi bot bersama, serta NUSA V18 dengan 38 pakar. Nomor aplikasi tetap 4.11.0. Catatan integrasi ada di [INTEGRASI_NUSA_V18.md](INTEGRASI_NUSA_V18.md).
+Update gameplay terbaru: dadu PNG transparan 2D dipindahkan ke kanan riwayat agar tombol aksi lebih panjang; RNG memakai Web Crypto tanpa bias; popup stok diperbaiki; pelunasan otomatis menggantikan gadai otomatis lama. Panduan dan hasil uji: [GAMEPLAY_UPDATE.md](docs/GAMEPLAY_UPDATE.md).
+
+Update terbaru: bot online tetap di Supabase Edge, memori penolakan barter dan revisi berlaku untuk keenam persona, NUSA mengamati aksi lawan dalam batch kecil, serta logo PNG dan PWA tersedia. Catatan arsitektur, pemasangan, dan verifikasi: [EDGE_MEMORY_PWA.md](docs/EDGE_MEMORY_PWA.md).
+
+Papan menampilkan angka sewa tanpa simbol/latar hanya setelah properti dimiliki. Kepemilikan mengikuti warna pion, rumah/hotel memakai gambar, dan popup Aset/Barter dibuat ringkas dengan scroll internal. Input nominal memakai keyboard angka/desimal bawaan dengan normalisasi nol di depan. Avatar manusia baru dan aset WebP melengkapi enam peserta berbeda. NUSA kini memakai V20 dengan 46 pakar; aturan permainan tetap sama.
+
+Panduan perubahan, pembersihan source, dan verifikasi: [FRONTEND_POLISH.md](docs/FRONTEND_POLISH.md). Build publik hanya memuat graph modul browser aktif; source runtime NUSA berada di `lib/bot/nusa-v7/`.
+
+---
+
+# Monopoli Nusantara — pembaruan UI, fondasi bot dan NUSA V20
+
+Source lengkap mencakup lobi/lelang yang dirapikan, mata uang ₦, pembuka dan kenaikan lelang minimal ₦5, fondasi bot bersama, serta NUSA V20 dengan 46 pakar. Nomor aplikasi tetap 4.11.0. Catatan integrasi ada di [INTEGRASI_NUSA_V20.md](INTEGRASI_NUSA_V20.md).
 
 **Paket engine aturan tanpa model/planner bot:** [unduh ZIP logic game](public/Monopoli_Nusantara_Game_Logic.zip). Pada situs hasil build, file tersedia di `/Monopoli_Nusantara_Game_Logic.zip`. Paket ini menerima label bot baru untuk sistem eksternal, terpisah dari enam persona pada aplikasi lengkap. Buat ulang paket dengan `python3 scripts/package-logic.py`.
 
@@ -53,7 +65,7 @@ npm run diagnose:deployment -- --origin=https://monopoli-nusantara-eight.vercel.
 
 ## Perubahan UI
 
-Lobi berada di tengah layar dengan dekorasi geometris lembut; pada layar pendek konten tetap dapat digulir dari atas. Lobi memakai kartu peserta dua kolom yang lebih pendek. Popup setup, online/login, menu, pengaturan, profil, aset, bangun, gadai otomatis, barter dan keputusan memakai jarak lebih rapat; footer tetap dapat dijangkau dan konten panjang menggulir di dalam popup. Informasi konsekuensi gadai tetap tersedia lewat detail yang bisa dibuka. Ikon identitas online kini memiliki ukuran tetap, sehingga tidak gepeng.
+Lobi berada di tengah layar dengan dekorasi geometris lembut; pada layar pendek konten tetap dapat digulir dari atas. Lobi memakai kartu peserta dua kolom yang lebih pendek. Popup setup, online/login, menu, pengaturan, profil, aset, bangun, pelunasan otomatis, barter dan keputusan memakai jarak lebih rapat; footer tetap dapat dijangkau dan konten panjang menggulir di dalam popup. Informasi konsekuensi gadai tetap tersedia lewat detail yang bisa dibuka. Ikon identitas online kini memiliki ukuran tetap, sehingga tidak gepeng.
 
 `frontend/lucide-icons.mjs` memuat 25 glyph SVG resmi secara inline; tidak bergantung CDN saat bermain. Lisensi ISC ada di `licenses/LUCIDE.txt`. Ilustrasi karakter, pion, papan, bangunan dan kartu tetap memakai aset game. Pergantian ikon hanya dilakukan di lobi dan popup dengan `data-density="compact"`. Indikator bank baru juga memakai Lucide. Renderer petak/pion dan popup `preserved` tetap memakai aset sebelumnya.
 

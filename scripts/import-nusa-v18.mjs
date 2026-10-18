@@ -53,14 +53,10 @@ for (const name of ["situation", "experts", "council", "reasoning", "index"]) {
     .replaceAll("'../../lib/content.mjs'", "'../../content.mjs'")
     .replaceAll("'../../lib/game.mjs'", "'../../game.mjs'")
     .replaceAll("'../../lib/bot/", "'../");
-  for (const [relative, contents] of [
-    [`lab/nusa-v7/${name}.mjs`, code],
-    [`lib/bot/nusa-v7/${name}.mjs`, runtime],
-  ]) {
-    await mkdir(dirname(resolve(root, relative)), { recursive: true });
-    await writeFile(resolve(root, relative), contents);
-    files[relative] = sha(contents);
-  }
+  const relative = `lib/bot/nusa-v7/${name}.mjs`;
+  await mkdir(dirname(resolve(root, relative)), { recursive: true });
+  await writeFile(resolve(root, relative), runtime);
+  files[relative] = sha(runtime);
 }
 const manifest = {
   version: "18.0.0",
@@ -80,5 +76,5 @@ await writeFile(
   JSON.stringify(manifest, null, 2) + "\n",
 );
 console.log(
-  "Imported 5 NUSA V18 model modules into lab/runtime; original generator SHA recorded.",
+  "Imported 5 NUSA V18 model modules into the canonical runtime source; original generator SHA recorded.",
 );

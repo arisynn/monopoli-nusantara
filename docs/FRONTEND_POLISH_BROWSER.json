@@ -1,0 +1,252 @@
+{
+  "generatedAt": "2026-10-18T08:54:22.663Z",
+  "checks": [
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "n": 2,
+      "bounds": {
+        "x": 19,
+        "y": 86,
+        "width": 282,
+        "height": 396
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "n": 4,
+      "bounds": {
+        "x": 19,
+        "y": 86,
+        "width": 282,
+        "height": 396
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "n": 6,
+      "bounds": {
+        "x": 19,
+        "y": 86,
+        "width": 282,
+        "height": 396
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "n": 2,
+      "bounds": {
+        "x": 19,
+        "y": 237,
+        "width": 352,
+        "height": 370
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "n": 4,
+      "bounds": {
+        "x": 19,
+        "y": 237,
+        "width": 352,
+        "height": 370
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "n": 6,
+      "bounds": {
+        "x": 19,
+        "y": 237,
+        "width": 352,
+        "height": 370
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 667,
+        "height": 375
+      },
+      "n": 2,
+      "bounds": {
+        "x": 19,
+        "y": 45,
+        "width": 629,
+        "height": 285
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 667,
+        "height": 375
+      },
+      "n": 4,
+      "bounds": {
+        "x": 19,
+        "y": 45,
+        "width": 629,
+        "height": 285
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 667,
+        "height": 375
+      },
+      "n": 6,
+      "bounds": {
+        "x": 19,
+        "y": 45,
+        "width": 629,
+        "height": 285
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "n": 2,
+      "bounds": {
+        "x": 44,
+        "y": 327,
+        "width": 680,
+        "height": 370
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "n": 4,
+      "bounds": {
+        "x": 44,
+        "y": 327,
+        "width": 680,
+        "height": 370
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "n": 6,
+      "bounds": {
+        "x": 44,
+        "y": 327,
+        "width": 680,
+        "height": 370
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "n": 2,
+      "bounds": {
+        "x": 300,
+        "y": 215,
+        "width": 680,
+        "height": 370
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "n": 4,
+      "bounds": {
+        "x": 300,
+        "y": 215,
+        "width": 680,
+        "height": 370
+      },
+      "passed": true
+    },
+    {
+      "name": "Responsive board, owned assets, compact trade and preserved draft",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "n": 6,
+      "bounds": {
+        "x": 300,
+        "y": 215,
+        "width": 680,
+        "height": 370
+      },
+      "passed": true
+    },
+    {
+      "name": "Native number keyboard hints, zero replacement, pasted amounts and stable mortgage input",
+      "passed": true
+    },
+    {
+      "name": "Trade revision preserves input node, focus, caret, raw value and scroll",
+      "passed": true
+    },
+    {
+      "name": "Ownership animation runs on transfer, never on initial load or reduced motion",
+      "passed": true
+    },
+    {
+      "name": "New game hides property amounts and handles empty portfolio",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "screenshots": "/workspace/scratch/polish-final",
+  "limits": [
+    "Chromium viewport emulation; not physical Android/iOS.",
+    "Trade revisions are exercised in the real DOM; no live Supabase service contacted."
+  ]
+}

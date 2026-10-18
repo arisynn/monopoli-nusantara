@@ -1,19 +1,24 @@
-// Public shell/assets only. Auth, room state, API responses and local saves are never cached here.
-const CACHE = "nusantara-classic-v4100-__BUILD_ID__",
-  safe = (url) =>
-    url.origin === self.location.origin &&
-    !/^\/(api(?:\/|$)|auth|signin|signout|callback)/.test(url.pathname);
+// A release is cached as one shell. No auth, API, room response or save enters it.
+const CACHE = "nusantara-classic-v4110-__BUILD_ID__";
 self.addEventListener("install", (event) =>
   event.waitUntil(
     (async () => {
-      const cache = await caches.open(CACHE),
-        manifest = await fetch("/precache.json", { cache: "no-store" }).then(
-          (r) => r.json(),
-        );
-      await cache.addAll(
-        manifest.map((url) => new Request(url, { cache: "reload" })),
+      const urls = await fetch("/precache.json", { cache: "no-store" }).then(
+        (r) => {
+          if (!r.ok) throw Error("Precache unavailable");
+          return r.json();
+        },
       );
-      await self.skipWaiting();
+      const cache = await caches.open(CACHE);
+      try {
+        await cache.addAll(
+          urls.map((url) => new Request(url, { cache: "reload" })),
+        );
+      } catch (error) {
+        await caches.delete(CACHE);
+        throw error;
+      }
+      // Updates wait until every game tab closes or explicitly reports it is safe.
     })(),
   ),
 );
@@ -31,45 +36,61 @@ self.addEventListener("activate", (event) =>
     })(),
   ),
 );
+self.addEventListener("message", (event) => {
+  if (event.data?.type !== "ACTIVATE_UPDATE") return;
+  event.waitUntil(
+    (async () => {
+      const clients = await self.clients.matchAll({
+        type: "window",
+        includeUncontrolled: true,
+      });
+      const safe = await Promise.all(
+        clients.map(
+          (client) =>
+            new Promise((resolve) => {
+              const channel = new MessageChannel();
+              const timer = setTimeout(() => {
+                channel.port1.close();
+                resolve(false);
+              }, 2000);
+              channel.port1.onmessage = (response) => {
+                clearTimeout(timer);
+                channel.port1.close();
+                resolve(response.data?.safe === true);
+              };
+              client.postMessage({ type: "CAN_ACTIVATE" }, [channel.port2]);
+            }),
+        ),
+      );
+      if (safe.every(Boolean)) await self.skipWaiting();
+    })(),
+  );
+});
 self.addEventListener("fetch", (event) => {
-  const req = event.request,
-    url = new URL(req.url);
-  if (
-    req.method !== "GET" ||
-    !safe(url) ||
-    !(
-      req.mode === "navigate" || /^\/(assets|frontend|lib)\//.test(url.pathname)
-    )
-  )
-    return;
+  const request = event.request,
+    url = new URL(request.url);
+  if (request.method !== "GET" || url.origin !== self.location.origin) return;
+  const shell =
+    request.mode === "navigate" && ["/", "/index.html"].includes(url.pathname);
+  const asset =
+    /^\/(assets|frontend|lib)\//.test(url.pathname) ||
+    ["/manifest.webmanifest", "/favicon.ico"].includes(url.pathname);
+  if (!shell && !asset) return;
   event.respondWith(
     (async () => {
       const cache = await caches.open(CACHE);
+      const cached = await cache.match(shell ? "/" : url.pathname);
+      // Cache-first keeps lazy workers and modules on the same release as the shell.
+      if (cached) return cached;
       try {
-        const response = await fetch(req);
-        if (
-          response.ok &&
-          !response.redirected &&
-          !/no-store|private/.test(response.headers.get("Cache-Control") || "")
-        ) {
-          const copy = response.clone();
-          event.waitUntil(
-            cache
-              .put(req.mode === "navigate" ? "/" : url.pathname, copy)
-              .catch(() => {}),
-          );
-        }
-        return response;
+        return await fetch(request);
       } catch {
-        return (
-          (await cache.match(req.mode === "navigate" ? "/" : url.pathname)) ||
-          new Response(
-            "Hanya cache publik yang tersedia. Hubungkan internet untuk memuat aplikasi pertama kali.",
-            {
-              status: 503,
-              headers: { "Content-Type": "text/plain; charset=utf-8" },
-            },
-          )
+        return new Response(
+          "Hanya aset publik yang tersedia offline. Hubungkan internet untuk memuat aplikasi.",
+          {
+            status: 503,
+            headers: { "Content-Type": "text/plain; charset=utf-8" },
+          },
         );
       }
     })(),

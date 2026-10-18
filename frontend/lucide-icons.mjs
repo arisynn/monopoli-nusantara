@@ -1,31 +1,4 @@
 // Lucide 1.58.0, ISC license. Official lucide-static SVG subset. See licenses/LUCIDE.txt.
-const names = [
-  "menu",
-  "close",
-  "arrow",
-  "back",
-  "home",
-  "assets",
-  "trade",
-  "history",
-  "gear",
-  "dice",
-  "gavel",
-  "people",
-  "trophy",
-  "map",
-  "save",
-  "pause",
-  "play",
-  "check",
-  "plus",
-  "minus",
-  "copy",
-  "bank",
-  "info",
-  "flag",
-  "bolt",
-];
 const paths = {
   menu: '<path d="M4 5h16" />\n  <path d="M4 12h16" />\n  <path d="M4 19h16" />',
   close: '<path d="M18 6 6 18" />\n  <path d="m6 6 12 12" />',
@@ -64,22 +37,5 @@ const paths = {
 export function lucideIcon(name = "info", size = 22) {
   const key = paths[name] ? name : "info",
     px = Math.max(12, Math.min(64, Number(size) || 22));
-  return `<svg class="lucide-icon" data-lucide="${key}" xmlns="http://www.w3.org/2000/svg" width="${px}" height="${px}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="--icon-size:${px}px" aria-hidden="true" focusable="false">${paths[key]}</svg>`;
-}
-/** Upgrade only a supplied lobby/compact-dialog subtree. Protected views keep raster icons. */
-export function upgradeIcons(root) {
-  for (const old of root.querySelectorAll(".ui-icon")) {
-    const x = parseFloat(old.style.getPropertyValue("--icon-x")),
-      y = parseFloat(old.style.getPropertyValue("--icon-y"));
-    if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
-    const index = Math.round((y * 3) / 100) * 8 + Math.round((x * 7) / 100),
-      name = names[index];
-    if (!name) continue;
-    const template = document.createElement("template");
-    template.innerHTML = lucideIcon(
-      name,
-      parseFloat(old.style.getPropertyValue("--icon-size")) || 22,
-    );
-    old.replaceWith(template.content.firstElementChild);
-  }
+  return `<svg class="ui-icon lucide-icon" data-lucide="${key}" xmlns="http://www.w3.org/2000/svg" width="${px}" height="${px}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="--icon-size:${px}px" aria-hidden="true" focusable="false">${paths[key]}</svg>`;
 }

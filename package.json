@@ -49,7 +49,11 @@
     "train:hybrid": "node scripts/train-hybrid.mjs",
     "benchmark:foundation": "node scripts/benchmark-foundation.mjs",
     "benchmark:personas": "node scripts/benchmark-personas.mjs",
-    "test:foundation:browser": "node scripts/test-foundation-browser.mjs"
+    "test:foundation:browser": "node scripts/test-foundation-browser.mjs",
+    "test:polish:browser": "node scripts/test-polish-browser.mjs",
+    "test:pwa:browser": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-pwa-browser.mjs",
+    "test:dice:layout": "node scripts/test-dice-layout-browser.mjs",
+    "test:gameplay:update": "node scripts/test-gameplay-update-browser.mjs"
   },
   "devDependencies": {
     "@types/node": "22.19.19",

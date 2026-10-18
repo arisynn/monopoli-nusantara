@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-10-18T08:53:58.143Z",
+  "checks": [
+    {
+      "name": "house stock popup 320: visible legal choices and numeric tile submission",
+      "passed": true
+    },
+    {
+      "name": "hotel stock popup 320: visible legal choices and numeric tile submission",
+      "passed": true
+    },
+    {
+      "name": "Automatic rent payment 320: two reviewed mortgages and one payment",
+      "passed": true
+    },
+    {
+      "name": "Compact Assets 320: owned cards, manual mortgage, no retired auto-mortgage UI",
+      "passed": true
+    },
+    {
+      "name": "house stock popup 390: visible legal choices and numeric tile submission",
+      "passed": true
+    },
+    {
+      "name": "hotel stock popup 390: visible legal choices and numeric tile submission",
+      "passed": true
+    },
+    {
+      "name": "Automatic rent payment 390: two reviewed mortgages and one payment",
+      "passed": true
+    },
+    {
+      "name": "Compact Assets 390: owned cards, manual mortgage, no retired auto-mortgage UI",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Local Chromium mobile emulation; no live Supabase or physical phone."
+  ]
+}

@@ -1,186 +1,1743 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync,existsSync,readdirSync} from 'node:fs';import {runInNewContext} from 'node:vm';
-import {createGame,command,publicState} from '../lib/game.mjs';import {localPlayers} from '../lib/bot/personas.mjs';import {decideMind} from '../lib/bot/mind.mjs';
-import {GameSession} from '../frontend/session.mjs';import {dicePresentation,primaryAction,autoPopup,esc,humanSeat,assetPermission,localBotActor,roomEligibility} from '../frontend/domain.mjs';
-import {boardMarkup} from '../frontend/board.mjs';import {renderPopup} from '../frontend/popups.mjs';import {ingestTimeline,advanceTimeline,presentedState} from '../lib/presentation-timeline.mjs';import {staticResponse} from '../adapters/node/static.mjs';import {retireLegacyUI} from '../frontend/cache-migration.mjs';
-const make=(n=4)=>createGame({players:localPlayers('Jovan',n),startingRoll:false},()=>.2);
-function session(t,options={}){const instance=new GameSession({persist:async()=>{},archive:async()=>{},load:async()=>null,mind:{decide:async(s,a)=>decideMind(s,a,{timeBudgetMs:0}),dispose:()=>{}},random:()=>.2,...options});instance.hidden=true;instance.screen='gameplay';instance.ingest(make(),{reset:true});t.after(()=>instance.dispose());return instance;}
-const c=(state,seat=0)=>({view:state,state,seat,pending:false,paused:false,busy:false,online:null,head:null});
-test('source provenance preserves the logic basis and tracks the latest classic references',()=>{const basis=JSON.parse(readFileSync(new URL('../design/SOURCE_OF_TRUTH.json',import.meta.url)));assert.equal(basis.historicalReferences.length,10);assert.deepEqual(basis.activeReferences,['1251175','1251173','1251174']);assert.equal(basis.basisArchive,'Monopoli_Nusantara_Logic_v4.6.1-no-frontend.zip');assert(!basis.historicalReferences.includes('1249376'));});
-test('domain escaping covers HTML and attribute injection',()=>{assert.equal(esc('<img a="x"\'>&'), '&lt;img a=&quot;x&quot;&#39;&gt;&amp;');});
-for(const n of [2,4,6])test(`${n} players: actual SVG renderer creates forty tiles and the correct number of deterministic pawns`,()=>{const s=createGame({players:Array.from({length:n},(_,i)=>({name:'P'+i})),startingRoll:false},()=>.2);s.assets[1]={owner:1,level:5,mortgaged:false};s.assets[3]={owner:0,level:0,mortgaged:true};const html=boardMarkup(s,3);assert.equal((html.match(/data-tile="/g)||[]).length,40);assert.equal((html.match(/data-pawn="/g)||[]).length,n);assert(html.includes('GADAI'));assert(!html.includes('archipelago-light.webp'));assert(html.includes('/assets/classic/'));assert.equal(boardMarkup(s,3),html);});
-test('rolling dice has no result or final pair in its semantic view',()=>{const s=make();assert.equal(dicePresentation(s,null).values,null);const rolling=dicePresentation(s,{kind:'diceRolling',dice:[6,5]});assert.equal(rolling.values,null);assert(!rolling.label.includes('6'));assert.deepEqual(dicePresentation(s,{kind:'diceResult',dice:[6,5]}).values,[6,5]);});
-test('human controller remains human on bot turns; room binding wins over viewed assets',()=>{const s=make();s.turn=2;assert.equal(humanSeat(s),0);assert.equal(humanSeat(s,{seat:3}),3);s.assets[1].owner=2;assert(assetPermission(s,0,1,'MORTGAGE').includes('dilihat'));});
-test('local bot selector handles off-turn auctions without claiming a human seat',()=>{let s=make();s.phase='buy';s.buy=1;s=command(s,0,{type:'AUCTION'});assert.equal(localBotActor(s),1);s.auction.passed.push(1);assert.equal(localBotActor(s),2);});
-test('double-clicking the real session roll commits exactly once',async t=>{let writes=0;const s=session(t,{persist:async()=>writes++});const old=JSON.stringify(s.state),results=await Promise.all([s.act('ROLL'),s.act('ROLL')]);assert.equal(results.filter(Boolean).length,1);assert.equal(s.state.version,1);assert.equal(writes,1);assert.notEqual(JSON.stringify(s.state),old);assert.equal(s.head.kind,'diceRolling');assert.deepEqual(s.view.dice,[1,1]);});
-test('actions cannot execute during unfinished presentation or for a bot seat',async t=>{const s=session(t);assert.equal(await s.act('ROLL',{},1),false);await s.act('ROLL');assert.equal(await s.act('ROLL'),false);assert.equal(s.state.version,1);});
-test('closing/covering a popup never unpauses the authoritative game',t=>{const s=session(t);s.setPaused(true);s.setCovered(true);s.setCovered(false);assert(s.localPaused);assert.equal(s.model.queue.length,0);});
-test('late local bot recommendations are discarded when the UI is covered',async t=>{let resolve;const s=session(t,{mind:{decide:()=>new Promise(r=>resolve=r),dispose:()=>{}}});s.state.turn=1;s.ingest(s.state,{reset:true});const work=s.stepBot();s.setCovered(true);resolve(decideMind(s.state,1,{timeBudgetMs:0}));await work;assert.equal(s.state.version,0);assert.equal(s.botThinking,false);});
-test('local bot cannot act during pause and resumes from current revision',async t=>{const s=session(t);s.state.turn=1;s.ingest(s.state,{reset:true});s.setPaused(true);await s.stepBot();assert.equal(s.state.version,0);s.setPaused(false);await s.stepBot();assert.equal(s.state.version,1);});
-test('refresh/reconnect baseline does not replay old dice and finance',async t=>{const s=session(t);await s.act('ROLL');assert(s.head);s.resetPresentation();assert.equal(s.head,null);assert.equal(dicePresentation(s.view,null).stage,'idle');});
-test('baseline pending card still exposes one legal ACK after refresh',()=>{const s=make();s.phase='card';s.card={deck:'community',idx:0,player:0,title:'Kartu publik',text:'Lanjutkan.'};const popup=autoPopup(s,s,null,0,'');assert.equal(popup.kind,'card');const html=renderPopup(c(s),{},popup);assert(html.footer.includes('data-type="ACK"'));});
-test('public event controls stay read-only for an observing client',()=>{const s=make(),event={id:'a:1',logId:1,type:'card',card:{deck:'chance',player:0,title:'Publik',text:'Pesan kartu'}};const html=renderPopup(c(s,1),{},{kind:'event',event,interactive:false});assert(!html.footer.includes('data-type="ACK"'));assert(html.footer.includes('dismissEvent'));});
-test('rent/tax popup acknowledges presentation rather than paying a committed transaction again',()=>{const s=make();s.players[0].cash=13800;const html=renderPopup(c(s),{},{kind:'settlement',transaction:{from:0,to:1,amount:1200,kind:'rent',tile:1}});assert(html.html.includes('₦ 1.500'));assert(html.html.includes('₦ 1.380'));assert(html.footer.includes('dismissEvent'));assert(!html.footer.includes('data-type="PAY"'));});
-test('asset popup is read-only for a bot owner and management validates the human controller',()=>{const s=make();s.assets[1].owner=1;const html=renderPopup(c(s),{},{kind:'manage',id:1});assert(html.html.includes('hanya dapat dilihat'));assert(!html.html.includes('data-type="BUILD"'));});
-test('buy popup uses engine price and auction action, no invented skipping rule',()=>{const s=make();s.phase='buy';s.buy=1;const html=renderPopup(c(s),{},{kind:'buy'});assert(html.footer.includes('data-type="BUY"'));assert(html.footer.includes('data-type="AUCTION"'));assert(html.html.includes('₦ 60'));});
-test('trade perspectives and incoming controls match sender/recipient rather than the viewer',()=>{const s=make();s.phase='trade';s.trade={from:1,to:0,give:[1],take:[3],giveCash:500,takeCash:100};const me=renderPopup(c(s),{},{kind:'tradeIncoming'}),observer=renderPopup(c(s,2),{},{kind:'tradeIncoming'});assert(me.html.includes('Anda menerima'));assert(me.footer.includes('TRADE_ACCEPT'));assert(!observer.footer.includes('TRADE_ACCEPT'));assert(!observer.footer.includes('data-action="counter"'));});
-test('auction popup preserves stable controls, legal bids and omits a fictitious timer',()=>{let s=make();s.phase='buy';s.buy=1;s=command(s,0,{type:'AUCTION'});const html=renderPopup(c(s),{bid:100},{kind:'auction'});assert(html.html.includes('tanpa batas waktu'));assert(html.html.includes('step="1"'));assert(html.footer.includes('data-action="bid"'));assert(!html.html.includes('00:18'));});
-test('room resume counts only active humans and retains cycle-validated readiness',()=>{const room={seats:[{id:0,controller:'human',connected:true},{id:1,controller:'human',connected:false},{id:2,controller:'bot',connected:true}],pause:{cycle:5,ready:[0,2]},vote:{eligible:[0,1],votes:{0:true}}};const result=roomEligibility(room);assert.equal(result.humans.length,2);assert.equal(result.ready,1);assert.equal(result.needed,2);});
-test('session sends online intentions with matching request/action IDs, never local command results',async t=>{const s=session(t);const state=make(2);let body;s.room={code:'ABCDEFGH',seat:0,userId:'user'};s.connected=true;s.online={roomRevision:1,status:'playing'};s.auth={session:()=>({user:{id:'user'}}),request:async(_path,b)=>{body=b;return {code:'ABCDEFGH',seat:0,roomRevision:2,status:'playing',seats:[],state:publicState(command(state,0,b.action,()=>.2))};}};assert.equal(await s.act('ROLL'),true,s.error);assert.equal(body.action.id,body.requestId);assert.equal(body.action.expectedVersion,0);assert(!('dice' in body.action));assert(!('cash' in body.action));assert.equal(s.state.version,1);});
-test('stale room revisions cannot replace the latest snapshot or change seat',t=>{const s=session(t);s.room={code:'ABCDEFGH',seat:0,userId:'user'};s.connected=true;s.online={roomRevision:8,status:'playing'};s.auth={session:()=>({user:{id:'user'}})};s.takeRoom({code:'ABCDEFGH',seat:1,roomRevision:7,state:make()});assert.equal(s.room.seat,0);assert.equal(s.online.roomRevision,8);});
-test('save failure keeps a user inside gameplay instead of silently returning to lobby',async t=>{const s=session(t,{persist:async()=>{throw Error('quota')}});await s.lobby();assert.equal(s.screen,'gameplay');assert(s.error.includes('Simpanan'));});
-test('restoring validates state and preserves pending debt with no presentation replay',async t=>{const s=session(t),state=make();state.phase='debt';state.debt={from:0,to:1,amount:500,label:'Sewa'};await s.restore(state);assert.equal(s.state.phase,'debt');assert.equal(s.head,null);assert.equal(s.state.debt.amount,500);});
-test('template HTML escapes malicious player names',()=>{const s=make();s.players[0].name='<script>alert(1)</script>';const html=renderPopup(c(s),{},{kind:'profile',id:0});assert(!html.html.includes('<script>'));assert(html.html.includes('&lt;script&gt;'));assert(!boardMarkup(s).includes('<script>'));});
-test('gameplay source contains no bottom tabs or below-board portfolio strip',()=>{const app=readFileSync(new URL('../frontend/app.mjs',import.meta.url),'utf8'),main=app.slice(app.indexOf('function gameplayHTML'),app.indexOf('function lobbyContent'));assert(!main.includes('<nav'));assert(!main.includes('asset-list'));assert(main.includes('data-action="ownAssets"'));assert(main.includes('dice-tray'));assert(!main.includes('bottom-tab'));});
-test('new static output serves browser modules but never server files, source docs or secrets',async()=>{const get=p=>staticResponse(new Request('http://game.test'+p));assert.equal((await get('/')).status,200);assert((await(await get('/frontend/app.mjs')).text()).includes('GameSession'));for(const path of ['/lib/server/runtime.ts','/lib/groq.ts','/README.md','/design/SOURCE_OF_TRUTH.json'])assert.equal(await get(path),null);assert.equal((await get('/.env')).status,404);});
-test('legacy UI cleanup only removes Nusantara cache/worker and never save data or other workers',async()=>{const removed=[],unregistered=[];await retireLegacyUI({origin:'https://game.test',caches:{keys:async()=>['nusantara-v461','another-app','nusantara-kepulauan-v47'],delete:async k=>removed.push(k)},serviceWorker:{getRegistrations:async()=>[{scope:'https://game.test/',active:{scriptURL:'https://game.test/sw.js'},unregister:async()=>unregistered.push('old')},{scope:'https://game.test/other/',active:{scriptURL:'https://game.test/other/sw.js'},unregister:async()=>unregistered.push('other')}]}});assert.deepEqual(removed,['nusantara-v461']);assert.deepEqual(unregistered,['old']);});
-test('offline worker never intercepts authenticated APIs or cross-origin requests',()=>{const handlers={},self={location:{origin:'https://game.test'},addEventListener:(name,fn)=>handlers[name]=fn};runInNewContext(readFileSync(new URL('../frontend/service-worker.js',import.meta.url),'utf8'),{self,URL,Response});for(const path of ['/api/online','/api/bot','/callback','https://other.test/frontend/app.mjs']){let caught=false;handlers.fetch({request:{method:'GET',url:path.startsWith('https:')?path:'https://game.test'+path,mode:'cors'},respondWith:()=>caught=true});assert.equal(caught,false);}});
-
-test('closing a live card remembers its decision key without mutating the engine',async()=>{const {dismissalKey}=await import('../frontend/domain.mjs');const s=make();s.phase='card';s.card={deck:'chance',idx:0,player:0};const decision=autoPopup(s,s,null,0,'');assert.equal(dismissalKey({kind:'event',interactive:true,key:'visual-id'},s),decision.key);assert.equal(autoPopup(s,s,null,0,decision.key),null);});
-test('manual rent remains accessible off-turn and the engine settles it exactly once',async t=>{const {claimableRent}=await import('../frontend/domain.mjs');const s=session(t);s.state.rules.rent='manual';s.state.phase='end';s.state.turn=1;s.state.assets[1].owner=0;s.state.rentClaims=[{kind:'pay',id:'test-rent',from:1,to:0,amount:200,tile:1,label:'Sewa',category:'rent',turnSerial:0}];s.ingest(s.state,{reset:true});const action=primaryAction(s.view,0,null);assert.equal(action.type,'CLAIM_RENT');assert.equal(claimableRent(s.view,0).length,1);assert(renderPopup(s,{},{kind:'rentClaims'}).html.includes('data-claim-id="test-rent"'));assert(await s.act(action.type,action.data));assert.equal(s.state.players[0].cash,15200);assert.equal(s.state.players[1].cash,14800);s.resetPresentation();assert.equal(await s.act(action.type,action.data),false);assert.equal(s.state.players[0].cash,15200);});
-test('a failing worker falls back to the shared local economic planner',async t=>{const s=session(t,{mind:{decide:async()=>{throw Error('worker failed')},dispose(){}}});s.state.turn=1;s.ingest(s.state,{reset:true});await s.stepBot();assert.equal(s.state.version,1);assert.equal(s.botFailures,0);});
-test('repeated invalid bot proposals are bounded and expose a retry without a game reset',async t=>{const s=session(t,{mind:{decide:async()=>({action:{type:'INVALID'},shouldConsult:false}),dispose(){}}});s.state.turn=1;s.ingest(s.state,{reset:true});await s.stepBot();await s.stepBot();assert(s.botBlocked);assert.equal(s.state.version,0);s.hidden=false;s.notify();assert.equal(s.botTimer,null);s.retryBot();assert(!s.botBlocked);s.stopBot();});
-
-import {MemoryOnlineStore} from './helpers/online-store.mjs';
-import {createOnlineService} from '../lib/server/online-service.mjs';
-for(const n of [2,4,6])test(`${n} real frontend sessions: public cards ordered once, controls bound to actor, pause and reconnect preserve state`,async t=>{
- const users=Array.from({length:n},(_,i)=>`00000000-0000-4000-8000-${String(i+1).padStart(12,'0')}`),store=new MemoryOnlineStore();
- const service=createOnlineService({store,clock:()=>1000000,rng:()=>.2,generateCode:()=> 'ABCDEFGH'});
- const invoke=(i,type,data={})=>service.execute({type,code:'ABCDEFGH',clientId:`frontend-client-${i}`,requestId:crypto.randomUUID(),...data},users[i]);
- await invoke(0,'CREATE',{capacity:n,name:'Jovan'});for(let i=1;i<n;i++)await invoke(i,'JOIN',{name:'P'+(i+1)});for(let i=0;i<n;i++)await invoke(i,'READY',{ready:true});await invoke(0,'START');
- store.edit('ABCDEFGH',r=>{r.state=createGame({players:r.seats,startingRoll:false},()=>.2);r.state.players[0].pos=3;});
- const clients=[];for(let i=0;i<n;i++){const s=session(t);s.auth={session:()=>({user:{id:users[i]}}),request:async(_path,body)=>body?service.execute(body,users[i]):service.read('ABCDEFGH',users[i])};s.takeRoom(await service.read('ABCDEFGH',users[i]),{baseline:true});clients.push(s);}
- assert(await clients[0].act('ROLL'));for(let i=1;i<n;i++)clients[i].takeRoom(await service.read('ABCDEFGH',users[i]));
- const snapshot=await service.read('ABCDEFGH',users[0]);assert.equal(snapshot.state.phase,'card');assert.deepEqual(snapshot.state.dice,[2,2]);
- for(const s of clients){assert.equal(s.head.kind,'diceRolling');assert.equal(dicePresentation(s.view,s.head).values,null);while(s.head&&s.head.kind!=='eventRevealing')s.complete(s.head.id);assert.equal(s.head.event.type,'card');const ids=s.model.queue.map(e=>e.id);s.takeRoom(await service.read('ABCDEFGH',users[s.seat]));assert.deepEqual(s.model.queue.map(e=>e.id),ids);const html=renderPopup(s,{},autoPopup(s.view,s.state,s.head,s.seat,''));assert.equal(html.footer.includes('data-type="ACK"'),s.seat===0);}
- assert.equal(await clients[1].act('ACK'),false);assert(await clients[0].act('ACK'));
- const after=await service.read('ABCDEFGH',users[0]),fingerprint=JSON.stringify(after.state);clients[1].takeRoom(after,{baseline:true});assert.equal(clients[1].head,null);assert.equal(JSON.stringify(clients[1].state),fingerprint);
- await invoke(0,'PAUSE_REQUEST');const vote=(await service.read('ABCDEFGH',users[0])).vote;for(let i=1;i<Math.floor(n/2)+1;i++)await invoke(i,'VOTE',{voteId:vote.id,agree:true});
- const paused=await service.read('ABCDEFGH',users[0]);assert.equal(paused.status,'paused');clients[0].takeRoom(paused);assert(clients[0].paused);assert.equal(clients[0].head,null);assert.equal(await clients[0].act('END'),false);
- for(let i=0;i<n;i++)await invoke(i,'RESUME_READY',{cycle:paused.pause.cycle,ready:true});const resumed=await service.read('ABCDEFGH',users[0]);assert.equal(resumed.status,'playing');assert.equal(JSON.stringify(resumed.state),fingerprint);
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
+import { runInNewContext } from "node:vm";
+import { createGame, command, publicState } from "../lib/game.mjs";
+import { localPlayers } from "../lib/bot/personas.mjs";
+import { decideMind } from "../lib/bot/mind.mjs";
+import { GameSession } from "../frontend/session.mjs";
+import {
+  dicePresentation,
+  primaryAction,
+  autoPopup,
+  esc,
+  humanSeat,
+  assetPermission,
+  localBotActor,
+  roomEligibility,
+} from "../frontend/domain.mjs";
+import { boardMarkup } from "../frontend/board.mjs";
+import { renderPopup } from "../frontend/popups.mjs";
+import {
+  ingestTimeline,
+  advanceTimeline,
+  presentedState,
+} from "../lib/presentation-timeline.mjs";
+import { staticResponse } from "../adapters/node/static.mjs";
+import { retireLegacyUI } from "../frontend/cache-migration.mjs";
+const make = (n = 4) =>
+  createGame(
+    { players: localPlayers("Jovan", n), startingRoll: false },
+    () => 0.2,
+  );
+function session(t, options = {}) {
+  const instance = new GameSession({
+    persist: async () => {},
+    archive: async () => {},
+    load: async () => null,
+    mind: {
+      decide: async (s, a) => decideMind(s, a, { timeBudgetMs: 0 }),
+      dispose: () => {},
+    },
+    random: () => 0.2,
+    ...options,
+  });
+  instance.hidden = true;
+  instance.screen = "gameplay";
+  instance.ingest(make(), { reset: true });
+  t.after(() => instance.dispose());
+  return instance;
+}
+const c = (state, seat = 0) => ({
+  view: state,
+  state,
+  seat,
+  pending: false,
+  paused: false,
+  busy: false,
+  online: null,
+  head: null,
+});
+test("source provenance preserves the logic basis and tracks the latest classic references", () => {
+  const basis = JSON.parse(
+    readFileSync(new URL("../design/SOURCE_OF_TRUTH.json", import.meta.url)),
+  );
+  assert.equal(basis.historicalReferences.length, 10);
+  assert.deepEqual(basis.activeReferences, ["1251175", "1251173", "1251174"]);
+  assert.equal(
+    basis.basisArchive,
+    "Monopoli_Nusantara_Logic_v4.6.1-no-frontend.zip",
+  );
+  assert(!basis.historicalReferences.includes("1249376"));
+});
+test("domain escaping covers HTML and attribute injection", () => {
+  assert.equal(esc('<img a="x"\'>&'), "&lt;img a=&quot;x&quot;&#39;&gt;&amp;");
+});
+for (const n of [2, 4, 6])
+  test(`${n} players: actual SVG renderer creates forty tiles and the correct number of deterministic pawns`, () => {
+    const s = createGame(
+      {
+        players: Array.from({ length: n }, (_, i) => ({ name: "P" + i })),
+        startingRoll: false,
+      },
+      () => 0.2,
+    );
+    s.assets[1] = { owner: 1, level: 5, mortgaged: false };
+    s.assets[3] = { owner: 0, level: 0, mortgaged: true };
+    const html = boardMarkup(s, 3);
+    assert.equal((html.match(/data-tile="/g) || []).length, 40);
+    assert.equal((html.match(/data-pawn="/g) || []).length, n);
+    assert(html.includes("GADAI"));
+    assert(!html.includes("archipelago-light.webp"));
+    assert(html.includes("/assets/classic/"));
+    assert.equal(boardMarkup(s, 3), html);
+  });
+test("rolling dice has no result or final pair in its semantic view", () => {
+  const s = make();
+  assert.equal(dicePresentation(s, null).values, null);
+  const rolling = dicePresentation(s, { kind: "diceRolling", dice: [6, 5] });
+  assert.equal(rolling.values, null);
+  assert(!rolling.label.includes("6"));
+  assert.deepEqual(
+    dicePresentation(s, { kind: "diceResult", dice: [6, 5] }).values,
+    [6, 5],
+  );
+});
+test("human controller remains human on bot turns; room binding wins over viewed assets", () => {
+  const s = make();
+  s.turn = 2;
+  assert.equal(humanSeat(s), 0);
+  assert.equal(humanSeat(s, { seat: 3 }), 3);
+  s.assets[1].owner = 2;
+  assert(assetPermission(s, 0, 1, "MORTGAGE").includes("dilihat"));
+});
+test("local bot selector handles off-turn auctions without claiming a human seat", () => {
+  let s = make();
+  s.phase = "buy";
+  s.buy = 1;
+  s = command(s, 0, { type: "AUCTION" });
+  assert.equal(localBotActor(s), 1);
+  s.auction.passed.push(1);
+  assert.equal(localBotActor(s), 2);
+});
+test("double-clicking the real session roll commits exactly once", async (t) => {
+  let writes = 0;
+  const s = session(t, { persist: async () => writes++ });
+  const old = JSON.stringify(s.state),
+    results = await Promise.all([s.act("ROLL"), s.act("ROLL")]);
+  assert.equal(results.filter(Boolean).length, 1);
+  assert.equal(s.state.version, 1);
+  assert.equal(writes, 1);
+  assert.notEqual(JSON.stringify(s.state), old);
+  assert.equal(s.head.kind, "diceRolling");
+  assert.deepEqual(s.view.dice, [1, 1]);
+});
+test("actions cannot execute during unfinished presentation or for a bot seat", async (t) => {
+  const s = session(t);
+  assert.equal(await s.act("ROLL", {}, 1), false);
+  await s.act("ROLL");
+  assert.equal(await s.act("ROLL"), false);
+  assert.equal(s.state.version, 1);
+});
+test("closing/covering a popup never unpauses the authoritative game", (t) => {
+  const s = session(t);
+  s.setPaused(true);
+  s.setCovered(true);
+  s.setCovered(false);
+  assert(s.localPaused);
+  assert.equal(s.model.queue.length, 0);
+});
+test("late local bot recommendations are discarded when the UI is covered", async (t) => {
+  let resolve;
+  const s = session(t, {
+    mind: {
+      decide: () => new Promise((r) => (resolve = r)),
+      dispose: () => {},
+    },
+  });
+  s.state.turn = 1;
+  s.ingest(s.state, { reset: true });
+  const work = s.stepBot();
+  s.setCovered(true);
+  resolve(decideMind(s.state, 1, { timeBudgetMs: 0 }));
+  await work;
+  assert.equal(s.state.version, 0);
+  assert.equal(s.botThinking, false);
+});
+test("local bot cannot act during pause and resumes from current revision", async (t) => {
+  const s = session(t);
+  s.state.turn = 1;
+  s.ingest(s.state, { reset: true });
+  s.setPaused(true);
+  await s.stepBot();
+  assert.equal(s.state.version, 0);
+  s.setPaused(false);
+  await s.stepBot();
+  assert.equal(s.state.version, 1);
+});
+test("refresh/reconnect baseline does not replay old dice and finance", async (t) => {
+  const s = session(t);
+  await s.act("ROLL");
+  assert(s.head);
+  s.resetPresentation();
+  assert.equal(s.head, null);
+  assert.equal(dicePresentation(s.view, null).stage, "idle");
+});
+test("baseline pending card still exposes one legal ACK after refresh", () => {
+  const s = make();
+  s.phase = "card";
+  s.card = {
+    deck: "community",
+    idx: 0,
+    player: 0,
+    title: "Kartu publik",
+    text: "Lanjutkan.",
+  };
+  const popup = autoPopup(s, s, null, 0, "");
+  assert.equal(popup.kind, "card");
+  const html = renderPopup(c(s), {}, popup);
+  assert(html.footer.includes('data-type="ACK"'));
+});
+test("public event controls stay read-only for an observing client", () => {
+  const s = make(),
+    event = {
+      id: "a:1",
+      logId: 1,
+      type: "card",
+      card: { deck: "chance", player: 0, title: "Publik", text: "Pesan kartu" },
+    };
+  const html = renderPopup(
+    c(s, 1),
+    {},
+    { kind: "event", event, interactive: false },
+  );
+  assert(!html.footer.includes('data-type="ACK"'));
+  assert(html.footer.includes("dismissEvent"));
+});
+test("rent/tax popup acknowledges presentation rather than paying a committed transaction again", () => {
+  const s = make();
+  s.players[0].cash = 13800;
+  const html = renderPopup(
+    c(s),
+    {},
+    {
+      kind: "settlement",
+      transaction: { from: 0, to: 1, amount: 1200, kind: "rent", tile: 1 },
+    },
+  );
+  assert(html.html.includes("₦ 1.500"));
+  assert(html.html.includes("₦ 1.380"));
+  assert(html.footer.includes("dismissEvent"));
+  assert(!html.footer.includes('data-type="PAY"'));
+});
+test("asset popup is read-only for a bot owner and management validates the human controller", () => {
+  const s = make();
+  s.assets[1].owner = 1;
+  const html = renderPopup(c(s), {}, { kind: "manage", id: 1 });
+  assert(html.html.includes("hanya dapat dilihat"));
+  assert(!html.html.includes('data-type="BUILD"'));
+});
+test("buy popup uses engine price and auction action, no invented skipping rule", () => {
+  const s = make();
+  s.phase = "buy";
+  s.buy = 1;
+  const html = renderPopup(c(s), {}, { kind: "buy" });
+  assert(html.footer.includes('data-type="BUY"'));
+  assert(html.footer.includes('data-type="AUCTION"'));
+  assert(html.html.includes("₦ 60"));
+});
+test("trade perspectives and incoming controls match sender/recipient rather than the viewer", () => {
+  const s = make();
+  s.phase = "trade";
+  s.trade = {
+    from: 1,
+    to: 0,
+    give: [1],
+    take: [3],
+    giveCash: 500,
+    takeCash: 100,
+  };
+  const me = renderPopup(c(s), {}, { kind: "tradeIncoming" }),
+    observer = renderPopup(c(s, 2), {}, { kind: "tradeIncoming" });
+  assert(me.html.includes("Anda menerima"));
+  assert(me.footer.includes("TRADE_ACCEPT"));
+  assert(!observer.footer.includes("TRADE_ACCEPT"));
+  assert(!observer.footer.includes('data-action="counter"'));
+});
+test("auction popup preserves stable controls, legal bids and omits a fictitious timer", () => {
+  let s = make();
+  s.phase = "buy";
+  s.buy = 1;
+  s = command(s, 0, { type: "AUCTION" });
+  const html = renderPopup(c(s), { bid: 100 }, { kind: "auction" });
+  assert(html.html.includes("tanpa batas waktu"));
+  assert(html.html.includes('step="1"'));
+  assert(html.footer.includes('data-action="bid"'));
+  assert(!html.html.includes("00:18"));
+});
+test("room resume counts only active humans and retains cycle-validated readiness", () => {
+  const room = {
+    seats: [
+      { id: 0, controller: "human", connected: true },
+      { id: 1, controller: "human", connected: false },
+      { id: 2, controller: "bot", connected: true },
+    ],
+    pause: { cycle: 5, ready: [0, 2] },
+    vote: { eligible: [0, 1], votes: { 0: true } },
+  };
+  const result = roomEligibility(room);
+  assert.equal(result.humans.length, 2);
+  assert.equal(result.ready, 1);
+  assert.equal(result.needed, 2);
+});
+test("session sends online intentions with matching request/action IDs, never local command results", async (t) => {
+  const s = session(t);
+  const state = make(2);
+  let body;
+  s.room = { code: "ABCDEFGH", seat: 0, userId: "user" };
+  s.connected = true;
+  s.online = { roomRevision: 1, status: "playing" };
+  s.auth = {
+    session: () => ({ user: { id: "user" } }),
+    request: async (_path, b) => {
+      body = b;
+      return {
+        code: "ABCDEFGH",
+        seat: 0,
+        roomRevision: 2,
+        status: "playing",
+        seats: [],
+        state: publicState(command(state, 0, b.action, () => 0.2)),
+      };
+    },
+  };
+  assert.equal(await s.act("ROLL"), true, s.error);
+  assert.equal(body.action.id, body.requestId);
+  assert.equal(body.action.expectedVersion, 0);
+  assert(!("dice" in body.action));
+  assert(!("cash" in body.action));
+  assert.equal(s.state.version, 1);
+});
+test("stale room revisions cannot replace the latest snapshot or change seat", (t) => {
+  const s = session(t);
+  s.room = { code: "ABCDEFGH", seat: 0, userId: "user" };
+  s.connected = true;
+  s.online = { roomRevision: 8, status: "playing" };
+  s.auth = { session: () => ({ user: { id: "user" } }) };
+  s.takeRoom({ code: "ABCDEFGH", seat: 1, roomRevision: 7, state: make() });
+  assert.equal(s.room.seat, 0);
+  assert.equal(s.online.roomRevision, 8);
+});
+test("save failure keeps a user inside gameplay instead of silently returning to lobby", async (t) => {
+  const s = session(t, {
+    persist: async () => {
+      throw Error("quota");
+    },
+  });
+  await s.lobby();
+  assert.equal(s.screen, "gameplay");
+  assert(s.error.includes("Simpanan"));
+});
+test("restoring validates state and preserves pending debt with no presentation replay", async (t) => {
+  const s = session(t),
+    state = make();
+  state.phase = "debt";
+  state.debt = { from: 0, to: 1, amount: 500, label: "Sewa" };
+  await s.restore(state);
+  assert.equal(s.state.phase, "debt");
+  assert.equal(s.head, null);
+  assert.equal(s.state.debt.amount, 500);
+});
+test("template HTML escapes malicious player names", () => {
+  const s = make();
+  s.players[0].name = "<script>alert(1)</script>";
+  const html = renderPopup(c(s), {}, { kind: "profile", id: 0 });
+  assert(!html.html.includes("<script>"));
+  assert(html.html.includes("&lt;script&gt;"));
+  assert(!boardMarkup(s).includes("<script>"));
+});
+test("gameplay source contains no bottom tabs or below-board portfolio strip", () => {
+  const app = readFileSync(
+      new URL("../frontend/app.mjs", import.meta.url),
+      "utf8",
+    ),
+    main = app.slice(
+      app.indexOf("function gameplayHTML"),
+      app.indexOf("function lobbyContent"),
+    );
+  assert(!main.includes("<nav"));
+  assert(!main.includes("asset-list"));
+  assert(main.includes('data-action="ownAssets"'));
+  assert(main.includes("dice-tray"));
+  assert(!main.includes("bottom-tab"));
+});
+test("new static output serves browser modules but never server files, source docs or secrets", async () => {
+  const get = (p) => staticResponse(new Request("http://game.test" + p));
+  assert.equal((await get("/")).status, 200);
+  assert(
+    (await (await get("/frontend/app.mjs")).text()).includes("GameSession"),
+  );
+  for (const path of [
+    "/lib/server/runtime.ts",
+    "/lib/groq.ts",
+    "/README.md",
+    "/design/SOURCE_OF_TRUTH.json",
+  ])
+    assert.equal(await get(path), null);
+  assert.equal((await get("/.env")).status, 404);
+});
+test("legacy UI cleanup only removes Nusantara cache/worker and never save data or other workers", async () => {
+  const removed = [],
+    unregistered = [];
+  await retireLegacyUI({
+    origin: "https://game.test",
+    caches: {
+      keys: async () => [
+        "nusantara-v461",
+        "another-app",
+        "nusantara-kepulauan-v47",
+      ],
+      delete: async (k) => removed.push(k),
+    },
+    serviceWorker: {
+      getRegistrations: async () => [
+        {
+          scope: "https://game.test/",
+          active: { scriptURL: "https://game.test/sw.js" },
+          unregister: async () => unregistered.push("old"),
+        },
+        {
+          scope: "https://game.test/other/",
+          active: { scriptURL: "https://game.test/other/sw.js" },
+          unregister: async () => unregistered.push("other"),
+        },
+      ],
+    },
+  });
+  assert.deepEqual(removed, ["nusantara-v461"]);
+  assert.deepEqual(unregistered, ["old"]);
+});
+test("offline worker never intercepts authenticated APIs or cross-origin requests", () => {
+  const handlers = {},
+    self = {
+      location: { origin: "https://game.test" },
+      addEventListener: (name, fn) => (handlers[name] = fn),
+    };
+  runInNewContext(
+    readFileSync(
+      new URL("../frontend/service-worker.js", import.meta.url),
+      "utf8",
+    ),
+    { self, URL, Response },
+  );
+  for (const path of [
+    "/api/online",
+    "/api/bot",
+    "/callback",
+    "https://other.test/frontend/app.mjs",
+  ]) {
+    let caught = false;
+    handlers.fetch({
+      request: {
+        method: "GET",
+        url: path.startsWith("https:") ? path : "https://game.test" + path,
+        mode: "cors",
+      },
+      respondWith: () => (caught = true),
+    });
+    assert.equal(caught, false);
+  }
 });
 
-import vercelHandler from '../api/index.mjs';
-import {Readable} from 'node:stream';
-test('Vercel transport serves real configuration endpoint, preserves origin checks, bounds bodies and unknown paths',async()=>{
- async function call(path,{method='GET',body='',origin='https://game.test'}={}){const req=Readable.from(body?[Buffer.from(body)]:[]);Object.assign(req,{url:path,method,headers:{host:'game.test','content-type':'application/json',origin}});const result={headers:{},statusCode:200,setHeader(k,v){this.headers[k]=v},end(value){this.body=value?.toString()||''}};await vercelHandler(req,result);return result;}
- const config=await call('/api/index?_endpoint=online&config=1');assert.equal(config.statusCode,200);assert.equal(typeof JSON.parse(config.body).online,'boolean');assert.equal(config.headers['cache-control'],'no-store');
- assert.equal((await call('/api/index?_endpoint=bot',{method:'POST',body:'{}',origin:'https://attacker.test'})).statusCode,403);
- assert.equal((await call('/api/index?_endpoint=online',{method:'POST',body:'x'.repeat(131073)})).statusCode,413);
- assert.equal((await call('/api/index?_endpoint=private')).statusCode,404);
+test("closing a live card remembers its decision key without mutating the engine", async () => {
+  const { dismissalKey } = await import("../frontend/domain.mjs");
+  const s = make();
+  s.phase = "card";
+  s.card = { deck: "chance", idx: 0, player: 0 };
+  const decision = autoPopup(s, s, null, 0, "");
+  assert.equal(
+    dismissalKey({ kind: "event", interactive: true, key: "visual-id" }, s),
+    decision.key,
+  );
+  assert.equal(autoPopup(s, s, null, 0, decision.key), null);
 });
-test('returning from an online match shows the entry lobby, keeps resume identity and does not create a local public-state save',async t=>{let saved;const s=session(t,{persist:async value=>{saved=structuredClone(value)}});s.room={code:'ABCDEFGH',seat:0,userId:'user'};s.online={status:'playing'};s.connected=true;await s.lobby();assert.equal(s.screen,'lobby');assert.equal(s.room,null);assert.equal(s.state,null);assert.equal(s.saved.room.code,'ABCDEFGH');assert.equal(saved.room.userId,'user');assert.equal(s.online,null);});
-test('counteroffer opens the editor and preserves reversed asset/cash perspective instead of reopening incoming trade',async()=>{const {requestedPopup}=await import('../frontend/domain.mjs');const s=make();s.phase='trade';s.trade={from:1,to:0,give:[1],take:[3],giveCash:500,takeCash:100,giveCards:0,takeCards:0};const request=requestedPopup({kind:'trade',counter:true},s);assert.equal(request.kind,'trade');assert(request.counter);assert.equal(requestedPopup({kind:'trade'},s).kind,'tradeIncoming');const ui={trade:{to:1,give:[3],take:[1],giveCash:100,takeCash:500,giveCards:0,takeCards:0}},html=renderPopup(c(s),ui,request);assert(html.footer.includes('data-counter="true"'));assert(html.html.includes('Anda memberi'));});
-
-
-import {fitCamera as fitClassic,zoomCamera as zoomClassic,clampCamera as clampClassic} from '../frontend/board-camera.mjs';
-import {tileRect,tileCenter,hitTile} from '../lib/board-camera.mjs';
-import {tileNameLines,pawnDisplayPoint} from '../frontend/board.mjs';
-import {pipFrame,DiceView} from '../frontend/dice-view.mjs';
-test('empty or duplicate presentation completion is a no-op, including a restored decision',()=>{const s=make(),model=ingestTimeline(null,publicState(s),{reset:true});assert.equal(advanceTimeline(model,undefined),model);assert.equal(advanceTimeline(model,null),model);assert.equal(advanceTimeline(model,'old'),model);assert.equal(advanceTimeline(null,undefined),null);});
-test('return to lobby then start or resume again never advances an empty queue',async t=>{const s=session(t);await s.lobby();assert.doesNotThrow(()=>s.complete(s.head?.id));await s.startLocal({name:"Jovan",count:2});assert.equal(s.screen,'gameplay');await s.lobby();assert.doesNotThrow(()=>s.complete(undefined));await s.resume();assert.equal(s.screen,'gameplay');assert.equal(s.head,null);});
-test('new dice remain revealed through pawn motion instead of falling back to old log dice',()=>{let s=make(2);s.log.unshift({id:++s.eventId,type:'dice',dice:[6,6],text:'Old roll',version:0,audience:'public'});let model=ingestTimeline(null,publicState(s),{reset:true});s=command(s,0,{type:'ROLL'},()=>.2);model=ingestTimeline(model,publicState(s));assert.equal(dicePresentation(presentedState(model),model.queue[0]).values,null);model=advanceTimeline(model,model.queue[0].id);assert.deepEqual(dicePresentation(presentedState(model),model.queue[0]).values,[2,2]);model=advanceTimeline(model,model.queue[0].id);assert.equal(model.queue[0].kind,'pawnMoving');assert.deepEqual(dicePresentation(presentedState(model),model.queue[0]).values,[2,2]);assert(!('presentationDice' in s));});
-test('utility reveal can follow movement dice without regressing to the previous pair',()=>{const s=make(),event=(id,dice,kind)=>({id,type:'dice',text:'Dadu baru',dice,diceKind:kind,audience:'public',version:1});let model=ingestTimeline(null,publicState(s),{reset:true});s.version=1;s.eventId+=2;s.log=[event(s.eventId,[5,6],'utility'),event(s.eventId-1,[1,2],'movement'),...s.log];model=ingestTimeline(model,publicState(s));while(model.queue[0]?.kind!=='diceResult')model=advanceTimeline(model,model.queue[0].id);assert.deepEqual(dicePresentation(presentedState(model),model.queue[0]).values,[1,2]);model=advanceTimeline(model,model.queue[0].id);assert.equal(dicePresentation(presentedState(model),model.queue[0]).values,null);model=advanceTimeline(model,model.queue[0].id);assert.deepEqual(dicePresentation(presentedState(model),model.queue[0]).values,[5,6]);});
-test('classic board fits the exact viewport width with no camera gutter',()=>{for(const w of [320,360,390,430]){const c=fitClassic(w,w);assert.equal(c.x,0);assert.equal(c.y,0);assert.equal(c.scale*1000,w);const zoom=zoomClassic(c,2,{x:w/2,y:w/2});assert(zoom.scale>c.scale);assert.equal(clampClassic({...zoom,x:99999}).x,0);}});
-test('classic board only decorates special tiles and keeps names, ownership and buildings',()=>{const s=make();s.assets[1]={owner:0,level:4,mortgaged:false};const html=boardMarkup(s);const ordinary=html.slice(html.indexOf('data-tile="1"'),html.indexOf('data-tile="2"'));assert(ordinary.includes('/assets/buildings/building-icons.png'));assert(!ordinary.includes('region-atlas'));assert(ordinary.includes('Bogor'));assert(ordinary.includes('property-buildings'));assert(!html.includes('region-atlas'));assert(!html.includes('board-terrace'));assert(!html.includes('archipelago-light'));assert(html.includes('/assets/classic/chance.png'));assert.equal(tileNameLines('Banjarmasin').join(''),'Banjarmasin');for(let id=0;id<40;id++)assert.equal(hitTile(pawnDisplayPoint(tileCenter(id))),id);});
-test('pip shuffle changes dots with valid decorative values, independently of an authoritative result',()=>{const frames=Array.from({length:12},(_,i)=>pipFrame('match:roll:1',i));assert(frames.every(pair=>pair.every(n=>n>=1&&n<=6&&Number.isInteger(n))));assert(new Set(frames.map(String)).size>=6);assert.deepEqual(pipFrame('match:roll:1',3),frames[3]);});
-test('late pip callbacks cannot overwrite the revealed pair and rerender does not restart the shuffle',()=>{let callback,cancelled=0;const makeClass=()=>({toggle(){}}),faces=[0,1].map(()=>({dataset:{},children:Array.from({length:9},()=>({classList:makeClass()}))})),element={dataset:{},classList:makeClass(),setAttribute(){},querySelector:()=>({textContent:''}),querySelectorAll:()=>faces};const view=new DiceView(element,{schedule:fn=>{callback=fn;return 1},cancel:()=>cancelled++});view.update({stage:'rolling',values:null,label:'Rolling'},{id:'a'});const ticks=view.tick,stale=callback;view.update({stage:'rolling',values:null,label:'Rolling'},{id:'a'});assert.equal(view.tick,ticks);view.update({stage:'result',values:[4,2],label:'4 + 2 = 6'});stale();assert.deepEqual(faces.map(f=>Number(f.dataset.value)),[4,2]);assert(cancelled>0);view.dispose();});
-
-test('tile faces follow the classic inward orientation on all four edges without changing names or prices',()=>{const html=boardMarkup(make());for(const id of [1,11,21,31]){const tile=html.slice(html.indexOf(`data-tile="${id}"`),html.indexOf(`data-tile="${id+1}"`));assert(tile.includes(`data-angle="${Math.floor(id/10)*90}"`));assert(tile.includes('class="tile-price"'));}assert(html.includes('BANJARMASIN'));assert(html.includes('YOGYAKARTA'));assert(html.includes('₦ 60'));});
-
-import {TradeDrafts,draftScope,emptyTrade} from '../frontend/trade-drafts.mjs';
-import {tradeDraftStatus} from '../lib/compact-ui.mjs';
-import {cardIcon} from '../frontend/card-icons.mjs';
-const draftStorage=()=>{const map=new Map();return {getItem:key=>map.get(key)||null,setItem:(key,value)=>map.set(key,value)}};
-test('trade draft survives refresh, preserves unfinished money input and never changes authoritative state',()=>{const s=make(),before=JSON.stringify(s),storage=draftStorage(),store=new TradeDrafts(storage),key=draftScope(s,null,0)+1,trade={...emptyTrade(s,0,1),give:[1],giveCash:NaN};assert(store.write(key,{trade,inputs:{giveCash:'invalid'}}));const restored=new TradeDrafts(storage).read(key);assert.deepEqual(restored.trade.give,[1]);assert(Number.isNaN(restored.trade.giveCash));assert.equal(restored.inputs.giveCash,'invalid');restored.trade.give.push(3);assert.deepEqual(store.read(key).trade.give,[1]);assert.equal(JSON.stringify(s),before);});
-test('drafts isolate matches, authenticated identities, opponents and individual counteroffers',()=>{const s=make(),store=new TradeDrafts(draftStorage()),a=draftScope(s,{userId:'account-a'},0),b=draftScope(s,{userId:'account-b'},0);store.write(a+1,{trade:emptyTrade(s,0,1)});store.write(a+2,{trade:emptyTrade(s,0,2)});assert.equal(store.read(b+1),null);assert.equal(store.read(draftScope({...s,matchId:'other'},null,0)+1),null);assert.equal(store.read(a+1).trade.to,1);assert.equal(store.read(a+2).trade.to,2);s.trade={from:1,to:0,give:[1],take:[],giveCash:0,takeCash:0,giveCards:0,takeCards:0};const original=draftScope(s,null,0,true);s.trade.giveCash=100;assert.notEqual(draftScope(s,null,0,true),original);});
-test('storage unavailable keeps an honest in-memory draft and corrupt data cannot produce commands',()=>{const broken={getItem:()=>'{bad',setItem:()=>{throw Error('quota')}};const store=new TradeDrafts(broken),trade=emptyTrade(make(),0,1);assert.equal(store.write('a',{trade}),false);assert.equal(store.read('a').trade.to,1);assert.equal(store.write('invalid',{trade:{...trade,give:[999]}}),false);assert.equal(store.read('invalid'),null);store.remove('a');assert.equal(store.read('a'),null);});
-test('restored draft is revalidated after ownership changes and is removed only by explicit operation',()=>{const s=make(),store=new TradeDrafts(draftStorage()),key=draftScope(s,null,0)+1;s.assets[1].owner=0;store.write(key,{trade:{...emptyTrade(s,0,1),give:[1]}});assert.equal(tradeDraftStatus(s,0,store.read(key).trade).invalid,false);s.assets[1].owner=2;assert(tradeDraftStatus(s,0,store.read(key).trade).invalid);assert(store.read(key));store.remove(key);assert.equal(store.read(key),null);});
-test('compact card UI uses small raster illustration, exact engine text and correct viewer controls',()=>{const s=make(),card={deck:'chance',player:0,title:'Mundur tiga petak',text:'Mundur 3 petak.',back:3};const rendered=renderPopup(c(s),{},{kind:'event',event:{card},interactive:true});assert(rendered.html.includes('retro-card chance'));assert(rendered.html.includes('Mundur 3 petak.'));assert(rendered.html.includes('data-card-icon="1"'));assert(rendered.html.includes('header-icon'));assert(rendered.footer.includes('ACK'));assert(!rendered.html.includes('archipelago'));assert.equal(cardIcon({jail:true}),2);assert.equal(cardIcon({nearest:'utility'}),7);});
-test('board buildings are raster sprites oriented with each tile while numeric asset levels stay unchanged',()=>{const s=make(),before=JSON.stringify(s);for(const id of [1,11,21,31])s.assets[id]={owner:0,level:id===31?5:4,mortgaged:false};const snapshot=JSON.stringify(s),html=boardMarkup(s);assert.equal((html.match(/class="building-image"/g)||[]).length,13);assert(html.includes('/assets/buildings/building-icons.png'));assert(html.includes('rotate(270)'));assert.equal(JSON.stringify(s),snapshot);assert.notEqual(snapshot,before);});
-
-test('classic certificate contains real rent tiers, set rent, building costs and PNG building icons',()=>{const s=make(),deed=renderPopup(c(s),{},{kind:'property',id:1});assert(deed.html.includes('SERTIFIKAT KEPEMILIKAN'));assert(deed.html.includes('Sewa tanah'));assert(deed.html.includes('Set warna lengkap'));assert(deed.html.includes('₦ 4'));assert(deed.html.includes('1 rumah'));assert(deed.html.includes('1 hotel'));assert(deed.html.includes('building-token'));assert(!deed.html.includes('region-art'));const station=renderPopup(c(s),{},{kind:'property',id:5});assert(station.html.includes('deed-logo'));assert(station.html.includes('4 stasiun'));assert(station.html.includes('₦ 200'));const utility=renderPopup(c(s),{},{kind:'property',id:12});assert(utility.html.includes('4 × jumlah dadu × ₦ 1'));assert(utility.html.includes('10 × jumlah dadu × ₦ 1'));});
-import {DECKS,BOARD,GROUPS} from '../lib/content.mjs';
-import {CARD_ART,ART_CONTEXTS} from '../frontend/card-icons.mjs';
-test('every one of the 32 actual engine cards has an explicit matching raster illustration assignment',()=>{for(const deck of ['chance','community']){assert.equal(DECKS[deck].length,16);assert.equal(CARD_ART[deck].length,16);for(const [idx,card] of DECKS[deck].entries()){const art=cardIcon({...card,deck,idx});assert.equal(art,CARD_ART[deck][idx]);assert(ART_CONTEXTS[art]);const popup=renderPopup(c(make()),{},{kind:'event',event:{card:{...card,deck,idx,player:0}},interactive:false});assert(popup.html.includes(`data-card-icon="${art}"`));assert(popup.html.includes(esc(card.text)));assert(!popup.footer.includes('data-type="ACK"'));}}assert.equal(CARD_ART.community[2],8);assert.equal(CARD_ART.community[10],8);assert.equal(CARD_ART.community[11],11);assert.equal(CARD_ART.community[14],13);});
-test('ownership color follows the selected PNG pawn when a player changes token color',()=>{const s=createGame({players:[{name:'Red',controller:'human',pawn:1},{name:'Blue',controller:'human',pawn:0}],startingRoll:false},()=>.2);s.assets[1].owner=0;const html=boardMarkup(s),tile=html.slice(html.indexOf('data-tile="1"'),html.indexOf('data-tile="2"'));assert(tile.includes('fill="#e67379"'));assert(html.includes('/assets/pawns/pawn-tokens.png'));});
-
-import {avatar,icon} from '../frontend/art.mjs';
-test('all runtime artwork uses PNG, six portraits stay distinct and functional icons use the raster atlas',()=>{const root=new URL('../public/assets/',import.meta.url),files=[];const visit=dir=>{for(const name of readdirSync(dir,{withFileTypes:true})){const path=new URL(name.name+(name.isDirectory()?'/':''),dir);if(name.isDirectory())visit(path);else files.push(path)}};visit(root);assert.equal(files.length,23);assert(files.every(file=>file.pathname.endsWith('.png')));for(const file of files){const data=readFileSync(file);assert.equal(data.subarray(1,4).toString(),'PNG');assert(data.readUInt32BE(16)>0&&data.readUInt32BE(20)>0)}assert.equal(new Set(Array.from({length:6},(_,i)=>avatar(i))).size,6);assert(icon('menu').includes('ui-icon'));assert(!icon('menu').includes('<svg'));});
-
-import {activitySummary,playerLedger,capsuleFeedback,publicEvents} from '../frontend/economy-view.mjs';
-import {developmentGroups} from '../frontend/development.mjs';
-import {onlineStatus} from '../frontend/online-status.mjs';
-test('public financial views preserve both sides once and exclude private events without inferring balance changes',()=>{const s=make();const e={id:99,text:'Raka membayar sewa',turn:3,audience:'public',finance:[{kind:'rent',from:1,to:0,amount:1200,tile:1}]};s.log=[e,e,{id:98,audience:'private',finance:[{kind:'card',from:null,to:0,amount:777}]}];assert.equal(publicEvents(s).length,1);assert.equal(playerLedger(s,0).length,1);assert.equal(playerLedger(s,0)[0].amount,1200);assert.equal(playerLedger(s,1)[0].amount,-1200);assert.equal(playerLedger(s,2).length,0);assert(activitySummary(s).money.includes('RAKA − ₦ 120'));assert(activitySummary(s).money.includes('Jovan + ₦ 120'));assert(activitySummary(s).money.endsWith('Sewa'));const before=JSON.stringify(s);s.players[0].cash+=555;assert.equal(playerLedger(s,0).length,1);s.players[0].cash-=555;assert.equal(JSON.stringify(s),before);assert.equal(capsuleFeedback(null,0),null);assert.equal(capsuleFeedback({id:'one',finance:e.finance[0]},0).label,'+ ₦ 120 · Sewa');});
-test('profile ledger is scoped to the selected player and cannot expose private transactions or management controls',()=>{const s=make();s.log=[{id:99,turn:1,text:'Publik',audience:'public',finance:[{kind:'build',from:1,to:null,amount:500,tile:3}]},{id:98,turn:1,text:'Privat',audience:'private',finance:[{kind:'card',from:null,to:1,amount:999}]}];const profile=renderPopup(c(s),{},{kind:'profile',id:1});assert(profile.html.includes('data-ledger-row="99:0:1"'));assert(!profile.html.includes('98:0:1'));assert(!profile.html.includes('data-type="BUILD"'));assert(profile.html.includes('maksimal 300'));});
-test('development panel shows all eight groups, prioritizes legal groups and respects full-set rules',()=>{const s=make();s.assets[6].owner=0;s.assets[8].owner=0;s.assets[9].owner=1;let groups=developmentGroups(s,0);assert.equal(groups.length,8);assert.equal(groups.find(g=>g.id===1).status,'Kurang 1 properti');assert(groups.find(g=>g.id===1).rows.filter(r=>r.own).every(r=>!!r.reason));assert(groups.find(g=>g.id===1).rows.find(r=>r.tile===9).barter);for(const tile of [1,3])s.assets[tile].owner=0;groups=developmentGroups(s,0);assert.equal(groups[0].id,0);assert(groups[0].ready);const before=s.players[0].cash,next=command(s,0,{type:'BUILD',tile:1});assert.equal(next.players[0].cash,before-BOARD[1].build);groups=developmentGroups(next,0);assert(groups[0].rows.find(r=>r.tile===1).reason.includes('merata'));assert.equal(groups[0].rows.find(r=>r.tile===3).reason,'');assert.equal(groups[0].rows.find(r=>r.tile===1).rent,BOARD[1].rents[1]);});
-test('development disabled reasons follow mortgage, insufficient stock, debt and active auction restrictions',()=>{const s=make();for(const tile of [1,3])s.assets[tile].owner=0;s.assets[3].mortgaged=true;assert.equal(developmentGroups(s,0).find(g=>g.id===0).status,'Masih digadai');s.assets[3].mortgaged=false;s.phase='debt';s.debt={from:0,to:null,amount:20000};assert(assetPermission(s,0,1,'BUILD').includes('utang'));assert.throws(()=>command(s,0,{type:'BUILD',tile:1}));s.phase='auction';s.auction={highest:0,amount:15000};assert(assetPermission(s,0,1,'BUILD').includes('lelang'));s.assets[1].mortgaged=true;assert(assetPermission(s,0,1,'REDEEM').includes('dicadangkan'));assert(developmentGroups(s,1).every(g=>!g.ready));});
-test('configuration failure stays distinct from missing ENV and can be retried without blocking offline play',async t=>{let fail=true,calls=0;const s=session(t,{load:async()=>null,transport:async url=>{calls++;if(url.includes('online')){if(fail)throw Error('network');return Response.json({online:false,provider:'supabase'})}return Response.json({configured:false})}});assert.equal(onlineStatus(s).code,'loading');await s.initialize();assert.equal(onlineStatus(s).code,'error');fail=false;const before=calls;await Promise.all([s.refreshConfig(),s.refreshConfig()]);assert.equal(calls-before,2);assert.equal(onlineStatus(s).code,'unconfigured');await s.startLocal({name:"Jovan",count:2});assert.equal(s.state.players.length,2);assert.equal(s.screen,'gameplay');assert.equal(onlineStatus({...s,config:{online:true},auth:{session:()=>null}}).code,'signin');assert.equal(onlineStatus({...s,config:{online:true},auth:{session:()=>({user:{id:'test'}})}}).code,'available');});
-
-test('information lines follow the currently revealed source while keeping rolling dice secret',()=>{const s=make(),source={id:22,text:'Jovan membangun rumah di Bogor.',audience:'public',finance:[{kind:'build',from:0,to:null,amount:500,tile:1}]};assert.equal(activitySummary(s,{kind:'financialSettlement',id:'new',source,finance:source.finance[0]}).action,source.text);assert(activitySummary(s,{kind:'financialSettlement',source,finance:source.finance[0]}).money.includes('− ₦ 50'));assert(!activitySummary(s,{kind:'diceRolling',source:{text:'Jovan melempar 6 + 6.'}}).action.includes('6 + 6'));assert(activitySummary(s,{kind:'diceResult',source:{text:'Jovan melempar 6 + 6.'}}).action.includes('6 + 6'));});
-test('full house bank disables development using the actual engine stock calculation',()=>{const s=make();for(const t of BOARD.filter(t=>t.type==='city'))s.assets[t.id].owner=t.group===0?0:1;for(const g of GROUPS.slice(2,7))for(const id of g.ids)s.assets[id].level=2;for(const id of [6,8])s.assets[id].level=1;const row=developmentGroups(s,0).find(g=>g.id===0).rows[0];assert(row.reason.includes('Stok bangunan bank habis'));assert.throws(()=>command(s,0,{type:'BUILD',tile:1}));});
-
-import {buildPreview} from '../frontend/development.mjs';
-import {mortgageAdvice} from '../frontend/mortgage-advisor.mjs';
-const tick=()=>new Promise(resolve=>setTimeout(resolve,0));
-async function drainAssetPlan(s){for(let i=0;i<100;i++){await tick();if(s.assetFeedback)s.complete(s.head.id);if(s.assetPlan?.status!=='running'&&!s.head)return;}assert.fail('Asset plan did not settle within bounded steps');}
-function ownedSet(s){for(const id of [1,3])s.state.assets[id].owner=0;s.ingest(s.state,{reset:true});s.hidden=false;s.setCovered(true,{assets:true});}
-test('board has no persistent selection border or middle deck boxes, while all forty hit targets remain',()=>{const html=boardMarkup(make(),1);assert(!html.includes('#1366b2'));const center=html.slice(html.indexOf('class="board-center"'),html.indexOf('</g>',html.indexOf('class="board-center"')));assert(!center.includes('<image'));assert(!center.includes('<rect'));assert.equal((html.match(/data-tile=/g)||[]).length,40);});
-test('every special tile has dedicated information; deck catalogs expose 16 public descriptions, never a draw control',()=>{const s=make(),before=JSON.stringify(s);for(const id of [0,2,4,7,10,17,20,22,30,33,36,38]){const p=renderPopup(c(s),{},{kind:'property',id});assert(p.html.includes(BOARD[id].name));assert(p.footer.includes('close'));assert(!p.html.includes('data-type='));if(['chance','community'].includes(BOARD[id].type)){assert.equal((p.html.match(/data-catalog-card=/g)||[]).length,16);assert(p.html.includes('bukan urutan'));}}const tax=renderPopup(c(s),{},{kind:'property',id:4});assert(tax.html.includes('₦ 200'));assert(tax.html.includes('tidak dihitung dari kekayaan'));assert(tax.html.includes('bukan Parkir Bebas'));assert.equal(JSON.stringify(s),before);});
-for(const [pos,amount]of [[2,2000],[36,1000]])test(`modern fixed tax ${amount/10} goes to Bank exactly once, independent of holdings`,()=>{let s=make(2);s.players[0].pos=pos;s.players[0].cash=50000;for(const id of [1,3])s.assets[id]={owner:0,level:4,mortgaged:false};const action={type:'ROLL',id:'tax-'+pos,expectedVersion:s.version},after=command(s,0,action,()=>0);assert.equal(after.players[0].cash,50000-amount);assert.equal(after.players[1].cash,s.players[1].cash);const records=after.log.flatMap(e=>e.finance||[]).filter(f=>f.kind==='tax');assert.equal(records.length,1);assert.equal(records[0].to,null);assert.equal(records[0].amount,amount);assert.equal(command(after,0,action,()=>0),after);});
-test('single upgrades drain only their own financial presentation under the asset panel and leave it open',async t=>{const s=session(t);ownedSet(s);assert(await s.act('BUILD',{tile:1}));assert(s.covered&&s.assetPanel&&s.assetFeedback);assert.equal(await s.act('BUILD',{tile:3}),false);s.complete(s.head.id);assert.equal(s.head,null);assert(s.covered);assert(await s.act('BUILD',{tile:3}));s.complete(s.head.id);assert.equal(s.state.players[0].cash,14000);s.assetPresentation=null;await s.act('ROLL');const head=s.head.id;s.complete(head);assert.equal(s.head.id,head);});
-test('multi-build queue uses fresh legal commands, distributes evenly, rejects double starts and is not in snapshots',async t=>{const saved=[],s=session(t,{persist:async data=>saved.push(data)});ownedSet(s);const before=JSON.stringify(s.state),preview=buildPreview(s.state,0,0,3);assert.deepEqual(preview.tiles,[1,3,1]);assert.equal(JSON.stringify(s.state),before);assert(s.startBuilds(0,3));assert.equal(s.startBuilds(0,3),false);await drainAssetPlan(s);assert.equal(s.assetPlan.status,'complete');assert.equal(s.assetPlan.completed,3);assert.deepEqual([s.state.assets[1].level,s.state.assets[3].level],[2,1]);assert.equal(s.state.players[0].cash,13500);assert.equal(s.state.version,3);assert(s.covered);assert(saved.every(row=>!('assetPlan' in row.state)));});
-test('closing, pause, visibility loss and unexpected revisions stop queued work without replaying it',async t=>{for(const mode of ['close','pause','hidden','revision']){const s=session(t);ownedSet(s);s.startBuilds(0,4);for(let i=0;i<20&&!s.head;i++)await tick();assert(s.head);if(mode==='close')s.setCovered(false);if(mode==='pause')s.setPaused(true);if(mode==='hidden')s.setVisible(false);if(mode==='revision'){s.state.assets[6].owner=0;s.state=command(s.state,0,{type:'MORTGAGE',tile:6});}if(s.head&&!s.paused&&s.assetFeedback)s.complete(s.head.id);if(mode==='revision'){s.complete(s.head?.id);await tick();}assert.equal(s.assetPlan.status,'stopped');const version=s.state.version;if(mode==='pause')s.setPaused(false);if(mode==='hidden')s.setVisible(true);await tick();assert.equal(s.state.version,version);s.dispose();}});
-test('mortgage advisor protects full sets, excludes buildings/already mortgaged assets and never reads hidden future cards',()=>{const s=make();for(const id of [1,3,6,8])s.assets[id].owner=0;const before=JSON.stringify(s),advice=mortgageAdvice(s,0,800);assert.deepEqual(advice.tiles,[6,8]);assert(advice.protectedComplete);assert.equal(advice.amount,1000);assert.equal(JSON.stringify(s),before);assert.deepEqual(mortgageAdvice(publicState(s),0,800).tiles,advice.tiles);s.assets[6].mortgaged=true;assert(!mortgageAdvice(s,0,300).tiles.includes(6));s.assets[1].level=1;assert(mortgageAdvice(s,0,20000).tiles.length===0);assert.equal(mortgageAdvice(s,0,-1).tiles.length,0);});
-test('automatic mortgages execute each reviewed property once under the same open asset panel',async t=>{const s=session(t);ownedSet(s);for(const id of [6,8])s.state.assets[id].owner=0;s.ingest(s.state,{reset:true});assert(s.startMortgages(800));await drainAssetPlan(s);assert.equal(s.assetPlan.status,'complete');assert.equal(s.assetPlan.completed,2);assert.equal(s.state.players[0].cash,16000);assert(s.state.assets[6].mortgaged&&s.state.assets[8].mortgaged);assert(!s.state.assets[1].mortgaged);assert(s.covered);assert.equal(s.state.log.filter(e=>e.finance?.some(f=>f.kind==='mortgage')).length,2);});
-test('an asset queue yields when bank stock requires other players to decide, without claiming a building was purchased',async t=>{const s=session(t);ownedSet(s);for(const group of GROUPS.slice(1))for(const id of group.ids)s.state.assets[id].owner=1;for(const id of GROUPS[1].ids)s.state.assets[id].level=1;for(const group of [GROUPS[2],GROUPS[3]])for(const id of group.ids)s.state.assets[id].level=4;for(const id of GROUPS[4].ids)s.state.assets[id].level=1;s.state.assets[26].level=1;s.ingest(s.state,{reset:true});s.startBuilds(0,2);await drainAssetPlan(s);assert.equal(s.state.phase,'buildOffer');assert.equal(s.assetPlan.status,'stopped');assert.equal(s.assetPlan.completed,0);assert.equal(s.state.players[0].cash,15000);assert(s.assetInterruption);});
-test('online multi-build sends individual intentions with revisions and IDs, while pause cancels the rest',async t=>{const s=session(t);ownedSet(s);let authoritative=structuredClone(s.state),revision=0;const requests=[];s.room={code:'ABCDEFGH',seat:0,userId:'user'};s.connected=true;s.online={status:'playing',roomRevision:0};s.auth={session:()=>({user:{id:'user'}}),request:async(_path,body)=>{if(body){requests.push(body);authoritative=command(authoritative,0,body.action,()=>.2);revision++}return {code:'ABCDEFGH',seat:0,roomRevision:revision,status:'playing',state:publicState(authoritative)}}};assert(s.startBuilds(0,2));await drainAssetPlan(s);assert.equal(requests.length,2);assert.deepEqual(requests.map(r=>r.action.expectedVersion),[0,1]);assert(requests.every(r=>r.requestId===r.action.id&&r.action.type==='BUILD'&&!('cash' in r.action)&&!('level' in r.action)));s.startBuilds(0,4);for(let i=0;i<20&&!s.head;i++)await tick();const count=requests.length;s.takeRoom({code:'ABCDEFGH',seat:0,roomRevision:++revision,status:'paused',state:publicState(authoritative)});assert.equal(s.assetPlan.status,'stopped');s.takeRoom({code:'ABCDEFGH',seat:0,roomRevision:++revision,status:'playing',state:publicState(authoritative)});await tick();assert.equal(requests.length,count);});
-test('a failed server asset command stops the queue and never retries a transaction with a new ID',async t=>{const s=session(t);ownedSet(s);let calls=0;s.room={code:'ABCDEFGH',seat:0,userId:'user'};s.connected=true;s.online={status:'playing',roomRevision:0};s.auth={session:()=>({user:{id:'user'}}),request:async(_p,body)=>{if(body){calls++;throw Error('Revision berubah.')}return {code:'ABCDEFGH',seat:0,roomRevision:0,status:'playing',state:publicState(s.state)}}};s.startBuilds(0,3);await drainAssetPlan(s);assert.equal(calls,1);assert.equal(s.state.version,0);assert.equal(s.assetPlan.status,'stopped');});
-test('automatic mortgage refuses a stale or substituted reviewed property list before committing anything',t=>{const s=session(t);ownedSet(s);for(const id of [6,8])s.state.assets[id].owner=0;s.ingest(s.state,{reset:true});assert.equal(s.startMortgages(800,{version:s.state.version-1,tiles:[6,8]}),false);assert.equal(s.startMortgages(800,{version:s.state.version,tiles:[1,3]}),false);assert.equal(s.state.version,0);assert.equal(s.assetPlan,null);assert(s.error.includes('Hitung rekomendasi baru'));});
-
-import {SaveConflictError} from '../lib/storage.ts';
-test('a conflicting autosave pauses local actions until latest save is explicitly resumed',async t=>{
- const s=session(t,{persist:async()=>{throw new SaveConflictError()}});
- await s.act('ROLL');assert.equal(s.saveConflict,true);assert.equal(s.localPaused,true);
- s.setPaused(false);assert.equal(s.localPaused,true);assert.equal(await s.act('END'),false);
- const version=s.state.version;await s.lobby();assert.equal(s.screen,'lobby');assert.equal(s.state.version,version);
+test("manual rent remains accessible off-turn and the engine settles it exactly once", async (t) => {
+  const { claimableRent } = await import("../frontend/domain.mjs");
+  const s = session(t);
+  s.state.rules.rent = "manual";
+  s.state.phase = "end";
+  s.state.turn = 1;
+  s.state.assets[1].owner = 0;
+  s.state.rentClaims = [
+    {
+      kind: "pay",
+      id: "test-rent",
+      from: 1,
+      to: 0,
+      amount: 200,
+      tile: 1,
+      label: "Sewa",
+      category: "rent",
+      turnSerial: 0,
+    },
+  ];
+  s.ingest(s.state, { reset: true });
+  const action = primaryAction(s.view, 0, null);
+  assert.equal(action.type, "CLAIM_RENT");
+  assert.equal(claimableRent(s.view, 0).length, 1);
+  assert(
+    renderPopup(s, {}, { kind: "rentClaims" }).html.includes(
+      'data-claim-id="test-rent"',
+    ),
+  );
+  assert(await s.act(action.type, action.data));
+  assert.equal(s.state.players[0].cash, 15200);
+  assert.equal(s.state.players[1].cash, 14800);
+  s.resetPresentation();
+  assert.equal(await s.act(action.type, action.data), false);
+  assert.equal(s.state.players[0].cash, 15200);
 });
-test('overlapping saves within one session serialize using the latest successful envelope',async t=>{
- let revision=0;
- const s=session(t,{persist:async(value,options)=>{
-  await new Promise(resolve=>setTimeout(resolve,5));
-  assert.equal(options.expectedRevision,revision||null);
-  return {...value,saveRevision:++revision};
- }});
- await Promise.all([s.saveCurrent(),s.saveCurrent()]);assert.equal(revision,2);assert.equal(s.saved.saveRevision,2);
+test("a failing worker falls back to the shared local economic planner", async (t) => {
+  const s = session(t, {
+    mind: {
+      decide: async () => {
+        throw Error("worker failed");
+      },
+      dispose() {},
+    },
+  });
+  s.state.turn = 1;
+  s.ingest(s.state, { reset: true });
+  await s.stepBot();
+  assert.equal(s.state.version, 1);
+  assert.equal(s.botFailures, 0);
 });
-test('final results layout protects six square avatars and a separate Nusa value',()=>{
- const s=createGame({players:Array.from({length:6},(_,i)=>({name:'P'+i,controller:'human'})),startingRoll:false},()=>.2);s.phase='won';s.winner=0;s.players[0].name='Sang Juara Dengan Nama Panjang';
- for(const p of s.players.slice(1)){p.out=true;p.cash=0;}
- const result=renderPopup(c(s),{},{kind:'won'}),css=readFileSync(new URL('../frontend/styles.css',import.meta.url),'utf8');
- assert.equal((result.html.match(/class="result-row /g)||[]).length,6);
- assert.equal((result.html.match(/class="result-identity"/g)||[]).length,6);
- assert.equal((result.html.match(/class="result-worth"/g)||[]).length,6);
- assert.equal((result.html.match(/class="avatar animal-avatar"/g)||[]).length,6);
- assert(result.html.includes('Sang Juara Dengan Nama Panjang'));
- assert(result.html.includes('Bangkrut'));
- assert.match(css,/\.result-row > \.avatar \{[^}]*aspect-ratio:\s*1\s*\/\s*1/s);
- assert(!css.includes('.result-row > span {'));
- assert(result.footer.includes('lobby'));
+test("repeated invalid bot proposals are bounded and expose a retry without a game reset", async (t) => {
+  const s = session(t, {
+    mind: {
+      decide: async () => ({
+        action: { type: "INVALID" },
+        shouldConsult: false,
+      }),
+      dispose() {},
+    },
+  });
+  s.state.turn = 1;
+  s.ingest(s.state, { reset: true });
+  await s.stepBot();
+  await s.stepBot();
+  assert(s.botBlocked);
+  assert.equal(s.state.version, 0);
+  s.hidden = false;
+  s.notify();
+  assert.equal(s.botTimer, null);
+  s.retryBot();
+  assert(!s.botBlocked);
+  s.stopBot();
 });
 
-test('name-only online room revision updates presenter without incrementing game version',async t=>{
- const s=session(t),previousVersion=s.state.version;
- s.room={code:'ABCDEFGH',seat:0,userId:'identity-one'};
- s.online={status:'playing',roomRevision:0};
- s.connected=true;
- s.auth={session:()=>({user:{id:'identity-one'}})};
- const other=structuredClone(s.state);
- // An online room can rename the seat while the economy state/version stays put.
- other.players[0].name='Nama lama';
- s.takeRoom({code:'ABCDEFGH',seat:0,roomRevision:1,status:'playing',
-  seats:other.players.map((p,i)=>({id:i,name:i===0?'Rani Bintang':p.name,controller:p.controller})),
-  state:publicState(other)});
- assert.equal(s.state.players[0].name,'Rani Bintang');
- assert.equal(s.view.players[0].name,'Rani Bintang');
- assert.equal(s.state.version,previousVersion);
+import { MemoryOnlineStore } from "./helpers/online-store.mjs";
+import { createOnlineService } from "../lib/server/online-service.mjs";
+for (const n of [2, 4, 6])
+  test(`${n} real frontend sessions: public cards ordered once, controls bound to actor, pause and reconnect preserve state`, async (t) => {
+    const users = Array.from(
+        { length: n },
+        (_, i) => `00000000-0000-4000-8000-${String(i + 1).padStart(12, "0")}`,
+      ),
+      store = new MemoryOnlineStore();
+    const service = createOnlineService({
+      store,
+      clock: () => 1000000,
+      rng: () => 0.2,
+      generateCode: () => "ABCDEFGH",
+    });
+    const invoke = (i, type, data = {}) =>
+      service.execute(
+        {
+          type,
+          code: "ABCDEFGH",
+          clientId: `frontend-client-${i}`,
+          requestId: crypto.randomUUID(),
+          ...data,
+        },
+        users[i],
+      );
+    await invoke(0, "CREATE", { capacity: n, name: "Jovan" });
+    for (let i = 1; i < n; i++)
+      await invoke(i, "JOIN", { name: "P" + (i + 1) });
+    for (let i = 0; i < n; i++) await invoke(i, "READY", { ready: true });
+    await invoke(0, "START");
+    store.edit("ABCDEFGH", (r) => {
+      r.state = createGame(
+        { players: r.seats, startingRoll: false },
+        () => 0.2,
+      );
+      r.state.players[0].pos = 3;
+    });
+    const clients = [];
+    for (let i = 0; i < n; i++) {
+      const s = session(t);
+      s.auth = {
+        session: () => ({ user: { id: users[i] } }),
+        request: async (_path, body) =>
+          body
+            ? service.execute(body, users[i])
+            : service.read("ABCDEFGH", users[i]),
+      };
+      s.takeRoom(await service.read("ABCDEFGH", users[i]), { baseline: true });
+      clients.push(s);
+    }
+    assert(await clients[0].act("ROLL"));
+    for (let i = 1; i < n; i++)
+      clients[i].takeRoom(await service.read("ABCDEFGH", users[i]));
+    const snapshot = await service.read("ABCDEFGH", users[0]);
+    assert.equal(snapshot.state.phase, "card");
+    assert.deepEqual(snapshot.state.dice, [2, 2]);
+    for (const s of clients) {
+      assert.equal(s.head.kind, "diceRolling");
+      assert.equal(dicePresentation(s.view, s.head).values, null);
+      while (s.head && s.head.kind !== "eventRevealing") s.complete(s.head.id);
+      assert.equal(s.head.event.type, "card");
+      const ids = s.model.queue.map((e) => e.id);
+      s.takeRoom(await service.read("ABCDEFGH", users[s.seat]));
+      assert.deepEqual(
+        s.model.queue.map((e) => e.id),
+        ids,
+      );
+      const html = renderPopup(
+        s,
+        {},
+        autoPopup(s.view, s.state, s.head, s.seat, ""),
+      );
+      assert.equal(html.footer.includes('data-type="ACK"'), s.seat === 0);
+    }
+    assert.equal(await clients[1].act("ACK"), false);
+    assert(await clients[0].act("ACK"));
+    const after = await service.read("ABCDEFGH", users[0]),
+      fingerprint = JSON.stringify(after.state);
+    clients[1].takeRoom(after, { baseline: true });
+    assert.equal(clients[1].head, null);
+    assert.equal(JSON.stringify(clients[1].state), fingerprint);
+    await invoke(0, "PAUSE_REQUEST");
+    const vote = (await service.read("ABCDEFGH", users[0])).vote;
+    for (let i = 1; i < Math.floor(n / 2) + 1; i++)
+      await invoke(i, "VOTE", { voteId: vote.id, agree: true });
+    const paused = await service.read("ABCDEFGH", users[0]);
+    assert.equal(paused.status, "paused");
+    clients[0].takeRoom(paused);
+    assert(clients[0].paused);
+    assert.equal(clients[0].head, null);
+    assert.equal(await clients[0].act("END"), false);
+    for (let i = 0; i < n; i++)
+      await invoke(i, "RESUME_READY", {
+        cycle: paused.pause.cycle,
+        ready: true,
+      });
+    const resumed = await service.read("ABCDEFGH", users[0]);
+    assert.equal(resumed.status, "playing");
+    assert.equal(JSON.stringify(resumed.state), fingerprint);
+  });
+
+import vercelHandler from "../api/index.mjs";
+import { Readable } from "node:stream";
+test("Vercel transport serves real configuration endpoint, preserves origin checks, bounds bodies and unknown paths", async () => {
+  async function call(
+    path,
+    { method = "GET", body = "", origin = "https://game.test" } = {},
+  ) {
+    const req = Readable.from(body ? [Buffer.from(body)] : []);
+    Object.assign(req, {
+      url: path,
+      method,
+      headers: {
+        host: "game.test",
+        "content-type": "application/json",
+        origin,
+      },
+    });
+    const result = {
+      headers: {},
+      statusCode: 200,
+      setHeader(k, v) {
+        this.headers[k] = v;
+      },
+      end(value) {
+        this.body = value?.toString() || "";
+      },
+    };
+    await vercelHandler(req, result);
+    return result;
+  }
+  const config = await call("/api/index?_endpoint=online&config=1");
+  assert.equal(config.statusCode, 200);
+  assert.equal(typeof JSON.parse(config.body).online, "boolean");
+  assert.equal(config.headers["cache-control"], "no-store");
+  assert.equal(
+    (
+      await call("/api/index?_endpoint=bot", {
+        method: "POST",
+        body: "{}",
+        origin: "https://attacker.test",
+      })
+    ).statusCode,
+    403,
+  );
+  assert.equal(
+    (
+      await call("/api/index?_endpoint=online", {
+        method: "POST",
+        body: "x".repeat(131073),
+      })
+    ).statusCode,
+    413,
+  );
+  assert.equal((await call("/api/index?_endpoint=private")).statusCode, 404);
+});
+test("returning from an online match shows the entry lobby, keeps resume identity and does not create a local public-state save", async (t) => {
+  let saved;
+  const s = session(t, {
+    persist: async (value) => {
+      saved = structuredClone(value);
+    },
+  });
+  s.room = { code: "ABCDEFGH", seat: 0, userId: "user" };
+  s.online = { status: "playing" };
+  s.connected = true;
+  await s.lobby();
+  assert.equal(s.screen, "lobby");
+  assert.equal(s.room, null);
+  assert.equal(s.state, null);
+  assert.equal(s.saved.room.code, "ABCDEFGH");
+  assert.equal(saved.room.userId, "user");
+  assert.equal(s.online, null);
+});
+test("counteroffer opens the editor and preserves reversed asset/cash perspective instead of reopening incoming trade", async () => {
+  const { requestedPopup } = await import("../frontend/domain.mjs");
+  const s = make();
+  s.phase = "trade";
+  s.trade = {
+    from: 1,
+    to: 0,
+    give: [1],
+    take: [3],
+    giveCash: 500,
+    takeCash: 100,
+    giveCards: 0,
+    takeCards: 0,
+  };
+  const request = requestedPopup({ kind: "trade", counter: true }, s);
+  assert.equal(request.kind, "trade");
+  assert(request.counter);
+  assert.equal(requestedPopup({ kind: "trade" }, s).kind, "tradeIncoming");
+  const ui = {
+      trade: {
+        to: 1,
+        give: [3],
+        take: [1],
+        giveCash: 100,
+        takeCash: 500,
+        giveCards: 0,
+        takeCards: 0,
+      },
+    },
+    html = renderPopup(c(s), ui, request);
+  assert(html.footer.includes('data-counter="true"'));
+  assert(html.html.includes("Anda memberi"));
+});
+
+import {
+  fitCamera as fitClassic,
+  zoomCamera as zoomClassic,
+  clampCamera as clampClassic,
+} from "../frontend/board-camera.mjs";
+import { tileRect, tileCenter, hitTile } from "../lib/board-camera.mjs";
+import { tileNameLines, pawnDisplayPoint } from "../frontend/board.mjs";
+import { pipFrame, DiceView } from "../frontend/dice-view.mjs";
+test("empty or duplicate presentation completion is a no-op, including a restored decision", () => {
+  const s = make(),
+    model = ingestTimeline(null, publicState(s), { reset: true });
+  assert.equal(advanceTimeline(model, undefined), model);
+  assert.equal(advanceTimeline(model, null), model);
+  assert.equal(advanceTimeline(model, "old"), model);
+  assert.equal(advanceTimeline(null, undefined), null);
+});
+test("return to lobby then start or resume again never advances an empty queue", async (t) => {
+  const s = session(t);
+  await s.lobby();
+  assert.doesNotThrow(() => s.complete(s.head?.id));
+  await s.startLocal({ name: "Jovan", count: 2 });
+  assert.equal(s.screen, "gameplay");
+  await s.lobby();
+  assert.doesNotThrow(() => s.complete(undefined));
+  await s.resume();
+  assert.equal(s.screen, "gameplay");
+  assert.equal(s.head, null);
+});
+test("new dice remain revealed through pawn motion instead of falling back to old log dice", () => {
+  let s = make(2);
+  s.log.unshift({
+    id: ++s.eventId,
+    type: "dice",
+    dice: [6, 6],
+    text: "Old roll",
+    version: 0,
+    audience: "public",
+  });
+  let model = ingestTimeline(null, publicState(s), { reset: true });
+  s = command(s, 0, { type: "ROLL" }, () => 0.2);
+  model = ingestTimeline(model, publicState(s));
+  assert.equal(
+    dicePresentation(presentedState(model), model.queue[0]).values,
+    null,
+  );
+  model = advanceTimeline(model, model.queue[0].id);
+  assert.deepEqual(
+    dicePresentation(presentedState(model), model.queue[0]).values,
+    [2, 2],
+  );
+  model = advanceTimeline(model, model.queue[0].id);
+  assert.equal(model.queue[0].kind, "pawnMoving");
+  assert.deepEqual(
+    dicePresentation(presentedState(model), model.queue[0]).values,
+    [2, 2],
+  );
+  assert(!("presentationDice" in s));
+});
+test("utility reveal can follow movement dice without regressing to the previous pair", () => {
+  const s = make(),
+    event = (id, dice, kind) => ({
+      id,
+      type: "dice",
+      text: "Dadu baru",
+      dice,
+      diceKind: kind,
+      audience: "public",
+      version: 1,
+    });
+  let model = ingestTimeline(null, publicState(s), { reset: true });
+  s.version = 1;
+  s.eventId += 2;
+  s.log = [
+    event(s.eventId, [5, 6], "utility"),
+    event(s.eventId - 1, [1, 2], "movement"),
+    ...s.log,
+  ];
+  model = ingestTimeline(model, publicState(s));
+  while (model.queue[0]?.kind !== "diceResult")
+    model = advanceTimeline(model, model.queue[0].id);
+  assert.deepEqual(
+    dicePresentation(presentedState(model), model.queue[0]).values,
+    [1, 2],
+  );
+  model = advanceTimeline(model, model.queue[0].id);
+  assert.equal(
+    dicePresentation(presentedState(model), model.queue[0]).values,
+    null,
+  );
+  model = advanceTimeline(model, model.queue[0].id);
+  assert.deepEqual(
+    dicePresentation(presentedState(model), model.queue[0]).values,
+    [5, 6],
+  );
+});
+test("classic board fits the exact viewport width with no camera gutter", () => {
+  for (const w of [320, 360, 390, 430]) {
+    const c = fitClassic(w, w);
+    assert.equal(c.x, 0);
+    assert.equal(c.y, 0);
+    assert.equal(c.scale * 1000, w);
+    const zoom = zoomClassic(c, 2, { x: w / 2, y: w / 2 });
+    assert(zoom.scale > c.scale);
+    assert.equal(clampClassic({ ...zoom, x: 99999 }).x, 0);
+  }
+});
+test("classic board only decorates special tiles and keeps names, ownership and buildings", () => {
+  const s = make();
+  s.assets[1] = { owner: 0, level: 4, mortgaged: false };
+  const html = boardMarkup(s);
+  const ordinary = html.slice(
+    html.indexOf('data-tile="1"'),
+    html.indexOf('data-tile="2"'),
+  );
+  assert(ordinary.includes("/assets/buildings/building-icons.png"));
+  assert(!ordinary.includes("region-atlas"));
+  assert(ordinary.includes("Bogor"));
+  assert(ordinary.includes("property-buildings"));
+  assert(!html.includes("region-atlas"));
+  assert(!html.includes("board-terrace"));
+  assert(!html.includes("archipelago-light"));
+  assert(html.includes("/assets/classic/chance.png"));
+  assert.equal(tileNameLines("Banjarmasin").join(""), "Banjarmasin");
+  for (let id = 0; id < 40; id++)
+    assert.equal(hitTile(pawnDisplayPoint(tileCenter(id))), id);
+});
+test("pip shuffle changes dots with valid decorative values, independently of an authoritative result", () => {
+  const frames = Array.from({ length: 12 }, (_, i) =>
+    pipFrame("match:roll:1", i),
+  );
+  assert(
+    frames.every((pair) =>
+      pair.every((n) => n >= 1 && n <= 6 && Number.isInteger(n)),
+    ),
+  );
+  assert(new Set(frames.map(String)).size >= 6);
+  assert.deepEqual(pipFrame("match:roll:1", 3), frames[3]);
+});
+test("late pip callbacks cannot overwrite the revealed pair and rerender does not restart the shuffle", () => {
+  let callback,
+    cancelled = 0;
+  const makeClass = () => ({ toggle() {} }),
+    faces = [0, 1].map(() => ({ dataset: {} })),
+    element = {
+      dataset: {},
+      classList: makeClass(),
+      setAttribute() {},
+      querySelector: () => ({ textContent: "" }),
+      querySelectorAll: () => faces,
+    };
+  const view = new DiceView(element, {
+    schedule: (fn) => {
+      callback = fn;
+      return 1;
+    },
+    cancel: () => cancelled++,
+  });
+  assert.equal((element.innerHTML.match(/class="die-face"/g) || []).length, 12);
+  assert(!element.innerHTML.includes("<i>"));
+  view.update(
+    { stage: "rolling", values: null, label: "Rolling" },
+    { id: "a" },
+  );
+  const ticks = view.tick,
+    stale = callback;
+  view.update(
+    { stage: "rolling", values: null, label: "Rolling" },
+    { id: "a" },
+  );
+  assert.equal(view.tick, ticks);
+  view.update({ stage: "idle", values: null, label: "Siap melempar" });
+  assert.deepEqual(
+    faces.map((d) => Number(d.dataset.value)),
+    [1, 1],
+  );
+  view.update({ stage: "result", values: [4, 2], label: "4 + 2 = 6" });
+  stale();
+  assert.deepEqual(
+    faces.map((f) => Number(f.dataset.value)),
+    [4, 2],
+  );
+  assert(cancelled > 0);
+  view.dispose();
+});
+
+test("tile faces keep inward orientation and hide prices until ownership", () => {
+  const s = make(),
+    html = boardMarkup(s);
+  for (const id of [1, 11, 21, 31]) {
+    const tile = html.slice(
+      html.indexOf(`data-tile="${id}"`),
+      html.indexOf(`data-tile="${id + 1}"`),
+    );
+    assert(tile.includes(`data-angle="${Math.floor(id / 10) * 90}"`));
+    assert(!tile.includes("tile-price"));
+  }
+  assert(html.includes("BANJARMASIN"));
+  assert(html.includes("YOGYAKARTA"));
+  s.assets[1].owner = 0;
+  const owned = boardMarkup(s);
+  assert(owned.includes("tile-rent"));
+  assert(owned.includes(">₦ 2</text>"));
+  assert(!owned.includes(">60</text>"));
+});
+
+import {
+  TradeDrafts,
+  draftScope,
+  emptyTrade,
+} from "../frontend/trade-drafts.mjs";
+import { tradeDraftStatus } from "../lib/compact-ui.mjs";
+import { cardIcon } from "../frontend/card-icons.mjs";
+const draftStorage = () => {
+  const map = new Map();
+  return {
+    getItem: (key) => map.get(key) || null,
+    setItem: (key, value) => map.set(key, value),
+  };
+};
+test("trade draft survives refresh, preserves unfinished money input and never changes authoritative state", () => {
+  const s = make(),
+    before = JSON.stringify(s),
+    storage = draftStorage(),
+    store = new TradeDrafts(storage),
+    key = draftScope(s, null, 0) + 1,
+    trade = { ...emptyTrade(s, 0, 1), give: [1], giveCash: NaN };
+  assert(store.write(key, { trade, inputs: { giveCash: "invalid" } }));
+  const restored = new TradeDrafts(storage).read(key);
+  assert.deepEqual(restored.trade.give, [1]);
+  assert(Number.isNaN(restored.trade.giveCash));
+  assert.equal(restored.inputs.giveCash, "invalid");
+  restored.trade.give.push(3);
+  assert.deepEqual(store.read(key).trade.give, [1]);
+  assert.equal(JSON.stringify(s), before);
+});
+test("drafts isolate matches, authenticated identities, opponents and individual counteroffers", () => {
+  const s = make(),
+    store = new TradeDrafts(draftStorage()),
+    a = draftScope(s, { userId: "account-a" }, 0),
+    b = draftScope(s, { userId: "account-b" }, 0);
+  store.write(a + 1, { trade: emptyTrade(s, 0, 1) });
+  store.write(a + 2, { trade: emptyTrade(s, 0, 2) });
+  assert.equal(store.read(b + 1), null);
+  assert.equal(
+    store.read(draftScope({ ...s, matchId: "other" }, null, 0) + 1),
+    null,
+  );
+  assert.equal(store.read(a + 1).trade.to, 1);
+  assert.equal(store.read(a + 2).trade.to, 2);
+  s.trade = {
+    from: 1,
+    to: 0,
+    give: [1],
+    take: [],
+    giveCash: 0,
+    takeCash: 0,
+    giveCards: 0,
+    takeCards: 0,
+  };
+  const original = draftScope(s, null, 0, true);
+  s.trade.giveCash = 100;
+  assert.notEqual(draftScope(s, null, 0, true), original);
+});
+test("storage unavailable keeps an honest in-memory draft and corrupt data cannot produce commands", () => {
+  const broken = {
+    getItem: () => "{bad",
+    setItem: () => {
+      throw Error("quota");
+    },
+  };
+  const store = new TradeDrafts(broken),
+    trade = emptyTrade(make(), 0, 1);
+  assert.equal(store.write("a", { trade }), false);
+  assert.equal(store.read("a").trade.to, 1);
+  assert.equal(
+    store.write("invalid", { trade: { ...trade, give: [999] } }),
+    false,
+  );
+  assert.equal(store.read("invalid"), null);
+  store.remove("a");
+  assert.equal(store.read("a"), null);
+});
+test("restored draft is revalidated after ownership changes and is removed only by explicit operation", () => {
+  const s = make(),
+    store = new TradeDrafts(draftStorage()),
+    key = draftScope(s, null, 0) + 1;
+  s.assets[1].owner = 0;
+  store.write(key, { trade: { ...emptyTrade(s, 0, 1), give: [1] } });
+  assert.equal(tradeDraftStatus(s, 0, store.read(key).trade).invalid, false);
+  s.assets[1].owner = 2;
+  assert(tradeDraftStatus(s, 0, store.read(key).trade).invalid);
+  assert(store.read(key));
+  store.remove(key);
+  assert.equal(store.read(key), null);
+});
+test("compact card UI uses small raster illustration, exact engine text and correct viewer controls", () => {
+  const s = make(),
+    card = {
+      deck: "chance",
+      player: 0,
+      title: "Mundur tiga petak",
+      text: "Mundur 3 petak.",
+      back: 3,
+    };
+  const rendered = renderPopup(
+    c(s),
+    {},
+    { kind: "event", event: { card }, interactive: true },
+  );
+  assert(rendered.html.includes("retro-card chance"));
+  assert(rendered.html.includes("Mundur 3 petak."));
+  assert(rendered.html.includes('data-card-icon="1"'));
+  assert(rendered.html.includes("header-icon"));
+  assert(rendered.footer.includes("ACK"));
+  assert(!rendered.html.includes("archipelago"));
+  assert.equal(cardIcon({ jail: true }), 2);
+  assert.equal(cardIcon({ nearest: "utility" }), 7);
+});
+test("board buildings show the original PNG picture markers without changing asset levels", () => {
+  const s = make(),
+    before = JSON.stringify(s);
+  for (const id of [1, 11, 21, 31])
+    s.assets[id] = { owner: 0, level: id === 31 ? 5 : 4, mortgaged: false };
+  const snapshot = JSON.stringify(s),
+    html = boardMarkup(s);
+  assert.equal((html.match(/class="building-image"/g) || []).length, 13);
+  assert(html.includes("/assets/buildings/building-icons.png"));
+  assert(!html.includes(">×4</text>"));
+  assert(!html.includes("tile-owner-badge"));
+  assert(html.includes("rotate(270)"));
+  assert.equal(JSON.stringify(s), snapshot);
+  assert.notEqual(snapshot, before);
+});
+
+test("classic certificate contains real rent tiers, set rent, building costs and original PNG building icons", () => {
+  const s = make(),
+    deed = renderPopup(c(s), {}, { kind: "property", id: 1 });
+  assert(deed.html.includes("SERTIFIKAT KEPEMILIKAN"));
+  assert(deed.html.includes("Sewa tanah"));
+  assert(deed.html.includes("Set warna lengkap"));
+  assert(deed.html.includes("₦ 4"));
+  assert(deed.html.includes("1 rumah"));
+  assert(deed.html.includes("1 hotel"));
+  assert(deed.html.includes("building-token"));
+  assert(!deed.html.includes("region-art"));
+  const station = renderPopup(c(s), {}, { kind: "property", id: 5 });
+  assert(station.html.includes("deed-logo"));
+  assert(station.html.includes("4 stasiun"));
+  assert(station.html.includes("₦ 200"));
+  const utility = renderPopup(c(s), {}, { kind: "property", id: 12 });
+  assert(utility.html.includes("4 × jumlah dadu × ₦ 1"));
+  assert(utility.html.includes("10 × jumlah dadu × ₦ 1"));
+});
+import { DECKS, BOARD, GROUPS } from "../lib/content.mjs";
+import { CARD_ART, ART_CONTEXTS } from "../frontend/card-icons.mjs";
+test("every one of the 32 actual engine cards has an explicit matching raster illustration assignment", () => {
+  for (const deck of ["chance", "community"]) {
+    assert.equal(DECKS[deck].length, 16);
+    assert.equal(CARD_ART[deck].length, 16);
+    for (const [idx, card] of DECKS[deck].entries()) {
+      const art = cardIcon({ ...card, deck, idx });
+      assert.equal(art, CARD_ART[deck][idx]);
+      assert(ART_CONTEXTS[art]);
+      const popup = renderPopup(
+        c(make()),
+        {},
+        {
+          kind: "event",
+          event: { card: { ...card, deck, idx, player: 0 } },
+          interactive: false,
+        },
+      );
+      assert(popup.html.includes(`data-card-icon="${art}"`));
+      assert(popup.html.includes(esc(card.text)));
+      assert(!popup.footer.includes('data-type="ACK"'));
+    }
+  }
+  assert.equal(CARD_ART.community[2], 8);
+  assert.equal(CARD_ART.community[10], 8);
+  assert.equal(CARD_ART.community[11], 11);
+  assert.equal(CARD_ART.community[14], 13);
+});
+test("ownership color follows the selected PNG pawn when a player changes token color", () => {
+  const s = createGame(
+    {
+      players: [
+        { name: "Red", controller: "human", pawn: 1 },
+        { name: "Blue", controller: "human", pawn: 0 },
+      ],
+      startingRoll: false,
+    },
+    () => 0.2,
+  );
+  s.assets[1].owner = 0;
+  const html = boardMarkup(s),
+    tile = html.slice(
+      html.indexOf('data-tile="1"'),
+      html.indexOf('data-tile="2"'),
+    );
+  assert(tile.includes('fill="#e67379"'));
+  assert(html.includes("/assets/pawns/pawn-tokens.png"));
+});
+
+import { avatar, icon } from "../frontend/art.mjs";
+test("active artwork has valid encodings and retired atlases are absent", () => {
+  const root = new URL("../public/assets/", import.meta.url),
+    files = [];
+  const visit = (dir) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = new URL(entry.name + (entry.isDirectory() ? "/" : ""), dir);
+      if (entry.isDirectory()) visit(path);
+      else files.push(path);
+    }
+  };
+  visit(root);
+  for (const file of files) {
+    const data = readFileSync(file);
+    if (file.pathname.endsWith(".png"))
+      assert.equal(data.subarray(1, 4).toString(), "PNG");
+    else if (file.pathname.endsWith(".webp"))
+      assert.equal(data.subarray(8, 12).toString(), "WEBP");
+    else {
+      assert(file.pathname.endsWith(".svg"));
+      assert(data.toString().includes("<svg"));
+    }
+  }
+  for (const old of [
+    "avatars/animal-portraits.png",
+    "currency/nusa-mark.png",
+    "ui/interface-icons.png",
+  ])
+    assert(!existsSync(new URL(old, root)));
+  assert.equal(new Set(Array.from({ length: 6 }, (_, i) => avatar(i))).size, 6);
+  assert(icon("menu").includes("<svg"));
+});
+
+import {
+  activitySummary,
+  playerLedger,
+  capsuleFeedback,
+  publicEvents,
+} from "../frontend/economy-view.mjs";
+import { developmentGroups } from "../frontend/development.mjs";
+import { onlineStatus } from "../frontend/online-status.mjs";
+test("public financial views preserve both sides once and exclude private events without inferring balance changes", () => {
+  const s = make();
+  const e = {
+    id: 99,
+    text: "Raka membayar sewa",
+    turn: 3,
+    audience: "public",
+    finance: [{ kind: "rent", from: 1, to: 0, amount: 1200, tile: 1 }],
+  };
+  s.log = [
+    e,
+    e,
+    {
+      id: 98,
+      audience: "private",
+      finance: [{ kind: "card", from: null, to: 0, amount: 777 }],
+    },
+  ];
+  assert.equal(publicEvents(s).length, 1);
+  assert.equal(playerLedger(s, 0).length, 1);
+  assert.equal(playerLedger(s, 0)[0].amount, 1200);
+  assert.equal(playerLedger(s, 1)[0].amount, -1200);
+  assert.equal(playerLedger(s, 2).length, 0);
+  assert(activitySummary(s).money.includes("RAKA − ₦ 120"));
+  assert(activitySummary(s).money.includes("Jovan + ₦ 120"));
+  assert(activitySummary(s).money.endsWith("Sewa"));
+  const before = JSON.stringify(s);
+  s.players[0].cash += 555;
+  assert.equal(playerLedger(s, 0).length, 1);
+  s.players[0].cash -= 555;
+  assert.equal(JSON.stringify(s), before);
+  assert.equal(capsuleFeedback(null, 0), null);
+  assert.equal(
+    capsuleFeedback({ id: "one", finance: e.finance[0] }, 0).label,
+    "+ ₦ 120 · Sewa",
+  );
+});
+test("profile ledger is scoped to the selected player and cannot expose private transactions or management controls", () => {
+  const s = make();
+  s.log = [
+    {
+      id: 99,
+      turn: 1,
+      text: "Publik",
+      audience: "public",
+      finance: [{ kind: "build", from: 1, to: null, amount: 500, tile: 3 }],
+    },
+    {
+      id: 98,
+      turn: 1,
+      text: "Privat",
+      audience: "private",
+      finance: [{ kind: "card", from: null, to: 1, amount: 999 }],
+    },
+  ];
+  const profile = renderPopup(c(s), {}, { kind: "profile", id: 1 });
+  assert(profile.html.includes('data-ledger-row="99:0:1"'));
+  assert(!profile.html.includes("98:0:1"));
+  assert(!profile.html.includes('data-type="BUILD"'));
+  assert(profile.html.includes("maksimal 300"));
+});
+test("development panel shows all eight groups, prioritizes legal groups and respects full-set rules", () => {
+  const s = make();
+  s.assets[6].owner = 0;
+  s.assets[8].owner = 0;
+  s.assets[9].owner = 1;
+  let groups = developmentGroups(s, 0);
+  assert.equal(groups.length, 8);
+  assert.equal(groups.find((g) => g.id === 1).status, "Kurang 1 properti");
+  assert(
+    groups
+      .find((g) => g.id === 1)
+      .rows.filter((r) => r.own)
+      .every((r) => !!r.reason),
+  );
+  assert(groups.find((g) => g.id === 1).rows.find((r) => r.tile === 9).barter);
+  for (const tile of [1, 3]) s.assets[tile].owner = 0;
+  groups = developmentGroups(s, 0);
+  assert.equal(groups[0].id, 0);
+  assert(groups[0].ready);
+  const before = s.players[0].cash,
+    next = command(s, 0, { type: "BUILD", tile: 1 });
+  assert.equal(next.players[0].cash, before - BOARD[1].build);
+  groups = developmentGroups(next, 0);
+  assert(groups[0].rows.find((r) => r.tile === 1).reason.includes("merata"));
+  assert.equal(groups[0].rows.find((r) => r.tile === 3).reason, "");
+  assert.equal(
+    groups[0].rows.find((r) => r.tile === 1).rent,
+    BOARD[1].rents[1],
+  );
+});
+test("development disabled reasons follow mortgage, insufficient stock, debt and active auction restrictions", () => {
+  const s = make();
+  for (const tile of [1, 3]) s.assets[tile].owner = 0;
+  s.assets[3].mortgaged = true;
+  assert.equal(
+    developmentGroups(s, 0).find((g) => g.id === 0).status,
+    "Masih digadai",
+  );
+  s.assets[3].mortgaged = false;
+  s.phase = "debt";
+  s.debt = { from: 0, to: null, amount: 20000 };
+  assert(assetPermission(s, 0, 1, "BUILD").includes("utang"));
+  assert.throws(() => command(s, 0, { type: "BUILD", tile: 1 }));
+  s.phase = "auction";
+  s.auction = { highest: 0, amount: 15000 };
+  assert(assetPermission(s, 0, 1, "BUILD").includes("lelang"));
+  s.assets[1].mortgaged = true;
+  assert(assetPermission(s, 0, 1, "REDEEM").includes("dicadangkan"));
+  assert(developmentGroups(s, 1).every((g) => !g.ready));
+});
+test("configuration failure stays distinct from missing ENV and can be retried without blocking offline play", async (t) => {
+  let fail = true,
+    calls = 0;
+  const s = session(t, {
+    load: async () => null,
+    transport: async (url) => {
+      calls++;
+      if (url.includes("online")) {
+        if (fail) throw Error("network");
+        return Response.json({ online: false, provider: "supabase" });
+      }
+      return Response.json({ configured: false });
+    },
+  });
+  assert.equal(onlineStatus(s).code, "loading");
+  await s.initialize();
+  assert.equal(onlineStatus(s).code, "error");
+  fail = false;
+  const before = calls;
+  await Promise.all([s.refreshConfig(), s.refreshConfig()]);
+  assert.equal(calls - before, 2);
+  assert.equal(onlineStatus(s).code, "unconfigured");
+  await s.startLocal({ name: "Jovan", count: 2 });
+  assert.equal(s.state.players.length, 2);
+  assert.equal(s.screen, "gameplay");
+  assert.equal(
+    onlineStatus({
+      ...s,
+      config: { online: true },
+      auth: { session: () => null },
+    }).code,
+    "signin",
+  );
+  assert.equal(
+    onlineStatus({
+      ...s,
+      config: { online: true },
+      auth: { session: () => ({ user: { id: "test" } }) },
+    }).code,
+    "available",
+  );
+});
+
+test("information lines follow the currently revealed source while keeping rolling dice secret", () => {
+  const s = make(),
+    source = {
+      id: 22,
+      text: "Jovan membangun rumah di Bogor.",
+      audience: "public",
+      finance: [{ kind: "build", from: 0, to: null, amount: 500, tile: 1 }],
+    };
+  assert.equal(
+    activitySummary(s, {
+      kind: "financialSettlement",
+      id: "new",
+      source,
+      finance: source.finance[0],
+    }).action,
+    source.text,
+  );
+  assert(
+    activitySummary(s, {
+      kind: "financialSettlement",
+      source,
+      finance: source.finance[0],
+    }).money.includes("− ₦ 50"),
+  );
+  assert(
+    !activitySummary(s, {
+      kind: "diceRolling",
+      source: { text: "Jovan melempar 6 + 6." },
+    }).action.includes("6 + 6"),
+  );
+  assert(
+    activitySummary(s, {
+      kind: "diceResult",
+      source: { text: "Jovan melempar 6 + 6." },
+    }).action.includes("6 + 6"),
+  );
+});
+test("full house bank disables development using the actual engine stock calculation", () => {
+  const s = make();
+  for (const t of BOARD.filter((t) => t.type === "city"))
+    s.assets[t.id].owner = t.group === 0 ? 0 : 1;
+  for (const g of GROUPS.slice(2, 7))
+    for (const id of g.ids) s.assets[id].level = 2;
+  for (const id of [6, 8]) s.assets[id].level = 1;
+  const row = developmentGroups(s, 0).find((g) => g.id === 0).rows[0];
+  assert(row.reason.includes("Stok bangunan bank habis"));
+  assert.throws(() => command(s, 0, { type: "BUILD", tile: 1 }));
+});
+
+import { buildPreview } from "../frontend/development.mjs";
+const tick = () => new Promise((resolve) => setTimeout(resolve, 0));
+async function drainAssetPlan(s) {
+  for (let i = 0; i < 100; i++) {
+    await tick();
+    if (s.assetFeedback) s.complete(s.head.id);
+    if (s.assetPlan?.status !== "running" && !s.head) return;
+  }
+  assert.fail("Asset plan did not settle within bounded steps");
+}
+function ownedSet(s) {
+  for (const id of [1, 3]) s.state.assets[id].owner = 0;
+  s.ingest(s.state, { reset: true });
+  s.hidden = false;
+  s.setCovered(true, { assets: true });
+}
+test("board has no persistent selection border or middle deck boxes, while all forty hit targets remain", () => {
+  const html = boardMarkup(make(), 1);
+  assert(!html.includes("#1366b2"));
+  const center = html.slice(
+    html.indexOf('class="board-center"'),
+    html.indexOf("</g>", html.indexOf('class="board-center"')),
+  );
+  assert(!center.includes("<image"));
+  assert(!center.includes("<rect"));
+  assert.equal((html.match(/data-tile=/g) || []).length, 40);
+});
+test("every special tile has dedicated information; deck catalogs expose 16 public descriptions, never a draw control", () => {
+  const s = make(),
+    before = JSON.stringify(s);
+  for (const id of [0, 2, 4, 7, 10, 17, 20, 22, 30, 33, 36, 38]) {
+    const p = renderPopup(c(s), {}, { kind: "property", id });
+    assert(p.html.includes(BOARD[id].name));
+    assert(p.footer.includes("close"));
+    assert(!p.html.includes("data-type="));
+    if (["chance", "community"].includes(BOARD[id].type)) {
+      assert.equal((p.html.match(/data-catalog-card=/g) || []).length, 16);
+      assert(p.html.includes("bukan urutan"));
+    }
+  }
+  const tax = renderPopup(c(s), {}, { kind: "property", id: 4 });
+  assert(tax.html.includes("₦ 200"));
+  assert(tax.html.includes("tidak dihitung dari kekayaan"));
+  assert(tax.html.includes("bukan Parkir Bebas"));
+  assert.equal(JSON.stringify(s), before);
+});
+for (const [pos, amount] of [
+  [2, 2000],
+  [36, 1000],
+])
+  test(`modern fixed tax ${amount / 10} goes to Bank exactly once, independent of holdings`, () => {
+    let s = make(2);
+    s.players[0].pos = pos;
+    s.players[0].cash = 50000;
+    for (const id of [1, 3])
+      s.assets[id] = { owner: 0, level: 4, mortgaged: false };
+    const action = {
+        type: "ROLL",
+        id: "tax-" + pos,
+        expectedVersion: s.version,
+      },
+      after = command(s, 0, action, () => 0);
+    assert.equal(after.players[0].cash, 50000 - amount);
+    assert.equal(after.players[1].cash, s.players[1].cash);
+    const records = after.log
+      .flatMap((e) => e.finance || [])
+      .filter((f) => f.kind === "tax");
+    assert.equal(records.length, 1);
+    assert.equal(records[0].to, null);
+    assert.equal(records[0].amount, amount);
+    assert.equal(
+      command(after, 0, action, () => 0),
+      after,
+    );
+  });
+test("single upgrades drain only their own financial presentation under the asset panel and leave it open", async (t) => {
+  const s = session(t);
+  ownedSet(s);
+  assert(await s.act("BUILD", { tile: 1 }));
+  assert(s.covered && s.assetPanel && s.assetFeedback);
+  assert.equal(await s.act("BUILD", { tile: 3 }), false);
+  s.complete(s.head.id);
+  assert.equal(s.head, null);
+  assert(s.covered);
+  assert(await s.act("BUILD", { tile: 3 }));
+  s.complete(s.head.id);
+  assert.equal(s.state.players[0].cash, 14000);
+  s.assetPresentation = null;
+  await s.act("ROLL");
+  const head = s.head.id;
+  s.complete(head);
+  assert.equal(s.head.id, head);
+});
+test("multi-build queue uses fresh legal commands, distributes evenly, rejects double starts and is not in snapshots", async (t) => {
+  const saved = [],
+    s = session(t, { persist: async (data) => saved.push(data) });
+  ownedSet(s);
+  const before = JSON.stringify(s.state),
+    preview = buildPreview(s.state, 0, 0, 3);
+  assert.deepEqual(preview.tiles, [1, 3, 1]);
+  assert.equal(JSON.stringify(s.state), before);
+  assert(s.startBuilds(0, 3));
+  assert.equal(s.startBuilds(0, 3), false);
+  await drainAssetPlan(s);
+  assert.equal(s.assetPlan.status, "complete");
+  assert.equal(s.assetPlan.completed, 3);
+  assert.deepEqual([s.state.assets[1].level, s.state.assets[3].level], [2, 1]);
+  assert.equal(s.state.players[0].cash, 13500);
+  assert.equal(s.state.version, 3);
+  assert(s.covered);
+  assert(saved.every((row) => !("assetPlan" in row.state)));
+});
+test("closing, pause, visibility loss and unexpected revisions stop queued work without replaying it", async (t) => {
+  for (const mode of ["close", "pause", "hidden", "revision"]) {
+    const s = session(t);
+    ownedSet(s);
+    s.startBuilds(0, 4);
+    for (let i = 0; i < 20 && !s.head; i++) await tick();
+    assert(s.head);
+    if (mode === "close") s.setCovered(false);
+    if (mode === "pause") s.setPaused(true);
+    if (mode === "hidden") s.setVisible(false);
+    if (mode === "revision") {
+      s.state.assets[6].owner = 0;
+      s.state = command(s.state, 0, { type: "MORTGAGE", tile: 6 });
+    }
+    if (s.head && !s.paused && s.assetFeedback) s.complete(s.head.id);
+    if (mode === "revision") {
+      s.complete(s.head?.id);
+      await tick();
+    }
+    assert.equal(s.assetPlan.status, "stopped");
+    const version = s.state.version;
+    if (mode === "pause") s.setPaused(false);
+    if (mode === "hidden") s.setVisible(true);
+    await tick();
+    assert.equal(s.state.version, version);
+    s.dispose();
+  }
+});
+test("an asset queue yields when bank stock requires other players to decide, without claiming a building was purchased", async (t) => {
+  const s = session(t);
+  ownedSet(s);
+  for (const group of GROUPS.slice(1))
+    for (const id of group.ids) s.state.assets[id].owner = 1;
+  for (const id of GROUPS[1].ids) s.state.assets[id].level = 1;
+  for (const group of [GROUPS[2], GROUPS[3]])
+    for (const id of group.ids) s.state.assets[id].level = 4;
+  for (const id of GROUPS[4].ids) s.state.assets[id].level = 1;
+  s.state.assets[26].level = 1;
+  s.ingest(s.state, { reset: true });
+  s.startBuilds(0, 2);
+  await drainAssetPlan(s);
+  assert.equal(s.state.phase, "buildOffer");
+  assert.equal(s.assetPlan.status, "stopped");
+  assert.equal(s.assetPlan.completed, 0);
+  assert.equal(s.state.players[0].cash, 15000);
+  assert(s.assetInterruption);
+});
+test("online multi-build sends individual intentions with revisions and IDs, while pause cancels the rest", async (t) => {
+  const s = session(t);
+  ownedSet(s);
+  let authoritative = structuredClone(s.state),
+    revision = 0;
+  const requests = [];
+  s.room = { code: "ABCDEFGH", seat: 0, userId: "user" };
+  s.connected = true;
+  s.online = { status: "playing", roomRevision: 0 };
+  s.auth = {
+    session: () => ({ user: { id: "user" } }),
+    request: async (_path, body) => {
+      if (body) {
+        requests.push(body);
+        authoritative = command(authoritative, 0, body.action, () => 0.2);
+        revision++;
+      }
+      return {
+        code: "ABCDEFGH",
+        seat: 0,
+        roomRevision: revision,
+        status: "playing",
+        state: publicState(authoritative),
+      };
+    },
+  };
+  assert(s.startBuilds(0, 2));
+  await drainAssetPlan(s);
+  assert.equal(requests.length, 2);
+  assert.deepEqual(
+    requests.map((r) => r.action.expectedVersion),
+    [0, 1],
+  );
+  assert(
+    requests.every(
+      (r) =>
+        r.requestId === r.action.id &&
+        r.action.type === "BUILD" &&
+        !("cash" in r.action) &&
+        !("level" in r.action),
+    ),
+  );
+  s.startBuilds(0, 4);
+  for (let i = 0; i < 20 && !s.head; i++) await tick();
+  const count = requests.length;
+  s.takeRoom({
+    code: "ABCDEFGH",
+    seat: 0,
+    roomRevision: ++revision,
+    status: "paused",
+    state: publicState(authoritative),
+  });
+  assert.equal(s.assetPlan.status, "stopped");
+  s.takeRoom({
+    code: "ABCDEFGH",
+    seat: 0,
+    roomRevision: ++revision,
+    status: "playing",
+    state: publicState(authoritative),
+  });
+  await tick();
+  assert.equal(requests.length, count);
+});
+test("a failed server asset command stops the queue and never retries a transaction with a new ID", async (t) => {
+  const s = session(t);
+  ownedSet(s);
+  let calls = 0;
+  s.room = { code: "ABCDEFGH", seat: 0, userId: "user" };
+  s.connected = true;
+  s.online = { status: "playing", roomRevision: 0 };
+  s.auth = {
+    session: () => ({ user: { id: "user" } }),
+    request: async (_p, body) => {
+      if (body) {
+        calls++;
+        throw Error("Revision berubah.");
+      }
+      return {
+        code: "ABCDEFGH",
+        seat: 0,
+        roomRevision: 0,
+        status: "playing",
+        state: publicState(s.state),
+      };
+    },
+  };
+  s.startBuilds(0, 3);
+  await drainAssetPlan(s);
+  assert.equal(calls, 1);
+  assert.equal(s.state.version, 0);
+  assert.equal(s.assetPlan.status, "stopped");
+});
+
+import { SaveConflictError } from "../lib/storage.ts";
+test("a conflicting autosave pauses local actions until latest save is explicitly resumed", async (t) => {
+  const s = session(t, {
+    persist: async () => {
+      throw new SaveConflictError();
+    },
+  });
+  await s.act("ROLL");
+  assert.equal(s.saveConflict, true);
+  assert.equal(s.localPaused, true);
+  s.setPaused(false);
+  assert.equal(s.localPaused, true);
+  assert.equal(await s.act("END"), false);
+  const version = s.state.version;
+  await s.lobby();
+  assert.equal(s.screen, "lobby");
+  assert.equal(s.state.version, version);
+});
+test("overlapping saves within one session serialize using the latest successful envelope", async (t) => {
+  let revision = 0;
+  const s = session(t, {
+    persist: async (value, options) => {
+      await new Promise((resolve) => setTimeout(resolve, 5));
+      assert.equal(options.expectedRevision, revision || null);
+      return { ...value, saveRevision: ++revision };
+    },
+  });
+  await Promise.all([s.saveCurrent(), s.saveCurrent()]);
+  assert.equal(revision, 2);
+  assert.equal(s.saved.saveRevision, 2);
+});
+test("final results layout protects six square avatars and a separate Nusa value", () => {
+  const s = createGame(
+    {
+      players: Array.from({ length: 6 }, (_, i) => ({
+        name: "P" + i,
+        controller: "human",
+      })),
+      startingRoll: false,
+    },
+    () => 0.2,
+  );
+  s.phase = "won";
+  s.winner = 0;
+  s.players[0].name = "Sang Juara Dengan Nama Panjang";
+  for (const p of s.players.slice(1)) {
+    p.out = true;
+    p.cash = 0;
+  }
+  const result = renderPopup(c(s), {}, { kind: "won" }),
+    css = readFileSync(
+      new URL("../frontend/styles.css", import.meta.url),
+      "utf8",
+    );
+  assert.equal((result.html.match(/class="result-row /g) || []).length, 6);
+  assert.equal((result.html.match(/class="result-identity"/g) || []).length, 6);
+  assert.equal((result.html.match(/class="result-worth"/g) || []).length, 6);
+  assert.equal(
+    (result.html.match(/class="avatar animal-avatar"/g) || []).length,
+    6,
+  );
+  assert(result.html.includes("Sang Juara Dengan Nama Panjang"));
+  assert(result.html.includes("Bangkrut"));
+  assert.match(
+    css,
+    /\.result-row > \.avatar \{[^}]*aspect-ratio:\s*1\s*\/\s*1/s,
+  );
+  assert(!css.includes(".result-row > span {"));
+  assert(result.footer.includes("lobby"));
+});
+
+test("name-only online room revision updates presenter without incrementing game version", async (t) => {
+  const s = session(t),
+    previousVersion = s.state.version;
+  s.room = { code: "ABCDEFGH", seat: 0, userId: "identity-one" };
+  s.online = { status: "playing", roomRevision: 0 };
+  s.connected = true;
+  s.auth = { session: () => ({ user: { id: "identity-one" } }) };
+  const other = structuredClone(s.state);
+  // An online room can rename the seat while the economy state/version stays put.
+  other.players[0].name = "Nama lama";
+  s.takeRoom({
+    code: "ABCDEFGH",
+    seat: 0,
+    roomRevision: 1,
+    status: "playing",
+    seats: other.players.map((p, i) => ({
+      id: i,
+      name: i === 0 ? "Rani Bintang" : p.name,
+      controller: p.controller,
+    })),
+    state: publicState(other),
+  });
+  assert.equal(s.state.players[0].name, "Rani Bintang");
+  assert.equal(s.view.players[0].name, "Rani Bintang");
+  assert.equal(s.state.version, previousVersion);
 });

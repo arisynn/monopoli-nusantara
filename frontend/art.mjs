@@ -1,34 +1,6 @@
-const UI_ICONS = Object.freeze({
-  menu: 0,
-  close: 1,
-  arrow: 2,
-  back: 3,
-  home: 4,
-  assets: 5,
-  trade: 6,
-  history: 7,
-  gear: 8,
-  dice: 9,
-  gavel: 10,
-  people: 11,
-  trophy: 12,
-  map: 13,
-  save: 14,
-  pause: 15,
-  play: 16,
-  check: 17,
-  plus: 18,
-  minus: 19,
-  copy: 20,
-  bank: 21,
-  info: 22,
-  flag: 23,
-  bolt: 24,
-});
-export const icon = (name, size = 22) => {
-  const i = UI_ICONS[name] ?? UI_ICONS.info;
-  return `<span class="ui-icon" style="--icon-size:${size}px;--icon-x:${((i % 8) * 100) / 7}%;--icon-y:${(Math.floor(i / 8) * 100) / 3}%" aria-hidden="true"></span>`;
-};
+import { lucideIcon } from "./lucide-icons.mjs";
+
+export const icon = lucideIcon;
 export const colors = [
   "#218beb",
   "#e67379",
@@ -37,14 +9,34 @@ export const colors = [
   "#9a7ac6",
   "#db82ad",
 ];
-// Six PNG animal portraits, numeric seat identity remains stable across reconnect.
-export function avatar(id = 0) {
-  const n = Number.isInteger(id) && id >= 0 ? id % 6 : 0;
-  return `<span class="avatar animal-avatar" style="background-image:url(/assets/avatars/${["raka","bima","sari","nusa","apex","kresna"][n]}.png)" aria-hidden="true"></span>`;
+const BOT_AVATARS = ["raka", "bima", "sari", "nusa", "apex", "kresna"];
+export function avatar(identity = 0) {
+  const name =
+    typeof identity === "string" && ["human", ...BOT_AVATARS].includes(identity)
+      ? identity
+      : BOT_AVATARS[
+          Number.isInteger(identity) && identity >= 0 ? identity % 6 : 0
+        ];
+  return `<span class="avatar animal-avatar" style="background-image:url(/assets/avatars/${name}.webp)" aria-hidden="true"></span>`;
 }
 
-export function tileArt(tile, extra = "") {
-  return `<span class="region-art ${extra}" style="--group:${tile?.color || "#a1b2c5"}" aria-hidden="true"></span>`;
+// Bots keep their persona in every view; human portraits use the unoccupied art.
+export function playerAvatar(player, players = []) {
+  if (player?.controller === "bot" && BOT_AVATARS.includes(player.botPersona))
+    return avatar(player.botPersona);
+  const available = [
+    "human",
+    ...BOT_AVATARS.filter(
+      (name) =>
+        !players.some((p) => p.controller === "bot" && p.botPersona === name),
+    ),
+  ];
+  const index = players
+    .filter(
+      (p) => p.controller !== "bot" || !BOT_AVATARS.includes(p.botPersona),
+    )
+    .findIndex((p) => p.id === player?.id);
+  return avatar(available[Math.max(0, index) % available.length]);
 }
 
 // Numeric token identity is unchanged; only its visual sprite is replaced.
@@ -60,9 +52,17 @@ export function pawnArt(pawn, alt = "") {
   return `<span class="pawn-sprite" style="--pawn-x:${(id % 3) * 50}%;--pawn-y:${Math.floor(id / 3) * 100}%" ${alt ? `role="img" aria-label="${safe}"` : 'aria-hidden="true"'}></span>`;
 }
 
-// PNG sprites are shared by the board and compact certificates.
-export function buildingArt(kind = "house") {
-  return `<span class="building-token ${kind === "hotel" ? "hotel" : "house"}" aria-hidden="true"></span>`;
+// The original transparent PNG atlas is shared by board, bank and certificates.
+const BUILDING_CROPS = Object.freeze({
+  house: "135 173 175 149",
+  hotel: "586 104 156 230",
+});
+export function buildingArt(
+  kind = "house",
+  { size = 19, x, y, board = false } = {},
+) {
+  const name = kind === "hotel" ? "hotel" : "house";
+  return `<svg class="${board ? "building-image" : "building-token " + name}" ${x === undefined ? "" : `x="${x}" y="${y}"`} width="${size}" height="${size}" viewBox="${BUILDING_CROPS[name]}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><image href="/assets/buildings/building-icons.png" width="888" height="444"/></svg>`;
 }
 export function eventArt(index, extra = "") {
   return `<span class="card-illustration ${extra}" style="--card-x:${((index % 4) * 100) / 3}%;--card-y:${(Math.floor(index / 4) * 100) / 3}%" aria-hidden="true"></span>`;

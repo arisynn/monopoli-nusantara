@@ -1,3 +1,4 @@
+import {secureRandom} from '@/lib/random.mjs';
 import {validateOnlineAction} from '@/lib/server/online-room.mjs';
 import {assignPawns,availablePawn,setSeatPawn} from '@/lib/pawns.mjs';
 import {getRuntime} from '@/lib/server/runtime';
@@ -7,7 +8,7 @@ import type {BotDecisionResult} from '@/lib/bot/contracts';
 export const dynamic='force-dynamic';
 export const runtime='nodejs';
 export const maxDuration=30;
-const random=()=>crypto.getRandomValues(new Uint32Array(1))[0]/4294967296;
+const random=secureRandom;
 const hash=async(s:string)=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))).map(x=>x.toString(16).padStart(2,'0')).join('');
 const response=(data:any,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store'}});
 function check(ok:unknown,msg:string):asserts ok{if(!ok)throw Error(msg)}

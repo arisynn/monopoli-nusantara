@@ -1,3 +1,4 @@
+import {secureRandom,randomIndex} from './random.mjs';
 import {createBankEconomy,recordBankFinance} from './bank-economy.mjs';
 import {moneyData,assetData} from './finance.mjs';
 import {validDifficulty} from './bot/mind-config.mjs';
@@ -11,8 +12,8 @@ export {BOARD,GROUPS,DECKS,RULEPACK,PAWNS,money};
 const requireRule=(ok,message)=>{if(!ok)throw Error(message)};
 const integer=n=>Number.isSafeInteger(n)&&n>=0;
 const legacyState=s=>s.schemaVersion===1;
-const shuffle=(array,rng)=>{for(let i=array.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[array[i],array[j]]=[array[j],array[i]]}return array};
-const die=rng=>Math.floor(rng()*6)+1;
+const shuffle=(array,rng)=>{for(let i=array.length-1;i>0;i--){const j=randomIndex(i+1,rng);[array[i],array[j]]=[array[j],array[i]]}return array};
+const die=rng=>randomIndex(6,rng)+1;
 const roll=rng=>[die(rng),die(rng)];
 const sum=d=>d[0]+d[1];
 const note=(s,text,type='info',data={})=>{const event={id:++s.eventId,text:nusaText(text),type,turn:s.round,version:s._presentationVersion??s.version,actor:s._actor??s.turn,audience:'public',...data};recordBankFinance(s,event);s.log.unshift(event);s.log=s.log.slice(0,300)};
@@ -27,7 +28,7 @@ export const redemption=tile=>BOARD[tile].mortgage+interest(tile);
 export function stock(s){let houses=0,hotels=0;for(const a of Object.values(s.assets)){if(a.level===5)hotels++;else houses+=a.level}return {houses:32-houses,hotels:12-hotels}}
 export function worth(s,id){return s.players[id].cash+assets(s,id).reduce((n,t)=>n+(s.assets[t.id].mortgaged?t.mortgage:t.price)+(t.build||0)*s.assets[t.id].level,0)}
 export function rent(s,id,dice=7,factor=1,utility=false){const t=BOARD[id],a=s.assets[id];if(!a||a.owner===null||a.mortgaged)return 0;if(t.type==='station')return 250*2**(assets(s,a.owner).filter(t=>t.type==='station').length-1)*factor;if(t.type==='utility')return dice*(utility||assets(s,a.owner).filter(t=>t.type==='utility').length===2?100:40);return t.rents[a.level]*(a.level===0&&complete(s,a.owner,t.group)?2:1)*factor}
-export function createGame(config,rng=Math.random){
+export function createGame(config,rng=secureRandom){
  requireRule(config.players?.length>=2&&config.players.length<=6,'Pilih 2–6 pemain.');
  const pawns=assignPawns(config.players);
  const players=config.players.map((p,id)=>({id,name:String(p.name||`Pemain ${id+1}`).slice(0,24),controller:p.controller==='bot'?'bot':'human',...(p.controller==='bot'&&['raka','bima','sari','nusa','apex','kresna'].includes(p.botPersona)?{botPersona:p.botPersona}:{}),...(p.controller==='bot'?{botDifficulty:validDifficulty(p.botDifficulty)?p.botDifficulty:'medium'}:{}),pawn:pawns[id],cash:15000,pos:0,jail:0,inJail:false,cards:[],out:false}));
@@ -112,7 +113,7 @@ function bankrupt(s,id){const d=s.debt,p=s.players[id];requireRule(d&&d.from===i
 }
 export function canManage(s,id){return !!s.players[id]&&!s.players[id].out&&managePhases.includes(s.phase)&&(s.phase!=='debt'||s.debt.from===id)}
 export function canTrade(s,id){return !!s.players[id]&&!s.players[id].out&&['roll','end','jail','buy','card','debt','auction'].includes(s.phase)}
-export function command(input,actor,a,rng=Math.random){
+export function command(input,actor,a,rng=secureRandom){
  if(legacyState(input))return legacy.command(input,actor,a,rng);
  requireRule(input?.schemaVersion===2,'Save tidak kompatibel.');if(a.id&&input.seen.includes(a.id))return input;requireRule(a.expectedVersion===undefined||a.expectedVersion===input.version,'State berubah. Coba lagi.');requireRule(input.phase!=='won','Pertandingan selesai.');requireRule(input.players[actor]&&!input.players[actor].out,'Pemain tidak aktif.');
  const s=structuredClone(input);s.bankEconomy||=createBankEconomy(input);s._rng=rng;s._moveStart=s.lastMove?.id;s._presentationVersion=input.version+1;s._actor=actor;const p=s.players[actor],active=s.turn===actor;

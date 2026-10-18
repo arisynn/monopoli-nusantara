@@ -3,15 +3,10 @@
   "sourceFile": "nusa-v18-generator.original.txt",
   "sourceSha256": "62e640458f116d109e9c426c6e8905442cab295f4e0be78f0117582c802732c9",
   "files": {
-    "lab/nusa-v7/situation.mjs": "5dea3cac4e2d7474f7875549bd84d757d11c92949befb78fa2bde9e0a8caa6c7",
     "lib/bot/nusa-v7/situation.mjs": "8a3b6dbd8acb22d857a4be19927347a99e2efd4b39ef0820c44c2d1fdfbbd233",
-    "lab/nusa-v7/experts.mjs": "902d39f71048a88a34706a25acd897d35d3786314f5db8e88e0512bd3876195d",
     "lib/bot/nusa-v7/experts.mjs": "2405988ff69b19058b5ee86506256aee8791782b926eb05b8e4d116f7287ea89",
-    "lab/nusa-v7/council.mjs": "3fb3e214d1e89885f8a8e6325419012ddc8243775746cdb8b3856deaef6c8e91",
     "lib/bot/nusa-v7/council.mjs": "4f2d7cb790690ba26e425052953e4631b1d9451d9e3037fa9e39c4cd415ef0c3",
-    "lab/nusa-v7/reasoning.mjs": "509424d163fdd7484af204708a71529f91c88186b0e69855e8676d1f3181fa78",
     "lib/bot/nusa-v7/reasoning.mjs": "05cb5808c256edef6a0038cff821f4173d5aaaa7aa3db3afb253368c4326b1bf",
-    "lab/nusa-v7/index.mjs": "0a4b10d4ac917efc7dc014c04a4d22aae0dcccaffce086606c382328c59bc4ff",
     "lib/bot/nusa-v7/index.mjs": "0a4b10d4ac917efc7dc014c04a4d22aae0dcccaffce086606c382328c59bc4ff"
   },
   "compatibilityPatches": [

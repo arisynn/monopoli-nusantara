@@ -123,13 +123,12 @@ test("all six personas return legal, serializable decisions across 2/4/6-seat ph
         assert(p.diagnostics.interrupted);
       }
 });
-test("foundation upgrade preserves authoritative rules and non-NUSA persona source", () => {
+test("authoritative rules preserve the baseline apart from approved secure RNG substitutions", () => {
   const sha = (path) =>
     createHash("sha256")
       .update(readFileSync(new URL(path, import.meta.url)))
       .digest("hex");
   for (const file of [
-    "game.mjs",
     "content.mjs",
     "bot/personas.mjs",
     "bot/apex-policy.mjs",
@@ -140,4 +139,10 @@ test("foundation upgrade preserves authoritative rules and non-NUSA persona sour
       sha("../benchmarks/pre-foundation-v18/lib/" + file),
       file,
     );
+  const game=readFileSync(new URL('../lib/game.mjs',import.meta.url),'utf8')
+    .replace("import {secureRandom,randomIndex} from './random.mjs';\n",'')
+    .replaceAll('rng=secureRandom','rng=Math.random')
+    .replaceAll('randomIndex(i+1,rng)','Math.floor(rng()*(i+1))')
+    .replaceAll('randomIndex(6,rng)','Math.floor(rng()*6)');
+  assert.equal(createHash('sha256').update(game).digest('hex'),sha('../benchmarks/pre-foundation-v18/lib/game.mjs'));
 });

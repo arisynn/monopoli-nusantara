@@ -1,5 +1,7 @@
 # Monopoli Nusantara 4.8.2 — Aset Terpadu & Info Papan
 
+> Laporan historis. Gadai otomatis lama sudah dihapus dan digantikan Lunasi otomatis pada popup tagihan; lihat [GAMEPLAY_UPDATE.md](GAMEPLAY_UPDATE.md) untuk perilaku dan verifikasi terbaru.
+
 Status: **selesai dan teruji lokal**, termasuk pembangunan berulang, pilihan jumlah bangunan, gadai otomatis, informasi semua petak dan ikon papan PNG baru. Supabase/Groq live, Android fisik dan deployment Vercel **belum terverifikasi**. Tidak mengubah engine, ekonomi atau aturan pajak existing.
 
 ## Audit dan penyebab yang ditemukan

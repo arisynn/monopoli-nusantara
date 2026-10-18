@@ -9,8 +9,11 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parent.parent
 parser = argparse.ArgumentParser()
-parser.add_argument('--output', type=Path, required=True)
+parser.add_argument('--output', type=Path)
+parser.add_argument('--manifest-only', action='store_true')
 args = parser.parse_args()
+if not args.manifest_only and args.output is None:
+    parser.error("--output is required unless --manifest-only is used")
 version = json.loads((root / 'package.json').read_text())['version']
 
 def included(path):
@@ -37,7 +40,7 @@ for path in files:
         raise SystemExit('Secret detected in source file: ' + str(path.relative_to(root)))
     entries.append({'path': path.relative_to(root).as_posix(), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
 manifest = {
-    'release': version + ' Lobby & Auction UI, Shared Bot Foundation, NUSA V18',
+    'release': version + ' NUSA V20, PWA, Flat Dice and Smart Settlement',
     'generatedAt': datetime.now(timezone.utc).isoformat(),
     'basisVersion': '4.11.0',
     'hashedFileCount': len(entries),
@@ -47,6 +50,9 @@ manifest = {
 }
 manifest_path = root / 'PACKAGE_MANIFEST.json'
 manifest_path.write_text(json.dumps(manifest, indent=2) + '\n')
+if args.manifest_only:
+    print(json.dumps({'manifest': str(manifest_path), 'files': len(entries)}))
+    raise SystemExit(0)
 args.output.parent.mkdir(parents=True, exist_ok=True)
 with zipfile.ZipFile(args.output, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
     for path in files + [manifest_path]:

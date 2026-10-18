@@ -15,4 +15,4 @@ export function concessionOrder(s,recipient){
   return {value,score:posterior+.15*Math.sqrt(Math.log(total+2)/(n+1))};
  }).sort((a,b)=>b.score-a.score||a.value-b.value).map(a=>a.value);
 }
-export function rejectionActive(s,memory,recipient){const rejection=memory.rejections?.[recipient];return rejection?.untilSerial>s.turnSerial&&(!rejection.ownership||rejection.ownership===ownershipKey(s));}
+export function rejectionActive(s,memory,recipient){if(memory.tradeHistory?.some(r=>r.partner===recipient&&['rejected','countered'].includes(r.outcome)))return false;const rejection=memory.rejections?.[recipient];return rejection?.untilSerial>s.turnSerial&&(!rejection.ownership||rejection.ownership===ownershipKey(s));}

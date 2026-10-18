@@ -1,0 +1,50 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createGame,command,publicState} from '../lib/game.mjs';
+import {strategyView} from '../lib/bot/memory.mjs';
+import {flushObservations} from '../lib/bot/observer.mjs';
+import {createDecisionContext} from '../lib/bot/foundation.mjs';
+import {decideNusa,expandNusaCandidates} from '../lib/bot/nusa-v7/index.mjs';
+import {planDecision} from '../lib/bot/strategy.mjs';
+const setup=()=>createGame({players:[{name:'Human',controller:'human'},{name:'NUSA',controller:'bot',botPersona:'nusa'},{name:'Other',controller:'bot',botPersona:'bima'}],startingRoll:false},()=>.2);
+test('NUSA batches confirmed rival actions, preserves pending evidence and excludes its own actions',()=>{
+  let s=setup();for(const tile of [1,3,6,8])s.assets[tile].owner=0;
+  for(const tile of [1,3,6])s=command(s,0,{type:'MORTGAGE',tile});
+  let o=s.botMemory.players[1].observation;
+  assert.equal(o.batches,0);assert.equal(o.pending.length,3);
+  const view=strategyView(s,1);assert.equal(view.botMemory.opponents[0].observations,3);
+  assert.equal(o.pending.length,3,'reading observations cannot mutate authoritative state');
+  s=command(s,0,{type:'MORTGAGE',tile:8});o=s.botMemory.players[1].observation;
+  assert.equal(o.batches,1);assert.equal(o.pending.length,0);assert.equal(o.profiles[0].observations,4);
+  assert(o.profiles[0].monopolyGroups.includes(0));
+  s.turn=1;s=command(s,1,{type:'ROLL'},()=>.2);
+  assert.equal(s.botMemory.players[1].observation.profiles[1],undefined);
+});
+test('replayed commands and invalid moves cannot add observations; private memory stays private',()=>{
+  let s=setup();s.assets[1].owner=0;
+  const a={type:'MORTGAGE',tile:1,id:'once'};s=command(s,0,a);const before=JSON.stringify(s);
+  const replay=command(s,0,a);assert.equal(JSON.stringify(replay),before);
+  assert.throws(()=>command(s,0,{type:'BUILD',tile:39}));assert.equal(JSON.stringify(s),before);
+  assert.equal(publicState(s).botMemory,undefined);assert.equal(strategyView(s,2).botMemory.players[1],undefined);
+  assert(!JSON.stringify(s.botMemory.players[1].observation).includes('decks'));
+  const restored=JSON.parse(JSON.stringify(s));assert.deepEqual(strategyView(restored,1).botMemory.opponents,strategyView(s,1).botMemory.opponents);
+});
+test('critical trade response flushes observations and records an opponent response',()=>{
+  let s=setup();s.assets[1].owner=0;
+  s=command(s,0,{type:'OFFER',trade:{to:2,give:[1],take:[],giveCash:0,takeCash:0,giveCards:0,takeCards:0}});
+  s=command(s,2,{type:'TRADE_REJECT'});
+  const o=s.botMemory.players[1].observation;assert.equal(o.pending.length,0);assert.equal(o.profiles[2].trades.rejected,1);
+  assert.equal(flushObservations(o).profiles[2].trades.rejected,1);
+  let cancelled=setup();cancelled.assets[1].owner=0;
+  cancelled=command(cancelled,0,{type:'OFFER',trade:{to:2,give:[1],take:[],giveCash:0,takeCash:0,giveCards:0,takeCards:0}});
+  cancelled=command(cancelled,0,{type:'TRADE_REJECT'});
+  assert.equal(cancelled.botMemory.players[1].observation.profiles[0].trades.rejected,0);
+});
+test('expired shared budget stops optional NUSA expansion and council even in deep mode',()=>{
+  const s=setup();s.turn=1;s.phase='end';s.assets[16].owner=1;s.assets[18].owner=1;s.assets[19].owner=0;
+  const plan=planDecision(s,1),count=plan.candidates.length,context=createDecisionContext({timeBudgetMs:0});
+  expandNusaCandidates(s,1,plan,{context});assert.equal(plan.candidates.length,count);
+  const result=decideNusa(s,1,plan,{deep:true,maxMs:1000,context});
+  assert.equal(result.search.nodes,0);assert.equal(plan.candidates.length,count);
+  assert.doesNotThrow(()=>command(s,1,result.action));
+});

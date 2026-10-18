@@ -28,7 +28,7 @@ async function selectCase(page,name){
   else if(name!=='menu')await page.locator(`dialog [data-action=${name}]`).click();
  }
  else if(name==='profile')await page.locator('.player-capsule[data-id="0"]').click();
- else if(['assets','build','auto'].includes(name)){await page.locator('[data-action=ownAssets]').click();if(name!=='assets')await page.locator(`[data-action=assetTab][aria-pressed][data-value=${name}]`).click();}
+ else if(['assets','build'].includes(name)){await page.locator('[data-action=ownAssets]').click();if(name!=='assets')await page.locator(`[data-action=assetTab][aria-pressed][data-value=${name}]`).click();}
  else if(name==='trade')await page.locator('.quick-actions [data-action=trade]').click();
  else if(name==='history')await page.locator('[data-action=history]').click();
  else if(name==='tax'){await page.locator('[data-tile="4"]').focus();await page.keyboard.press('Enter');}
@@ -44,7 +44,7 @@ try{
   checks.push({name:`preserved ${c.id}`,passed:true,sha256:hash,pixelCompared:!!reference});await context.close();
  }
  const viewports=[{width:320,height:568},{width:360,height:640},{width:390,height:844},{width:430,height:932}];
- const allNames=['lobby','setup','pawn','onlineEntry','auth','menu','settings','rules','saves','profile','assets','build','auto','trade','history','allTiles','tax','jail','debt','auction','won'];
+ const allNames=['lobby','setup','pawn','onlineEntry','auth','menu','settings','rules','saves','profile','assets','build','trade','history','allTiles','tax','jail','debt','auction','won'];
  const names=process.env.MN_PORTRAIT_CASES?allNames.filter(n=>process.env.MN_PORTRAIT_CASES.split(',').includes(n)):allNames;
  for(const viewport of viewports)for(const name of names){
   const kind=['jail','debt','auction','won'].includes(name)?name:'game',lobby=['lobby','setup','pawn','onlineEntry','auth'].includes(name);

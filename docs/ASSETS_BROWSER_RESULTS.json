@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T23:48:43.964Z",
+  "generatedAt": "2026-10-18T08:51:56.960Z",
   "engine": "Chromium via Playwright, actual DOM/local HTTP",
   "checks": [
     {
@@ -9,27 +9,23 @@
     {
       "name": "chance catalog: sixteen contextual public cards, bounded inner scroll and always visible footer",
       "passed": true,
-      "height": 469.296875
+      "height": 454.390625
     },
     {
       "name": "community catalog: sixteen contextual public cards, bounded inner scroll and always visible footer",
       "passed": true,
-      "height": 469.296875
+      "height": 454.390625
     },
     {
-      "name": "tax info 4: fixed N 200, Bank destination and no repeated payment button",
+      "name": "tax info 4: fixed ₦ 200, Bank destination and no repeated payment button",
       "passed": true
     },
     {
-      "name": "tax info 38: fixed N 100, Bank destination and no repeated payment button",
+      "name": "tax info 38: fixed ₦ 100, Bank destination and no repeated payment button",
       "passed": true
     },
     {
       "name": "single and three additional buildings in one stable Assets module, evenly distributed, no double queue or refresh replay",
-      "passed": true
-    },
-    {
-      "name": "reviewed automatic mortgage protects complete group, exact two commits and stays open without replay",
       "passed": true
     },
     {

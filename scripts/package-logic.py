@@ -112,7 +112,8 @@ console.log({version: state.version, phase: state.phase});
 `command(state, actor, action, rng)` mengembalikan state baru. Aksi ilegal
 melempar exception dan tidak mengubah input. Simpan hasil hanya jika berhasil.
 ID mencegah pengulangan aksi yang sama; expectedVersion menolak keputusan basi.
-RNG opsional harus mengembalikan angka dalam rentang [0, 1). Host bertanggung
+RNG default memakai Web Crypto dan rejection sampling tanpa bias. RNG opsional
+untuk pengujian harus mengembalikan angka dalam rentang [0, 1). Host bertanggung
 jawab atas penjadwalan, batas waktu dan fallback masing-masing sistem bot.
 
 `publicState()` menyembunyikan urutan kartu, daftar ID aksi dan botMemory.

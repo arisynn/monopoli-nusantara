@@ -1,0 +1,24 @@
+{
+  "checks": [
+    {
+      "name": "Original PNG house/hotel atlas renders on board with 1–4 houses and one hotel",
+      "passed": true
+    },
+    {
+      "name": "Bank/build popup uses the same original PNG artwork",
+      "passed": true
+    },
+    {
+      "name": "Certificate rent tiers and costs use PNG building images",
+      "passed": true
+    },
+    {
+      "name": "PNG is served successfully at its original 888×444 resolution without missing assets",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Local Chromium at mobile viewport; no live services contacted."
+  ]
+}

@@ -1,12 +1,7 @@
-// Decorative pip changes only. The authoritative pair enters this view at reveal time.
-export const DOT_FACES = Object.freeze({
-  1: [4],
-  2: [0, 8],
-  3: [0, 4, 8],
-  4: [0, 2, 6, 8],
-  5: [0, 2, 4, 6, 8],
-  6: [0, 2, 3, 5, 6, 8],
-});
+// Decorative image changes only. The authoritative pair enters this view at reveal time.
+export const DICE_IMAGES = Object.freeze(
+  Array.from({ length: 6 }, (_, i) => `/assets/dice/die-${i + 1}.png`),
+);
 export function pipFrame(id, tick) {
   let h = 2166136261;
   for (const c of id) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
@@ -31,18 +26,16 @@ export class DiceView {
     this.timer = null;
     this.key = "";
     this.tick = 0;
-    this.element.innerHTML = `<div class="dice-pair" aria-hidden="true">${[0, 1].map(() => '<div class="die">' + Array.from({ length: 9 }, () => "<i></i>").join("") + "</div>").join("")}</div><small></small>`;
+    // Six shared URLs are loaded once. Ticks only change two data attributes;
+    // image decoding and DOM creation do not repeat during the shuffle.
+    this.element.innerHTML = `<div class="dice-pair" aria-hidden="true">${[0, 1].map(() => '<div class="die" data-value="0">' + DICE_IMAGES.map((src, i) => `<img class="die-face" data-face="${i + 1}" src="${src}" width="192" height="192" alt="" decoding="async" draggable="false">`).join("") + "</div>").join("")}</div><small></small>`;
     this.faces = [...element.querySelectorAll(".die")];
   }
   paint(values) {
     for (let d = 0; d < 2; d++) {
       const value = values?.[d] || 0;
-      this.faces[d].dataset.value = String(value);
-      for (let i = 0; i < 9; i++)
-        this.faces[d].children[i].classList.toggle(
-          "dot",
-          DOT_FACES[value]?.includes(i) || false,
-        );
+      if (this.faces[d].dataset.value !== String(value))
+        this.faces[d].dataset.value = String(value);
     }
   }
   stop() {
@@ -69,7 +62,7 @@ export class DiceView {
       result.stage === "rolling" ? "Mengacak…" : result.label;
     if (result.stage !== "rolling") {
       this.stop();
-      this.paint(result.values);
+      this.paint(result.values || (result.stage === "idle" ? [1, 1] : null));
       return;
     }
     if (this.paused) {
@@ -92,7 +85,7 @@ export class DiceView {
           this.timer = null;
           frame();
         },
-        Math.min(145, 55 + this.tick * 8),
+        Math.min(150, 75 + this.tick * 10),
       );
     };
     frame();

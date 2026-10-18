@@ -35,7 +35,6 @@
     "adapters/vercel/**/*.ts"
   ],
   "exclude": [
-    "lib/server/runtime-sites.ts",
     "supabase/functions",
     "node_modules"
   ]

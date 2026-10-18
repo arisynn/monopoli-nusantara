@@ -10,6 +10,7 @@ import {ScenarioRandom} from '../lib/bot/scenario-random.mjs';
 import {createLearningModel,validLearningModel,valueFeatures,VALUE_FEATURES,tdLambdaSamples,advantageWeightedPolicy,fitValue,predictValues} from '../lib/bot/learning.mjs';
 import {concessionOrder,rejectionActive,ownershipKey,negotiationContext} from '../lib/bot/concessions.mjs';
 import {recordBotMemory,memoryFor} from '../lib/bot/memory.mjs';
+import {tradeRetryVerdict} from '../lib/bot/trade-memory.mjs';
 import {planDecision} from '../lib/bot/strategy.mjs';
 import {seeded,decideMind,rolloutPolicy} from '../lib/bot/mind.mjs';
 const setup=(n=3)=>createGame({players:Array.from({length:n},(_,id)=>({name:'P'+id,controller:'bot',botPersona:['raka','bima','sari'][id%3]})),startingRoll:false,matchId:'hybrid'},seeded(9));
@@ -100,11 +101,13 @@ test('both sides post-trade development, Pareto filtering and anti-leader contex
  const copy=structuredClone(s);copy.players[1].controller='human';copy.players[1].botPersona='sari';assert.equal(evaluateTrade(copy,0,t,0).net,a.net);
  const rows=[{trade:{to:1},own:10,partner:5},{trade:{to:1},own:9,partner:4},{trade:{to:2},own:1,partner:1}];assert.equal(paretoFrontier(rows).length,2);
 });
-test('rejection cooldown invalidates on ownership change and public concession feedback survives save',()=>{
+test('offer-specific refusals replace recipient cooldown, legacy cooldown and concession feedback survive save',()=>{
  let s=setup();own(s,1,0);s.phase='end';const a={type:'OFFER',trade:trade(1,{give:[1],takeCash:100})};s=command(s,0,a);s=command(s,1,{type:'TRADE_REJECT'});
- assert(rejectionActive(s,memoryFor(s,0),1));assert.equal(concessionOrder(s,1).length,4);
+ assert(!rejectionActive(s,memoryFor(s,0),1));assert(!tradeRetryVerdict(s,0,a.trade).allowed);
+ const legacy=structuredClone(memoryFor(s,0));delete legacy.tradeHistory;assert(rejectionActive(s,legacy,1));
+ assert.equal(concessionOrder(s,1).length,4);
  const roundTrip=JSON.parse(JSON.stringify(s));assert.deepEqual(concessionOrder(roundTrip,1),concessionOrder(s,1));
- own(s,3,2);assert(!rejectionActive(s,memoryFor(s,0),1));assert.equal(roundTrip.botMemory.players[0].rejections[1].ownership,ownershipKey(roundTrip));
+ own(s,3,2);assert(!rejectionActive(s,legacy,1));assert(tradeRetryVerdict(s,0,a.trade).allowed);assert.equal(roundTrip.botMemory.players[0].rejections[1].ownership,ownershipKey(roundTrip));
  const arms=roundTrip.botMemory.opponents[1].concessions[negotiationContext(roundTrip)];assert.equal(arms.reduce((n,a)=>n+a.rejected,0),1);
 });
 test('counteroffers stop at depth two',()=>{

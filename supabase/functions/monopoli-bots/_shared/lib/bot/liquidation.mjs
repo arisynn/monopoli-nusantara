@@ -5,9 +5,9 @@ import {ruleState} from './candidates.mjs';
 
 /** Exact 0/1 mortgage subset against an additive opportunity-loss objective.
  * This subsolver does not claim global optimality over sales/hotel sequences. */
-export function mortgageSubset(s,id,target,analysis,{maxStates=12000,expired=()=>false}={}){
+export function mortgageSubset(s,id,target,analysis,{maxStates=12000,expired=()=>false,allowTile=()=>true}={}){
  const need=target-s.players[id].cash;if(need<=0)return {path:[],exact:true};
- const choices=assets(s,id).filter(t=>!managementError(s,id,t.id,'MORTGAGE'));
+ const choices=assets(s,id).filter(t=>allowTile(t.id)&&!managementError(s,id,t.id,'MORTGAGE'));
  let dp=new Map([[0,{raised:0,damage:0,path:[]}]]);
  for(const t of choices){
   if(expired())return null;

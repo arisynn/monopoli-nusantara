@@ -1,8 +1,9 @@
 import "./verify-learning-artifact.mjs";
 import "./build-server.mjs";
 import { mkdir, readFile, writeFile, cp, readdir, rm } from "node:fs/promises";
-import { stripTypeScriptTypes } from "node:module";
 import { outputFingerprint } from "./build-fingerprint.mjs";
+import { moduleGraph, projectRoot } from "./module-graph.mjs";
+import { relative } from "node:path";
 import {
   APP_VERSION,
   APP_RELEASE,
@@ -17,34 +18,26 @@ await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 await cp(new URL("public/", root), dist, { recursive: true });
 await mkdir(new URL("frontend/", dist), { recursive: true });
-for (const name of await readdir(new URL("frontend/", root))) {
-  if (name === "service-worker.js") continue;
-  const data = await readFile(new URL("frontend/" + name, root));
-  if (name === "index.html") await writeFile(new URL("index.html", dist), data);
-  else
-    await writeFile(
-      new URL("frontend/" + name, dist),
-      name.endsWith(".mjs")
-        ? data.toString().replaceAll("../lib/storage.ts", "../lib/storage.mjs")
-        : data,
-    );
-}
-await mkdir(new URL("lib/bot/", dist), { recursive: true });
-await mkdir(new URL("lib/bot/nusa-v7/", dist), { recursive: true });
-const allowed = [];
-for (const dir of ["lib/", "lib/bot/", "lib/bot/nusa-v7/"])
-  for (const name of await readdir(new URL(dir, root))) {
-    if (!name.endsWith(".mjs")) continue;
-    allowed.push(dir + name);
-    await cp(new URL(dir + name, root), new URL(dir + name, dist));
-  }
-await writeFile(
-  new URL("lib/storage.mjs", dist),
-  stripTypeScriptTypes(
-    await readFile(new URL("lib/storage.ts", root), "utf8"),
-    { mode: "strip" },
-  ),
+await cp(new URL("frontend/index.html", root), new URL("index.html", dist));
+await cp(
+  new URL("frontend/styles.css", root),
+  new URL("frontend/styles.css", dist),
 );
+const allowed = [];
+const graph = await moduleGraph(["frontend/app.mjs"]);
+for (const [filename, module] of graph) {
+  const path = relative(projectRoot, filename).replace(/\.ts$/, ".mjs");
+  if (!/^(frontend|lib)\//.test(path) || path.startsWith("lib/server/"))
+    throw Error(`Unexpected public module: ${path}`);
+  const target = new URL(path, dist);
+  await mkdir(new URL(".", target), { recursive: true });
+  let source = module.source;
+  for (const [spec, dependency] of module.dependencies)
+    if (dependency.endsWith(".ts"))
+      source = source.replaceAll(spec, spec.replace(/\.ts$/, ".mjs"));
+  await writeFile(target, source);
+  allowed.push(path);
+}
 await cp(
   new URL("frontend/service-worker.js", root),
   new URL("nusantara-sw.js", dist),
@@ -91,12 +84,10 @@ async function assetPaths(dir, prefix) {
 }
 const precache = [
   "/",
+  "/manifest.webmanifest",
+  "/favicon.ico",
   "/frontend/styles.css",
-  ...(await readdir(new URL("frontend/", dist)))
-    .filter((n) => n.endsWith(".mjs"))
-    .map((n) => "/frontend/" + n),
   ...allowed.map((p) => "/" + p),
-  "/lib/storage.mjs",
   ...(await assetPaths(new URL("assets/", dist), "/assets/")),
 ];
 for (const path of precache)
@@ -104,5 +95,5 @@ for (const path of precache)
 await writeFile(new URL("precache.json", dist), JSON.stringify(precache));
 // Avoid leaking any backend module or historical metadata through the static root.
 console.log(
-  `Built ${fileURLToPath(dist)} — browser modules ${allowed.length + 1}; no server secrets/modules or dependency install.`,
+  `Built ${fileURLToPath(dist)} — ${allowed.length} reachable browser modules; no server secrets/modules or dependency install.`,
 );

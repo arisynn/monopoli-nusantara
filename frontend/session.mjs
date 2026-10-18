@@ -1,13 +1,9 @@
 import { LocalSessionLease } from "./local-session-lease.mjs";
-import { mortgageAdvice } from "./mortgage-advisor.mjs";
+import { secureRandom } from "../lib/random.mjs";
+import { debtAdvice } from "./debt-advisor.mjs";
 import { assetPermission } from "./domain.mjs";
 import { buildPreview } from "./development.mjs";
-import {
-  createGame,
-  command,
-  publicState,
-  decisionActor,
-} from "../lib/game.mjs";
+import { createGame, command, publicState } from "../lib/game.mjs";
 import { localPlayers } from "../lib/bot/personas.mjs";
 import { createMindClient } from "../lib/bot/mind-client.mjs";
 import { strategyView } from "../lib/bot/memory.mjs";
@@ -27,7 +23,7 @@ import {
   SaveConflictError,
 } from "../lib/storage.ts";
 import { validateLocalState } from "../lib/save-format.mjs";
-import {requirePlayerName} from '../lib/player-name.mjs';
+import { requirePlayerName } from "../lib/player-name.mjs";
 import {
   OnlineAuth,
   subscribeRoom,
@@ -39,13 +35,12 @@ import {
   requestJSON,
 } from "../lib/room-client.mjs";
 import { localBotActor, humanSeat } from "./domain.mjs";
-const secure = () => crypto.getRandomValues(new Uint32Array(1))[0] / 4294967296;
 export class GameSession extends EventTarget {
   constructor({
     persist = saveGame,
     load = loadGame,
     archive = savePrevious,
-    random = secure,
+    random = secureRandom,
     mind = createMindClient(),
     transport = fetch,
     clock = Date.now,
@@ -293,7 +288,13 @@ export class GameSession extends EventTarget {
       this.ingest(
         createGame(
           {
-            players: localPlayers(name, Number(count), Number(pawn), levels, botIds),
+            players: localPlayers(
+              name,
+              Number(count),
+              Number(pawn),
+              levels,
+              botIds,
+            ),
             rules,
             advisorEnabled: advisorEnabled && this.configured,
           },
@@ -422,36 +423,78 @@ export class GameSession extends EventTarget {
     this.notify();
     return true;
   }
-  startMortgages(target, review = null) {
-    if (this.busy || !this.assetPanel || !this.covered || this.hidden)
-      return false;
-    const advice = mortgageAdvice(this.state, this.seat, target);
+  startDebtPayment() {
     if (
-      review &&
-      (review.version !== this.state.version ||
-        !Array.isArray(review.tiles) ||
-        review.tiles.join(",") !== advice.tiles.join(","))
-    ) {
-      this.error = "Aset berubah. Hitung rekomendasi baru sebelum menggadai.";
+      this.busy ||
+      this.hidden ||
+      this.state?.phase !== "debt" ||
+      this.state.debt?.from !== this.seat ||
+      this.state.players[this.seat]?.controller !== "human"
+    )
+      return false;
+    const advice = debtAdvice(this.state, this.seat);
+    if (!advice?.available) {
+      this.error =
+        "Dana dari aset belum cukup untuk melunasi. Kelola aset atau susun barter terlebih dahulu.";
       this.notify();
       return false;
     }
-    if (!advice.tiles.length) return false;
+    this.setCovered(true, { assets: true });
     this.assetPlan = {
-      kind: "mortgage",
-      target,
-      tiles: advice.tiles,
-      requested: advice.tiles.length,
+      kind: "debt",
+      actions: advice.actions,
+      requested: advice.actions.length + 1,
       completed: 0,
       seat: this.seat,
       match: this.state.matchId,
       version: this.state.version,
-      phase: this.state.phase,
+      phase: "debt",
+      debt: JSON.stringify(this.state.debt),
       status: "running",
       reason: "",
     };
     this.notify();
     return true;
+  }
+  async stepDebtPayment(plan) {
+    if (JSON.stringify(this.state.debt) !== plan.debt) {
+      this.stopAssetPlan("Tagihan berubah. Periksa kembali sebelum melunasi.");
+      return;
+    }
+    const paid = this.state.players[plan.seat].cash >= this.state.debt.amount;
+    const action = paid ? { type: "PAY" } : plan.actions[plan.completed];
+    if (
+      !action ||
+      (!paid &&
+        assetPermission(this.state, plan.seat, action.tile, action.type))
+    ) {
+      this.stopAssetPlan(
+        "Rencana tidak lagi memenuhi syarat. Hitung ulang dari kondisi terbaru.",
+      );
+      return;
+    }
+    const version = this.state.version;
+    if (
+      !(await this.act(
+        action.type,
+        action.tile === undefined ? {} : { tile: action.tile },
+        plan.seat,
+      ))
+    ) {
+      this.stopAssetPlan(this.error || "Pelunasan otomatis dihentikan.");
+      return;
+    }
+    if (this.state.version !== version + 1) {
+      this.stopAssetPlan("State berubah. Periksa kembali tagihan.");
+      return;
+    }
+    plan.completed++;
+    plan.version = this.state.version;
+    if (paid) {
+      plan.status = "complete";
+      plan.reason = "Tagihan sudah dilunasi.";
+    } else if (this.state.phase !== "debt")
+      this.stopAssetPlan("Keputusan permainan berubah. Pelunasan dihentikan.");
   }
   async stepAssetPlan() {
     const plan = this.assetPlan;
@@ -480,11 +523,12 @@ export class GameSession extends EventTarget {
         );
         return;
       }
-      const type = plan.kind === "mortgage" ? "MORTGAGE" : "BUILD",
-        tile =
-          plan.kind === "mortgage"
-            ? plan.tiles[plan.completed]
-            : buildPreview(this.state, plan.seat, plan.group, 1).tiles[0];
+      if (plan.kind === "debt") {
+        await this.stepDebtPayment(plan);
+        return;
+      }
+      const type = "BUILD",
+        tile = buildPreview(this.state, plan.seat, plan.group, 1).tiles[0];
       if (
         tile === undefined ||
         assetPermission(this.state, plan.seat, tile, type)
@@ -504,7 +548,7 @@ export class GameSession extends EventTarget {
           e.version === version + 1 &&
           e.finance?.some(
             (f) =>
-              f.kind === (plan.kind === "mortgage" ? "mortgage" : "build") &&
+              f.kind === "build" &&
               (f.from === plan.seat || f.to === plan.seat) &&
               f.tile === tile,
           ),
@@ -523,8 +567,7 @@ export class GameSession extends EventTarget {
       }
       if (plan.status === "running" && plan.completed >= plan.requested) {
         plan.status = "complete";
-        plan.reason =
-          plan.kind === "mortgage" ? "Gadai selesai." : "Pembangunan selesai.";
+        plan.reason = "Pembangunan selesai.";
       }
     } finally {
       this.assetStepping = false;
@@ -864,12 +907,17 @@ export class GameSession extends EventTarget {
   }
   async renameLocalPlayer(value) {
     const name = requirePlayerName(value);
-    if (this.room) throw Error('Gunakan sinkronisasi room untuk nama online.');
+    if (this.room) throw Error("Gunakan sinkronisasi room untuk nama online.");
     if (!this.state) return;
-    const state = {...this.state, players: this.state.players.map((player, i) =>
-      i === 0 ? {...player, name} : player)};
-    this.ingest(state, {reset: true});
-    if (!await this.persistNow()) throw Error(this.error || 'Nama belum dapat disimpan.');
+    const state = {
+      ...this.state,
+      players: this.state.players.map((player, i) =>
+        i === 0 ? { ...player, name } : player,
+      ),
+    };
+    this.ingest(state, { reset: true });
+    if (!(await this.persistNow()))
+      throw Error(this.error || "Nama belum dapat disimpan.");
     this.notify();
   }
   async roomOp(type, data = {}) {
@@ -934,11 +982,20 @@ export class GameSession extends EventTarget {
       // Room metadata is authoritative for display names even if gameplay
       // state.version stayed unchanged during a profile-only rename.
       const merged = mergeState(this.state, result.state, baseline);
-      const renamed = merged.players.some((player, index) =>
-        result.seats?.[index] && player.name !== result.seats[index].name);
-      const named = renamed ? {...merged, players: merged.players.map((player, index) =>
-        ({...player, name: result.seats?.[index]?.name ?? player.name}))} : merged;
-      this.ingest(named, {reset: baseline || renamed});
+      const renamed = merged.players.some(
+        (player, index) =>
+          result.seats?.[index] && player.name !== result.seats[index].name,
+      );
+      const named = renamed
+        ? {
+            ...merged,
+            players: merged.players.map((player, index) => ({
+              ...player,
+              name: result.seats?.[index]?.name ?? player.name,
+            })),
+          }
+        : merged;
+      this.ingest(named, { reset: baseline || renamed });
     } else {
       this.state = null;
       this.model = null;

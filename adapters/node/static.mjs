@@ -8,6 +8,8 @@ const types = {
   ".js": "text/javascript; charset=utf-8",
   ".css": "text/css; charset=utf-8",
   ".json": "application/json; charset=utf-8",
+  ".webmanifest": "application/manifest+json; charset=utf-8",
+  ".ico": "image/x-icon",
   ".svg": "image/svg+xml",
   ".webp": "image/webp",
   ".woff": "font/woff",
@@ -44,10 +46,15 @@ export async function staticResponse(request) {
     return new Response(body, {
       headers: {
         "Content-Type": types[ext] || "application/octet-stream",
-        "Cache-Control":
-          ext === ".html" || ext === ".mjs" || ext === ".css"
-            ? "no-cache"
-            : "public, max-age=86400",
+        "Cache-Control": [
+          ".html",
+          ".mjs",
+          ".js",
+          ".css",
+          ".webmanifest",
+        ].includes(ext)
+          ? "no-cache"
+          : "public, max-age=86400",
         "X-Content-Type-Options": "nosniff",
         "Referrer-Policy": "same-origin",
       },

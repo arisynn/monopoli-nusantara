@@ -1,24 +1,23 @@
-/** NUSA V18.0 "Transcendent Metagame & Multi-Agent Singularity" Council.
- * 1. Cross-Phase Buy-Rescue Trade (`OFFER` inside `phase === 'buy'` to fund key deed purchase).
- * 2. Preemptive Rival-Collusion Interdiction (Mode F: Seizes third-party bridge tiles).
- * 3. Reverse Counter-Offer Hijacking (`COUNTER` steals monopoly/chain on rival's turn).
- * 4. Psychological Bait Selection (`botMemory.opponents.groups` & `concessionOrder`) + Jail-Card Arbitrage.
- * 5. Same-Turn Multi-Trade Chaining + Mid-Auction Flash Liquidity + Apex Even-Build Ordering.
+/** NUSA V20.0 "Apotheosis — 2x Power Multiplier" Council.
+ * 1. Closed-Form Binary-Search Trade Synthesis (`solveOptimalTradeCash`).
+ * 2. Multi-Step Pre-Trade Liquidity Sequencer (`nusa-pretrade-mort-` -> `OFFER` -> `BUILD`).
+ * 3. Poverty Illusion Buyout (Uses `liquidBuffer` for post-trade houses while keeping visible cash low).
+ * 4. Full Isolated-Asset Leverage for 3-House Sweet-Spot Construction.
  */
-import {BOARD,GROUPS,auctionMinimum} from '../../content.mjs';
+import {BOARD,GROUPS} from '../../content.mjs';
 import {canTrade,canManage,redemption,managementError} from '../../game.mjs';
 import {legalCandidate} from '../candidates.mjs';
 import {liquidityPenalty} from '../analysis.mjs';
-import {rejectionActive,concessionOrder} from '../concessions.mjs';
+import {rejectionActive} from '../concessions.mjs';
 import {memoryFor} from '../memory.mjs';
 import {situationOf,APEX_TILES} from './situation.mjs';
 import {
   runExperts,STRATEGY_EXPERTS,grandmasterAuctionCeiling,GROUP_TIER,
   normalizeTrade,evaluateTradeForActor,completion,block,valuation,
-  predictPartnerAcceptance,getBilateralTradeEvaluation
+  predictPartnerAcceptance,getBilateralTradeEvaluation,solveOptimalTradeCash
 } from './experts.mjs';
 
-export const NUSA_V7_VERSION='18.0.0-transcendent-metagame-singularity';
+export const NUSA_V7_VERSION='20.0.0-apotheosis-2x-power-multiplier';
 
 export function cleanAction(a){
   if(!a||typeof a!=='object')return a;
@@ -34,6 +33,8 @@ const STAGE_WEIGHTS={
     earlyBlitz:2.8,chainAccumulator:2.8,cardCycleTracker:2.4,buildingAuctionSniper:2.9,
     midAuctionLiquidity:3.0,queueLookahead:2.8,hotelTrapExploiter:2.5,mechanicsSage:2.8,
     crossPhaseTrade:3.1,collusionInterdictor:2.9,counterHijacker:3.0,psychProfiler:2.7,
+    stealthCloaker:3.0,coalitionArbitrage:2.9,doubleDeedSweep:3.1,vultureHarvester:2.9,
+    povertyCloak:3.1,preTradeLeverage:3.1,binaryTradeSolver:3.0,velocitySwap:2.9,
     portfolio:2.1,completion:2.6,blocking:2.4,auction:2.9,
     negotiation:2.5,trajectorySolver:2.9,steppingStone:2.2,jail:2.5,flashLiquidity:2.6
   },
@@ -42,6 +43,8 @@ const STAGE_WEIGHTS={
     cardCycleTracker:2.5,buildingAuctionSniper:3.0,contestedAnchor:2.4,
     midAuctionLiquidity:3.1,queueLookahead:2.9,hotelTrapExploiter:3.0,mechanicsSage:2.9,
     crossPhaseTrade:3.1,collusionInterdictor:3.0,counterHijacker:3.1,psychProfiler:2.8,
+    stealthCloaker:3.2,coalitionArbitrage:3.0,doubleDeedSweep:3.2,vultureHarvester:3.0,
+    povertyCloak:3.3,preTradeLeverage:3.2,binaryTradeSolver:3.1,velocitySwap:3.1,
     auction:2.7,flashLiquidity:2.8,mortgage:2.6,negotiation:2.6,trajectorySolver:2.9,
     asymmetricSwap:2.7,steppingStone:2.4,killshot:2.6,jail:2.5
   },
@@ -50,6 +53,8 @@ const STAGE_WEIGHTS={
     cardCycleTracker:2.5,buildingAuctionSniper:3.0,midAuctionLiquidity:3.1,
     queueLookahead:3.0,hotelTrapExploiter:3.1,mechanicsSage:2.9,
     crossPhaseTrade:3.1,collusionInterdictor:3.1,counterHijacker:3.1,psychProfiler:2.9,
+    stealthCloaker:3.2,coalitionArbitrage:3.1,doubleDeedSweep:3.2,vultureHarvester:3.1,
+    povertyCloak:3.3,preTradeLeverage:3.2,binaryTradeSolver:3.1,velocitySwap:3.2,
     flashLiquidity:2.7,mortgage:2.6,negotiation:2.6,trajectorySolver:2.9,
     asymmetricSwap:2.7,killshot:2.9,endgame:2.5,counterTrade:2.4,jail:2.5
   },
@@ -57,6 +62,8 @@ const STAGE_WEIGHTS={
     postRollDiscipline:3.0,endgame:2.8,scarcity:2.7,buildingAuctionSniper:3.0,
     midAuctionLiquidity:3.1,queueLookahead:3.0,hotelTrapExploiter:3.1,mechanicsSage:2.9,
     crossPhaseTrade:3.0,collusionInterdictor:3.0,counterHijacker:3.1,psychProfiler:2.8,
+    stealthCloaker:3.1,coalitionArbitrage:3.0,doubleDeedSweep:3.1,vultureHarvester:3.2,
+    povertyCloak:3.2,preTradeLeverage:3.1,binaryTradeSolver:3.0,velocitySwap:3.1,
     cardCycleTracker:2.4,flashLiquidity:2.6,mortgage:2.6,killshot:3.0,bankruptcy:2.8,jail:2.6
   }
 };
@@ -97,15 +104,18 @@ function sovereignScoreRebase(context,action,nativeScore){
 export function ensureSovereignCandidates(context,plan){
   const candidates=plan?.candidates;
   if(!Array.isArray(candidates))return plan;
-  const {view,actor,self}=context;
+  const {view,actor,self,auctionStep,auctionMinBid}=context;
   const phase=view.phase;
   const topScore=()=>Math.max(0,...candidates.map(c=>c.score));
 
   const pushCandidate=(action,score)=>{
-    if(!action)return false;
+    if(!action||context.decisionContext?.expired())return false;
     const existing=candidates.find(c=>eq(c.action,action));
     if(existing){
-      if(score>existing.score)existing.score=score;
+      if(score>existing.score){
+        existing.score=score;
+        if(action.actionId)existing.action.actionId=action.actionId;
+      }
       return true;
     }
     const id=action.actionId||('nusa-'+candidates.length);
@@ -118,10 +128,12 @@ export function ensureSovereignCandidates(context,plan){
   };
 
   for(const c of candidates){
+
+    if(context.decisionContext?.expired())break;
     c.score=sovereignScoreRebase(context,c.action,c.score);
   }
 
-  // 0. EARLY-GAME SELECTIVE BUY vs AUCTION TRAP, PRE-BUY MORTGAGE, & V18.0 CROSS-PHASE BUY-RESCUE TRADE!
+  // 0. EARLY-GAME SELECTIVE BUY vs AUCTION TRAP, PRE-BUY MORTGAGE, & CROSS-PHASE BUY-RESCUE TRADE!
   if(phase==='buy'&&view.turn===actor&&Number.isInteger(view.buy)){
     const tId=view.buy,bTile=BOARD[tId];
     if(bTile?.price){
@@ -144,20 +156,22 @@ export function ensureSovereignCandidates(context,plan){
           pushCandidate({type:'MORTGAGE',tile:coll.id,actionId:'nusa-prebuy-mort-'+coll.id},topScore()+420);
         }
       }else if(isStrategic&&context.needsPreBuyTrade&&canTrade(view,actor)){
-        // V18.0 METAGAME #1: Cross-Phase Buy-Rescue Trade inside `phase === 'buy'`!
         const deficit=bTile.price-self.cash;
         const mem=memoryFor(view,actor);
         const richRivals=context.rivals.filter(p=>p.cash>=deficit&&!rejectionActive(view,mem,p.id)).sort((a,b)=>b.cash-a.cash);
         let buyTradeFound=false;
         for(const r of richRivals){
+          if(context.decisionContext?.expired())break;
           if(buyTradeFound)break;
           for(const deed of context.isolatedMortgageable){
+            if(context.decisionContext?.expired())break;
             if(deed.id===tId)continue;
             if(deed.group>=0){
               const oppCnt=GROUPS[deed.group].ids.filter(i=>view.assets[i]?.owner===r.id).length;
               if(oppCnt>=GROUPS[deed.group].ids.length-1)continue;
             }
             for(const mult of [1.0,0.92,0.85]){
+              if(context.decisionContext?.expired())break;
               const askCash=Math.min(r.cash,Math.max(deficit,Math.floor((deed.price*mult)/10)*10));
               if(askCash<deficit)continue;
               const trade={to:r.id,give:[deed.id],take:[],giveCash:0,takeCash:askCash,giveCards:0,takeCards:0};
@@ -176,7 +190,7 @@ export function ensureSovereignCandidates(context,plan){
     }
   }
 
-  // 1. AUCTION PHASE & BUILDING OFFER PHASE
+  // 1. AUCTION PHASE (5-Nusa Quantum Aware!) & BUILDING OFFER PHASE
   if(phase==='buildOffer'&&view.buildOffer?.pending?.includes(actor)){
     const joinCands=candidates.filter(c=>c.action.type==='BUILD_JOIN');
     if(joinCands.length>0){
@@ -206,24 +220,63 @@ export function ensureSovereignCandidates(context,plan){
       if(coll){
         pushCandidate({type:'MORTGAGE',tile:coll.id,actionId:'nusa-midauction-mort-'+coll.id},topScore()+440);
       }
+    }else if(context.needsMidAuctionTrade&&canTrade(view,actor)){
+      const minBid=auctionMinBid;
+      const deficit=minBid-self.cash;
+      const mem=memoryFor(view,actor);
+      const richRivals=context.rivals
+        .filter(p=>p.id!==view.auction?.highest&&p.cash>=deficit+100&&!rejectionActive(view,mem,p.id))
+        .sort((a,b)=>b.cash-a.cash);
+      let midAuctionTradeFound=false;
+      for(const r of richRivals){
+        if(context.decisionContext?.expired())break;
+        if(midAuctionTradeFound)break;
+        for(const deed of context.isolatedMortgageable){
+          if(context.decisionContext?.expired())break;
+          if(deed.id===view.auction?.tile)continue;
+          if(deed.group>=0){
+            const oppCnt=GROUPS[deed.group].ids.filter(i=>view.assets[i]?.owner===r.id).length;
+            if(oppCnt>=GROUPS[deed.group].ids.length-1)continue;
+          }
+          for(const mult of [0.95,0.85]){
+            if(context.decisionContext?.expired())break;
+            const askCash=Math.min(r.cash,Math.max(deficit,Math.floor((deed.price*mult)/10)*10));
+            if(askCash<deficit)continue;
+            const trade={to:r.id,give:[deed.id],take:[],giveCash:0,takeCash:askCash,giveCards:0,takeCards:0};
+            if(JSON.stringify(trade)===mem.lastSignature)continue;
+            const oracle=predictPartnerAcceptance(context,trade);
+            if(oracle.willAccept){
+              pushCandidate({type:'OFFER',trade,actionId:'nusa-midauction-trade-'+deed.id},topScore()+455);
+              midAuctionTradeFound=true;
+              break;
+            }
+          }
+          if(midAuctionTradeFound)break;
+        }
+      }
     }
-    const currentAmt=view.auction.amount||0;
-    const minBid=auctionMinimum(view.auction);
+
+    const qStep=auctionStep||10;
+    const minBid=auctionMinBid;
     const ceiling=grandmasterAuctionCeiling(context);
     if(minBid<=ceiling&&minBid<=self.cash){
+      const currentAmt=view.auction.amount||0;
       const gap=ceiling-currentAmt;
-      const step=view.auction.kind==='building'?(gap>300?30:10):(gap>450?50:gap>200?20:10);
-      const smartBid=Math.min(ceiling,Math.max(minBid,Math.floor((currentAmt+step)/10)*10));
-      pushCandidate({type:'BID',amount:smartBid,actionId:'nusa-smart-bid-'+smartBid},topScore()+195);
-      if(smartBid!==minBid){
-        pushCandidate({type:'BID',amount:minBid,actionId:'nusa-min-bid-'+minBid},topScore()+175);
+      const multStep=view.auction.kind==='building'?(gap>300?qStep*2:qStep):(gap>450?qStep*3:gap>200?qStep*2:qStep);
+      const rawSmart=Math.min(ceiling,Math.max(minBid,currentAmt+multStep));
+      const smartBid=Math.floor(rawSmart/qStep)*qStep;
+      if(smartBid>=minBid){
+        pushCandidate({type:'BID',amount:smartBid,actionId:'nusa-smart-bid-'+smartBid},topScore()+195);
       }
-    }else if(!context.needsMidAuctionMortgage){
+      if(smartBid!==minBid){
+        pushCandidate({type:'BID',amount:minBid,actionId:'nusa-min-bid-'+minBid},topScore()+180);
+      }
+    }else if(!context.needsMidAuctionMortgage&&!context.needsMidAuctionTrade){
       pushCandidate({type:'PASS',actionId:'nusa-trap-pass'},topScore()+220);
     }
   }
 
-  // 2. INCOMING TRADE PHASE: V18.0 Reverse Counter-Offer Hijacking & Smart Cash Counter
+  // 2. INCOMING TRADE PHASE: Reverse Counter-Offer Hijacking & Smart Cash Counter
   if(phase==='trade'&&view.trade&&view.trade.to===actor){
     const t=view.trade;
     const senderId=t.from;
@@ -232,8 +285,6 @@ export function ensureSovereignCandidates(context,plan){
     const evalScore=evaluateTradeForActor(context,norm);
 
     if((view.botMemory?.negotiation?.depth||0)<2){
-      // V18.0 METAGAME #3: Reverse Counter-Offer Hijacking!
-      // Scan sender's unbuilt deeds for any tile that completes a NUSA monopoly, chain, or collusion block!
       const senderTargets=BOARD.filter(d=>{
         if(!d.price||view.assets[d.id]?.owner!==senderId||(view.assets[d.id]?.level||0)>0)return false;
         if(d.group>=0&&GROUPS[d.group].ids.some(i=>(view.assets[i]?.level||0)>0))return false;
@@ -259,39 +310,34 @@ export function ensureSovereignCandidates(context,plan){
 
       let hijackSynthesized=false;
       for(const targetDeed of senderTargets.slice(0,2)){
+        if(context.decisionContext?.expired())break;
         if(hijackSynthesized)break;
         const giveOptions=safeBaitsForSender.slice(0,2).map(b=>[b.id]);
         giveOptions.push([]);
         for(const giveList of giveOptions){
+          if(context.decisionContext?.expired())break;
           if(hijackSynthesized)break;
-          const giveVal=giveList.reduce((n,id)=>n+BOARD[id].price,0);
           const cardSweetener=(context.canGiveJailCardSweetener&&(self.cards?.length||0)>0)?1:0;
-          for(const overpay of [0,150,300,450]){
-            const rawPay=targetDeed.price-giveVal+overpay-(cardSweetener*250);
-            const giveCash=rawPay>0?Math.round(rawPay/10)*10:0;
-            if(giveList.length===0&&giveCash<targetDeed.price&&cardSweetener===0)continue;
-            if(self.cash-giveCash<context.trueReserve+1200)continue;
-            const counterTrade={
-              to:senderId,
-              give:giveList,
-              take:[targetDeed.id],
-              giveCash,
-              takeCash:0,
-              giveCards:cardSweetener,
-              takeCards:0
-            };
-            const {myEval,partnerEval}=getBilateralTradeEvaluation(context,counterTrade,actor);
-            if(myEval.net>0&&partnerEval.net>=15&&!partnerEval.invalid&&!partnerEval.insolventAfterFees){
-              if(pushCandidate({type:'COUNTER',trade:counterTrade,actionId:'nusa-counter-hijack-'+targetDeed.id},topScore()+410)){
-                hijackSynthesized=true;
-                break;
-              }
+          const maxCash=Math.max(0,Math.floor((self.cash-context.trueReserve-900)/10)*10);
+          const solved=solveOptimalTradeCash(context,{
+            partnerId:senderId,
+            giveList,
+            takeList:[targetDeed.id],
+            giveCards:cardSweetener,
+            minOverpay:-150,
+            maxOverpay:550,
+            maxCashOffer:maxCash,
+            partnerMaxCash:senderCash
+          });
+          if(solved){
+            if(pushCandidate({type:'COUNTER',trade:solved.trade,actionId:'nusa-counter-hijack-'+targetDeed.id},topScore()+415)){
+              hijackSynthesized=true;
+              break;
             }
           }
         }
       }
 
-      // Standard Cash Counter if incoming trade is weak and no hijack was synthesized
       if(!hijackSynthesized&&evalScore<0.08){
         const askExtra=Math.min(senderCash,Math.max(300,Math.round((t.takeCash||0)+450)));
         if(askExtra>0&&(t.take?.length||0)>0){
@@ -321,13 +367,16 @@ export function ensureSovereignCandidates(context,plan){
       const richRivals=context.rivals.filter(p=>p.cash>=400&&!rejectionActive(view,mem,p.id)).sort((a,b)=>b.cash-a.cash);
       let debtTradeSynthesized=false;
       for(const r of richRivals){
+        if(context.decisionContext?.expired())break;
         if(debtTradeSynthesized)break;
         for(const deed of context.isolatedMortgageable){
+          if(context.decisionContext?.expired())break;
           if(deed.group>=0){
             const oppCnt=GROUPS[deed.group].ids.filter(i=>view.assets[i]?.owner===r.id).length;
             if(oppCnt>=GROUPS[deed.group].ids.length-1)continue;
           }
           for(const mult of [1.0,0.92,0.85]){
+            if(context.decisionContext?.expired())break;
             const askCash=Math.min(r.cash,Math.max(deed.mortgage+100,Math.floor((deed.price*mult)/10)*10));
             if(askCash<=deed.mortgage)continue;
             const trade={to:r.id,give:[deed.id],take:[],giveCash:0,takeCash:askCash,giveCards:0,takeCards:0};
@@ -361,24 +410,32 @@ export function ensureSovereignCandidates(context,plan){
   if(['roll','end','jail'].includes(phase)&&view.turn===actor&&canManage(view,actor)&&!context.shouldDeferPreRollBuild){
     // 3A. Unmortgage any mortgaged tile inside a completed color set!
     for(const g of context.groups){
+      if(context.decisionContext?.expired())break;
       if(g.fullSetOwned&&g.mortgagedCount>0){
         const mTile=g.ids.find(id=>view.assets[id]?.mortgaged);
         if(mTile!==undefined){
           const rCost=redemption(mTile);
           if(self.cash-rCost>=context.trueReserve*0.45&&!managementError(view,actor,mTile,'REDEEM')){
             pushCandidate({type:'REDEEM',tile:mTile,actionId:'nusa-redeem-mono-'+mTile},topScore()+400);
+          }else if(self.cash+context.liquidBuffer-rCost>=context.trueReserve*0.50){
+            const coll=context.isolatedMortgageable.find(d=>!managementError(view,actor,d.id,'MORTGAGE'));
+            if(coll){
+              pushCandidate({type:'MORTGAGE',tile:coll.id,actionId:'nusa-leverage-redeem-'+coll.id},topScore()+385);
+            }
           }
         }
       }
     }
 
-    // 3B. Aggressive 3-House Construction, Hotel-Trap Lock, & Apex-Tile Even-Build Ordering!
+    // 3B. Aggressive 3-House Construction, Hotel-Trap Lock, & Full Isolated-Asset Leverage!
     const maxTargetLevel=4;
     const buildGroups=context.groups
       .filter(g=>g.complete&&g.levelMin<maxTargetLevel)
       .sort((a,b)=>(GROUP_TIER[b.id]||1)-(GROUP_TIER[a.id]||1));
 
     for(const g of buildGroups){
+
+      if(context.decisionContext?.expired())break;
       const levelMin=g.levelMin;
       const lockHouses=(context.sariPresent||context.rivalMonopolies>0||context.rivalHasHotel)?context.bank.houses<=18:context.bank.houses<=14;
       if(levelMin===4&&lockHouses)continue;
@@ -396,14 +453,16 @@ export function ensureSovereignCandidates(context,plan){
       if(validTiles.length>0){
         const bestTile=validTiles[0];
         const bCost=BOARD[bestTile].build;
-        const safetyFloor=(levelMin<3||context.hotelTrapActive)?context.trueReserve*0.48:context.trueReserve*0.80;
+        const safetyFloor=(levelMin<3||context.hotelTrapActive)?context.trueReserve*0.45:context.trueReserve*0.80;
         if(self.cash-bCost>=safetyFloor){
           const trapBoost=context.hotelTrapActive?415:(levelMin<3?395:240);
           pushCandidate({type:'BUILD',tile:bestTile,actionId:'nusa-build-'+bestTile},topScore()+trapBoost);
         }else if(levelMin<3||context.hotelTrapActive){
-          const utilCollateral=context.isolatedMortgageable.find(t=>t.type==='utility');
-          if(utilCollateral&&self.cash+utilCollateral.mortgage-bCost>=safetyFloor&&!managementError(view,actor,utilCollateral.id,'MORTGAGE')){
-            pushCandidate({type:'MORTGAGE',tile:utilCollateral.id,actionId:'nusa-leverage-util-'+utilCollateral.id},topScore()+250);
+          // V20.0 Post-Trade Poverty-Cloak Unpack: Mortgage ANY isolated non-monopoly asset (utility, singleton city, or lone station)
+          // to immediately fund the 3-house sweet spot!
+          const collateral=context.isolatedMortgageable.find(t=>!managementError(view,actor,t.id,'MORTGAGE'));
+          if(collateral&&self.cash+collateral.mortgage-bCost>=safetyFloor*0.85){
+            pushCandidate({type:'MORTGAGE',tile:collateral.id,actionId:'nusa-leverage-build-'+collateral.id},topScore()+365);
           }
         }
       }
@@ -412,7 +471,7 @@ export function ensureSovereignCandidates(context,plan){
     // 3C. Late-Game De-Leveraging: Redeem Stations & Mortgaged Deeds when Flush with Cash
     if(context.canDeleverage&&phase==='end'){
       const redeemTargets=context.mortgagedOwned
-        .filter(t=>!managementError(view,actor,t.id,'REDEEM')&&self.cash-redemption(t.id)>=context.trueReserve+900)
+        .filter(t=>!context.cloakedMonopolyGroups?.has(t.group)&&!managementError(view,actor,t.id,'REDEEM')&&self.cash-redemption(t.id)>=context.trueReserve+900)
         .sort((a,b)=>(b.type==='station'?1:0)-(a.type==='station'?1:0)||b.price-a.price);
       if(redeemTargets.length>0){
         const rt=redeemTargets[0];
@@ -421,9 +480,10 @@ export function ensureSovereignCandidates(context,plan){
     }
   }
 
-  // 4. OMNISCIENT MIND-READER TRADE SYNTHESIZER (V18.0 Multi-Trade Chaining + Collusion Interdiction + Jail-Card Arbitrage!)
+  // 4. APOTHEOSIS TRADE SYNTHESIZER (Binary-Search Solver + Poverty Cloak + Pre-Trade Liquidity Sequencer!)
   if(phase==='end'&&view.turn===actor&&canTrade(view,actor)&&context.roundTradeCount<3){
     for(const c of candidates){
+      if(context.decisionContext?.expired())break;
       if(c.action.type==='OFFER'){
         const norm=normalizeTrade(context,c.action);
         const s=evaluateTradeForActor(context,norm);
@@ -440,8 +500,9 @@ export function ensureSovereignCandidates(context,plan){
     const groupOrder=[3,4,1,2,5,7,0,6];
     let synthesizedCount=0;
 
-    // Mode A & B: 2/3 -> 3/3 Monopoly Buyout (with Psychological Bait Sorting & Jail-Card Arbitrage!) & Asymmetric Swap
+    // Mode A (Binary-Search + Poverty Cloak), Mode A-PreTradeMortgage, Mode A-StealthCloak, & Mode B (Velocity Swap)
     for(const gId of groupOrder){
+      if(context.decisionContext?.expired())break;
       if(synthesizedCount>=3)break;
       const g=context.groups[gId];
       if(g.own!==g.ids.length-1||g.unownedCount>0)continue;
@@ -451,11 +512,9 @@ export function ensureSovereignCandidates(context,plan){
       if(targetOwner==null||targetOwner===actor||rejectionActive(view,mem,targetOwner))continue;
       if(g.ids.some(id=>(view.assets[id]?.level||0)>0))continue;
 
-      const tPrice=BOARD[missingTile].price;
-      const minBuildReserve=g.houseCost*2+context.trueReserve*0.50;
-      const maxCashOffer=Math.max(0,Math.floor((self.cash-minBuildReserve)/10)*10);
       const partnerMaxCash=view.players[targetOwner]?.cash||0;
       const partnerDesire=context.opponentProfiles?.get(targetOwner)?.desiredGroups||{};
+      const isCatchUpPartner=context.catchUpPartners?.has(targetOwner);
 
       const safeBaits=context.owned.filter(d=>{
         if(d.group===gId||(view.assets[d.id]?.level||0)>0)return false;
@@ -480,26 +539,107 @@ export function ensureSovereignCandidates(context,plan){
       packages.push([]);
 
       const cardOptions=(context.canGiveJailCardSweetener&&(self.cards?.length||0)>0)?[1,0]:[0];
+      const maxOverpayCap=Math.round(700*g.tier+(isCatchUpPartner?150:0));
+
       let foundForGroup=false;
       for(const giveList of packages){
+        if(context.decisionContext?.expired())break;
         if(foundForGroup)break;
-        const giveVal=giveList.reduce((n,id)=>n+BOARD[id].price,0);
-        for(const giveCards of cardOptions){
-          if(foundForGroup)break;
-          const cardVal=giveCards*250;
-          for(const netOverpay of [-300,-150,0,100,200,320,450,600]){
-            const rawPayment=tPrice-giveVal-cardVal+netOverpay;
-            const giveCash=rawPayment>0?Math.min(maxCashOffer,Math.round(rawPayment/10)*10):0;
-            const takeCash=rawPayment<0?Math.min(partnerMaxCash,Math.round(Math.abs(rawPayment)/10)*10):0;
-            if(giveList.length===0&&giveCards===0&&giveCash<tPrice)continue;
-            if(rawPayment>maxCashOffer)continue;
+        // V20.0 BREAKTHROUGH #2: Poverty Illusion Capital Accounting!
+        // Because we can immediately mortgage our remaining `isolatedMortgageable` deeds AFTER the trade
+        // to build houses, we only need `(self.cash - giveCash) + remainingLiquidBuffer >= g.houseCost * 2`!
+        const surrenderedBuffer=giveList.reduce((n,id)=>n+(view.assets[id]?.mortgaged?0:(BOARD[id]?.mortgage||0)),0);
+        const remainingBuffer=Math.max(0,context.liquidBuffer-surrenderedBuffer);
+        const minBuildNeed=Math.max(0,g.houseCost*2+context.trueReserve*0.40-remainingBuffer*0.85);
+        const maxCashOffer=Math.max(0,Math.floor((self.cash-minBuildNeed)/10)*10);
 
-            const trade={to:targetOwner,give:giveList,take:[missingTile],giveCash,takeCash,giveCards,takeCards:0};
-            if(JSON.stringify(trade)===mem.lastSignature)continue;
-            const oracle=predictPartnerAcceptance(context,trade);
-            if(oracle.willAccept&&oracle.myEval.net>0&&oracle.myEval.deltaShare>=oracle.myEval.partnerDelta){
-              const action={type:'OFFER',trade,actionId:'nusa-oracle-buyout-'+missingTile+'-'+giveCash+'-c'+giveCards};
-              if(pushCandidate(action,topScore()+390+(giveCards*15))){
+        for(const giveCards of cardOptions){
+
+          if(context.decisionContext?.expired())break;
+          if(foundForGroup)break;
+          const solved=solveOptimalTradeCash(context,{
+            partnerId:targetOwner,
+            giveList,
+            takeList:[missingTile],
+            giveCards,
+            minOverpay:isCatchUpPartner?-420:-300,
+            maxOverpay:maxOverpayCap,
+            maxCashOffer,
+            partnerMaxCash
+          });
+          if(solved&&JSON.stringify(solved.trade)!==mem.lastSignature){
+            const action={
+              type:'OFFER',
+              trade:solved.trade,
+              actionId:'nusa-bsearch-buyout-'+missingTile+'-'+solved.trade.giveCash+'-c'+giveCards
+            };
+            if(pushCandidate(action,topScore()+405+(giveCards*15)+(isCatchUpPartner?20:0))){
+              synthesizedCount++;
+              foundForGroup=true;
+              break;
+            }
+          }
+        }
+      }
+
+      // V20.0 BREAKTHROUGH #3: Multi-Step Pre-Trade Liquidity Sequencer!
+      // If our current `self.cash` was too low to pay the required `giveCash`, check if mortgaging
+      // 1 isolated non-bait deed first unlocks a guaranteed accepted monopoly buyout!
+      if(!foundForGroup&&canManage(view,actor)&&context.isolatedMortgageable.length>0){
+        const giveList=packages[0]||[];
+        const nonBaitColl=context.isolatedMortgageable.find(d=>!giveList.includes(d.id)&&!managementError(view,actor,d.id,'MORTGAGE'));
+        if(nonBaitColl){
+          const boostedView={
+            ...view,
+            players:view.players.map((p,i)=>i===actor?{...p,cash:p.cash+nonBaitColl.mortgage}:p),
+            assets:{...view.assets,[nonBaitColl.id]:{...view.assets[nonBaitColl.id],mortgaged:true}}
+          };
+          const boostedMaxCash=Math.max(0,Math.floor(((self.cash+nonBaitColl.mortgage)-g.houseCost*1.5)/10)*10);
+          const solvedBoost=solveOptimalTradeCash(context,{
+            partnerId:targetOwner,
+            giveList,
+            takeList:[missingTile],
+            giveCards:0,
+            minOverpay:0,
+            maxOverpay:maxOverpayCap,
+            maxCashOffer:boostedMaxCash,
+            partnerMaxCash,
+            stateOverride:boostedView
+          });
+          if(solvedBoost){
+            if(pushCandidate({type:'MORTGAGE',tile:nonBaitColl.id,actionId:'nusa-pretrade-mort-'+nonBaitColl.id},topScore()+412)){
+              synthesizedCount++;
+              foundForGroup=true;
+            }
+          }
+        }
+      }
+
+      // Preparatory Stealth-Mortgage Cloak (mortgages 1 own tile in the 2/3 target group to blind rival `allocateDevelopment`)
+      if(!foundForGroup&&g.mortgagedCount===0&&canManage(view,actor)){
+        const ownTileToCloak=g.ids.find(id=>view.assets[id]?.owner===actor&&!view.assets[id]?.mortgaged&&!managementError(view,actor,id,'MORTGAGE'));
+        if(ownTileToCloak!==undefined){
+          const cloakedView={
+            ...view,
+            players:view.players.map((p,i)=>i===actor?{...p,cash:p.cash+BOARD[ownTileToCloak].mortgage}:p),
+            assets:{...view.assets,[ownTileToCloak]:{...view.assets[ownTileToCloak],mortgaged:true}}
+          };
+          const maxCashCloak=Math.max(0,Math.floor((self.cash+BOARD[ownTileToCloak].mortgage-g.houseCost*2)/10)*10);
+          for(const giveList of packages.slice(0,2)){
+            if(context.decisionContext?.expired())break;
+            const solvedCloak=solveOptimalTradeCash(context,{
+              partnerId:targetOwner,
+              giveList,
+              takeList:[missingTile],
+              giveCards:0,
+              minOverpay:0,
+              maxOverpay:550,
+              maxCashOffer:maxCashCloak,
+              partnerMaxCash,
+              stateOverride:cloakedView
+            });
+            if(solvedCloak){
+              if(pushCandidate({type:'MORTGAGE',tile:ownTileToCloak,actionId:'nusa-stealth-cloak-'+ownTileToCloak},topScore()+408)){
                 synthesizedCount++;
                 foundForGroup=true;
                 break;
@@ -509,6 +649,7 @@ export function ensureSovereignCandidates(context,plan){
         }
       }
 
+      // Mode B (V20.0 BREAKTHROUGH #5): Velocity-Dominated Mutual Monopoly Swap
       if(!foundForGroup&&synthesizedCount<3){
         const swapBaits=context.owned.filter(d=>{
           if(d.group===gId||d.group<0||(view.assets[d.id]?.level||0)>0)return false;
@@ -517,11 +658,15 @@ export function ensureSovereignCandidates(context,plan){
           return oppCount===GROUPS[d.group].ids.length-1;
         });
         for(const sb of swapBaits){
+          if(context.decisionContext?.expired())break;
           const oppHouseCost=BOARD[sb.id]?.build||1000;
+          const surrenderedBuffer=view.assets[sb.id]?.mortgaged?0:(sb.mortgage||0);
+          const myHiddenBuffer=Math.max(0,context.liquidBuffer-surrenderedBuffer)*0.85;
           const askCash=Math.min(partnerMaxCash,Math.max(0,Math.floor(((view.players[targetOwner]?.cash||0)-oppHouseCost)/10)*10));
           for(const takeCash of [askCash,Math.floor(askCash*0.6/10)*10,0]){
+            if(context.decisionContext?.expired())break;
             const oppPostCash=(view.players[targetOwner]?.cash||0)-takeCash;
-            const myPostCash=self.cash+takeCash;
+            const myPostCash=self.cash+takeCash+myHiddenBuffer;
             const myHouses=Math.floor(Math.max(0,myPostCash-context.trueReserve*0.4)/g.houseCost);
             const oppHouses=Math.floor(Math.max(0,oppPostCash-300)/oppHouseCost);
             if(myHouses<3||(myHouses<oppHouses+2&&oppHouses>1))continue;
@@ -530,8 +675,8 @@ export function ensureSovereignCandidates(context,plan){
             if(JSON.stringify(trade)===mem.lastSignature)continue;
             const oracle=predictPartnerAcceptance(context,trade);
             if(oracle.willAccept&&oracle.myEval.net>0&&oracle.myEval.deltaShare>=oracle.myEval.partnerDelta){
-              const action={type:'OFFER',trade,actionId:'nusa-asym-swap-'+missingTile+'-'+sb.id};
-              if(pushCandidate(action,topScore()+340)){
+              const action={type:'OFFER',trade,actionId:'nusa-velocity-swap-'+missingTile+'-'+sb.id};
+              if(pushCandidate(action,topScore()+360)){
                 synthesizedCount++;
                 foundForGroup=true;
                 break;
@@ -543,16 +688,72 @@ export function ensureSovereignCandidates(context,plan){
       }
     }
 
+    // Mode G: 1-Step Double-Deed Monopoly Sweep (1/3 -> 3/3 in ONE Trade via Binary Search!)
+    if(synthesizedCount<2&&context.doubleSweepGroups.length>0){
+      for(const ds of context.doubleSweepGroups){
+        if(context.decisionContext?.expired())break;
+        if(synthesizedCount>=2)break;
+        const partnerId=ds.partnerId;
+        if(rejectionActive(view,mem,partnerId))continue;
+        const partnerDesire=context.opponentProfiles?.get(partnerId)?.desiredGroups||{};
+
+        const sweepBaits=context.owned.filter(d=>{
+          if(d.group===ds.groupId||(view.assets[d.id]?.level||0)>0)return false;
+          if(d.group>=0&&GROUPS[d.group].ids.some(i=>(view.assets[i]?.level||0)>0))return false;
+          if(d.group>=0){
+            const oppCount=GROUPS[d.group].ids.filter(i=>view.assets[i]?.owner===partnerId).length;
+            if(oppCount>=GROUPS[d.group].ids.length-1)return false;
+          }
+          return true;
+        }).sort((a,b)=>{
+          const desA=a.group>=0?(partnerDesire[a.group]||0):0;
+          const desB=b.group>=0?(partnerDesire[b.group]||0):0;
+          return desB-desA||b.price-a.price;
+        });
+
+        const sweepBundles=[];
+        if(sweepBaits.length>=2)sweepBundles.push([sweepBaits[0].id,sweepBaits[1].id]);
+        for(const b of sweepBaits.slice(0,2))sweepBundles.push([b.id]);
+
+        const cardSweetener=(context.canGiveJailCardSweetener&&(self.cards?.length||0)>0)?1:0;
+        for(const giveList of sweepBundles){
+          if(context.decisionContext?.expired())break;
+          const surrenderedBuffer=giveList.reduce((n,id)=>n+(view.assets[id]?.mortgaged?0:(BOARD[id]?.mortgage||0)),0);
+          const remainingBuffer=Math.max(0,context.liquidBuffer-surrenderedBuffer);
+          const minBuildRes=Math.max(0,ds.houseCost*2+context.trueReserve*0.40-remainingBuffer*0.85);
+          const maxCashOffer=Math.max(0,Math.floor((self.cash-minBuildRes)/10)*10);
+          const solvedSweep=solveOptimalTradeCash(context,{
+            partnerId,
+            giveList,
+            takeList:ds.missingPair,
+            giveCards:cardSweetener,
+            minOverpay:-100,
+            maxOverpay:850,
+            maxCashOffer,
+            partnerMaxCash:view.players[partnerId]?.cash||0
+          });
+          if(solvedSweep&&JSON.stringify(solvedSweep.trade)!==mem.lastSignature){
+            const action={type:'OFFER',trade:solvedSweep.trade,actionId:'nusa-bsearch-sweep-'+ds.groupId};
+            if(pushCandidate(action,topScore()+402)){
+              synthesizedCount++;
+              break;
+            }
+          }
+        }
+      }
+    }
+
     // Mode D: Silent 2-Step Chain Accumulation (1/3 -> 2/3 when group is split 1-1-1!)
     if(synthesizedCount===0&&context.splitThreeWayGroups.length>0){
       for(const sg of context.splitThreeWayGroups){
+        if(context.decisionContext?.expired())break;
         if(synthesizedCount>=2)break;
         const rivalTiles=sg.ids.filter(id=>view.assets[id]?.owner!==actor&&(view.assets[id]?.level||0)===0);
         for(const rTile of rivalTiles){
+          if(context.decisionContext?.expired())break;
           if(synthesizedCount>=2)break;
           const rOwner=view.assets[rTile]?.owner;
           if(rOwner==null||rejectionActive(view,mem,rOwner))continue;
-          const rPrice=BOARD[rTile].price;
 
           const chainBaits=context.isolatedMortgageable.filter(d=>{
             if(d.group===sg.id)return false;
@@ -572,24 +773,25 @@ export function ensureSovereignCandidates(context,plan){
             return oppHasB-oppHasA||a.price-b.price;
           });
 
-          let chainFound=false;
           for(const cb of chainBaits.slice(0,3)){
-            if(chainFound)break;
-            for(const sweet of [-100,0,60,120,180]){
-              const rawDiff=rPrice-cb.price+sweet;
-              const giveCash=rawDiff>0?Math.round(rawDiff/10)*10:0;
-              const takeCash=rawDiff<0?Math.min(view.players[rOwner]?.cash||0,Math.round(Math.abs(rawDiff)/10)*10):0;
-              if(self.cash-giveCash<context.trueReserve+1200)continue;
-              const trade={to:rOwner,give:[cb.id],take:[rTile],giveCash,takeCash,giveCards:0,takeCards:0};
-              if(JSON.stringify(trade)===mem.lastSignature)continue;
-              const oracle=predictPartnerAcceptance(context,trade);
-              if(oracle.willAccept&&oracle.myEval.net>=0){
-                const action={type:'OFFER',trade,actionId:'nusa-chain-accum-'+rTile};
-                if(pushCandidate(action,topScore()+315)){
-                  synthesizedCount++;
-                  chainFound=true;
-                  break;
-                }
+
+            if(context.decisionContext?.expired())break;
+            const maxCash=Math.max(0,Math.floor((self.cash-context.trueReserve-1100)/10)*10);
+            const solvedChain=solveOptimalTradeCash(context,{
+              partnerId:rOwner,
+              giveList:[cb.id],
+              takeList:[rTile],
+              giveCards:0,
+              minOverpay:-160,
+              maxOverpay:240,
+              maxCashOffer:maxCash,
+              partnerMaxCash:view.players[rOwner]?.cash||0
+            });
+            if(solvedChain&&JSON.stringify(solvedChain.trade)!==mem.lastSignature){
+              const action={type:'OFFER',trade:solvedChain.trade,actionId:'nusa-chain-accum-'+rTile};
+              if(pushCandidate(action,topScore()+315)){
+                synthesizedCount++;
+                break;
               }
             }
           }
@@ -597,16 +799,15 @@ export function ensureSovereignCandidates(context,plan){
       }
     }
 
-    // Mode F (V18.0 METAGAME #2): Preemptive Rival-Collusion Interdiction!
-    // If Rival A has 2/3 of a dangerous color group and Rival B holds the 3rd isolated tile,
-    // NUSA buys that 3rd tile from Rival B before Rival A can trade for it!
+    // Mode F: Preemptive Rival-Collusion Interdiction!
     if(synthesizedCount===0&&context.collusionTargetTiles.size>0){
       for(const bridgeTile of context.collusionTargetTiles){
+        if(context.decisionContext?.expired())break;
         if(synthesizedCount>=2)break;
         const info=context.collusionMap.get(bridgeTile);
         const holderId=view.assets[bridgeTile]?.owner;
         if(!info||holderId==null||rejectionActive(view,mem,holderId))continue;
-        if(info.tier<1.28)continue; // Focus on Orange, Red, Light Blue, Pink, Yellow, Dark Blue
+        if(info.tier<1.28)continue;
 
         const bPrice=BOARD[bridgeTile].price;
         const interdictBaits=context.isolatedMortgageable.filter(d=>{
@@ -620,24 +821,25 @@ export function ensureSovereignCandidates(context,plan){
           return Math.abs(d.price-bPrice)<=600;
         }).sort((a,b)=>a.price-b.price);
 
-        let interdicted=false;
         for(const ib of interdictBaits.slice(0,2)){
-          if(interdicted)break;
-          for(const sweet of [0,80,160]){
-            const rawDiff=bPrice-ib.price+sweet;
-            const giveCash=rawDiff>0?Math.round(rawDiff/10)*10:0;
-            const takeCash=rawDiff<0?Math.min(view.players[holderId]?.cash||0,Math.round(Math.abs(rawDiff)/10)*10):0;
-            if(self.cash-giveCash<context.trueReserve+1400)continue;
-            const trade={to:holderId,give:[ib.id],take:[bridgeTile],giveCash,takeCash,giveCards:0,takeCards:0};
-            if(JSON.stringify(trade)===mem.lastSignature)continue;
-            const oracle=predictPartnerAcceptance(context,trade);
-            if(oracle.willAccept&&oracle.myEval.net>=0){
-              const action={type:'OFFER',trade,actionId:'nusa-collusion-interdict-'+bridgeTile};
-              if(pushCandidate(action,topScore()+305)){
-                synthesizedCount++;
-                interdicted=true;
-                break;
-              }
+
+          if(context.decisionContext?.expired())break;
+          const maxCash=Math.max(0,Math.floor((self.cash-context.trueReserve-1300)/10)*10);
+          const solvedInterdict=solveOptimalTradeCash(context,{
+            partnerId:holderId,
+            giveList:[ib.id],
+            takeList:[bridgeTile],
+            giveCards:0,
+            minOverpay:-100,
+            maxOverpay:200,
+            maxCashOffer:maxCash,
+            partnerMaxCash:view.players[holderId]?.cash||0
+          });
+          if(solvedInterdict&&JSON.stringify(solvedInterdict.trade)!==mem.lastSignature){
+            const action={type:'OFFER',trade:solvedInterdict.trade,actionId:'nusa-collusion-interdict-'+bridgeTile};
+            if(pushCandidate(action,topScore()+305)){
+              synthesizedCount++;
+              break;
             }
           }
         }
@@ -647,6 +849,7 @@ export function ensureSovereignCandidates(context,plan){
     // Mode C: Stepping-Stone Triangle Trade
     if(synthesizedCount<3&&context.steppingStoneTiles.size>0){
       for(const stepTile of context.steppingStoneTiles){
+        if(context.decisionContext?.expired())break;
         if(synthesizedCount>=3)break;
         const thirdOwner=view.assets[stepTile]?.owner;
         if(thirdOwner==null||rejectionActive(view,mem,thirdOwner))continue;
@@ -659,20 +862,25 @@ export function ensureSovereignCandidates(context,plan){
           return Math.abs(d.price-BOARD[stepTile].price)<=600;
         });
         for(const d of candidatesToGive.slice(0,2)){
-          const diff=Math.max(0,BOARD[stepTile].price-d.price);
-          for(const sweet of [0,80,160]){
-            const trade={to:thirdOwner,give:[d.id],take:[stepTile],giveCash:diff+sweet,takeCash:0,giveCards:0,takeCards:0};
-            if(JSON.stringify(trade)===mem.lastSignature)continue;
-            const oracle=predictPartnerAcceptance(context,trade);
-            if(oracle.willAccept&&oracle.myEval.net>=0){
-              const action={type:'OFFER',trade,actionId:'nusa-stepstone-'+stepTile};
-              if(pushCandidate(action,topScore()+260)){
-                synthesizedCount++;
-                break;
-              }
+          if(context.decisionContext?.expired())break;
+          const maxCash=Math.max(0,Math.floor((self.cash-context.trueReserve-1100)/10)*10);
+          const solvedStep=solveOptimalTradeCash(context,{
+            partnerId:thirdOwner,
+            giveList:[d.id],
+            takeList:[stepTile],
+            giveCards:0,
+            minOverpay:-80,
+            maxOverpay:180,
+            maxCashOffer:maxCash,
+            partnerMaxCash:view.players[thirdOwner]?.cash||0
+          });
+          if(solvedStep&&JSON.stringify(solvedStep.trade)!==mem.lastSignature){
+            const action={type:'OFFER',trade:solvedStep.trade,actionId:'nusa-stepstone-'+stepTile};
+            if(pushCandidate(action,topScore()+265)){
+              synthesizedCount++;
+              break;
             }
           }
-          if(synthesizedCount>=3)break;
         }
       }
     }
@@ -693,7 +901,11 @@ function compatible(base,action,phase,context){
     return allowedBuy.includes(base.type)&&allowedBuy.includes(action.type);
   }
   if(phase==='auction'){
-    const allowedAuction=context.needsMidAuctionMortgage?['BID','PASS','MORTGAGE']:['BID','PASS'];
+    const allowedAuction=context.needsMidAuctionMortgage
+      ?['BID','PASS','MORTGAGE']
+      :context.needsMidAuctionTrade
+        ?['BID','PASS','OFFER']
+        :['BID','PASS'];
     return allowedAuction.includes(base.type)&&allowedAuction.includes(action.type);
   }
   if(phase==='trade')return ['OFFER','COUNTER','TRADE_ACCEPT','TRADE_REJECT'].includes(base.type)&&['OFFER','COUNTER','TRADE_ACCEPT','TRADE_REJECT'].includes(action.type);
@@ -708,7 +920,10 @@ function compatible(base,action,phase,context){
   if(phase==='roll'||phase==='end'){
     if(action.type==='SELL'||action.type==='SELL_SET')return false;
     if(action.type==='MORTGAGE'){
-      if(BOARD[action.tile]?.type!=='utility'||!context.needsBuildCapital||context.shouldDeferPreRollBuild)return false;
+      const aid=String(action.actionId||'');
+      const isSpecialMort=aid.startsWith('nusa-stealth-cloak-')||aid.startsWith('nusa-pretrade-mort-')||aid.startsWith('nusa-leverage-');
+      const isIsolatedLeverage=context.isolatedMortgageable.some(d=>d.id===action.tile)&&context.needsBuildCapital&&!context.shouldDeferPreRollBuild;
+      if(!isSpecialMort&&!isIsolatedLeverage)return false;
     }
     const allowedTurnTypes=phase==='roll'
       ?(context.shouldDeferPreRollBuild?['ROLL','BUILD','REDEEM']:['ROLL','BUILD','REDEEM','MORTGAGE'])
@@ -729,10 +944,11 @@ function computeAdvisory(signals,context,salary,action){
   const norm=weightedSum/Math.max(1,Math.sqrt(weightTotal));
   let momentum=0;
   if(norm>0.20){
+    const aid=String(action.actionId||'');
     if(action.type==='BUILD'||action.type==='BUILD_JOIN')momentum=salary*0.16;
     else if((action.type==='REDEEM'||action.type==='MORTGAGE_REDEEM')&&(context.hasMortgagedMonopoly||context.canDeleverage||context.view.phase==='mortgage'))momentum=salary*0.15;
-    else if(action.type==='MORTGAGE'&&(context.needsPreBuyMortgage||context.needsMidAuctionMortgage))momentum=salary*0.19;
-    else if(action.type==='OFFER'&&(norm>0.35||context.needsPreBuyTrade))momentum=salary*0.17;
+    else if(action.type==='MORTGAGE'&&(context.needsPreBuyMortgage||context.needsMidAuctionMortgage||aid.startsWith('nusa-stealth-cloak-')||aid.startsWith('nusa-pretrade-mort-')||aid.startsWith('nusa-leverage-')))momentum=salary*0.19;
+    else if(action.type==='OFFER'&&(norm>0.35||context.needsPreBuyTrade||context.needsMidAuctionTrade))momentum=salary*0.18;
     else if(action.type==='COUNTER'&&norm>0.35)momentum=salary*0.17;
     else if(action.type==='BUY'&&norm>0.25)momentum=salary*0.13;
     else if(action.type==='AUCTION'&&context.earlyCashSinkTiles?.has(context.view.buy))momentum=salary*0.16;
@@ -742,12 +958,13 @@ function computeAdvisory(signals,context,salary,action){
   return {advisory:norm,bonus};
 }
 
-export function nusaV7Decision(state,actor,plan,{diagnostics=false,disabled=[]}={}){
+export function nusaV7Decision(state,actor,plan,{diagnostics=false,disabled=[],context:decisionContext}={}){
   const fallback=(reason,extra={})=>({action:plan?.action??null,changed:false,reason,...extra});
+  if(decisionContext?.expired())return fallback('council_budget_exhausted');
   if(!plan?.action||protectedType(plan.action)||(plan.candidates?.[0]?.score??0)>=1e7)return fallback('protected_or_trivial');
   if(!['auction','buy','roll','end','trade','jail','buildOffer','mortgage','debt'].includes(state.phase))return fallback('protected_phase');
 
-  const context=situationOf(state,actor,plan);
+  const context={...situationOf(state,actor,plan),decisionContext};
   ensureSovereignCandidates(context,plan);
 
   const base=plan.action,candidates=plan.candidates||[];
@@ -779,7 +996,7 @@ export function nusaV7Decision(state,actor,plan,{diagnostics=false,disabled=[]}=
   const result={
     action:changeAllowed?best.action:base,
     changed:changeAllowed,
-    reason:changeAllowed?'transcendent_metagame_singularity_selected':'native_plan_preserved',
+    reason:changeAllowed?'apotheosis_v20_selected':'native_plan_preserved',
     rankedPool:ranked
   };
 
@@ -788,7 +1005,11 @@ export function nusaV7Decision(state,actor,plan,{diagnostics=false,disabled=[]}=
       stage:context.stage,live:context.live,unowned:context.unowned.length,
       bankHouses:context.bank.houses,reserve:Math.round(context.reserve),
       trueReserve:Math.round(context.trueReserve),hotspotReserve:context.hotspotReserve,
-      queueAuctionReserve:context.queueAuctionReserve,hotelTrapActive:context.hotelTrapActive,
+      queueAuctionReserve:context.queueAuctionReserve,vultureReserve:context.vultureReserve,
+      effectiveTradeCash:context.effectiveTradeCash,canUsePovertyCloak:context.canUsePovertyCloak,
+      auctionStep:context.auctionStep,hotelTrapActive:context.hotelTrapActive,
+      cloakedGroups:context.cloakedMonopolyGroups.size,catchUpPartners:context.catchUpPartners.size,
+      doubleSweepGroups:context.doubleSweepGroups.length,
       contestedAnchors:context.contestedAnchorTiles.size,earlyCashSinks:context.earlyCashSinkTiles.size,
       splitThreeWayGroups:context.splitThreeWayGroups.length,collusionTargets:context.collusionTargetTiles.size,
       repairSafe:context.cardCycle.repairSafe,

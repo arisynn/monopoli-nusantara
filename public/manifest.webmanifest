@@ -1,0 +1,17 @@
+{
+  "id": "/",
+  "name": "Monopoli Nusantara",
+  "short_name": "Nusantara",
+  "description": "Jelajah, miliki, dan bangun bersama teman atau enam bot Nusantara.",
+  "lang": "id",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#e7f4ff",
+  "theme_color": "#e7f4ff",
+  "icons": [
+    { "src": "/assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/brand/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

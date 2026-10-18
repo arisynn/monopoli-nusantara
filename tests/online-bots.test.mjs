@@ -92,10 +92,24 @@ test('invalid online bot suggestion falls back to a legal local decision',async(
  assert.equal(result.committed,1);assert.equal(f.room().state.version,1);assert.equal(f.room().state.aiStatus,'local');assert.equal(f.store.botActions.size,1);
 });
 
-test('NUSA V18 runs through the online job worker and commits one legal purchase',async()=>{
+test('NUSA V20 runs through the online job worker and commits one legal purchase',async()=>{
  const f=await fixture(2,1,['nusa']);await f.engine(s=>{s.turn=2;s.phase='buy';s.buy=13;});
  const result=await runBotWorker({store:f.store,clock:f.clock,maxSteps:1,rng:()=>.2});
  assert.equal(result.committed,1);assert.equal(f.room().state.version,1);
  assert.equal(f.room().state.players[2].botPersona,'nusa');assert.equal(f.room().state.assets[13].owner,2);
  assert.equal(f.room().state.players[2].cash,13600);assert.equal(f.store.botActions.size,1);
+ assert.equal(f.room().state.aiDiagnostics.execution,'edge');assert.equal(f.room().state.aiDiagnostics.model,'NUSA-V20.0-APOTHEOSIS');
+});
+test('human actions persist NUSA observations without a separate bot commit or gameplay version',async()=>{
+ const f=await fixture(2,1,['nusa']);await f.engine(s=>{s.assets[1].owner=0;s.assets[3].owner=0;});
+ const initial=f.room().state.version;
+ for(const tile of [1,3]){const id=crypto.randomUUID();await f.call(0,'ACTION',{action:{type:'MORTGAGE',tile,id,expectedVersion:f.room().state.version}});}
+ const memory=f.room().state.botMemory.players[2].observation;
+ assert.equal(memory.pending.length,2);assert.equal(f.room().state.version,initial+2);assert.equal(f.store.botActions.size,0);
+ const read=await f.service.read('ABCDEFGH',users[0]);assert.equal(read.state.botMemory,undefined);
+});
+test('default Edge invocation commits one action and records recovery from an invalid advisor',async()=>{
+ const f=await fixture(2,1);await f.engine(s=>{s.turn=2;});
+ const result=await runBotWorker({store:f.store,clock:f.clock,rng:()=>.2,decide:async()=>({action:{type:'INVALID'},status:'hybrid'})});
+ assert.equal(result.committed,1);assert.equal(result.claimed,1);assert(f.room().state.aiDiagnostics.fallback);
 });

@@ -8,6 +8,7 @@ import type {
   BotGameState,
   BotReason,
   BotStatus,
+  MindPlan,
 } from "./bot/contracts.ts";
 export type { BotDecisionResult } from "./bot/contracts.ts";
 const record = (v: unknown): v is Record<string, unknown> =>
@@ -37,7 +38,8 @@ export function localDecision(
   actor: number,
   reason: BotReason = "not_configured",
 ): BotDecisionResult {
-  const action = decidePersona(s, actor, { timeBudgetMs: 180 }).action;
+  const plan: MindPlan = decidePersona(s, actor, { timeBudgetMs: 180 });
+  const action = plan.action;
   if (!action) throw Error("Tidak ada keputusan bot legal.");
   return {
     action,
@@ -48,6 +50,7 @@ export function localDecision(
     matchId: s.matchId,
     actor,
     advisorUsed: false,
+    diagnostics: plan.diagnostics,
   };
 }
 interface AdvisorOptions {
@@ -63,7 +66,7 @@ export async function aiDecision(
   env: BotEnvironment,
   options: AdvisorOptions = {},
 ): Promise<BotDecisionResult> {
-  const plan = decidePersona(s, actor, { timeBudgetMs: 180 }),
+  const plan: MindPlan = decidePersona(s, actor, { timeBudgetMs: 180 }),
     action: BotAction | null = plan.action;
   if (!action) throw Error("Tidak ada keputusan bot legal.");
   const result = (
@@ -78,6 +81,7 @@ export async function aiDecision(
     matchId: s.matchId,
     actor,
     advisorUsed: false,
+    diagnostics: plan.diagnostics,
   });
   const configuration = advisorConfiguration(env);
   if (!configuration.configured) return result("local", "not_configured");

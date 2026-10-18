@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-10-18T08:56:26.864Z",
+  "checks": [
+    {
+      "name": "Manifest, install icons, standalone metadata and logo load in Chromium at 390px",
+      "passed": true
+    },
+    {
+      "name": "Private API responses are absent from public cache",
+      "passed": true
+    },
+    {
+      "name": "Offline shell resumes a save and real NUSA worker commits its purchase",
+      "passed": true
+    },
+    {
+      "name": "Waiting PWA update cannot activate while another tab is playing",
+      "passed": true
+    },
+    {
+      "name": "PWA update activates and reloads safely after gameplay tab closes",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium on a local test server; no physical Android/iOS installation, live Supabase or benchmark was exercised."
+  ]
+}

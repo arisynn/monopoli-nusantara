@@ -76,10 +76,12 @@ try {
       s,
     );
     assert(plan.action);
+    assert.notEqual(plan.diagnostics.reason, 'model_exception');
+    assert(!plan.diagnostics.workerFallback);
     command(s, 0, plan.action);
     assert.equal(JSON.stringify(s), before);
     assert(plan.foundation);
-    if (persona.id === "nusa") assert.equal(plan.diagnostics.version, "18.0.0");
+    if (persona.id === "nusa") assert.equal(plan.diagnostics.version, "20.0.0");
     checks.push({
       name: `Real browser worker ${persona.id}`,
       passed: true,
@@ -99,10 +101,10 @@ try {
     return { first, model: second?.diagnostics.model, action: second?.action };
   }, fixture(PERSONAS[3]));
   assert.equal(cancellation.first, null);
-  assert.equal(cancellation.model, "NUSA-V18.0-SINGULARITY");
+  assert.equal(cancellation.model, "NUSA-V20.0-APOTHEOSIS");
   assert(cancellation.action);
   checks.push({
-    name: "Cancelled browser worker restarts and returns a fresh V18 decision",
+    name: "Cancelled browser worker restarts and returns a fresh V20 decision",
     passed: true,
   });
   await context.close();
@@ -138,7 +140,7 @@ try {
         },
       ],
       startingRoll: false,
-      matchId: "app-v18",
+      matchId: "app-v20",
     },
     () => 0.2,
   );
@@ -168,16 +170,16 @@ try {
   assert.equal(saved.players[1].cash, 13600);
   assert(
     await appPage.evaluate(() =>
-      window.botModels.includes("NUSA-V18.0-SINGULARITY"),
+      window.botModels.includes("NUSA-V20.0-APOTHEOSIS"),
     ),
   );
   checks.push({
-    name: "App resumes a NUSA turn, runs V18 in worker and commits its purchase once",
+    name: "App resumes a NUSA turn, runs V20 in worker and commits its purchase once",
     passed: true,
   });
   await app.close();
   assert.deepEqual(errors, []);
-  console.log(`${checks.length} browser foundation/V18 scenarios passed.`);
+  console.log(`${checks.length} browser foundation/V20 scenarios passed.`);
 } catch (e) {
   checks.push({ passed: false, error: e.stack });
   console.error(e);

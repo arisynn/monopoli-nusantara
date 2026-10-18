@@ -21,7 +21,7 @@
     {
       "name": "Real browser worker nusa",
       "passed": true,
-      "model": "NUSA-V18.0-SINGULARITY",
+      "model": "NUSA-V20.0-APOTHEOSIS",
       "action": "BID"
     },
     {
@@ -37,11 +37,11 @@
       "action": "BID"
     },
     {
-      "name": "Cancelled browser worker restarts and returns a fresh V18 decision",
+      "name": "Cancelled browser worker restarts and returns a fresh V20 decision",
       "passed": true
     },
     {
-      "name": "App resumes a NUSA turn, runs V18 in worker and commits its purchase once",
+      "name": "App resumes a NUSA turn, runs V20 in worker and commits its purchase once",
       "passed": true
     }
   ],

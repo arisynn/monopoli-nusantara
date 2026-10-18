@@ -1,11 +1,13 @@
 # NUSA V18 dan fondasi bot bersama — working tree
 
+Catatan historis: model aktif telah diperbarui menjadi V20. Lihat [INTEGRASI_NUSA_V20.md](INTEGRASI_NUSA_V20.md); checksum V18 di bawah merupakan riwayat.
+
 Perubahan ini melanjutkan update UI lobi/lelang, nama model kapital, simbol ₦, dan aturan pembuka/kenaikan lelang minimal ₦5. Versi aplikasi belum dinaikkan dan tidak ada deployment eksternal. Sesuai klarifikasi terakhir, `Monopoli_Nusantara_Game_Logic.zip` berisi engine aturan saja, tanpa model atau planner bot. Paket tersebut memisahkan hook memori strategi, membuang pemilih aksi bot, dan menerima label controller baru; source aplikasi terintegrasi tetap memakai enam persona. ZIP aplikasi penuh belum dibuat.
 
 ## Model NUSA
 
 - Source dari file generator V18 yang diberikan pengguna; model aktif `18.0.0`, terdiri dari 38 pakar.
-- Lima berkas model disimpan pada `lab/nusa-v7/` dan `lib/bot/nusa-v7/`. Nama folder lama dipertahankan agar import dan save tetap kompatibel.
+- Lima berkas model memiliki satu sumber aktif di `lib/bot/nusa-v7/`; salinan lab yang tidak diimpor telah dihapus dalam polish frontend. Nama folder lama dipertahankan agar import dan save tetap kompatibel.
 - Generator asli disimpan tanpa perubahan di `docs/imports/nusa-v18-generator.original.txt`. Generator tersebut memiliki template literal dengan backtick yang tidak di-escape dan gagal dijalankan. Importer mengambil isi lima template sebagai source, tanpa mengeksekusi generator, menulis ulang engine, atau menjalankan turnamen bawaannya.
 - Reproduksi: `node scripts/import-nusa-v18.mjs docs/imports/nusa-v18-generator.original.txt`.
 - Empat penyesuaian integrasi: perbaikan ekstraksi generator, penggunaan `auctionMinimum()` sesuai aturan ₦5, mengambil 80 log terbaru untuk sandbox (`slice(0,80)`), dan menghormati sisa budget pencarian yang diberikan runtime.

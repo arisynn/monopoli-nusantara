@@ -10,8 +10,9 @@ import { pawnPlacement } from "../lib/pawn-layout.mjs";
 import { pawnRoute, samplePawnRoute } from "../lib/pawn-animation.mjs";
 import { stepDuration } from "../lib/presentation-timeline.mjs";
 import { pawnFor } from "../lib/pawns.mjs";
-import { colors } from "./art.mjs";
+import { colors, buildingArt } from "./art.mjs";
 import { esc } from "./domain.mjs";
+import { rentLabel } from "./property-display.mjs";
 export function tileNameLines(name) {
   const words = name.split(" ");
   return words.length > 1
@@ -36,7 +37,7 @@ function labelWidth(text, font, max) {
   return Math.min(max, units * font);
 }
 function band(r, side, owner = false) {
-  const size = owner ? 7 : 22;
+  const size = owner ? 8 : 22;
   if (side === 0)
     return { ...r, y: owner ? r.y + r.height - size : r.y, height: size };
   if (side === 1)
@@ -51,9 +52,9 @@ export function pawnDisplayPoint(p) {
   const angle = (tileRect(id).angle * Math.PI) / 180;
   return { x: p.x - 18 * Math.sin(angle), y: p.y + 18 * Math.cos(angle) };
 }
-// Every edge uses the same local face: inner color strip, name, pawn pocket, outer price.
+// Every edge uses the same local face: group, name, pawn pocket, rent and owner.
 // Rotate the entire face toward the board center, matching a classic physical board.
-function tileFace(t, r) {
+function tileFace(t, r, state) {
   const corner = t.id % 10 === 0,
     center = { x: r.x + r.width / 2, y: r.y + r.height / 2 },
     names = tileNameLines(t.name),
@@ -81,42 +82,44 @@ function tileFace(t, r) {
   const icon = special
     ? `<image href="/assets/classic/${symbol}.png" x="${corner ? -29 : -25}" y="${corner ? -53 : -15}" width="${corner ? 58 : 50}" height="${corner ? 58 : 50}"/>`
     : "";
+  const owner = state.assets[t.id]?.owner;
   const price = t.price
-    ? money(t.price)
+    ? rentLabel(state, t.id, { compact: true })
     : t.type === "tax"
       ? money(t.tax)
       : t.id === 0
         ? "AMBIL ₦ 200"
         : "";
-  return `<g class="tile-face" data-angle="${corner ? 0 : r.angle}" transform="translate(${center.x} ${center.y}) rotate(${corner ? 0 : r.angle})" pointer-events="none">${title}${icon}${price ? `<text class="tile-price" x="0" y="${corner ? 62 : 58}" text-anchor="middle" font-size="${corner ? 11 : 14}" fill="#345747">${esc(price)}</text>` : ""}</g>`;
+  const rentFont = t.price ? 18 : corner ? 11 : 14;
+  return `<g class="tile-face" data-angle="${corner ? 0 : r.angle}" transform="translate(${center.x} ${center.y}) rotate(${corner ? 0 : r.angle})" pointer-events="none">${title}${icon}${price ? `<text class="tile-price ${t.price ? "tile-rent" : ""}" x="0" y="${corner ? 62 : owner == null ? 58 : 51}" text-anchor="middle" font-size="${rentFont}" textLength="${labelWidth(price, rentFont, corner ? 120 : 70)}" lengthAdjust="spacingAndGlyphs" font-weight="${t.price ? 650 : 500}" fill="#244c3c">${esc(price)}</text>` : ""}</g>`;
 }
 
 const rect = (r, attributes) =>
   `<rect x="${r.x}" y="${r.y}" width="${r.width}" height="${r.height}" ${attributes}/>`;
-function buildings(r, side, a) {
+function buildings(r, a) {
   if (!a?.level) return "";
   const center = { x: r.x + r.width / 2, y: r.y + r.height / 2 },
     hotel = a.level === 5,
-    viewBox = hotel ? "1175 211 304 454" : "271 347 347 297",
-    size = hotel ? 20 : 14,
-    count = hotel ? 1 : a.level;
-  return `<g class="property-buildings" transform="translate(${center.x} ${center.y}) rotate(${r.angle})" pointer-events="none">${Array.from(
-    { length: count },
-    (_, i) => {
-      const x = hotel ? 0 : -(count - 1) * 7 + i * 14;
-      return `<svg class="building-image" x="${x - size / 2}" y="${-59 - size / 2}" width="${size}" height="${size}" viewBox="${viewBox}" role="img" aria-label="${hotel ? "Hotel" : "Rumah"}"><image href="/assets/buildings/building-icons.png" width="1774" height="887"/></svg>`;
-    },
-  ).join("")}</g>`;
+    label = hotel ? "Hotel" : `${a.level} rumah`;
+  const count = hotel ? 1 : a.level;
+  const size = hotel ? 29 : 21;
+  const spacing = 18;
+  return `<g class="property-buildings ${hotel ? "has-hotel" : "has-houses"}" transform="translate(${center.x} ${center.y}) rotate(${r.angle})" pointer-events="none" role="img" aria-label="${label}">${Array.from({ length: count }, (_, i) => buildingArt(hotel ? "hotel" : "house", { size, x: (-(count - 1) * spacing) / 2 + i * spacing - size / 2, y: -59 - size / 2, board: true })).join("")}</g>`;
 }
 
-export function boardMarkup(s, selected = -1) {
+export function boardMarkup(s) {
   const tiles = BOARD.map((t) => {
     const r = tileRect(t.id),
       side = Math.floor(t.id / 10),
       a = s.assets[t.id],
       owner = a?.owner,
       center = { x: r.x + r.width / 2, y: r.y + r.height / 2 };
-    return `<g data-tile="${t.id}" tabindex="0" role="button" aria-label="${esc(t.name)}${owner != null ? ", milik " + esc(s.players[owner].name) : ""}">${rect(r, `fill="${a?.mortgaged ? "#d3d5d1" : "#dcebd8"}" stroke="#283e34" stroke-width="2.8"`)}${t.type === "city" ? rect(band(r, side), `fill="${t.color}" stroke="#283e34" stroke-width="2"`) : ""}${tileFace(t, r)}${owner != null ? rect(band(r, side, true), `fill="${colors[pawnFor(s.players[owner])]}"`) : ""}${buildings(r, side, a)}${a?.mortgaged ? `<path d="M${r.x + 7} ${r.y + 7}l${r.width - 14} ${r.height - 14}" stroke="#92566e" stroke-width="3" pointer-events="none"/><g transform="translate(${center.x} ${center.y}) rotate(${r.angle})" pointer-events="none"><rect x="-25" y="30" width="50" height="18" rx="3" fill="#92566e"/><text x="0" y="43" text-anchor="middle" class="mortgage-label" font-size="11">GADAI</text></g>` : ""}</g>`;
+    const color = owner == null ? "" : colors[pawnFor(s.players[owner])];
+    const ownership =
+      owner == null
+        ? ""
+        : `${rect({ ...r, x: r.x + 4, y: r.y + 4, width: r.width - 8, height: r.height - 8 }, `class="tile-ownership" fill="${color}" fill-opacity=".09" stroke="${color}" stroke-width="3" pointer-events="none"`)}${rect(band(r, side, true), `fill="${color}" pointer-events="none"`)}`;
+    return `<g data-tile="${t.id}" data-owner="${owner ?? ""}" tabindex="0" role="button" aria-label="${esc(t.name)}${owner != null ? ", milik " + esc(s.players[owner].name) + ", sewa " + esc(rentLabel(s, t.id)) : t.price ? ", belum dimiliki" : ""}">${rect(r, `class="tile-ground" fill="${a?.mortgaged ? "#d3d5d1" : "#dcebd8"}" stroke="#283e34" stroke-width="2.8"`)}${ownership}${t.type === "city" ? rect(band(r, side), `fill="${t.color}" stroke="#283e34" stroke-width="2"`) : ""}${tileFace(t, r, s)}${buildings(r, a)}${a?.mortgaged ? `<path d="M${r.x + 7} ${r.y + 7}l${r.width - 14} ${r.height - 14}" stroke="#92566e" stroke-width="3" pointer-events="none"/><g transform="translate(${center.x} ${center.y}) rotate(${r.angle})" pointer-events="none"><image class="mortgage-marker" href="/assets/classic/mortgage.svg" x="-33" y="-8" width="23" height="23" role="img" aria-label="GADAI"/></g>` : ""}</g>`;
   }).join("");
   const pawns = s.players
     .map((p) => {
@@ -138,7 +141,6 @@ export class BoardView {
     this.onTile = onTile;
     this.svg = container.querySelector("svg");
     this.world = this.svg.querySelector("g");
-    this.selected = -1;
     this.mode = "overview";
     this.points = new Map();
     this.observer = new ResizeObserver(() => this.resize());
@@ -274,23 +276,38 @@ export class BoardView {
     }
     this.transform();
   }
-  update(
-    state,
-    head,
-    { paused = false, reduced = false, fast = false, selected = -1 } = {},
-  ) {
+  update(state, head, { paused = false, reduced = false, fast = false } = {}) {
+    const previous = this.state;
     this.state = state;
     const key = JSON.stringify([
       state.matchId,
       state.version,
       head?.id,
-      selected,
-      state.players.map((p) => [p.pos, p.inJail, p.out]),
+      state.players.map((p) => [p.pos, p.inJail, p.out, pawnFor(p), p.name]),
       state.assets,
     ]);
     if (key !== this.key) {
       this.key = key;
-      this.world.innerHTML = boardMarkup(state, selected);
+      this.world.innerHTML = boardMarkup(state);
+      if (!reduced && previous?.matchId === state.matchId) {
+        for (const [tile, asset] of Object.entries(state.assets)) {
+          if (
+            asset.owner != null &&
+            asset.owner !== previous.assets[tile]?.owner
+          ) {
+            const marker = this.world.querySelector(
+              `[data-tile="${tile}"] .tile-ownership`,
+            );
+            marker?.animate(
+              [
+                { fillOpacity: 0.5, strokeWidth: 7 },
+                { fillOpacity: 0.09, strokeWidth: 3 },
+              ],
+              { duration: fast ? 240 : 450, easing: "ease-out" },
+            );
+          }
+        }
+      }
       this.applyMode();
     }
     if (head?.kind !== "pawnMoving" || reduced) {

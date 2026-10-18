@@ -6,7 +6,18 @@ import {landingForecast} from './probability.mjs';
 import {postTradeDevelopment} from './allocation.mjs';
 import {economyRules,strengthShares} from './economy.mjs';
 import {concessionOrder,rejectionActive} from './concessions.mjs';
+import {revisedTrade,tradeRetryVerdict} from './trade-memory.mjs';
 const empty=to=>({to,give:[],take:[],giveCash:0,takeCash:0,giveCards:0,takeCards:0});
+export function prepareTradeCandidate(s,id,action,context={}){
+  if(!['OFFER','COUNTER'].includes(action.type))return action;
+  if(tradeRetryVerdict(s,id,action.trade).allowed)return action;
+  if(context.decisionContext?.expired())return null;
+  const trade=revisedTrade(s,id,action.trade);
+  if(!trade)return null;
+  const own=evaluateTrade(s,id,trade,id,context),partner=evaluateTrade(s,trade.to,trade,id,context);
+  if(own.invalid||own.insolventAfterFees||own.net<=0||partner.invalid||partner.insolventAfterFees||partner.net<0)return null;
+  return {...action,trade};
+}
 export function canonicalTradeDelta(s,t,from=t.from){
   const to=t.to;if(from===to||!s.players[from]||!s.players[to]||s.players[from].out||s.players[to].out)throw Error('Invalid trade participants');
   for(const key of ['giveCash','takeCash','giveCards','takeCards'])if(!Number.isSafeInteger(t[key])||t[key]<0)throw Error('Invalid trade quantity');
@@ -73,7 +84,7 @@ export function negotiationCandidates(s,id,analysis){
   if(!(s.phase==='trade'&&s.trade.to===id)&&!['end','debt'].includes(s.phase))return [];
   if(s.phase!=='trade'&&analysis.options.context?.expired())return [];
   const out=[],unique=new Set(),context={analyses:new Map([[id,analysis],...analysis.others.map(p=>[p.id,analyzeState(s,p.id,{...analysis.options,fast:true,publicOpponent:true})])])};
-  const add=(type,trade)=>{const key=JSON.stringify(trade);if(!unique.has(key)){unique.add(key);out.push({type,trade});}};
+  const add=(type,trade)=>{const action=prepareTradeCandidate(s,id,{type,trade},{...context,decisionContext:analysis.options.context});if(!action)return;const key=JSON.stringify(action.trade);if(!unique.has(key)){unique.add(key);out.push(action);}};
   if(s.phase==='trade'&&s.trade.to===id){
     const current=s.trade,value=evaluateTrade(s,id,current,current.from,context);
     if(value.net>=0||(s.botMemory?.negotiation?.depth||0)>=2)return out;

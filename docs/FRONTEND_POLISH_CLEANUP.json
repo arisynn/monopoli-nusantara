@@ -1,0 +1,278 @@
+{
+  "before": {
+    "public": {
+      "bytes": 1924393,
+      "files": 23
+    },
+    "dist": {
+      "bytes": 2613017,
+      "files": 106
+    },
+    "frontend": {
+      "bytes": 299987,
+      "files": 27
+    },
+    "precache": 103
+  },
+  "after": {
+    "public": {
+      "bytes": 1027221,
+      "files": 22
+    },
+    "dist": {
+      "bytes": 1717830,
+      "files": 107
+    },
+    "frontend": {
+      "bytes": 302335,
+      "files": 30
+    },
+    "precache": 104
+  },
+  "assetReductionPercent": 46.6,
+  "publicBuildReductionPercent": 34.3,
+  "deletedTrackedBytes": 3960174,
+  "deletedFiles": [
+    {
+      "path": "design/board-icons-master.png",
+      "bytes": 725842
+    },
+    {
+      "path": "design/currency/nusa-mark.svg",
+      "bytes": 374
+    },
+    {
+      "path": "design/references/1249621.jpg",
+      "bytes": 109727
+    },
+    {
+      "path": "design/references/1249622.jpg",
+      "bytes": 125192
+    },
+    {
+      "path": "design/references/1249623.jpg",
+      "bytes": 105602
+    },
+    {
+      "path": "design/references/1249624.jpg",
+      "bytes": 108171
+    },
+    {
+      "path": "design/references/1249625.jpg",
+      "bytes": 161617
+    },
+    {
+      "path": "design/references/1249626.jpg",
+      "bytes": 104952
+    },
+    {
+      "path": "design/references/1249627.jpg",
+      "bytes": 103335
+    },
+    {
+      "path": "design/references/1249628.jpg",
+      "bytes": 119646
+    },
+    {
+      "path": "design/references/1249629.jpg",
+      "bytes": 107672
+    },
+    {
+      "path": "design/references/1249630.jpg",
+      "bytes": 96534
+    },
+    {
+      "path": "design/references/1251173.jpg",
+      "bytes": 65203
+    },
+    {
+      "path": "design/references/1251174.jpg",
+      "bytes": 172762
+    },
+    {
+      "path": "design/references/1251175.jpg",
+      "bytes": 95915
+    },
+    {
+      "path": "design/references/1251192.jpg",
+      "bytes": 182914
+    },
+    {
+      "path": "design/references/1251193.jpg",
+      "bytes": 170179
+    },
+    {
+      "path": "design/references/1251194.jpg",
+      "bytes": 141134
+    },
+    {
+      "path": "design/ui-icon-paths.json",
+      "bytes": 1392
+    },
+    {
+      "path": "docs/APEX_ORIGINAL_SOURCE/monopoly_apex.py",
+      "bytes": 50820
+    },
+    {
+      "path": "docs/bot-v49-package/research/learned-model.candidate-reference.mjs",
+      "bytes": 3015
+    },
+    {
+      "path": "lab/nusa-v7/council.mjs",
+      "bytes": 39871
+    },
+    {
+      "path": "lab/nusa-v7/experts.mjs",
+      "bytes": 42843
+    },
+    {
+      "path": "lab/nusa-v7/index.mjs",
+      "bytes": 1352
+    },
+    {
+      "path": "lab/nusa-v7/reasoning.mjs",
+      "bytes": 13661
+    },
+    {
+      "path": "lab/nusa-v7/situation.mjs",
+      "bytes": 20828
+    },
+    {
+      "path": "lib/quick-notice.mjs",
+      "bytes": 389
+    },
+    {
+      "path": "lib/server/d1-store.mjs",
+      "bytes": 1186
+    },
+    {
+      "path": "lib/server/runtime-sites.ts",
+      "bytes": 401
+    },
+    {
+      "path": "public/assets/avatars/animal-portraits.png",
+      "bytes": 532462
+    },
+    {
+      "path": "public/assets/avatars/apex.png",
+      "bytes": 72286
+    },
+    {
+      "path": "public/assets/avatars/bima.png",
+      "bytes": 73889
+    },
+    {
+      "path": "public/assets/avatars/kresna.png",
+      "bytes": 68422
+    },
+    {
+      "path": "public/assets/avatars/nusa.png",
+      "bytes": 99402
+    },
+    {
+      "path": "public/assets/avatars/raka.png",
+      "bytes": 80241
+    },
+    {
+      "path": "public/assets/avatars/sari.png",
+      "bytes": 82819
+    },
+    {
+      "path": "public/assets/currency/nusa-mark.png",
+      "bytes": 9234
+    },
+    {
+      "path": "public/assets/ui/interface-icons.png",
+      "bytes": 11930
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/board-camera.mjs",
+      "bytes": 5334
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/bot/mind-client.mjs",
+      "bytes": 2042
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/bot/mind.worker.mjs",
+      "bytes": 308
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/compact-ui.mjs",
+      "bytes": 2263
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/dice-timing.mjs",
+      "bytes": 212
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/gameplay-presentation.mjs",
+      "bytes": 5094
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/layer-navigation.mjs",
+      "bytes": 750
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/online-client.mjs",
+      "bytes": 6838
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/pawn-animation.mjs",
+      "bytes": 2678
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/pawn-layout.mjs",
+      "bytes": 1030
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/preferences.mjs",
+      "bytes": 759
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/presentation-timeline.mjs",
+      "bytes": 7074
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/presentation-types.ts",
+      "bytes": 2134
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/quick-notice.mjs",
+      "bytes": 389
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/room-client.mjs",
+      "bytes": 1377
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/save-format.mjs",
+      "bytes": 9173
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/server/d1-store.mjs",
+      "bytes": 1186
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/server/runtime-sites.ts",
+      "bytes": 401
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/server/runtime.ts",
+      "bytes": 735
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/storage.ts",
+      "bytes": 6955
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/version.mjs",
+      "bytes": 228
+    }
+  ],
+  "notes": [
+    "Raw file bytes, excluding HTTP compression.",
+    "WebP avatars, the original PNG building atlas and SVG mortgage marker are included in after sizes.",
+    "Tests and imported benchmark baselines remain in development source; public build contains only runtime dependencies."
+  ]
+}

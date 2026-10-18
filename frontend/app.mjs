@@ -1,15 +1,17 @@
 import { bankSnapshot } from "../lib/bank-economy.mjs";
 import { lucideIcon } from "./lucide-icons.mjs";
 import { updateAuctionBody } from "./auction-view.mjs";
+import { updateTradeBody, updateAssetBody } from "./trade-view.mjs";
+import { normalizeAmountInput } from "./number-input.mjs";
 import { auctionIdentity } from "../lib/auction-presentation.mjs";
 import { APP_VERSION } from "../lib/version.mjs";
-import { upgradeIcons } from "./lucide-icons.mjs";
 import { activitySummary, capsuleFeedback } from "./economy-view.mjs";
 import { onlineStatus } from "./online-status.mjs";
 import { decorateCurrency } from "./currency-view.mjs";
 import { enhanceSelections } from "./selections.mjs";
 import { TradeDrafts, draftScope, emptyTrade } from "./trade-drafts.mjs";
 import { retireLegacyUI } from "./cache-migration.mjs";
+import { createPwa } from "./pwa.mjs";
 import { createLayerNavigation } from "../lib/layer-navigation.mjs";
 import { DiceView } from "./dice-view.mjs";
 import { GameSession } from "./session.mjs";
@@ -22,14 +24,12 @@ import {
   primaryAction,
   dicePresentation,
   autoPopup,
-  gameplayDecision,
   bidMinimum,
-  roomEligibility,
 } from "./domain.mjs";
-import { icon, avatar, colors, pawnArt } from "./art.mjs";
+import { icon, avatar, playerAvatar, colors, pawnArt } from "./art.mjs";
 import { renderPopup, btn, lead, tradeEstimateMarkup } from "./popups.mjs";
 import { localPlayers, PERSONAS } from "../lib/bot/personas.mjs";
-import { TOKENS, pawnFor, availablePawn } from "../lib/pawns.mjs";
+import { TOKENS, pawnFor } from "../lib/pawns.mjs";
 import { BOARD, money } from "../lib/content.mjs";
 import { decisionActor } from "../lib/game.mjs";
 import { parseNusa, nusaInput } from "../lib/currency.mjs";
@@ -66,7 +66,6 @@ const ui = {
   dismissed: "",
   selected: 0,
   historyFilter: "all",
-  assetFilter: "all",
   assetTab: "all",
   assetQuery: "",
   buildCounts: {},
@@ -86,6 +85,7 @@ try {
 const drafts = new TradeDrafts(draftStorage);
 const page = document.querySelector("#page"),
   dialog = document.querySelector("#popup"),
+  dialogHeader = dialog.querySelector(".popup-header"),
   dialogBody = dialog.querySelector(".popup-body"),
   dialogFooter = dialog.querySelector(".popup-footer"),
   dialogClose = dialog.querySelector("[data-action=close]");
@@ -99,6 +99,13 @@ let board,
   footerHTML = "",
   previousFocus,
   renderQueued = false;
+const pwa = createPwa({
+  window,
+  navigator,
+  canUpdate: () =>
+    session.screen !== "gameplay" && !session.pending && !session.botThinking,
+  onChange: queueRender,
+});
 const botFor = (id) => PERSONAS.find((p) => p.id === id);
 const selectedBots = () => ui.botIds.slice(0, ui.count - 1);
 const availableRoomPersona = () => {
@@ -114,14 +121,15 @@ const availableRoomPersona = () => {
 };
 const botCard = (p, selected, disabled) =>
   `<button type="button" class="bot-choice-card ${selected ? "selected" : ""}" data-action="chooseBotPersona" data-value="${p.id}" aria-pressed="${selected}" ${disabled ? "disabled" : ""}>${avatar(PERSONAS.indexOf(p))}<span class="bot-choice-details"><b>${esc(p.id === "apex" ? "ARKA / APEX" : p.name)}</b><small>${esc(p.role)}</small></span><span class="bot-choice-indicator">${selected ? icon("check", 16) : disabled ? "Dipakai" : icon("arrow", 16)}</span></button>`;
-const brand = () => `<div class="brand">Nusantara</div>`;
+const brand = () =>
+  `<div class="brand"><img src="/assets/brand/logo.png" alt="" width="38" height="38"><span>Nusantara</span></div>`;
 const topbar = () =>
   `<header class="topbar"><button class="icon-button" data-action="menu" aria-label="Menu permainan">${icon("menu", 22)}</button>${brand()}${session.screen === "gameplay" ? `<button class="icon-button" data-action="camera" aria-label="Kamera: ${ui.camera === "overview" ? "lihat dekat" : "seluruh papan"}" aria-pressed="${ui.camera === "follow"}">${icon("map", 22)}</button>` : '<span class="header-spacer" aria-hidden="true"></span>'}</header>`;
 function lobbyHTML() {
   return `${topbar()}<main class="lobby"><section class="lobby-panel" aria-label="Lobby permainan"><div id="lobby-content"></div></section><p class="version-line">Monopoli Nusantara · Klasik ${APP_VERSION}</p></main><div id="page-status" class="page-status" role="status"></div>`;
 }
 function gameplayHTML() {
-  return `${topbar()}<main class="gameplay"><section class="players" aria-label="Pemain"></section><div class="connection-note" hidden></div><section class="board-stage" aria-label="Papan 40 petak"><div class="board-view" tabindex="0" aria-label="Papan Nusantara, ketuk petak, geser atau cubit untuk menjelajah"><svg role="group" aria-label="Papan permainan"><g></g></svg></div><button type="button" class="bank-indicator" data-action="bank" aria-label="Bank Nusantara, lihat rincian ekonomi">${lucideIcon("bank", 18)}<span><small>Nusa beredar</small><b id="bank-circulation"></b></span>${lucideIcon("arrow", 12)}</button></section><button class="activity" data-action="history" aria-label="Riwayat aktivitas dan transaksi"><span id="activity-text"></span><span id="activity-money"></span></button><button class="tile-caption" data-action="selectedProperty"></button><section class="action-console" aria-label="Aksi permainan"><div class="turn-heading"></div><div class="console-row"><div class="quick-actions"><button class="property-button" data-action="ownAssets" aria-label="Properti Saya" title="Properti Saya">${icon("assets", 22)}<span>Aset</span></button><button class="property-button" data-action="trade" aria-label="Perdagangan dan barter" title="Barter">${icon("trade", 22)}<span>Barter</span></button></div><div class="dice-tray" aria-live="polite"></div><button class="roll-button primary" data-action="primary"></button></div><div id="page-status" class="page-status" role="status"></div></section></main>`;
+  return `${topbar()}<main class="gameplay"><section class="players" aria-label="Pemain"></section><div class="connection-note" hidden></div><section class="board-stage" aria-label="Papan 40 petak"><div class="board-view" tabindex="0" aria-label="Papan Nusantara, ketuk petak, geser atau cubit untuk menjelajah"><svg role="group" aria-label="Papan permainan"><g></g></svg></div><button type="button" class="bank-indicator" data-action="bank" aria-label="Bank Nusantara, lihat rincian ekonomi">${lucideIcon("bank", 18)}<span><small>Nusa beredar</small><b id="bank-circulation"></b></span>${lucideIcon("arrow", 12)}</button></section><section class="gameplay-info" aria-label="Aktivitas, petak dan dadu"><button class="activity" data-action="history" aria-label="Riwayat aktivitas dan transaksi"><span id="activity-text"></span><span id="activity-money"></span></button><button class="tile-caption" data-action="selectedProperty"></button><div class="dice-tray" aria-live="polite"></div></section><section class="action-console" aria-label="Aksi permainan"><div class="turn-heading"></div><div class="console-row"><div class="quick-actions"><button class="property-button" data-action="ownAssets" aria-label="Properti Saya" title="Properti Saya">${icon("assets", 22)}<span>Aset</span></button><button class="property-button" data-action="trade" aria-label="Perdagangan dan barter" title="Barter">${icon("trade", 22)}<span>Barter</span></button></div><button class="roll-button primary" data-action="primary"></button></div><div id="page-status" class="page-status" role="status"></div></section></main>`;
 }
 function lobbyContent() {
   const r = session.online,
@@ -155,14 +163,7 @@ function lobbyContent() {
     (_, i) => {
       const p = players[i];
       return p
-        ? `<button class="lobby-player ${i === (isRoom ? session.room.seat : 0) ? "own" : ""}" data-action="${isRoom ? "room" : "setup"}" style="--player:${colors[pawnFor(p)]}"><span class="player-number">P${i + 1}${isRoom && i === r.host ? " · HOST" : ""}</span><div class="roster-art">${avatar(
-            p.controller === "bot"
-              ? Math.max(
-                  0,
-                  PERSONAS.findIndex((x) => x.id === p.botPersona),
-                )
-              : 0,
-          )}${pawnArt(pawnFor(p), TOKENS[pawnFor(p)].name)}</div><b>${esc(p.name)}</b><small class="ready-pill ${p.ready || p.controller === "bot" ? "ready" : ""}">${p.controller === "bot" ? "Bot" : p.ready ? "Siap" : "Belum siap"}</small></button>`
+        ? `<button class="lobby-player ${i === (isRoom ? session.room.seat : 0) ? "own" : ""}" data-action="${isRoom ? "room" : "setup"}" style="--player:${colors[pawnFor(p)]}"><span class="player-number">P${i + 1}${isRoom && i === r.host ? " · HOST" : ""}</span><div class="roster-art">${playerAvatar(p, players)}${pawnArt(pawnFor(p), TOKENS[pawnFor(p)].name)}</div><b>${esc(p.name)}</b><small class="ready-pill ${p.ready || p.controller === "bot" ? "ready" : ""}">${p.controller === "bot" ? "Bot" : p.ready ? "Siap" : "Belum siap"}</small></button>`
         : `<div class="lobby-player empty-seat"><span>P${i + 1}</span>${icon("plus", 25)}<small>Kursi kosong</small></div>`;
     },
   ).join(
@@ -176,7 +177,7 @@ function playerCards() {
     .map((p) => {
       const conn = session.online?.seats[p.id],
         flow = capsuleFeedback(session.head, p.id);
-      return `<button class="player-capsule ${p.id === actor ? "active" : ""} ${p.out ? "out" : ""}" data-action="profile" data-id="${p.id}" style="--player:${colors[pawnFor(p)]}" aria-label="${esc(p.name)}, ${esc(money(p.cash))}${p.id === actor ? ", giliran aktif" : ""}${p.inJail ? ", penjara" : ""}"><div class="capsule-avatar">${avatar(p.id)}${pawnArt(pawnFor(p))}</div><div><span class="capsule-name">${esc(p.name)}${conn ? `<i class="connection ${conn.connected ? "on" : ""}"></i>` : ""}</span><strong>${esc(money(p.cash))}</strong><small class="capsule-flow ${flow ? (flow.amount > 0 ? "positive" : "negative") : ""}" ${flow ? `data-ledger="${esc(flow.id)}"` : ""}>${flow ? esc(flow.label) : p.out ? "Bangkrut" : p.inJail ? "Di penjara" : p.id === actor ? "Giliran aktif" : p.controller === "bot" ? "Bot" : "P" + (p.id + 1)}</small></div></button>`;
+      return `<button class="player-capsule ${p.id === actor ? "active" : ""} ${p.out ? "out" : ""}" data-action="profile" data-id="${p.id}" style="--player:${colors[pawnFor(p)]}" aria-label="${esc(p.name)}, ${esc(money(p.cash))}${p.id === actor ? ", giliran aktif" : ""}${p.inJail ? ", penjara" : ""}"><div class="capsule-avatar">${playerAvatar(p, s.players)}${pawnArt(pawnFor(p))}</div><div><span class="capsule-name">${esc(p.name)}${conn ? `<i class="connection ${conn.connected ? "on" : ""}"></i>` : ""}</span><strong>${esc(money(p.cash))}</strong><small class="capsule-flow ${flow ? (flow.amount > 0 ? "positive" : "negative") : ""}" ${flow ? `data-ledger="${esc(flow.id)}"` : ""}>${flow ? esc(flow.label) : p.out ? "Bangkrut" : p.inJail ? "Di penjara" : p.id === actor ? (session.botThinking ? "Bot berpikir…" : "Giliran aktif") : p.controller === "bot" ? "Bot" : "P" + (p.id + 1)}</small></div></button>`;
     })
     .join("");
 }
@@ -205,7 +206,7 @@ function renderPlayers(roster) {
 function drawDice() {
   diceView.update(dicePresentation(session.view, session.head), {
     id: session.head?.id || "",
-    paused: session.covered || session.paused,
+    paused: session.covered || session.paused || session.hidden,
     reduced: session.reduced,
   });
 }
@@ -299,7 +300,6 @@ function render() {
     }
     page.querySelector("#page-status").textContent = session.error || "";
     decorateCurrency(page);
-    if (screen === "lobby") upgradeIcons(page);
     renderDialog();
     document.documentElement.classList.toggle("reduced", session.reduced);
     document.documentElement.classList.toggle("playing", screen === "gameplay");
@@ -405,7 +405,7 @@ function open(p) {
   if (p.kind === "assets") ui.assetQuery = "";
   session.setCovered(ui.popup.kind !== "tradeIncoming", {
     assets:
-      ui.popup.kind === "assets" &&
+      ["assets", "debt"].includes(ui.popup.kind) &&
       (ui.popup.id ?? session.seat) === session.seat,
   });
   if (p.kind === "saves")
@@ -503,6 +503,10 @@ function currentPopup() {
     ui.popup = null;
     session.setCovered(false);
   }
+  if (ui.popup?.kind === "debt" && session.state?.phase !== "debt") {
+    ui.popup = null;
+    session.setCovered(false);
+  }
   if (ui.popup) return ui.popup;
   if (session.screen !== "gameplay" || session.paused) return null;
   const p = autoPopup(
@@ -530,7 +534,7 @@ function auxiliary(p) {
               ui.name || "Profil Saya",
               "Nama pemain harus diisi sebelum memulai pertandingan.",
             ) +
-            `<div class="profile-hero">${avatar(0)}<h3>${esc(ui.name || "Belum diberi nama")}</h3>${pawnArt(ui.pawn, "Pion pilihan")}</div>`,
+            `<div class="profile-hero">${avatar("human")}<h3>${esc(ui.name || "Belum diberi nama")}</h3>${pawnArt(ui.pawn, "Pion pilihan")}</div>`,
           footer: btn("Pilih pion", "pawn", { primary: true }),
         };
       return null;
@@ -730,7 +734,7 @@ function auxiliary(p) {
         title: "Pengaturan",
         html:
           lead("gear", "Pengaturan") +
-          `${btn("Profil Saya · Atur nama", "myProfile", { sym: "people" })}<label class="toggle">Efek suara<input type="checkbox" name="sound" ${ui.sound ? "checked" : ""}></label><label class="toggle">Animasi cepat<input type="checkbox" name="fast" ${session.fast ? "checked" : ""}></label><label class="toggle">Kurangi gerakan<input type="checkbox" name="reduced" ${session.reduced ? "checked" : ""}></label><p class="inline-note">Pengaturan disimpan pada perangkat ini. Preferensi reduced motion sistem tetap dihormati.</p><div class="fact-row"><span>Versi</span><b>${APP_VERSION} · Papan Klasik</b></div>`,
+          `${btn("Profil Saya · Atur nama", "myProfile", { sym: "people" })}<label class="toggle">Efek suara<input type="checkbox" name="sound" ${ui.sound ? "checked" : ""}></label><label class="toggle">Animasi cepat<input type="checkbox" name="fast" ${session.fast ? "checked" : ""}></label><label class="toggle">Kurangi gerakan<input type="checkbox" name="reduced" ${session.reduced ? "checked" : ""}></label><p class="inline-note">Pengaturan disimpan pada perangkat ini. Preferensi reduced motion sistem tetap dihormati.</p><div class="fact-row"><span>Versi</span><b>${APP_VERSION} · Papan Klasik</b></div><div class="pwa-tools">${!pwa.state.installed ? btn(pwa.state.installable ? "Pasang Nusantara" : "Cara memasang aplikasi", "installApp", { sym: "home" }) : "<span>Aplikasi terpasang</span>"}${pwa.state.updateAvailable ? btn("Perbarui aplikasi", "updateApp", { disabled: session.screen === "gameplay" || session.pending }) : ""}</div><p class="inline-note">${esc(pwa.state.message || (pwa.state.offline ? "Sedang offline. VS Bot dan simpanan lokal tetap tersedia setelah aplikasi tersimpan di perangkat." : pwa.state.updateAvailable ? "Versi baru tersedia. Kembali ke lobby untuk memperbarui. Permainan online membutuhkan koneksi." : "VS Bot tersedia offline setelah aplikasi tersimpan di perangkat. Permainan online membutuhkan koneksi."))}</p>`,
         footer: btn("Selesai", "close", { primary: true }),
       };
     case "rules":
@@ -845,6 +849,17 @@ function renderDialog() {
   const density = compact ? "compact" : "preserved";
   const densityChanged = dialog.dataset.density !== density;
   dialog.dataset.density = density;
+  const template = document.createElement("template");
+  template.innerHTML = content.html;
+  const heading = template.content.firstElementChild;
+  const headingHTML = heading?.classList.contains("popup-title")
+    ? heading.outerHTML
+    : "";
+  if (headingHTML) heading.remove();
+  if (dialogHeader.innerHTML !== headingHTML)
+    dialogHeader.innerHTML = headingHTML;
+  dialogHeader.hidden = !headingHTML;
+  content.html = template.innerHTML;
   const key = p.key || p.kind + ":" + (p.id ?? ""),
     markup = `${content.html}${session.error && p.kind !== "auction" ? `<p class="dialog-status" role="status">${esc(session.error)}</p>` : ""}`;
   if (popupKey !== key) {
@@ -867,8 +882,13 @@ function renderDialog() {
     end = focused?.selectionEnd,
     scroll = dialogBody.scrollTop;
   if (popupHTML !== markup || densityChanged) {
-    if (p.kind !== "auction" || !updateAuctionBody(dialogBody, markup))
-      dialogBody.innerHTML = markup;
+    const patched =
+      p.kind === "auction"
+        ? updateAuctionBody(dialogBody, markup)
+        : p.kind === "trade"
+          ? updateTradeBody(dialogBody, markup)
+          : p.kind === "assets" && updateAssetBody(dialogBody, markup);
+    if (!patched) dialogBody.innerHTML = markup;
     enhanceSelections(dialogBody);
     decorateCurrency(dialogBody);
     popupHTML = markup;
@@ -900,10 +920,6 @@ function renderDialog() {
   dialogClose.disabled = false;
   dialogClose.hidden = !!dialogFooter.querySelector("button");
   dialog.classList.toggle("has-close", !dialogClose.hidden);
-  if (compact) {
-    upgradeIcons(dialogBody);
-    upgradeIcons(dialogFooter);
-  }
   dialogFooter.dataset.actions = String(
     dialogFooter.querySelectorAll(":scope > button").length,
   );
@@ -939,6 +955,16 @@ async function perform(action, el) {
     chirp();
     const id = Number(el?.dataset.id);
     switch (action) {
+      case "autoPayDebt":
+        open({ kind: "debt" });
+        session.startDebtPayment();
+        return;
+      case "installApp":
+        await pwa.install();
+        return;
+      case "updateApp":
+        pwa.update();
+        return;
       case "close":
         close();
         return;
@@ -1208,7 +1234,6 @@ async function perform(action, el) {
       case "history":
       case "bank":
       case "room":
-      case "allTiles":
       case "rentClaims":
       case "development":
         open({ kind: action });
@@ -1238,12 +1263,6 @@ async function perform(action, el) {
       case "manage":
         open({ kind: action, id });
         return;
-      case "developmentTrade":
-        openTrade(false, {
-          to: Number(el.dataset.owner),
-          tile: Number(el.dataset.tile),
-        });
-        return;
       case "retryOnline":
         await session.refreshConfig();
         return;
@@ -1253,28 +1272,12 @@ async function perform(action, el) {
           ui.assetGroup = Number(el.dataset.group);
         queueRender();
         return;
-      case "refreshMortgageAdvice":
-        if (!session.busy) {
-          session.assetPlan = null;
-          queueRender();
-        }
-        return;
-      case "autoMortgage":
-        session.startMortgages(Number(el.dataset.target), {
-          version: Number(el.dataset.version),
-          tiles: (el.dataset.tiles || "").split(",").map(Number),
-        });
-        return;
       case "buildMany":
         session.startBuilds(Number(el.dataset.group), Number(el.dataset.count));
         return;
       case "stopBuilds":
         session.stopAssetPlan();
         session.notify();
-        return;
-      case "assetFilter":
-        ui.assetFilter = el.dataset.value;
-        queueRender();
         return;
       case "historyFilter":
         ui.historyFilter = el.dataset.value;
@@ -1501,14 +1504,18 @@ dialog.addEventListener("click", (e) => {
       close();
   }
 });
+document.addEventListener("focusin", (e) => {
+  const input = e.target;
+  if (input.matches?.("input[data-amount]") && input.value === "0")
+    input.select();
+});
 document.addEventListener("input", (e) => {
   const el = e.target,
     name = el.name;
+  if (e.isComposing) return;
+  if (el.matches?.("input[data-amount]")) normalizeAmountInput(el);
   if (name === "playerName") ui.profileDraft = el.value;
-  else if (name === "mortgageTarget") {
-    ui.mortgageTarget = el.value;
-    queueRender();
-  } else if (name === "assetSearch") {
+  else if (name === "assetSearch") {
     ui.assetQuery = el.value;
     queueRender();
   } else if (name === "bid") {
@@ -1562,8 +1569,6 @@ document.addEventListener("change", async (e) => {
     else if (name === "rules") ui.rules = el.value;
     else if (name === "advisor") ui.advisor = el.checked;
     else if (name === "capacity") ui.capacity = Number(el.value);
-    else if (name === "assetOwner")
-      open({ kind: "assets", id: Number(el.value) });
     else if (name === "tradeOpponent") {
       selectTradeOpponent(Number(el.value));
     } else if (name === "tradeAsset") {
@@ -1676,5 +1681,5 @@ if ("serviceWorker" in navigator && window.isSecureContext)
     caches: window.caches,
     origin: location.origin,
   })
-    .then(() => navigator.serviceWorker.register("/nusantara-sw.js"))
+    .then(() => pwa.start())
     .catch(() => {});

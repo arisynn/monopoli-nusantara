@@ -16,7 +16,21 @@
       content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https: wss:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'"
     />
     <title>Nusantara — Jelajah · Miliki · Bangun</title>
-    <link rel="icon" href="data:," />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="/assets/brand/favicon.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/brand/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Nusantara" />
     <link rel="stylesheet" href="/frontend/styles.css" />
   </head>
   <body>
@@ -28,12 +42,21 @@
         data-action="close"
         aria-label="Tutup popup"
       >
-        <span
-          class="ui-icon"
-          style="--icon-size: 20px; --icon-x: 14.285714285714286%; --icon-y: 0%"
+        <svg
+          class="ui-icon lucide-icon"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
           aria-hidden="true"
-        ></span>
+        >
+          <path d="m6 6 12 12M18 6 6 18" />
+        </svg>
       </button>
+      <header class="popup-header" hidden></header>
       <section class="popup-body"></section>
       <footer class="popup-footer"></footer>
     </dialog>
