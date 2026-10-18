@@ -1,5 +1,5 @@
 import {command,decisionActor} from '../game.mjs';
-import {decideMind} from '../bot/mind.mjs';
+import {decidePersona} from '../bot/persona-router.mjs';
 import {reconcile,gameplayHeld} from './online-room.mjs';
 import {secureRandom} from './online-service.mjs';
 export function botActor(s){
@@ -25,7 +25,7 @@ export async function runBotWorker({store,decide,clock=Date.now,rng=secureRandom
    if(room.status!=='playing'||gameplayHeld(room,clock())){await store.releaseBot(job.code,owner,room.status==='playing'?'blocked':'waiting');continue;}
    const actor=botActor(room.state);if(actor===null){await store.releaseBot(job.code,owner,'waiting');continue;}
    const version=room.state.version,matchId=room.state.matchId;
-   const local=()=>({action:decideMind(room.state,actor,{timeBudgetMs:180}).action,status:'local',comment:null});
+   const local=()=>({action:decidePersona(room.state,actor,{timeBudgetMs:180}).action,status:'local',comment:null});
    let timeout;
    // An unavailable/slow advisor must not strand an online match. The shared
    // NUSA MIND planner is authoritative fallback; no second random roll occurs.

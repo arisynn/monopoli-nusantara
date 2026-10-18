@@ -1,3 +1,3 @@
-// Install runtime weights only through the matching-source promotion gate.
-// Schema-1 artifacts are incompatible with the new schema-2 public features.
-export const LEARNED_MODEL=null;
+// Stale pre-V17 promoted training weights disabled during integration.
+// This optional learned artifact is not an algorithm; V17 persona/strategy source remains untouched.
+export const LEARNED_MODEL = null;

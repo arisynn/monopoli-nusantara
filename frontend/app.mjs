@@ -28,7 +28,6 @@ import {
 import { icon, avatar, colors, pawnArt } from "./art.mjs";
 import { renderPopup, btn, lead, tradeEstimateMarkup } from "./popups.mjs";
 import { localPlayers, PERSONAS } from "../lib/bot/personas.mjs";
-import { MODELS } from "../lib/bot/mind-config.mjs";
 import { TOKENS, pawnFor, availablePawn } from "../lib/pawns.mjs";
 import { BOARD, money } from "../lib/content.mjs";
 import { decisionActor } from "../lib/game.mjs";
@@ -54,7 +53,7 @@ const ui = {
   count: 4,
   pawn: 0,
   rules: "digital",
-  levels: Object.fromEntries(PERSONAS.map((p) => [p.id, "medium"])),
+  levels: Object.fromEntries(PERSONAS.map((p) => [p.id, "hardcore"])),
   botIds: ["raka", "bima", "sari", "nusa", "apex"],
   nextBotPersona: null,
   advisor: false,
@@ -97,12 +96,11 @@ let board,
   renderQueued = false;
 const botFor = (id) => PERSONAS.find((p) => p.id === id);
 const selectedBots = () => ui.botIds.slice(0, ui.count - 1);
-const levelLabel = (id) => MODELS.find((m) => m.id === id)?.label || "Medium";
 const availableRoomPersona = () => {
   const occupied = new Set((session.online?.seats || []).filter((p) => p.controller === "bot").map((p) => p.botPersona));
   return PERSONAS.find((p) => p.id === ui.nextBotPersona && !occupied.has(p.id)) || PERSONAS.find((p) => !occupied.has(p.id));
 };
-const botCard = (p, selected, disabled) => `<button type="button" class="bot-choice-card ${selected ? "selected" : ""}" data-action="chooseBotPersona" data-value="${p.id}" aria-pressed="${selected}" ${disabled ? "disabled" : ""}><span class="bot-choice-emblem">${esc(p.name.slice(0, 1))}</span><span class="bot-choice-details"><b>${esc(p.name === "Arka" ? "Arka / APEX" : p.name)}</b><small>${esc(p.role)}</small></span><span class="bot-choice-indicator">${selected ? icon("check", 16) : disabled ? "Dipakai" : icon("arrow", 16)}</span></button>`;
+const botCard = (p, selected, disabled) => `<button type="button" class="bot-choice-card ${selected ? "selected" : ""}" data-action="chooseBotPersona" data-value="${p.id}" aria-pressed="${selected}" ${disabled ? "disabled" : ""}>${avatar(PERSONAS.indexOf(p))}<span class="bot-choice-details"><b>${esc(p.name === "Arka" ? "Arka / APEX" : p.name)}</b><small>${esc(p.role)}</small></span><span class="bot-choice-indicator">${selected ? icon("check", 16) : disabled ? "Dipakai" : icon("arrow", 16)}</span></button>`;
 const brand = () => `<div class="brand">Nusantara</div>`;
 const topbar = () =>
   `<header class="topbar"><button class="icon-button" data-action="menu" aria-label="Menu permainan">${icon("menu", 22)}</button>${brand()}${session.screen === "gameplay" ? `<button class="icon-button" data-action="camera" aria-label="Kamera: ${ui.camera === "overview" ? "lihat dekat" : "seluruh papan"}" aria-pressed="${ui.camera === "follow"}">${icon("map", 22)}</button>` : '<span class="header-spacer" aria-hidden="true"></span>'}</header>`;
@@ -138,7 +136,7 @@ function lobbyContent() {
     (_, i) => {
       const p = players[i];
       return p
-        ? `<button class="lobby-player ${i === (isRoom ? session.room.seat : 0) ? "own" : ""}" data-action="${isRoom ? "room" : "setup"}" style="--player:${colors[pawnFor(p)]}"><span class="player-number">P${i + 1}${isRoom && i === r.host ? " · HOST" : ""}</span><div class="roster-art">${avatar(i)}${pawnArt(pawnFor(p), TOKENS[pawnFor(p)].name)}</div><b>${esc(p.name)}</b><small class="ready-pill ${p.ready || p.controller === "bot" ? "ready" : ""}">${p.controller === "bot" ? esc((botFor(p.botPersona)?.name || "Bot") + " · " + levelLabel(p.botDifficulty)) : p.ready ? "Siap" : "Belum siap"}</small></button>`
+        ? `<button class="lobby-player ${i === (isRoom ? session.room.seat : 0) ? "own" : ""}" data-action="${isRoom ? "room" : "setup"}" style="--player:${colors[pawnFor(p)]}"><span class="player-number">P${i + 1}${isRoom && i === r.host ? " · HOST" : ""}</span><div class="roster-art">${avatar(p.controller === "bot" ? Math.max(0, PERSONAS.findIndex(x => x.id === p.botPersona)) : 0)}${pawnArt(pawnFor(p), TOKENS[pawnFor(p)].name)}</div><b>${esc(p.name)}</b><small class="ready-pill ${p.ready || p.controller === "bot" ? "ready" : ""}">${p.controller === "bot" ? esc(botFor(p.botPersona)?.name || "Bot") : p.ready ? "Siap" : "Belum siap"}</small></button>`
         : `<div class="lobby-player empty-seat"><span>P${i + 1}</span>${icon("plus", 25)}<small>Kursi kosong</small></div>`;
     },
   ).join(
@@ -421,7 +419,7 @@ function close() {
       });
     return;
   }
-  if (["botChoice", "botLevelChoice"].includes(ui.popup?.kind)) {
+  if (ui.popup?.kind === "botChoice") {
     ui.popup = { kind: ui.popup.slot === "online" ? "addBotPopup" : "setup" };
     queueRender();
     return;
@@ -553,10 +551,10 @@ function auxiliary(p) {
         title: "Atur VS Bot",
         html:
           lead("gear", "Teman Berpetualang", "") +
-          `<div class="profile-name-row"><span>Nama kamu: <b>${esc(ui.name || "Belum diisi")}</b></span>${btn("Atur nama", "myProfile")}</div><div class="setup-controls"><div class="setup-row"><span>Peserta</span><div class="segments">${[2, 3, 4, 5, 6].map((n) => `<button data-action="count" data-value="${n}" aria-pressed="${n === ui.count}">${n}</button>`).join("")}</div></div>${btn("Pilih pion", "pawn")}</div><p class="bot-section-caption">Pilih karakter AI dan tingkat kesulitan untuk setiap kursi.</p>` +
+          `<div class="profile-name-row"><span>Nama kamu: <b>${esc(ui.name || "Belum diisi")}</b></span>${btn("Atur nama", "myProfile")}</div><div class="setup-controls"><div class="setup-row"><span>Peserta</span><div class="segments">${[2, 3, 4, 5, 6].map((n) => `<button data-action="count" data-value="${n}" aria-pressed="${n === ui.count}">${n}</button>`).join("")}</div></div>${btn("Pilih pion", "pawn")}</div><p class="bot-section-caption">Pilih karakter AI untuk setiap kursi. Tiap karakter sudah membawa model dan strategi sendiri.</p>` +
           selectedBots().map((botId, i) => {
             const p = botFor(botId);
-            return `<div class="bot-setting">${avatar(i + 1)}<span class="bot-seat-desc"><small>KURSI ${i + 2}</small><b>${esc(p.name)}</b><small>${esc(p.role)}</small></span><div class="bot-seat-controls"><button type="button" data-action="pickBot" data-slot="${i}" class="bot-config-pill bot-persona-pill" aria-label="Pilih model bot untuk kursi ${i + 2}">${icon("people", 14)}${esc(p.name)} ${icon("arrow", 12)}</button><button type="button" data-action="pickLevel" data-slot="${i}" class="bot-config-pill" aria-label="Pilih kesulitan ${p.name}">${esc(levelLabel(ui.levels[p.id]))} ${icon("arrow", 12)}</button></div></div>`;
+            return `<button type="button" class="bot-setting bot-seat-select" data-action="pickBot" data-slot="${i}" aria-label="Ganti karakter bot di kursi ${i + 2}">${avatar(PERSONAS.indexOf(p))}<span class="bot-seat-desc"><small>KURSI ${i + 2}</small><b>${esc(p.name)}</b><small>${esc(p.role)}</small></span><span class="bot-seat-arrow">${icon("chevron-right", 18)}</span></button>`;
           }).join("") +
           `<label class="field">Aturan sewa<select name="rules"><option value="digital" ${ui.rules === "digital" ? "selected" : ""}>Digital · otomatis</option><option value="classic" ${ui.rules === "classic" ? "selected" : ""}>Meja Klasik · tagih manual</option></select></label><label class="toggle">Advisor Groq<input type="checkbox" name="advisor" ${ui.advisor ? "checked" : ""} ${!session.configured ? "disabled" : ""}></label><p class="inline-note">${session.configured ? "Opsional; koneksi advisor diperiksa saat dipakai." : "Advisor belum dikonfigurasi."} Bot lokal tetap mandiri.</p>`,
         footer: btn("Selesai", "close", { primary: true }),
@@ -568,21 +566,9 @@ function auxiliary(p) {
         ? (session.online?.seats || []).filter((seat) => seat.controller === "bot").map((seat) => seat.botPersona)
         : selectedBots().filter((_, i) => i !== p.slot));
       return {
-        title: "Pilih Model Bot",
-        html: lead("people", "Pilih Model Bot", "Enam strategi independen. Satu karakter per kursi.") +
+        title: "Pilih Karakter",
+        html: lead("people", "Pilih Karakter", "Ketuk satu karakter. Strateginya sudah melekat pada pilihan.") +
           `<div class="bot-choice-grid">${PERSONAS.map((persona) => botCard(persona, current === persona.id, taken.has(persona.id))).join("")}</div>`,
-        footer: btn("Kembali", "close", {primary: true}),
-      };
-    }
-    case "botLevelChoice": {
-      const room = p.slot === "online";
-      const persona = room ? availableRoomPersona() : botFor(ui.botIds[p.slot]);
-      const chosen = room ? (ui.nextBotLevel || "medium") : ui.levels[persona.id];
-      const descriptions = {easy:"Santai · eksplorasi",medium:"Ekonomi seimbang",hard:"Taktis dan agresif",hardcore:"Pencarian lebih dalam"};
-      return {
-        title: "Kesulitan Bot",
-        html: lead("gear", "Tingkat Kesulitan", `Khusus ${persona?.name || "Bot"}. Tidak mengubah identitas model.`) +
-          `<div class="bot-level-grid">${MODELS.map(m => `<button class="bot-level-card ${m.id === chosen ? "selected" : ""}" data-action="chooseBotLevel" data-value="${m.id}" aria-pressed="${m.id === chosen}"><span><b>${esc(m.label)}</b><small>${esc(descriptions[m.id] || m.algorithm)}</small></span>${m.id === chosen ? icon("check", 18) : icon("arrow", 16)}</button>`).join("")}</div>`,
         footer: btn("Kembali", "close", {primary: true}),
       };
     }
@@ -762,7 +748,7 @@ function auxiliary(p) {
             "Bot di Room",
             "Persona berikutnya dipilih backend, tanpa duplikasi.",
           ) +
-          `<div class="bot-room-settings"><div><small>PERSONA BOT</small><button type="button" class="bot-config-row" data-action="pickBotOnline">${esc(availableRoomPersona()?.name || "Tidak tersedia")}${icon("arrow", 16)}</button></div><div><small>KESULITAN</small><button type="button" class="bot-config-row" data-action="pickLevelOnline">${esc(levelLabel(ui.nextBotLevel || "medium"))}${icon("arrow", 16)}</button></div></div><p class="inline-note">Pilih salah satu dari enam model unik. Maksimal tiga bot per room, dan minimal dua pemain manusia.</p>`,
+          `<div class="bot-room-settings"><div><small>KARAKTER BOT</small><button type="button" class="bot-config-row" data-action="pickBotOnline">${esc(availableRoomPersona()?.name || "Tidak tersedia")}${icon("arrow", 16)}</button></div></div><p class="inline-note">Pilih salah satu dari enam model unik. Maksimal tiga bot per room, dan minimal dua pemain manusia.</p>`,
         footer: btn("Tambahkan bot", "addBot", {
           primary: true,
           disabled: session.pending,
@@ -929,14 +915,8 @@ async function perform(action, el) {
       case "pickBot":
         open({ kind: "botChoice", slot: Number(el.dataset.slot) });
         return;
-      case "pickLevel":
-        open({ kind: "botLevelChoice", slot: Number(el.dataset.slot) });
-        return;
       case "pickBotOnline":
         open({ kind: "botChoice", slot: "online" });
-        return;
-      case "pickLevelOnline":
-        open({ kind: "botLevelChoice", slot: "online" });
         return;
       case "chooseBotPersona": {
         const chosen = el.dataset.value;
@@ -953,14 +933,6 @@ async function perform(action, el) {
           if (elsewhere >= 0 && elsewhere !== slot) ui.botIds[elsewhere] = old;
           ui.botIds[slot] = chosen;
         }
-        close();
-        return;
-      }
-      case "chooseBotLevel": {
-        const choice = el.dataset.value;
-        if (!MODELS.some(m => m.id === choice) || ui.popup?.kind !== "botLevelChoice") return;
-        if (ui.popup.slot === "online") ui.nextBotLevel = choice;
-        else ui.levels[ui.botIds[ui.popup.slot]] = choice;
         close();
         return;
       }
@@ -1001,7 +973,7 @@ async function perform(action, el) {
           count: ui.count,
           pawn: ui.pawn,
           rules: ui.rules,
-          levels: ui.levels,
+          levels: Object.fromEntries(PERSONAS.map(p => [p.id, "hardcore"])),
           botIds: selectedBots(),
           advisorEnabled: ui.advisor,
         });
@@ -1082,7 +1054,7 @@ async function perform(action, el) {
       case "addBot":
         if (
           await session.roomOp("ADD_BOT", {
-            difficulty: ui.nextBotLevel || "medium",
+            difficulty: "hardcore",
             persona: availableRoomPersona()?.id,
           })
         ) {
@@ -1507,11 +1479,11 @@ document.addEventListener("change", async (e) => {
     if (name?.startsWith("buildCount-")) {
       ui.buildCounts[Number(name.slice(11))] = Number(el.value);
       queueRender();
-    } else if (name?.startsWith("level-")) ui.levels[name.slice(6)] = el.value;
+    } else if (name?.startsWith("level-")) ui.levels[name.slice(6)] = "hardcore";
     else if (name === "rules") ui.rules = el.value;
     else if (name === "advisor") ui.advisor = el.checked;
     else if (name === "capacity") ui.capacity = Number(el.value);
-    else if (name === "nextBotLevel") ui.nextBotLevel = el.value;
+
     else if (name === "assetOwner")
       open({ kind: "assets", id: Number(el.value) });
     else if (name === "tradeOpponent") {

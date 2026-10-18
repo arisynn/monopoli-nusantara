@@ -1,4 +1,5 @@
 import {requestJSON, ConnectionError} from './room-client.mjs';
+// Use the game domain for Auth to avoid cross-domain browser failures.
 const sessionKey = config => `nusantara-auth:${config.url}`;
 const readSession = config => { try { return JSON.parse(localStorage.getItem(sessionKey(config)) || 'null'); } catch { return null; } };
 const saveSession = (config, value) => { if (value) localStorage.setItem(sessionKey(config), JSON.stringify(value)); else localStorage.removeItem(sessionKey(config)); };
@@ -8,17 +9,22 @@ export const connectionId = () => {
  return id;
 };
 export class OnlineAuth {
- constructor(config, transport = fetch) { this.config = config; this.transport = transport; }
+ constructor(config, transport = fetch) { this.config = config; this.transport = (...args) => transport(...args); }
  session() { return readSession(this.config); }
  async auth(path, body, token) {
+  const op=path.startsWith('token?grant_type=password')?'login':path.startsWith('token?grant_type=refresh_token')?'refresh':path.startsWith('user')?'link':body?.email?'signup':'guest';
   let response, result;
   try {
-   response = await this.transport(`${this.config.url}/auth/v1/${path}`, {method: path.startsWith('user') ? 'PUT' : 'POST',
-    headers: {apikey: this.config.key, 'Content-Type': 'application/json', ...(token ? {Authorization: `Bearer ${token}`} : {})},
-    body: JSON.stringify(body), signal: AbortSignal.timeout(10000)});
-   result = await response.json();
-  } catch { throw new ConnectionError(); }
-  if (!response.ok) throw Error(result.msg || result.error_description || result.message || 'Identitas belum dapat diproses.');
+   response = await this.transport(`/api/auth?op=${op}`, {method: op==='link'?'PUT':'POST',
+    headers: {'Content-Type': 'application/json', ...(token ? {Authorization: `Bearer ${token}`} : {})},
+    body: JSON.stringify(body), cache:'no-store', signal: AbortSignal.timeout(18000)});
+  } catch (cause) {
+   const timeout=cause?.name==='TimeoutError'||cause?.name==='AbortError';
+   throw new ConnectionError(timeout?'Layanan identitas terlalu lama merespons. Coba lagi.':'Browser tidak dapat menghubungi server game. Periksa internet dan coba lagi.');
+  }
+  try { result = await response.json(); }
+  catch { throw Error('Server game mengirim respons identitas yang tidak valid. Muat ulang situs.'); }
+  if (!response.ok) throw Error(result?.msg || result?.error_description || result?.message || result?.error || `Login gagal (HTTP ${response.status}).`);
   if (result.access_token) {
    saveSession(this.config, {...result, expires_at: Math.floor(Date.now()/1000) + result.expires_in});
   }
@@ -44,7 +50,7 @@ export class OnlineAuth {
   try {
    if (!token || !refresh) throw Error('Konfirmasi akun belum lengkap. Masuk kembali dengan email.');
    let response;
-   try { response = await this.transport(`${this.config.url}/auth/v1/user`, {headers: {apikey: this.config.key, Authorization: `Bearer ${token}`}, signal: AbortSignal.timeout(10000)}); }
+   try { response = await this.transport('/api/auth?op=user', {headers: {Authorization: `Bearer ${token}`}, cache:'no-store', signal: AbortSignal.timeout(18000)}); }
    catch { throw new ConnectionError(); }
    if (!response.ok) throw Error('Tautan konfirmasi berakhir. Masuk kembali dengan email.');
    const user = await response.json(), seconds = Number(params.get('expires_in'));
@@ -55,8 +61,8 @@ export class OnlineAuth {
  }
  async guest() { return this.auth('signup', {data: {}}); }
  async login(email, password) { return this.auth('token?grant_type=password', {email: email.trim(), password}); }
- async signup(email, password) { return this.auth(`signup?redirect_to=${encodeURIComponent(location.origin)}`, {email: email.trim(), password}); }
- async link(email, password) { return this.auth(`user?redirect_to=${encodeURIComponent(location.origin)}`, {email: email.trim(), password}, await this.token()); }
+ async signup(email, password) { return this.auth('signup', {email: email.trim(), password}); }
+ async link(email, password) { return this.auth('user', {email: email.trim(), password}, await this.token()); }
  async request(path, body) {
   return requestJSON(`/api/online${path}`, {headers: {'Content-Type': 'application/json', Authorization: `Bearer ${await this.token()}`},
    ...(body === undefined ? {} : {method: 'POST', body: JSON.stringify(body)})}, this.transport);

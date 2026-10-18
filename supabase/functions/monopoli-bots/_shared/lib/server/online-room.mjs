@@ -1,4 +1,5 @@
 import {validDifficulty} from '../bot/mind-config.mjs';
+import {requirePlayerName} from '../player-name.mjs';
 import {createGame, command, publicState, decisionActor} from '../game.mjs';
 import {PERSONAS} from '../bot/personas.mjs';
 import {availablePawn, setSeatPawn} from '../pawns.mjs';
@@ -26,7 +27,7 @@ export function touch(room, seat, clientId, now) {
  s.connections[clientId] = now;
 }
 function newSeat(body, room, userId, clientId, now) {
- return {userId, name: String(body.name || 'Penjelajah').trim().slice(0, 24) || 'Penjelajah',
+ return {userId, name: requirePlayerName(body.name),
   controller: 'human', ready: false, pawn: availablePawn(room.seats, body.pawn), connections: {[clientId]: now}};
 }
 export function newRoom(body, code, userId, clientId, now) {
@@ -103,15 +104,22 @@ export function applyOperation(room, seat, body, now, rng, options={botsEnabled:
  const type = body.type;
  if (type === 'JOIN') return;
  if (type === 'HEARTBEAT') return;
- if(type==='ADD_BOT'){
+ if (type === 'RENAME') {
+  check(room.seats[seat].controller === 'human', 'Nama bot tidak dapat diubah.', 403);
+  const name = requirePlayerName(body.name);
+  room.seats[seat].name = name;
+  if (room.state?.players?.[seat]) room.state.players[seat].name = name;
+ } else if(type==='ADD_BOT'){
   check(options.botsEnabled,'Worker bot online belum diaktifkan.',503);
   check(seat===room.host,'Hanya host dapat menambah bot.',403);
   check(room.status==='waiting','Bot hanya dapat ditambahkan di lobby.',409);
   check(room.seats.length<room.capacity,'Room sudah penuh.',409);
   check(room.seats.length+1+Math.max(0,2-room.seats.filter(s=>s.controller==='human').length)<=room.capacity,'Sisakan kursi untuk minimal dua manusia.',409);
   check(body.difficulty===undefined||validDifficulty(body.difficulty),'Level bot tidak valid.');
-  const persona=PERSONAS.find(p=>!room.seats.some(s=>s.botPersona===p.id));
-  check(persona,'Maksimal tiga bot unik.',409);
+  check(room.seats.filter(s=>s.controller==='bot').length<3,'Maksimal tiga bot di room.',409);
+  check(body.persona===undefined||PERSONAS.some(p=>p.id===body.persona),'Persona bot tidak valid.');
+  const persona=PERSONAS.find(p=>p.id===(body.persona||PERSONAS.find(p=>!room.seats.some(s=>s.botPersona===p.id))?.id));
+  check(persona&&!room.seats.some(s=>s.botPersona===persona.id),'Persona bot sudah digunakan di room.',409);
   room.seats.push({controller:'bot',botPersona:persona.id,botDifficulty:body.difficulty||'medium',name:persona.name,pawn:availablePawn(room.seats,persona.pawn),ready:false,userId:null,connections:{}});
  } else if (type === 'READY') {
   check(room.status === 'waiting', 'Pertandingan sudah dimulai.');

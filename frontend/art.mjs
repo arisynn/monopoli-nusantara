@@ -40,7 +40,7 @@ export const colors = [
 // Six PNG animal portraits, numeric seat identity remains stable across reconnect.
 export function avatar(id = 0) {
   const n = Number.isInteger(id) && id >= 0 ? id % 6 : 0;
-  return `<span class="avatar animal-avatar" style="--avatar-x:${(n % 3) * 50}%;--avatar-y:${Math.floor(n / 3) * 100}%" aria-hidden="true"></span>`;
+  return `<span class="avatar animal-avatar" style="background-image:url(/assets/avatars/${["raka","bima","sari","nusa","apex","kresna"][n]}.png)" aria-hidden="true"></span>`;
 }
 
 export function tileArt(tile, extra = "") {

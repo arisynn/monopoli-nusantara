@@ -4565,3 +4565,21 @@ select[hidden] {
 .bot-config-row { display:flex; justify-content:space-between; align-items:center; min-height:47px; padding:12px; border:1px solid #c9e1f1; border-radius:12px; background:#edf8ff; font-weight:750; }
 .popup[data-kind="botChoice"], .popup[data-kind="botLevelChoice"] { width:min(440px,calc(100vw - 20px)); }
 @media (max-width:350px) { .bot-setting { padding:8px; } .bot-seat-controls { flex-basis:107px; } .bot-config-pill { padding:5px; } .bot-choice-grid {gap:7px;} .bot-choice-card {padding:8px; min-height:124px;} }
+
+/* NUSA V17 — compact vertical character picker and undistorted square portraits. */
+.avatar.animal-avatar {aspect-ratio:1 / 1; height:auto !important; flex-shrink:0; background-size:100% 100%; background-position:center; background-repeat:no-repeat; border-radius:12px;}
+.bot-choice-grid {display:flex; flex-direction:column; gap:5px; padding:4px 0;}
+.bot-choice-card,.bot-choice-card.selected {display:flex; flex-direction:row; align-items:center; gap:12px; padding:9px 12px; min-height:62px; border-radius:12px; box-shadow:none; width:100%;}
+.bot-choice-card .avatar {width:42px; height:42px; flex:0 0 42px; border-radius:10px;}
+.bot-choice-card .bot-choice-details {flex:1; gap:3px;}
+.bot-choice-card .bot-choice-details b {font-size:13px;}
+.bot-choice-card .bot-choice-details small {font-size:11px;}
+.bot-choice-indicator {width:auto; margin-top:0; align-self:center;}
+.bot-choice-card:disabled {opacity:.5;}
+.bot-seat-select {width:100%; cursor:pointer; text-align:left; font:inherit;}
+.bot-seat-select > .avatar {width:42px; flex:0 0 42px;}
+.bot-seat-select .bot-seat-desc {flex:1; min-width:0; display:flex; flex-direction:column; gap:4px;}
+.bot-seat-select .bot-seat-arrow {flex:0 0 auto; color:#2785d8;}
+.bot-seat-select:focus-visible,.bot-choice-card:focus-visible {outline:3px solid #2586cc; outline-offset:2px;}
+.popup[data-kind="botChoice"] {width:min(400px,calc(100vw - 20px));}
+@media (max-width:350px) {.bot-choice-card,.bot-choice-card.selected {padding:7px 8px; min-height:57px;} .bot-choice-card .avatar {width:38px;flex-basis:38px;}}
