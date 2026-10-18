@@ -1,6 +1,6 @@
 import {difficultyFor,MODELS,observation} from './mind.mjs';
 import {decidePersona} from './persona-router.mjs';
-/** Dedicated, cancellable local worker supporting NUSA V18.0 Singularity Deep Thinking. */
+/** Dedicated, cancellable local worker supporting NUSA V23.0 Chronos & Kairos temporal planning. */
 export function createMindClient(makeWorker=()=>new Worker(new URL('./mind.worker.mjs',import.meta.url),{type:'module'})){
   let worker=null;let serial=0;
   let pending=null;

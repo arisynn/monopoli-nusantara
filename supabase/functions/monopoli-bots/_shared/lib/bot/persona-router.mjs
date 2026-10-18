@@ -36,7 +36,7 @@ export function decidePersona(state, actor, options = {}) {
   });
   const modelLabel =
     persona === "nusa"
-      ? "NUSA-V20.0-APOTHEOSIS"
+      ? "NUSA-V23.0-CHRONOS-KAIROS"
       : persona === "kresna"
         ? "KRESNA-V2.0"
         : "APEX-JS-3.0";
@@ -96,7 +96,7 @@ export function decidePersona(state, actor, options = {}) {
       model: modelLabel,
       algorithm:
         persona === "nusa"
-          ? "apotheosis-v20.0"
+          ? "chronos-kairos-v23.0"
           : persona === "kresna"
             ? "kresna-policy-v2.0"
             : "apex-policy-v3.0",
@@ -110,6 +110,12 @@ export function decidePersona(state, actor, options = {}) {
       samples: selected?.search?.pairedSamples ?? 0,
       interrupted: !!options.signal?.aborted,
       budgetExhausted: context.expired(),
+      ...(persona === "nusa"
+        ? {
+            macroPosture: selected?.temporalTelemetry?.macroPosture ?? null,
+            temporalTelemetry: selected?.temporalTelemetry ?? null,
+          }
+        : {}),
       learning: { enabled: false },
       selected: action?.actionId,
       search: [],

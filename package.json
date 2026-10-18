@@ -57,7 +57,8 @@
     "test:online:rooms": "node --experimental-strip-types scripts/test-online-room-browser.mjs",
     "test:online:postgres": "node scripts/test-room-postgres.mjs",
     "test:camera:browser": "node scripts/test-camera-browser.mjs",
-    "test:stock:live": "node scripts/test-stock-live-renderer.mjs"
+    "test:stock:live": "node scripts/test-stock-live-renderer.mjs",
+    "test:flash": "node scripts/flash-bots.mjs"
   },
   "devDependencies": {
     "@types/node": "22.19.19",

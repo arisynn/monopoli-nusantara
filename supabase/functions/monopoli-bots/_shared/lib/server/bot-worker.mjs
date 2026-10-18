@@ -1,5 +1,6 @@
 import {command,decisionActor} from '../game.mjs';
 import {decidePersona} from '../bot/persona-router.mjs';
+import {brokerIntentMetadata} from '../bot/broker-intent.mjs';
 import {reconcile,gameplayHeld} from './online-room.mjs';
 import {secureRandom} from './online-service.mjs';
 export function botActor(s){
@@ -42,7 +43,7 @@ export async function runBotWorker({store,decide,clock=Date.now,rng=secureRandom
    const botCommand=action=>{
     if(!action || typeof action!=='object'||typeof action.type!=='string')throw Error('Invalid planner action');
     const {actionId,...intent}=action;
-    return {intent,next:command(fresh.data.state,actor,{...intent,id:`bot:${matchId}:${version}`,expectedVersion:version},rng)};
+    return {intent,next:command(fresh.data.state,actor,{...intent,...brokerIntentMetadata(fresh.data.state,actor,action),id:`bot:${matchId}:${version}`,expectedVersion:version},rng)};
    };
    let applied;
    try { applied=botCommand(decision?.action); }

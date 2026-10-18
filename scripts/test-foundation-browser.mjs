@@ -81,7 +81,7 @@ try {
     command(s, 0, plan.action);
     assert.equal(JSON.stringify(s), before);
     assert(plan.foundation);
-    if (persona.id === "nusa") assert.equal(plan.diagnostics.version, "20.0.0");
+    if (persona.id === "nusa") assert.equal(plan.diagnostics.version, "23.0.0");
     checks.push({
       name: `Real browser worker ${persona.id}`,
       passed: true,
@@ -101,10 +101,10 @@ try {
     return { first, model: second?.diagnostics.model, action: second?.action };
   }, fixture(PERSONAS[3]));
   assert.equal(cancellation.first, null);
-  assert.equal(cancellation.model, "NUSA-V20.0-APOTHEOSIS");
+  assert.equal(cancellation.model, "NUSA-V23.0-CHRONOS-KAIROS");
   assert(cancellation.action);
   checks.push({
-    name: "Cancelled browser worker restarts and returns a fresh V20 decision",
+    name: "Cancelled browser worker restarts and returns a fresh V23 decision",
     passed: true,
   });
   await context.close();
@@ -170,7 +170,7 @@ try {
   assert.equal(saved.players[1].cash, 13600);
   assert(
     await appPage.evaluate(() =>
-      window.botModels.includes("NUSA-V20.0-APOTHEOSIS"),
+      window.botModels.includes("NUSA-V23.0-CHRONOS-KAIROS"),
     ),
   );
   checks.push({

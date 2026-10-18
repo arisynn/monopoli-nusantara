@@ -32,12 +32,14 @@ test('one-roll cash-risk projection matches real engine across all dice and publ
  for(let x=1;x<=6;x++)for(let y=1;y<=6;y++)for(let card=0;card<16;card++){
   const w=structuredClone(s);for(const deck of ['chance','community'])w.decks[deck]=[card,...w.decks[deck].filter(i=>i!==card)];let i=0;
   let leaf=command(w,0,{type:'ROLL'},()=>i++===0?(x-.5)/6:(y-.5)/6);
-  const variants=leaf.card?.utilityRoll?36:1;
-  for(let u=0;u<variants;u++){let next=leaf,k=0;while(next.phase==='card')next=command(next,0,{type:'ACK'},()=>k++===0?(Math.floor(u/6)+.5)/6:(u%6+.5)/6);
+  const variants=leaf.utilityDice||leaf.card?.utilityRoll?36:1;
+  for(let u=0;u<variants;u++){let next=leaf,k=0;
+   if(leaf.utilityDice){const values=[(x-.5)/6,(y-.5)/6,(Math.floor(u/6)+.5)/6,(u%6+.5)/6];let index=0;next=command(w,0,{type:'ROLL'},()=>values[index++]??.5);}
+   while(next.phase==='card')next=command(next,0,{type:'ACK'},()=>k++===0?(Math.floor(u/6)+.5)/6:(u%6+.5)/6);
    actual+=Math.max(0,w.players[0].cash-next.players[0].cash)/(36*16*variants);
   }
  }
- // Includes the card's independent utility dice. From square zero there is no
+ // Includes independent utility dice for both ordinary and card arrivals. From square zero there is no
  // chance -> community recursion, so one public draw covers every card branch.
  assert(Math.abs(predicted-actual)<1e-7,`${predicted} vs ${actual}`);
 });

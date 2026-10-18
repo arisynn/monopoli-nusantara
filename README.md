@@ -6,15 +6,15 @@ Update gameplay terbaru: dadu PNG transparan 2D dipindahkan ke kanan riwayat aga
 
 Update terbaru: bot online tetap di Supabase Edge, memori penolakan barter dan revisi berlaku untuk keenam persona, NUSA mengamati aksi lawan dalam batch kecil, serta logo PNG dan PWA tersedia. Catatan arsitektur, pemasangan, dan verifikasi: [EDGE_MEMORY_PWA.md](docs/EDGE_MEMORY_PWA.md).
 
-Papan menampilkan sewa seperti `₦ 6` tanpa latar hanya setelah properti dimiliki; nominal ribuan diringkas seperti `₦ 1,2k`. Kepemilikan mengikuti warna pion, rumah/hotel memakai gambar, dan popup Aset/Barter dibuat ringkas dengan scroll internal. Input nominal memakai keyboard angka/desimal bawaan dengan normalisasi nol di depan. Avatar manusia baru dan aset WebP melengkapi enam peserta berbeda. NUSA kini memakai V20 dengan 46 pakar; aturan permainan tetap sama.
+Papan menampilkan sewa seperti `₦ 6` tanpa latar hanya setelah properti dimiliki; nominal ribuan diringkas seperti `₦ 1,2k`. Kepemilikan mengikuti warna pion, rumah/hotel memakai gambar, dan popup Aset/Barter dibuat ringkas dengan scroll internal. Input nominal memakai keyboard angka/desimal bawaan dengan normalisasi nol di depan. Avatar manusia baru dan aset WebP melengkapi enam peserta berbeda. NUSA kini memakai V23 Chronos & Kairos dengan 33 pakar; aturan permainan tetap sama.
 
 Panduan perubahan, pembersihan source, dan verifikasi: [FRONTEND_POLISH.md](docs/FRONTEND_POLISH.md). Build publik hanya memuat graph modul browser aktif; source runtime NUSA berada di `lib/bot/nusa-v7/`.
 
 ---
 
-# Monopoli Nusantara — pembaruan UI, fondasi bot dan NUSA V20
+# Monopoli Nusantara — pembaruan UI, fondasi bot dan NUSA V23
 
-Source lengkap mencakup lobi/lelang yang dirapikan, mata uang ₦, pembuka dan kenaikan lelang minimal ₦5, fondasi bot bersama, serta NUSA V20 dengan 46 pakar. Nomor aplikasi tetap 4.11.0. Catatan integrasi ada di [INTEGRASI_NUSA_V20.md](INTEGRASI_NUSA_V20.md).
+Source lengkap mencakup lobi/lelang yang dirapikan, mata uang ₦, pembuka dan kenaikan lelang minimal ₦5, fondasi bot bersama, serta NUSA V23 dengan 33 pakar dan perencanaan temporal. Nomor aplikasi tetap 4.11.0. Catatan integrasi ada di [INTEGRASI_NUSA_V23.md](INTEGRASI_NUSA_V23.md).
 
 **Paket engine aturan tanpa model/planner bot:** [unduh ZIP logic game](public/Monopoli_Nusantara_Game_Logic.zip). Pada situs hasil build, file tersedia di `/Monopoli_Nusantara_Game_Logic.zip`. Paket ini menerima label bot baru untuk sistem eksternal, terpisah dari enam persona pada aplikasi lengkap. Buat ulang paket dengan `python3 scripts/package-logic.py`.
 

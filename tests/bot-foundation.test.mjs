@@ -7,6 +7,7 @@ import { createDecisionContext } from "../lib/bot/foundation.mjs";
 import { candidateState, legalCandidate } from "../lib/bot/candidates.mjs";
 import { planDecision } from "../lib/bot/strategy.mjs";
 import { landingForecast, expectedRentAt } from "../lib/bot/probability.mjs";
+import { lossDistribution } from "../lib/bot/risk.mjs";
 import { decidePersona } from "../lib/bot/persona-router.mjs";
 import { PERSONAS } from "../lib/bot/personas.mjs";
 const setup = (n = 3) =>
@@ -64,19 +65,67 @@ test("cache limits do not change legal decisions and diagnostics remain structur
   assert.doesNotThrow(() => structuredClone(p));
   assert.deepEqual(planDecision(s, 0), planDecision(s, 0));
 });
-test("utility forecasts price the actual landing dice rather than using an unconditional seven", () => {
+test("utility forecasts and cash risk use the engine's independent utility reroll", () => {
   const s = setup(2);
   s.players[0].pos = 8;
   s.assets[12].owner = 1;
   const forecast = landingForecast(s, 0, 1);
   // From tile eight, only the three outcomes summing to four reach utility 12.
-  assert(Math.abs(expectedRentAt(s, 12, forecast) - (3 / 36) * 4 * 40) < 1e-9);
-  assert(Math.abs(forecast.diceWeights[12] - (3 / 36) * 4) < 1e-9);
+  assert(Math.abs(expectedRentAt(s, 12, forecast) - (3 / 36) * 7 * 40) < 1e-9);
+  assert(Math.abs(forecast.diceWeights[12] - (3 / 36) * 7) < 1e-9);
+  // Every fresh utility roll is represented; movement sum four cannot fix rent.
+  const rows = lossDistribution(s, 0, 1);
+  assert(rows.some(row => row.loss === 80));
+  assert(rows.some(row => row.loss === 480));
+  const world = structuredClone(s);
+  let index = 0;
+  const leaf = command(world, 0, { type: "ROLL" }, () => [0.2, 0.2, 0, 0][index++] ?? 0);
+  assert.equal(leaf.players[0].cash, world.players[0].cash - 80);
   s.players[0].pos = 5;
   const cardForecast = landingForecast(s, 0, 1);
   // Ordinary sum-seven arrivals plus the chance-card instruction's fresh roll.
   const expected = (6 / 36) * 7 * 40 + (1 / 36) * (1 / 16) * 7 * 100;
   assert(Math.abs(expectedRentAt(s, 12, cardForecast) - expected) < 1e-9);
+});
+test("public cashflow reports bank/card/tax effects per roll without spending card receivables", () => {
+  const s = setup(3);
+  s.players[0].pos = 38;
+  for (const tile of [1, 3]) Object.assign(s.assets[tile], { owner: 0, level: 2 });
+  for (const tile of [37, 39]) Object.assign(s.assets[tile], { owner: 0, level: 5 });
+  const forecast = landingForecast(s, 0, 1), predicted = forecast.cashflow;
+  const actual = { salary: 0, tax: 0, cardNet: 0, cardReceivable: 0, jailFine: 0 };
+  // From square 38, Chance 7 can go back to tax 4, but cannot draw a second
+  // deck. Enumerate 36 movement outcomes and 16 public card draws, not games.
+  for (let x = 1; x <= 6; x++) for (let y = 1; y <= 6; y++) for (let draw = 0; draw < 16; draw++) {
+    const world = structuredClone(s);
+    for (const deck of ["chance", "community"]) world.decks[deck] = [draw, ...world.decks[deck].filter(i => i !== draw)];
+    let cursor = 0;
+    let leaf = command(world, 0, { type: "ROLL" }, () => cursor++ === 0 ? (x - 0.5) / 6 : (y - 0.5) / 6);
+    while (leaf.phase === "card") leaf = command(leaf, 0, { type: "ACK" }, () => 0.5);
+    for (const event of leaf.log.filter(e => e.id > world.eventId)) for (const entry of event.finance || []) {
+      const net = (entry.to === 0 ? entry.amount : 0) - (entry.from === 0 ? entry.amount : 0);
+      if (entry.kind === "salary") actual.salary += net / 576;
+      else if (entry.kind === "tax") actual.tax -= net / 576;
+      else if (entry.kind === "jail") actual.jailFine -= net / 576;
+      else if (entry.kind === "repair" || entry.kind === "card") {
+        if (entry.to === 0 && entry.from !== null) actual.cardReceivable += net / 576;
+        else actual.cardNet += net / 576;
+      }
+    }
+  }
+  for (const field of Object.keys(actual)) assert(Math.abs(predicted[field] - actual[field]) < 1e-8, field);
+  assert.equal(predicted.perRoll.length, 1);
+  assert.equal(predicted.perRoll[0].nonRentNet, predicted.nonRentNet);
+  assert.equal(predicted.nonRentNet, predicted.salary + predicted.cardNet - predicted.tax - predicted.jailFine);
+  assert(predicted.cardReceivable > 0);
+  assert.throws(() => { predicted.perRoll[0].salary = 0; });
+  const hidden = structuredClone(s);
+  hidden.decks.chance.reverse(); hidden.decks.community.reverse();
+  assert.deepEqual(landingForecast(hidden, 0, 1), forecast);
+  s.assets[39].level = 4;
+  assert.notEqual(landingForecast(s, 0, 1).cashflow.cardNet, predicted.cardNet);
+  s.players[2].out = true;
+  assert(landingForecast(s, 0, 1).cashflow.cardReceivable < predicted.cardReceivable);
 });
 test("expired optimization preserves a legal survival path requiring many mortgages", () => {
   let s = setup();

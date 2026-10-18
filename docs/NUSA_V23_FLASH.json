@@ -1,0 +1,440 @@
+{
+  "generatedAt": "2026-10-18T10:53:44.656Z",
+  "configuration": {
+    "games": 1,
+    "seed": 539365400,
+    "maxActions": 600,
+    "maxMs": 30000,
+    "timeBudgetMs": 24,
+    "roster": [
+      "nusa",
+      "apex",
+      "kresna",
+      "raka",
+      "bima",
+      "sari"
+    ],
+    "difficulty": "hardcore",
+    "startingRoll": true,
+    "rules": "classic",
+    "outputPath": "/workspace/monopoli-nusantara/docs/NUSA_V23_FLASH.json"
+  },
+  "gameCount": 1,
+  "terminal": false,
+  "winner": null,
+  "stopReason": "action_cap",
+  "elapsedMs": 6614.176539,
+  "workerTerminated": false,
+  "actions": 600,
+  "decisions": 600,
+  "metrics": {
+    "illegalOutputs": 0,
+    "engineCommandRejected": 0,
+    "plannerExceptions": 0,
+    "modelExceptions": 0,
+    "noAction": 0,
+    "noActor": 0,
+    "illegalProposalsRejected": 0,
+    "sandboxRejected": 69,
+    "fallbackDecisions": 2,
+    "budgetExhausted": 119
+  },
+  "personas": {
+    "nusa": {
+      "decisions": 119,
+      "actions": 119,
+      "models": [
+        "NUSA-V23.0-CHRONOS-KAIROS"
+      ],
+      "versions": [
+        "23.0.0"
+      ],
+      "algorithms": [
+        "chronos-kairos-v23.0"
+      ],
+      "actionTypes": {
+        "START_ROLL": 1,
+        "ROLL": 24,
+        "BUY": 3,
+        "END": 17,
+        "CLAIM_RENT": 3,
+        "ACK": 4,
+        "OFFER": 4,
+        "TRADE_ACCEPT": 2,
+        "TRADE_REJECT": 1,
+        "BID": 37,
+        "PASS": 6,
+        "BUILD": 6,
+        "SELL": 3,
+        "PAY": 4,
+        "SELL_SET": 1,
+        "MORTGAGE": 2,
+        "BANKRUPT": 1
+      },
+      "reasons": {
+        "foundation_budget_exhausted": 1,
+        "gear1_instant_reflex": 63,
+        "gear1_single_dominant_candidate": 17,
+        "budget": 35,
+        "budget_exhausted": 3
+      },
+      "selectedBy": {
+        "economic-floor": 97,
+        "strategic-persona": 22
+      },
+      "strategicDecisions": 22,
+      "temporalDecisions": 93,
+      "temporalCompleteDecisions": 93,
+      "temporalPostures": {
+        "TEMPO_BREAKER": 52,
+        "APEX_EXECUTIONER": 41
+      },
+      "maximumDecisionMs": 31.444950000000063,
+      "totalDecisionMs": 1627.242189,
+      "decisionsOverBudget": 44
+    },
+    "apex": {
+      "decisions": 122,
+      "actions": 122,
+      "models": [
+        "APEX-JS-3.0"
+      ],
+      "versions": [
+        "3.0.0-predator"
+      ],
+      "algorithms": [
+        "apex-policy-v3.0"
+      ],
+      "actionTypes": {
+        "START_ROLL": 1,
+        "ROLL": 22,
+        "BUY": 5,
+        "END": 19,
+        "CLAIM_RENT": 6,
+        "TRADE_ACCEPT": 3,
+        "BID": 36,
+        "OFFER": 2,
+        "BUILD": 15,
+        "AUCTION": 1,
+        "PASS": 5,
+        "MORTGAGE": 2,
+        "PAY": 2,
+        "ACK": 1,
+        "REDEEM": 2
+      },
+      "reasons": {
+        "protected_phase": 6,
+        "apex_same": 98,
+        "apex_v3_predator": 17,
+        "foundation_budget_exhausted": 1
+      },
+      "selectedBy": {
+        "economic-floor": 105,
+        "strategic-persona": 17
+      },
+      "strategicDecisions": 17,
+      "temporalDecisions": 0,
+      "temporalCompleteDecisions": 0,
+      "temporalPostures": {},
+      "maximumDecisionMs": 28.71473500000002,
+      "totalDecisionMs": 710.3138640000038,
+      "decisionsOverBudget": 1
+    },
+    "kresna": {
+      "decisions": 71,
+      "actions": 71,
+      "models": [
+        "KRESNA-V2.0"
+      ],
+      "versions": [
+        "2.0.0-quantum-nemesis"
+      ],
+      "algorithms": [
+        "kresna-policy-v2.0"
+      ],
+      "actionTypes": {
+        "START_ROLL": 1,
+        "ROLL": 20,
+        "END": 19,
+        "BUY": 2,
+        "ACK": 5,
+        "PASS": 6,
+        "OFFER": 3,
+        "TRADE_REJECT": 2,
+        "BID": 1,
+        "TRADE_ACCEPT": 1,
+        "BUILD": 4,
+        "SELL_SET": 1,
+        "MORTGAGE": 2,
+        "PAY": 2,
+        "CLAIM_RENT": 2
+      },
+      "reasons": {
+        "protected_phase": 13,
+        "kresna_baseline": 54,
+        "kresna_v2_quantum_dcf": 4
+      },
+      "selectedBy": {
+        "economic-floor": 67,
+        "strategic-persona": 4
+      },
+      "strategicDecisions": 4,
+      "temporalDecisions": 0,
+      "temporalCompleteDecisions": 0,
+      "temporalPostures": {},
+      "maximumDecisionMs": 13.364483000000291,
+      "totalDecisionMs": 389.3123780000003,
+      "decisionsOverBudget": 0
+    },
+    "raka": {
+      "decisions": 98,
+      "actions": 98,
+      "models": [
+        "NUSA-X4"
+      ],
+      "versions": [
+        "4.10.0"
+      ],
+      "algorithms": [
+        "scenario-macro-crn"
+      ],
+      "actionTypes": {
+        "START_ROLL": 1,
+        "ROLL": 23,
+        "BUY": 6,
+        "END": 20,
+        "CLAIM_RENT": 19,
+        "TRADE_REJECT": 1,
+        "BID": 3,
+        "PASS": 1,
+        "TRADE_ACCEPT": 1,
+        "OFFER": 1,
+        "MORTGAGE_REDEEM": 1,
+        "BUILD": 6,
+        "MORTGAGE": 8,
+        "SELL_SET": 2,
+        "PAY": 3,
+        "ACK": 1,
+        "REDEEM": 1
+      },
+      "reasons": {
+        "unspecified": 98
+      },
+      "selectedBy": {
+        "economic": 98
+      },
+      "strategicDecisions": 0,
+      "temporalDecisions": 0,
+      "temporalCompleteDecisions": 0,
+      "temporalPostures": {},
+      "maximumDecisionMs": 26.813634000000093,
+      "totalDecisionMs": 1023.8989479999979,
+      "decisionsOverBudget": 19
+    },
+    "bima": {
+      "decisions": 107,
+      "actions": 107,
+      "models": [
+        "NUSA-X4"
+      ],
+      "versions": [
+        "4.10.0"
+      ],
+      "algorithms": [
+        "scenario-macro-crn"
+      ],
+      "actionTypes": {
+        "START_ROLL": 1,
+        "ROLL": 24,
+        "BUY": 7,
+        "END": 19,
+        "CLAIM_RENT": 9,
+        "OFFER": 5,
+        "PASS": 2,
+        "TRADE_REJECT": 2,
+        "ACK": 1,
+        "BID": 1,
+        "MORTGAGE": 8,
+        "PAY": 3,
+        "TRADE_ACCEPT": 3,
+        "REDEEM": 3,
+        "BUILD": 10,
+        "MORTGAGE_KEEP": 1,
+        "SELL": 8
+      },
+      "reasons": {
+        "unspecified": 107
+      },
+      "selectedBy": {
+        "economic": 107
+      },
+      "strategicDecisions": 0,
+      "temporalDecisions": 0,
+      "temporalCompleteDecisions": 0,
+      "temporalPostures": {},
+      "maximumDecisionMs": 31.966012999999293,
+      "totalDecisionMs": 1218.132849000001,
+      "decisionsOverBudget": 33
+    },
+    "sari": {
+      "decisions": 83,
+      "actions": 83,
+      "models": [
+        "NUSA-X4"
+      ],
+      "versions": [
+        "4.10.0"
+      ],
+      "algorithms": [
+        "scenario-macro-crn"
+      ],
+      "actionTypes": {
+        "START_ROLL": 1,
+        "ROLL": 21,
+        "BUY": 3,
+        "END": 19,
+        "OFFER": 2,
+        "BUILD": 17,
+        "CLAIM_RENT": 9,
+        "AUCTION": 1,
+        "PASS": 2,
+        "ACK": 4,
+        "COUNTER": 1,
+        "MORTGAGE_REDEEM": 2,
+        "TRADE_ACCEPT": 1
+      },
+      "reasons": {
+        "unspecified": 83
+      },
+      "selectedBy": {
+        "economic": 83
+      },
+      "strategicDecisions": 0,
+      "temporalDecisions": 0,
+      "temporalCompleteDecisions": 0,
+      "temporalPostures": {},
+      "maximumDecisionMs": 26.659161999999924,
+      "totalDecisionMs": 991.978254,
+      "decisionsOverBudget": 24
+    }
+  },
+  "phases": {
+    "starting": 6,
+    "roll": 152,
+    "buy": 28,
+    "end": 191,
+    "card": 18,
+    "trade": 18,
+    "jail": 33,
+    "auction": 100,
+    "debt": 50,
+    "mortgage": 4
+  },
+  "progress": {
+    "phase": "roll",
+    "round": 20,
+    "turnSerial": 114,
+    "version": 600,
+    "eventId": 839,
+    "rngState": 812025572,
+    "bank": {
+      "houses": 28,
+      "hotels": 6
+    },
+    "openingRollRounds": 1,
+    "players": [
+      {
+        "persona": "nusa",
+        "out": true,
+        "cash": 0,
+        "worth": 0,
+        "ownedTiles": []
+      },
+      {
+        "persona": "apex",
+        "out": false,
+        "cash": 2620,
+        "worth": 32420,
+        "ownedTiles": [
+          16,
+          18,
+          19,
+          31,
+          32,
+          34
+        ]
+      },
+      {
+        "persona": "kresna",
+        "out": false,
+        "cash": 1260,
+        "worth": 6560,
+        "ownedTiles": [
+          26,
+          27,
+          29
+        ]
+      },
+      {
+        "persona": "raka",
+        "out": false,
+        "cash": 287,
+        "worth": 6287,
+        "ownedTiles": [
+          1,
+          3,
+          15,
+          21,
+          23,
+          24,
+          25
+        ]
+      },
+      {
+        "persona": "bima",
+        "out": false,
+        "cash": 4583,
+        "worth": 14483,
+        "ownedTiles": [
+          5,
+          11,
+          12,
+          13,
+          14,
+          28,
+          35
+        ]
+      },
+      {
+        "persona": "sari",
+        "out": false,
+        "cash": 11565,
+        "worth": 33765,
+        "ownedTiles": [
+          6,
+          8,
+          9,
+          37,
+          39
+        ]
+      }
+    ]
+  },
+  "consistency": {
+    "checkedStates": 601,
+    "violations": 0,
+    "examples": []
+  },
+  "failure": null,
+  "checkpoint": null,
+  "limits": [
+    "Exactly one bounded game; this is integration evidence, not win-rate evidence.",
+    "Only the engine phase won permits a winner. Caps never choose a wealth winner.",
+    "Uses production decidePersona, botActor, and a seeded authoritative command RNG.",
+    "Engine-rejected final outputs, recovered model diagnostics, and sandbox rejects are separate metrics.",
+    "The parent watchdog includes worker startup and can stop synchronous planner work.",
+    "At a watchdog cap, counts describe completed checkpoints; an in-flight decision may be incomplete."
+  ],
+  "allPersonasActed": true,
+  "passed": true
+}

@@ -21,7 +21,7 @@ export function lossDistribution(s,id,rolls=2){
  const horizon=Math.min(2,Math.max(1,Math.floor(rolls))),p=s.players[id],rules=economyRules(s);
  const held=new Set(s.players.flatMap(q=>q.cards||[]).map(c=>`${c.deck}:${c.idx}`));
  if(s.card?.jailCard)held.add(`${s.card.deck}:${s.card.idx}`);
- const key=JSON.stringify([id,horizon,p.pos,p.inJail,p.jail,s.turn===id?s.doubles:0,rules.salary,rules.jailFine,s.players.map(q=>q.out),s.assets,[...held].sort()]);
+ const key=JSON.stringify([s.schemaVersion,id,horizon,p.pos,p.inJail,p.jail,s.turn===id?s.doubles:0,rules.salary,rules.jailFine,s.players.map(q=>q.out),s.assets,[...held].sort()]);
  if(distributions.has(key))return distributions.get(key);
  const active=s.players.filter(q=>!q.out).length,own=BOARD.filter(t=>s.assets[t.id]?.owner===id);
  const charge=(node,amount)=>({...node,balance:node.balance+amount,peak:Math.max(node.peak,node.balance+amount)});
@@ -31,7 +31,7 @@ export function lossDistribution(s,id,rolls=2){
   if(t.type==='gojail')return [{...node,pos:10,inJail:true,jail:0,doubles:0}];
   if(t.type==='tax')return [charge(node,t.tax)];
   if(a?.owner!=null&&a.owner!==id&&!a.mortgaged){
-   if(utility){const out=[];for(let x=1;x<=6;x++)for(let y=1;y<=6;y++)out.push({...charge(node,rent(s,t.id,x+y,factor,true)),p:node.p/36});return out;}
+   if(t.type==='utility'&&(s.schemaVersion!==1||utility)){const out=[];for(let x=1;x<=6;x++)for(let y=1;y<=6;y++)out.push({...charge(node,rent(s,t.id,x+y,factor,utility)),p:node.p/36});return out;}
    return [charge(node,rent(s,t.id,dice,factor))];
   }
   if(!['chance','community'].includes(t.type)||depth>=4)return [node];

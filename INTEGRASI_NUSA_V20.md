@@ -1,5 +1,7 @@
 # Integrasi NUSA V20
 
+Arsip integrasi V20. Model aktif berikutnya: [NUSA V21](INTEGRASI_NUSA_V21.md). Hash di dokumen ini mencatat versi historis.
+
 Pembaruan berikutnya: [pengamatan NUSA, barter bersama, kontrol Edge dan PWA](docs/EDGE_MEMORY_PWA.md). Importer V20 juga mereproduksi pemeriksaan budget kooperatif pada council, pakar, dan pencarian.
 
 Model aktif sekarang `20.0.0` dengan 46 pakar, pada lima modul di `lib/bot/nusa-v7/`. Nama direktori dipertahankan agar pemanggil yang ada tetap kompatibel. Versi aplikasi tetap 4.11.0.

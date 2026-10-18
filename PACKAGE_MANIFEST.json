@@ -1,8 +1,8 @@
 {
-  "release": "4.11.0 NUSA V20, PWA, Online Rooms and Smooth Camera",
-  "generatedAt": "2026-10-18T09:58:43.505462+00:00",
+  "release": "4.11.0 NUSA V23 Chronos & Kairos",
+  "generatedAt": "2026-10-18T10:54:38.939711+00:00",
   "basisVersion": "4.11.0",
-  "hashedFileCount": 671,
+  "hashedFileCount": 758,
   "selfHash": "Excluded to avoid a circular digest",
   "excluded": [
     ".env and private env files",
@@ -41,8 +41,18 @@
     },
     {
       "path": "INTEGRASI_NUSA_V20.md",
-      "bytes": 3274,
-      "sha256": "208ff47cd5701015abfa41f3714b492631a2767c488e0fdaa12a92dd5cb46a88"
+      "bytes": 3400,
+      "sha256": "8fa4c0f5bd5a0a8613320619096526354c781876af58160dd1c25c9240b82fce"
+    },
+    {
+      "path": "INTEGRASI_NUSA_V21.md",
+      "bytes": 3908,
+      "sha256": "cb62475267b8b0fed8f10fd790a4515d9bb3da1613009c845659638ad3a6d493"
+    },
+    {
+      "path": "INTEGRASI_NUSA_V23.md",
+      "bytes": 6262,
+      "sha256": "7e1b152be8c879ae53f38642158e885dcbf33b026f2a1d91679c74aff3c90712"
     },
     {
       "path": "INTEGRASI_NUSA_V411.md",
@@ -65,9 +75,24 @@
       "sha256": "519120e17ca6c1e8497f42e9c33c928c23f5b03b47f83b1a0ad95643a75cdff2"
     },
     {
+      "path": "NUSA_V21_IMPORTED_HASHES.json",
+      "bytes": 2924,
+      "sha256": "7fc2f48785855d4ca0a2544b6df4b866ef67dac4daa46487e4c8eb7641108af8"
+    },
+    {
+      "path": "NUSA_V22_IMPORTED_HASHES.json",
+      "bytes": 5066,
+      "sha256": "8fe640228e50725e7f43515d1b54574cb5884c5362643ad780f76b1a8061dd51"
+    },
+    {
+      "path": "NUSA_V23_IMPLEMENTED_HASHES.json",
+      "bytes": 1965,
+      "sha256": "3dd0896d3c77f7ed77d75194dfc95ecdef6f7da298335d03176248a0dd384e86"
+    },
+    {
       "path": "README.md",
-      "bytes": 11194,
-      "sha256": "88cca9b67e9516458a4462b416e8f20f8cbb63e326cba80b0c884f864eac2fdb"
+      "bytes": 11236,
+      "sha256": "298754268f899d701ea3f4a0a820d1e5ca600fd8a1c439baf8151866070eb6cf"
     },
     {
       "path": "UI_REBUILD_BRIEF.md",
@@ -1080,6 +1105,106 @@
       "sha256": "63f77b8a65f77d785c7178eda04c66ed5ac06e3003a79c30858b339759e9b86d"
     },
     {
+      "path": "design/board-icons-master.png",
+      "bytes": 725842,
+      "sha256": "889884efa272173667659459664778878b648ce03dfb15722b0f04ac509bfeca"
+    },
+    {
+      "path": "design/currency/nusa-mark.svg",
+      "bytes": 374,
+      "sha256": "94027663c6777cb659541acdde18700f7ffe8f6bb2106c41acdbb0e2890ccc89"
+    },
+    {
+      "path": "design/references/1249621.jpg",
+      "bytes": 109727,
+      "sha256": "4a1c16d952ddfc268361fc18efd4476e6292adda1acc47274917d3672421d2b0"
+    },
+    {
+      "path": "design/references/1249622.jpg",
+      "bytes": 125192,
+      "sha256": "8ed0b1e4fe82a379ee1b73f39cdfd1604bc3303529bfc0096c698bf5a1ee94f0"
+    },
+    {
+      "path": "design/references/1249623.jpg",
+      "bytes": 105602,
+      "sha256": "08556081ccd455459e3534d048979bbb729fa53595842095c93a9eda62740240"
+    },
+    {
+      "path": "design/references/1249624.jpg",
+      "bytes": 108171,
+      "sha256": "4e0331ba95cc07cb7808621ba4f6769f63bd146248f344af89b9c7af835705d8"
+    },
+    {
+      "path": "design/references/1249625.jpg",
+      "bytes": 161617,
+      "sha256": "2525dd62fad9dfeffb559a7b90f9820b006e59b2696e3ea9f3b4026670ac40eb"
+    },
+    {
+      "path": "design/references/1249626.jpg",
+      "bytes": 104952,
+      "sha256": "1626a6d5a28357914ac070c46327a3cfe8ad90961e5022f329a7e47951ed3b02"
+    },
+    {
+      "path": "design/references/1249627.jpg",
+      "bytes": 103335,
+      "sha256": "b8a38019508fcafc86e83a0bac113688fd513f18aa5689923b5bee7fbd1c6842"
+    },
+    {
+      "path": "design/references/1249628.jpg",
+      "bytes": 119646,
+      "sha256": "cf39efd1099691d0ab9e5d36ee68f0944b0d633555b6c0cadc4571b4d978dcde"
+    },
+    {
+      "path": "design/references/1249629.jpg",
+      "bytes": 107672,
+      "sha256": "7945576046ca52daf1ac7eec539298fb147c6d6dcb8c61065d88d12d7ed0b689"
+    },
+    {
+      "path": "design/references/1249630.jpg",
+      "bytes": 96534,
+      "sha256": "7a004458bbcee2c257ba2be4bd939c42573651e21fce95d65b4d8bd48fe40d2e"
+    },
+    {
+      "path": "design/references/1251173.jpg",
+      "bytes": 65203,
+      "sha256": "03c7f16724c3db701fb0f2de01f7cbb054ce2846cfc7138801a8ff6435e900ab"
+    },
+    {
+      "path": "design/references/1251174.jpg",
+      "bytes": 172762,
+      "sha256": "c3bf096a743e578813f94f6fc0baed312c08ec32baff3cb2418016340133f3ac"
+    },
+    {
+      "path": "design/references/1251175.jpg",
+      "bytes": 95915,
+      "sha256": "3a069b21750bbb5cdf59805ce7d9b97289e88f1697c2c3a392258d4010ba53fa"
+    },
+    {
+      "path": "design/references/1251192.jpg",
+      "bytes": 182914,
+      "sha256": "69449b7964251eaf5ae265a645d7542f0ed4af3abdf55cd88e98ba05bfd31bf9"
+    },
+    {
+      "path": "design/references/1251193.jpg",
+      "bytes": 170179,
+      "sha256": "96c0debb0172218165f29f5cf4bc2b05ac392c8428e8f42a247954cb42a42bbb"
+    },
+    {
+      "path": "design/references/1251194.jpg",
+      "bytes": 141134,
+      "sha256": "9801f770837dd082b49bb01df31f51e5457f666f79eccca7c3cfa5d9c25d5d1c"
+    },
+    {
+      "path": "design/ui-icon-paths.json",
+      "bytes": 1392,
+      "sha256": "1d06f763c786cb8373f6a5314e0f6ffaa29b75c666120790f61ccb1c51a0c904"
+    },
+    {
+      "path": "docs/APEX_ORIGINAL_SOURCE/monopoly_apex.py",
+      "bytes": 50820,
+      "sha256": "c19dcc809d4ee335061937e571f4ee76cf6229b1366f18421d26aa573b72034b"
+    },
+    {
       "path": "docs/ASSETS_BROWSER_RESULTS.json",
       "bytes": 1340,
       "sha256": "0b5ce3ed622966fe1ec72d9bdce9ee167f2da29d7b0aab28a2491787ddbf38ff"
@@ -1133,6 +1258,11 @@
       "path": "docs/BOT_FOUNDATION_BROWSER_RESULTS.json",
       "bytes": 1157,
       "sha256": "5a391368019ff6dec0fa5aee9249defc06ab73c6e78a0229e45619f6c3048cb8"
+    },
+    {
+      "path": "docs/BOT_FOUNDATION_PLAN.md",
+      "bytes": 12710,
+      "sha256": "16a9cea300391bd63978a11866757d1c0dbb738fb70169859a887fd9c4eccc35"
     },
     {
       "path": "docs/BOT_FOUNDATION_PROFILE.json",
@@ -1197,12 +1327,12 @@
     {
       "path": "docs/CLASSIC_SYNTAX_IMPORTS.json",
       "bytes": 199,
-      "sha256": "5349ee9ef5f81f556f1efb1efa65f8d5adb7bc813e562095e84dd655eb6fe77a"
+      "sha256": "5d697649e7c1199f2aef8368673bd52539eff3de3b402f891a980d148e89e208"
     },
     {
       "path": "docs/CLASSIC_TEST_RESULTS.json",
-      "bytes": 2039,
-      "sha256": "6e23f02aaacd80ac5db408b8bb01cc1c10eed510738576bb60887d2f1fed1ef6"
+      "bytes": 2270,
+      "sha256": "e7a7c51b92423116bac4fe37d2b7ee51ba1ea39bf6115b754f154bc575605916"
     },
     {
       "path": "docs/CLASSIC_VERIFICATION.json",
@@ -1455,6 +1585,11 @@
       "sha256": "ebdffb0d2b09262401d8480b2e35517ce223b63c35ddcc097bbfbb76d35b3c2b"
     },
     {
+      "path": "docs/NUSA_V23_FLASH.json",
+      "bytes": 9597,
+      "sha256": "575ee961bf3a1f58aa49ef249b0ec1c3347774f033cb4e782e6f458bd5f86e2e"
+    },
+    {
       "path": "docs/ONLINE_CONFIG_AUDIT.json",
       "bytes": 515,
       "sha256": "123f639bf0b397d313b168c88f8e27324aa03fe652efa2f9f9d005e2eb3d7b4f"
@@ -1695,6 +1830,11 @@
       "sha256": "5c657a847e4c5b5b712faa7c493917affd2624001989fe9216bbeccb67ef49db"
     },
     {
+      "path": "docs/bot-v49-package/research/learned-model.candidate-reference.mjs",
+      "bytes": 3015,
+      "sha256": "7fb0513090078146c976345df9e5d40a04e176256648189627c2cd247de3b1bf"
+    },
+    {
       "path": "docs/history/HEADLESS_ASSET_MANIFEST.json",
       "bytes": 4236,
       "sha256": "1d2478cb1e0835cdc2efd5c96d06a6f313f6e13512d88598307372df9a0fc257"
@@ -1713,6 +1853,21 @@
       "path": "docs/imports/nusa-v18-generator.original.txt",
       "bytes": 134863,
       "sha256": "62e640458f116d109e9c426c6e8905442cab295f4e0be78f0117582c802732c9"
+    },
+    {
+      "path": "docs/imports/nusa-v21-generator.original.txt",
+      "bytes": 156035,
+      "sha256": "109d535787bb000537792d48ce8cb2db6be07eb4d4e365a13041ee7d16295348"
+    },
+    {
+      "path": "docs/imports/nusa-v22-generator.original.txt",
+      "bytes": 159024,
+      "sha256": "26d628d05079d459c4f336cec21aa4f18e2a1a898901bea24ae63093d921a530"
+    },
+    {
+      "path": "docs/imports/nusa-v23-plan.original.md",
+      "bytes": 9470,
+      "sha256": "c5370c8c39e26ac2a692bd1248299b45cb9dfcc02aacdc8f4f7f0cb92f2e85a5"
     },
     {
       "path": "docs/screenshots/dice-result.png",
@@ -1935,6 +2090,11 @@
       "sha256": "b66ad66e4c7c558e014c84d22a034c41d16407bd8fc62765727c31027cec0192"
     },
     {
+      "path": "frontend/mortgage-advisor.mjs",
+      "bytes": 2568,
+      "sha256": "c7ddb14de4b84079d33162ce6fa2401f9ff7dbe76d4548512cb65f8df9a24a70"
+    },
+    {
       "path": "frontend/number-input.mjs",
       "bytes": 522,
       "sha256": "d8f772d2cede9f18df819a6b3543c8d6ff8dd2f0fa4a7665b9bd54d94dcde752"
@@ -1971,8 +2131,8 @@
     },
     {
       "path": "frontend/session.mjs",
-      "bytes": 33630,
-      "sha256": "1f46e273347abfbef6631697c011f038c3f5994e580a54b81fcc5d0e1a66a2c2"
+      "bytes": 33810,
+      "sha256": "89fb51a9f0fe8c4ce1e403555c76815f19b8229078d8e193bfd4dd70d04ed391"
     },
     {
       "path": "frontend/styles.css",
@@ -1998,6 +2158,31 @@
       "path": "frontend/trade-view.mjs",
       "bytes": 2309,
       "sha256": "f50c1980f6e94baf0f2f4a4445fbab1b32c6340e88f7c55291c0495f609a820d"
+    },
+    {
+      "path": "lab/nusa-v7/council.mjs",
+      "bytes": 39871,
+      "sha256": "3fb3e214d1e89885f8a8e6325419012ddc8243775746cdb8b3856deaef6c8e91"
+    },
+    {
+      "path": "lab/nusa-v7/experts.mjs",
+      "bytes": 42843,
+      "sha256": "902d39f71048a88a34706a25acd897d35d3786314f5db8e88e0512bd3876195d"
+    },
+    {
+      "path": "lab/nusa-v7/index.mjs",
+      "bytes": 1352,
+      "sha256": "0a4b10d4ac917efc7dc014c04a4d22aae0dcccaffce086606c382328c59bc4ff"
+    },
+    {
+      "path": "lab/nusa-v7/reasoning.mjs",
+      "bytes": 13661,
+      "sha256": "509424d163fdd7484af204708a71529f91c88186b0e69855e8676d1f3181fa78"
+    },
+    {
+      "path": "lab/nusa-v7/situation.mjs",
+      "bytes": 20828,
+      "sha256": "5dea3cac4e2d7474f7875549bd84d757d11c92949befb78fa2bde9e0a8caa6c7"
     },
     {
       "path": "lib/auction-presentation.mjs",
@@ -2028,6 +2213,11 @@
       "path": "lib/bot/apex-policy.mjs",
       "bytes": 8954,
       "sha256": "0b6403d00db196dfdb12f5adb68adbc1b26a27a77aaa20ca6d7468136a9fe519"
+    },
+    {
+      "path": "lib/bot/broker-intent.mjs",
+      "bytes": 673,
+      "sha256": "118a1bd337891569641405e639428627f4a13eaf3c5441fd59318299beb8c2e9"
     },
     {
       "path": "lib/bot/candidates.mjs",
@@ -2081,13 +2271,13 @@
     },
     {
       "path": "lib/bot/memory.mjs",
-      "bytes": 4445,
-      "sha256": "6064da883d78ad01bc9af9774c12eee73d046f0f46441ce0893af4e600dd0a0d"
+      "bytes": 4561,
+      "sha256": "b3153748ec582a527302614154410dd15f36aa307f48d43cb90874a621342605"
     },
     {
       "path": "lib/bot/mind-client.mjs",
-      "bytes": 2041,
-      "sha256": "dc035722f1867b3d076d3d4c4f5ab70dcf69d7a67f3a24581c0872f2f7576c5c"
+      "bytes": 2051,
+      "sha256": "d6aeda061780c4eeda3923350336b3ccc043ab0da436247d3a983886ff52ac75"
     },
     {
       "path": "lib/bot/mind-config.mjs",
@@ -2115,29 +2305,49 @@
       "sha256": "59d55f0da1d0d1600d2d0d6442f1eeb3f6834b92b41e88441d1d5ef940ede178"
     },
     {
+      "path": "lib/bot/nusa-v7/board-graph.mjs",
+      "bytes": 13201,
+      "sha256": "d13d39ffa2a93001926b4f6ecd5913d6c8f792dd20fa296523ad3de742ad247e"
+    },
+    {
+      "path": "lib/bot/nusa-v7/broker-memory.mjs",
+      "bytes": 3571,
+      "sha256": "c5932babbeb3729b387002b53395a9cf7191912c2162351af9412a80ff1ef1c5"
+    },
+    {
+      "path": "lib/bot/nusa-v7/chronos-policy.mjs",
+      "bytes": 9324,
+      "sha256": "93d9f7168d79647d347ad3fb763c9dc2dece73ab58815cd6d1d0085442ddb415"
+    },
+    {
       "path": "lib/bot/nusa-v7/council.mjs",
-      "bytes": 49813,
-      "sha256": "9203d9b419dbca53cb4a9b22dc57f0d300d2296a7288bdfada991ad76499e545"
+      "bytes": 44194,
+      "sha256": "1c770e03b7d1ee7b4465ac95598e3df6ca82001f7eacc5a756dfa3390cb41006"
     },
     {
       "path": "lib/bot/nusa-v7/experts.mjs",
-      "bytes": 53073,
-      "sha256": "08028dbaba68d7c0e32bcd73e60b617c5df29a2da8fe34c94a5a66562e247eae"
+      "bytes": 58890,
+      "sha256": "9b27a6cae0ccaf75c81d77852ad80867c141b7b7ed61634aedff2ab8625fe567"
     },
     {
       "path": "lib/bot/nusa-v7/index.mjs",
-      "bytes": 1421,
-      "sha256": "3f0dae6f4179d9ac7640e964c5bd7f28b06dee8cc3295f91b2f27e7561ba96bb"
+      "bytes": 1731,
+      "sha256": "f8a55ce0cbb58786fcb1237fcebb7d4d60178afe70dd9f066ed0553e76a66a91"
     },
     {
       "path": "lib/bot/nusa-v7/reasoning.mjs",
-      "bytes": 18072,
-      "sha256": "90c72ef30fcba100fced55199b82dcf618bfd0d1b06230eea7e4a9b8394333a4"
+      "bytes": 18924,
+      "sha256": "4a35139c5b38ef41391eca362d7e22c084c9db0ed70c734bb35664e002af945b"
     },
     {
       "path": "lib/bot/nusa-v7/situation.mjs",
-      "bytes": 23208,
-      "sha256": "ebd053746605a6b1c168cce35c364f01bc6fb5b65fc687155fdbcd8dbbc079e0"
+      "bytes": 19070,
+      "sha256": "e93efb0c12c8a21953ae94766cd2f5e7eef4fce81c94aec02c8f8cefaf4d1e10"
+    },
+    {
+      "path": "lib/bot/nusa-v7/temporal.mjs",
+      "bytes": 17967,
+      "sha256": "641a9623082ee5ed43a08ed86b438d84c5d29991900727c1cb4c3bff9c47c1ec"
     },
     {
       "path": "lib/bot/observer.mjs",
@@ -2146,8 +2356,8 @@
     },
     {
       "path": "lib/bot/persona-router.mjs",
-      "bytes": 4106,
-      "sha256": "8845d8f3b47705882ac37690410dd38a5ae881cffc3f10f62035896bad881571"
+      "bytes": 4327,
+      "sha256": "5c33550b7095ad78231cb2561513774d75ced598df8462f75845ef5f6f32f0ba"
     },
     {
       "path": "lib/bot/personas.mjs",
@@ -2156,13 +2366,13 @@
     },
     {
       "path": "lib/bot/probability.mjs",
-      "bytes": 4746,
-      "sha256": "1c68fe51509139b8f1088435cfbf7429b9fc2530f8b8040439f820fb0f333ddb"
+      "bytes": 6849,
+      "sha256": "24fae74090d4245795ab536e0d5416f3380774bfbc47caa5507352644b684c36"
     },
     {
       "path": "lib/bot/risk.mjs",
-      "bytes": 5906,
-      "sha256": "3e2dff6820dc6825400ee1fdf6457950f7885a350922d86f8c191cfad05f1094"
+      "bytes": 5968,
+      "sha256": "8537875788aa2cac89a93d1f25ebfcb40dc25d3fd6b41de8cf4440fdef82c9b0"
     },
     {
       "path": "lib/bot/scenario-random.mjs",
@@ -2275,6 +2485,11 @@
       "sha256": "08b2025864c928a6817be54e7f4ff9c25f60bf4aa07f0daa9b6694fbe5bc29e8"
     },
     {
+      "path": "lib/quick-notice.mjs",
+      "bytes": 389,
+      "sha256": "1b187b121dbb7c87268537d88a5c4886981e26cc61bef4c1feceedd6194b06cf"
+    },
+    {
       "path": "lib/random.mjs",
       "bytes": 1344,
       "sha256": "8b89f6b163cf57aaf4afb6143335d26313b0609b646979eb6c5ac1e3e279cfb2"
@@ -2291,8 +2506,13 @@
     },
     {
       "path": "lib/server/bot-worker.mjs",
-      "bytes": 5782,
-      "sha256": "6284ce336e5dc6f854ebf9801b0788db28fe7059517e788dcaf8f36b2f8866ab"
+      "bytes": 5900,
+      "sha256": "b904376d18b1001bf4ed4ac4c76cf93990cf1af8b1ee8f651cd69a89ab2fdd89"
+    },
+    {
+      "path": "lib/server/d1-store.mjs",
+      "bytes": 1186,
+      "sha256": "e397b386b965b84ddca2cbb64d08c2c7f96daf198efb1863ef6a544503bbbb40"
     },
     {
       "path": "lib/server/online-room.mjs",
@@ -2303,6 +2523,11 @@
       "path": "lib/server/online-service.mjs",
       "bytes": 6831,
       "sha256": "7d00b20ed21306382fa058f767aa6d216d1c7855cdd0d46d78452bab87a37c3e"
+    },
+    {
+      "path": "lib/server/runtime-sites.ts",
+      "bytes": 401,
+      "sha256": "b8789038a906a1251899d5d576f3bf5133f74b0a337874e42368ea0a91e07fcf"
     },
     {
       "path": "lib/server/runtime.ts",
@@ -2341,8 +2566,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 4470,
-      "sha256": "6ff54bfeed7ba611ced38b3fffab33d66e80d11a42ef7cdfb38c72c892583423"
+      "bytes": 4519,
+      "sha256": "4384ff721a8ba500d854b6b1c3d76ac7cd29db2d88200c58b51787fa498cab64"
     },
     {
       "path": "public/Monopoli_Nusantara_Game_Logic.zip",
@@ -2350,9 +2575,24 @@
       "sha256": "0817ba81062bd62faed1e9e6d916ba5543b5e45bd2d41eeab97d176d0ebea693"
     },
     {
+      "path": "public/assets/avatars/animal-portraits.png",
+      "bytes": 532462,
+      "sha256": "6c31017548cd6a7e1daa972b9eedb5c1a56f07898673ad3b719cb117bc8a1c54"
+    },
+    {
+      "path": "public/assets/avatars/apex.png",
+      "bytes": 72286,
+      "sha256": "0c6d4a103deb0b23e7951c3474dc4935fd746b2ae0ec5b6b5ffdd51540452fd4"
+    },
+    {
       "path": "public/assets/avatars/apex.webp",
       "bytes": 14726,
       "sha256": "1e45f9ce4e82a7808c8dc316359bf777877c76f40516183690aab2ce1179b838"
+    },
+    {
+      "path": "public/assets/avatars/bima.png",
+      "bytes": 73889,
+      "sha256": "243c7abb160cead70873b4640f552025adc1de943f1e76e7bca72c1eed1d42f4"
     },
     {
       "path": "public/assets/avatars/bima.webp",
@@ -2365,9 +2605,19 @@
       "sha256": "efc6c260464914ffb3c0b531d3b582aa3b04f1f54376a1a8a37bc7cf00d277b2"
     },
     {
+      "path": "public/assets/avatars/kresna.png",
+      "bytes": 68422,
+      "sha256": "98b74cd7ebe78023acd38bbe387cabe33b08ae5dad48d749c4f37513bb2adc22"
+    },
+    {
       "path": "public/assets/avatars/kresna.webp",
       "bytes": 18464,
       "sha256": "0944bb8a5dce1f32525cbde8c0a8e489046bf1c84b0cdd5f4e6cc66a13603913"
+    },
+    {
+      "path": "public/assets/avatars/nusa.png",
+      "bytes": 99402,
+      "sha256": "3d36edd026abd75813697b22764fa89a547edb84224f91aba7b041545ccb81dd"
     },
     {
       "path": "public/assets/avatars/nusa.webp",
@@ -2375,9 +2625,19 @@
       "sha256": "9cfbba65fc5ccbdad48dd8a9528b693d5d717c3bcc1652d17177cf883130fcff"
     },
     {
+      "path": "public/assets/avatars/raka.png",
+      "bytes": 80241,
+      "sha256": "289f07655cbb9ada846ef6da9e5eba6508c409ed98b944856a9bd6650da3614a"
+    },
+    {
       "path": "public/assets/avatars/raka.webp",
       "bytes": 18842,
       "sha256": "34bd89532f46261d2a452268f727a0d444a7853f2f6da3fb7902b4526d3fdd75"
+    },
+    {
+      "path": "public/assets/avatars/sari.png",
+      "bytes": 82819,
+      "sha256": "90b05b69b16f131938aa58f2ea3624dfb5c519edf7ae7dc892472a2679ab2538"
     },
     {
       "path": "public/assets/avatars/sari.webp",
@@ -2485,6 +2745,11 @@
       "sha256": "254b78dd7d874cb554b6b1b19682bf0ab576822a35be19f318cff77fd3f9a660"
     },
     {
+      "path": "public/assets/currency/nusa-mark.png",
+      "bytes": 9234,
+      "sha256": "a245940d890e865fe141eb70783d39edb0c6f662442cdc299de9dca0b69aa091"
+    },
+    {
       "path": "public/assets/dice/die-1.png",
       "bytes": 5875,
       "sha256": "29499962cc97a911ec4903d07f1eb7e422b46c9527c18880c64fb661c1b2d509"
@@ -2518,6 +2783,11 @@
       "path": "public/assets/pawns/pawn-tokens.png",
       "bytes": 172337,
       "sha256": "ddff2049eb7d46437a8988028996e8cfb12b0780b36c31b8b2bf0eb087efde10"
+    },
+    {
+      "path": "public/assets/ui/interface-icons.png",
+      "bytes": 11930,
+      "sha256": "3589a2b6c450f35f9f8d1e6b54043bc49b2c5896b2a6886ff74d45bd18067050"
     },
     {
       "path": "public/favicon.ico",
@@ -2600,9 +2870,24 @@
       "sha256": "439e70bd91f795eba9a835346f2032b8f43ff729b94b1d44235504022dbd72cc"
     },
     {
+      "path": "scripts/flash-bots.mjs",
+      "bytes": 16099,
+      "sha256": "58dd8b2f13e777413d472d346af294ddd28bd2e8f3cf4205c96f3918c2f3246f"
+    },
+    {
       "path": "scripts/import-nusa-v18.mjs",
       "bytes": 3220,
       "sha256": "5b82ca3d13e321cdbc0933865b70d9e6da820255f45dfada56e2337ff698cdf4"
+    },
+    {
+      "path": "scripts/import-nusa-v21.mjs",
+      "bytes": 8030,
+      "sha256": "0c0342c5de053a6d50547feae7373718acca91b0d5b15e0cefbcef74d93fde74"
+    },
+    {
+      "path": "scripts/import-nusa-v22.mjs",
+      "bytes": 8283,
+      "sha256": "ae14f35aae281c897c604ecaf58e6ad0fa70206443ca98b36bd609bc701c5c75"
     },
     {
       "path": "scripts/import-nusa.mjs",
@@ -2646,8 +2931,8 @@
     },
     {
       "path": "scripts/package-release.py",
-      "bytes": 3079,
-      "sha256": "6ae3df2ef6a1da2dbd5bd7249532380b6cadb73ed012c3b9d4927b34fc845946"
+      "bytes": 3059,
+      "sha256": "690425e4e174f2c9034d398b1170ff36160afe7e0038a70ad8dc571725be3c23"
     },
     {
       "path": "scripts/portrait-fixtures.mjs",
@@ -2721,8 +3006,8 @@
     },
     {
       "path": "scripts/test-foundation-browser.mjs",
-      "bytes": 6049,
-      "sha256": "f4ace50493a74100dd4a8bcbfda2232e7b3aa334d3377c1326edc9dd56009805"
+      "bytes": 6057,
+      "sha256": "666ef861fba33486bf343f2e09eeaad482a88b15111223d9ed2543bccce74fbb"
     },
     {
       "path": "scripts/test-gameplay-update-browser.mjs",
@@ -2731,8 +3016,8 @@
     },
     {
       "path": "scripts/test-headless.mjs",
-      "bytes": 2092,
-      "sha256": "693e296228b246b41d8b76d8285d186ecf137787e7cea6d1838e0cf283dc4273"
+      "bytes": 2131,
+      "sha256": "c3f0757ac1d779e50e9867264647a7bcd5fb7e15aacb857812a84f6ded04875c"
     },
     {
       "path": "scripts/test-learning-browser.mjs",
@@ -2835,6 +3120,11 @@
       "sha256": "4465f446c3bc9b3ebca270e08d3bdd0e5b342dcd953199e6b1a36c6e6f39ed18"
     },
     {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/board-camera.mjs",
+      "bytes": 5334,
+      "sha256": "43cdd34c1c97fb73b56b3998a7ddc5317f6150dc358e440cc66faf3dba973f05"
+    },
+    {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/allocation.mjs",
       "bytes": 4399,
       "sha256": "01cc4577e99d1bef4c1cef6d7108b1c0aeca9ac18e1d591682078389b56fe4dd"
@@ -2848,6 +3138,11 @@
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/apex-policy.mjs",
       "bytes": 8954,
       "sha256": "0b6403d00db196dfdb12f5adb68adbc1b26a27a77aaa20ca6d7468136a9fe519"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/bot/broker-intent.mjs",
+      "bytes": 673,
+      "sha256": "118a1bd337891569641405e639428627f4a13eaf3c5441fd59318299beb8c2e9"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/candidates.mjs",
@@ -2901,8 +3196,13 @@
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/memory.mjs",
-      "bytes": 4445,
-      "sha256": "6064da883d78ad01bc9af9774c12eee73d046f0f46441ce0893af4e600dd0a0d"
+      "bytes": 4561,
+      "sha256": "b3153748ec582a527302614154410dd15f36aa307f48d43cb90874a621342605"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/bot/mind-client.mjs",
+      "bytes": 2051,
+      "sha256": "d6aeda061780c4eeda3923350336b3ccc043ab0da436247d3a983886ff52ac75"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/mind-config.mjs",
@@ -2915,6 +3215,11 @@
       "sha256": "c95dbba8740c783f090e5aeae6c90728ad5946b18ccbdeac5fa056f757de4a56"
     },
     {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/bot/mind.worker.mjs",
+      "bytes": 308,
+      "sha256": "99ac5522ee1ef7f44b7e93efb9f32fc42921cfb3da40c62f45cd8d802cc768d3"
+    },
+    {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/negotiation-guard.mjs",
       "bytes": 1344,
       "sha256": "666352bc8b33c6014d8e79be25d6000e2c00dc8f49d0922203abd3cd05f81aef"
@@ -2925,29 +3230,49 @@
       "sha256": "59d55f0da1d0d1600d2d0d6442f1eeb3f6834b92b41e88441d1d5ef940ede178"
     },
     {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/board-graph.mjs",
+      "bytes": 13201,
+      "sha256": "d13d39ffa2a93001926b4f6ecd5913d6c8f792dd20fa296523ad3de742ad247e"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/broker-memory.mjs",
+      "bytes": 3571,
+      "sha256": "c5932babbeb3729b387002b53395a9cf7191912c2162351af9412a80ff1ef1c5"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/chronos-policy.mjs",
+      "bytes": 9324,
+      "sha256": "93d9f7168d79647d347ad3fb763c9dc2dece73ab58815cd6d1d0085442ddb415"
+    },
+    {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/council.mjs",
-      "bytes": 49813,
-      "sha256": "9203d9b419dbca53cb4a9b22dc57f0d300d2296a7288bdfada991ad76499e545"
+      "bytes": 44194,
+      "sha256": "1c770e03b7d1ee7b4465ac95598e3df6ca82001f7eacc5a756dfa3390cb41006"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/experts.mjs",
-      "bytes": 53073,
-      "sha256": "08028dbaba68d7c0e32bcd73e60b617c5df29a2da8fe34c94a5a66562e247eae"
+      "bytes": 58890,
+      "sha256": "9b27a6cae0ccaf75c81d77852ad80867c141b7b7ed61634aedff2ab8625fe567"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/index.mjs",
-      "bytes": 1421,
-      "sha256": "3f0dae6f4179d9ac7640e964c5bd7f28b06dee8cc3295f91b2f27e7561ba96bb"
+      "bytes": 1731,
+      "sha256": "f8a55ce0cbb58786fcb1237fcebb7d4d60178afe70dd9f066ed0553e76a66a91"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/reasoning.mjs",
-      "bytes": 18072,
-      "sha256": "90c72ef30fcba100fced55199b82dcf618bfd0d1b06230eea7e4a9b8394333a4"
+      "bytes": 18924,
+      "sha256": "4a35139c5b38ef41391eca362d7e22c084c9db0ed70c734bb35664e002af945b"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/situation.mjs",
-      "bytes": 23208,
-      "sha256": "ebd053746605a6b1c168cce35c364f01bc6fb5b65fc687155fdbcd8dbbc079e0"
+      "bytes": 19070,
+      "sha256": "e93efb0c12c8a21953ae94766cd2f5e7eef4fce81c94aec02c8f8cefaf4d1e10"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/temporal.mjs",
+      "bytes": 17967,
+      "sha256": "641a9623082ee5ed43a08ed86b438d84c5d29991900727c1cb4c3bff9c47c1ec"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/observer.mjs",
@@ -2956,8 +3281,8 @@
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/persona-router.mjs",
-      "bytes": 4106,
-      "sha256": "8845d8f3b47705882ac37690410dd38a5ae881cffc3f10f62035896bad881571"
+      "bytes": 4327,
+      "sha256": "5c33550b7095ad78231cb2561513774d75ced598df8462f75845ef5f6f32f0ba"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/personas.mjs",
@@ -2966,13 +3291,13 @@
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/probability.mjs",
-      "bytes": 4746,
-      "sha256": "1c68fe51509139b8f1088435cfbf7429b9fc2530f8b8040439f820fb0f333ddb"
+      "bytes": 6849,
+      "sha256": "24fae74090d4245795ab536e0d5416f3380774bfbc47caa5507352644b684c36"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/risk.mjs",
-      "bytes": 5906,
-      "sha256": "3e2dff6820dc6825400ee1fdf6457950f7885a350922d86f8c191cfad05f1094"
+      "bytes": 5968,
+      "sha256": "8537875788aa2cac89a93d1f25ebfcb40dc25d3fd6b41de8cf4440fdef82c9b0"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/bot/scenario-random.mjs",
@@ -2990,6 +3315,11 @@
       "sha256": "f6b1d120c7e0067f4669a1df36df71a491add9f5034f9ba1ea50859b0d29e393"
     },
     {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/compact-ui.mjs",
+      "bytes": 2263,
+      "sha256": "60960514dee64de32651df44c10e9b2a8f316b7dae95351b3c549ca4538f53ed"
+    },
+    {
       "path": "supabase/functions/monopoli-bots/_shared/lib/content-v1.mjs",
       "bytes": 5422,
       "sha256": "cf6c1eeebcf000b064ff8b18274e7c105db78fbed7c874fb51587627ffaa135b"
@@ -3003,6 +3333,11 @@
       "path": "supabase/functions/monopoli-bots/_shared/lib/currency.mjs",
       "bytes": 1105,
       "sha256": "6d89747f25f63c608d31fc160ad9ec59be7ce9dec65087c5c48cde75dd101377"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/dice-timing.mjs",
+      "bytes": 212,
+      "sha256": "ce763922817bfe3d2daa77bbfdd647997ec8055c57dbe6c4528d0bf4dc406618"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/finance.mjs",
@@ -3020,9 +3355,34 @@
       "sha256": "da9d7703371c920033f9793e96616d51004090599a243d336c307f40311c302e"
     },
     {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/gameplay-presentation.mjs",
+      "bytes": 5094,
+      "sha256": "fce3f5849614731661ab44f7fe55e88659edc0ee88b351e7bf777107e9fa960f"
+    },
+    {
       "path": "supabase/functions/monopoli-bots/_shared/lib/groq.ts",
       "bytes": 8691,
       "sha256": "d6eaa2348517097ce8d1ef0b0dca39a9bc188d72d529e6dcbfd8ab58a0faad74"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/layer-navigation.mjs",
+      "bytes": 750,
+      "sha256": "0b53df3e87c2574ec218af47e2d9c6e5f3f75001a141059c82f34249ea74479e"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/online-client.mjs",
+      "bytes": 6838,
+      "sha256": "18c9ae679c90d73964dec18a264669916be36f899a5d2043ae92d19af143479f"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/pawn-animation.mjs",
+      "bytes": 2678,
+      "sha256": "2c83abaa6edcc6bee647e2cb4b6f1df9a87c8fbc96bbb6169ac61eb1a3e63684"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/pawn-layout.mjs",
+      "bytes": 1030,
+      "sha256": "25c6529a4ca2e2a0904bbd7bb8bdfad24c571774d59e1338b7d28dfc7342c1d9"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/pawns.mjs",
@@ -3035,14 +3395,49 @@
       "sha256": "826947c5e0ee702e4525cceace20847f325a5b4fe17f6f5a41b1a1909ead2c96"
     },
     {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/preferences.mjs",
+      "bytes": 759,
+      "sha256": "6483bd54f640f9120d9140052eb90a718524c23d5bed0cd962d077d2d80efec3"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/presentation-timeline.mjs",
+      "bytes": 7074,
+      "sha256": "2aad7f89f431d3b91fe4e7e69d82368f57072ab555e724c6d4366ad0617b90b7"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/presentation-types.ts",
+      "bytes": 2134,
+      "sha256": "08b2025864c928a6817be54e7f4ff9c25f60bf4aa07f0daa9b6694fbe5bc29e8"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/quick-notice.mjs",
+      "bytes": 389,
+      "sha256": "1b187b121dbb7c87268537d88a5c4886981e26cc61bef4c1feceedd6194b06cf"
+    },
+    {
       "path": "supabase/functions/monopoli-bots/_shared/lib/random.mjs",
       "bytes": 1344,
       "sha256": "8b89f6b163cf57aaf4afb6143335d26313b0609b646979eb6c5ac1e3e279cfb2"
     },
     {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/room-client.mjs",
+      "bytes": 1377,
+      "sha256": "ee02585b82a5d8c32936aa105c3d66f15f0ac5cfb7f34ac8a3a5366c5075a012"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/save-format.mjs",
+      "bytes": 9173,
+      "sha256": "f0fdafb132322c75369080f56279100e6aeba3378f652553d3c9372f408d0426"
+    },
+    {
       "path": "supabase/functions/monopoli-bots/_shared/lib/server/bot-worker.mjs",
-      "bytes": 5782,
-      "sha256": "6284ce336e5dc6f854ebf9801b0788db28fe7059517e788dcaf8f36b2f8866ab"
+      "bytes": 5900,
+      "sha256": "b904376d18b1001bf4ed4ac4c76cf93990cf1af8b1ee8f651cd69a89ab2fdd89"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/server/d1-store.mjs",
+      "bytes": 1186,
+      "sha256": "e397b386b965b84ddca2cbb64d08c2c7f96daf198efb1863ef6a544503bbbb40"
     },
     {
       "path": "supabase/functions/monopoli-bots/_shared/lib/server/online-room.mjs",
@@ -3055,6 +3450,16 @@
       "sha256": "7d00b20ed21306382fa058f767aa6d216d1c7855cdd0d46d78452bab87a37c3e"
     },
     {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/server/runtime-sites.ts",
+      "bytes": 401,
+      "sha256": "b8789038a906a1251899d5d576f3bf5133f74b0a337874e42368ea0a91e07fcf"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/server/runtime.ts",
+      "bytes": 735,
+      "sha256": "46b35acccbbb89a09b5161d371cac85e19c6f434eef3c6041fdf106c0f054b4c"
+    },
+    {
       "path": "supabase/functions/monopoli-bots/_shared/lib/server/supabase-config.mjs",
       "bytes": 1713,
       "sha256": "107cceda0748abd29a2f3ac7cd12eba06a13651c26fd71a109b11f35c3eb4774"
@@ -3063,6 +3468,16 @@
       "path": "supabase/functions/monopoli-bots/_shared/lib/server/supabase-store.mjs",
       "bytes": 3339,
       "sha256": "152e271be47018417e57e8a07f81f95bc0ab6c88aedcba3664bfb206d0c21725"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/storage.ts",
+      "bytes": 6955,
+      "sha256": "5ebb3cf8e00c7222844f533eb2618d48aa1df0a903ba191b6281cd28326be7ca"
+    },
+    {
+      "path": "supabase/functions/monopoli-bots/_shared/lib/version.mjs",
+      "bytes": 228,
+      "sha256": "a48326376000b239e18d09a31f11121590b6474766c3191f85269e07474c3772"
     },
     {
       "path": "supabase/functions/monopoli-bots/index.ts",
@@ -3136,8 +3551,8 @@
     },
     {
       "path": "tests/bot-foundation.test.mjs",
-      "bytes": 6016,
-      "sha256": "06ce86d05f89a1439f0182283e404f639cbc75ef764cc44c9e75343eeea70e15"
+      "bytes": 9035,
+      "sha256": "650ae9459e9b71fa0bc9dda7e4b305115d93d6de7eccd075104bd9e8cf17eb33"
     },
     {
       "path": "tests/bot-strategy.test.mjs",
@@ -3146,8 +3561,13 @@
     },
     {
       "path": "tests/bot-v410-hybrid.test.mjs",
-      "bytes": 14559,
-      "sha256": "2fd49d453d9b133ac69299c7b3caa9b01766dfaa5cc6e115b9b3e136b52d7555"
+      "bytes": 14767,
+      "sha256": "30619cd2b50fab708bdc66d46c8890fa480fe9b23fe53abdd8bea75cf9e43235"
+    },
+    {
+      "path": "tests/broker-dispatch.test.mjs",
+      "bytes": 4117,
+      "sha256": "e2683823634e3bc9dbb2dcd21bbfcc93b9385a89a478dc091773763c4cb19147"
     },
     {
       "path": "tests/build-fingerprint.test.mjs",
@@ -3183,6 +3603,11 @@
       "path": "tests/fixtures/scarce-house-cycle-v45.json",
       "bytes": 26469,
       "sha256": "8b94f72e8f4975a6c85e9690c62d69026acfecb77e31aa79a5f9a2876ea011fb"
+    },
+    {
+      "path": "tests/flash-bots-harness.test.mjs",
+      "bytes": 4481,
+      "sha256": "ec75c574d156b2997b67aa4f98382a02b69d7db2206b6a2fbee854857d0168bf"
     },
     {
       "path": "tests/frontend-polish.test.mjs",
@@ -3265,9 +3690,19 @@
       "sha256": "7f7945e349967f8117bbe55b0c3bd85d87748567ccb041a3584af9ea466d9caa"
     },
     {
-      "path": "tests/nusa-v20.test.mjs",
-      "bytes": 8479,
-      "sha256": "a5626794f72ea483f4130a51402d247f9dd08b642925fe787964f8fad981ffbc"
+      "path": "tests/nusa-v18.test.mjs",
+      "bytes": 5304,
+      "sha256": "46f1831202de3659dacec2af16b3afa0cb4b2379d7ef7f291d3238ae2215f24e"
+    },
+    {
+      "path": "tests/nusa-v21.test.mjs",
+      "bytes": 13165,
+      "sha256": "6c161e46f90c926472a2a57e4473f26eee35bfa3725cbfa97431260d321f428d"
+    },
+    {
+      "path": "tests/nusa-v23.test.mjs",
+      "bytes": 28641,
+      "sha256": "b524933eda2a5c7e718762b38264f0d992f1f02c88fa28f3f1014e9d0f580ce2"
     },
     {
       "path": "tests/online-api.test.mjs",
@@ -3276,8 +3711,8 @@
     },
     {
       "path": "tests/online-bots.test.mjs",
-      "bytes": 12502,
-      "sha256": "696a2864eafb328d94bfc2245c5480482df7ff3ece06cef264201221dd73c499"
+      "bytes": 12506,
+      "sha256": "c393d703b3d360d20c85321ebcf053ee1bed6e3af60c7561e8dfc51ca3f5da84"
     },
     {
       "path": "tests/online-client.test.mjs",

@@ -7,6 +7,7 @@ import { createGame, command, publicState } from "../lib/game.mjs";
 import { localPlayers } from "../lib/bot/personas.mjs";
 import { createMindClient } from "../lib/bot/mind-client.mjs";
 import { strategyView } from "../lib/bot/memory.mjs";
+import { brokerIntentMetadata } from "../lib/bot/broker-intent.mjs";
 import { decisionGate, planDecision } from "../lib/bot/strategy.mjs";
 import {
   ingestTimeline,
@@ -841,7 +842,12 @@ export class GameSession extends EventTarget {
         command(
           this.state,
           actor,
-          { ...intent, id: crypto.randomUUID(), expectedVersion: version },
+          {
+            ...intent,
+            ...brokerIntentMetadata(this.state, actor, action),
+            id: crypto.randomUUID(),
+            expectedVersion: version,
+          },
           this.random,
         ),
       );

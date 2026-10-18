@@ -1,0 +1,27 @@
+{
+  "version": "23.0.0",
+  "delivery": "source-only",
+  "containsTrainedWeights": false,
+  "baseImportManifest": "NUSA_V22_IMPORTED_HASHES.json",
+  "sourcePlan": "docs/imports/nusa-v23-plan.original.md",
+  "sourcePlanSha256": "c5370c8c39e26ac2a692bd1248299b45cb9dfcc02aacdc8f4f7f0cb92f2e85a5",
+  "expertCount": 33,
+  "files": {
+    "frontend/session.mjs": "89fb51a9f0fe8c4ce1e403555c76815f19b8229078d8e193bfd4dd70d04ed391",
+    "lib/bot/broker-intent.mjs": "118a1bd337891569641405e639428627f4a13eaf3c5441fd59318299beb8c2e9",
+    "lib/bot/memory.mjs": "b3153748ec582a527302614154410dd15f36aa307f48d43cb90874a621342605",
+    "lib/bot/nusa-v7/board-graph.mjs": "d13d39ffa2a93001926b4f6ecd5913d6c8f792dd20fa296523ad3de742ad247e",
+    "lib/bot/nusa-v7/broker-memory.mjs": "c5932babbeb3729b387002b53395a9cf7191912c2162351af9412a80ff1ef1c5",
+    "lib/bot/nusa-v7/chronos-policy.mjs": "93d9f7168d79647d347ad3fb763c9dc2dece73ab58815cd6d1d0085442ddb415",
+    "lib/bot/nusa-v7/council.mjs": "1c770e03b7d1ee7b4465ac95598e3df6ca82001f7eacc5a756dfa3390cb41006",
+    "lib/bot/nusa-v7/experts.mjs": "9b27a6cae0ccaf75c81d77852ad80867c141b7b7ed61634aedff2ab8625fe567",
+    "lib/bot/nusa-v7/index.mjs": "f8a55ce0cbb58786fcb1237fcebb7d4d60178afe70dd9f066ed0553e76a66a91",
+    "lib/bot/nusa-v7/reasoning.mjs": "4a35139c5b38ef41391eca362d7e22c084c9db0ed70c734bb35664e002af945b",
+    "lib/bot/nusa-v7/situation.mjs": "e93efb0c12c8a21953ae94766cd2f5e7eef4fce81c94aec02c8f8cefaf4d1e10",
+    "lib/bot/nusa-v7/temporal.mjs": "641a9623082ee5ed43a08ed86b438d84c5d29991900727c1cb4c3bff9c47c1ec",
+    "lib/bot/persona-router.mjs": "5c33550b7095ad78231cb2561513774d75ced598df8462f75845ef5f6f32f0ba",
+    "lib/bot/probability.mjs": "24fae74090d4245795ab536e0d5416f3380774bfbc47caa5507352644b684c36",
+    "lib/bot/risk.mjs": "8537875788aa2cac89a93d1f25ebfcb40dc25d3fd6b41de8cf4440fdef82c9b0",
+    "lib/server/bot-worker.mjs": "b904376d18b1001bf4ed4ac4c76cf93990cf1af8b1ee8f651cd69a89ab2fdd89"
+  }
+}

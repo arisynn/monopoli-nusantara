@@ -92,13 +92,13 @@ test('invalid online bot suggestion falls back to a legal local decision',async(
  assert.equal(result.committed,1);assert.equal(f.room().state.version,1);assert.equal(f.room().state.aiStatus,'local');assert.equal(f.store.botActions.size,1);
 });
 
-test('NUSA V20 runs through the online job worker and commits one legal purchase',async()=>{
+test('NUSA V23 runs through the online job worker and commits one legal purchase',async()=>{
  const f=await fixture(2,1,['nusa']);await f.engine(s=>{s.turn=2;s.phase='buy';s.buy=13;});
  const result=await runBotWorker({store:f.store,clock:f.clock,maxSteps:1,rng:()=>.2});
  assert.equal(result.committed,1);assert.equal(f.room().state.version,1);
  assert.equal(f.room().state.players[2].botPersona,'nusa');assert.equal(f.room().state.assets[13].owner,2);
  assert.equal(f.room().state.players[2].cash,13600);assert.equal(f.store.botActions.size,1);
- assert.equal(f.room().state.aiDiagnostics.execution,'edge');assert.equal(f.room().state.aiDiagnostics.model,'NUSA-V20.0-APOTHEOSIS');
+ assert.equal(f.room().state.aiDiagnostics.execution,'edge');assert.equal(f.room().state.aiDiagnostics.model,'NUSA-V23.0-CHRONOS-KAIROS');
 });
 test('human actions persist NUSA observations without a separate bot commit or gameplay version',async()=>{
  const f=await fixture(2,1,['nusa']);await f.engine(s=>{s.assets[1].owner=0;s.assets[3].owner=0;});
