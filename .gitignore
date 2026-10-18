@@ -6,6 +6,8 @@ node_modules/
 *.log
 dist/
 server-dist/
+.nusa-online/
+artifacts/
 
 __pycache__/
 *.pyc

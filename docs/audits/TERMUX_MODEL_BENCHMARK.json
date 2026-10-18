@@ -1,0 +1,66 @@
+{
+  "manifest": "092aca1ab8df38cd116e9c0b58cdecb20d1a5f4807931dbd29d88fb2f23d87ec",
+  "environment": "Node Linux compute threads (not Android; no network RTT)",
+  "budgetMs": 64,
+  "games": [
+    {
+      "roster": [
+        "nusa",
+        "kresna",
+        "apex",
+        "raka"
+      ],
+      "actions": 500,
+      "bids": 196,
+      "illegal": 0,
+      "financeReversals": 0,
+      "stopReason": "action_cap",
+      "version": 500
+    },
+    {
+      "roster": [
+        "bima",
+        "sari",
+        "nusa",
+        "kresna"
+      ],
+      "actions": 500,
+      "bids": 27,
+      "illegal": 0,
+      "financeReversals": 0,
+      "stopReason": "action_cap",
+      "version": 500
+    },
+    {
+      "roster": [
+        "apex",
+        "raka",
+        "bima",
+        "sari"
+      ],
+      "actions": 500,
+      "bids": 59,
+      "illegal": 0,
+      "financeReversals": 0,
+      "stopReason": "action_cap",
+      "version": 500
+    }
+  ],
+  "personas": {
+    "nusa": 330,
+    "kresna": 266,
+    "apex": 245,
+    "raka": 179,
+    "bima": 231,
+    "sari": 249
+  },
+  "decisionWallMs": {
+    "p50": 13.762564999999995,
+    "p95": 69.67176299999846,
+    "p99": 78.39278899999772
+  },
+  "notes": [
+    "Action caps are unresolved; no invented wealth winner.",
+    "Includes IPC and public decision computation; not a claim about network or device latency."
+  ]
+}

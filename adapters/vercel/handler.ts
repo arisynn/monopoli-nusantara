@@ -5,7 +5,7 @@ export default async function handler(req:IncomingMessage,res:ServerResponse){
  try{
   const origin=`https://${req.headers.host||'localhost'}`,url=new URL(req.url||'/',origin),endpoint=url.searchParams.get('_endpoint');
   if(url.origin!==origin){res.statusCode=400;res.end();return;}
-  if(endpoint&&!['online','bot','game','auth'].includes(endpoint)){res.statusCode=404;res.end();return;}
+  if(endpoint&&!['online','bot','game','auth','worker'].includes(endpoint)){res.statusCode=404;res.end();return;}
   if(endpoint){url.pathname='/api/'+endpoint;url.searchParams.delete('_endpoint');}
   const chunks:Buffer[]=[];let size=0;for await(const chunk of req){const buffer=Buffer.isBuffer(chunk)?chunk:Buffer.from(chunk);size+=buffer.length;if(size>131072){res.statusCode=413;res.end('Too large');return;}chunks.push(buffer);}
   const headers=new Headers();for(const [key,value] of Object.entries(req.headers))if(value!==undefined)headers.set(key,Array.isArray(value)?value.join(', '):value);

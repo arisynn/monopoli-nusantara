@@ -1,7 +1,10 @@
 {
-  "generatedAt": "2026-10-18T10:28:00.748Z",
+  "generatedAt": "2026-10-18T17:50:08.060Z",
   "node": "v24.19.0",
   "files": [
+    "tests/stability-guard.test.mjs",
+    "tests/finance-auction-regression.test.mjs",
+    "tests/termux-worker.test.mjs",
     "tests/room-management.test.mjs",
     "tests/debt-payment.test.mjs",
     "tests/random.test.mjs",
@@ -11,7 +14,9 @@
     "tests/nusa-observer.test.mjs",
     "tests/frontend-polish.test.mjs",
     "tests/bot-foundation.test.mjs",
-    "tests/nusa-v21.test.mjs",
+    "tests/nusa-v23.test.mjs",
+    "tests/broker-dispatch.test.mjs",
+    "tests/flash-bots-harness.test.mjs",
     "tests/bank-economy.test.mjs",
     "tests/bot-construction-reserve.test.mjs",
     "tests/bot-v410-hybrid.test.mjs",
@@ -42,16 +47,11 @@
     "tests/headless-package.test.mjs",
     "tests/frontend.test.mjs"
   ],
-  "tests": 552,
-  "passed": 551,
-  "failed": 1,
+  "tests": 645,
+  "passed": 645,
+  "failed": 0,
   "skipped": 0,
-  "failures": [
-    {
-      "name": "active artwork has valid encodings and retired atlases are absent",
-      "error": "Error [ERR_TEST_FAILURE]: The expression evaluated to a falsy value:\n\n  assert(!existsSync(new URL(old, root)))\n"
-    }
-  ],
+  "failures": [],
   "limits": [
     "No real Supabase/Auth/Postgres/RLS/Realtime or Groq service was contacted.",
     "This suite calls fetch handlers in process with contract doubles; browser socket checks are reported separately.",

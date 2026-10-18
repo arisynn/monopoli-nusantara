@@ -1,0 +1,212 @@
+{
+  "inputArchive": "NUSA_MIND_BENCHMARK_LAB_V23_GUARD_FIX.zip",
+  "sha256": "be96eabe158eb1e01d8fc3ce1acbc450e73678696433772e18498e069479217f",
+  "manifestFilesVerified": 80,
+  "allManifestChecksumsMatch": true,
+  "inputTests": {
+    "passed": 25,
+    "failed": 0,
+    "selftestActions": 8
+  },
+  "cores": [
+    {
+      "input": "models/bot/candidates.core.mjs",
+      "officialBaseline": "lib/bot/candidates.mjs",
+      "identical": true,
+      "sha256": "e517b51e1dca8d12df4da1c17d7ab9514024595ac5fb5ff0a5b431cef385fdc3"
+    },
+    {
+      "input": "models/bot/mind.core.mjs",
+      "officialBaseline": "lib/bot/mind.mjs",
+      "identical": true,
+      "sha256": "c95dbba8740c783f090e5aeae6c90728ad5946b18ccbdeac5fa056f757de4a56"
+    },
+    {
+      "input": "models/bot/nusa-v7/chronos-policy.core.mjs",
+      "officialBaseline": "lib/bot/nusa-v7/chronos-policy.mjs",
+      "identical": true,
+      "sha256": "93d9f7168d79647d347ad3fb763c9dc2dece73ab58815cd6d1d0085442ddb415"
+    },
+    {
+      "input": "models/bot/nusa-v7/index.core.mjs",
+      "officialBaseline": "lib/bot/nusa-v7/index.mjs",
+      "identical": true,
+      "sha256": "f8a55ce0cbb58786fcb1237fcebb7d4d60178afe70dd9f066ed0553e76a66a91"
+    }
+  ],
+  "engineComparisonWithOriginalUserResults": [
+    {
+      "file": "engine/MANIFEST.json",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/README.md",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/index.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/auction-presentation.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/bank-economy.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/content-v1.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/content.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/controller-compat.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/currency.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/finance.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/game-v1.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/game.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/pawns.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/presentation-types.ts",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/random.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/lib/save-format.mjs",
+      "compared": true,
+      "identical": true
+    },
+    {
+      "file": "engine/package.json",
+      "compared": true,
+      "identical": true
+    }
+  ],
+  "historicalReplays": [
+    {
+      "replay": "PASS",
+      "matchId": "guard-smoke-2p-0001",
+      "steps": 774,
+      "version": 774,
+      "phase": "won",
+      "hash": "4ea829c81ae601046cade4c95ec0ece0668995147e3d92a64320703ce6392764"
+    },
+    {
+      "replay": "PASS",
+      "matchId": "guard-smoke-2p-0002",
+      "steps": 215,
+      "version": 215,
+      "phase": "won",
+      "hash": "aa28ed990e26df9c97cc73c2e9a485b3f337ed5a76a7d611217fc5b7d161cb05"
+    },
+    {
+      "replay": "PASS",
+      "matchId": "guard-smoke-6p-0001",
+      "steps": 1017,
+      "version": 1017,
+      "phase": "won",
+      "hash": "836c2d0a943768d45c90e07eeef90219fdddb12aeb5d348b28757060721d8d04"
+    },
+    {
+      "replay": "PASS",
+      "matchId": "guard-smoke-6p-0002",
+      "steps": 709,
+      "version": 709,
+      "phase": "won",
+      "hash": "d26683920e5f2834ee4fb7ec273597c71b8687dbfb58c2d05dec4744fde98b56"
+    }
+  ],
+  "hostAdjustments": [
+    "N5 auction grid instead of source N1 multiples",
+    "Existing official pre-increment memory hook receives reserved successful transition version",
+    "Existing finance context includes matchId to prevent cross-match history leakage",
+    "Integrate at existing candidate/final decision/public NUSA boundaries; no .core copies or generic helper wrapping",
+    "Retain prior validated finance continuations, redemption scoring and Kresna funding fix",
+    "Worker submit validates stability policy against canonical server state"
+  ],
+  "limits": [
+    "Replays validate the supplied guard laboratory logs using its own engine/model package, not the new official deployment.",
+    "Four naturally finished supplied matches are a smoke sample, not evidence for a winrate target."
+  ],
+  "officialEngineComparedWithDelivered4111": [
+    {
+      "file": "lib/auction-presentation.mjs",
+      "identicalTo4111": true
+    },
+    {
+      "file": "lib/bank-economy.mjs",
+      "identicalTo4111": true
+    },
+    {
+      "file": "lib/content-v1.mjs",
+      "identicalTo4111": true
+    },
+    {
+      "file": "lib/content.mjs",
+      "identicalTo4111": true
+    },
+    {
+      "file": "lib/currency.mjs",
+      "identicalTo4111": true
+    },
+    {
+      "file": "lib/finance.mjs",
+      "identicalTo4111": true
+    },
+    {
+      "file": "lib/game-v1.mjs",
+      "identicalTo4111": true
+    },
+    {
+      "file": "lib/game.mjs",
+      "identicalTo4111": true
+    },
+    {
+      "file": "lib/pawns.mjs",
+      "identicalTo4111": true
+    },
+    {
+      "file": "lib/random.mjs",
+      "identicalTo4111": true
+    }
+  ]
+}

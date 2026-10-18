@@ -3,7 +3,7 @@
  * - Reads `boardGraph.desireMatrix`, `brokerPlans`, `trojanBaitForRival`,
  *   `thirdPartyInterceptions`, `poisonPillTiles`, and `corridorRadar`.
  */
-import {BOARD,GROUPS} from '../../content.mjs';
+import {BOARD,GROUPS,auctionMinimum} from '../../content.mjs';
 import {rent,redemption,interest,canManage,managementError} from '../../game.mjs';
 import {evaluateTrade} from '../negotiation.mjs';
 import {analyzeState} from '../analysis.mjs';
@@ -695,7 +695,7 @@ const defs=[
   {id:'auction',name:'Sniper Clock & Quantum 5-Nusa Auction Expert',types:['BID','PASS'],assess:(c,a)=>{
     if(c.view.phase!=='auction')return null;
     const ceiling=grandmasterAuctionCeiling(c);
-    const minBid=c.auctionMinBid||Math.max(100,(c.view.auction?.amount||0)+10);
+    const minBid=c.auctionMinBid||auctionMinimum(c.view.auction);
     if(a.type==='PASS')return delta(minBid<=ceiling?-0.96:0.96,'clock_auction_pass_gate');
     if(a.amount>ceiling)return delta(-clamp((a.amount-ceiling)/300,0.55,1.0),'over_ceiling_bid_veto');
     const overstep=Math.max(0,a.amount-minBid);
@@ -950,7 +950,7 @@ const defs=[
     }
     if(c.view.phase==='auction'&&c.view.auction?.kind==='building'){
       const ceiling=grandmasterAuctionCeiling(c);
-      const minBid=c.auctionMinBid||Math.max(100,(c.view.auction.amount||0)+10);
+      const minBid=c.auctionMinBid||auctionMinimum(c.view.auction);
       if(a.type==='BID'&&a.amount<=ceiling)return delta(0.98,'building_auction_arbitrage_bid');
       if(a.type==='PASS'&&minBid<=ceiling)return delta(-0.98,'never_let_rival_win_cheap_building_auction');
     }
@@ -962,7 +962,7 @@ const defs=[
       const t=c.view.auction?.tile;
       if(completion(c,t,c.actor)<0.90&&block(c,t)<0.80){
         const ceiling=grandmasterAuctionCeiling(c);
-        const minBid=c.auctionMinBid||Math.max(100,(c.view.auction.amount||0)+10);
+        const minBid=c.auctionMinBid||auctionMinimum(c.view.auction);
         if(a.type==='PASS'&&minBid>ceiling)return delta(0.96,'save_cash_for_queued_monopoly_auction');
         if(a.type==='BID'&&a.amount>ceiling)return delta(-0.96,'preserve_queue_auction_reserve');
       }

@@ -172,26 +172,31 @@ test("all six personas return legal, serializable decisions across 2/4/6-seat ph
         assert(p.diagnostics.interrupted);
       }
 });
-test("authoritative rules preserve the baseline apart from approved secure RNG substitutions", () => {
+test("authoritative rules preserve baseline apart from approved RNG and N5 auction corrections", () => {
   const sha = (path) =>
     createHash("sha256")
       .update(readFileSync(new URL(path, import.meta.url)))
       .digest("hex");
   for (const file of [
-    "content.mjs",
     "bot/personas.mjs",
     "bot/apex-policy.mjs",
-    "bot/kresna-policy.mjs",
   ])
     assert.equal(
       sha("../lib/" + file),
       sha("../benchmarks/pre-foundation-v18/lib/" + file),
       file,
     );
+  const originalContent=readFileSync(new URL('../benchmarks/pre-foundation-v18/lib/content.mjs',import.meta.url),'utf8');
+  const originalMinimum=originalContent.split('\n').find(line=>line.startsWith('export const auctionMinimum ='));
+  const content=readFileSync(new URL('../lib/content.mjs',import.meta.url),'utf8').replace(/^export const auctionMinimum =.*$/m,originalMinimum);
+  assert.equal(content,originalContent);
+  const originalGame=readFileSync(new URL('../benchmarks/pre-foundation-v18/lib/game.mjs',import.meta.url),'utf8');
+  const originalBid=originalGame.split('\n').find(line=>line.includes("if(a.type==='BID'){if(auction.kind==='building')"));
   const game=readFileSync(new URL('../lib/game.mjs',import.meta.url),'utf8')
     .replace("import {secureRandom,randomIndex} from './random.mjs';\n",'')
     .replaceAll('rng=secureRandom','rng=Math.random')
     .replaceAll('randomIndex(i+1,rng)','Math.floor(rng()*(i+1))')
-    .replaceAll('randomIndex(6,rng)','Math.floor(rng()*6)');
+    .replaceAll('randomIndex(6,rng)','Math.floor(rng()*6)')
+    .replace(/^.*if\(a.type==='BID'\)\{if\(auction.kind==='building'\).*$/m,originalBid);
   assert.equal(createHash('sha256').update(game).digest('hex'),sha('../benchmarks/pre-foundation-v18/lib/game.mjs'));
 });

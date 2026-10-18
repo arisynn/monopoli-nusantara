@@ -1,129 +1,100 @@
-## Pembaruan 1.2.1 — Perbaikan integrasi guard
+# Frontend polish — papan dan popup yang lebih bersih
 
-Paket ini memperbaiki pembacaan state, aktor/persona, validasi lelang, dan riwayat anti-loop. Aturan di `engine/` serta algoritma `.core.mjs` tetap byte-identik dengan ZIP masukan. Penilaian strategi memakai modul inti; bonus generik guard lama yang tumpang tindih sudah dilepas. Ini belum implementasi penuh masterplan V8 atau bukti target winrate.
+Pemeriksaan online terbaru: penyebab bot nonaktif, perbaikan keluar/kick/host, popup stok, serta kamera mengikuti pion. Pengelolaan room memerlukan migrasi **006**, dan bot live memerlukan aktivasi worker serta `MN_ONLINE_BOTS_ENABLED=true`. Hasil uji dan langkah penerapan: [ONLINE_ROOM_FIX.md](docs/ONLINE_ROOM_FIX.md).
 
-Lihat [catatan patch dan verifikasi](docs/GUARD_FIX.md). Jalankan `npm test` (tanpa instalasi dependensi) untuk regresi guard dan `node lab/selftest.mjs` untuk pemeriksaan singkat. Saat mengintegrasikan bot ke host lain, panggil `recordBotMemory(next, before, actor, action)` **setelah** `command()` berhasil; lab sudah melakukannya. Hasil `runs/run-2026-*` dan pemeriksaan lama di bawah adalah arsip sebelum patch, bukan pengukuran versi ini.
+Update gameplay terbaru: dadu PNG transparan 2D dipindahkan ke kanan riwayat agar tombol aksi lebih panjang; RNG memakai Web Crypto tanpa bias; popup stok diperbaiki; pelunasan otomatis menggantikan gadai otomatis lama. Panduan dan hasil uji: [GAMEPLAY_UPDATE.md](docs/GAMEPLAY_UPDATE.md).
 
-## Pembaruan CLI V1.2 — Dua mode kemenangan + 5 event live
+Update terbaru: bot online tetap di Supabase Edge, memori penolakan barter dan revisi berlaku untuk keenam persona, NUSA mengamati aksi lawan dalam batch kecil, serta logo PNG dan PWA tersedia. Catatan arsitektur, pemasangan, dan verifikasi: [EDGE_MEMORY_PWA.md](docs/EDGE_MEMORY_PWA.md).
 
-Menu **4 Standard**, **5 Tournament**, dan **6 Custom Benchmark** menawarkan:
+Papan menampilkan sewa seperti `₦ 6` tanpa latar hanya setelah properti dimiliki; nominal ribuan diringkas seperti `₦ 1,2k`. Kepemilikan mengikuti warna pion, rumah/hotel memakai gambar, dan popup Aset/Barter dibuat ringkas dengan scroll internal. Input nominal memakai keyboard angka/desimal bawaan dengan normalisasi nol di depan. Avatar manusia baru dan aset WebP melengkapi enam peserta berbeda. NUSA kini memakai V23 Chronos & Kairos dengan 33 pakar; aturan permainan tetap sama.
 
-- **1 — Sampai Bangkrut:** pertandingan berlanjut hingga engine menyatakan `phase=won` (satu pemain tersisa). Karena bot bisa mengalami loop, tetap ada batas pengaman 50.000 aksi (bisa disesuaikan lebih rendah) dan 60 menit. Jika batas pengaman atau loop menghentikan game, **tidak ada pemenang**.
-- **2 — Berdasarkan Waktu:** atur durasi per match 1–60 menit. Saat waktu simulasi (di luar jeda menonton) habis, klasemen dihitung dari `worth()` bawaan engine: **kas + harga properti (nilai gadai bila tergadai) + nilai bangunan**. Juara adalah aset total tertinggi, **bukan sekadar uang tunai**. Bila kekayaan tertinggi seri, hasil `draw`, tanpa memilih kursi secara arbitrer. Jika ada satu pemain bertahan sebelum waktu habis, kemenangan alami bangkrut tetap dihormati.
-- **Penghentian karena loop, action cap, error, atau Ctrl+C tidak otomatis dianggap menang pada mode manapun.**
-- `summary.json` setiap match memiliki `victoryMode`, `winnerType` (`bankruptcy`, `net_worth`, `draw`, atau null), `winnerSeat`, dan `rankings` lengkap; `final-save.json` tetap state asli (tidak dipalsukan menjadi `won`).
-- Live dashboard memakai maksimal **5 event terakhir**, menulis ulang layar terminal. Detail semua aksi dan keputusan masih tersimpan di file JSONL.
-
-Contoh langsung tanpa menu:
-
-```bash
-node lab/benchmark.mjs --matches=1 --players=4 --victory-mode=timed --game-ms=60000 --max-actions=50000 --display=spectator --display-ms=65
-node lab/benchmark.mjs --matches=1 --players=4 --victory-mode=bankruptcy --game-ms=3600000 --max-actions=50000 --display=performance
-```
-
-**Perhatian:** waktu benchmark bukan waktu simulasi dalam game. Tenggat adalah waktu komputasi pada perangkat, mengecualikan jeda spectator. Mode berdasarkan waktu cocok untuk peringkat pada perangkat sama, tetapi bukan pengukuran kekuatan mutlak antar-HP yang kecepatannya berbeda.
+Panduan perubahan, pembersihan source, dan verifikasi: [FRONTEND_POLISH.md](docs/FRONTEND_POLISH.md). Build publik hanya memuat graph modul browser aktif; source runtime NUSA berada di `lib/bot/nusa-v7/`.
 
 ---
 
-# NUSA MIND — Benchmark Lab V23 (satu ZIP)
+# Monopoli Nusantara — pembaruan UI, fondasi bot dan NUSA V23
 
-**Sumber model:** `monopoli-nusantara-nusa-v23.zip`, NUSA V23.0 Chronos & Kairos. **Bukan** NUSA V24. Tidak ada model Gemini/Groq yang dipanggil dalam benchmark; semua aksi bot dihasilkan secara lokal. Folder ini adalah LAB untuk pengujian dan **bukan** source production pengganti Monopoli Nusantara.
+Source lengkap mencakup lobi/lelang yang dirapikan, mata uang ₦, pembuka dan kenaikan lelang minimal ₦5, fondasi bot bersama, serta NUSA V23 dengan 33 pakar dan perencanaan temporal. Nomor aplikasi tetap 4.11.0. Catatan integrasi ada di [INTEGRASI_NUSA_V23.md](INTEGRASI_NUSA_V23.md).
 
-## Termux Android
+**Paket engine aturan tanpa model/planner bot:** [unduh ZIP logic game](public/Monopoli_Nusantara_Game_Logic.zip). Pada situs hasil build, file tersedia di `/Monopoli_Nusantara_Game_Logic.zip`. Paket ini menerima label bot baru untuk sistem eksternal, terpisah dari enam persona pada aplikasi lengkap. Buat ulang paket dengan `python3 scripts/package-logic.py`.
 
-1. Simpan ZIP di Downloads, lalu jalankan:
+---
 
-   ```bash
-   pkg update && pkg install nodejs unzip -y
-   termux-setup-storage
-   unzip ~/storage/downloads/NUSA_MIND_BENCHMARK_LAB_V23.zip -d ~
-   cd ~/NUSA_MIND_BENCHMARK_LAB_V23
-   bash nusa.sh
-   ```
+# Monopoli Nusantara 4.11.0 — Enam Persona AI & Popup Pilihan Bot
 
-2. Pilih menu menggunakan angka. **Tidak perlu `npm install`**, internet, Supabase, ataupun token Groq. Disarankan Node.js **24+** (kebutuhan source game V23). Kode juga telah lolos tes dasar pada Node.js 22 di lingkungan pembuatan, tetapi versi tersebut bukan target resmi source.
-3. Semua hasil tersimpan di `runs/` dalam folder lab. Beberapa pertandingan/turnamen panjang bisa memakan waktu, baterai, dan penyimpanan HP; jalankan `tmux` bila ingin sesi terminal tetap tersedia. Android masih dapat menghentikan proses background.
+Update di atas **v4.10.2** dengan source bot dari **Nusa.zip**. Raka, Bima, Sari, NUSA, Arka/APEX, dan Kresna kini dapat dipilih sebagai enam kebijakan bot independen. Pilihan persona dan empat tingkat kesulitan ditampilkan dalam dua dialog kartu yang terpisah, bukan dropdown. VS Bot mendukung 2–6 peserta; online tetap maksimal tiga bot, dengan dua manusia minimal. **LEARNED_MODEL = null** sampai ada bobot baru yang lolos verifikasi sumber dan benchmark holdout. Petunjuk & hasil uji ada di [INTEGRASI_NUSA_V411.md](INTEGRASI_NUSA_V411.md).
 
-## Isi paket
+---
 
-- `engine/`: aturan game mandiri dan engine state transition, dari `scripts/package-logic.py` bawaan ZIP V23. Tidak mengimpor modul bot.
-- `models/`: seluruh file model `lib/bot/` disalin tanpa mengubah algoritma; `models/game.mjs` adalah bridge kompatibilitas (pemilih aksi dasar dipindah keluar engine); pencatatan `recordBotMemory` dipanggil oleh host setelah aksi engine sukses.
-- `lab/benchmark.mjs`: headless benchmark NUSA/Kresna/Arka/Raka/Bima/Sari 2–6 bot, perintah CLI, seed repeatable, validasi engine, deteksi loop.
-- `lab/analyze-save.mjs`: audit log save JSON, termasuk fixture loop gadai–tebus.
-- `lab/replay.mjs`: mengulangi semua aksi yang telah dicatat dengan RNG seed sama lalu membandingkan SHA-256 setiap state sebelum dan sesudah.
-- `lab/selftest.mjs`: cek engine dan router model dapat memainkan aksi valid.
-- `fixtures/nusa-loop-mortgage-redeem.json`: save game bug yang kamu kirim, tidak dimodifikasi.
-- `nusa.sh`: menu interaktif Termux.
+# Monopoli Nusantara 4.10.1 — Multiplayer & Result UI Fix
 
-## Menu utama
+Perbaikan popup hasil akhir dan kesiapan Edge Function bot online. Lihat [catatan rilis & checklist deployment](docs/RELEASE_4101.md). Bot online **belum aktif otomatis**; toggling pada Vercel hanya setelah Edge Function dan penjadwal Supabase terverifikasi.
 
-1. Selftest engine dan model.
-2. Smoke test 1 pertandingan 2 bot, batas 150 aksi.
-3. Regression 4 pertandingan 4 bot, batas 500 aksi/pertandingan.
-4. Standard 20 pertandingan 4 bot, batas 1200 aksi/pertandingan.
-5. Tournament 100 pertandingan 6 bot, batas 2000 aksi/pertandingan.
-6. Custom (jumlah match, pemain, aksi, budget).
-7. Analisis ulang save asli NUSA yang looping.
-8. Lihat lokasi output.
-9. Replay dan verifikasi hasil match.
-0. Keluar.
+---
 
-Perhatikan: **batas aksi atau waktu bukan bukti kemenangan**. Benchmark akan mencatat `action_cap`, `time_cap`, `detected_loop`, `illegal_action`, atau `finished` secara terpisah. Win hanya dicatat jika engine memasuki fase `won`.
+# Monopoli Nusantara 4.10.0 — Bank Nusantara & NUSA MIND 4.10
 
-## Benchmark CLI langsung (tanpa menu)
+Melanjutkan **4.9.1**. Indikator kecil **Nusa beredar** di tengah papan membuka popup Bank Nusantara. Ringkasan menampilkan perputaran uang dan pokok gadai; rincian arus dana, sertifikat aset tergadai, persediaan rumah/hotel/properti dan 40 transaksi terakhir dibuka sesuai kebutuhan. Total transaksi tersimpan terpisah dari log yang dibatasi. Nusa beredar adalah total kas pemain, bukan kas bank terbatas. Bank tidak mengubah pajak, bunga, gaji, harga atau aturan permainan.
 
-```bash
-node lab/benchmark.mjs --matches=4 --players=4 --max-actions=1200 --game-ms=30000 --budget=24 --seed=12345
+Save schema 2 lama tetap dapat dipakai: riwayat bank mulai dicatat pada aksi berikutnya dan ditandai parsial. Saldo/gadai selalu memakai kondisi aktual. Save schema 1 tetap kompatibel; riwayat bank baru hanya tersedia pada engine schema 2. Data bank ikut state lokal/online tanpa tabel, migration atau ENV baru.
+
+Bot **NUSA MIND 4.10** memakai analisis risiko kas, alokasi pembangunan bertahap, penyelamatan gadai, negosiasi dan pencarian skenario terbaru. Khusus pembangunan, kandidat BUILD, BUILD_JOIN dan BID rumah/hotel harus menyisakan **N50–N200** sesuai risiko publik. Alokasi beberapa aksi memakai batas yang sama; aksi dihitung ulang setelah setiap langkah. Ini batas minimum kas setelah pengeluaran pembangunan, bukan batas maksimum tabungan atau jaminan saldo setelah membayar kewajiban lain. Bobot belajar runtime tetap `null`; paket riset tidak dipromosikan otomatis. Lihat [laporan integrasi](docs/RELEASE_4100.md).
+
+Fitur 4.9.1 dipertahankan: miniatur sertifikat, detail tanpa kehilangan draft, estimasi nilai barter, dan lelang adaptif empat pemain 2×2. Sertifikat penuh, kartu, nama/harga petak dan tata letak gameplay selain satu indikator bank tetap.
+
+**Panduan ENV dan deployment terbaru: [ENV_REQUIRED.md](ENV_REQUIRED.md).** Target database Monopoli adalah **connectify**; champagne tetap untuk novel. Tidak ada SQL baru untuk update ini. Redis/Upstash telah dilepas dari runtime aktif. File ENV privat dan key rahasia tidak disertakan dalam ZIP.
+
+## Menjalankan
+
+Node.js **24.x**. Build/runtime tidak memerlukan dependency produksi:
+
+```sh
+npm run build
+npm start
 ```
 
-Pemilihan persona dan jumlah pertandingan:
+Buka http://127.0.0.1:8787. Server menyajikan `dist`, sehingga perubahan source memerlukan build ulang. VS Bot lokal tidak membutuhkan ENV. Untuk development opsional `npm ci --ignore-scripts` menyediakan TypeScript dan Prettier yang dipin.
 
-```bash
-node lab/benchmark.mjs --matches=6 --players=3 --bots=nusa,kresna,apex --max-actions=2000 --game-ms=60000 --budget=32 --run-id=nusa-compare
+```sh
+npm test                    # build + regresi inti/frontend/backend
+npm run typecheck
+npm run format:check
+npm run check:source
+npm run smoke:ui            # GameSession 2/3/4 peserta, tanpa DOM
+npm run diagnose:online     # status ENV lokal tanpa menampilkan key
+npm run diagnose:deployment -- --origin=https://monopoli-nusantara-eight.vercel.app
 ```
 
-`--bots=` boleh memakai enam persona yang ada. Setiap match memakai seat rotation yang konsisten. `--seed=` dapat dipakai mengulang desain pertandingan tetapi algoritma yang berbasis waktu dapat membuat hasil berbeda; replay dari tindakan tercatat tetap menguji konsistensi aturan transisi yang sama.
+## Perubahan UI
 
-### Ekspor log lengkap
+Lobi berada di tengah layar dengan dekorasi geometris lembut; pada layar pendek konten tetap dapat digulir dari atas. Lobi memakai kartu peserta dua kolom yang lebih pendek. Popup setup, online/login, menu, pengaturan, profil, aset, bangun, pelunasan otomatis, barter dan keputusan memakai jarak lebih rapat; footer tetap dapat dijangkau dan konten panjang menggulir di dalam popup. Informasi konsekuensi gadai tetap tersedia lewat detail yang bisa dibuka. Ikon identitas online kini memiliki ukuran tetap, sehingga tidak gepeng.
 
-Setiap pertandingan menghasilkan:
+`frontend/lucide-icons.mjs` memuat 25 glyph SVG resmi secara inline; tidak bergantung CDN saat bermain. Lisensi ISC ada di `licenses/LUCIDE.txt`. Ilustrasi karakter, pion, papan, bangunan dan kartu tetap memakai aset game. Pergantian ikon hanya dilakukan di lobi dan popup dengan `data-density="compact"`. Indikator bank baru juga memakai Lucide. Renderer petak/pion dan popup `preserved` tetap memakai aset sebelumnya.
 
-```text
-runs/RUN_ID/
-  manifest.json
-  matches.jsonl
-  summary.json
-  report.md
-  matches/match-0001/
-    initial-state.json
-    actions.jsonl       # setiap aksi, hash sebelum/sesudah, uang/aset, fase
-    decisions.jsonl     # seluruh keputusan dan diagnostik model (termasuk kandidat)
-    events.jsonl        # semua event publik, termasuk yang hilang dari state.log 300 terakhir
-    alerts.jsonl        # jika detektor menemukan loop
-    errors.jsonl        # jika ada kegagalan
-    final-state.json
-    final-save.json      # struktur ekspor kompatibel dengan save JSON
-    summary.json
-    checkpoints/state-000025.json ...
-```
+## Bot
 
-`events.jsonl` menangkap event *sebelum* mekanisme riwayat engine membuang event lama, sehingga riwayat lengkap dipertahankan. Bila membutuhkan **seluruh state lengkap setelah SETIAP aksi** (akan jauh lebih besar), tambahkan `--trace-full=true` agar dihasilkan `states.jsonl`. Default: state awal/akhir + checkpoint lengkap tiap 25 aksi (ubah dengan `--save-every=10`).
+Paket bot digabung selektif setelah membaca [README v4.10](docs/bot-v410-package/README_UNTUK_AI.md). Engine, dispatcher, worker, server-authoritative online, lease, revision CAS, otorisasi dan hook memori tunggal dipertahankan. Baseline tujuan 4.9.1 tersedia di `benchmarks/pre-v410/lib`, khusus laboratorium.
 
-Output file `final-save.json` memakai format `monopoli-nusantara-save`, meski kapasitas log state dibatasi seperti game, event lengkap tetap berada di `events.jsonl`. Nilai uang memakai integer internal (10 unit = ₦1).
+Strategi memakai kalkulasi risiko kas, perencanaan pembangunan dengan stok bersama, likuidasi, negosiasi dan search CRN dari paket 4.10, ditambah cadangan pembangunan N50–N200. **LEARNED_MODEL tetap null**; bobot candidate belum lolos promosi. Build menolak model yang bukan promoted atau hash source-nya sudah berubah.
 
-## Replay dan analisis bug
+Tooling opsional `train:hybrid`, `benchmark:hybrid`, `benchmark:learning` dan `promote:mind` tersedia. Baca [laporan integrasi](docs/RELEASE_4100.md) sebelum menjalankan eksperimen. Smoke kecil hanya memeriksa alur/aksi legal, bukan bukti peningkatan win rate. Tidak ada promosi model otomatis.
 
-```bash
-node lab/analyze-save.mjs fixtures/nusa-loop-mortgage-redeem.json
-node lab/replay.mjs runs/RUN_ID/matches/match-0001
-```
+## Online / Vercel
 
-Detektor mengingatkan jika aksi `MORTGAGE` dan `REDEEM` terjadi bolak-balik pada properti yang sama dalam giliran yang sama. Hasil analisis save tersimpan di `runs/save-analysis/`. Detektor bersifat heuristik; perbaikan strategi NUSA bukan bagian paket ini. Secara default benchmark berhenti jika terdeteksi loop untuk menghindari menguras CPU/baterai (`--stop-on-loop=false` untuk tetap merekam seluruh jalur sampai cap).
+Pemeriksaan URL pengguna menemukan `/api/online` dan `/api/bot` merespons **500 FUNCTION_INVOCATION_FAILED** sementara build statis 4.8.3 berhasil. Entrypoint lama bergantung pada resolusi alias TypeScript; import Node biasa mereproduksi kegagalan resolusi `@/lib`. Tanpa Function Logs, penyebab lengkap deployment lama belum dapat dipastikan.
 
-## Batas dan integritas
+Build kini menghasilkan `server-dist` privat berisi native ESM dan alias relatif. `api/index.mjs` memuatnya tanpa alias loader atau TypeScript runtime. `vercel.json` menyertakan output privat ke function; static output tetap `dist`. Jangan mengunggah hanya `dist` sebagai situs statis. Function ini diuji lewat HTTP lokal dengan Node biasa, lalu berhasil deploy ke Vercel: build 4.9.0, online config HTTP 200/online:true, bot HTTP 200. Lihat docs/VERCEL_DIAGNOSIS_AFTER.json.
 
-- Benchmark **bukan uji online Supabase** dan tidak membuktikan Edge, Vercel, atau Termux worker production sudah terintegrasi.
-- Tidak ada perbaikan algoritma NUSA dilakukan; bot V23 tetap berpotensi memiliki bug yang pernah terjadi.
-- Paket model bukan V24, karena source V24 belum dikirim.
-- Engine diekstrak terpisah dengan 12 modul bawaan source; pembuatannya memakai `scripts/package-logic.py` dari ZIP asal. Tidak ada perubahan kebijakan aturan inti, tetapi metadata memori AI kini dicatat dari host eksternal setelah aksi sah.
-- `SHA256SUMS.txt` mencatat hash file paket. Simpan hasil run besar di penyimpanan terpisah dan jangan kirim kredensial saat melaporkan bug.
+Online memerlukan URL, public/publishable key dan secret/service-role key Supabase dari proyek yang sama. Alias ENV integrasi Vercel dan key Supabase modern didukung. GET konfigurasi memberi JSON diagnostik aman bila ENV tidak lengkap, serta tidak pernah mengirim secret ke browser. Groq `openai/gpt-oss-20b` opsional; model bot lokal tetap tersedia tanpa Groq. Bot room online tetap dimatikan secara default sampai worker/scheduler staging tervalidasi.
+
+Lihat [ENV_REQUIRED.md](ENV_REQUIRED.md) untuk nama ENV wajib, Auth redirect, pengecekan JSON, serta langkah uji dua akun/perangkat. SQL mn_* sebelumnya sudah diterapkan di connectify; update ini tidak menjalankan migration baru atau menghapus room/database eksternal.
+
+## QA dan sumber
+
+Suite browser: `test:browser`, `test:compact`, `test:plan`, `test:assets`, `test:stability`, `test:portrait`, `test:lobby`, `test:certificate`, `test:trade-certificate`, `test:auction`. Jalankan server dahulu. Playwright/Chromium diperlukan hanya untuk QA; set `MN_BROWSER_MODULE`, `MN_CHROMIUM_PATH`, dan opsional `MN_TEST_ORIGIN` jika terpasang di luar proyek. Perbandingan pixel memakai `scripts/capture-portrait-reference.mjs` pada baseline dan `MN_PORTRAIT_REFERENCE` pada suite portrait, dalam lingkungan browser/font yang sama.
+
+Bukti aktual ada di laporan JSON `docs/`, dengan batas pengujian masing-masing. Browser memakai emulasi Chromium, belum perangkat Android/iOS fisik. Regresi API memakai mock/HTTP lokal. Pemeriksaan live setelah push mengonfirmasi endpoint Vercel merespons 200, konfigurasi mengarah ke connectify, serta guest/email Auth aktif. Login, transaksi room, Realtime multi-device dan scheduler belum diuji live.
+
+Cache publik versi `v4100-<build>` tidak menyimpan API/Auth/state room dan tidak menghapus simpanan. ZIP menyertakan source, migration existing, baseline bot, tests, tooling, aset dan dokumentasi; mengecualikan `.env`, dependencies, build output dan log. `PACKAGE_MANIFEST.json` mencatat SHA-256 berkas. Dokumen rilis 4.8.x/lebih lama merupakan arsip; panduan aktif adalah README ini dan ENV_REQUIRED.md.
+
+**Status Supabase connectify per 17 Oktober 2026:** Edge Function `monopoli-bots` v2, Vault, pg_net, pg_cron, dan scheduler sudah terpasang dan request HTTP 200/401 lolos. Auth email/tamu aktif; frontend Vercel masih 4.10.0 dan onlineBots masih false. Lihat [dokumen deployment aktual](docs/CONNECTIFY_DEPLOYED_20261017.md).

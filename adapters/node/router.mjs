@@ -8,11 +8,13 @@ import * as online from "../../app/api/online/route.ts";
 import * as auth from "../../app/api/auth/route.ts";
 import * as advisor from "../../app/api/bot/route.ts";
 import * as legacy from "../../app/api/game/route.ts";
+import * as worker from "../../app/api/worker/route.ts";
 const routes = new Map([
   ["/api/online", online],
   ["/api/auth", auth],
   ["/api/bot", advisor],
   ["/api/game", legacy],
+  ["/api/worker", worker],
 ]);
 /** Transport only. Existing handlers own Auth, quotas, authority and state mutation. */
 export async function handleRequest(request) {

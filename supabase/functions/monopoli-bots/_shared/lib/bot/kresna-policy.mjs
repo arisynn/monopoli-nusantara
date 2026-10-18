@@ -9,15 +9,17 @@
  * 4. Anti-NUSA Stalker & Ascending-Clock Sniper Bidder
  * ============================================================================
  */
-import {BOARD,GROUPS,auctionMinimum} from '../content.mjs';
+import {BOARD,GROUPS,auctionMinimum,AUCTION_RULES} from '../content.mjs';
 import {observation} from './mind.mjs';
 import {stock,rent,canTrade,redemption,managementError} from '../game.mjs';
 import {landingForecast,expectedRentAt} from './probability.mjs';
-import {legalCandidate} from './candidates.mjs';
+import {legalCandidate,candidateState} from './candidates.mjs';
 import {evaluateTrade} from './negotiation.mjs';
 import {economyRules,strengthShares} from './economy.mjs';
 import {memoryFor} from './memory.mjs';
 import {rejectionActive} from './concessions.mjs';
+import {buildingScore} from './strategy.mjs';
+import {analyzeState} from './analysis.mjs';
 
 export const KRESNA_MODEL_VERSION='2.0.0-quantum-nemesis';
 
@@ -198,12 +200,15 @@ export function ensureKresnaCandidates(kb,plan){
     }
     if(kb.needsFlashCapital&&kb.isolatedDeeds.length>0){
       const collateral=kb.isolatedDeeds.slice().sort((a,b)=>(a.type==='utility'?0:1)-(b.type==='utility'?0:1)||a.price-b.price)[0];
-      if(collateral&&!managementError(view,actor,collateral.id,'MORTGAGE')){
+      const funded=collateral&&candidateState(view,actor,{type:'MORTGAGE',tile:collateral.id});
+      const fundedAnalysis=funded&&analyzeState(funded,actor,{fast:true});
+      const target=funded&&BOARD.find(t=>t.type==='city'&&funded.assets[t.id]?.owner===actor&&!managementError(funded,actor,t.id,'BUILD')&&funded.players[actor].cash-t.build>=Math.max(500,kb.reserve)&&buildingScore(funded,actor,t.id,fundedAnalysis)>redemption(collateral.id)-collateral.mortgage);
+      if(target&&collateral&&!managementError(view,actor,collateral.id,'MORTGAGE')){
         const ex=candidates.find(c=>c.action.type==='MORTGAGE'&&c.action.tile===collateral.id);
-        if(ex)ex.score=Math.max(ex.score,topScore()+115);
+        if(ex){ex.score=Math.max(ex.score,topScore()+115);ex.macro=[ex.action,{type:'BUILD',tile:target.id}];}
         else{
           const act={type:'MORTGAGE',tile:collateral.id,actionId:'kresna-flash-mort-'+collateral.id};
-          if(legalCandidate(view,actor,act))candidates.push({id:act.actionId,action:act,score:topScore()+115,expanded:true});
+          if(legalCandidate(view,actor,act))candidates.push({id:act.actionId,action:act,score:topScore()+115,expanded:true,macro:[act,{type:'BUILD',tile:target.id}]});
         }
       }
     }
@@ -333,7 +338,7 @@ export function kresnaPolicyAction(state,actor,plan,{diagnostics=false}={}){
         if(a.amount>ceiling){
           bonus-=1250;
         }else{
-          const overSteps=Math.max(0,a.amount-minBid)/10;
+          const overSteps=Math.max(0,a.amount-minBid)/AUCTION_RULES.increment;
           bonus+=Math.max(60,640-overSteps*68);
         }
       }
@@ -350,7 +355,7 @@ export function kresnaPolicyAction(state,actor,plan,{diagnostics=false}={}){
     }else if(a.type==='MORTGAGE'&&Number.isInteger(a.tile)){
       const gIdx=BOARD[a.tile]?.group??-1;
       if(gIdx>=0&&kb.groups[gIdx]?.fullSet)bonus-=900;
-      else if(kb.needsFlashCapital)bonus+=360;
+      else if(kb.needsFlashCapital&&c.macro?.length>1)bonus+=360;
     }else if(phase==='jail'){
       const early=kb.unownedCount>=6&&kb.expectedLoss<380;
       const late=kb.unownedCount<=4&&kb.expectedLoss>=360;

@@ -1,0 +1,9 @@
+{
+  "environment": "Linux Node 24 + actual PM2 6.0.14; mock HTTP backend",
+  "checks": [
+    "PM2 starts daemon and daemon performs outbound heartbeat and claim",
+    "PM2 restart starts a new daemon and recovers private configuration",
+    "Graceful PM2 stop releases process/lock without killing unrelated PM2 applications"
+  ],
+  "pass": true
+}

@@ -7,12 +7,13 @@ import { decideNusa, NUSA_MODEL_VERSION } from "./nusa-v7/index.mjs";
 import { cleanAction } from "./nusa-v7/council.mjs";
 import { apexPolicyAction, APEX_ADAPTER_VERSION } from "./apex-policy.mjs";
 import { kresnaPolicyAction, KRESNA_MODEL_VERSION } from "./kresna-policy.mjs";
+import { guardFinance } from './finance-guard.mjs';
 
 export const STRATEGIC_PERSONAS = Object.freeze(["nusa", "kresna", "apex"]);
 export function decidePersona(state, actor, options = {}) {
   const persona = state?.players?.[actor]?.botPersona;
   if (!STRATEGIC_PERSONAS.includes(persona))
-    return decideMind(state, actor, options);
+    return guardFinance(state, actor, decideMind(state, actor, options));
   const clock = options.clock || (() => performance.now()),
     started = clock();
   const budget = Number.isFinite(options.timeBudgetMs)
@@ -81,7 +82,7 @@ export function decidePersona(state, actor, options = {}) {
   const valid =
     !!candidateAction && legalCandidate(view, actor, candidateAction, context);
   const action = valid ? candidateAction : base.action;
-  return guardNegotiation(view, actor, {
+  return guardFinance(view,actor,guardNegotiation(view, actor, {
     ...base,
     action,
     shouldConsult: false,
@@ -120,5 +121,5 @@ export function decidePersona(state, actor, options = {}) {
       selected: action?.actionId,
       search: [],
     },
-  }, context);
+  }, context),context);
 }

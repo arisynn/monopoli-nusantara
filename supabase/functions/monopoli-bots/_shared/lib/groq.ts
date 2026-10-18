@@ -54,6 +54,8 @@ export function localDecision(
   };
 }
 interface AdvisorOptions {
+  /** Trusted worker adapter supplies the existing plan; never redo AI on server. */
+  plan?: MindPlan;
   transport?: typeof fetch;
   spend?: () => Promise<boolean>;
   clock?: () => number;
@@ -66,7 +68,7 @@ export async function aiDecision(
   env: BotEnvironment,
   options: AdvisorOptions = {},
 ): Promise<BotDecisionResult> {
-  const plan: MindPlan = decidePersona(s, actor, { timeBudgetMs: 180 }),
+  const plan: MindPlan = options.plan ?? decidePersona(s, actor, { timeBudgetMs: 180 }),
     action: BotAction | null = plan.action;
   if (!action) throw Error("Tidak ada keputusan bot legal.");
   const result = (

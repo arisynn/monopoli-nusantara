@@ -31,7 +31,8 @@ test('opening bid and every increase require at least five Nusa without mutating
  // Existing saves may have a highest bid not divisible by five Nusa.
  s.auction.amount=110;
  assert.throws(()=>command(s,0,{type:'BID',amount:150}));
- assert.equal(command(s,0,{type:'BID',amount:160}).auction.amount,160);
+ assert.throws(()=>command(s,0,{type:'BID',amount:160}));
+ assert.equal(command(s,0,{type:'BID',amount:200}).auction.amount,200);
 });
 test('an edited low, fractional or unaffordable bid stays visible and cannot be submitted',()=>{
  const s=setup();

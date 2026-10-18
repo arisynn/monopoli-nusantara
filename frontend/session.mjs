@@ -1043,7 +1043,7 @@ export class GameSession extends EventTarget {
       provider: "supabase",
       userId: this.auth.session()?.user.id,
     };
-    this.online = result;
+    this.online = {...result,worker:result.worker||this.online?.worker};
     this.connected = true;
     this.localPaused = false;
     if (result.state) {

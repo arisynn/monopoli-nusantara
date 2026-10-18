@@ -1,0 +1,321 @@
+{
+  "baselineCommit": "af88d14a08815ee1d139bbf5a9b945a24126d348",
+  "note": "Versioned Stability Guard 2.0.0 integration, finance-loop and N5 auction corrections; runtime migration is separate. Historical benchmarks are test fixtures, never runtime model imports.",
+  "changes": [
+    {
+      "file": "adapters/node/router.mjs",
+      "baselineSha256": "3f738a36750c66fb8c4c396d421bd78316110398f4fb21ba93804a35ea4f1fa8",
+      "sha256": "df1e5c737fc9eb5accbeff405705951ba2a08882ac64111663d6d6c28afbaa07"
+    },
+    {
+      "file": "adapters/vercel/handler.ts",
+      "baselineSha256": "fda9bae88f54b3ca2eb275f87f63887efe7d93ddb94594579edbc970688aa19f",
+      "sha256": "3376f42b74b8ea6df727ab6242ec6b9e28800fe0366b65cf608735e20dd315c8"
+    },
+    {
+      "file": "app/api/online/route.ts",
+      "baselineSha256": "d14b464038eb9903902976ed62a90c3b7ff308d05e14f10e00c93a24a04e70f8",
+      "sha256": "019188173e1b6a60bca7a313f6626c022c770d89ff0d48ee0b89fb98c16247e1"
+    },
+    {
+      "file": "app/api/worker/route.ts",
+      "baselineSha256": null,
+      "sha256": "b5e1b6e8c9c38b31b5ffe81957d6f7a53b59c5b42af68f673b34316b580b4a84"
+    },
+    {
+      "file": "frontend/app.mjs",
+      "baselineSha256": "853e9b447daa18ecd0342cdf524c6b78320f53fbbaea2d1b6904c120a006d199",
+      "sha256": "34cf00028055f165571972afa7b4417a39fb5833e81faef656c53f47a5f83079"
+    },
+    {
+      "file": "frontend/online-status.mjs",
+      "baselineSha256": "5a1edff41b57a5138fb4e977a123879673096ea6c17336946dcc5e7b96e6a147",
+      "sha256": "765f834fb618df663d27a644ed8b3928b84aea3d92607f32b7a296c234d34f26"
+    },
+    {
+      "file": "frontend/popups.mjs",
+      "baselineSha256": "f5b2cf010c8d28629d1cd688b2612ad824a0656a71df765674218ed4523c732e",
+      "sha256": "cb36292c555e2996771a306018837de1ff29ed87f132a5cf8a66fd039d57121c"
+    },
+    {
+      "file": "frontend/session.mjs",
+      "baselineSha256": "89fb51a9f0fe8c4ce1e403555c76815f19b8229078d8e193bfd4dd70d04ed391",
+      "sha256": "32e6c9b7d4d16d96db31fd01e27631dfb2d583fba71289e9a337daa527dbdfef"
+    },
+    {
+      "file": "lib/content.mjs",
+      "baselineSha256": "7b686d7f359f5a463b244ad973d58996add7afe01891397ae32240668e4472f0",
+      "sha256": "899e5eab945b3866a4a30e7c4baa1553d3d4548fff60bf02b2d619013d8aa9b9"
+    },
+    {
+      "file": "lib/game.mjs",
+      "baselineSha256": "da9d7703371c920033f9793e96616d51004090599a243d336c307f40311c302e",
+      "sha256": "4bed1f3c9ea9df0d1e981f090f155b68d89c9f0f6015b1e36eeff93b56271b1e"
+    },
+    {
+      "file": "lib/groq.ts",
+      "baselineSha256": "d6eaa2348517097ce8d1ef0b0dca39a9bc188d72d529e6dcbfd8ab58a0faad74",
+      "sha256": "e03dae9100676a9eae78dd348f8546e4422fc672c34df6adfa8682b3b422d687"
+    },
+    {
+      "file": "lib/version.mjs",
+      "baselineSha256": "9b5ebc5b1d565b7db7cbdefa4774894d51eece4978cdb03484e8a7bd098bbe06",
+      "sha256": "ff208345e2563a721b8a0ba9e866b8d13918d971ea2b34980f8d4c2bac7cee32"
+    },
+    {
+      "file": "lib/bot/candidates.mjs",
+      "baselineSha256": "e517b51e1dca8d12df4da1c17d7ab9514024595ac5fb5ff0a5b431cef385fdc3",
+      "sha256": "067d148bd6c0bf854aa31bf3caca843004601cdec0336642157b838854a0739d"
+    },
+    {
+      "file": "lib/bot/contracts.ts",
+      "baselineSha256": "7d9240b914b4951e2854411c9535591b5ae7502a15adcedbb1b619e97ea7bbb7",
+      "sha256": "813fb1f392a2feaa4a99382be31d65e79d2686697e489747234831adc2d9eb24"
+    },
+    {
+      "file": "lib/bot/finance-guard.mjs",
+      "baselineSha256": null,
+      "sha256": "ec4e98802c0738494c9a831178c17c738f26835b8fe19ce9c1e883f2dca5faa9"
+    },
+    {
+      "file": "lib/bot/finance-history.mjs",
+      "baselineSha256": null,
+      "sha256": "edbac197dd3830ad6c14b3f8f0ff826f50e67dddfbe299ba38f302dccd980811"
+    },
+    {
+      "file": "lib/bot/kresna-policy.mjs",
+      "baselineSha256": "c325206ef0a682fba88b8b60534cbb49af2799af8b11704d944076f080ba8149",
+      "sha256": "c77582fa38513c8db19b25994e86c859014bf910f2845534d3a6319b24697711"
+    },
+    {
+      "file": "lib/bot/memory.mjs",
+      "baselineSha256": "b3153748ec582a527302614154410dd15f36aa307f48d43cb90874a621342605",
+      "sha256": "e615d686dad79d1b62c36f16e96a5aa3cbe38d0922f574907b3496bf5aca70d6"
+    },
+    {
+      "file": "lib/bot/mind.mjs",
+      "baselineSha256": "c95dbba8740c783f090e5aeae6c90728ad5946b18ccbdeac5fa056f757de4a56",
+      "sha256": "c9acd3c89f810070cc487b5150e32ae087ec161a0163f594c80935635dd2fb7f"
+    },
+    {
+      "file": "lib/bot/model-manifest.mjs",
+      "baselineSha256": null,
+      "sha256": "135a4360b9c278f06ccf793ac1fac1f660a907110d05d9f12c8e48eb7414cbe0"
+    },
+    {
+      "file": "lib/bot/persona-router.mjs",
+      "baselineSha256": "5c33550b7095ad78231cb2561513774d75ced598df8462f75845ef5f6f32f0ba",
+      "sha256": "9630b33181ad29702c5b88b5aa6a4ac75adf475c6e0e06bddfd9d48b49afa301"
+    },
+    {
+      "file": "lib/bot/stability-guard.mjs",
+      "baselineSha256": null,
+      "sha256": "504c28eef9564ec67f2c5be16423c34758690952660ca06069f4b1515d608847"
+    },
+    {
+      "file": "lib/bot/strategy.mjs",
+      "baselineSha256": "bbdd66e2bf1b36fd054cd8511953b2ead451c0e16e4257e5e34c578566265d45",
+      "sha256": "ac3467a7451c48002d8e2f67e4143e29add4b63944514d9964f38f31ff58121e"
+    },
+    {
+      "file": "lib/bot/nusa-v7/experts.mjs",
+      "baselineSha256": "9b27a6cae0ccaf75c81d77852ad80867c141b7b7ed61634aedff2ab8625fe567",
+      "sha256": "0fc144a25d51ad96050d836cb3243875a5aeda630a07c7e5e005cee8e326f213"
+    },
+    {
+      "file": "lib/bot/nusa-v7/index.mjs",
+      "baselineSha256": "f8a55ce0cbb58786fcb1237fcebb7d4d60178afe70dd9f066ed0553e76a66a91",
+      "sha256": "4927f08bec09d82f72006838bfeb23a8ad0022b3d2a8944e37078243976f1d78"
+    },
+    {
+      "file": "lib/bot/nusa-v7/reasoning.mjs",
+      "baselineSha256": "4a35139c5b38ef41391eca362d7e22c084c9db0ed70c734bb35664e002af945b",
+      "sha256": "f6d633f2d19bc54a28f7358abf31d7a9a474156c699651717cb58ff6a00bb028"
+    },
+    {
+      "file": "lib/server/bot-worker.mjs",
+      "baselineSha256": "b904376d18b1001bf4ed4ac4c76cf93990cf1af8b1ee8f651cd69a89ab2fdd89",
+      "sha256": "47355be705c7211cf30ec7776c214bd4183539781ea38227ed13cfd4aa6ca327"
+    },
+    {
+      "file": "lib/server/supabase-store.mjs",
+      "baselineSha256": "152e271be47018417e57e8a07f81f95bc0ab6c88aedcba3664bfb206d0c21725",
+      "sha256": "0538e17c9aefbbf33dc5866051115649aa54be3a0c938a8d8affd27058b961bd"
+    },
+    {
+      "file": "lib/server/termux-worker.mjs",
+      "baselineSha256": null,
+      "sha256": "3de2970c1d7982546bbe9816f67553bbd6a28cef34839876b40a65ae58a333bc"
+    },
+    {
+      "file": "lib/server/worker-capabilities.mjs",
+      "baselineSha256": null,
+      "sha256": "bbb75fc9384af6ce2dcc11e269dab177600aea137ba9f78ba9ed54d0a0be4bc6"
+    },
+    {
+      "file": "lib/server/worker-handler.mjs",
+      "baselineSha256": null,
+      "sha256": "629c61ea427c594d361a414a3bc7628cb40acb24e68af20c04a8d69b591e238f"
+    },
+    {
+      "file": "supabase/termux_enable.sql",
+      "baselineSha256": null,
+      "sha256": "76c590d94ff4fd4d339c04400e6c3a076aa4eda643d03d5e376b2f54b541e968"
+    },
+    {
+      "file": "supabase/termux_rollback.sql",
+      "baselineSha256": null,
+      "sha256": "6e0767c1219fd271b85a8df8f517bf5f63b4613ebaf507953f0c3613912aa2b8"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/content.mjs",
+      "baselineSha256": "7b686d7f359f5a463b244ad973d58996add7afe01891397ae32240668e4472f0",
+      "sha256": "899e5eab945b3866a4a30e7c4baa1553d3d4548fff60bf02b2d619013d8aa9b9"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/game.mjs",
+      "baselineSha256": "da9d7703371c920033f9793e96616d51004090599a243d336c307f40311c302e",
+      "sha256": "4bed1f3c9ea9df0d1e981f090f155b68d89c9f0f6015b1e36eeff93b56271b1e"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/groq.ts",
+      "baselineSha256": "d6eaa2348517097ce8d1ef0b0dca39a9bc188d72d529e6dcbfd8ab58a0faad74",
+      "sha256": "e03dae9100676a9eae78dd348f8546e4422fc672c34df6adfa8682b3b422d687"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/candidates.mjs",
+      "baselineSha256": "e517b51e1dca8d12df4da1c17d7ab9514024595ac5fb5ff0a5b431cef385fdc3",
+      "sha256": "067d148bd6c0bf854aa31bf3caca843004601cdec0336642157b838854a0739d"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/contracts.ts",
+      "baselineSha256": "7d9240b914b4951e2854411c9535591b5ae7502a15adcedbb1b619e97ea7bbb7",
+      "sha256": "813fb1f392a2feaa4a99382be31d65e79d2686697e489747234831adc2d9eb24"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/finance-guard.mjs",
+      "baselineSha256": null,
+      "sha256": "ec4e98802c0738494c9a831178c17c738f26835b8fe19ce9c1e883f2dca5faa9"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/finance-history.mjs",
+      "baselineSha256": null,
+      "sha256": "edbac197dd3830ad6c14b3f8f0ff826f50e67dddfbe299ba38f302dccd980811"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/kresna-policy.mjs",
+      "baselineSha256": "c325206ef0a682fba88b8b60534cbb49af2799af8b11704d944076f080ba8149",
+      "sha256": "c77582fa38513c8db19b25994e86c859014bf910f2845534d3a6319b24697711"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/memory.mjs",
+      "baselineSha256": "b3153748ec582a527302614154410dd15f36aa307f48d43cb90874a621342605",
+      "sha256": "e615d686dad79d1b62c36f16e96a5aa3cbe38d0922f574907b3496bf5aca70d6"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/mind.mjs",
+      "baselineSha256": "c95dbba8740c783f090e5aeae6c90728ad5946b18ccbdeac5fa056f757de4a56",
+      "sha256": "c9acd3c89f810070cc487b5150e32ae087ec161a0163f594c80935635dd2fb7f"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/model-manifest.mjs",
+      "baselineSha256": null,
+      "sha256": "135a4360b9c278f06ccf793ac1fac1f660a907110d05d9f12c8e48eb7414cbe0"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/persona-router.mjs",
+      "baselineSha256": "5c33550b7095ad78231cb2561513774d75ced598df8462f75845ef5f6f32f0ba",
+      "sha256": "9630b33181ad29702c5b88b5aa6a4ac75adf475c6e0e06bddfd9d48b49afa301"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/stability-guard.mjs",
+      "baselineSha256": null,
+      "sha256": "504c28eef9564ec67f2c5be16423c34758690952660ca06069f4b1515d608847"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/strategy.mjs",
+      "baselineSha256": "bbdd66e2bf1b36fd054cd8511953b2ead451c0e16e4257e5e34c578566265d45",
+      "sha256": "ac3467a7451c48002d8e2f67e4143e29add4b63944514d9964f38f31ff58121e"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/experts.mjs",
+      "baselineSha256": "9b27a6cae0ccaf75c81d77852ad80867c141b7b7ed61634aedff2ab8625fe567",
+      "sha256": "0fc144a25d51ad96050d836cb3243875a5aeda630a07c7e5e005cee8e326f213"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/index.mjs",
+      "baselineSha256": "f8a55ce0cbb58786fcb1237fcebb7d4d60178afe70dd9f066ed0553e76a66a91",
+      "sha256": "4927f08bec09d82f72006838bfeb23a8ad0022b3d2a8944e37078243976f1d78"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/reasoning.mjs",
+      "baselineSha256": "4a35139c5b38ef41391eca362d7e22c084c9db0ed70c734bb35664e002af945b",
+      "sha256": "f6d633f2d19bc54a28f7358abf31d7a9a474156c699651717cb58ff6a00bb028"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/server/bot-worker.mjs",
+      "baselineSha256": "b904376d18b1001bf4ed4ac4c76cf93990cf1af8b1ee8f651cd69a89ab2fdd89",
+      "sha256": "47355be705c7211cf30ec7776c214bd4183539781ea38227ed13cfd4aa6ca327"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/server/supabase-store.mjs",
+      "baselineSha256": "152e271be47018417e57e8a07f81f95bc0ab6c88aedcba3664bfb206d0c21725",
+      "sha256": "0538e17c9aefbbf33dc5866051115649aa54be3a0c938a8d8affd27058b961bd"
+    },
+    {
+      "file": "supabase/migrations/202610180007_termux_workers.sql",
+      "baselineSha256": null,
+      "sha256": "52ded6cc92f89cb7a5781879ce3d7c720aa62421faa93078a235566762ed9f9a"
+    },
+    {
+      "file": "termux/client.mjs",
+      "baselineSha256": null,
+      "sha256": "f567f9fe6ae0878d72e813174ca81357397f9ed7c34711c4cf527230dccb3c9e"
+    },
+    {
+      "file": "termux/compute.mjs",
+      "baselineSha256": null,
+      "sha256": "4de32c6ad063e044cf6bbb0a0a5875575935d8e0ce745d17f4f0834e5c74301c"
+    },
+    {
+      "file": "termux/config.mjs",
+      "baselineSha256": null,
+      "sha256": "b8c4860ada85299c242e0e8dba93bbb78ccc9aee027bbf5e07b5da873155235a"
+    },
+    {
+      "file": "termux/daemon.mjs",
+      "baselineSha256": null,
+      "sha256": "c0ad3b1db50d3fe936d9908eccaac32017715d2d27e97b1f90570454a3ce04d1"
+    },
+    {
+      "file": "termux/ecosystem.config.cjs",
+      "baselineSha256": null,
+      "sha256": "3c389beab4781f711578a637a8406112b49ace3afab588bdad3095fbe6311666"
+    },
+    {
+      "file": "termux/log.mjs",
+      "baselineSha256": null,
+      "sha256": "977981475a4d12d767f5a5a0423c3260773970b8d855cc806b28d6d5b1259b22"
+    },
+    {
+      "file": "termux/manage.mjs",
+      "baselineSha256": null,
+      "sha256": "b7b9d7b051e7479cd55c297dc89e809b84213ac4cc7a4bf0cce0d47f879dcd41"
+    },
+    {
+      "file": "termux/pool.mjs",
+      "baselineSha256": null,
+      "sha256": "8a8b3f25b71c6c04d7bcdc94d37bc045497490183bbe1f00e45c6cff32646b75"
+    },
+    {
+      "file": "termux/run.mjs",
+      "baselineSha256": null,
+      "sha256": "3cde342b7b0d8491013e8caface7476f17a534355a420aff3c59654a743f629e"
+    },
+    {
+      "file": "termux/selftest.mjs",
+      "baselineSha256": null,
+      "sha256": "52dbb384e371c505721e9172d7da4f73ecf69c8c3d2ed4fc3fe579fe262f832a"
+    }
+  ]
+}

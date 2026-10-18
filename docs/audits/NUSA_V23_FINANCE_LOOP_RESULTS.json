@@ -1,0 +1,2050 @@
+{
+  "node": "v24.19.0",
+  "modelFileCount": 38,
+  "modelDifferences": [],
+  "completed": 18,
+  "partial": [
+    {
+      "match": "run-2026-10-18T12-57-32-875Z/match-0008",
+      "actions": 351
+    },
+    {
+      "match": "run-2026-10-18T12-58-59-653Z/match-0009",
+      "actions": 93
+    }
+  ],
+  "verifiedActions": 6630,
+  "stopReasons": {
+    "action_cap": 1,
+    "mortgage_redeem_oscillation": 11,
+    "finished": 3,
+    "time_cap": 3
+  },
+  "loopPersonas": {
+    "kresna": 9,
+    "nusa": 2
+  },
+  "actionsByPersona": {
+    "nusa": 2083,
+    "kresna": 1803,
+    "apex": 1632,
+    "raka": 1112
+  },
+  "matches": [
+    {
+      "match": "run-2026-10-18T12-57-16-300Z/match-0001",
+      "steps": 150,
+      "stopReason": "action_cap",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [],
+      "findings": []
+    },
+    {
+      "match": "run-2026-10-18T12-57-32-875Z/match-0001",
+      "steps": 759,
+      "stopReason": "mortgage_redeem_oscillation",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [
+        {
+          "kind": "mortgage_redeem_oscillation",
+          "actor": 1,
+          "tile": 5,
+          "firstStep": 754,
+          "lastStep": 759,
+          "alternatingActions": 6,
+          "phase": "roll",
+          "turnSerial": 61
+        }
+      ],
+      "findings": [
+        {
+          "step": 754,
+          "recorded": {
+            "type": "MORTGAGE",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "baseAction": {
+            "type": "ROLL",
+            "actionId": "c0"
+          },
+          "councilOrKresnaAction": {
+            "type": "MORTGAGE",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "reason": "kresna_v2_quantum_dcf",
+          "redeems": []
+        },
+        {
+          "step": 755,
+          "recorded": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "councilOrKresnaAction": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "reason": "kresna_baseline",
+          "redeems": [
+            {
+              "tile": 5,
+              "cost": 1100,
+              "cashBefore": 1696,
+              "cashAfter": 596,
+              "beforeValue": 54475.21720354982,
+              "syntheticValue": 59912.23026454546,
+              "actualValue": 55500.88684423012,
+              "listedScore": 4337.0130609956395,
+              "syntheticScore": 4337.0130609956395,
+              "actualTransitionScore": -74.33035931970517
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "run-2026-10-18T12-57-32-875Z/match-0002",
+      "steps": 229,
+      "stopReason": "mortgage_redeem_oscillation",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [
+        {
+          "kind": "mortgage_redeem_oscillation",
+          "actor": 3,
+          "tile": 15,
+          "firstStep": 224,
+          "lastStep": 229,
+          "alternatingActions": 6,
+          "phase": "buy",
+          "turnSerial": 39
+        }
+      ],
+      "findings": [
+        {
+          "step": 224,
+          "recorded": {
+            "type": "MORTGAGE",
+            "tile": 15,
+            "actionId": "nusa-prebuy-mort-15"
+          },
+          "baseAction": {
+            "type": "AUCTION",
+            "actionId": "c0"
+          },
+          "councilOrKresnaAction": {
+            "type": "MORTGAGE",
+            "tile": 15,
+            "actionId": "nusa-prebuy-mort-15"
+          },
+          "reason": "chronos_kairos_v23_selected",
+          "redeems": []
+        },
+        {
+          "step": 225,
+          "recorded": {
+            "type": "REDEEM",
+            "tile": 15,
+            "actionId": "c2"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 15,
+            "actionId": "c2"
+          },
+          "councilOrKresnaAction": {
+            "type": "REDEEM",
+            "tile": 15,
+            "actionId": "c2"
+          },
+          "reason": "no_compatible_alternative",
+          "redeems": [
+            {
+              "tile": 15,
+              "cost": 1100,
+              "cashBefore": 2992,
+              "cashAfter": 1892,
+              "beforeValue": 34956.359116490865,
+              "syntheticValue": 37770.658555944654,
+              "actualValue": 33492.406182365834,
+              "listedScore": 1714.299439453789,
+              "syntheticScore": 1714.299439453789,
+              "actualTransitionScore": -2563.952934125031
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "run-2026-10-18T12-57-32-875Z/match-0003",
+      "steps": 436,
+      "stopReason": "finished",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [],
+      "findings": []
+    },
+    {
+      "match": "run-2026-10-18T12-57-32-875Z/match-0004",
+      "steps": 90,
+      "stopReason": "mortgage_redeem_oscillation",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [
+        {
+          "kind": "mortgage_redeem_oscillation",
+          "actor": 2,
+          "tile": 25,
+          "firstStep": 85,
+          "lastStep": 90,
+          "alternatingActions": 6,
+          "phase": "end",
+          "turnSerial": 26
+        }
+      ],
+      "findings": [
+        {
+          "step": 85,
+          "recorded": {
+            "type": "REDEEM",
+            "tile": 25,
+            "actionId": "c2"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 25,
+            "actionId": "c2"
+          },
+          "councilOrKresnaAction": {
+            "type": "REDEEM",
+            "tile": 25,
+            "actionId": "c2"
+          },
+          "reason": "kresna_baseline",
+          "redeems": [
+            {
+              "tile": 25,
+              "cost": 1100,
+              "cashBefore": 1476,
+              "cashAfter": 376,
+              "beforeValue": 27020.70372707061,
+              "syntheticValue": 29269.984802215877,
+              "actualValue": 26691.84953409833,
+              "listedScore": 799.6810751452672,
+              "syntheticScore": 799.6810751452672,
+              "actualTransitionScore": -1778.4541929722777
+            },
+            {
+              "tile": 35,
+              "cost": 1100,
+              "cashBefore": 1476,
+              "cashAfter": 376,
+              "beforeValue": 27020.70372707061,
+              "syntheticValue": 28874.459144670174,
+              "actualValue": 26296.32387655263,
+              "listedScore": 404.1554175995647,
+              "syntheticScore": 404.1554175995647,
+              "actualTransitionScore": -2173.97985051798
+            },
+            {
+              "tile": 8,
+              "cost": 550,
+              "cashBefore": 1476,
+              "cashAfter": 926,
+              "beforeValue": 27020.70372707061,
+              "syntheticValue": 27503.167420863956,
+              "actualValue": 24925.03215274641,
+              "listedScore": -67.53630620665353,
+              "syntheticScore": -67.53630620665353,
+              "actualTransitionScore": -2645.6715743241984
+            }
+          ]
+        },
+        {
+          "step": 86,
+          "recorded": {
+            "type": "MORTGAGE",
+            "tile": 25,
+            "actionId": "c1"
+          },
+          "baseAction": {
+            "type": "END",
+            "actionId": "c0"
+          },
+          "councilOrKresnaAction": {
+            "type": "MORTGAGE",
+            "tile": 25,
+            "actionId": "c1"
+          },
+          "reason": "kresna_v2_quantum_dcf",
+          "redeems": []
+        }
+      ]
+    },
+    {
+      "match": "run-2026-10-18T12-57-32-875Z/match-0005",
+      "steps": 259,
+      "stopReason": "mortgage_redeem_oscillation",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [
+        {
+          "kind": "mortgage_redeem_oscillation",
+          "actor": 1,
+          "tile": 12,
+          "firstStep": 254,
+          "lastStep": 259,
+          "alternatingActions": 6,
+          "phase": "buy",
+          "turnSerial": 45
+        }
+      ],
+      "findings": [
+        {
+          "step": 254,
+          "recorded": {
+            "type": "REDEEM",
+            "tile": 12,
+            "actionId": "c2"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 12,
+            "actionId": "c2"
+          },
+          "councilOrKresnaAction": {
+            "type": "REDEEM",
+            "tile": 12,
+            "actionId": "c2"
+          },
+          "reason": "kresna_baseline",
+          "redeems": [
+            {
+              "tile": 12,
+              "cost": 825,
+              "cashBefore": 2680,
+              "cashAfter": 1855,
+              "beforeValue": 31328.433639149604,
+              "syntheticValue": 32517.4881511477,
+              "actualValue": 27213.820184414428,
+              "listedScore": 157.05451199809616,
+              "syntheticScore": 157.05451199809616,
+              "actualTransitionScore": -5146.613454735176
+            },
+            {
+              "tile": 29,
+              "cost": 1540,
+              "cashBefore": 2680,
+              "cashAfter": 1140,
+              "beforeValue": 31328.433639149604,
+              "syntheticValue": 32947.980991696284,
+              "actualValue": 23047.800787127508,
+              "listedScore": -949.7026474533195,
+              "syntheticScore": -949.7026474533195,
+              "actualTransitionScore": -10849.882852022096
+            }
+          ]
+        },
+        {
+          "step": 255,
+          "recorded": {
+            "type": "MORTGAGE",
+            "tile": 12,
+            "actionId": "c1"
+          },
+          "baseAction": {
+            "type": "AUCTION",
+            "actionId": "c0"
+          },
+          "councilOrKresnaAction": {
+            "type": "MORTGAGE",
+            "tile": 12,
+            "actionId": "c1"
+          },
+          "reason": "kresna_v2_quantum_dcf",
+          "redeems": [
+            {
+              "tile": 29,
+              "cost": 1540,
+              "cashBefore": 1855,
+              "cashAfter": 315,
+              "beforeValue": 27609.534539328473,
+              "syntheticValue": 29229.08189187515,
+              "actualValue": 23093.19162484457,
+              "listedScore": -1631.7026474533232,
+              "syntheticScore": -1631.7026474533232,
+              "actualTransitionScore": -7767.592914483903
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "run-2026-10-18T12-57-32-875Z/match-0006",
+      "steps": 517,
+      "stopReason": "finished",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [],
+      "findings": []
+    },
+    {
+      "match": "run-2026-10-18T12-57-32-875Z/match-0007",
+      "steps": 330,
+      "stopReason": "mortgage_redeem_oscillation",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [
+        {
+          "kind": "mortgage_redeem_oscillation",
+          "actor": 2,
+          "tile": 12,
+          "firstStep": 325,
+          "lastStep": 330,
+          "alternatingActions": 6,
+          "phase": "buy",
+          "turnSerial": 42
+        }
+      ],
+      "findings": [
+        {
+          "step": 325,
+          "recorded": {
+            "type": "MORTGAGE",
+            "tile": 12,
+            "actionId": "nusa-prebuy-mort-12"
+          },
+          "baseAction": {
+            "type": "AUCTION",
+            "actionId": "c0"
+          },
+          "councilOrKresnaAction": {
+            "type": "MORTGAGE",
+            "tile": 12,
+            "actionId": "nusa-prebuy-mort-12"
+          },
+          "reason": "chronos_kairos_v23_selected",
+          "redeems": []
+        },
+        {
+          "step": 326,
+          "recorded": {
+            "type": "REDEEM",
+            "tile": 12,
+            "actionId": "c3"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 12,
+            "actionId": "c3"
+          },
+          "councilOrKresnaAction": {
+            "type": "REDEEM",
+            "tile": 12,
+            "actionId": "c3"
+          },
+          "reason": "no_compatible_alternative",
+          "redeems": [
+            {
+              "tile": 12,
+              "cost": 825,
+              "cashBefore": 1765,
+              "cashAfter": 940,
+              "beforeValue": 76015.5924144074,
+              "syntheticValue": 78669.22678429219,
+              "actualValue": 78669.22678429219,
+              "listedScore": 879.8843698847924,
+              "syntheticScore": 879.8843698847924,
+              "actualTransitionScore": 879.8843698847924
+            },
+            {
+              "tile": 29,
+              "cost": 1540,
+              "cashBefore": 1765,
+              "cashAfter": 225,
+              "beforeValue": 76015.5924144074,
+              "syntheticValue": 77741.00287269695,
+              "actualValue": 77741.00287269695,
+              "listedScore": -2613.0895417104475,
+              "syntheticScore": -2613.0895417104475,
+              "actualTransitionScore": -2613.0895417104475
+            },
+            {
+              "tile": 34,
+              "cost": 1760,
+              "cashBefore": 1765,
+              "cashAfter": 5,
+              "beforeValue": 76015.5924144074,
+              "syntheticValue": 77902.27812187627,
+              "actualValue": 77902.27812187627,
+              "listedScore": -3254.814292531125,
+              "syntheticScore": -3254.814292531125,
+              "actualTransitionScore": -3254.814292531125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "run-2026-10-18T12-58-59-653Z/match-0001",
+      "steps": 781,
+      "stopReason": "mortgage_redeem_oscillation",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [
+        {
+          "kind": "mortgage_redeem_oscillation",
+          "actor": 1,
+          "tile": 5,
+          "firstStep": 776,
+          "lastStep": 781,
+          "alternatingActions": 6,
+          "phase": "roll",
+          "turnSerial": 65
+        }
+      ],
+      "findings": [
+        {
+          "step": 776,
+          "recorded": {
+            "type": "MORTGAGE",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "baseAction": {
+            "type": "BUILD",
+            "tile": 6,
+            "actionId": "c6"
+          },
+          "councilOrKresnaAction": {
+            "type": "MORTGAGE",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "reason": "kresna_v2_quantum_dcf",
+          "redeems": []
+        },
+        {
+          "step": 777,
+          "recorded": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "councilOrKresnaAction": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "reason": "kresna_baseline",
+          "redeems": [
+            {
+              "tile": 5,
+              "cost": 1100,
+              "cashBefore": 2246,
+              "cashAfter": 1146,
+              "beforeValue": 62925.20115206457,
+              "syntheticValue": 69028.43060463422,
+              "actualValue": 68653.74175741534,
+              "listedScore": 5003.229452569656,
+              "syntheticScore": 5003.229452569656,
+              "actualTransitionScore": 4628.540605350769
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "run-2026-10-18T12-58-59-653Z/match-0002",
+      "steps": 264,
+      "stopReason": "mortgage_redeem_oscillation",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [
+        {
+          "kind": "mortgage_redeem_oscillation",
+          "actor": 0,
+          "tile": 5,
+          "firstStep": 259,
+          "lastStep": 264,
+          "alternatingActions": 6,
+          "phase": "end",
+          "turnSerial": 56
+        }
+      ],
+      "findings": [
+        {
+          "step": 259,
+          "recorded": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c2"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c2"
+          },
+          "councilOrKresnaAction": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c2"
+          },
+          "reason": "kresna_baseline",
+          "redeems": [
+            {
+              "tile": 5,
+              "cost": 1100,
+              "cashBefore": 2907,
+              "cashAfter": 1807,
+              "beforeValue": 34914.33862910337,
+              "syntheticValue": 42017.780891518516,
+              "actualValue": 37715.16932088639,
+              "listedScore": 5531.942262415148,
+              "syntheticScore": 5531.942262415148,
+              "actualTransitionScore": 1229.3306917830196
+            },
+            {
+              "tile": 15,
+              "cost": 1100,
+              "cashBefore": 2907,
+              "cashAfter": 1807,
+              "beforeValue": 34914.33862910337,
+              "syntheticValue": 41340.34171241014,
+              "actualValue": 37037.73014177801,
+              "listedScore": 4854.503083306772,
+              "syntheticScore": 4854.503083306772,
+              "actualTransitionScore": 551.8915126746433
+            },
+            {
+              "tile": 3,
+              "cost": 330,
+              "cashBefore": 2907,
+              "cashAfter": 2577,
+              "beforeValue": 34914.33862910337,
+              "syntheticValue": 35207.716752603636,
+              "actualValue": 33916.933281414,
+              "listedScore": -36.621876499732025,
+              "syntheticScore": -36.621876499732025,
+              "actualTransitionScore": -1327.4053476893678
+            }
+          ]
+        },
+        {
+          "step": 260,
+          "recorded": {
+            "type": "MORTGAGE",
+            "tile": 5,
+            "actionId": "c2"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 15,
+            "actionId": "c3"
+          },
+          "councilOrKresnaAction": {
+            "type": "MORTGAGE",
+            "tile": 5,
+            "actionId": "c2"
+          },
+          "reason": "kresna_v2_quantum_dcf",
+          "redeems": [
+            {
+              "tile": 15,
+              "cost": 1100,
+              "cashBefore": 1807,
+              "cashAfter": 707,
+              "beforeValue": 37954.8182682625,
+              "syntheticValue": 44380.82135156926,
+              "actualValue": 41817.84038535309,
+              "listedScore": 4351.953083306765,
+              "syntheticScore": 4351.953083306765,
+              "actualTransitionScore": 1788.9721170905934
+            },
+            {
+              "tile": 3,
+              "cost": 330,
+              "cashBefore": 1807,
+              "cashAfter": 1477,
+              "beforeValue": 37954.8182682625,
+              "syntheticValue": 38248.196391762765,
+              "actualValue": 36913.64747915967,
+              "listedScore": -125.17187649973202,
+              "syntheticScore": -125.17187649973202,
+              "actualTransitionScore": -1459.7207891028272
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "run-2026-10-18T12-58-59-653Z/match-0003",
+      "steps": 378,
+      "stopReason": "time_cap",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [],
+      "findings": []
+    },
+    {
+      "match": "run-2026-10-18T12-58-59-653Z/match-0004",
+      "steps": 90,
+      "stopReason": "mortgage_redeem_oscillation",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [
+        {
+          "kind": "mortgage_redeem_oscillation",
+          "actor": 2,
+          "tile": 25,
+          "firstStep": 85,
+          "lastStep": 90,
+          "alternatingActions": 6,
+          "phase": "end",
+          "turnSerial": 26
+        }
+      ],
+      "findings": [
+        {
+          "step": 85,
+          "recorded": {
+            "type": "REDEEM",
+            "tile": 25,
+            "actionId": "c2"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 25,
+            "actionId": "c2"
+          },
+          "councilOrKresnaAction": {
+            "type": "REDEEM",
+            "tile": 25,
+            "actionId": "c2"
+          },
+          "reason": "kresna_baseline",
+          "redeems": [
+            {
+              "tile": 25,
+              "cost": 1100,
+              "cashBefore": 1476,
+              "cashAfter": 376,
+              "beforeValue": 27020.70372707061,
+              "syntheticValue": 29269.984802215877,
+              "actualValue": 26691.84953409833,
+              "listedScore": 799.6810751452672,
+              "syntheticScore": 799.6810751452672,
+              "actualTransitionScore": -1778.4541929722777
+            },
+            {
+              "tile": 35,
+              "cost": 1100,
+              "cashBefore": 1476,
+              "cashAfter": 376,
+              "beforeValue": 27020.70372707061,
+              "syntheticValue": 28874.459144670174,
+              "actualValue": 26296.32387655263,
+              "listedScore": 404.1554175995647,
+              "syntheticScore": 404.1554175995647,
+              "actualTransitionScore": -2173.97985051798
+            },
+            {
+              "tile": 8,
+              "cost": 550,
+              "cashBefore": 1476,
+              "cashAfter": 926,
+              "beforeValue": 27020.70372707061,
+              "syntheticValue": 27503.167420863956,
+              "actualValue": 24925.03215274641,
+              "listedScore": -67.53630620665353,
+              "syntheticScore": -67.53630620665353,
+              "actualTransitionScore": -2645.6715743241984
+            }
+          ]
+        },
+        {
+          "step": 86,
+          "recorded": {
+            "type": "MORTGAGE",
+            "tile": 25,
+            "actionId": "c1"
+          },
+          "baseAction": {
+            "type": "END",
+            "actionId": "c0"
+          },
+          "councilOrKresnaAction": {
+            "type": "MORTGAGE",
+            "tile": 25,
+            "actionId": "c1"
+          },
+          "reason": "kresna_v2_quantum_dcf",
+          "redeems": []
+        }
+      ]
+    },
+    {
+      "match": "run-2026-10-18T12-58-59-653Z/match-0005",
+      "steps": 228,
+      "stopReason": "time_cap",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [],
+      "findings": []
+    },
+    {
+      "match": "run-2026-10-18T12-58-59-653Z/match-0006",
+      "steps": 597,
+      "stopReason": "finished",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [],
+      "findings": []
+    },
+    {
+      "match": "run-2026-10-18T12-58-59-653Z/match-0007",
+      "steps": 250,
+      "stopReason": "time_cap",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [],
+      "findings": []
+    },
+    {
+      "match": "run-2026-10-18T12-58-59-653Z/match-0008",
+      "steps": 255,
+      "stopReason": "mortgage_redeem_oscillation",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [
+        {
+          "kind": "mortgage_redeem_oscillation",
+          "actor": 2,
+          "tile": 27,
+          "firstStep": 250,
+          "lastStep": 255,
+          "alternatingActions": 6,
+          "phase": "buy",
+          "turnSerial": 62
+        }
+      ],
+      "findings": [
+        {
+          "step": 250,
+          "recorded": {
+            "type": "REDEEM",
+            "tile": 27,
+            "actionId": "c10"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 27,
+            "actionId": "c10"
+          },
+          "councilOrKresnaAction": {
+            "type": "REDEEM",
+            "tile": 27,
+            "actionId": "c10"
+          },
+          "reason": "kresna_baseline",
+          "redeems": [
+            {
+              "tile": 27,
+              "cost": 1430,
+              "cashBefore": 4301,
+              "cashAfter": 2871,
+              "beforeValue": 101031.53788794462,
+              "syntheticValue": 103232.84381184468,
+              "actualValue": 100067.80410124476,
+              "listedScore": 771.3059239000577,
+              "syntheticScore": 771.3059239000577,
+              "actualTransitionScore": -2393.733786699857
+            },
+            {
+              "tile": 29,
+              "cost": 1540,
+              "cashBefore": 4301,
+              "cashAfter": 2761,
+              "beforeValue": 101031.53788794462,
+              "syntheticValue": 102783.7372057848,
+              "actualValue": 99543.39578886407,
+              "listedScore": 212.19931784017535,
+              "syntheticScore": 212.19931784017535,
+              "actualTransitionScore": -3028.142099080549
+            }
+          ]
+        },
+        {
+          "step": 251,
+          "recorded": {
+            "type": "MORTGAGE",
+            "tile": 27,
+            "actionId": "c10"
+          },
+          "baseAction": {
+            "type": "AUCTION",
+            "actionId": "c1"
+          },
+          "councilOrKresnaAction": {
+            "type": "MORTGAGE",
+            "tile": 27,
+            "actionId": "c10"
+          },
+          "reason": "kresna_v2_quantum_dcf",
+          "redeems": [
+            {
+              "tile": 29,
+              "cost": 1540,
+              "cashBefore": 2871,
+              "cashAfter": 1331,
+              "beforeValue": 100065.59835984025,
+              "syntheticValue": 101624.42264932001,
+              "actualValue": 99168.54505686238,
+              "listedScore": -941.4257105202413,
+              "syntheticScore": -941.4257105202413,
+              "actualTransitionScore": -3397.3033029778744
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "run-2026-10-18T13-12-27-196Z/match-0001",
+      "steps": 779,
+      "stopReason": "mortgage_redeem_oscillation",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [
+        {
+          "kind": "mortgage_redeem_oscillation",
+          "actor": 1,
+          "tile": 5,
+          "firstStep": 774,
+          "lastStep": 779,
+          "alternatingActions": 6,
+          "phase": "roll",
+          "turnSerial": 65
+        }
+      ],
+      "findings": [
+        {
+          "step": 774,
+          "recorded": {
+            "type": "MORTGAGE",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "baseAction": {
+            "type": "BUILD",
+            "tile": 6,
+            "actionId": "c6"
+          },
+          "councilOrKresnaAction": {
+            "type": "MORTGAGE",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "reason": "kresna_v2_quantum_dcf",
+          "redeems": []
+        },
+        {
+          "step": 775,
+          "recorded": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "councilOrKresnaAction": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "reason": "kresna_baseline",
+          "redeems": [
+            {
+              "tile": 5,
+              "cost": 1100,
+              "cashBefore": 2246,
+              "cashAfter": 1146,
+              "beforeValue": 62925.20115206457,
+              "syntheticValue": 69028.43060463422,
+              "actualValue": 68653.74175741534,
+              "listedScore": 5003.229452569656,
+              "syntheticScore": 5003.229452569656,
+              "actualTransitionScore": 4628.540605350769
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "run-2026-10-18T13-12-27-196Z/match-0002",
+      "steps": 238,
+      "stopReason": "mortgage_redeem_oscillation",
+      "replay": "PASS: lab and production, every before/after hash",
+      "alerts": [
+        {
+          "kind": "mortgage_redeem_oscillation",
+          "actor": 0,
+          "tile": 25,
+          "firstStep": 233,
+          "lastStep": 238,
+          "alternatingActions": 6,
+          "phase": "end",
+          "turnSerial": 48
+        }
+      ],
+      "findings": [
+        {
+          "step": 233,
+          "recorded": {
+            "type": "REDEEM",
+            "tile": 25,
+            "actionId": "c8"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 25,
+            "actionId": "c8"
+          },
+          "councilOrKresnaAction": {
+            "type": "REDEEM",
+            "tile": 25,
+            "actionId": "c8"
+          },
+          "reason": "kresna_baseline",
+          "redeems": [
+            {
+              "tile": 25,
+              "cost": 1100,
+              "cashBefore": 2226,
+              "cashAfter": 1126,
+              "beforeValue": 22875.98822068982,
+              "syntheticValue": 31372.355158261533,
+              "actualValue": 28129.62976764195,
+              "listedScore": 4481.366937571714,
+              "syntheticScore": 4481.366937571714,
+              "actualTransitionScore": 1238.6415469521298
+            },
+            {
+              "tile": 15,
+              "cost": 1100,
+              "cashBefore": 2226,
+              "cashAfter": 1126,
+              "beforeValue": 22875.98822068982,
+              "syntheticValue": 30166.15585735237,
+              "actualValue": 26923.43046673278,
+              "listedScore": 3275.1676366625497,
+              "syntheticScore": 3275.1676366625497,
+              "actualTransitionScore": 32.442246042962324
+            },
+            {
+              "tile": 5,
+              "cost": 1100,
+              "cashBefore": 2226,
+              "cashAfter": 1126,
+              "beforeValue": 22875.98822068982,
+              "syntheticValue": 28612.452372701282,
+              "actualValue": 25369.726982081695,
+              "listedScore": 1721.4641520114628,
+              "syntheticScore": 1721.4641520114628,
+              "actualTransitionScore": -1521.2612386081246
+            },
+            {
+              "tile": 35,
+              "cost": 1100,
+              "cashBefore": 2226,
+              "cashAfter": 1126,
+              "beforeValue": 22875.98822068982,
+              "syntheticValue": 28092.030339874807,
+              "actualValue": 24849.304949255224,
+              "listedScore": 1201.0421191849882,
+              "syntheticScore": 1201.0421191849882,
+              "actualTransitionScore": -2041.6832714345956
+            },
+            {
+              "tile": 3,
+              "cost": 330,
+              "cashBefore": 2226,
+              "cashAfter": 1896,
+              "beforeValue": 22875.98822068982,
+              "syntheticValue": 23138.72739803365,
+              "actualValue": 21791.368506411098,
+              "listedScore": -941.7608226561679,
+              "syntheticScore": -941.7608226561679,
+              "actualTransitionScore": -2289.1197142787205
+            }
+          ]
+        },
+        {
+          "step": 234,
+          "recorded": {
+            "type": "MORTGAGE",
+            "tile": 25,
+            "actionId": "c8"
+          },
+          "baseAction": {
+            "type": "REDEEM",
+            "tile": 15,
+            "actionId": "c3"
+          },
+          "councilOrKresnaAction": {
+            "type": "MORTGAGE",
+            "tile": 25,
+            "actionId": "c8"
+          },
+          "reason": "kresna_v2_quantum_dcf",
+          "redeems": [
+            {
+              "tile": 15,
+              "cost": 1100,
+              "cashBefore": 1126,
+              "cashAfter": 26,
+              "beforeValue": 28129.62976764195,
+              "syntheticValue": 35419.797404304496,
+              "actualValue": 35419.797404304496,
+              "listedScore": 3275.167636662547,
+              "syntheticScore": 3275.167636662547,
+              "actualTransitionScore": 3275.167636662547
+            },
+            {
+              "tile": 5,
+              "cost": 1100,
+              "cashBefore": 1126,
+              "cashAfter": 26,
+              "beforeValue": 28129.62976764195,
+              "syntheticValue": 33866.09391965341,
+              "actualValue": 33866.09391965341,
+              "listedScore": 1721.46415201146,
+              "syntheticScore": 1721.46415201146,
+              "actualTransitionScore": 1721.46415201146
+            },
+            {
+              "tile": 35,
+              "cost": 1100,
+              "cashBefore": 1126,
+              "cashAfter": 26,
+              "beforeValue": 28129.62976764195,
+              "syntheticValue": 33345.67188682693,
+              "actualValue": 33345.67188682693,
+              "listedScore": 1201.0421191849819,
+              "syntheticScore": 1201.0421191849819,
+              "actualTransitionScore": 1201.0421191849819
+            },
+            {
+              "tile": 3,
+              "cost": 330,
+              "cashBefore": 1126,
+              "cashAfter": 796,
+              "beforeValue": 28129.62976764195,
+              "syntheticValue": 28392.368944985777,
+              "actualValue": 28392.368944985777,
+              "listedScore": -941.7608226561715,
+              "syntheticScore": -941.7608226561715,
+              "actualTransitionScore": -941.7608226561715
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "persona": "kresna",
+      "match": "run-2026-10-18T12-57-32-875Z/match-0001",
+      "step": 754,
+      "continuation": [
+        {
+          "cash": 696,
+          "phase": "roll",
+          "turnSerial": 61,
+          "action": {
+            "type": "MORTGAGE",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "reason": "kresna_v2_quantum_dcf",
+          "nodes": 0
+        },
+        {
+          "cash": 1696,
+          "phase": "roll",
+          "turnSerial": 61,
+          "action": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "reason": "kresna_baseline",
+          "nodes": 0
+        },
+        {
+          "cash": 596,
+          "phase": "roll",
+          "turnSerial": 61,
+          "action": {
+            "type": "MORTGAGE",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "reason": "kresna_v2_quantum_dcf",
+          "nodes": 0
+        },
+        {
+          "cash": 1596,
+          "phase": "roll",
+          "turnSerial": 61,
+          "action": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "reason": "kresna_baseline",
+          "nodes": 0
+        },
+        {
+          "cash": 496,
+          "phase": "roll",
+          "turnSerial": 61,
+          "action": {
+            "type": "MORTGAGE",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "reason": "kresna_v2_quantum_dcf",
+          "nodes": 0
+        },
+        {
+          "cash": 1496,
+          "phase": "roll",
+          "turnSerial": 61,
+          "action": {
+            "type": "REDEEM",
+            "tile": 5,
+            "actionId": "c5"
+          },
+          "reason": "kresna_baseline",
+          "nodes": 0
+        }
+      ]
+    },
+    {
+      "persona": "nusa",
+      "match": "run-2026-10-18T12-57-32-875Z/match-0002",
+      "step": 224,
+      "continuation": [
+        {
+          "cash": 1992,
+          "phase": "buy",
+          "turnSerial": 39,
+          "action": {
+            "type": "MORTGAGE",
+            "tile": 15,
+            "actionId": "nusa-prebuy-mort-15"
+          },
+          "reason": "gear1_single_dominant_candidate",
+          "nodes": 0
+        },
+        {
+          "cash": 2992,
+          "phase": "buy",
+          "turnSerial": 39,
+          "action": {
+            "type": "REDEEM",
+            "tile": 15,
+            "actionId": "c2"
+          },
+          "reason": "gear1_instant_reflex",
+          "nodes": 0
+        },
+        {
+          "cash": 1892,
+          "phase": "buy",
+          "turnSerial": 39,
+          "action": {
+            "type": "MORTGAGE",
+            "tile": 15,
+            "actionId": "nusa-prebuy-mort-15"
+          },
+          "reason": "gear1_single_dominant_candidate",
+          "nodes": 0
+        },
+        {
+          "cash": 2892,
+          "phase": "buy",
+          "turnSerial": 39,
+          "action": {
+            "type": "REDEEM",
+            "tile": 15,
+            "actionId": "c2"
+          },
+          "reason": "gear1_instant_reflex",
+          "nodes": 0
+        },
+        {
+          "cash": 1792,
+          "phase": "buy",
+          "turnSerial": 39,
+          "action": {
+            "type": "MORTGAGE",
+            "tile": 15,
+            "actionId": "nusa-prebuy-mort-15"
+          },
+          "reason": "gear1_single_dominant_candidate",
+          "nodes": 0
+        },
+        {
+          "cash": 2792,
+          "phase": "buy",
+          "turnSerial": 39,
+          "action": {
+            "type": "REDEEM",
+            "tile": 15,
+            "actionId": "c2"
+          },
+          "reason": "gear1_instant_reflex",
+          "nodes": 0
+        }
+      ]
+    }
+  ],
+  "namedFixture": {
+    "events": 159,
+    "financeEvents": 66,
+    "phase": "auction",
+    "version": 135,
+    "finance": [
+      {
+        "eventId": 82,
+        "version": 58,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 83,
+        "version": 59,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 84,
+        "version": 60,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 85,
+        "version": 61,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 86,
+        "version": 62,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 87,
+        "version": 63,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 88,
+        "version": 64,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 89,
+        "version": 65,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 90,
+        "version": 66,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 91,
+        "version": 67,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 92,
+        "version": 68,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 93,
+        "version": 69,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 94,
+        "version": 70,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 95,
+        "version": 71,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 96,
+        "version": 72,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 97,
+        "version": 73,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 98,
+        "version": 74,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 99,
+        "version": 75,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 100,
+        "version": 76,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 101,
+        "version": 77,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 102,
+        "version": 78,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 103,
+        "version": 79,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 104,
+        "version": 80,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 105,
+        "version": 81,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 106,
+        "version": 82,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 107,
+        "version": 83,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 108,
+        "version": 84,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 109,
+        "version": 85,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 1100,
+        "tile": 23
+      },
+      {
+        "eventId": 110,
+        "version": 86,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 111,
+        "version": 87,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 112,
+        "version": 88,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 113,
+        "version": 89,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 114,
+        "version": 90,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 115,
+        "version": 91,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 116,
+        "version": 92,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 117,
+        "version": 93,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 118,
+        "version": 94,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 119,
+        "version": 95,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 120,
+        "version": 96,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 121,
+        "version": 97,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 122,
+        "version": 98,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 123,
+        "version": 99,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 124,
+        "version": 100,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 125,
+        "version": 101,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 126,
+        "version": 102,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 127,
+        "version": 103,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 128,
+        "version": 104,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 129,
+        "version": 105,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 130,
+        "version": 106,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 131,
+        "version": 107,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 132,
+        "version": 108,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 990,
+        "tile": 16
+      },
+      {
+        "eventId": 133,
+        "version": 109,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 900,
+        "tile": 16
+      },
+      {
+        "eventId": 134,
+        "version": 110,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 1000,
+        "tile": 5
+      },
+      {
+        "eventId": 135,
+        "version": 111,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 1100,
+        "tile": 5
+      },
+      {
+        "eventId": 136,
+        "version": 112,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 1000,
+        "tile": 5
+      },
+      {
+        "eventId": 137,
+        "version": 113,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 1100,
+        "tile": 5
+      },
+      {
+        "eventId": 138,
+        "version": 114,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 1000,
+        "tile": 5
+      },
+      {
+        "eventId": 139,
+        "version": 115,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 1100,
+        "tile": 5
+      },
+      {
+        "eventId": 140,
+        "version": 116,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 1000,
+        "tile": 5
+      },
+      {
+        "eventId": 141,
+        "version": 117,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 1100,
+        "tile": 5
+      },
+      {
+        "eventId": 142,
+        "version": 118,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 1000,
+        "tile": 5
+      },
+      {
+        "eventId": 143,
+        "version": 119,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 1100,
+        "tile": 5
+      },
+      {
+        "eventId": 144,
+        "version": 120,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 1000,
+        "tile": 5
+      },
+      {
+        "eventId": 145,
+        "version": 121,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 1100,
+        "tile": 5
+      },
+      {
+        "eventId": 146,
+        "version": 122,
+        "actor": 3,
+        "round": 5,
+        "kind": "mortgage",
+        "from": null,
+        "to": 3,
+        "amount": 1000,
+        "tile": 5
+      },
+      {
+        "eventId": 147,
+        "version": 123,
+        "actor": 3,
+        "round": 5,
+        "kind": "redeem",
+        "from": 3,
+        "to": null,
+        "amount": 1100,
+        "tile": 5
+      }
+    ],
+    "interestPaid": 2950
+  }
+}

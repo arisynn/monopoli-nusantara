@@ -1,6 +1,7 @@
 import {command,decisionActor} from '../game.mjs';
 import {decidePersona} from '../bot/persona-router.mjs';
 import {brokerIntentMetadata} from '../bot/broker-intent.mjs';
+import {MODEL_MANIFEST_ID} from '../bot/model-manifest.mjs';
 import {reconcile,gameplayHeld} from './online-room.mjs';
 import {secureRandom} from './online-service.mjs';
 export function botActor(s){
@@ -65,7 +66,7 @@ export async function runBotWorker({store,decide,clock=Date.now,rng=secureRandom
     reason:typeof metrics.reason==='string'?metrics.reason.slice(0,64):null};
    if(fresh.data.state.phase==='won')fresh.data.status='finished';
    if(fresh.data.vote?.status==='open'&&fresh.data.vote.eligible.some(i=>fresh.data.state.players[i].out))fresh.data.vote.status='cancelled';
-   const result=await store.commit(fresh,fresh.data,{type:'BOT_ACTION',botLease:owner,botWork:{actor,sourceVersion:version,matchId,actionType:intent.type},notify:true});
+   const result=await store.commit(fresh,fresh.data,{type:'BOT_ACTION',botLease:owner,botWork:{actor,sourceVersion:version,matchId,actionType:intent.type,modelManifest:MODEL_MANIFEST_ID},notify:true});
    if(result.ok)committed++;else{discarded++;await store.releaseBot(job.code,owner,'scheduled');}
   }catch{await store.releaseBot(job.code,owner,'scheduled','decision_failed');}
  }

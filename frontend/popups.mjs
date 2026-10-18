@@ -318,7 +318,7 @@ function auction(c, p) {
   const invalid =
     !raw.trim() ||
     offer === null ||
-    offer % 10 !== 0 ||
+    offer % AUCTION_RULES.increment !== 0 ||
     offer < min ||
     offer > cash;
   const leader = a.highest === null ? null : c.s.players[a.highest];
@@ -338,8 +338,8 @@ function auction(c, p) {
     message =
       offer !== null && offer > cash
         ? "Saldo Anda tidak cukup untuk tawaran ini."
-        : offer === null || !raw.trim() || offer % 10 !== 0
-          ? "Masukkan tawaran dalam Nusa bulat."
+        : offer === null || !raw.trim() || offer % AUCTION_RULES.increment !== 0
+          ? "Masukkan tawaran dalam kelipatan ₦5."
           : `Tawaran minimal berikutnya ${money(min)}.`;
   if (c.session.error) message = c.session.error;
   const title = a.kind === "building" ? "Lelang Bangunan" : "Lelang Properti";
@@ -353,7 +353,7 @@ function auction(c, p) {
         `Mulai ${money(AUCTION_RULES.minimum)} · naik minimal ${money(AUCTION_RULES.increment)}`,
       ) +
       propertyHero(BOARD[id], c.s) +
-      `<section class="auction-leader" aria-label="Tawaran tertinggi" aria-live="polite" aria-atomic="true"><span>HARGA TERTINGGI</span><strong class="auction-price" title="${esc(money(a.amount))}">${esc(money(a.amount))}</strong><div class="auction-holder"><small>Pemegang tawaran</small><b title="${esc(leaderName || "Belum ada penawaran")}">${esc(leaderName || "Belum ada penawaran")}</b></div></section><div class="auction-controls"><label class="field" for="auction-offer">Tawaran Anda</label><div class="auction-input-row"><span aria-hidden="true">₦</span><input id="auction-offer" name="bid" type="text" min="${min / 10}" step="1" value="${esc(raw)}" inputmode="numeric" pattern="[0-9]*" enterkeyhint="done" autocomplete="off" data-amount aria-describedby="auction-minimum auction-message" ${!editable ? "disabled" : ""}></div><p id="auction-minimum" class="auction-minimum">Minimal berikutnya <b>${esc(money(min))}</b></p><div class="chips auction-steps" aria-label="Tambah dari harga tertinggi">${[5, 10, 50].map((n) => `<button type="button" data-action="bidStep" data-amount="${n * 10}" aria-label="${esc(money(n * 10))} di atas harga tertinggi" ${!editable ? "disabled" : ""}>+ ${esc(money(n * 10))}</button>`).join("")}</div><div class="auction-balance"><span>Saldo Anda</span><b>${esc(money(cash))}</b></div><p id="auction-message" class="auction-message" data-tone="${(eligible && invalid) || c.session.error ? "error" : "normal"}" role="status">${esc(message)}</p></div></div>`,
+      `<section class="auction-leader" aria-label="Tawaran tertinggi" aria-live="polite" aria-atomic="true"><span>HARGA TERTINGGI</span><strong class="auction-price" title="${esc(money(a.amount))}">${esc(money(a.amount))}</strong><div class="auction-holder"><small>Pemegang tawaran</small><b title="${esc(leaderName || "Belum ada penawaran")}">${esc(leaderName || "Belum ada penawaran")}</b></div></section><div class="auction-controls"><label class="field" for="auction-offer">Tawaran Anda</label><div class="auction-input-row"><span aria-hidden="true">₦</span><input id="auction-offer" name="bid" type="text" min="${min / 10}" step="5" value="${esc(raw)}" inputmode="numeric" pattern="[0-9]*" enterkeyhint="done" autocomplete="off" data-amount aria-describedby="auction-minimum auction-message" ${!editable ? "disabled" : ""}></div><p id="auction-minimum" class="auction-minimum">Minimal berikutnya <b>${esc(money(min))}</b></p><div class="chips auction-steps" aria-label="Tambah dari harga tertinggi">${[5, 10, 50].map((n) => `<button type="button" data-action="bidStep" data-amount="${n * 10}" aria-label="${esc(money(n * 10))} di atas harga tertinggi" ${!editable ? "disabled" : ""}>+ ${esc(money(n * 10))}</button>`).join("")}</div><div class="auction-balance"><span>Saldo Anda</span><b>${esc(money(cash))}</b></div><p id="auction-message" class="auction-message" data-tone="${(eligible && invalid) || c.session.error ? "error" : "normal"}" role="status">${esc(message)}</p></div></div>`,
     footer:
       btn("Tawar", "bid", {
         primary: true,

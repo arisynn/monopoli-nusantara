@@ -32,6 +32,9 @@ export function onlineStatus(session) {
       label: "Koneksi terputus",
       detail: "Mengambil state terbaru sebelum permainan dilanjutkan.",
     };
+  if(session.online?.worker?.provider==='termux'&&session.online.worker.status==='offline')return {
+    code:'worker-offline',label:'Bot menunggu worker',detail:'Worker bot sedang offline. Pertandingan tersimpan dan bot melanjutkan setelah worker terhubung.'
+  };
   return {
     code: "available",
     label: session.room ? "Room terhubung" : "Identitas tersedia",

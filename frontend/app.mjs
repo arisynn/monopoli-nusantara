@@ -1508,7 +1508,7 @@ async function perform(action, el) {
       case "bidStep":
         ui.bid = Math.max(
           bidMinimum(session.view),
-          (session.view.auction?.amount || 0) + Number(el.dataset.amount),
+          Math.ceil(((session.view.auction?.amount || 0) + Number(el.dataset.amount))/50)*50,
         );
         ui.bidRaw = nusaInput(ui.bid);
         queueRender();

@@ -3,6 +3,7 @@ import {supabaseConfig, createSupabaseStore, authenticate} from '@/lib/server/su
 import {supabaseConfigurationStatus} from '@/lib/server/supabase-config.mjs';
 import {createOnlineService, digest} from '@/lib/server/online-service.mjs';
 import {RoomError, check} from '@/lib/server/online-room.mjs';
+import {roomWorkerStatus} from '@/lib/server/worker-capabilities.mjs';
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 const json = (value: unknown, status = 200) => Response.json(value, {status, headers: {'Cache-Control': 'no-store', Vary: 'Authorization'}});
@@ -31,7 +32,8 @@ export async function GET(request: Request) {
    catch{return json({onlineBots:getRuntime().env.MN_ONLINE_BOTS_ENABLED==='true',capabilities:null,code:'online_migration_required'});}
   }
   if (url.searchParams.has('rooms')) return json({rooms: await service.list(user.id)});
-  return json(await service.read((url.searchParams.get('code') || '').toUpperCase(), user.id));
+  const view=await service.read((url.searchParams.get('code') || '').toUpperCase(), user.id);
+  try{return json({...view,worker:await roomWorkerStatus(store,view.code,config.url)});}catch{return json(view);}
  } catch (error) { return failure(error); }
 }
 async function readBody(request: Request) {
@@ -54,12 +56,20 @@ export async function POST(request: Request) {
    let capabilities;
    try{capabilities=await store.onlineCapabilities();}catch{throw new RoomError('Layanan room perlu diperbarui sebelum fitur ini tersedia.',503,'online_migration_required');}
    if(!capabilities?.lobbyManagement||capabilities.schemaVersion<6)throw new RoomError('Layanan room perlu diperbarui sebelum fitur ini tersedia.',503,'online_migration_required');
-   if(body.type==='ADD_BOT'&&(!capabilities.workerConfigured||!capabilities.schedulerConfigured))throw new RoomError('Bot online belum siap. Layanan bot di server perlu diaktifkan dahulu.',503,'online_worker_unavailable');
+   if(body.type==='ADD_BOT'&&(!capabilities.workerConfigured||(capabilities.workerProvider==='termux'?!capabilities.workerAlive:!capabilities.schedulerConfigured)))throw new RoomError('Bot online belum siap. Hubungkan worker terlebih dahulu.',503,'online_worker_unavailable');
+   if(body.type==='ADD_BOT'&&capabilities.workerProvider==='termux'){
+    const status=await store.workerRpc('mn_worker_room_status',{p_code:body.code});
+    if(status?.status==='offline')throw new RoomError('Tidak ada worker aktif yang diizinkan menangani room ini.',503,'online_worker_unavailable');
+   }
   }
   if (body.type === 'CREATE' || body.type === 'JOIN') {
    let source = 'unidentified'; try { source = runtime.creatorId(request); } catch { /* public deployment uses a conservative shared bucket */ }
    check(await store.quota(`entry:${await digest(source)}`, 60) <= 120, 'Terlalu banyak percobaan masuk. Coba lagi nanti.', 429);
   }
-  return json(await service.execute(body, user.id));
+  const result=await service.execute(body, user.id);
+  if(body.type==='HEARTBEAT'){
+   try{return json({...result,worker:await roomWorkerStatus(store,result.code,config.url)});}catch{/* safe status is optional */}
+  }
+  return json(result);
  } catch (error) { return failure(error); }
 }

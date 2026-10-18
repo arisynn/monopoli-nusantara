@@ -49,6 +49,7 @@ export interface BotTrade {
   takeCards: number;
 }
 export interface BotAction {
+  financePlan?: Array<{type: string; tile?: number}>;
   type: string;
   tile?: number;
   amount?: number;

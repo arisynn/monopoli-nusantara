@@ -1,0 +1,12 @@
+import {readFile,writeFile,readdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {resolve,relative} from 'node:path';
+const root=resolve(import.meta.dirname,'..');
+const hash=x=>createHash('sha256').update(x).digest('hex');
+const walk=async dir=>(await Promise.all((await readdir(dir,{withFileTypes:true})).map(async e=>e.isDirectory()?walk(resolve(dir,e.name)):[resolve(dir,e.name)]))).flat();
+const files=(await walk(resolve(root,'lib/bot'))).filter(p=>!p.endsWith('model-manifest.mjs')).concat(['game.mjs','game-v1.mjs','content.mjs','content-v1.mjs','currency.mjs','random.mjs','finance.mjs','bank-economy.mjs','pawns.mjs','auction-presentation.mjs'].map(p=>resolve(root,'lib',p))).sort();
+const hashes=Object.fromEntries(await Promise.all(files.map(async p=>[relative(root,p),hash(await readFile(p))])));
+const id=hash(JSON.stringify(hashes));
+await writeFile(resolve(root,'lib/bot/model-manifest.mjs'),`// Generated: source models + engine dependency hashes.\nexport const MODEL_MANIFEST_ID = '${id}';\nexport const MODEL_RELEASE = 'v23.2-guard-finance-auction';\nexport const WORKER_PROTOCOL = 1;\nexport const MODEL_FILES = ${JSON.stringify(hashes,null,2)};\n`);
+await writeFile(resolve(root,'supabase/termux_enable.sql'),`-- Apply migration 007 and deploy the backend from this package first.\n-- Keeps room data and existing leases; Termux takes over after old leases drain.\nbegin;\nupdate public.mn_worker_settings set provider='termux',model_manifest='${id}';\ndo $$ declare j record;begin\n if to_regclass('cron.job') is not null then\n  for j in execute 'select jobid from cron.job where jobname=''mn-bot-recovery''' loop\n   perform cron.unschedule(j.jobid);\n  end loop;\n end if;\nend $$;\ncommit;\nselect public.mn_online_capabilities();\n`);
+console.log(`Model manifest ${id} (${files.length} files)`);

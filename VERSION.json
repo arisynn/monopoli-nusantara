@@ -1,9 +1,7 @@
 {
-  "source": "monopoli-nusantara-nusa-v23.zip",
-  "model": "NUSA V23 Chronos & Kairos (not V24)",
-  "app": "4.11.0",
-  "rulepack": "nusantara-c1009-2",
-  "benchmarkVersion": "1.2.1",
-  "stabilityGuard": "2.0.0",
-  "note": "Lab-only bot integration fix. Engine rules and native core algorithms unchanged; not a V8 strategy release."
+  "app": "4.11.2",
+  "protocol": 1,
+  "modelManifest": "f398a9793efd23c3c74e3e46d89aab0117a4c23c5102036d7e8f77a51c94e46d",
+  "baselineCommit": "af88d14a08815ee1d139bbf5a9b945a24126d348",
+  "scope": "Termux worker + complete matching backend/frontend source and prepared outputs"
 }

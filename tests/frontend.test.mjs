@@ -271,7 +271,7 @@ test("auction popup preserves stable controls, legal bids and omits a fictitious
   s = command(s, 0, { type: "AUCTION" });
   const html = renderPopup(c(s), { bid: 100 }, { kind: "auction" });
   assert(html.html.includes("tanpa batas waktu"));
-  assert(html.html.includes('step="1"'));
+  assert(html.html.includes('step="5"'));
   assert(html.footer.includes('data-action="bid"'));
   assert(!html.html.includes("00:18"));
 });
