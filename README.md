@@ -1,3 +1,11 @@
+# Monopoli Nusantara — pembaruan UI, fondasi bot dan NUSA V18
+
+Source lengkap mencakup lobi/lelang yang dirapikan, mata uang ₦, pembuka dan kenaikan lelang minimal ₦5, fondasi bot bersama, serta NUSA V18 dengan 38 pakar. Nomor aplikasi tetap 4.11.0. Catatan integrasi ada di [INTEGRASI_NUSA_V18.md](INTEGRASI_NUSA_V18.md).
+
+**Paket engine aturan tanpa model/planner bot:** [unduh ZIP logic game](public/Monopoli_Nusantara_Game_Logic.zip). Pada situs hasil build, file tersedia di `/Monopoli_Nusantara_Game_Logic.zip`. Paket ini menerima label bot baru untuk sistem eksternal, terpisah dari enam persona pada aplikasi lengkap. Buat ulang paket dengan `python3 scripts/package-logic.py`.
+
+---
+
 # Monopoli Nusantara 4.11.0 — Enam Persona AI & Popup Pilihan Bot
 
 Update di atas **v4.10.2** dengan source bot dari **Nusa.zip**. Raka, Bima, Sari, NUSA, Arka/APEX, dan Kresna kini dapat dipilih sebagai enam kebijakan bot independen. Pilihan persona dan empat tingkat kesulitan ditampilkan dalam dua dialog kartu yang terpisah, bukan dropdown. VS Bot mendukung 2–6 peserta; online tetap maksimal tiga bot, dengan dua manusia minimal. **LEARNED_MODEL = null** sampai ada bobot baru yang lolos verifikasi sumber dan benchmark holdout. Petunjuk & hasil uji ada di [INTEGRASI_NUSA_V411.md](INTEGRASI_NUSA_V411.md).

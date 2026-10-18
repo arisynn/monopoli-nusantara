@@ -1,0 +1,603 @@
+{
+  "generatedAt": "2026-10-18T05:39:31.429Z",
+  "repeats": 15,
+  "rows": [
+    {
+      "n": 2,
+      "phase": "roll",
+      "baseline": {
+        "p50": 0.20685199999999782,
+        "p95": 0.5181599999999946
+      },
+      "current": {
+        "p50": 0.2751949999999965,
+        "p95": 0.5060420000000079
+      },
+      "meanCacheHits": 0,
+      "meanTransitions": 1
+    },
+    {
+      "n": 2,
+      "phase": "buy",
+      "baseline": {
+        "p50": 0.26234600000000796,
+        "p95": 0.5159969999999987
+      },
+      "current": {
+        "p50": 0.24983600000000195,
+        "p95": 0.3122099999999932
+      },
+      "meanCacheHits": 1,
+      "meanTransitions": 2
+    },
+    {
+      "n": 2,
+      "phase": "auction",
+      "baseline": {
+        "p50": 0.5425070000000005,
+        "p95": 0.801117000000005
+      },
+      "current": {
+        "p50": 0.43841000000000463,
+        "p95": 0.8372409999999775
+      },
+      "meanCacheHits": 12,
+      "meanTransitions": 5
+    },
+    {
+      "n": 2,
+      "phase": "build",
+      "baseline": {
+        "p50": 1.0558110000000056,
+        "p95": 1.4888440000000003
+      },
+      "current": {
+        "p50": 0.9584940000000017,
+        "p95": 1.4890529999999842
+      },
+      "meanCacheHits": 11,
+      "meanTransitions": 7
+    },
+    {
+      "n": 2,
+      "phase": "debt",
+      "baseline": {
+        "p50": 10.342281999999955,
+        "p95": 11.946137999999962
+      },
+      "current": {
+        "p50": 10.150472000000036,
+        "p95": 11.550741999999985
+      },
+      "meanCacheHits": 21,
+      "meanTransitions": 8
+    },
+    {
+      "n": 2,
+      "phase": "trade",
+      "baseline": {
+        "p50": 1.0208779999999251,
+        "p95": 1.999353000000042
+      },
+      "current": {
+        "p50": 1.0178640000000314,
+        "p95": 4.311264999999935
+      },
+      "meanCacheHits": 2,
+      "meanTransitions": 2
+    },
+    {
+      "n": 4,
+      "phase": "roll",
+      "baseline": {
+        "p50": 0.1519189999999071,
+        "p95": 0.21068700000000717
+      },
+      "current": {
+        "p50": 0.16850299999998697,
+        "p95": 0.27848900000003596
+      },
+      "meanCacheHits": 0,
+      "meanTransitions": 1
+    },
+    {
+      "n": 4,
+      "phase": "buy",
+      "baseline": {
+        "p50": 0.20858399999997346,
+        "p95": 0.30507999999997537
+      },
+      "current": {
+        "p50": 0.21021699999994325,
+        "p95": 0.5236690000000408
+      },
+      "meanCacheHits": 1,
+      "meanTransitions": 2
+    },
+    {
+      "n": 4,
+      "phase": "auction",
+      "baseline": {
+        "p50": 0.8287280000000692,
+        "p95": 0.9489899999999807
+      },
+      "current": {
+        "p50": 0.48217699999997876,
+        "p95": 0.7629590000000235
+      },
+      "meanCacheHits": 12,
+      "meanTransitions": 5
+    },
+    {
+      "n": 4,
+      "phase": "build",
+      "baseline": {
+        "p50": 1.0996470000000045,
+        "p95": 1.729084999999941
+      },
+      "current": {
+        "p50": 1.0468670000000202,
+        "p95": 1.536134000000061
+      },
+      "meanCacheHits": 11,
+      "meanTransitions": 7
+    },
+    {
+      "n": 4,
+      "phase": "debt",
+      "baseline": {
+        "p50": 10.564196000000038,
+        "p95": 13.247718999999961
+      },
+      "current": {
+        "p50": 10.616074000000026,
+        "p95": 12.844221000000061
+      },
+      "meanCacheHits": 21,
+      "meanTransitions": 8
+    },
+    {
+      "n": 4,
+      "phase": "trade",
+      "baseline": {
+        "p50": 1.0153600000001006,
+        "p95": 1.2152200000000448
+      },
+      "current": {
+        "p50": 1.110482999999931,
+        "p95": 1.5443569999999909
+      },
+      "meanCacheHits": 2,
+      "meanTransitions": 2
+    },
+    {
+      "n": 6,
+      "phase": "roll",
+      "baseline": {
+        "p50": 0.1213430000000244,
+        "p95": 0.19137799999998606
+      },
+      "current": {
+        "p50": 0.16602999999986423,
+        "p95": 0.3362459999998464
+      },
+      "meanCacheHits": 0,
+      "meanTransitions": 1
+    },
+    {
+      "n": 6,
+      "phase": "buy",
+      "baseline": {
+        "p50": 0.1634959999998955,
+        "p95": 0.2697659999998905
+      },
+      "current": {
+        "p50": 0.1754449999998542,
+        "p95": 0.43617699999981596
+      },
+      "meanCacheHits": 1,
+      "meanTransitions": 2
+    },
+    {
+      "n": 6,
+      "phase": "auction",
+      "baseline": {
+        "p50": 1.1179140000001553,
+        "p95": 1.4382070000001477
+      },
+      "current": {
+        "p50": 0.5722319999999854,
+        "p95": 0.6680759999999282
+      },
+      "meanCacheHits": 12,
+      "meanTransitions": 5
+    },
+    {
+      "n": 6,
+      "phase": "build",
+      "baseline": {
+        "p50": 1.0310729999998784,
+        "p95": 1.2102629999999408
+      },
+      "current": {
+        "p50": 1.0053639999998722,
+        "p95": 1.1840839999999844
+      },
+      "meanCacheHits": 11,
+      "meanTransitions": 7
+    },
+    {
+      "n": 6,
+      "phase": "debt",
+      "baseline": {
+        "p50": 10.93896000000018,
+        "p95": 11.862812000000076
+      },
+      "current": {
+        "p50": 10.707290999999941,
+        "p95": 11.525594000000183
+      },
+      "meanCacheHits": 21,
+      "meanTransitions": 8
+    },
+    {
+      "n": 6,
+      "phase": "trade",
+      "baseline": {
+        "p50": 1.2259769999998298,
+        "p95": 1.4902059999999437
+      },
+      "current": {
+        "p50": 1.2756919999999354,
+        "p95": 1.7314490000001115
+      },
+      "meanCacheHits": 2,
+      "meanTransitions": 2
+    }
+  ],
+  "routing": [
+    {
+      "persona": "raka",
+      "phase": "buy",
+      "action": "BUY",
+      "model": "NUSA-X4",
+      "elapsedMs": 80.15325799999982,
+      "selectedBy": "rollout",
+      "reason": null,
+      "stopReason": null,
+      "cacheHits": 80
+    },
+    {
+      "persona": "raka",
+      "phase": "auction",
+      "action": "BID",
+      "model": "NUSA-X4",
+      "elapsedMs": 80.25771499999996,
+      "selectedBy": "rollout",
+      "reason": null,
+      "stopReason": "time_budget",
+      "cacheHits": 125
+    },
+    {
+      "persona": "raka",
+      "phase": "build",
+      "action": "BUILD",
+      "model": "NUSA-X4",
+      "elapsedMs": 80.43733500000008,
+      "selectedBy": "rollout",
+      "reason": null,
+      "stopReason": "time_budget",
+      "cacheHits": 604
+    },
+    {
+      "persona": "raka",
+      "phase": "debt",
+      "action": "MORTGAGE",
+      "model": "NUSA-X4",
+      "elapsedMs": 13.377193000000034,
+      "selectedBy": "economic",
+      "reason": null,
+      "stopReason": null,
+      "cacheHits": 21
+    },
+    {
+      "persona": "raka",
+      "phase": "trade",
+      "action": "TRADE_ACCEPT",
+      "model": "NUSA-X4",
+      "elapsedMs": 80.14825999999994,
+      "selectedBy": "rollout",
+      "reason": null,
+      "stopReason": "time_budget",
+      "cacheHits": 665
+    },
+    {
+      "persona": "bima",
+      "phase": "buy",
+      "action": "BUY",
+      "model": "NUSA-X4",
+      "elapsedMs": 80.13230599999997,
+      "selectedBy": "rollout",
+      "reason": null,
+      "stopReason": "time_budget",
+      "cacheHits": 157
+    },
+    {
+      "persona": "bima",
+      "phase": "auction",
+      "action": "BID",
+      "model": "NUSA-X4",
+      "elapsedMs": 80.07171500000004,
+      "selectedBy": "rollout",
+      "reason": null,
+      "stopReason": null,
+      "cacheHits": 166
+    },
+    {
+      "persona": "bima",
+      "phase": "build",
+      "action": "BUILD",
+      "model": "NUSA-X4",
+      "elapsedMs": 80.18388400000003,
+      "selectedBy": "rollout",
+      "reason": null,
+      "stopReason": "time_budget",
+      "cacheHits": 723
+    },
+    {
+      "persona": "bima",
+      "phase": "debt",
+      "action": "MORTGAGE",
+      "model": "NUSA-X4",
+      "elapsedMs": 11.775189999999839,
+      "selectedBy": "economic",
+      "reason": null,
+      "stopReason": null,
+      "cacheHits": 21
+    },
+    {
+      "persona": "bima",
+      "phase": "trade",
+      "action": "TRADE_ACCEPT",
+      "model": "NUSA-X4",
+      "elapsedMs": 80.04194999999982,
+      "selectedBy": "rollout",
+      "reason": null,
+      "stopReason": null,
+      "cacheHits": 660
+    },
+    {
+      "persona": "sari",
+      "phase": "buy",
+      "action": "BUY",
+      "model": "NUSA-X4",
+      "elapsedMs": 80.04778899999974,
+      "selectedBy": "rollout",
+      "reason": null,
+      "stopReason": null,
+      "cacheHits": 160
+    },
+    {
+      "persona": "sari",
+      "phase": "auction",
+      "action": "BID",
+      "model": "NUSA-X4",
+      "elapsedMs": 80.20782000000008,
+      "selectedBy": "rollout",
+      "reason": null,
+      "stopReason": "time_budget",
+      "cacheHits": 184
+    },
+    {
+      "persona": "sari",
+      "phase": "build",
+      "action": "BUILD",
+      "model": "NUSA-X4",
+      "elapsedMs": 80.05431799999997,
+      "selectedBy": "rollout",
+      "reason": null,
+      "stopReason": null,
+      "cacheHits": 817
+    },
+    {
+      "persona": "sari",
+      "phase": "debt",
+      "action": "MORTGAGE",
+      "model": "NUSA-X4",
+      "elapsedMs": 11.796581999999944,
+      "selectedBy": "economic",
+      "reason": null,
+      "stopReason": null,
+      "cacheHits": 21
+    },
+    {
+      "persona": "sari",
+      "phase": "trade",
+      "action": "TRADE_ACCEPT",
+      "model": "NUSA-X4",
+      "elapsedMs": 80.03617200000008,
+      "selectedBy": "rollout",
+      "reason": null,
+      "stopReason": null,
+      "cacheHits": 755
+    },
+    {
+      "persona": "nusa",
+      "phase": "buy",
+      "action": "BUY",
+      "model": "NUSA-V18.0-SINGULARITY",
+      "elapsedMs": 7.497326000000157,
+      "selectedBy": "economic-floor",
+      "reason": "gear1_single_dominant_candidate",
+      "stopReason": null,
+      "cacheHits": 1
+    },
+    {
+      "persona": "nusa",
+      "phase": "auction",
+      "action": "BID",
+      "model": "NUSA-V18.0-SINGULARITY",
+      "elapsedMs": 1.8996320000001106,
+      "selectedBy": "strategic-persona",
+      "reason": "gear1_single_dominant_candidate",
+      "stopReason": null,
+      "cacheHits": 12
+    },
+    {
+      "persona": "nusa",
+      "phase": "build",
+      "action": "BUILD",
+      "model": "NUSA-V18.0-SINGULARITY",
+      "elapsedMs": 56.64968699999963,
+      "selectedBy": "economic-floor",
+      "reason": "native_plan_preserved",
+      "stopReason": null,
+      "cacheHits": 11
+    },
+    {
+      "persona": "nusa",
+      "phase": "debt",
+      "action": "MORTGAGE",
+      "model": "NUSA-V18.0-SINGULARITY",
+      "elapsedMs": 17.203337999999803,
+      "selectedBy": "economic-floor",
+      "reason": "gear1_single_dominant_candidate",
+      "stopReason": null,
+      "cacheHits": 21
+    },
+    {
+      "persona": "nusa",
+      "phase": "trade",
+      "action": "TRADE_ACCEPT",
+      "model": "NUSA-V18.0-SINGULARITY",
+      "elapsedMs": 12.314303000000109,
+      "selectedBy": "economic-floor",
+      "reason": "gear1_single_dominant_candidate",
+      "stopReason": null,
+      "cacheHits": 2
+    },
+    {
+      "persona": "apex",
+      "phase": "buy",
+      "action": "BUY",
+      "model": "APEX-JS-3.0",
+      "elapsedMs": 1.0278589999998076,
+      "selectedBy": "economic-floor",
+      "reason": "apex_same",
+      "stopReason": null,
+      "cacheHits": 1
+    },
+    {
+      "persona": "apex",
+      "phase": "auction",
+      "action": "BID",
+      "model": "APEX-JS-3.0",
+      "elapsedMs": 0.888908999999785,
+      "selectedBy": "strategic-persona",
+      "reason": "apex_v3_predator",
+      "stopReason": null,
+      "cacheHits": 12
+    },
+    {
+      "persona": "apex",
+      "phase": "build",
+      "action": "BUILD",
+      "model": "APEX-JS-3.0",
+      "elapsedMs": 1.3371649999999136,
+      "selectedBy": "strategic-persona",
+      "reason": "apex_v3_predator",
+      "stopReason": null,
+      "cacheHits": 11
+    },
+    {
+      "persona": "apex",
+      "phase": "debt",
+      "action": "MORTGAGE",
+      "model": "APEX-JS-3.0",
+      "elapsedMs": 12.397537999999713,
+      "selectedBy": "economic-floor",
+      "reason": "protected_phase",
+      "stopReason": null,
+      "cacheHits": 21
+    },
+    {
+      "persona": "apex",
+      "phase": "trade",
+      "action": "TRADE_ACCEPT",
+      "model": "APEX-JS-3.0",
+      "elapsedMs": 1.9848400000000765,
+      "selectedBy": "economic-floor",
+      "reason": "apex_same",
+      "stopReason": null,
+      "cacheHits": 2
+    },
+    {
+      "persona": "kresna",
+      "phase": "buy",
+      "action": "BUY",
+      "model": "KRESNA-V2.0",
+      "elapsedMs": 4.539417999999841,
+      "selectedBy": "economic-floor",
+      "reason": "kresna_baseline",
+      "stopReason": null,
+      "cacheHits": 1
+    },
+    {
+      "persona": "kresna",
+      "phase": "auction",
+      "action": "BID",
+      "model": "KRESNA-V2.0",
+      "elapsedMs": 1.1871689999998125,
+      "selectedBy": "strategic-persona",
+      "reason": "kresna_v2_quantum_dcf",
+      "stopReason": null,
+      "cacheHits": 12
+    },
+    {
+      "persona": "kresna",
+      "phase": "build",
+      "action": "BUILD",
+      "model": "KRESNA-V2.0",
+      "elapsedMs": 1.4806210000001556,
+      "selectedBy": "economic-floor",
+      "reason": "kresna_baseline",
+      "stopReason": null,
+      "cacheHits": 11
+    },
+    {
+      "persona": "kresna",
+      "phase": "debt",
+      "action": "MORTGAGE",
+      "model": "KRESNA-V2.0",
+      "elapsedMs": 10.90014199999996,
+      "selectedBy": "economic-floor",
+      "reason": "protected_phase",
+      "stopReason": null,
+      "cacheHits": 21
+    },
+    {
+      "persona": "kresna",
+      "phase": "trade",
+      "action": "TRADE_ACCEPT",
+      "model": "KRESNA-V2.0",
+      "elapsedMs": 2.1408659999997326,
+      "selectedBy": "economic-floor",
+      "reason": "kresna_baseline",
+      "stopReason": null,
+      "cacheHits": 2
+    }
+  ],
+  "summary": {
+    "cases": 18,
+    "routerChecks": 30,
+    "lowerMedianCases": 10,
+    "meanCaseMedianBaseline": 2.327659611111108,
+    "meanCaseMedianCurrent": 2.257035888888856
+  },
+  "limits": [
+    "Cloud Node.js CPU and bounded fixtures, not Android profiling or proof of stronger play.",
+    "Baseline is this project after the accepted UI/five-Nusa update and before foundation/V18 changes.",
+    "Shared planner profiling isolates foundation changes; router checks exercise actual six-persona integration.",
+    "Time budgets are cooperative; synchronous safety analysis can exceed a requested budget. Worker watchdog remains the hard interruption mechanism."
+  ]
+}

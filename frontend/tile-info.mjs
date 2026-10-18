@@ -41,7 +41,7 @@ export function specialTileInfo(tile, { lead, btn, amount }) {
   const data = {
     start: {
       icon: "start",
-      text: "Melewati atau tiba di Mulai menerima N 200 dari Bank. Pergi langsung ke Penjara tidak menerima gaji.",
+      text: "Melewati atau tiba di Mulai menerima ₦ 200 dari Bank. Pergi langsung ke Penjara tidak menerima gaji.",
     },
     parking: {
       icon: "parking",
@@ -49,7 +49,7 @@ export function specialTileInfo(tile, { lead, btn, amount }) {
     },
     jail: {
       icon: "jail",
-      text: "Mendarat biasa berarti berkunjung. Pemain yang ditahan dapat memakai kartu bebas, membayar N 50, atau mencoba dadu kembar pada gilirannya. Kunjungan ke petak ini tidak otomatis memenjarakan pemain.",
+      text: "Mendarat biasa berarti berkunjung. Pemain yang ditahan dapat memakai kartu bebas, membayar ₦ 50, atau mencoba dadu kembar pada gilirannya. Kunjungan ke petak ini tidak otomatis memenjarakan pemain.",
     },
     gojail: {
       icon: "gojail",

@@ -1,0 +1,156 @@
+{
+  "generatedAt": "2026-10-18T05:36:56.962Z",
+  "configuration": {
+    "maxActions": 600,
+    "maxMs": 20000,
+    "budget": 24
+  },
+  "runs": [
+    {
+      "n": 2,
+      "actions": 473,
+      "elapsedMs": 3957.239905,
+      "finished": true,
+      "winner": "nusa",
+      "stopReason": null,
+      "illegal": 0,
+      "models": [
+        "NUSA-V18.0-SINGULARITY",
+        "APEX-JS-3.0"
+      ],
+      "phases": [
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "jail",
+        "auction",
+        "trade",
+        "debt"
+      ],
+      "publicWealth": [
+        {
+          "persona": "nusa",
+          "out": false,
+          "worth": 49890
+        },
+        {
+          "persona": "apex",
+          "out": true,
+          "worth": 0
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "actions": 600,
+      "elapsedMs": 4765.072936,
+      "finished": false,
+      "winner": null,
+      "stopReason": "action_cap",
+      "illegal": 0,
+      "models": [
+        "NUSA-V18.0-SINGULARITY",
+        "APEX-JS-3.0",
+        "KRESNA-V2.0",
+        "NUSA-X4"
+      ],
+      "phases": [
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "jail",
+        "debt",
+        "auction",
+        "mortgage"
+      ],
+      "publicWealth": [
+        {
+          "persona": "nusa",
+          "out": true,
+          "worth": 0
+        },
+        {
+          "persona": "apex",
+          "out": false,
+          "worth": 22368
+        },
+        {
+          "persona": "kresna",
+          "out": false,
+          "worth": 41157
+        },
+        {
+          "persona": "raka",
+          "out": true,
+          "worth": 0
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "actions": 521,
+      "elapsedMs": 5511.452823000001,
+      "finished": true,
+      "winner": "kresna",
+      "stopReason": null,
+      "illegal": 0,
+      "models": [
+        "NUSA-V18.0-SINGULARITY",
+        "APEX-JS-3.0",
+        "KRESNA-V2.0",
+        "NUSA-X4"
+      ],
+      "phases": [
+        "roll",
+        "buy",
+        "end",
+        "card",
+        "trade",
+        "debt",
+        "mortgage",
+        "jail"
+      ],
+      "publicWealth": [
+        {
+          "persona": "nusa",
+          "out": true,
+          "worth": 0
+        },
+        {
+          "persona": "apex",
+          "out": true,
+          "worth": 0
+        },
+        {
+          "persona": "kresna",
+          "out": false,
+          "worth": 109855
+        },
+        {
+          "persona": "raka",
+          "out": true,
+          "worth": 0
+        },
+        {
+          "persona": "bima",
+          "out": true,
+          "worth": 0
+        },
+        {
+          "persona": "sari",
+          "out": true,
+          "worth": 0
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "A bounded integration arena, not statistical evidence of win-rate improvement.",
+    "Only an engine terminal winner counts as a winner; wealth at a cap is a descriptive snapshot.",
+    "Production persona router and actor scheduler are used.",
+    "Local Node.js CPU; no external advisor or live online service."
+  ]
+}

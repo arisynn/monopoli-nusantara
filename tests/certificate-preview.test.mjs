@@ -14,7 +14,7 @@ for(const tile of [11,5,12,28])test(`certificate summary ${tile} uses rulepack v
 test('the mini deed displays actual city rents, mortgage state and escaped ownership',()=>{
  const s=state();s.players[1].name='<Sari>';s.assets[11]={owner:1,level:0,mortgaged:true};
  const r=renderPopup(session(s),{},{kind:'settlement',transaction:{kind:'rent',tile:11,from:0,to:1,amount:100}});
- assert(r.html.includes('Milik &lt;Sari&gt; · Digadai'));assert(r.html.includes('N 10'));assert(r.html.includes('N 50'));assert(r.html.includes('Gadai'));assert(r.html.includes('N 70'));
+ assert(r.html.includes('Milik &lt;Sari&gt; · Digadai'));assert(r.html.includes('₦ 10'));assert(r.html.includes('₦ 50'));assert(r.html.includes('Gadai'));assert(r.html.includes('₦ 70'));
 });
 test('all shared property summary consumers render the same certificate control',()=>{
  let s=state();s.phase='buy';s.buy=11;s=command(s,0,{type:'AUCTION'});assert(renderPopup(session(s),{},{kind:'auction'}).html.includes('data-action="certificate"'));
@@ -25,7 +25,7 @@ test('all shared property summary consumers render the same certificate control'
 test('trade draft and incoming offer show property values, mortgage costs and read-only certificate links',()=>{
  let s=state();s.assets[11]={owner:0,level:0,mortgaged:false};s.assets[5]={owner:1,level:0,mortgaged:true};
  const ui={trade:{to:1,give:[11],take:[5],giveCash:123,takeCash:0,giveCards:0,takeCards:0},tradeInputs:{giveCash:'12.3'}};const before=JSON.stringify(ui);
- const draft=renderPopup(session(s),ui,{kind:'trade'});for(const text of ['Harga beli','Nilai gadai','Nilai beli aset','Jika diterima'.toLowerCase(),'bunga N 10 atau tebus N 110'])assert(draft.html.includes(text),text);assert(draft.html.includes('data-action="certificate" data-id="11"'));assert(draft.html.includes('data-action="tradeRemove"'));assert.equal(JSON.stringify(ui),before);
+ const draft=renderPopup(session(s),ui,{kind:'trade'});for(const text of ['Harga beli','Nilai gadai','Nilai beli aset','Jika diterima'.toLowerCase(),'bunga ₦ 10 atau tebus ₦ 110'])assert(draft.html.includes(text),text);assert(draft.html.includes('data-action="certificate" data-id="11"'));assert(draft.html.includes('data-action="tradeRemove"'));assert.equal(JSON.stringify(ui),before);
  s=command(s,0,{type:'OFFER',trade:ui.trade});const incoming=renderPopup({...session(s),seat:1},{},{kind:'tradeIncoming'});assert(incoming.html.includes('trade-property-detail'));assert(incoming.html.includes('Harga beli'));assert(!incoming.html.includes('tradeRemove'));assert(incoming.footer.includes('TRADE_ACCEPT'));
 });
 test('picker keeps selection distinct from certificate detail, including properties with unavailable buildings',()=>{

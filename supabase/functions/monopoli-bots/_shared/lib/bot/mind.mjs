@@ -1,3 +1,4 @@
+import {createDecisionContext} from './foundation.mjs';
 import {BOARD,GROUPS,command,decisionActor,chooseBot,rent,assets} from '../game.mjs';
 import {planDecision} from './strategy.mjs';
 import {ruleState,legalCandidate} from './candidates.mjs';
@@ -59,13 +60,13 @@ export function rolloutPolicy(s,actor,rng,options={}){
   const aggression=1+(Math.min(2,observations?.aggression||1)-1)*confidence;
   const minimum=Math.max(AUCTION_RULES.minimum,a.amount+AUCTION_RULES.increment),limit=Math.min(p.cash*.8,(t.price||t.build)*(1+rng()*.35)*aggression);
   // Sample rational jump bids: one-tick-only rollouts otherwise fail to resolve auctions.
-  const amount=Math.floor((minimum+Math.max(0,limit-minimum)*rng()*.4)/AUCTION_RULES.increment)*AUCTION_RULES.increment;
+  const amount=Math.max(minimum,Math.floor((minimum+Math.max(0,limit-minimum)*rng()*.4)/AUCTION_RULES.increment)*AUCTION_RULES.increment);
   const action=minimum<=limit?{type:'BID',amount}:{type:'PASS'};
   if(legalCandidate(s,actor,action))return action;
  }
  // A rollout must model economically capable players, not assume the legacy
  // rule bot will waste the opponent's portfolio. No recursive tree search.
- const plan=planDecision(s,actor,{fast:true,ablateTrade:true,publicOpponent:actor!==options.rootActor,ablateOpponent:options.noOpponent});
+ const plan=planDecision(s,actor,{fast:true,ablateTrade:true,publicOpponent:actor!==options.rootActor,ablateOpponent:options.noOpponent,context:options.context});
  if(s.phase==='trade'&&actor!==options.rootActor&&plan.action?.type==='TRADE_ACCEPT'){
   const accept=plan.candidates.find(c=>c.action.type==='TRADE_ACCEPT'),reject=plan.candidates.find(c=>c.action.type==='TRADE_REJECT');
   if(accept&&accept.score<1e7&&reject){const net=accept.score-100,probability=tradeAcceptance(s,actor,{net,raw:Math.abs(net)});return rng()<probability?accept.action:reject.action;}
@@ -147,7 +148,7 @@ function tactical(s,actor,ranked,ctx){
  * @param {import('./contracts.ts').BotGameState} input Existing engine state; runtime adapter accepts legacy saves too.
  * @param {number} actor
  * @returns {import('./contracts.ts').MindPlan}
- * @param {{difficulty?:string,timeBudgetMs?:number,maxNodes?:number,signal?:AbortSignal,seed?:number,clock?:()=>number,noLookahead?:boolean,noOpponent?:boolean,noRisk?:boolean,noMemory?:boolean,noLearning?:boolean,noPlanning?:boolean,searchVariant?:string,learningModel?:import('./contracts.ts').LearningModel|null,allowCandidateModel?:boolean}} [options]
+ * @param {{difficulty?:string,timeBudgetMs?:number,planningBudgetMs?:number,maxNodes?:number,signal?:AbortSignal,seed?:number,clock?:()=>number,noLookahead?:boolean,noOpponent?:boolean,noRisk?:boolean,noMemory?:boolean,noLearning?:boolean,noPlanning?:boolean,searchVariant?:string,learningModel?:import('./contracts.ts').LearningModel|null,allowCandidateModel?:boolean}} [options]
  */
 export function decideMind(input,actor,options={}){
  const clock=options.clock||(()=>performance.now()),started=clock();
@@ -157,10 +158,14 @@ export function decideMind(input,actor,options={}){
  options={...options,learningModel};
  const seed=options.seed??hashSeed(`${input.matchId}:${input.version}:${actor}:${difficulty}`);
  const s=observation(input,actor);if(options.noMemory)s.botMemory={version:1,players:{},opponents:{}};
- const plan=planDecision(s,actor,{...options,ablateOpponent:options.noOpponent}),fallback=plan.action;
  const budget=Number.isFinite(options.timeBudgetMs)?Math.min(1800,Math.max(0,options.timeBudgetMs)):model.budget;
+ // A zero default search budget (easy/medium) does not disable economic planning.
+ const planningBudget=Number.isFinite(options.planningBudgetMs)?Math.max(0,options.planningBudgetMs):(budget===0&&!Number.isFinite(options.timeBudgetMs)?180:budget);
+ const context=options.context||createDecisionContext({...options,clock,timeBudgetMs:planningBudget});
+ options={...options,context};
+ const plan=planDecision(s,actor,{...options,diagnostics:true,ablateOpponent:options.noOpponent}),fallback=plan.action;
  const limit=Number.isSafeInteger(options.maxNodes)?Math.min(2048,Math.max(0,options.maxNodes)):difficulty==='hard'?80:480;
- const ctx={seed,nodes:0,options,expired:()=>options.signal?.aborted||clock()-started>=budget||ctx.nodes>=limit};
+ const ctx={seed,nodes:0,options,expired:()=>context.expired()||clock()-started>=budget||ctx.nodes>=limit};
  let action=fallback,ranked=plan.candidates.map(c=>({...c})),samples=0,selectedBy='economic';
  const recommendation=learningModel?learnedPolicy(s,actor,plan,learningModel):null;
  if(recommendation){action=recommendation.action;selectedBy='learned-policy';}
@@ -221,6 +226,6 @@ export function decideMind(input,actor,options={}){
  }
  // Search can select only its original economically admissible legal candidates.
  if(!action||!plan.candidates.some(c=>c.id===action.actionId))action=fallback;
- return {...plan,action,candidates:ranked,shouldConsult:input.advisorEnabled===true&&plan.shouldConsult,
+ return {...plan,action,candidates:ranked,foundation:context.snapshot(),shouldConsult:input.advisorEnabled===true&&plan.shouldConsult,
   diagnostics:{version:MIND_VERSION,model:model.code,algorithm:model.algorithm,selectedBy,actor,persona:personaFor(s,actor).id,elapsedMs:Math.max(0,clock()-started),nodes:ctx.nodes,samples,interrupted:!!options.signal?.aborted,budgetExhausted:strategic&&['hard','hardcore'].includes(difficulty)&&(ctx.nodes>=limit||clock()-started>=budget),learning:{enabled:!!learningModel,status:proposed?.status||'untrained',policyUsed:!!recommendation,valueUsed:!!learningModel&&samples>0},search:search.map(c=>({id:c.id,mean:c.searchValue??null,tail:c.tail??null,samples:c.returns.length})),selected:action?.actionId}};
 }

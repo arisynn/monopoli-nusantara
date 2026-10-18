@@ -9,8 +9,19 @@ export function ruleState(visible){
  if(visible.card?.jailCard)held.add(visible.card.deck+':'+visible.card.idx);
  return {...visible,seen:[],decks:Object.fromEntries(Object.entries(DECKS).map(([name,cards])=>[name,cards.map((_,i)=>i).filter(i=>!held.has(name+':'+i))]))};
 }
-export function legalCandidate(visible,id,action){
- try{command(ruleState(visible),id,action,()=>.413);return true}catch{return false}
+export function candidateState(visible,id,action,context){
+ const {actionId,...intent}=action;
+ const compute=()=>{
+  context?.count('transitions');
+  try{
+   const rules=context?context.memo(visible,'rules','public',()=>ruleState(visible)):ruleState(visible);
+   return command(rules,id,intent,()=>.413);
+  }catch{context?.count('rejected');return null;}
+ };
+ return context?context.memo(visible,'transition',id+':'+JSON.stringify(intent),compute):compute();
+}
+export function legalCandidate(visible,id,action,context){
+ return !!action&&!!candidateState(visible,id,action,context);
 }
 export function generateCandidates(s,id,a){
  if(s.schemaVersion===1){const action=baseline(s,id);return action?[action]:[];}
@@ -33,7 +44,7 @@ export function generateCandidates(s,id,a){
  }
  if(!a.options.ablateTrade)candidates.push(...negotiationCandidates(s,id,a));
  if(s.phase==='debt'&&s.debt.from===id)candidates.push({type:'BANKRUPT'});
- const unique=new Map();for(const action of candidates){if(!constructionAffordable(s,id,action,a.reserve))continue;if(['BUILD','BUILD_JOIN'].includes(action.type)&&blockedDevelopment(s,id,action.tile))continue;const key=JSON.stringify(action);if(!unique.has(key)&&legalCandidate(s,id,action))unique.set(key,action);}
+ const unique=new Map();for(const action of candidates){if(!constructionAffordable(s,id,action,a.reserve))continue;if(['BUILD','BUILD_JOIN'].includes(action.type)&&blockedDevelopment(s,id,action.tile))continue;const key=JSON.stringify(action);if(!unique.has(key)&&legalCandidate(s,id,action,a.options.context))unique.set(key,action);}
  const all=[...unique.values()];
  // Round-robin action families only when capped. Mechanical exits and complete
  // economic alternatives must survive a large management/trade portfolio.

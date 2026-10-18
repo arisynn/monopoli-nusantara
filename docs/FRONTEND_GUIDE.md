@@ -1,3 +1,7 @@
+> Integrasi bot terbaru pada working tree: [NUSA V18 dan fondasi bersama](../INTEGRASI_NUSA_V18.md). UI dari pembaruan sebelumnya tetap dipertahankan.
+
+> Pembaruan lokal belum dirilis: lobi dirapikan, popup lelang fokus pada harga/pemegang tawaran tanpa profil peserta atau animasi, simbol mata uang ₦, nama model kapital, dan minimum pembuka/kenaikan lelang ₦ 5. Catatan aktif: [UI_UPDATE_IN_PROGRESS.md](UI_UPDATE_IN_PROGRESS.md).
+
 > Update 4.10.0: satu bank-indicator di board-stage, data dari state committed. bank-view.mjs merender details tertutup; ekspansi, scroll dan navigasi certificate dipertahankan. Bank tidak mengirim command. BoardView mengabaikan gesture dari kontrol data-action. Lihat RELEASE_4100.md.
 
 > Update 4.9.1: propertyHero memakai mini-deed dengan data rulepack. Tombol certificate membuka property preview read-only. app.mjs menyimpan popup manual asal, matchId, dan scroll; close/Escape/Back mengembalikannya tanpa menyimpan popup otomatis lama atau memanggil ACK/aksi ekonomi. Konteks match yang berubah dibuang. Pemilih barter memisahkan tombol detail dari label checkbox; draft/tawaran masuk memakai tombol detail terpisah dari hapus. Klasifikasi density mencocokkan token class penuh agar mini-deed tidak keliru dianggap deed. Lihat RELEASE_491.md.

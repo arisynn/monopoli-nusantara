@@ -18,7 +18,8 @@ def included(path):
     return not (
         any(p in {'node_modules', 'dist', 'server-dist', '.git', '__pycache__'} for p in parts)
         or (path.name.startswith('.env') and path.name != '.env.example')
-        or path.suffix in {'.zip', '.log', '.tsbuildinfo', '.pyc'}
+        or (path.suffix == '.zip' and parts != ('public', 'Monopoli_Nusantara_Game_Logic.zip'))
+        or path.suffix in {'.log', '.tsbuildinfo', '.pyc'}
         or path.name == 'PACKAGE_MANIFEST.json'
     )
 
@@ -32,16 +33,16 @@ if (root / '.env').exists():
 entries = []
 for path in files:
     data = path.read_bytes()
-    if any(value in data for value in secrets) or re.search(rb'gsk_[A-Za-z0-9]{25,}', data):
+    if any(value in data for value in secrets) or re.search(rb'(?:gsk_|ghp_)[A-Za-z0-9]{25,}|github_pat_[A-Za-z0-9_]{30,}', data):
         raise SystemExit('Secret detected in source file: ' + str(path.relative_to(root)))
     entries.append({'path': path.relative_to(root).as_posix(), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
 manifest = {
-    'release': version + ' Multiplayer & Result UI Fix',
+    'release': version + ' Lobby & Auction UI, Shared Bot Foundation, NUSA V18',
     'generatedAt': datetime.now(timezone.utc).isoformat(),
-    'basisVersion': '4.9.1',
+    'basisVersion': '4.11.0',
     'hashedFileCount': len(entries),
     'selfHash': 'Excluded to avoid a circular digest',
-    'excluded': ['.env and private env files', 'node_modules', 'dist', 'server-dist', '.git', 'logs', 'ZIP files'],
+    'excluded': ['.env and private env files', 'node_modules', 'dist', 'server-dist', '.git', 'logs', 'ZIP files except public/Monopoli_Nusantara_Game_Logic.zip'],
     'files': entries,
 }
 manifest_path = root / 'PACKAGE_MANIFEST.json'

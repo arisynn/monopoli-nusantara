@@ -71,7 +71,8 @@ export function tradeAcceptance(s,recipient,value){
 }
 export function negotiationCandidates(s,id,analysis){
   if(!(s.phase==='trade'&&s.trade.to===id)&&!['end','debt'].includes(s.phase))return [];
-  const out=[],unique=new Set(),context={analyses:new Map([[id,analysis],...analysis.others.map(p=>[p.id,analyzeState(s,p.id,{fast:true,publicOpponent:true})])])};
+  if(s.phase!=='trade'&&analysis.options.context?.expired())return [];
+  const out=[],unique=new Set(),context={analyses:new Map([[id,analysis],...analysis.others.map(p=>[p.id,analyzeState(s,p.id,{...analysis.options,fast:true,publicOpponent:true})])])};
   const add=(type,trade)=>{const key=JSON.stringify(trade);if(!unique.has(key)){unique.add(key);out.push({type,trade});}};
   if(s.phase==='trade'&&s.trade.to===id){
     const current=s.trade,value=evaluateTrade(s,id,current,current.from,context);
@@ -104,7 +105,7 @@ export function negotiationCandidates(s,id,analysis){
   const targets=BOARD.filter(t=>t.price&&s.assets[t.id].owner!==null&&s.assets[t.id].owner!==id&&s.assets[t.id].level===0&&(t.group<0||GROUPS[t.group].ids.every(i=>!s.assets[i].level)))
     .filter(t=>t.group>=0&&analysis.groups[t.group].owned>0)
     .sort((a,b)=>(b.group===analysis.targetGroup)-(a.group===analysis.targetGroup)||analysis.groups[b.group].owned-analysis.groups[a.group].owned).slice(0,6);
-  for(const t of targets){const other=s.assets[t.id].owner;if(rejectionActive(s,memory,other))continue;
+  for(const t of targets){if(analysis.options.context?.expired())break;const other=s.assets[t.id].owner;if(rejectionActive(s,memory,other))continue;
     const cash=Math.ceil(t.price*1.1),trade={...empty(other),take:[t.id],giveCash:cash};
     if(cash<=s.players[id].cash)add('OFFER',trade);
     const donors=available.filter(d=>d.group!==t.group&&!(d.group>=0&&analysis.groups[d.group].owned===GROUPS[d.group].ids.length))
@@ -121,6 +122,7 @@ export function negotiationCandidates(s,id,analysis){
     const sameOwner=BOARD.filter(q=>q.id!==t.id&&q.group===t.group&&s.assets[q.id].owner===other&&!s.assets[q.id].level);
     if(sameOwner.length)takeTargets.push([t.id,sameOwner[0].id]);
     for(const give of bundles)for(const take of takeTargets){
+      if(analysis.options.context?.expired())break;
       const base={...empty(other),give,take},own=evaluateTrade(s,id,base,id,context),partner=evaluateTrade(s,other,base,id,context);
       const lower=Math.max(-s.players[other].cash,-partner.net),upper=Math.min(s.players[id].cash,own.net);
       if(upper<lower)continue;

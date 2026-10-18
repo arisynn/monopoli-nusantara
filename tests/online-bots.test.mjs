@@ -4,15 +4,15 @@ import {runBotWorker,botActor,workerAuthorized} from '../lib/server/bot-worker.m
 import {createGame,command} from '../lib/game.mjs';
 import {BotJobStore} from './helpers/bot-job-store.mjs';
 const users=Array.from({length:7},(_,i)=>`00000000-0000-4000-8000-${String(i+1).padStart(12,'0')}`);
-async function fixture(humans=2,bots=3){let now=1000000;const clock=()=>now,store=new BotJobStore(clock),service=createOnlineService({store,clock,botsEnabled:true,rng:()=>.2,generateCode:()=> 'ABCDEFGH'});
+async function fixture(humans=2,bots=3,personas=null){let now=1000000;const clock=()=>now,store=new BotJobStore(clock),service=createOnlineService({store,clock,botsEnabled:true,rng:()=>.2,generateCode:()=> 'ABCDEFGH'});
  const call=(i,type,data={})=>service.execute({type,clientId:`connection-${i}`,requestId:data.action?.id||crypto.randomUUID(),code:'ABCDEFGH',...data},users[i]);
- await call(0,'CREATE',{capacity:6,name:'Player 1'});for(let i=1;i<humans;i++)await call(i,'JOIN',{name:`Player ${i+1}`});for(let i=0;i<bots;i++)await call(0,'ADD_BOT');
+ await call(0,'CREATE',{capacity:6,name:'Player 1'});for(let i=1;i<humans;i++)await call(i,'JOIN',{name:`Player ${i+1}`});for(let i=0;i<bots;i++)await call(0,'ADD_BOT',personas?{persona:personas[i]}:{});
  for(let i=0;i<humans;i++)await call(i,'READY',{ready:true});await call(0,'START');
  const engine=async fn=>{const row=await store.get('ABCDEFGH');row.data.state=createGame({players:row.data.seats,startingRoll:false},()=>.2);fn(row.data.state);await store.commit(row,row.data,{notify:true});store.jobs.get('ABCDEFGH').status='scheduled';};
  return {store,service,call,clock,advance:t=>now+=t,engine,room:()=>store.rooms.get('ABCDEFGH').data};
 }
 for(const [humans,bots] of [[2,0],[2,1],[2,3],[3,3],[6,0]])test(`room composition ${humans} humans + ${bots} bots`,async()=>{
- const f=await fixture(humans,bots),r=f.room();assert.equal(r.seats.length,humans+bots);assert.equal(new Set(r.seats.filter(s=>s.controller==='bot').map(s=>s.botPersona)).size,bots);assert.deepEqual(r.seats.filter(s=>s.controller==='bot').map(s=>s.name),['Raka','Bima','Sari'].slice(0,bots));
+ const f=await fixture(humans,bots),r=f.room();assert.equal(r.seats.length,humans+bots);assert.equal(new Set(r.seats.filter(s=>s.controller==='bot').map(s=>s.botPersona)).size,bots);assert.deepEqual(r.seats.filter(s=>s.controller==='bot').map(s=>s.name),['RAKA','BIMA','SARI'].slice(0,bots));
  if(bots)assert(r.state.players.some(p=>p.botPersona==='raka'));
 });
 test('only host can add at Waiting; no duplicate personas, fourth bot, or participant overflow',async()=>{
@@ -90,4 +90,12 @@ test('invalid online bot suggestion falls back to a legal local decision',async(
  const f=await fixture(2,1);await f.engine(s=>{s.turn=2});
  const result=await runBotWorker({store:f.store,clock:f.clock,maxSteps:1,rng:()=>.2,decide:async()=>({action:{type:'NONEXISTENT'},status:'hybrid'})});
  assert.equal(result.committed,1);assert.equal(f.room().state.version,1);assert.equal(f.room().state.aiStatus,'local');assert.equal(f.store.botActions.size,1);
+});
+
+test('NUSA V18 runs through the online job worker and commits one legal purchase',async()=>{
+ const f=await fixture(2,1,['nusa']);await f.engine(s=>{s.turn=2;s.phase='buy';s.buy=13;});
+ const result=await runBotWorker({store:f.store,clock:f.clock,maxSteps:1,rng:()=>.2});
+ assert.equal(result.committed,1);assert.equal(f.room().state.version,1);
+ assert.equal(f.room().state.players[2].botPersona,'nusa');assert.equal(f.room().state.assets[13].owner,2);
+ assert.equal(f.room().state.players[2].cash,13600);assert.equal(f.store.botActions.size,1);
 });

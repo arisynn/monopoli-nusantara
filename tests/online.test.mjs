@@ -192,3 +192,18 @@ test('participant can rename while playing and paused without rewriting turn, as
  // Only the identified participant can change their own seat.
  await assert.rejects(f.call(6,'RENAME',{name:'Impersonated'}),/Bukan peserta/);
 });
+
+test('online service enforces five-Nusa opening and minimum increases before committing', async () => {
+ const f = await fixture(3);
+ f.store.edit(f.code, room => {room.state.phase='buy';room.state.buy=1;});
+ await f.action(0,'AUCTION');
+ await f.action(2,'BID',{amount:50});
+ const before=JSON.stringify((await f.view(0)).state);
+ await assert.rejects(()=>f.action(0,'BID',{amount:60}),/minimal/);
+ assert.equal(JSON.stringify((await f.view(0)).state),before);
+ await f.action(0,'BID',{amount:100});
+ await f.action(1,'PASS');await f.action(2,'PASS');
+ const done=(await f.view(0)).state;
+ assert.equal(done.assets[1].owner,0);
+ assert.equal(done.players[0].cash,14900);
+});

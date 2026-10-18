@@ -3,18 +3,19 @@ import {managementError,rent,stock,command} from '../game.mjs';
 import {economyRules,buildingCashReserve} from './economy.mjs';
 const penalty=(cash,reserve)=>Math.max(0,reserve-cash)*1.15+Math.max(0,reserve*.35-cash)*1.5;
 const copy=s=>({...s,players:s.players.map(p=>({...p})),assets:Object.fromEntries(Object.entries(s.assets).map(([k,v])=>[k,{...v}]))});
-export function allocateDevelopment(input,id,{reserve=0,probability=()=>.025,horizon=24,maxSteps=40,conservative=true}={}){
+export function allocateDevelopment(input,id,{reserve=0,probability=()=>.025,horizon=24,maxSteps=40,conservative=true,expired=()=>false}={}){
   const cashFloor=buildingCashReserve({reserve});
   const s=copy(input),originalCash=s.players[id].cash,opponents=s.players.filter(p=>!p.out&&p.id!==id),path=[];
   const personaId=s.players[id]?.botPersona;
   const isSari=personaId==='sari',isRaka=personaId==='raka';
   let gain=0,cost=0,contested=false;
-  for(let pass=0;pass<8&&path.length<maxSteps;pass++){
+  for(let pass=0;pass<8&&path.length<maxSteps&&!expired();pass++){
     const options=[];
     for(const g of GROUPS){
+      if(expired())break;
       if(!g.ids.every(i=>s.assets[i].owner===id&&!s.assets[i].mortgaged))continue;
       const next=copy(s),actions=[];let spend=0,benefit=0,releasePenalty=0;
-      for(let step=0;step<15&&path.length+actions.length<maxSteps;step++){
+      for(let step=0;step<15&&path.length+actions.length<maxSteps&&!expired();step++){
         const candidates=g.ids.filter(i=>!managementError(next,id,i,'BUILD')).sort((x,y)=>{
           const marginal=i=>{const a=next.assets[i];return (BOARD[i].rents[a.level+1]-rent(next,i,7))*probability(i);};
           return marginal(y)-marginal(x)||x-y;

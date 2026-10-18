@@ -1,33 +1,11 @@
-// Decoration only: preserve the engine's exact amount text and input values.
-// Skip SVG labels, which remain vector text for readability at board overview scale.
+// Normalize currency in older saved log text without changing names or input values.
+// New amounts already use the actual naira glyph, including vector board labels.
 export function decorateCurrency(root) {
-  const doc = root.ownerDocument || document,
-    walker = doc.createTreeWalker(root, NodeFilter.SHOW_TEXT),
-    nodes = [];
+  const doc = root.ownerDocument || document;
+  const walker = doc.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   while (walker.nextNode()) {
     const node = walker.currentNode;
-    if (
-      !node.parentElement?.closest(
-        "svg,input,textarea,select,script,style,.nusa-token",
-      ) &&
-      /\bN (?=[−–-]?\d)/.test(node.data)
-    )
-      nodes.push(node);
-  }
-  for (const node of nodes) {
-    const fragment = doc.createDocumentFragment(),
-      pattern = /\bN (?=[−–-]?\d)/g;
-    let offset = 0,
-      match;
-    while ((match = pattern.exec(node.data))) {
-      fragment.append(doc.createTextNode(node.data.slice(offset, match.index)));
-      const mark = doc.createElement("span");
-      mark.className = "nusa-token";
-      mark.textContent = "N";
-      fragment.append(mark, doc.createTextNode(" "));
-      offset = match.index + 2;
-    }
-    fragment.append(doc.createTextNode(node.data.slice(offset)));
-    node.replaceWith(fragment);
+    if (!node.parentElement?.closest("input,textarea,select,script,style"))
+      node.data = node.data.replace(/\bN (?=[−–-]?\d)/g, "₦ ");
   }
 }

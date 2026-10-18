@@ -1,3 +1,5 @@
+> Riwayat integrasi V17. Source aktif working tree kini mengikuti [INTEGRASI_NUSA_V18.md](INTEGRASI_NUSA_V18.md).
+
 # Monopoli Nusantara — NUSA V17 integration
 
 - Game UI: popup daftar karakter 6 persona (1 kolom), tanpa kesulitan manual. Internal engine `botDifficulty` dipertahankan untuk kompatibilitas save/server; game baru mengirim `hardcore`.

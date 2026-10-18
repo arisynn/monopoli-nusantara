@@ -1,5 +1,5 @@
 import {run} from 'node:test';import {mkdirSync,writeFileSync} from 'node:fs';
-const names=['bank-economy','bot-construction-reserve','bot-v410-hybrid','auction-ui','trade-value','certificate-preview','learning-artifact','vercel-runtime','mind-learning','mind-learning-online','build-fingerprint','game','classic','storage','save-format','room-client','online','online-client','player-name','auth-proxy','online-api','bot-strategy','groq-hybrid','bot-api','online-bots','mind-headless','presentation-headless','headless-package','frontend'];
+const names=['bot-foundation','nusa-v18','bank-economy','bot-construction-reserve','bot-v410-hybrid','auction-ui','trade-value','certificate-preview','learning-artifact','vercel-runtime','mind-learning','mind-learning-online','build-fingerprint','game','classic','storage','save-format','room-client','online','online-client','player-name','auth-proxy','online-api','bot-strategy','groq-hybrid','bot-api','online-bots','mind-headless','presentation-headless','headless-package','frontend'];
 const files=names.map(n=>'tests/'+n+'.test.mjs'),failures=[];let summary;
 for await(const event of run({files,isolation:'none',concurrency:false})){
  if(event.type==='test:fail'){failures.push({name:event.data.name,error:String(event.data.details?.error)});console.error('FAIL',event.data.name,event.data.details?.error);}

@@ -20,6 +20,9 @@ import { MODELS } from "../lib/bot/mind-config.mjs";
 import { financeRows, financeLabels } from "../lib/finance.mjs";
 import { bankruptcyShortfall } from "../lib/gameplay-presentation.mjs";
 import { tradeChoices, tradeDraftStatus } from "../lib/compact-ui.mjs";
+import { parseNusa, nusaInput } from "../lib/currency.mjs";
+import { auctionIdentity } from "../lib/auction-presentation.mjs";
+import { PERSONAS } from "../lib/bot/personas.mjs";
 import { AUCTION_RULES } from "../lib/content.mjs";
 import {
   esc,
@@ -107,7 +110,7 @@ function certificate(t, s) {
       ? [1, 2, 3, 4]
           .map((n) => row(n + " stasiun", money(250 * 2 ** (n - 1))))
           .join("")
-      : '<p class="deed-rule">Satu utilitas: sewa <b>4 × jumlah dadu × N 1</b>.</p><p class="deed-rule">Dua utilitas: sewa <b>10 × jumlah dadu × N 1</b>.</p>';
+      : '<p class="deed-rule">Satu utilitas: sewa <b>4 × jumlah dadu × ₦ 1</b>.</p><p class="deed-rule">Dua utilitas: sewa <b>10 × jumlah dadu × ₦ 1</b>.</p>';
   return `<article class="deed">${header}<section class="deed-rents">${rent}</section><section class="deed-costs">${row("Harga tanah", money(t.price))}${city ? row(buildingArt("house") + " Biaya 1 rumah", money(t.build)) + row(buildingArt("hotel") + " Biaya 1 hotel", money(t.build)) + "<small>Hotel menggantikan 4 rumah.</small>" : ""}${row("Nilai gadai", money(t.mortgage))}${a?.mortgaged ? row("Biaya tebus", money(redemption(t.id))) : ""}</section><footer>${a?.owner != null ? "Milik " + esc(s.players[a.owner].name) : "Tersedia di bank"}${a?.mortgaged ? " · Digadai" : ""}</footer></article>`;
 }
 function buy(c) {
@@ -290,36 +293,66 @@ function picker(c, p) {
   };
 }
 function auction(c, p) {
-  const a = c.s.auction,
-    id =
-      a.kind === "building"
-        ? (a.targets[c.seat] ?? Object.values(a.targets)[0])
-        : a.tile,
-    t = BOARD[id],
-    min = bidMinimum(c.s),
-    offer = Math.max(min, c.ui.bid || 0),
-    can =
-      !p.settling &&
-      a.participants.includes(c.seat) &&
-      a.highest !== c.seat &&
-      c.s.players[c.seat].controller === "human" &&
-      !c.s.players[c.seat].out;
+  const a = c.s.auction;
+  const id =
+    a.kind === "building"
+      ? (a.targets[c.seat] ?? Object.values(a.targets)[0])
+      : a.tile;
+  const min = bidMinimum(c.s);
+  const raw = c.ui.bidRaw ?? nusaInput(Math.max(min, c.ui.bid || 0));
+  const offer = parseNusa(raw);
+  const cash = c.s.players[c.seat].cash;
+  const eligible =
+    !p.settling &&
+    a.participants.includes(c.seat) &&
+    a.highest !== c.seat &&
+    c.s.players[c.seat].controller === "human" &&
+    !c.s.players[c.seat].out;
+  const editable = eligible && !c.session.pending && !c.session.paused;
+  const can = editable && !c.session.busy;
+  const invalid =
+    !raw.trim() ||
+    offer === null ||
+    offer % 10 !== 0 ||
+    offer < min ||
+    offer > cash;
+  const leader = a.highest === null ? null : c.s.players[a.highest];
+  const leaderName =
+    leader?.controller === "bot"
+      ? PERSONAS.find((persona) => persona.id === leader.botPersona)?.name ||
+        leader.name.toUpperCase()
+      : leader?.name;
+  let message = p.settling
+    ? "Tawaran ditutup. Menyelesaikan pembayaran pemenang."
+    : a.highest === c.seat
+      ? "Tawaran Anda tertinggi. Menunggu peserta lain."
+      : a.passed.includes(c.seat)
+        ? "Anda masih boleh menawar lagi selama lelang terbuka."
+        : "Penawaran terbuka, tanpa batas waktu.";
+  if (eligible && invalid)
+    message =
+      offer !== null && offer > cash
+        ? "Saldo Anda tidak cukup untuk tawaran ini."
+        : offer === null || !raw.trim() || offer % 10 !== 0
+          ? "Masukkan tawaran dalam Nusa bulat."
+          : `Tawaran minimal berikutnya ${money(min)}.`;
+  if (c.session.error) message = c.session.error;
+  const title = a.kind === "building" ? "Lelang Bangunan" : "Lelang Properti";
   return {
-    title: "Lelang Properti",
+    title,
     html:
+      `<div class="auction-panel" data-auction-id="${esc(auctionIdentity(c.s))}">` +
       lead(
         "gavel",
-        a.kind === "building" ? "Lelang Bangunan" : "Lelang Properti",
-        p.settling
-          ? "Tawaran ditutup · menampilkan hasil."
-          : "Penawaran terbuka · tanpa timer paksa.",
+        title,
+        `Mulai ${money(AUCTION_RULES.minimum)} · naik minimal ${money(AUCTION_RULES.increment)}`,
       ) +
-      propertyHero(t, c.s) +
-      `<div class="auction-bid"><span>Tawaran tertinggi saat ini</span>${amount(a.amount)}<small>${a.highest === null ? "Belum ada penawaran" : "Oleh " + esc(c.s.players[a.highest].name)}</small></div><div class="auction-people" data-count="${a.participants.length}">${a.participants.map((i) => `<div data-auction-player="${i}" class="${i === a.highest ? "selected" : ""}">${avatar(i)}<b>${esc(c.s.players[i].name)}</b><small>${i === a.highest ? (p.settling ? "Menang" : "Tertinggi") : p.settling ? "Selesai" : a.passed.includes(i) ? "Lewati" : i === a.bidder ? "Berikutnya" : "Aktif"}</small></div>`).join("")}</div><label class="field"><span>Tawaran Nusa (minimal ${esc(money(min))})</span><input name="bid" type="number" min="${min / 10}" step="${AUCTION_RULES.increment / 10}" value="${offer / 10}" inputmode="decimal" ${p.settling ? "disabled" : ""}></label><div class="chips">${[10, 20, 50, 100].map((n) => `<button data-action="bidStep" data-amount="${n * 10}" ${p.settling ? "disabled" : ""}>+ N ${n}</button>`).join("")}</div><p class="inline-note">Kas Anda ${esc(money(c.s.players[c.seat].cash))}. ${p.settling ? "Pembayaran pemenang sedang ditampilkan." : a.highest === c.seat ? "Tawaran Anda sedang tertinggi." : a.passed.includes(c.seat) ? "Anda masih boleh menawar lagi selama lelang terbuka." : ""}</p>`,
+      propertyHero(BOARD[id], c.s) +
+      `<section class="auction-leader" aria-label="Tawaran tertinggi" aria-live="polite" aria-atomic="true"><span>HARGA TERTINGGI</span><strong class="auction-price" title="${esc(money(a.amount))}">${esc(money(a.amount))}</strong><div class="auction-holder"><small>Pemegang tawaran</small><b title="${esc(leaderName || "Belum ada penawaran")}">${esc(leaderName || "Belum ada penawaran")}</b></div></section><div class="auction-controls"><label class="field" for="auction-offer">Tawaran Anda</label><div class="auction-input-row"><span aria-hidden="true">₦</span><input id="auction-offer" name="bid" type="number" min="${min / 10}" step="1" value="${esc(raw)}" inputmode="numeric" aria-describedby="auction-minimum auction-message" ${!editable ? "disabled" : ""}></div><p id="auction-minimum" class="auction-minimum">Minimal berikutnya <b>${esc(money(min))}</b></p><div class="chips auction-steps" aria-label="Tambah dari harga tertinggi">${[5, 10, 50].map((n) => `<button type="button" data-action="bidStep" data-amount="${n * 10}" aria-label="${esc(money(n * 10))} di atas harga tertinggi" ${!editable ? "disabled" : ""}>+ ${esc(money(n * 10))}</button>`).join("")}</div><div class="auction-balance"><span>Saldo Anda</span><b>${esc(money(cash))}</b></div><p id="auction-message" class="auction-message" data-tone="${(eligible && invalid) || c.session.error ? "error" : "normal"}" role="status">${esc(message)}</p></div></div>`,
     footer:
       btn("Tawar", "bid", {
         primary: true,
-        disabled: c.session.busy || !can || offer > c.s.players[c.seat].cash,
+        disabled: !can || invalid,
         sym: "gavel",
       }) +
       commandButton(
@@ -344,7 +377,7 @@ function jail(c) {
       ) +
       `<div class="jail-art"><img src="/assets/classic/jail.png" alt="Penjara"></div><div class="fact-row"><span>Saldo Anda</span>${amount(p.cash)}</div><p class="body-copy">Pilih cara keluar yang sah. Menutup popup tidak mengulang kejadian masuk penjara.</p>`,
     footer:
-      commandButton("Bayar N 50", "JAIL_PAY", c, {}, true, p.cash < 500) +
+      commandButton("Bayar ₦ 50", "JAIL_PAY", c, {}, true, p.cash < 500) +
       commandButton(
         "Gunakan kartu",
         "JAIL_CARD",
@@ -487,8 +520,10 @@ function profile(c, p) {
     html:
       lead("people", "Profil Pemain") +
       `<div class="profile-hero">${avatar(player.id)}<h3>${esc(player.name)}</h3><span>${player.controller === "bot" ? "Bot · " + esc(player.botPersona || player.name) : "Pemain manusia"}${connection ? " · " + (connection.connected ? "Terhubung" : "Terputus") : ""}</span>${pawnArt(pawnFor(player), "Pion " + TOKENS[pawnFor(player)].name)}</div><div class="detail-grid"><div><span>Saldo</span>${amount(player.cash)}</div><div><span>Total aset</span>${amount(worth(c.s, player.id))}</div><div><span>Properti</span><b>${assets(c.s, player.id).length}</b></div><div><span>Status</span><b>${player.out ? "Bangkrut" : player.inJail ? "Penjara" : "Aktif"}</b></div></div><section class="profile-ledger"><h3>Riwayat Nusa</h3><small>Transaksi publik dalam riwayat tersimpan · maksimal 300 kejadian.</small>${ledger.map((row) => `<article data-ledger-row="${esc(row.id)}"><span><small>RONDE ${row.turn} · ${esc(financeLabels[row.kind] || "Transaksi")}</small><p>${esc(row.description)}</p></span><b class="${row.amount > 0 ? "positive" : "negative"}">${row.amount > 0 ? "+" : "−"} ${esc(money(Math.abs(row.amount)))}</b></article>`).join("") || '<p class="empty">Belum ada transaksi Nusa tercatat.</p>'}</section>`,
-    footer: (player.id === c.seat && player.controller === "human"
-      ? btn("Ubah nama", "myProfile", {sym: "people"}) : "") +
+    footer:
+      (player.id === c.seat && player.controller === "human"
+        ? btn("Ubah nama", "myProfile", { sym: "people" })
+        : "") +
       btn("Lihat properti", "assets", {
         primary: true,
         extra: `data-id="${player.id}"`,

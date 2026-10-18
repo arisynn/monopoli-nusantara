@@ -1,64 +1,64 @@
 {
   "checks": [
     {
-      "name": "2 participants 320",
-      "passed": true,
-      "columns": 2
+      "name": "2 participants 320: fixed leader panel, no portraits or motion",
+      "passed": true
     },
     {
-      "name": "4 participants 320",
-      "passed": true,
-      "columns": 2
+      "name": "4 participants 320: fixed leader panel, no portraits or motion",
+      "passed": true
     },
     {
-      "name": "6 participants 320",
-      "passed": true,
-      "columns": 2
+      "name": "6 participants 320: fixed leader panel, no portraits or motion",
+      "passed": true
     },
     {
-      "name": "2 participants 360",
-      "passed": true,
-      "columns": 2
+      "name": "2 participants 360: fixed leader panel, no portraits or motion",
+      "passed": true
     },
     {
-      "name": "4 participants 360",
-      "passed": true,
-      "columns": 2
+      "name": "4 participants 360: fixed leader panel, no portraits or motion",
+      "passed": true
     },
     {
-      "name": "6 participants 360",
-      "passed": true,
-      "columns": 3
+      "name": "6 participants 360: fixed leader panel, no portraits or motion",
+      "passed": true
     },
     {
-      "name": "2 participants 390",
-      "passed": true,
-      "columns": 2
+      "name": "2 participants 390: fixed leader panel, no portraits or motion",
+      "passed": true
     },
     {
-      "name": "4 participants 390",
-      "passed": true,
-      "columns": 2
+      "name": "4 participants 390: fixed leader panel, no portraits or motion",
+      "passed": true
     },
     {
-      "name": "6 participants 390",
-      "passed": true,
-      "columns": 3
+      "name": "6 participants 390: fixed leader panel, no portraits or motion",
+      "passed": true
     },
     {
-      "name": "2 participants 430",
-      "passed": true,
-      "columns": 2
+      "name": "2 participants 430: fixed leader panel, no portraits or motion",
+      "passed": true
     },
     {
-      "name": "4 participants 430",
-      "passed": true,
-      "columns": 2
+      "name": "4 participants 430: fixed leader panel, no portraits or motion",
+      "passed": true
     },
     {
-      "name": "6 participants 430",
-      "passed": true,
-      "columns": 3
+      "name": "6 participants 430: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "2 participants 1280: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "4 participants 1280: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "6 participants 1280: fixed leader panel, no portraits or motion",
+      "passed": true
     },
     {
       "name": "human-reentry",
@@ -69,17 +69,25 @@
       "passed": true
     },
     {
-      "name": "winning payment keeps dialog open until one result and charges once",
+      "name": "Invalid bids blocked; real bot update preserves raw input, focus, DOM nodes and panel positions",
       "passed": true
     },
     {
-      "name": "bankruptcy auction chain stays open and resets previous bid amount",
+      "name": "Winning payment keeps dialog open, charges once, and shows a still result",
+      "passed": true
+    },
+    {
+      "name": "Bankruptcy auction chain stays open and resets input to the new opening minimum",
+      "passed": true
+    },
+    {
+      "name": "Naira symbol normalizes older currency text while preserving NUSA and input values",
       "passed": true
     }
   ],
   "errors": [],
   "limits": [
-    "Chromium emulation with real local engine/save; not a live online room.",
-    "Bot idle scheduler held only in the fixture to inspect re-entry deterministically; core tests also verify bot eligibility after a raised bid."
+    "Local engine/save and real bot worker in Chromium; not a live online room.",
+    "Bot idle scheduling is held in fixtures and explicitly released for the incoming-bid check."
   ]
 }

@@ -1,0 +1,52 @@
+{
+  "checks": [
+    {
+      "name": "Real browser worker raka",
+      "passed": true,
+      "model": "NUSA-X4",
+      "action": "BID"
+    },
+    {
+      "name": "Real browser worker bima",
+      "passed": true,
+      "model": "NUSA-X4",
+      "action": "BID"
+    },
+    {
+      "name": "Real browser worker sari",
+      "passed": true,
+      "model": "NUSA-X4",
+      "action": "BID"
+    },
+    {
+      "name": "Real browser worker nusa",
+      "passed": true,
+      "model": "NUSA-V18.0-SINGULARITY",
+      "action": "BID"
+    },
+    {
+      "name": "Real browser worker apex",
+      "passed": true,
+      "model": "APEX-JS-3.0",
+      "action": "BID"
+    },
+    {
+      "name": "Real browser worker kresna",
+      "passed": true,
+      "model": "KRESNA-V2.0",
+      "action": "BID"
+    },
+    {
+      "name": "Cancelled browser worker restarts and returns a fresh V18 decision",
+      "passed": true
+    },
+    {
+      "name": "App resumes a NUSA turn, runs V18 in worker and commits its purchase once",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium browser, real local worker and saved-game UI; no live Supabase room."
+  ]
+}

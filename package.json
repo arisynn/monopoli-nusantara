@@ -3,7 +3,7 @@
   "version": "4.11.0",
   "private": true,
   "type": "module",
-  "description": "Nusantara \u2014 Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
+  "description": "Nusantara — Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
   "engines": {
     "node": "24.x"
   },
@@ -46,7 +46,10 @@
     "test:auction": "node --experimental-strip-types scripts/test-auction-browser.mjs",
     "test:bank": "node --experimental-strip-types scripts/test-bank-browser.mjs",
     "benchmark:hybrid": "node scripts/benchmark-hybrid.mjs",
-    "train:hybrid": "node scripts/train-hybrid.mjs"
+    "train:hybrid": "node scripts/train-hybrid.mjs",
+    "benchmark:foundation": "node scripts/benchmark-foundation.mjs",
+    "benchmark:personas": "node scripts/benchmark-personas.mjs",
+    "test:foundation:browser": "node scripts/test-foundation-browser.mjs"
   },
   "devDependencies": {
     "@types/node": "22.19.19",

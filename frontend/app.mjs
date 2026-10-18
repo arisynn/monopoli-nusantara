@@ -1,5 +1,6 @@
 import { bankSnapshot } from "../lib/bank-economy.mjs";
 import { lucideIcon } from "./lucide-icons.mjs";
+import { updateAuctionBody } from "./auction-view.mjs";
 import { auctionIdentity } from "../lib/auction-presentation.mjs";
 import { APP_VERSION } from "../lib/version.mjs";
 import { upgradeIcons } from "./lucide-icons.mjs";
@@ -31,11 +32,15 @@ import { localPlayers, PERSONAS } from "../lib/bot/personas.mjs";
 import { TOKENS, pawnFor, availablePawn } from "../lib/pawns.mjs";
 import { BOARD, money } from "../lib/content.mjs";
 import { decisionActor } from "../lib/game.mjs";
-import { parseNusa } from "../lib/currency.mjs";
+import { parseNusa, nusaInput } from "../lib/currency.mjs";
 import { serializeSave, parseSave } from "../lib/save-format.mjs";
 import { saveSlot, listSaves } from "../lib/storage.ts";
 import { loadPreferences, savePreferences } from "../lib/preferences.mjs";
-import { loadPlayerName, savePlayerName, requirePlayerName } from "../lib/player-name.mjs";
+import {
+  loadPlayerName,
+  savePlayerName,
+  requirePlayerName,
+} from "../lib/player-name.mjs";
 import { changeTradeOpponent, tradeDraftStatus } from "../lib/compact-ui.mjs";
 const session = new GameSession(),
   prefs = loadPreferences(
@@ -97,10 +102,18 @@ let board,
 const botFor = (id) => PERSONAS.find((p) => p.id === id);
 const selectedBots = () => ui.botIds.slice(0, ui.count - 1);
 const availableRoomPersona = () => {
-  const occupied = new Set((session.online?.seats || []).filter((p) => p.controller === "bot").map((p) => p.botPersona));
-  return PERSONAS.find((p) => p.id === ui.nextBotPersona && !occupied.has(p.id)) || PERSONAS.find((p) => !occupied.has(p.id));
+  const occupied = new Set(
+    (session.online?.seats || [])
+      .filter((p) => p.controller === "bot")
+      .map((p) => p.botPersona),
+  );
+  return (
+    PERSONAS.find((p) => p.id === ui.nextBotPersona && !occupied.has(p.id)) ||
+    PERSONAS.find((p) => !occupied.has(p.id))
+  );
 };
-const botCard = (p, selected, disabled) => `<button type="button" class="bot-choice-card ${selected ? "selected" : ""}" data-action="chooseBotPersona" data-value="${p.id}" aria-pressed="${selected}" ${disabled ? "disabled" : ""}>${avatar(PERSONAS.indexOf(p))}<span class="bot-choice-details"><b>${esc(p.name === "Arka" ? "Arka / APEX" : p.name)}</b><small>${esc(p.role)}</small></span><span class="bot-choice-indicator">${selected ? icon("check", 16) : disabled ? "Dipakai" : icon("arrow", 16)}</span></button>`;
+const botCard = (p, selected, disabled) =>
+  `<button type="button" class="bot-choice-card ${selected ? "selected" : ""}" data-action="chooseBotPersona" data-value="${p.id}" aria-pressed="${selected}" ${disabled ? "disabled" : ""}>${avatar(PERSONAS.indexOf(p))}<span class="bot-choice-details"><b>${esc(p.id === "apex" ? "ARKA / APEX" : p.name)}</b><small>${esc(p.role)}</small></span><span class="bot-choice-indicator">${selected ? icon("check", 16) : disabled ? "Dipakai" : icon("arrow", 16)}</span></button>`;
 const brand = () => `<div class="brand">Nusantara</div>`;
 const topbar = () =>
   `<header class="topbar"><button class="icon-button" data-action="menu" aria-label="Menu permainan">${icon("menu", 22)}</button>${brand()}${session.screen === "gameplay" ? `<button class="icon-button" data-action="camera" aria-label="Kamera: ${ui.camera === "overview" ? "lihat dekat" : "seluruh papan"}" aria-pressed="${ui.camera === "follow"}">${icon("map", 22)}</button>` : '<span class="header-spacer" aria-hidden="true"></span>'}</header>`;
@@ -115,7 +128,13 @@ function lobbyContent() {
     isRoom = !!session.room,
     players = isRoom
       ? r.seats
-      : localPlayers(ui.name || "Pemain", ui.count, ui.pawn, ui.levels, selectedBots()).map((p, id) => ({
+      : localPlayers(
+          ui.name || "Pemain",
+          ui.count,
+          ui.pawn,
+          ui.levels,
+          selectedBots(),
+        ).map((p, id) => ({
           ...p,
           name: !ui.name && id === 0 ? "Isi nama di Profil Saya" : p.name,
           ...p,
@@ -131,12 +150,19 @@ function lobbyContent() {
         players.every((p) => p.controller === "bot" || (p.ready && p.connected))
       : true;
   const slots = isRoom ? r.capacity : ui.count;
-  return `<div class="lobby-heading"><span class="eyebrow">RUANG BERMAIN <b>${isRoom ? "ONLINE" : "VS BOT"}</b></span><h1>Ruang Bermain</h1></div><div class="lobby-facts"><span>${icon("map", 19)}40 petak</span><span>${icon("people", 19)}${isRoom ? "2–6" : ui.count} peserta</span><span class="coin-label"><span class="nusa-token">N</span> = Nusa</span></div>${isRoom ? `<button class="room-code" data-action="copyRoom"><small>KODE ROOM</small><b>${esc(r.code)}</b>${icon("copy", 18)}</button>` : `<button class="setup-summary" data-action="setup"><span>${esc(ui.name || "Nama belum diisi")} · ${ui.count} peserta</span><b>Atur permainan ${icon("gear", 15)}</b></button>`}<div class="lobby-roster" style="--columns:${slots === 2 || slots === 4 ? 2 : 3}">${Array.from(
+  return `<div class="lobby-heading"><h1>Ruang Bermain</h1><span class="lobby-mode">${isRoom ? "ONLINE" : "VS BOT"}</span></div><div class="lobby-facts"><span>${icon("map", 19)}40 petak</span><span>${icon("people", 19)}${isRoom ? players.length + "/" + r.capacity : ui.count} peserta</span><span class="coin-label"><span class="nusa-token">₦</span> = Nusa</span></div>${isRoom ? `<button class="room-code" data-action="copyRoom"><small>KODE ROOM</small><b>${esc(r.code)}</b>${icon("copy", 18)}</button>` : `<button class="setup-summary" data-action="setup"><span>${esc(ui.name || "Atur nama di Profil")} · ${ui.count} peserta</span><b>Atur permainan ${icon("gear", 15)}</b></button>`}<div class="lobby-roster" style="--columns:${slots === 2 || slots === 4 ? 2 : 3}">${Array.from(
     { length: slots },
     (_, i) => {
       const p = players[i];
       return p
-        ? `<button class="lobby-player ${i === (isRoom ? session.room.seat : 0) ? "own" : ""}" data-action="${isRoom ? "room" : "setup"}" style="--player:${colors[pawnFor(p)]}"><span class="player-number">P${i + 1}${isRoom && i === r.host ? " · HOST" : ""}</span><div class="roster-art">${avatar(p.controller === "bot" ? Math.max(0, PERSONAS.findIndex(x => x.id === p.botPersona)) : 0)}${pawnArt(pawnFor(p), TOKENS[pawnFor(p)].name)}</div><b>${esc(p.name)}</b><small class="ready-pill ${p.ready || p.controller === "bot" ? "ready" : ""}">${p.controller === "bot" ? esc(botFor(p.botPersona)?.name || "Bot") : p.ready ? "Siap" : "Belum siap"}</small></button>`
+        ? `<button class="lobby-player ${i === (isRoom ? session.room.seat : 0) ? "own" : ""}" data-action="${isRoom ? "room" : "setup"}" style="--player:${colors[pawnFor(p)]}"><span class="player-number">P${i + 1}${isRoom && i === r.host ? " · HOST" : ""}</span><div class="roster-art">${avatar(
+            p.controller === "bot"
+              ? Math.max(
+                  0,
+                  PERSONAS.findIndex((x) => x.id === p.botPersona),
+                )
+              : 0,
+          )}${pawnArt(pawnFor(p), TOKENS[pawnFor(p)].name)}</div><b>${esc(p.name)}</b><small class="ready-pill ${p.ready || p.controller === "bot" ? "ready" : ""}">${p.controller === "bot" ? "Bot" : p.ready ? "Siap" : "Belum siap"}</small></button>`
         : `<div class="lobby-player empty-seat"><span>P${i + 1}</span>${icon("plus", 25)}<small>Kursi kosong</small></div>`;
     },
   ).join(
@@ -255,13 +281,19 @@ function render() {
           session.online?.status !== "paused" &&
           session.online?.vote?.status !== "open");
       if (!note.hidden) {
-        const humans = session.online?.seats?.filter(p => p.controller === "human" && !p.out).length || 0;
+        const humans =
+          session.online?.seats?.filter(
+            (p) => p.controller === "human" && !p.out,
+          ).length || 0;
         const ready = session.online?.pause?.ready?.length || 0;
-        const message = session.online?.status === "paused"
-          ? `Dijeda · ${ready}/${humans} siap lanjut`
-          : !session.connected ? "Menghubungkan kembali…"
-          : session.online?.held ? "Menunggu koneksi pemain"
-          : "Permintaan jeda · tanggapi";
+        const message =
+          session.online?.status === "paused"
+            ? `Dijeda · ${ready}/${humans} siap lanjut`
+            : !session.connected
+              ? "Menghubungkan kembali…"
+              : session.online?.held
+                ? "Menunggu koneksi pemain"
+                : "Permintaan jeda · tanggapi";
         note.innerHTML = `<button data-action="room" aria-label="${esc(message)}. Lihat detail room">${icon("pause", 16)}<span class="connection-note-label">${esc(message)}</span>${icon("arrow", 15)}</button>`;
       }
     }
@@ -505,10 +537,19 @@ function auxiliary(p) {
     case "myProfile":
       return {
         title: "Profil Saya",
-        html: lead("people", "Profil Saya", "Pilih nama pemainmu sendiri. Tidak ada nama bawaan.") +
+        html:
+          lead(
+            "people",
+            "Profil Saya",
+            "Pilih nama pemainmu sendiri. Tidak ada nama bawaan.",
+          ) +
           `<label class="field">Nama pemain<input name="playerName" autocomplete="nickname" placeholder="Isi nama pemain (2–24 karakter)" maxlength="24" value="${esc(ui.profileDraft)}" required></label>` +
           `<p class="inline-note">${session.room ? "Nama akan disinkronkan ke semua pemain di room, termasuk saat dijeda." : "Nama disimpan di perangkat ini dan digunakan untuk VS Bot maupun room baru."}</p>`,
-        footer: btn("Simpan nama", "savePlayerName", {primary:true, disabled:session.pending}) + btn("Batal", "close"),
+        footer:
+          btn("Simpan nama", "savePlayerName", {
+            primary: true,
+            disabled: session.pending,
+          }) + btn("Batal", "close"),
       };
     case "menu":
       return {
@@ -551,25 +592,36 @@ function auxiliary(p) {
         title: "Atur VS Bot",
         html:
           lead("gear", "Teman Berpetualang", "") +
-          `<div class="profile-name-row"><span>Nama kamu: <b>${esc(ui.name || "Belum diisi")}</b></span>${btn("Atur nama", "myProfile")}</div><div class="setup-controls"><div class="setup-row"><span>Peserta</span><div class="segments">${[2, 3, 4, 5, 6].map((n) => `<button data-action="count" data-value="${n}" aria-pressed="${n === ui.count}">${n}</button>`).join("")}</div></div>${btn("Pilih pion", "pawn")}</div><p class="bot-section-caption">Pilih karakter AI untuk setiap kursi. Tiap karakter sudah membawa model dan strategi sendiri.</p>` +
-          selectedBots().map((botId, i) => {
-            const p = botFor(botId);
-            return `<button type="button" class="bot-setting bot-seat-select" data-action="pickBot" data-slot="${i}" aria-label="Ganti karakter bot di kursi ${i + 2}">${avatar(PERSONAS.indexOf(p))}<span class="bot-seat-desc"><small>KURSI ${i + 2}</small><b>${esc(p.name)}</b><small>${esc(p.role)}</small></span><span class="bot-seat-arrow">${icon("chevron-right", 18)}</span></button>`;
-          }).join("") +
+          `<div class="profile-name-row"><span>Nama kamu: <b>${esc(ui.name || "Belum diisi")}</b></span>${btn("Atur nama", "myProfile")}</div><div class="setup-controls"><span>Jumlah peserta</span>${btn("Pilih pion", "pawn")}<div class="segments">${[2, 3, 4, 5, 6].map((n) => `<button data-action="count" data-value="${n}" aria-pressed="${n === ui.count}">${n}</button>`).join("")}</div></div><p class="bot-section-caption">Pilih karakter AI untuk setiap kursi. Tiap karakter sudah membawa model dan strategi sendiri.</p>` +
+          selectedBots()
+            .map((botId, i) => {
+              const p = botFor(botId);
+              return `<button type="button" class="bot-setting bot-seat-select" data-action="pickBot" data-slot="${i}" aria-label="Ganti karakter bot di kursi ${i + 2}">${avatar(PERSONAS.indexOf(p))}<span class="bot-seat-desc"><small>KURSI ${i + 2}</small><b>${esc(p.name)}</b><small>${esc(p.role)}</small></span><span class="bot-seat-arrow">${icon("chevron-right", 18)}</span></button>`;
+            })
+            .join("") +
           `<label class="field">Aturan sewa<select name="rules"><option value="digital" ${ui.rules === "digital" ? "selected" : ""}>Digital · otomatis</option><option value="classic" ${ui.rules === "classic" ? "selected" : ""}>Meja Klasik · tagih manual</option></select></label><label class="toggle">Advisor Groq<input type="checkbox" name="advisor" ${ui.advisor ? "checked" : ""} ${!session.configured ? "disabled" : ""}></label><p class="inline-note">${session.configured ? "Opsional; koneksi advisor diperiksa saat dipakai." : "Advisor belum dikonfigurasi."} Bot lokal tetap mandiri.</p>`,
         footer: btn("Selesai", "close", { primary: true }),
       };
     case "botChoice": {
       const room = p.slot === "online";
       const current = room ? availableRoomPersona()?.id : ui.botIds[p.slot];
-      const taken = new Set(room
-        ? (session.online?.seats || []).filter((seat) => seat.controller === "bot").map((seat) => seat.botPersona)
-        : selectedBots().filter((_, i) => i !== p.slot));
+      const taken = new Set(
+        room
+          ? (session.online?.seats || [])
+              .filter((seat) => seat.controller === "bot")
+              .map((seat) => seat.botPersona)
+          : selectedBots().filter((_, i) => i !== p.slot),
+      );
       return {
         title: "Pilih Karakter",
-        html: lead("people", "Pilih Karakter", "Ketuk satu karakter. Strateginya sudah melekat pada pilihan.") +
+        html:
+          lead(
+            "people",
+            "Pilih Karakter",
+            "Ketuk satu karakter. Strateginya sudah melekat pada pilihan.",
+          ) +
           `<div class="bot-choice-grid">${PERSONAS.map((persona) => botCard(persona, current === persona.id, taken.has(persona.id))).join("")}</div>`,
-        footer: btn("Kembali", "close", {primary: true}),
+        footer: btn("Kembali", "close", { primary: true }),
       };
     }
     case "pawn": {
@@ -678,7 +730,7 @@ function auxiliary(p) {
         title: "Pengaturan",
         html:
           lead("gear", "Pengaturan") +
-          `${btn("Profil Saya · Atur nama", "myProfile", {sym:"people"})}<label class="toggle">Efek suara<input type="checkbox" name="sound" ${ui.sound ? "checked" : ""}></label><label class="toggle">Animasi cepat<input type="checkbox" name="fast" ${session.fast ? "checked" : ""}></label><label class="toggle">Kurangi gerakan<input type="checkbox" name="reduced" ${session.reduced ? "checked" : ""}></label><p class="inline-note">Pengaturan disimpan pada perangkat ini. Preferensi reduced motion sistem tetap dihormati.</p><div class="fact-row"><span>Versi</span><b>${APP_VERSION} · Papan Klasik</b></div>`,
+          `${btn("Profil Saya · Atur nama", "myProfile", { sym: "people" })}<label class="toggle">Efek suara<input type="checkbox" name="sound" ${ui.sound ? "checked" : ""}></label><label class="toggle">Animasi cepat<input type="checkbox" name="fast" ${session.fast ? "checked" : ""}></label><label class="toggle">Kurangi gerakan<input type="checkbox" name="reduced" ${session.reduced ? "checked" : ""}></label><p class="inline-note">Pengaturan disimpan pada perangkat ini. Preferensi reduced motion sistem tetap dihormati.</p><div class="fact-row"><span>Versi</span><b>${APP_VERSION} · Papan Klasik</b></div>`,
         footer: btn("Selesai", "close", { primary: true }),
       };
     case "rules":
@@ -697,7 +749,7 @@ function auxiliary(p) {
             ],
             [
               "Pajak & Parkir Bebas",
-              "Pajak Penghasilan tetap N 200 dan Pajak Kemewahan tetap N 100 ke Bank. Tidak menghitung kekayaan, rumah, atau hotel dan tidak memakai opsi 10%. Parkir Bebas tidak menerima uang pajak atau memberikan jackpot.",
+              "Pajak Penghasilan tetap ₦ 200 dan Pajak Kemewahan tetap ₦ 100 ke Bank. Tidak menghitung kekayaan, rumah, atau hotel dan tidak memakai opsi 10%. Parkir Bebas tidak menerima uang pajak atau memberikan jackpot.",
             ],
             [
               "Barter",
@@ -705,7 +757,7 @@ function auxiliary(p) {
             ],
             [
               "Penjara & utang",
-              "Bayar N 50, pakai kartu, atau coba kembar. Saat utang, jual bangunan, gadai atau barter sebelum menyatakan bangkrut.",
+              "Bayar ₦ 50, pakai kartu, atau coba kembar. Saat utang, jual bangunan, gadai atau barter sebelum menyatakan bangkrut.",
             ],
             [
               "Room, jeda & reconnect",
@@ -775,6 +827,7 @@ function renderDialog() {
     if (ui.auctionId !== identity) {
       ui.auctionId = identity;
       ui.bid = 0;
+      ui.bidRaw = undefined;
     }
   }
   let content = auxiliary(p);
@@ -793,7 +846,7 @@ function renderDialog() {
   const densityChanged = dialog.dataset.density !== density;
   dialog.dataset.density = density;
   const key = p.key || p.kind + ":" + (p.id ?? ""),
-    markup = `${content.html}${session.error ? `<p class="dialog-status" role="status">${esc(session.error)}</p>` : ""}`;
+    markup = `${content.html}${session.error && p.kind !== "auction" ? `<p class="dialog-status" role="status">${esc(session.error)}</p>` : ""}`;
   if (popupKey !== key) {
     previousFocus = document.activeElement;
     dialogBody.scrollTop = 0;
@@ -814,7 +867,8 @@ function renderDialog() {
     end = focused?.selectionEnd,
     scroll = dialogBody.scrollTop;
   if (popupHTML !== markup || densityChanged) {
-    dialogBody.innerHTML = markup;
+    if (p.kind !== "auction" || !updateAuctionBody(dialogBody, markup))
+      dialogBody.innerHTML = markup;
     enhanceSelections(dialogBody);
     decorateCurrency(dialogBody);
     popupHTML = markup;
@@ -839,6 +893,10 @@ function renderDialog() {
   }
   dialog.setAttribute("aria-label", content.title);
   dialog.dataset.kind = p.kind;
+  dialog.classList.toggle(
+    "auction-static",
+    p.kind === "auction" || !!p.event?.auctionResult,
+  );
   dialogClose.disabled = false;
   dialogClose.hidden = !!dialogFooter.querySelector("button");
   dialog.classList.toggle("has-close", !dialogClose.hidden);
@@ -897,14 +955,15 @@ async function perform(action, el) {
         return;
       case "myProfile":
         ui.profileDraft = session.room
-          ? (session.online?.seats?.[session.room.seat]?.name || ui.name)
+          ? session.online?.seats?.[session.room.seat]?.name || ui.name
           : ui.name;
-        open({kind: "myProfile"});
+        open({ kind: "myProfile" });
         return;
       case "savePlayerName": {
         const name = requirePlayerName(ui.profileDraft);
         if (session.room) {
-          if (!await session.roomOp("RENAME", {name})) throw Error(session.error || "Nama belum tersimpan di room.");
+          if (!(await session.roomOp("RENAME", { name })))
+            throw Error(session.error || "Nama belum tersimpan di room.");
         } else if (session.screen === "gameplay") {
           await session.renameLocalPlayer(name);
         }
@@ -922,12 +981,20 @@ async function perform(action, el) {
         const chosen = el.dataset.value;
         if (!botFor(chosen) || ui.popup?.kind !== "botChoice") return;
         if (ui.popup.slot === "online") {
-          const taken = (session.online?.seats || []).some(seat => seat.controller === "bot" && seat.botPersona === chosen);
+          const taken = (session.online?.seats || []).some(
+            (seat) => seat.controller === "bot" && seat.botPersona === chosen,
+          );
           if (taken) return;
           ui.nextBotPersona = chosen;
         } else {
           const slot = ui.popup.slot;
-          if (!Number.isInteger(slot) || slot < 0 || slot >= ui.count - 1 || selectedBots().some((x, i) => i !== slot && x === chosen)) return;
+          if (
+            !Number.isInteger(slot) ||
+            slot < 0 ||
+            slot >= ui.count - 1 ||
+            selectedBots().some((x, i) => i !== slot && x === chosen)
+          )
+            return;
           const old = ui.botIds[slot];
           const elsewhere = ui.botIds.indexOf(chosen);
           if (elsewhere >= 0 && elsewhere !== slot) ui.botIds[elsewhere] = old;
@@ -963,7 +1030,11 @@ async function perform(action, el) {
         }
         break;
       case "startLocal":
-        if (!ui.name) { ui.profileDraft = ""; open({kind:"myProfile"}); break; }
+        if (!ui.name) {
+          ui.profileDraft = "";
+          open({ kind: "myProfile" });
+          break;
+        }
         requirePlayerName(ui.name);
         close();
         ui.dismissed = "";
@@ -973,7 +1044,7 @@ async function perform(action, el) {
           count: ui.count,
           pawn: ui.pawn,
           rules: ui.rules,
-          levels: Object.fromEntries(PERSONAS.map(p => [p.id, "hardcore"])),
+          levels: Object.fromEntries(PERSONAS.map((p) => [p.id, "hardcore"])),
           botIds: selectedBots(),
           advisorEnabled: ui.advisor,
         });
@@ -987,7 +1058,11 @@ async function perform(action, el) {
         queueRender();
         return;
       case "enterRoom": {
-        if (!ui.name) { ui.profileDraft = ""; open({kind:"myProfile"}); break; }
+        if (!ui.name) {
+          ui.profileDraft = "";
+          open({ kind: "myProfile" });
+          break;
+        }
         requirePlayerName(ui.name);
         if (!session.auth?.session()) {
           open({ kind: "auth" });
@@ -1318,6 +1393,7 @@ async function perform(action, el) {
           bidMinimum(session.view),
           (session.view.auction?.amount || 0) + Number(el.dataset.amount),
         );
+        ui.bidRaw = nusaInput(ui.bid);
         queueRender();
         return;
       case "bid": {
@@ -1437,7 +1513,9 @@ document.addEventListener("input", (e) => {
     queueRender();
   } else if (name === "bid") {
     const n = parseNusa(el.value);
+    ui.bidRaw = el.value;
     if (n !== null) ui.bid = n;
+    queueRender();
   } else if (name === "joinCode") ui.joinCode = el.value.toUpperCase();
   else if (name === "email" || name === "password" || name === "saveLabel")
     ui[name] = el.value;
@@ -1479,11 +1557,11 @@ document.addEventListener("change", async (e) => {
     if (name?.startsWith("buildCount-")) {
       ui.buildCounts[Number(name.slice(11))] = Number(el.value);
       queueRender();
-    } else if (name?.startsWith("level-")) ui.levels[name.slice(6)] = "hardcore";
+    } else if (name?.startsWith("level-"))
+      ui.levels[name.slice(6)] = "hardcore";
     else if (name === "rules") ui.rules = el.value;
     else if (name === "advisor") ui.advisor = el.checked;
     else if (name === "capacity") ui.capacity = Number(el.value);
-
     else if (name === "assetOwner")
       open({ kind: "assets", id: Number(el.value) });
     else if (name === "tradeOpponent") {

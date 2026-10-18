@@ -86,7 +86,7 @@ function tileFace(t, r) {
     : t.type === "tax"
       ? money(t.tax)
       : t.id === 0
-        ? "AMBIL N 200"
+        ? "AMBIL ₦ 200"
         : "";
   return `<g class="tile-face" data-angle="${corner ? 0 : r.angle}" transform="translate(${center.x} ${center.y}) rotate(${corner ? 0 : r.angle})" pointer-events="none">${title}${icon}${price ? `<text class="tile-price" x="0" y="${corner ? 62 : 58}" text-anchor="middle" font-size="${corner ? 11 : 14}" fill="#345747">${esc(price)}</text>` : ""}</g>`;
 }

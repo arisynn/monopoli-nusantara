@@ -25,8 +25,8 @@ export function mortgageSubset(s,id,target,analysis,{maxStates=12000,expired=()=
 
 /** Bounded best-first rescue. State dedup prevents the same mortgage subset from
  * consuming the budget in every permutation. Every edge uses the real engine. */
-export function rescuePlan(s,id,analysis,{maxNodes=160,maxDepth=40,timeBudgetMs=Infinity,clock=()=>performance.now()}={}){
- const started=clock(),expired=()=>clock()-started>=timeBudgetMs;
+export function rescuePlan(s,id,analysis,{maxNodes=160,maxDepth=40,timeBudgetMs=Infinity,clock=()=>performance.now(),shouldStop=()=>false}={}){
+ const started=clock(),expired=()=>shouldStop()||clock()-started>=timeBudgetMs;
  const target=s.debt?.from===id?s.debt.amount:0;
  if(!target||s.players[id].cash>=target)return null;
  const baseValue=portfolioValue(s,id,analysis),initialCash=s.players[id].cash;

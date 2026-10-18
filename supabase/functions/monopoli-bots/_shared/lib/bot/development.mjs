@@ -8,12 +8,13 @@ import {economyRules,buildingCashReserve} from './economy.mjs';
 export function developmentRoutes(s,id,a){
  if(!['roll','end','jail'].includes(s.phase))return [];
  const routes=[];
- const allocation=allocateDevelopment(s,id,{reserve:a.reserve,probability:a.probability,horizon:a.persona.horizon});
+ const allocation=allocateDevelopment(s,id,{reserve:a.reserve,probability:a.probability,horizon:a.persona.horizon,expired:()=>a.options.context?.expired()||false});
  if(allocation.path.length){const verified=replayManagement(s,id,allocation.path);
   if(verified.path.length)routes.push({group:'multi',groupIndex:BOARD[allocation.path[0].tile].group,first:allocation.path[0],path:verified.path,funding:[],buildCost:allocation.cost,expectedRentGain:allocation.gain,score:allocation.score/Math.max(1,allocation.path.length)*.4});
  }
  const rules=economyRules(s);
  for(const g of GROUPS){
+  if(a.options.context?.expired())break;
   if(!g.ids.every(i=>s.assets[i].owner===id&&!s.assets[i].mortgaged)||g.ids.some(i=>s.assets[i].level>=3))continue;
   const neededHouses=g.ids.reduce((n,i)=>n+3-s.assets[i].level,0);if(a.stock.houses<neededHouses)continue;
   const cost=g.ids.reduce((n,i)=>n+(3-s.assets[i].level)*BOARD[i].build,0);
@@ -29,7 +30,7 @@ export function developmentRoutes(s,id,a){
   if(raised<shortfall||benefit<cost*.3||!funding.length)continue;
   const finance=funding.map(tile=>({type:'MORTGAGE',tile})),funded=replayManagement(s,id,finance);
   if(!funded.complete)continue;
-  const builds=allocateDevelopment(funded.state,id,{reserve:Math.min(a.reserve*.55,rules.salary*.9),probability:a.probability,horizon:a.persona.horizon});
+  const builds=allocateDevelopment(funded.state,id,{reserve:Math.min(a.reserve*.55,rules.salary*.9),probability:a.probability,horizon:a.persona.horizon,expired:()=>a.options.context?.expired()||false});
   if(!builds.path.length)continue;
   routes.push({group:g.name,groupIndex:BOARD[g.ids[0]].group,first:finance[0],path:[...finance,...builds.path],funding,buildCost:cost,expectedRentGain:rentGain,benefit,score:benefit/Math.max(1,g.ids.reduce((n,i)=>n+3-s.assets[i].level,0)+funding.length)*.4});
  }

@@ -1,0 +1,6 @@
+export function sameRoom(a,b){return !!a&&!!b&&a.code===b.code&&a.provider===b.provider&&(a.provider==='supabase'?a.userId===b.userId:a.token===b.token)}
+export function mergeState(previous,next,authoritative=false){if(!next)return previous;if(authoritative)return next;return previous?.matchId===next.matchId&&previous.version>=next.version?previous:next}
+export function acceptRevision(current,incoming){return Number.isSafeInteger(incoming)&&incoming>=0&&incoming>=current}
+export function retryDelay(failures){return Math.min(15000,1800*2**Math.min(failures,4))}
+export class ConnectionError extends Error{constructor(message='Koneksi terputus. Status terbaru akan diambil sebelum kamu melanjutkan.'){super(message);this.name='ConnectionError'}}
+export async function requestJSON(url,options={},transport=fetch){const controller=new AbortController();const abort=()=>controller.abort();options.signal?.addEventListener('abort',abort,{once:true});if(options.signal?.aborted)controller.abort();const timer=setTimeout(abort,10000);try{let response,value;try{response=await transport(url,{...options,cache:'no-store',signal:controller.signal});value=await response.json()}catch{throw new ConnectionError()}if(!response.ok)throw Error(value.error||'Permintaan belum dapat diproses.');return value}finally{clearTimeout(timer);options.signal?.removeEventListener('abort',abort)}}

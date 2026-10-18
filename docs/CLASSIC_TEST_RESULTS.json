@@ -1,7 +1,9 @@
 {
-  "generatedAt": "2026-10-18T01:19:57.150Z",
-  "node": "v22.16.0",
+  "generatedAt": "2026-10-18T05:40:16.840Z",
+  "node": "v24.19.0",
   "files": [
+    "tests/bot-foundation.test.mjs",
+    "tests/nusa-v18.test.mjs",
     "tests/bank-economy.test.mjs",
     "tests/bot-construction-reserve.test.mjs",
     "tests/bot-v410-hybrid.test.mjs",
@@ -32,8 +34,8 @@
     "tests/headless-package.test.mjs",
     "tests/frontend.test.mjs"
   ],
-  "tests": 484,
-  "passed": 484,
+  "tests": 499,
+  "passed": 499,
   "failed": 0,
   "skipped": 0,
   "failures": [],
