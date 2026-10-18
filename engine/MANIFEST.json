@@ -1,0 +1,23 @@
+{
+  "package": "Monopoli_Nusantara_Game_Logic",
+  "packageVersion": "1.0.0",
+  "scope": "game-rules-only",
+  "files": {
+    "README.md": "0d1c67ca4c9536e06a723408e509b5470ff75aa30ff2f6cacb3c44e60f53fad9",
+    "index.mjs": "8057a5926b04b38346d86a973868a9c085932e24964982dd784518c3e7d999ef",
+    "lib/auction-presentation.mjs": "6cd9b7531d9827d29c332410c7545b62cd9eeb33986eff8889136eea7c0abf7b",
+    "lib/bank-economy.mjs": "4465f446c3bc9b3ebca270e08d3bdd0e5b342dcd953199e6b1a36c6e6f39ed18",
+    "lib/content-v1.mjs": "cf6c1eeebcf000b064ff8b18274e7c105db78fbed7c874fb51587627ffaa135b",
+    "lib/content.mjs": "7b686d7f359f5a463b244ad973d58996add7afe01891397ae32240668e4472f0",
+    "lib/controller-compat.mjs": "2fc98a880bafeb3343041661c5943abb052ef3c1101be2ea4eb225f869b6a9a0",
+    "lib/currency.mjs": "6d89747f25f63c608d31fc160ad9ec59be7ce9dec65087c5c48cde75dd101377",
+    "lib/finance.mjs": "f267b9773a43abc170b0ae29fcf57ae780ee598a5304630c9398054e53aed5ae",
+    "lib/game-v1.mjs": "e3b8326d074d193f7f600e6ef67e8dbbf07a798f322f227de8aa6eb72ff4b8ec",
+    "lib/game.mjs": "da2e59ad86326bfb7ea820eac6f6931a0dd2d998978563e768ad2aef038071f1",
+    "lib/pawns.mjs": "dfc88faad7aa78ea0ce736bf6d0144f4ffd81c63d02767555031cc6ad078f910",
+    "lib/presentation-types.ts": "08b2025864c928a6817be54e7f4ff9c25f60bf4aa07f0daa9b6694fbe5bc29e8",
+    "lib/random.mjs": "8b89f6b163cf57aaf4afb6143335d26313b0609b646979eb6c5ac1e3e279cfb2",
+    "lib/save-format.mjs": "aea6efb21a25da811143416be99a665bd3b150cbc00bafab0c1ec90b756ea2d1",
+    "package.json": "60c5da89d09ab6cc07efb08a5e0b1ebba88718516cb53bf9d365f3f18c917e15"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "source": "monopoli-nusantara-nusa-v23.zip",
+  "model": "NUSA V23 Chronos & Kairos (not V24)",
+  "app": "4.11.0",
+  "rulepack": "nusantara-c1009-2",
+  "benchmarkVersion": "1.2.1",
+  "stabilityGuard": "2.0.0",
+  "note": "Lab-only bot integration fix. Engine rules and native core algorithms unchanged; not a V8 strategy release."
+}

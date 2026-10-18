@@ -1,0 +1,50 @@
+{
+  "runId": "guard-smoke-2p",
+  "completed": 2,
+  "requested": 2,
+  "endedAt": "2026-10-18T17:18:24.212Z",
+  "wins": {
+    "nusa": 1,
+    "kresna": 1,
+    "apex": 0,
+    "raka": 0,
+    "bima": 0,
+    "sari": 0
+  },
+  "finished": 2,
+  "resolved": 2,
+  "wealthWinners": 0,
+  "draws": 0,
+  "unfinished": 0,
+  "mode": "bankruptcy",
+  "illegal": 0,
+  "loopGames": 0,
+  "averageActions": 494.5,
+  "actionTotals": {
+    "ROLL": 260,
+    "BUY": 37,
+    "END": 216,
+    "ACK": 33,
+    "JAIL_PAY": 4,
+    "AUCTION": 12,
+    "BID": 162,
+    "PASS": 13,
+    "BUILD": 52,
+    "MORTGAGE": 85,
+    "PAY": 10,
+    "OFFER": 22,
+    "TRADE_REJECT": 20,
+    "REDEEM": 47,
+    "TRADE_ACCEPT": 2,
+    "JAIL_CARD": 2,
+    "SELL": 5,
+    "SELL_SET": 4,
+    "BANKRUPT": 2,
+    "MORTGAGE_REDEEM": 1
+  },
+  "averageGameMs": 14472.962247,
+  "byStopReason": {
+    "finished": 2
+  },
+  "aborted": false
+}

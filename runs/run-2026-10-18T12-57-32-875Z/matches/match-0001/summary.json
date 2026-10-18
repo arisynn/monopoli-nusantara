@@ -1,0 +1,95 @@
+{
+  "matchId": "run-2026-10-18T12-57-32-875Z-0001",
+  "seed": 20261018,
+  "players": [
+    "nusa",
+    "kresna",
+    "apex",
+    "raka"
+  ],
+  "actions": 759,
+  "elapsedMs": 12725.657443,
+  "finished": false,
+  "stopReason": "mortgage_redeem_oscillation",
+  "error": {
+    "kind": "mortgage_redeem_oscillation",
+    "actor": 1,
+    "tile": 5,
+    "firstStep": 754,
+    "lastStep": 759,
+    "alternatingActions": 6,
+    "phase": "roll",
+    "turnSerial": 61
+  },
+  "illegal": 0,
+  "phase": "roll",
+  "version": 759,
+  "winner": null,
+  "actionCounts": {
+    "ROLL": 72,
+    "BUY": 19,
+    "END": 61,
+    "ACK": 11,
+    "JAIL_PAY": 1,
+    "OFFER": 6,
+    "TRADE_ACCEPT": 6,
+    "BUILD": 30,
+    "AUCTION": 6,
+    "PASS": 241,
+    "BID": 286,
+    "MORTGAGE": 7,
+    "MORTGAGE_REDEEM": 1,
+    "SELL": 1,
+    "PAY": 3,
+    "SELL_SET": 1,
+    "REDEEM": 6,
+    "MORTGAGE_KEEP": 1
+  },
+  "loops": [
+    {
+      "kind": "mortgage_redeem_oscillation",
+      "actor": 1,
+      "tile": 5,
+      "firstStep": 754,
+      "lastStep": 759,
+      "alternatingActions": 6,
+      "phase": "roll",
+      "turnSerial": 61
+    }
+  ],
+  "thinkingMs": {
+    "p50": 9.194790999999896,
+    "p95": 25.57854100000003,
+    "max": 55.086301999999705
+  },
+  "wealth": [
+    {
+      "persona": "nusa",
+      "seat": 0,
+      "cash": 1909,
+      "worth": 6309,
+      "bankrupt": false
+    },
+    {
+      "persona": "kresna",
+      "seat": 1,
+      "cash": 396,
+      "worth": 22396,
+      "bankrupt": false
+    },
+    {
+      "persona": "apex",
+      "seat": 2,
+      "cash": 795,
+      "worth": 25295,
+      "bankrupt": false
+    },
+    {
+      "persona": "raka",
+      "seat": 3,
+      "cash": 1980,
+      "worth": 14180,
+      "bankrupt": false
+    }
+  ]
+}

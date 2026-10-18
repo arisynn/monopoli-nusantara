@@ -1,0 +1,34 @@
+{
+  "createdAt": "2026-10-18T15:30:44.412Z",
+  "benchmarkVersion": "1.2.0",
+  "source": "monopoli-nusantara-nusa-v23.zip",
+  "model": "NUSA-V23.0-CHRONOS-KAIROS",
+  "options": {
+    "victoryMode": "bankruptcy",
+    "matches": 2,
+    "players": 6,
+    "maxActions": 50000,
+    "gameMs": 3600000,
+    "budget": 2600,
+    "saveEvery": 25,
+    "seedBase": 20261018,
+    "traceFull": false,
+    "stopOnLoop": true,
+    "identities": [
+      "nusa",
+      "kresna",
+      "apex",
+      "raka",
+      "bima",
+      "sari"
+    ],
+    "displayMode": "spectator",
+    "displayMs": 65
+  },
+  "notes": [
+    "All bot seats are driven by actual production persona-router; no Groq calls.",
+    "Engine rule transitions use the standalone logic distribution.",
+    "100% of produced public game events are captured before truncated game.log.",
+    "Bankruptcy winner only from engine; timed winner selected by engine-defined worth() when time limit is reached."
+  ]
+}

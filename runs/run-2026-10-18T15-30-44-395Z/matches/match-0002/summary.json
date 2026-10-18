@@ -1,0 +1,169 @@
+{
+  "matchId": "run-2026-10-18T15-30-44-395Z-0002",
+  "seed": 20268937,
+  "players": [
+    "kresna",
+    "apex",
+    "raka",
+    "bima",
+    "sari",
+    "nusa"
+  ],
+  "actions": 141,
+  "elapsedMs": 47517.44565500002,
+  "wallElapsedMs": 56755.44565500002,
+  "displayDelayMs": 9238,
+  "victoryMode": "bankruptcy",
+  "finished": false,
+  "stopReason": "illegal_action",
+  "error": {
+    "kind": "illegal_action",
+    "step": 142,
+    "actor": 1,
+    "action": {
+      "type": "BID",
+      "amount": 50,
+      "actionId": "c1"
+    },
+    "message": "Tawaran awal minimal ₦ 5; naik minimal ₦ 5 dengan nominal Nusa bulat."
+  },
+  "illegal": 1,
+  "phase": "auction",
+  "version": 141,
+  "winner": null,
+  "winnerSeat": null,
+  "winnerType": null,
+  "resolved": false,
+  "draw": false,
+  "rankings": [
+    {
+      "persona": "raka",
+      "seat": 2,
+      "name": "RAKA",
+      "cash": 14729,
+      "worth": 18729,
+      "bankrupt": false,
+      "rank": 1
+    },
+    {
+      "persona": "apex",
+      "seat": 1,
+      "name": "ARKA",
+      "cash": 10060,
+      "worth": 16260,
+      "bankrupt": false,
+      "rank": 2
+    },
+    {
+      "persona": "bima",
+      "seat": 3,
+      "name": "BIMA",
+      "cash": 2619,
+      "worth": 14719,
+      "bankrupt": false,
+      "rank": 3
+    },
+    {
+      "persona": "nusa",
+      "seat": 5,
+      "name": "NUSA",
+      "cash": 9700,
+      "worth": 14700,
+      "bankrupt": false,
+      "rank": 4
+    },
+    {
+      "persona": "sari",
+      "seat": 4,
+      "name": "SARI",
+      "cash": 1120,
+      "worth": 14420,
+      "bankrupt": false,
+      "rank": 5
+    },
+    {
+      "persona": "kresna",
+      "seat": 0,
+      "name": "KRESNA",
+      "cash": 7172,
+      "worth": 14172,
+      "bankrupt": false,
+      "rank": 6
+    }
+  ],
+  "actionCounts": {
+    "ROLL": 52,
+    "END": 40,
+    "BUY": 21,
+    "ACK": 6,
+    "OFFER": 8,
+    "TRADE_REJECT": 5,
+    "TRADE_ACCEPT": 3,
+    "BUILD": 2,
+    "JAIL_PAY": 2,
+    "AUCTION": 1,
+    "BID": 1
+  },
+  "loops": [],
+  "thinkingMs": {
+    "p50": 27.393906000012066,
+    "p95": 1801.9054679999826,
+    "max": 1818.7579679999908
+  },
+  "wealth": [
+    {
+      "persona": "raka",
+      "seat": 2,
+      "name": "RAKA",
+      "cash": 14729,
+      "worth": 18729,
+      "bankrupt": false,
+      "rank": 1
+    },
+    {
+      "persona": "apex",
+      "seat": 1,
+      "name": "ARKA",
+      "cash": 10060,
+      "worth": 16260,
+      "bankrupt": false,
+      "rank": 2
+    },
+    {
+      "persona": "bima",
+      "seat": 3,
+      "name": "BIMA",
+      "cash": 2619,
+      "worth": 14719,
+      "bankrupt": false,
+      "rank": 3
+    },
+    {
+      "persona": "nusa",
+      "seat": 5,
+      "name": "NUSA",
+      "cash": 9700,
+      "worth": 14700,
+      "bankrupt": false,
+      "rank": 4
+    },
+    {
+      "persona": "sari",
+      "seat": 4,
+      "name": "SARI",
+      "cash": 1120,
+      "worth": 14420,
+      "bankrupt": false,
+      "rank": 5
+    },
+    {
+      "persona": "kresna",
+      "seat": 0,
+      "name": "KRESNA",
+      "cash": 7172,
+      "worth": 14172,
+      "bankrupt": false,
+      "rank": 6
+    }
+  ]
+}

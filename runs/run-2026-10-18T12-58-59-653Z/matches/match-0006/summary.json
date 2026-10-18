@@ -1,0 +1,78 @@
+{
+  "matchId": "run-2026-10-18T12-58-59-653Z-0006",
+  "seed": 20300613,
+  "players": [
+    "kresna",
+    "apex",
+    "raka",
+    "nusa"
+  ],
+  "actions": 597,
+  "elapsedMs": 68398.521641,
+  "finished": true,
+  "stopReason": "finished",
+  "error": null,
+  "illegal": 0,
+  "phase": "won",
+  "version": 597,
+  "winner": "apex",
+  "actionCounts": {
+    "ROLL": 153,
+    "ACK": 33,
+    "BUY": 23,
+    "END": 127,
+    "JAIL_PAY": 5,
+    "OFFER": 9,
+    "TRADE_ACCEPT": 6,
+    "BUILD": 47,
+    "MORTGAGE": 31,
+    "PAY": 11,
+    "AUCTION": 5,
+    "BID": 79,
+    "PASS": 25,
+    "MORTGAGE_REDEEM": 10,
+    "SELL": 10,
+    "TRADE_REJECT": 3,
+    "SELL_SET": 3,
+    "REDEEM": 9,
+    "BANKRUPT": 3,
+    "MORTGAGE_KEEP": 4,
+    "COUNTER": 1
+  },
+  "loops": [],
+  "thinkingMs": {
+    "p50": 17.18203100003302,
+    "p95": 99.29567700001644,
+    "max": 2602.3780200000037
+  },
+  "wealth": [
+    {
+      "persona": "kresna",
+      "seat": 0,
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true
+    },
+    {
+      "persona": "apex",
+      "seat": 1,
+      "cash": 5690,
+      "worth": 80990,
+      "bankrupt": false
+    },
+    {
+      "persona": "raka",
+      "seat": 2,
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true
+    },
+    {
+      "persona": "nusa",
+      "seat": 3,
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true
+    }
+  ]
+}

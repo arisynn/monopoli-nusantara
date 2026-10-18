@@ -1,0 +1,3891 @@
+{
+  "schemaVersion": 2,
+  "presentationVersion": 1,
+  "rulepackVersion": "nusantara-c1009-2",
+  "rules": {
+    "preset": "digital",
+    "rent": "auto"
+  },
+  "matchId": "run-2026-10-18T15-30-44-395Z-0001",
+  "version": 100,
+  "players": [
+    {
+      "id": 0,
+      "name": "NUSA",
+      "controller": "bot",
+      "botPersona": "nusa",
+      "botDifficulty": "hardcore",
+      "pawn": 0,
+      "cash": 1756,
+      "pos": 37,
+      "jail": 0,
+      "inJail": false,
+      "cards": [],
+      "out": false,
+      "lastOfferRound": 5
+    },
+    {
+      "id": 1,
+      "name": "KRESNA",
+      "controller": "bot",
+      "botPersona": "kresna",
+      "botDifficulty": "hardcore",
+      "pawn": 1,
+      "cash": 5520,
+      "pos": 32,
+      "jail": 0,
+      "inJail": false,
+      "cards": [],
+      "out": false
+    },
+    {
+      "id": 2,
+      "name": "ARKA",
+      "controller": "bot",
+      "botPersona": "apex",
+      "botDifficulty": "hardcore",
+      "pawn": 2,
+      "cash": 1288,
+      "pos": 32,
+      "jail": 0,
+      "inJail": false,
+      "cards": [],
+      "out": false,
+      "lastOfferRound": 4
+    },
+    {
+      "id": 3,
+      "name": "RAKA",
+      "controller": "bot",
+      "botPersona": "raka",
+      "botDifficulty": "hardcore",
+      "pawn": 3,
+      "cash": 7445,
+      "pos": 10,
+      "jail": 1,
+      "inJail": true,
+      "cards": [],
+      "out": false
+    },
+    {
+      "id": 4,
+      "name": "BIMA",
+      "controller": "bot",
+      "botPersona": "bima",
+      "botDifficulty": "hardcore",
+      "pawn": 4,
+      "cash": 13731,
+      "pos": 27,
+      "jail": 0,
+      "inJail": false,
+      "cards": [],
+      "out": false,
+      "lastOfferRound": 4
+    },
+    {
+      "id": 5,
+      "name": "SARI",
+      "controller": "bot",
+      "botPersona": "sari",
+      "botDifficulty": "hardcore",
+      "pawn": 5,
+      "cash": 10960,
+      "pos": 25,
+      "jail": 0,
+      "inJail": false,
+      "cards": [],
+      "out": false
+    }
+  ],
+  "assets": {
+    "1": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "3": {
+      "owner": 2,
+      "level": 0,
+      "mortgaged": false
+    },
+    "5": {
+      "owner": 3,
+      "level": 0,
+      "mortgaged": false
+    },
+    "6": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "8": {
+      "owner": 3,
+      "level": 0,
+      "mortgaged": false
+    },
+    "9": {
+      "owner": 1,
+      "level": 0,
+      "mortgaged": false
+    },
+    "11": {
+      "owner": 5,
+      "level": 0,
+      "mortgaged": false
+    },
+    "12": {
+      "owner": 1,
+      "level": 0,
+      "mortgaged": false
+    },
+    "13": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "14": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "15": {
+      "owner": 3,
+      "level": 0,
+      "mortgaged": false
+    },
+    "16": {
+      "owner": 2,
+      "level": 2,
+      "mortgaged": false
+    },
+    "18": {
+      "owner": 2,
+      "level": 2,
+      "mortgaged": false
+    },
+    "19": {
+      "owner": 2,
+      "level": 2,
+      "mortgaged": false
+    },
+    "21": {
+      "owner": 4,
+      "level": 0,
+      "mortgaged": false
+    },
+    "23": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "24": {
+      "owner": 4,
+      "level": 0,
+      "mortgaged": false
+    },
+    "25": {
+      "owner": 5,
+      "level": 0,
+      "mortgaged": false
+    },
+    "26": {
+      "owner": 4,
+      "level": 0,
+      "mortgaged": false
+    },
+    "27": {
+      "owner": 4,
+      "level": 0,
+      "mortgaged": false
+    },
+    "28": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "29": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "31": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "32": {
+      "owner": 1,
+      "level": 0,
+      "mortgaged": false
+    },
+    "34": {
+      "owner": 1,
+      "level": 0,
+      "mortgaged": false
+    },
+    "35": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "37": {
+      "owner": 0,
+      "level": 1,
+      "mortgaged": false
+    },
+    "39": {
+      "owner": 0,
+      "level": 1,
+      "mortgaged": false
+    }
+  },
+  "turn": 3,
+  "startSeat": 0,
+  "turnSerial": 27,
+  "round": 5,
+  "phase": "jail",
+  "starting": {
+    "pending": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "scores": [],
+    "history": [],
+    "round": 1
+  },
+  "doubles": 0,
+  "extra": false,
+  "dice": [
+    3,
+    5
+  ],
+  "utilityDice": null,
+  "bank": {
+    "houses": 24,
+    "hotels": 12
+  },
+  "decks": {
+    "chance": [
+      5,
+      14,
+      9,
+      8,
+      1,
+      3,
+      15,
+      11,
+      4,
+      10,
+      2,
+      12,
+      6,
+      13,
+      7,
+      0
+    ],
+    "community": [
+      13,
+      4,
+      12,
+      9,
+      10,
+      2,
+      8,
+      0,
+      7,
+      15,
+      11,
+      6,
+      1,
+      14,
+      3,
+      5
+    ]
+  },
+  "queue": [],
+  "debt": null,
+  "auction": null,
+  "card": null,
+  "trade": null,
+  "mortgageDecision": null,
+  "buildOffer": null,
+  "rentClaims": [],
+  "log": [
+    {
+      "id": 142,
+      "text": "Giliran RAKA.",
+      "type": "turn",
+      "turn": 5,
+      "version": 100,
+      "actor": 2,
+      "audience": "public"
+    },
+    {
+      "id": 141,
+      "text": "ARKA membayar ₦ 26 kepada KRESNA · sewa Manado.",
+      "type": "money",
+      "turn": 5,
+      "version": 99,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "rent",
+          "from": 2,
+          "to": 1,
+          "amount": 260,
+          "tile": 32
+        }
+      ]
+    },
+    {
+      "id": 140,
+      "text": "ARKA tiba di Manado.",
+      "type": "move",
+      "turn": 5,
+      "version": 99,
+      "actor": 2,
+      "audience": "public",
+      "move": {
+        "id": 140,
+        "player": 2,
+        "path": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "from": 24
+      }
+    },
+    {
+      "id": 139,
+      "text": "ARKA melempar 3 + 5.",
+      "type": "dice",
+      "turn": 5,
+      "version": 99,
+      "actor": 2,
+      "audience": "public",
+      "dice": [
+        3,
+        5
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 138,
+      "text": "Giliran ARKA.",
+      "type": "turn",
+      "turn": 5,
+      "version": 98,
+      "actor": 1,
+      "audience": "public"
+    },
+    {
+      "id": 137,
+      "text": "KRESNA membeli Manado · ₦ 300.",
+      "type": "buy",
+      "turn": 5,
+      "version": 97,
+      "actor": 1,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 1,
+          "to": null,
+          "amount": 3000,
+          "tile": 32
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 32,
+          "owner": 1,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 136,
+      "text": "KRESNA tiba di Manado.",
+      "type": "move",
+      "turn": 5,
+      "version": 96,
+      "actor": 1,
+      "audience": "public",
+      "move": {
+        "id": 136,
+        "player": 1,
+        "path": [
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "from": 26
+      }
+    },
+    {
+      "id": 135,
+      "text": "KRESNA melempar 5 + 1.",
+      "type": "dice",
+      "turn": 5,
+      "version": 96,
+      "actor": 1,
+      "audience": "public",
+      "dice": [
+        5,
+        1
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 134,
+      "text": "Giliran KRESNA.",
+      "type": "turn",
+      "turn": 5,
+      "version": 95,
+      "actor": 0,
+      "audience": "public"
+    },
+    {
+      "id": 133,
+      "text": "NUSA membangun rumah ke-1 di Raja Ampat · ₦ 200.",
+      "type": "build",
+      "turn": 5,
+      "version": 94,
+      "actor": 0,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "build",
+          "from": 0,
+          "to": null,
+          "amount": 2000,
+          "tile": 37
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 37,
+          "owner": 0,
+          "level": 1,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 132,
+      "text": "NUSA membangun rumah ke-1 di Jakarta SCBD · ₦ 200.",
+      "type": "build",
+      "turn": 5,
+      "version": 93,
+      "actor": 0,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "build",
+          "from": 0,
+          "to": null,
+          "amount": 2000,
+          "tile": 39
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 39,
+          "owner": 0,
+          "level": 1,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 131,
+      "text": "Barter selesai: NUSA memberikan Ambon; KRESNA memberikan ₦ 398.",
+      "type": "trade",
+      "turn": 5,
+      "version": 92,
+      "actor": 1,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "trade",
+          "from": 1,
+          "to": 0,
+          "amount": 3980
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 34,
+          "owner": 1,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 130,
+      "text": "NUSA menawarkan barter kepada KRESNA.",
+      "type": "trade",
+      "turn": 5,
+      "version": 91,
+      "actor": 0,
+      "audience": "public"
+    },
+    {
+      "id": 129,
+      "text": "Barter selesai: NUSA memberikan Medan; SARI memberikan ₦ 163.",
+      "type": "trade",
+      "turn": 5,
+      "version": 90,
+      "actor": 5,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "trade",
+          "from": 5,
+          "to": 0,
+          "amount": 1630
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 11,
+          "owner": 5,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 128,
+      "text": "NUSA menawarkan barter kepada SARI.",
+      "type": "trade",
+      "turn": 5,
+      "version": 89,
+      "actor": 0,
+      "audience": "public"
+    },
+    {
+      "id": 127,
+      "text": "Barter selesai: NUSA memberikan Denpasar, Pontianak, ₦ 227,4; BIMA memberikan Jakarta SCBD.",
+      "type": "trade",
+      "turn": 5,
+      "version": 88,
+      "actor": 4,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "trade",
+          "from": 0,
+          "to": 4,
+          "amount": 2274
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 21,
+          "owner": 4,
+          "level": 0,
+          "mortgaged": false
+        },
+        {
+          "tile": 26,
+          "owner": 4,
+          "level": 0,
+          "mortgaged": false
+        },
+        {
+          "tile": 39,
+          "owner": 0,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 126,
+      "text": "NUSA menawarkan barter kepada BIMA.",
+      "type": "trade",
+      "turn": 5,
+      "version": 87,
+      "actor": 0,
+      "audience": "public"
+    },
+    {
+      "id": 125,
+      "text": "NUSA membeli Raja Ampat · ₦ 350.",
+      "type": "buy",
+      "turn": 5,
+      "version": 86,
+      "actor": 0,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 0,
+          "to": null,
+          "amount": 3500,
+          "tile": 37
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 37,
+          "owner": 0,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 124,
+      "text": "NUSA tiba di Raja Ampat.",
+      "type": "move",
+      "turn": 5,
+      "version": 85,
+      "actor": 0,
+      "audience": "public",
+      "move": {
+        "id": 124,
+        "player": 0,
+        "path": [
+          35,
+          36,
+          37
+        ],
+        "from": 34
+      }
+    },
+    {
+      "id": 123,
+      "text": "NUSA melempar 1 + 2.",
+      "type": "dice",
+      "turn": 5,
+      "version": 85,
+      "actor": 0,
+      "audience": "public",
+      "dice": [
+        1,
+        2
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 122,
+      "text": "Giliran NUSA.",
+      "type": "turn",
+      "turn": 5,
+      "version": 84,
+      "actor": 5,
+      "audience": "public"
+    },
+    {
+      "id": 121,
+      "text": "SARI membeli Stasiun Gubeng · ₦ 200.",
+      "type": "buy",
+      "turn": 4,
+      "version": 83,
+      "actor": 5,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 5,
+          "to": null,
+          "amount": 2000,
+          "tile": 25
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 25,
+          "owner": 5,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 120,
+      "text": "SARI tiba di Stasiun Gubeng.",
+      "type": "move",
+      "turn": 4,
+      "version": 82,
+      "actor": 5,
+      "audience": "public",
+      "move": {
+        "id": 120,
+        "player": 5,
+        "path": [
+          20,
+          21,
+          22,
+          23,
+          24,
+          25
+        ],
+        "from": 19
+      }
+    },
+    {
+      "id": 119,
+      "text": "SARI melempar 5 + 1.",
+      "type": "dice",
+      "turn": 4,
+      "version": 82,
+      "actor": 5,
+      "audience": "public",
+      "dice": [
+        5,
+        1
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 118,
+      "text": "Giliran SARI.",
+      "type": "turn",
+      "turn": 4,
+      "version": 81,
+      "actor": 4,
+      "audience": "public"
+    },
+    {
+      "id": 117,
+      "text": "Tawaran BIMA kepada NUSA ditolak.",
+      "type": "trade",
+      "turn": 4,
+      "version": 80,
+      "actor": 0,
+      "audience": "public"
+    },
+    {
+      "id": 116,
+      "text": "BIMA menawarkan barter kepada NUSA.",
+      "type": "trade",
+      "turn": 4,
+      "version": 79,
+      "actor": 4,
+      "audience": "public"
+    },
+    {
+      "id": 115,
+      "text": "BIMA membeli Banjarmasin · ₦ 260.",
+      "type": "buy",
+      "turn": 4,
+      "version": 78,
+      "actor": 4,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 4,
+          "to": null,
+          "amount": 2600,
+          "tile": 27
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 27,
+          "owner": 4,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "text": "BIMA tiba di Banjarmasin.",
+      "type": "move",
+      "turn": 4,
+      "version": 77,
+      "actor": 4,
+      "audience": "public",
+      "move": {
+        "id": 114,
+        "player": 4,
+        "path": [
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "from": 19
+      }
+    },
+    {
+      "id": 113,
+      "text": "BIMA melempar 5 + 3.",
+      "type": "dice",
+      "turn": 4,
+      "version": 77,
+      "actor": 4,
+      "audience": "public",
+      "dice": [
+        5,
+        3
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 112,
+      "text": "Giliran BIMA.",
+      "type": "turn",
+      "turn": 4,
+      "version": 76,
+      "actor": 3,
+      "audience": "public"
+    },
+    {
+      "id": 111,
+      "text": "RAKA melempar 5 + 2.",
+      "type": "dice",
+      "turn": 4,
+      "version": 75,
+      "actor": 3,
+      "audience": "public",
+      "dice": [
+        5,
+        2
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 110,
+      "text": "Giliran RAKA.",
+      "type": "turn",
+      "turn": 4,
+      "version": 74,
+      "actor": 2,
+      "audience": "public"
+    },
+    {
+      "id": 109,
+      "text": "ARKA membangun rumah ke-2 di Malang · ₦ 100.",
+      "type": "build",
+      "turn": 4,
+      "version": 73,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "build",
+          "from": 2,
+          "to": null,
+          "amount": 1000,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 2,
+          "level": 2,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 108,
+      "text": "ARKA membangun rumah ke-2 di Solo · ₦ 100.",
+      "type": "build",
+      "turn": 4,
+      "version": 72,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "build",
+          "from": 2,
+          "to": null,
+          "amount": 1000,
+          "tile": 18
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 18,
+          "owner": 2,
+          "level": 2,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "text": "ARKA membangun rumah ke-2 di Banyuwangi · ₦ 100.",
+      "type": "build",
+      "turn": 4,
+      "version": 71,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "build",
+          "from": 2,
+          "to": null,
+          "amount": 1000,
+          "tile": 19
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 19,
+          "owner": 2,
+          "level": 2,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "text": "ARKA membangun rumah ke-1 di Malang · ₦ 100.",
+      "type": "build",
+      "turn": 4,
+      "version": 70,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "build",
+          "from": 2,
+          "to": null,
+          "amount": 1000,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 2,
+          "level": 1,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "text": "ARKA membangun rumah ke-1 di Solo · ₦ 100.",
+      "type": "build",
+      "turn": 4,
+      "version": 69,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "build",
+          "from": 2,
+          "to": null,
+          "amount": 1000,
+          "tile": 18
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 18,
+          "owner": 2,
+          "level": 1,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "text": "ARKA membangun rumah ke-1 di Banyuwangi · ₦ 100.",
+      "type": "build",
+      "turn": 4,
+      "version": 68,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "build",
+          "from": 2,
+          "to": null,
+          "amount": 1000,
+          "tile": 19
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 19,
+          "owner": 2,
+          "level": 1,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "text": "Barter selesai: ARKA memberikan Labuan Bajo, Jakarta SCBD, ₦ 57,2; BIMA memberikan Malang, Banyuwangi.",
+      "type": "trade",
+      "turn": 4,
+      "version": 67,
+      "actor": 4,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "trade",
+          "from": 2,
+          "to": 4,
+          "amount": 572
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 24,
+          "owner": 4,
+          "level": 0,
+          "mortgaged": false
+        },
+        {
+          "tile": 39,
+          "owner": 4,
+          "level": 0,
+          "mortgaged": false
+        },
+        {
+          "tile": 16,
+          "owner": 2,
+          "level": 0,
+          "mortgaged": false
+        },
+        {
+          "tile": 19,
+          "owner": 2,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "text": "ARKA menawarkan barter kepada BIMA.",
+      "type": "trade",
+      "turn": 4,
+      "version": 66,
+      "actor": 2,
+      "audience": "public"
+    },
+    {
+      "id": 101,
+      "text": "ARKA membeli Labuan Bajo · ₦ 240.",
+      "type": "buy",
+      "turn": 4,
+      "version": 65,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 2,
+          "to": null,
+          "amount": 2400,
+          "tile": 24
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 24,
+          "owner": 2,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "text": "ARKA tiba di Labuan Bajo.",
+      "type": "move",
+      "turn": 4,
+      "version": 64,
+      "actor": 2,
+      "audience": "public",
+      "move": {
+        "id": 100,
+        "player": 2,
+        "path": [
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "from": 18
+      }
+    },
+    {
+      "id": 99,
+      "text": "ARKA melempar 1 + 5.",
+      "type": "dice",
+      "turn": 4,
+      "version": 64,
+      "actor": 2,
+      "audience": "public",
+      "dice": [
+        1,
+        5
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 98,
+      "text": "Giliran ARKA.",
+      "type": "turn",
+      "turn": 4,
+      "version": 63,
+      "actor": 1,
+      "audience": "public"
+    },
+    {
+      "id": 97,
+      "text": "KRESNA membayar ₦ 22 kepada NUSA · sewa Pontianak.",
+      "type": "money",
+      "turn": 4,
+      "version": 62,
+      "actor": 1,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "rent",
+          "from": 1,
+          "to": 0,
+          "amount": 220,
+          "tile": 26
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "text": "KRESNA tiba di Pontianak.",
+      "type": "move",
+      "turn": 4,
+      "version": 62,
+      "actor": 1,
+      "audience": "public",
+      "move": {
+        "id": 96,
+        "player": 1,
+        "path": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26
+        ],
+        "from": 20
+      }
+    },
+    {
+      "id": 95,
+      "text": "KRESNA melempar 1 + 5.",
+      "type": "dice",
+      "turn": 4,
+      "version": 62,
+      "actor": 1,
+      "audience": "public",
+      "dice": [
+        1,
+        5
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 94,
+      "text": "Giliran KRESNA.",
+      "type": "turn",
+      "turn": 4,
+      "version": 61,
+      "actor": 0,
+      "audience": "public"
+    },
+    {
+      "id": 93,
+      "text": "NUSA membeli Ambon · ₦ 320.",
+      "type": "buy",
+      "turn": 4,
+      "version": 60,
+      "actor": 0,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 0,
+          "to": null,
+          "amount": 3200,
+          "tile": 34
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 34,
+          "owner": 0,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "text": "NUSA tiba di Ambon.",
+      "type": "move",
+      "turn": 4,
+      "version": 59,
+      "actor": 0,
+      "audience": "public",
+      "move": {
+        "id": 92,
+        "player": 0,
+        "path": [
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34
+        ],
+        "from": 26
+      }
+    },
+    {
+      "id": 91,
+      "text": "NUSA melempar 5 + 3.",
+      "type": "dice",
+      "turn": 4,
+      "version": 59,
+      "actor": 0,
+      "audience": "public",
+      "dice": [
+        5,
+        3
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 90,
+      "text": "Giliran NUSA.",
+      "type": "turn",
+      "turn": 4,
+      "version": 58,
+      "actor": 5,
+      "audience": "public"
+    },
+    {
+      "id": 89,
+      "text": "SARI membayar ₦ 16 kepada BIMA · sewa Banyuwangi.",
+      "type": "money",
+      "turn": 3,
+      "version": 57,
+      "actor": 5,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "rent",
+          "from": 5,
+          "to": 4,
+          "amount": 160,
+          "tile": 19
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "text": "SARI tiba di Banyuwangi.",
+      "type": "move",
+      "turn": 3,
+      "version": 57,
+      "actor": 5,
+      "audience": "public",
+      "move": {
+        "id": 88,
+        "player": 5,
+        "path": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "from": 10
+      }
+    },
+    {
+      "id": 87,
+      "text": "SARI melempar 4 + 5.",
+      "type": "dice",
+      "turn": 3,
+      "version": 57,
+      "actor": 5,
+      "audience": "public",
+      "dice": [
+        4,
+        5
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 86,
+      "text": "Giliran SARI.",
+      "type": "turn",
+      "turn": 3,
+      "version": 56,
+      "actor": 4,
+      "audience": "public"
+    },
+    {
+      "id": 85,
+      "text": "Barter selesai: BIMA memberikan Stasiun Gambir; RAKA memberikan Malang, ₦ 225,5.",
+      "type": "trade",
+      "turn": 3,
+      "version": 55,
+      "actor": 3,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "trade",
+          "from": 3,
+          "to": 4,
+          "amount": 2255
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        },
+        {
+          "tile": 16,
+          "owner": 4,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "text": "BIMA menawarkan barter kepada RAKA.",
+      "type": "trade",
+      "turn": 3,
+      "version": 54,
+      "actor": 4,
+      "audience": "public"
+    },
+    {
+      "id": 83,
+      "text": "BIMA membeli Banyuwangi · ₦ 200.",
+      "type": "buy",
+      "turn": 3,
+      "version": 53,
+      "actor": 4,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 4,
+          "to": null,
+          "amount": 2000,
+          "tile": 19
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 19,
+          "owner": 4,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "text": "BIMA tiba di Banyuwangi.",
+      "type": "move",
+      "turn": 3,
+      "version": 52,
+      "actor": 4,
+      "audience": "public",
+      "move": {
+        "id": 82,
+        "player": 4,
+        "path": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "from": 11
+      }
+    },
+    {
+      "id": 81,
+      "text": "BIMA melempar 3 + 5.",
+      "type": "dice",
+      "turn": 3,
+      "version": 52,
+      "actor": 4,
+      "audience": "public",
+      "dice": [
+        3,
+        5
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 80,
+      "text": "BIMA membayar ₦ 10 kepada NUSA · sewa Medan.",
+      "type": "money",
+      "turn": 3,
+      "version": 51,
+      "actor": 4,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "rent",
+          "from": 4,
+          "to": 0,
+          "amount": 100,
+          "tile": 11
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "text": "BIMA tiba di Medan.",
+      "type": "move",
+      "turn": 3,
+      "version": 51,
+      "actor": 4,
+      "audience": "public",
+      "move": {
+        "id": 79,
+        "player": 4,
+        "path": [
+          10,
+          11
+        ],
+        "from": 9
+      }
+    },
+    {
+      "id": 78,
+      "text": "BIMA melempar 1 + 1 · kembar.",
+      "type": "dice",
+      "turn": 3,
+      "version": 51,
+      "actor": 4,
+      "audience": "public",
+      "dice": [
+        1,
+        1
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 77,
+      "text": "Giliran BIMA.",
+      "type": "turn",
+      "turn": 3,
+      "version": 50,
+      "actor": 3,
+      "audience": "public"
+    },
+    {
+      "id": 76,
+      "text": "RAKA masuk penjara: kartu permainan.",
+      "type": "jail",
+      "turn": 3,
+      "version": 49,
+      "actor": 3,
+      "audience": "public",
+      "move": {
+        "id": 76,
+        "player": 3,
+        "from": 17,
+        "path": [
+          10
+        ],
+        "jump": true
+      }
+    },
+    {
+      "id": 75,
+      "text": "RAKA mengambil Dana Umum: Pemeriksaan rutin.",
+      "type": "card",
+      "turn": 3,
+      "version": 48,
+      "actor": 3,
+      "audience": "public",
+      "card": {
+        "deck": "community",
+        "idx": 5,
+        "player": 3,
+        "title": "Pemeriksaan rutin",
+        "text": "Masuk penjara tanpa mengambil gaji.",
+        "jail": true,
+        "revealId": 75
+      }
+    },
+    {
+      "id": 74,
+      "text": "RAKA tiba di Dana Umum.",
+      "type": "move",
+      "turn": 3,
+      "version": 48,
+      "actor": 3,
+      "audience": "public",
+      "move": {
+        "id": 74,
+        "player": 3,
+        "path": [
+          16,
+          17
+        ],
+        "from": 15
+      }
+    },
+    {
+      "id": 73,
+      "text": "RAKA melempar 1 + 1 · kembar.",
+      "type": "dice",
+      "turn": 3,
+      "version": 48,
+      "actor": 3,
+      "audience": "public",
+      "dice": [
+        1,
+        1
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 72,
+      "text": "Giliran RAKA.",
+      "type": "turn",
+      "turn": 3,
+      "version": 47,
+      "actor": 2,
+      "audience": "public"
+    },
+    {
+      "id": 71,
+      "text": "ARKA membeli Solo · ₦ 180.",
+      "type": "buy",
+      "turn": 3,
+      "version": 46,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 2,
+          "to": null,
+          "amount": 1800,
+          "tile": 18
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 18,
+          "owner": 2,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "text": "ARKA tiba di Solo.",
+      "type": "move",
+      "turn": 3,
+      "version": 45,
+      "actor": 2,
+      "audience": "public",
+      "move": {
+        "id": 70,
+        "player": 2,
+        "path": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "from": 9
+      }
+    },
+    {
+      "id": 69,
+      "text": "ARKA melempar 5 + 4.",
+      "type": "dice",
+      "turn": 3,
+      "version": 45,
+      "actor": 2,
+      "audience": "public",
+      "dice": [
+        5,
+        4
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 68,
+      "text": "ARKA membayar ₦ 8 kepada KRESNA · sewa Surabaya.",
+      "type": "money",
+      "turn": 3,
+      "version": 44,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "rent",
+          "from": 2,
+          "to": 1,
+          "amount": 80,
+          "tile": 9
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "text": "ARKA tiba di Surabaya.",
+      "type": "move",
+      "turn": 3,
+      "version": 44,
+      "actor": 2,
+      "audience": "public",
+      "move": {
+        "id": 67,
+        "player": 2,
+        "path": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "from": 3
+      }
+    },
+    {
+      "id": 66,
+      "text": "ARKA melempar 3 + 3 · kembar.",
+      "type": "dice",
+      "turn": 3,
+      "version": 44,
+      "actor": 2,
+      "audience": "public",
+      "dice": [
+        3,
+        3
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 65,
+      "text": "Giliran ARKA.",
+      "type": "turn",
+      "turn": 3,
+      "version": 43,
+      "actor": 1,
+      "audience": "public"
+    },
+    {
+      "id": 64,
+      "text": "KRESNA tiba di Parkir Bebas.",
+      "type": "move",
+      "turn": 3,
+      "version": 42,
+      "actor": 1,
+      "audience": "public",
+      "move": {
+        "id": 64,
+        "player": 1,
+        "path": [
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "from": 12
+      }
+    },
+    {
+      "id": 63,
+      "text": "KRESNA melempar 5 + 3.",
+      "type": "dice",
+      "turn": 3,
+      "version": 42,
+      "actor": 1,
+      "audience": "public",
+      "dice": [
+        5,
+        3
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 62,
+      "text": "Giliran KRESNA.",
+      "type": "turn",
+      "turn": 3,
+      "version": 41,
+      "actor": 0,
+      "audience": "public"
+    },
+    {
+      "id": 61,
+      "text": "NUSA membeli Pontianak · ₦ 260.",
+      "type": "buy",
+      "turn": 3,
+      "version": 40,
+      "actor": 0,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 0,
+          "to": null,
+          "amount": 2600,
+          "tile": 26
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 26,
+          "owner": 0,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "text": "NUSA tiba di Pontianak.",
+      "type": "move",
+      "turn": 3,
+      "version": 39,
+      "actor": 0,
+      "audience": "public",
+      "move": {
+        "id": 60,
+        "player": 0,
+        "path": [
+          22,
+          23,
+          24,
+          25,
+          26
+        ],
+        "from": 21
+      }
+    },
+    {
+      "id": 59,
+      "text": "NUSA melempar 1 + 4.",
+      "type": "dice",
+      "turn": 3,
+      "version": 39,
+      "actor": 0,
+      "audience": "public",
+      "dice": [
+        1,
+        4
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 58,
+      "text": "Giliran NUSA.",
+      "type": "turn",
+      "turn": 3,
+      "version": 38,
+      "actor": 5,
+      "audience": "public"
+    },
+    {
+      "id": 57,
+      "text": "SARI tiba di Penjara.",
+      "type": "move",
+      "turn": 2,
+      "version": 37,
+      "actor": 5,
+      "audience": "public",
+      "move": {
+        "id": 57,
+        "player": 5,
+        "path": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "from": 5
+      }
+    },
+    {
+      "id": 56,
+      "text": "SARI melempar 1 + 4.",
+      "type": "dice",
+      "turn": 2,
+      "version": 37,
+      "actor": 5,
+      "audience": "public",
+      "dice": [
+        1,
+        4
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 55,
+      "text": "Giliran SARI.",
+      "type": "turn",
+      "turn": 2,
+      "version": 36,
+      "actor": 4,
+      "audience": "public"
+    },
+    {
+      "id": 54,
+      "text": "BIMA membayar ₦ 8 kepada KRESNA · sewa Surabaya.",
+      "type": "money",
+      "turn": 2,
+      "version": 35,
+      "actor": 4,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "rent",
+          "from": 4,
+          "to": 1,
+          "amount": 80,
+          "tile": 9
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "text": "BIMA tiba di Surabaya.",
+      "type": "move",
+      "turn": 2,
+      "version": 35,
+      "actor": 4,
+      "audience": "public",
+      "move": {
+        "id": 53,
+        "player": 4,
+        "path": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "from": 5
+      }
+    },
+    {
+      "id": 52,
+      "text": "BIMA melempar 3 + 1.",
+      "type": "dice",
+      "turn": 2,
+      "version": 35,
+      "actor": 4,
+      "audience": "public",
+      "dice": [
+        3,
+        1
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 51,
+      "text": "Giliran BIMA.",
+      "type": "turn",
+      "turn": 2,
+      "version": 34,
+      "actor": 3,
+      "audience": "public"
+    },
+    {
+      "id": 50,
+      "text": "RAKA membeli Stasiun Tawang · ₦ 200.",
+      "type": "buy",
+      "turn": 2,
+      "version": 33,
+      "actor": 3,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 3,
+          "to": null,
+          "amount": 2000,
+          "tile": 15
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 15,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "text": "RAKA tiba di Stasiun Tawang.",
+      "type": "move",
+      "turn": 2,
+      "version": 32,
+      "actor": 3,
+      "audience": "public",
+      "move": {
+        "id": 49,
+        "player": 3,
+        "path": [
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "from": 10
+      }
+    },
+    {
+      "id": 48,
+      "text": "RAKA melempar 2 + 3.",
+      "type": "dice",
+      "turn": 2,
+      "version": 32,
+      "actor": 3,
+      "audience": "public",
+      "dice": [
+        2,
+        3
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 47,
+      "text": "RAKA bebas dari penjara.",
+      "type": "release",
+      "turn": 2,
+      "version": 31,
+      "actor": 3,
+      "audience": "public"
+    },
+    {
+      "id": 46,
+      "text": "RAKA membayar ₦ 50 untuk bebas.",
+      "type": "money",
+      "turn": 2,
+      "version": 31,
+      "actor": 3,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "jail",
+          "from": 3,
+          "to": null,
+          "amount": 500
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "text": "Giliran RAKA.",
+      "type": "turn",
+      "turn": 2,
+      "version": 30,
+      "actor": 2,
+      "audience": "public"
+    },
+    {
+      "id": 44,
+      "text": "ARKA membeli Bandung · ₦ 60.",
+      "type": "buy",
+      "turn": 2,
+      "version": 29,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 2,
+          "to": null,
+          "amount": 600,
+          "tile": 3
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 3,
+          "owner": 2,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "text": "ARKA tiba di Bandung.",
+      "type": "move",
+      "turn": 2,
+      "version": 28,
+      "actor": 2,
+      "audience": "public",
+      "move": {
+        "id": 43,
+        "player": 2,
+        "path": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "from": 39
+      }
+    },
+    {
+      "id": 42,
+      "text": "ARKA melewati Mulai: +₦ 200.",
+      "type": "money",
+      "turn": 2,
+      "version": 28,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "salary",
+          "from": null,
+          "to": 2,
+          "amount": 2000
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "text": "ARKA melempar 1 + 3.",
+      "type": "dice",
+      "turn": 2,
+      "version": 28,
+      "actor": 2,
+      "audience": "public",
+      "dice": [
+        1,
+        3
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 40,
+      "text": "Giliran ARKA.",
+      "type": "turn",
+      "turn": 2,
+      "version": 27,
+      "actor": 1,
+      "audience": "public"
+    },
+    {
+      "id": 39,
+      "text": "KRESNA membeli Energi Nusantara · ₦ 150.",
+      "type": "buy",
+      "turn": 2,
+      "version": 26,
+      "actor": 1,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 1,
+          "to": null,
+          "amount": 1500,
+          "tile": 12
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 12,
+          "owner": 1,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "text": "KRESNA tiba di Energi Nusantara.",
+      "type": "move",
+      "turn": 2,
+      "version": 25,
+      "actor": 1,
+      "audience": "public",
+      "move": {
+        "id": 38,
+        "player": 1,
+        "path": [
+          10,
+          11,
+          12
+        ],
+        "from": 9
+      }
+    },
+    {
+      "id": 37,
+      "text": "KRESNA melempar 2 + 1.",
+      "type": "dice",
+      "turn": 2,
+      "version": 25,
+      "actor": 1,
+      "audience": "public",
+      "dice": [
+        2,
+        1
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 36,
+      "text": "Giliran KRESNA.",
+      "type": "turn",
+      "turn": 2,
+      "version": 24,
+      "actor": 0,
+      "audience": "public"
+    },
+    {
+      "id": 35,
+      "text": "NUSA membeli Denpasar · ₦ 220.",
+      "type": "buy",
+      "turn": 2,
+      "version": 23,
+      "actor": 0,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 0,
+          "to": null,
+          "amount": 2200,
+          "tile": 21
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 21,
+          "owner": 0,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "text": "NUSA tiba di Denpasar.",
+      "type": "move",
+      "turn": 2,
+      "version": 22,
+      "actor": 0,
+      "audience": "public",
+      "move": {
+        "id": 34,
+        "player": 0,
+        "path": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        "from": 11
+      }
+    },
+    {
+      "id": 33,
+      "text": "NUSA melempar 6 + 4.",
+      "type": "dice",
+      "turn": 2,
+      "version": 22,
+      "actor": 0,
+      "audience": "public",
+      "dice": [
+        6,
+        4
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 32,
+      "text": "Giliran NUSA.",
+      "type": "turn",
+      "turn": 2,
+      "version": 21,
+      "actor": 5,
+      "audience": "public"
+    },
+    {
+      "id": 31,
+      "text": "SARI membayar ₦ 25 kepada BIMA · sewa Stasiun Gambir.",
+      "type": "money",
+      "turn": 1,
+      "version": 20,
+      "actor": 5,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "rent",
+          "from": 5,
+          "to": 4,
+          "amount": 250,
+          "tile": 5
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "text": "SARI tiba di Stasiun Gambir.",
+      "type": "move",
+      "turn": 1,
+      "version": 20,
+      "actor": 5,
+      "audience": "public",
+      "move": {
+        "id": 30,
+        "player": 5,
+        "path": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "from": 0
+      }
+    },
+    {
+      "id": 29,
+      "text": "SARI melempar 2 + 3.",
+      "type": "dice",
+      "turn": 1,
+      "version": 20,
+      "actor": 5,
+      "audience": "public",
+      "dice": [
+        2,
+        3
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 28,
+      "text": "Giliran SARI.",
+      "type": "turn",
+      "turn": 1,
+      "version": 19,
+      "actor": 4,
+      "audience": "public"
+    },
+    {
+      "id": 27,
+      "text": "BIMA membeli Stasiun Gambir · ₦ 200.",
+      "type": "buy",
+      "turn": 1,
+      "version": 18,
+      "actor": 4,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 4,
+          "to": null,
+          "amount": 2000,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 4,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "text": "BIMA tiba di Stasiun Gambir.",
+      "type": "move",
+      "turn": 1,
+      "version": 17,
+      "actor": 4,
+      "audience": "public",
+      "move": {
+        "id": 26,
+        "player": 4,
+        "path": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "from": 0
+      }
+    },
+    {
+      "id": 25,
+      "text": "BIMA melempar 2 + 3.",
+      "type": "dice",
+      "turn": 1,
+      "version": 17,
+      "actor": 4,
+      "audience": "public",
+      "dice": [
+        2,
+        3
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 24,
+      "text": "Giliran BIMA.",
+      "type": "turn",
+      "turn": 1,
+      "version": 16,
+      "actor": 3,
+      "audience": "public"
+    },
+    {
+      "id": 23,
+      "text": "RAKA masuk penjara: tiga kali dadu kembar berturut-turut.",
+      "type": "jail",
+      "turn": 1,
+      "version": 15,
+      "actor": 3,
+      "audience": "public",
+      "move": {
+        "id": 23,
+        "player": 3,
+        "from": 16,
+        "path": [
+          10
+        ],
+        "jump": true
+      }
+    },
+    {
+      "id": 22,
+      "text": "RAKA melempar 2 + 2 · kembar.",
+      "type": "dice",
+      "turn": 1,
+      "version": 15,
+      "actor": 3,
+      "audience": "public",
+      "dice": [
+        2,
+        2
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 21,
+      "text": "RAKA membeli Malang · ₦ 180.",
+      "type": "buy",
+      "turn": 1,
+      "version": 14,
+      "actor": 3,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 3,
+          "to": null,
+          "amount": 1800,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "text": "RAKA tiba di Malang.",
+      "type": "move",
+      "turn": 1,
+      "version": 13,
+      "actor": 3,
+      "audience": "public",
+      "move": {
+        "id": 20,
+        "player": 3,
+        "path": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "from": 8
+      }
+    },
+    {
+      "id": 19,
+      "text": "RAKA melempar 4 + 4 · kembar.",
+      "type": "dice",
+      "turn": 1,
+      "version": 13,
+      "actor": 3,
+      "audience": "public",
+      "dice": [
+        4,
+        4
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 18,
+      "text": "RAKA membeli Semarang · ₦ 100.",
+      "type": "buy",
+      "turn": 1,
+      "version": 12,
+      "actor": 3,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 3,
+          "to": null,
+          "amount": 1000,
+          "tile": 8
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 8,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "text": "RAKA tiba di Semarang.",
+      "type": "move",
+      "turn": 1,
+      "version": 11,
+      "actor": 3,
+      "audience": "public",
+      "move": {
+        "id": 17,
+        "player": 3,
+        "path": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "from": 0
+      }
+    },
+    {
+      "id": 16,
+      "text": "RAKA melempar 4 + 4 · kembar.",
+      "type": "dice",
+      "turn": 1,
+      "version": 11,
+      "actor": 3,
+      "audience": "public",
+      "dice": [
+        4,
+        4
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 15,
+      "text": "Giliran RAKA.",
+      "type": "turn",
+      "turn": 1,
+      "version": 10,
+      "actor": 2,
+      "audience": "public"
+    },
+    {
+      "id": 14,
+      "text": "ARKA membeli Jakarta SCBD · ₦ 400.",
+      "type": "buy",
+      "turn": 1,
+      "version": 9,
+      "actor": 2,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 2,
+          "to": null,
+          "amount": 4000,
+          "tile": 39
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 39,
+          "owner": 2,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "text": "ARKA tiba di Jakarta SCBD.",
+      "type": "move",
+      "turn": 1,
+      "version": 8,
+      "actor": 2,
+      "audience": "public",
+      "move": {
+        "id": 13,
+        "player": 2,
+        "path": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39
+        ],
+        "from": 7
+      }
+    },
+    {
+      "id": 12,
+      "text": "ARKA mengambil Kesempatan: Selangkah ke ibu kota.",
+      "type": "card",
+      "turn": 1,
+      "version": 7,
+      "actor": 2,
+      "audience": "public",
+      "card": {
+        "deck": "chance",
+        "idx": 0,
+        "player": 2,
+        "title": "Selangkah ke ibu kota",
+        "text": "Maju ke Jakarta SCBD.",
+        "move": 39,
+        "revealId": 12
+      }
+    },
+    {
+      "id": 11,
+      "text": "ARKA tiba di Kesempatan.",
+      "type": "move",
+      "turn": 1,
+      "version": 7,
+      "actor": 2,
+      "audience": "public",
+      "move": {
+        "id": 11,
+        "player": 2,
+        "path": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "from": 0
+      }
+    },
+    {
+      "id": 10,
+      "text": "ARKA melempar 3 + 4.",
+      "type": "dice",
+      "turn": 1,
+      "version": 7,
+      "actor": 2,
+      "audience": "public",
+      "dice": [
+        3,
+        4
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 9,
+      "text": "Giliran ARKA.",
+      "type": "turn",
+      "turn": 1,
+      "version": 6,
+      "actor": 1,
+      "audience": "public"
+    },
+    {
+      "id": 8,
+      "text": "KRESNA membeli Surabaya · ₦ 120.",
+      "type": "buy",
+      "turn": 1,
+      "version": 5,
+      "actor": 1,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 1,
+          "to": null,
+          "amount": 1200,
+          "tile": 9
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 9,
+          "owner": 1,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "text": "KRESNA tiba di Surabaya.",
+      "type": "move",
+      "turn": 1,
+      "version": 4,
+      "actor": 1,
+      "audience": "public",
+      "move": {
+        "id": 7,
+        "player": 1,
+        "path": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "from": 0
+      }
+    },
+    {
+      "id": 6,
+      "text": "KRESNA melempar 4 + 5.",
+      "type": "dice",
+      "turn": 1,
+      "version": 4,
+      "actor": 1,
+      "audience": "public",
+      "dice": [
+        4,
+        5
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 5,
+      "text": "Giliran KRESNA.",
+      "type": "turn",
+      "turn": 1,
+      "version": 3,
+      "actor": 0,
+      "audience": "public"
+    },
+    {
+      "id": 4,
+      "text": "NUSA membeli Medan · ₦ 140.",
+      "type": "buy",
+      "turn": 1,
+      "version": 2,
+      "actor": 0,
+      "audience": "public",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 0,
+          "to": null,
+          "amount": 1400,
+          "tile": 11
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 11,
+          "owner": 0,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "text": "NUSA tiba di Medan.",
+      "type": "move",
+      "turn": 1,
+      "version": 1,
+      "actor": 0,
+      "audience": "public",
+      "move": {
+        "id": 3,
+        "player": 0,
+        "path": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "from": 0
+      }
+    },
+    {
+      "id": 2,
+      "text": "NUSA melempar 5 + 6.",
+      "type": "dice",
+      "turn": 1,
+      "version": 1,
+      "actor": 0,
+      "audience": "public",
+      "dice": [
+        5,
+        6
+      ],
+      "diceKind": "movement"
+    },
+    {
+      "id": 1,
+      "text": "Modal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+      "type": "start",
+      "turn": 1,
+      "version": 0,
+      "actor": 0,
+      "audience": "public"
+    }
+  ],
+  "eventId": 142,
+  "seen": [
+    "bench:run-2026-10-18T15-30-44-395Z-0001:1",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:2",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:3",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:4",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:5",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:6",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:7",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:8",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:9",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:10",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:11",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:12",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:13",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:14",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:15",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:16",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:17",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:18",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:19",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:20",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:21",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:22",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:23",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:24",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:25",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:26",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:27",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:28",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:29",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:30",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:31",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:32",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:33",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:34",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:35",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:36",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:37",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:38",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:39",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:40",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:41",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:42",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:43",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:44",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:45",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:46",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:47",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:48",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:49",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:50",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:51",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:52",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:53",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:54",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:55",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:56",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:57",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:58",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:59",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:60",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:61",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:62",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:63",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:64",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:65",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:66",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:67",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:68",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:69",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:70",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:71",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:72",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:73",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:74",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:75",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:76",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:77",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:78",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:79",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:80",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:81",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:82",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:83",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:84",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:85",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:86",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:87",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:88",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:89",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:90",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:91",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:92",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:93",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:94",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:95",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:96",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:97",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:98",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:99",
+    "bench:run-2026-10-18T15-30-44-395Z-0001:100"
+  ],
+  "lastMove": {
+    "id": 140,
+    "player": 2,
+    "path": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "from": 24
+  },
+  "aiStatus": "Bot lokal",
+  "aiComment": null,
+  "advisorEnabled": false,
+  "difficulty": "strategis",
+  "bankEconomy": {
+    "schema": 1,
+    "complete": true,
+    "fromVersion": 0,
+    "fromRound": 1,
+    "openingCirculation": 90000,
+    "issued": 2000,
+    "absorbed": 51300,
+    "transferred": 11861,
+    "turnover": 65161,
+    "count": 41,
+    "byKind": {
+      "purchase": {
+        "issued": 0,
+        "absorbed": 40800,
+        "transferred": 0,
+        "total": 40800,
+        "count": 19
+      },
+      "rent": {
+        "issued": 0,
+        "absorbed": 0,
+        "transferred": 1150,
+        "total": 1150,
+        "count": 7
+      },
+      "salary": {
+        "issued": 2000,
+        "absorbed": 0,
+        "transferred": 0,
+        "total": 2000,
+        "count": 1
+      },
+      "jail": {
+        "issued": 0,
+        "absorbed": 500,
+        "transferred": 0,
+        "total": 500,
+        "count": 1
+      },
+      "trade": {
+        "issued": 0,
+        "absorbed": 0,
+        "transferred": 10711,
+        "total": 10711,
+        "count": 5
+      },
+      "build": {
+        "issued": 0,
+        "absorbed": 10000,
+        "transferred": 0,
+        "total": 10000,
+        "count": 8
+      }
+    },
+    "recent": [
+      {
+        "id": "141:0",
+        "round": 5,
+        "kind": "rent",
+        "from": 2,
+        "to": 1,
+        "amount": 260,
+        "tile": 32
+      },
+      {
+        "id": "137:0",
+        "round": 5,
+        "kind": "purchase",
+        "from": 1,
+        "to": null,
+        "amount": 3000,
+        "tile": 32
+      },
+      {
+        "id": "133:0",
+        "round": 5,
+        "kind": "build",
+        "from": 0,
+        "to": null,
+        "amount": 2000,
+        "tile": 37
+      },
+      {
+        "id": "132:0",
+        "round": 5,
+        "kind": "build",
+        "from": 0,
+        "to": null,
+        "amount": 2000,
+        "tile": 39
+      },
+      {
+        "id": "131:0",
+        "round": 5,
+        "kind": "trade",
+        "from": 1,
+        "to": 0,
+        "amount": 3980
+      },
+      {
+        "id": "129:0",
+        "round": 5,
+        "kind": "trade",
+        "from": 5,
+        "to": 0,
+        "amount": 1630
+      },
+      {
+        "id": "127:0",
+        "round": 5,
+        "kind": "trade",
+        "from": 0,
+        "to": 4,
+        "amount": 2274
+      },
+      {
+        "id": "125:0",
+        "round": 5,
+        "kind": "purchase",
+        "from": 0,
+        "to": null,
+        "amount": 3500,
+        "tile": 37
+      },
+      {
+        "id": "121:0",
+        "round": 4,
+        "kind": "purchase",
+        "from": 5,
+        "to": null,
+        "amount": 2000,
+        "tile": 25
+      },
+      {
+        "id": "115:0",
+        "round": 4,
+        "kind": "purchase",
+        "from": 4,
+        "to": null,
+        "amount": 2600,
+        "tile": 27
+      },
+      {
+        "id": "109:0",
+        "round": 4,
+        "kind": "build",
+        "from": 2,
+        "to": null,
+        "amount": 1000,
+        "tile": 16
+      },
+      {
+        "id": "108:0",
+        "round": 4,
+        "kind": "build",
+        "from": 2,
+        "to": null,
+        "amount": 1000,
+        "tile": 18
+      },
+      {
+        "id": "107:0",
+        "round": 4,
+        "kind": "build",
+        "from": 2,
+        "to": null,
+        "amount": 1000,
+        "tile": 19
+      },
+      {
+        "id": "106:0",
+        "round": 4,
+        "kind": "build",
+        "from": 2,
+        "to": null,
+        "amount": 1000,
+        "tile": 16
+      },
+      {
+        "id": "105:0",
+        "round": 4,
+        "kind": "build",
+        "from": 2,
+        "to": null,
+        "amount": 1000,
+        "tile": 18
+      },
+      {
+        "id": "104:0",
+        "round": 4,
+        "kind": "build",
+        "from": 2,
+        "to": null,
+        "amount": 1000,
+        "tile": 19
+      },
+      {
+        "id": "103:0",
+        "round": 4,
+        "kind": "trade",
+        "from": 2,
+        "to": 4,
+        "amount": 572
+      },
+      {
+        "id": "101:0",
+        "round": 4,
+        "kind": "purchase",
+        "from": 2,
+        "to": null,
+        "amount": 2400,
+        "tile": 24
+      },
+      {
+        "id": "97:0",
+        "round": 4,
+        "kind": "rent",
+        "from": 1,
+        "to": 0,
+        "amount": 220,
+        "tile": 26
+      },
+      {
+        "id": "93:0",
+        "round": 4,
+        "kind": "purchase",
+        "from": 0,
+        "to": null,
+        "amount": 3200,
+        "tile": 34
+      },
+      {
+        "id": "89:0",
+        "round": 3,
+        "kind": "rent",
+        "from": 5,
+        "to": 4,
+        "amount": 160,
+        "tile": 19
+      },
+      {
+        "id": "85:0",
+        "round": 3,
+        "kind": "trade",
+        "from": 3,
+        "to": 4,
+        "amount": 2255
+      },
+      {
+        "id": "83:0",
+        "round": 3,
+        "kind": "purchase",
+        "from": 4,
+        "to": null,
+        "amount": 2000,
+        "tile": 19
+      },
+      {
+        "id": "80:0",
+        "round": 3,
+        "kind": "rent",
+        "from": 4,
+        "to": 0,
+        "amount": 100,
+        "tile": 11
+      },
+      {
+        "id": "71:0",
+        "round": 3,
+        "kind": "purchase",
+        "from": 2,
+        "to": null,
+        "amount": 1800,
+        "tile": 18
+      },
+      {
+        "id": "68:0",
+        "round": 3,
+        "kind": "rent",
+        "from": 2,
+        "to": 1,
+        "amount": 80,
+        "tile": 9
+      },
+      {
+        "id": "61:0",
+        "round": 3,
+        "kind": "purchase",
+        "from": 0,
+        "to": null,
+        "amount": 2600,
+        "tile": 26
+      },
+      {
+        "id": "54:0",
+        "round": 2,
+        "kind": "rent",
+        "from": 4,
+        "to": 1,
+        "amount": 80,
+        "tile": 9
+      },
+      {
+        "id": "50:0",
+        "round": 2,
+        "kind": "purchase",
+        "from": 3,
+        "to": null,
+        "amount": 2000,
+        "tile": 15
+      },
+      {
+        "id": "46:0",
+        "round": 2,
+        "kind": "jail",
+        "from": 3,
+        "to": null,
+        "amount": 500
+      },
+      {
+        "id": "44:0",
+        "round": 2,
+        "kind": "purchase",
+        "from": 2,
+        "to": null,
+        "amount": 600,
+        "tile": 3
+      },
+      {
+        "id": "42:0",
+        "round": 2,
+        "kind": "salary",
+        "from": null,
+        "to": 2,
+        "amount": 2000
+      },
+      {
+        "id": "39:0",
+        "round": 2,
+        "kind": "purchase",
+        "from": 1,
+        "to": null,
+        "amount": 1500,
+        "tile": 12
+      },
+      {
+        "id": "35:0",
+        "round": 2,
+        "kind": "purchase",
+        "from": 0,
+        "to": null,
+        "amount": 2200,
+        "tile": 21
+      },
+      {
+        "id": "31:0",
+        "round": 1,
+        "kind": "rent",
+        "from": 5,
+        "to": 4,
+        "amount": 250,
+        "tile": 5
+      },
+      {
+        "id": "27:0",
+        "round": 1,
+        "kind": "purchase",
+        "from": 4,
+        "to": null,
+        "amount": 2000,
+        "tile": 5
+      },
+      {
+        "id": "21:0",
+        "round": 1,
+        "kind": "purchase",
+        "from": 3,
+        "to": null,
+        "amount": 1800,
+        "tile": 16
+      },
+      {
+        "id": "18:0",
+        "round": 1,
+        "kind": "purchase",
+        "from": 3,
+        "to": null,
+        "amount": 1000,
+        "tile": 8
+      },
+      {
+        "id": "14:0",
+        "round": 1,
+        "kind": "purchase",
+        "from": 2,
+        "to": null,
+        "amount": 4000,
+        "tile": 39
+      },
+      {
+        "id": "8:0",
+        "round": 1,
+        "kind": "purchase",
+        "from": 1,
+        "to": null,
+        "amount": 1200,
+        "tile": 9
+      }
+    ]
+  },
+  "buy": 32,
+  "botMemory": {
+    "version": 1,
+    "players": {
+      "0": {
+        "lastOfferSerial": 24,
+        "lastSignature": "{\"to\":1,\"give\":[34],\"take\":[],\"giveCash\":0,\"takeCash\":3980,\"giveCards\":0,\"takeCards\":0}",
+        "rejections": {},
+        "nusaTradeTurnSerial": 27,
+        "nusaTurnTradeCount": 0,
+        "observation": {
+          "version": 1,
+          "throughVersion": 92,
+          "queuedThroughVersion": 99,
+          "batches": 17,
+          "profiles": {
+            "1": {
+              "observations": 7,
+              "groups": {
+                "1": 1,
+                "6": 1
+              },
+              "aggression": 1,
+              "cashPressure": 0,
+              "trades": {
+                "offered": 0,
+                "accepted": 1,
+                "rejected": 0
+              },
+              "monopolyGroups": [],
+              "lastVersion": 92,
+              "confidence": 0.4666666666666667
+            },
+            "2": {
+              "observations": 17,
+              "groups": {
+                "0": 1,
+                "3": 8,
+                "4": 1,
+                "7": 1
+              },
+              "aggression": 1,
+              "cashPressure": 0.06779999999999999,
+              "trades": {
+                "offered": 1,
+                "accepted": 0,
+                "rejected": 0
+              },
+              "monopolyGroups": [
+                3
+              ],
+              "lastVersion": 73,
+              "confidence": 0.68
+            },
+            "3": {
+              "observations": 12,
+              "groups": {
+                "1": 1,
+                "3": 1
+              },
+              "aggression": 1,
+              "cashPressure": 0,
+              "trades": {
+                "offered": 0,
+                "accepted": 1,
+                "rejected": 0
+              },
+              "monopolyGroups": [],
+              "lastVersion": 75,
+              "confidence": 0.6
+            },
+            "4": {
+              "observations": 12,
+              "groups": {
+                "3": 2,
+                "4": 2,
+                "5": 3,
+                "7": 1
+              },
+              "aggression": 1,
+              "cashPressure": 0,
+              "trades": {
+                "offered": 2,
+                "accepted": 2,
+                "rejected": 0
+              },
+              "monopolyGroups": [],
+              "lastVersion": 88,
+              "confidence": 0.6
+            },
+            "5": {
+              "observations": 6,
+              "groups": {
+                "2": 1
+              },
+              "aggression": 1,
+              "cashPressure": 0,
+              "trades": {
+                "offered": 0,
+                "accepted": 1,
+                "rejected": 0
+              },
+              "monopolyGroups": [],
+              "lastVersion": 90,
+              "confidence": 0.42857142857142855
+            }
+          },
+          "pending": [
+            {
+              "version": 96,
+              "actor": 1,
+              "type": "ROLL",
+              "groups": [],
+              "bidRatio": 0,
+              "cashPressure": 0,
+              "monopolyGroups": []
+            },
+            {
+              "version": 97,
+              "actor": 1,
+              "type": "BUY",
+              "groups": [
+                6
+              ],
+              "bidRatio": 0,
+              "cashPressure": 0,
+              "monopolyGroups": []
+            },
+            {
+              "version": 99,
+              "actor": 2,
+              "type": "ROLL",
+              "groups": [],
+              "bidRatio": 0,
+              "cashPressure": 0.356,
+              "monopolyGroups": [
+                3
+              ]
+            }
+          ]
+        },
+        "lastCanonicalSignature": "[\"[1,[34],[],0,0]\",-3980]",
+        "tradeHistory": [
+          {
+            "version": 88,
+            "serial": 24,
+            "partner": 4,
+            "signature": "[\"[4,[21,26],[39],0,0]\",2274]",
+            "bundle": "[4,[21,26],[39],0,0]",
+            "context": "9103f775",
+            "trade": {
+              "to": 4,
+              "give": [
+                21,
+                26
+              ],
+              "take": [
+                39
+              ],
+              "giveCash": 2274,
+              "takeCash": 0,
+              "giveCards": 0,
+              "takeCards": 0
+            },
+            "outcome": "accepted",
+            "reason": null,
+            "confidence": "observed"
+          },
+          {
+            "version": 90,
+            "serial": 24,
+            "partner": 5,
+            "signature": "[\"[5,[11],[],0,0]\",-1630]",
+            "bundle": "[5,[11],[],0,0]",
+            "context": "67efb161",
+            "trade": {
+              "to": 5,
+              "give": [
+                11
+              ],
+              "take": [],
+              "giveCash": 0,
+              "takeCash": 1630,
+              "giveCards": 0,
+              "takeCards": 0
+            },
+            "outcome": "accepted",
+            "reason": null,
+            "confidence": "observed"
+          },
+          {
+            "version": 92,
+            "serial": 24,
+            "partner": 1,
+            "signature": "[\"[1,[34],[],0,0]\",-3980]",
+            "bundle": "[1,[34],[],0,0]",
+            "context": "a42fbe0d",
+            "trade": {
+              "to": 1,
+              "give": [
+                34
+              ],
+              "take": [],
+              "giveCash": 0,
+              "takeCash": 3980,
+              "giveCards": 0,
+              "takeCards": 0
+            },
+            "outcome": "accepted",
+            "reason": null,
+            "confidence": "observed"
+          }
+        ]
+      },
+      "1": {
+        "lastOfferSerial": -100,
+        "lastSignature": "",
+        "rejections": {}
+      },
+      "2": {
+        "lastOfferSerial": 20,
+        "lastSignature": "{\"to\":4,\"give\":[24,39],\"take\":[16,19],\"giveCash\":572,\"takeCash\":0,\"giveCards\":0,\"takeCards\":0}",
+        "rejections": {},
+        "lastCanonicalSignature": "[\"[4,[24,39],[16,19],0,0]\",572]",
+        "tradeHistory": [
+          {
+            "version": 67,
+            "serial": 20,
+            "partner": 4,
+            "signature": "[\"[4,[24,39],[16,19],0,0]\",572]",
+            "bundle": "[4,[24,39],[16,19],0,0]",
+            "context": "5bc06a9b",
+            "trade": {
+              "to": 4,
+              "give": [
+                24,
+                39
+              ],
+              "take": [
+                16,
+                19
+              ],
+              "giveCash": 572,
+              "takeCash": 0,
+              "giveCards": 0,
+              "takeCards": 0
+            },
+            "outcome": "accepted",
+            "reason": null,
+            "confidence": "observed"
+          }
+        ]
+      },
+      "3": {
+        "lastOfferSerial": -100,
+        "lastSignature": "",
+        "rejections": {}
+      },
+      "4": {
+        "lastOfferSerial": 22,
+        "lastSignature": "{\"to\":0,\"give\":[],\"take\":[26],\"giveCash\":2861,\"takeCash\":0,\"giveCards\":0,\"takeCards\":0}",
+        "rejections": {
+          "0": {
+            "untilSerial": 34,
+            "count": 1,
+            "ownership": "-,2,3,-,3,1,0,1,-,-,3,2,2,2,0,-,4,-,0,4,-,-,-,-,0,-,-,4"
+          }
+        },
+        "lastCanonicalSignature": "[\"[0,[],[26],0,0]\",2861]",
+        "tradeHistory": [
+          {
+            "version": 55,
+            "serial": 16,
+            "partner": 3,
+            "signature": "[\"[3,[5],[16],0,0]\",-2255]",
+            "bundle": "[3,[5],[16],0,0]",
+            "context": "515556a3",
+            "trade": {
+              "to": 3,
+              "give": [
+                5
+              ],
+              "take": [
+                16
+              ],
+              "giveCash": 0,
+              "takeCash": 2255,
+              "giveCards": 0,
+              "takeCards": 0
+            },
+            "outcome": "accepted",
+            "reason": null,
+            "confidence": "observed"
+          },
+          {
+            "version": 80,
+            "serial": 22,
+            "partner": 0,
+            "signature": "[\"[0,[],[26],0,0]\",2861]",
+            "bundle": "[0,[],[26],0,0]",
+            "context": "8ad49625",
+            "trade": {
+              "to": 0,
+              "give": [],
+              "take": [
+                26
+              ],
+              "giveCash": 2861,
+              "takeCash": 0,
+              "giveCards": 0,
+              "takeCards": 0
+            },
+            "outcome": "rejected",
+            "reason": "strategic_preference",
+            "confidence": "estimated"
+          }
+        ]
+      },
+      "5": {
+        "lastOfferSerial": -100,
+        "lastSignature": "",
+        "rejections": {}
+      }
+    },
+    "opponents": {
+      "0": {
+        "aggression": 1,
+        "observations": 0,
+        "concessions": {
+          "late": [
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 1
+            }
+          ]
+        },
+        "tradeAccepted": 0,
+        "tradeRejected": 1,
+        "groups": {
+          "7": 1
+        }
+      },
+      "1": {
+        "aggression": 1,
+        "observations": 0,
+        "concessions": {
+          "late": [
+            {
+              "accepted": 1,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            }
+          ]
+        },
+        "tradeAccepted": 1,
+        "tradeRejected": 0
+      },
+      "2": {
+        "aggression": 1,
+        "observations": 0,
+        "groups": {
+          "3": 2
+        }
+      },
+      "3": {
+        "aggression": 1,
+        "observations": 0,
+        "concessions": {
+          "early": [
+            {
+              "accepted": 1,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            }
+          ]
+        },
+        "tradeAccepted": 1,
+        "tradeRejected": 0
+      },
+      "4": {
+        "aggression": 1,
+        "observations": 0,
+        "groups": {
+          "3": 1,
+          "5": 1
+        },
+        "concessions": {
+          "early": [
+            {
+              "accepted": 1,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            }
+          ],
+          "late": [
+            {
+              "accepted": 1,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            }
+          ]
+        },
+        "tradeAccepted": 2,
+        "tradeRejected": 0
+      },
+      "5": {
+        "aggression": 1,
+        "observations": 0,
+        "concessions": {
+          "late": [
+            {
+              "accepted": 1,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            },
+            {
+              "accepted": 0,
+              "rejected": 0
+            }
+          ]
+        },
+        "tradeAccepted": 1,
+        "tradeRejected": 0
+      }
+    },
+    "negotiation": null
+  }
+}

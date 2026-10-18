@@ -1,0 +1,148 @@
+{
+  "matchId": "run-2026-10-18T13-12-27-196Z-0001",
+  "seed": 20261018,
+  "players": [
+    "nusa",
+    "kresna",
+    "apex",
+    "raka"
+  ],
+  "actions": 779,
+  "elapsedMs": 102956.72051399999,
+  "wallElapsedMs": 154909.720514,
+  "displayDelayMs": 51953,
+  "victoryMode": "bankruptcy",
+  "finished": false,
+  "stopReason": "mortgage_redeem_oscillation",
+  "error": {
+    "kind": "mortgage_redeem_oscillation",
+    "actor": 1,
+    "tile": 5,
+    "firstStep": 774,
+    "lastStep": 779,
+    "alternatingActions": 6,
+    "phase": "roll",
+    "turnSerial": 65
+  },
+  "illegal": 0,
+  "phase": "roll",
+  "version": 779,
+  "winner": null,
+  "winnerSeat": null,
+  "winnerType": null,
+  "resolved": false,
+  "draw": false,
+  "rankings": [
+    {
+      "persona": "apex",
+      "seat": 2,
+      "name": "ARKA",
+      "cash": 2862,
+      "worth": 27362,
+      "bankrupt": false,
+      "rank": 1
+    },
+    {
+      "persona": "kresna",
+      "seat": 1,
+      "name": "KRESNA",
+      "cash": 946,
+      "worth": 24446,
+      "bankrupt": false,
+      "rank": 2
+    },
+    {
+      "persona": "raka",
+      "seat": 3,
+      "name": "RAKA",
+      "cash": 1063,
+      "worth": 13263,
+      "bankrupt": false,
+      "rank": 3
+    },
+    {
+      "persona": "nusa",
+      "seat": 0,
+      "name": "NUSA",
+      "cash": 1409,
+      "worth": 5109,
+      "bankrupt": false,
+      "rank": 4
+    }
+  ],
+  "actionCounts": {
+    "ROLL": 76,
+    "BUY": 19,
+    "END": 65,
+    "ACK": 11,
+    "JAIL_PAY": 1,
+    "OFFER": 7,
+    "TRADE_ACCEPT": 6,
+    "BUILD": 33,
+    "AUCTION": 6,
+    "PASS": 245,
+    "BID": 288,
+    "MORTGAGE": 8,
+    "MORTGAGE_REDEEM": 2,
+    "SELL": 1,
+    "PAY": 4,
+    "SELL_SET": 1,
+    "REDEEM": 5,
+    "TRADE_REJECT": 1
+  },
+  "loops": [
+    {
+      "kind": "mortgage_redeem_oscillation",
+      "actor": 1,
+      "tile": 5,
+      "firstStep": 774,
+      "lastStep": 779,
+      "alternatingActions": 6,
+      "phase": "roll",
+      "turnSerial": 65
+    }
+  ],
+  "thinkingMs": {
+    "p50": 20.524688000001333,
+    "p95": 79.41650999998092,
+    "max": 2601.898227999998
+  },
+  "wealth": [
+    {
+      "persona": "apex",
+      "seat": 2,
+      "name": "ARKA",
+      "cash": 2862,
+      "worth": 27362,
+      "bankrupt": false,
+      "rank": 1
+    },
+    {
+      "persona": "kresna",
+      "seat": 1,
+      "name": "KRESNA",
+      "cash": 946,
+      "worth": 24446,
+      "bankrupt": false,
+      "rank": 2
+    },
+    {
+      "persona": "raka",
+      "seat": 3,
+      "name": "RAKA",
+      "cash": 1063,
+      "worth": 13263,
+      "bankrupt": false,
+      "rank": 3
+    },
+    {
+      "persona": "nusa",
+      "seat": 0,
+      "name": "NUSA",
+      "cash": 1409,
+      "worth": 5109,
+      "bankrupt": false,
+      "rank": 4
+    }
+  ]
+}

@@ -1,0 +1,2955 @@
+{
+  "report": {
+    "input": "nusa-loop-mortgage-redeem.json",
+    "matchId": "6da81e45-4daa-4e52-abb0-39031a9e8c4f",
+    "sourceVersion": 135,
+    "phase": "auction",
+    "round": 5,
+    "events": 159,
+    "counts": {
+      "3/16/mortgage": 26,
+      "3/16/redeem": 25,
+      "3/23/mortgage": 1,
+      "3/5/mortgage": 7,
+      "3/5/redeem": 7
+    },
+    "loopAlerts": [
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 82,
+        "lastEventId": 87,
+        "alternatingActions": 6
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 82,
+        "lastEventId": 89,
+        "alternatingActions": 8
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 82,
+        "lastEventId": 91,
+        "alternatingActions": 10
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 82,
+        "lastEventId": 93,
+        "alternatingActions": 12
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 82,
+        "lastEventId": 95,
+        "alternatingActions": 14
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 82,
+        "lastEventId": 97,
+        "alternatingActions": 16
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 82,
+        "lastEventId": 99,
+        "alternatingActions": 18
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 82,
+        "lastEventId": 101,
+        "alternatingActions": 20
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 82,
+        "lastEventId": 103,
+        "alternatingActions": 22
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 82,
+        "lastEventId": 105,
+        "alternatingActions": 24
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 82,
+        "lastEventId": 107,
+        "alternatingActions": 26
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 110,
+        "lastEventId": 115,
+        "alternatingActions": 6
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 110,
+        "lastEventId": 117,
+        "alternatingActions": 8
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 110,
+        "lastEventId": 119,
+        "alternatingActions": 10
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 110,
+        "lastEventId": 121,
+        "alternatingActions": 12
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 110,
+        "lastEventId": 123,
+        "alternatingActions": 14
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 110,
+        "lastEventId": 125,
+        "alternatingActions": 16
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 110,
+        "lastEventId": 127,
+        "alternatingActions": 18
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 110,
+        "lastEventId": 129,
+        "alternatingActions": 20
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 110,
+        "lastEventId": 131,
+        "alternatingActions": 22
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 16,
+        "round": 5,
+        "firstEventId": 110,
+        "lastEventId": 133,
+        "alternatingActions": 24
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 5,
+        "round": 5,
+        "firstEventId": 134,
+        "lastEventId": 139,
+        "alternatingActions": 6
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 5,
+        "round": 5,
+        "firstEventId": 134,
+        "lastEventId": 141,
+        "alternatingActions": 8
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 5,
+        "round": 5,
+        "firstEventId": 134,
+        "lastEventId": 143,
+        "alternatingActions": 10
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 5,
+        "round": 5,
+        "firstEventId": 134,
+        "lastEventId": 145,
+        "alternatingActions": 12
+      },
+      {
+        "kind": "mortgage_redeem_oscillation",
+        "actor": 3,
+        "tile": 5,
+        "round": 5,
+        "firstEventId": 134,
+        "lastEventId": 147,
+        "alternatingActions": 14
+      }
+    ],
+    "totalLoops": 26
+  },
+  "events": [
+    {
+      "eventId": 1,
+      "version": 0,
+      "actor": 0,
+      "type": "start",
+      "text": "Modal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 2,
+      "version": 1,
+      "actor": 0,
+      "type": "dice",
+      "text": "Joy: lempar awal 1 + 4 = 5.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 3,
+      "version": 2,
+      "actor": 1,
+      "type": "dice",
+      "text": "RAKA: lempar awal 1 + 4 = 5.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 4,
+      "version": 3,
+      "actor": 2,
+      "type": "dice",
+      "text": "BIMA: lempar awal 1 + 4 = 5.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 5,
+      "version": 4,
+      "actor": 3,
+      "type": "dice",
+      "text": "NUSA: lempar awal 1 + 6 = 7.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 6,
+      "version": 4,
+      "actor": 3,
+      "type": "turn",
+      "text": "NUSA mulai, lalu giliran mengikuti urutan kursi.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 7,
+      "version": 5,
+      "actor": 3,
+      "type": "dice",
+      "text": "NUSA melempar 3 + 2.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 8,
+      "version": 5,
+      "actor": 3,
+      "type": "move",
+      "text": "NUSA tiba di Stasiun Gambir.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 9,
+      "version": 6,
+      "actor": 3,
+      "type": "buy",
+      "text": "NUSA membeli Stasiun Gambir · ₦ 200.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 3,
+          "to": null,
+          "amount": 2000,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 10,
+      "version": 7,
+      "actor": 3,
+      "type": "turn",
+      "text": "Giliran Joy.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 11,
+      "version": 8,
+      "actor": 0,
+      "type": "dice",
+      "text": "Joy melempar 4 + 2.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 12,
+      "version": 8,
+      "actor": 0,
+      "type": "move",
+      "text": "Joy tiba di Yogyakarta.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 13,
+      "version": 9,
+      "actor": 0,
+      "type": "buy",
+      "text": "Joy membeli Yogyakarta · ₦ 100.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 0,
+          "to": null,
+          "amount": 1000,
+          "tile": 6
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 6,
+          "owner": 0,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 14,
+      "version": 10,
+      "actor": 0,
+      "type": "turn",
+      "text": "Giliran RAKA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 15,
+      "version": 11,
+      "actor": 1,
+      "type": "dice",
+      "text": "RAKA melempar 6 + 3.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 16,
+      "version": 11,
+      "actor": 1,
+      "type": "move",
+      "text": "RAKA tiba di Surabaya.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 17,
+      "version": 12,
+      "actor": 1,
+      "type": "buy",
+      "text": "RAKA membeli Surabaya · ₦ 120.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 1,
+          "to": null,
+          "amount": 1200,
+          "tile": 9
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 9,
+          "owner": 1,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 18,
+      "version": 13,
+      "actor": 1,
+      "type": "turn",
+      "text": "Giliran BIMA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 19,
+      "version": 14,
+      "actor": 2,
+      "type": "dice",
+      "text": "BIMA melempar 6 + 6 · kembar.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 20,
+      "version": 14,
+      "actor": 2,
+      "type": "move",
+      "text": "BIMA tiba di Energi Nusantara.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 21,
+      "version": 15,
+      "actor": 2,
+      "type": "buy",
+      "text": "BIMA membeli Energi Nusantara · ₦ 150.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 2,
+          "to": null,
+          "amount": 1500,
+          "tile": 12
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 12,
+          "owner": 2,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 22,
+      "version": 16,
+      "actor": 2,
+      "type": "dice",
+      "text": "BIMA melempar 5 + 3.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 23,
+      "version": 16,
+      "actor": 2,
+      "type": "move",
+      "text": "BIMA tiba di Parkir Bebas.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 24,
+      "version": 17,
+      "actor": 2,
+      "type": "turn",
+      "text": "Giliran NUSA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 25,
+      "version": 18,
+      "actor": 3,
+      "type": "dice",
+      "text": "NUSA melempar 6 + 4.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 26,
+      "version": 18,
+      "actor": 3,
+      "type": "move",
+      "text": "NUSA tiba di Stasiun Tawang.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 27,
+      "version": 19,
+      "actor": 3,
+      "type": "buy",
+      "text": "NUSA membeli Stasiun Tawang · ₦ 200.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 3,
+          "to": null,
+          "amount": 2000,
+          "tile": 15
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 15,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 28,
+      "version": 20,
+      "actor": 3,
+      "type": "turn",
+      "text": "Giliran Joy.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 29,
+      "version": 21,
+      "actor": 0,
+      "type": "dice",
+      "text": "Joy melempar 6 + 1.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 30,
+      "version": 21,
+      "actor": 0,
+      "type": "move",
+      "text": "Joy tiba di Padang.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 31,
+      "version": 22,
+      "actor": 0,
+      "type": "buy",
+      "text": "Joy membeli Padang · ₦ 140.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 0,
+          "to": null,
+          "amount": 1400,
+          "tile": 13
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 13,
+          "owner": 0,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 32,
+      "version": 23,
+      "actor": 0,
+      "type": "turn",
+      "text": "Giliran RAKA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 33,
+      "version": 24,
+      "actor": 1,
+      "type": "dice",
+      "text": "RAKA melempar 3 + 4.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 34,
+      "version": 24,
+      "actor": 1,
+      "type": "move",
+      "text": "RAKA tiba di Malang.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 35,
+      "version": 25,
+      "actor": 1,
+      "type": "buy",
+      "text": "RAKA membeli Malang · ₦ 180.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 1,
+          "to": null,
+          "amount": 1800,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 1,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 36,
+      "version": 26,
+      "actor": 1,
+      "type": "turn",
+      "text": "Giliran BIMA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 37,
+      "version": 27,
+      "actor": 2,
+      "type": "dice",
+      "text": "BIMA melempar 5 + 4.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 38,
+      "version": 27,
+      "actor": 2,
+      "type": "move",
+      "text": "BIMA tiba di Balikpapan.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 39,
+      "version": 28,
+      "actor": 2,
+      "type": "buy",
+      "text": "BIMA membeli Balikpapan · ₦ 280.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 2,
+          "to": null,
+          "amount": 2800,
+          "tile": 29
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 29,
+          "owner": 2,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 40,
+      "version": 29,
+      "actor": 2,
+      "type": "turn",
+      "text": "Giliran NUSA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 41,
+      "version": 30,
+      "actor": 3,
+      "type": "dice",
+      "text": "NUSA melempar 6 + 2.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 42,
+      "version": 30,
+      "actor": 3,
+      "type": "move",
+      "text": "NUSA tiba di Lombok.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 43,
+      "version": 31,
+      "actor": 3,
+      "type": "buy",
+      "text": "NUSA membeli Lombok · ₦ 220.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 3,
+          "to": null,
+          "amount": 2200,
+          "tile": 23
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 23,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 44,
+      "version": 32,
+      "actor": 3,
+      "type": "turn",
+      "text": "Giliran Joy.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 45,
+      "version": 33,
+      "actor": 0,
+      "type": "dice",
+      "text": "Joy melempar 1 + 5.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 46,
+      "version": 33,
+      "actor": 0,
+      "type": "move",
+      "text": "Joy tiba di Banyuwangi.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 47,
+      "version": 34,
+      "actor": 0,
+      "type": "buy",
+      "text": "Joy membeli Banyuwangi · ₦ 200.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 0,
+          "to": null,
+          "amount": 2000,
+          "tile": 19
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 19,
+          "owner": 0,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 48,
+      "version": 35,
+      "actor": 0,
+      "type": "turn",
+      "text": "Giliran RAKA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 49,
+      "version": 36,
+      "actor": 1,
+      "type": "dice",
+      "text": "RAKA melempar 6 + 3.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 50,
+      "version": 36,
+      "actor": 1,
+      "type": "move",
+      "text": "RAKA tiba di Stasiun Gubeng.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 51,
+      "version": 37,
+      "actor": 1,
+      "type": "buy",
+      "text": "RAKA membeli Stasiun Gubeng · ₦ 200.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 1,
+          "to": null,
+          "amount": 2000,
+          "tile": 25
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 25,
+          "owner": 1,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 52,
+      "version": 38,
+      "actor": 1,
+      "type": "turn",
+      "text": "Giliran BIMA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 53,
+      "version": 39,
+      "actor": 2,
+      "type": "dice",
+      "text": "BIMA melempar 4 + 2.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 54,
+      "version": 39,
+      "actor": 2,
+      "type": "move",
+      "text": "BIMA tiba di Stasiun Tugu.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 55,
+      "version": 40,
+      "actor": 2,
+      "type": "buy",
+      "text": "BIMA membeli Stasiun Tugu · ₦ 200.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 2,
+          "to": null,
+          "amount": 2000,
+          "tile": 35
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 35,
+          "owner": 2,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 56,
+      "version": 41,
+      "actor": 2,
+      "type": "turn",
+      "text": "Giliran NUSA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 57,
+      "version": 42,
+      "actor": 3,
+      "type": "dice",
+      "text": "NUSA melempar 5 + 6.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 58,
+      "version": 42,
+      "actor": 3,
+      "type": "move",
+      "text": "NUSA tiba di Ambon.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 59,
+      "version": 43,
+      "actor": 3,
+      "type": "buy",
+      "text": "NUSA membeli Ambon · ₦ 320.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 3,
+          "to": null,
+          "amount": 3200,
+          "tile": 34
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 34,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 60,
+      "version": 44,
+      "actor": 3,
+      "type": "turn",
+      "text": "Giliran Joy.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 61,
+      "version": 45,
+      "actor": 0,
+      "type": "dice",
+      "text": "Joy melempar 5 + 3.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 62,
+      "version": 45,
+      "actor": 0,
+      "type": "move",
+      "text": "Joy tiba di Banjarmasin.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 63,
+      "version": 46,
+      "actor": 0,
+      "type": "buy",
+      "text": "Joy membeli Banjarmasin · ₦ 260.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 0,
+          "to": null,
+          "amount": 2600,
+          "tile": 27
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 27,
+          "owner": 0,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 64,
+      "version": 47,
+      "actor": 0,
+      "type": "turn",
+      "text": "Giliran RAKA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 65,
+      "version": 48,
+      "actor": 1,
+      "type": "dice",
+      "text": "RAKA melempar 1 + 1 · kembar.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 66,
+      "version": 48,
+      "actor": 1,
+      "type": "move",
+      "text": "RAKA tiba di Banjarmasin.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 67,
+      "version": 48,
+      "actor": 1,
+      "type": "money",
+      "text": "RAKA membayar ₦ 22 kepada Joy · sewa Banjarmasin.",
+      "finance": [
+        {
+          "kind": "rent",
+          "from": 1,
+          "to": 0,
+          "amount": 220,
+          "tile": 27
+        }
+      ],
+      "assetChanges": null
+    },
+    {
+      "eventId": 68,
+      "version": 49,
+      "actor": 1,
+      "type": "dice",
+      "text": "RAKA melempar 1 + 4.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 69,
+      "version": 49,
+      "actor": 1,
+      "type": "move",
+      "text": "RAKA tiba di Manado.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 70,
+      "version": 50,
+      "actor": 1,
+      "type": "buy",
+      "text": "RAKA membeli Manado · ₦ 300.",
+      "finance": [
+        {
+          "kind": "purchase",
+          "from": 1,
+          "to": null,
+          "amount": 3000,
+          "tile": 32
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 32,
+          "owner": 1,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 71,
+      "version": 51,
+      "actor": 1,
+      "type": "trade",
+      "text": "RAKA menawarkan barter kepada NUSA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 72,
+      "version": 52,
+      "actor": 3,
+      "type": "trade",
+      "text": "Barter selesai: RAKA memberikan Malang, Stasiun Gubeng; NUSA memberikan Ambon, ₦ 409,7.",
+      "finance": [
+        {
+          "kind": "trade",
+          "from": 3,
+          "to": 1,
+          "amount": 4097
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        },
+        {
+          "tile": 25,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        },
+        {
+          "tile": 34,
+          "owner": 1,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 73,
+      "version": 53,
+      "actor": 1,
+      "type": "turn",
+      "text": "Giliran BIMA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 74,
+      "version": 54,
+      "actor": 2,
+      "type": "dice",
+      "text": "BIMA melempar 5 + 2.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 75,
+      "version": 54,
+      "actor": 2,
+      "type": "money",
+      "text": "BIMA melewati Mulai: +₦ 200.",
+      "finance": [
+        {
+          "kind": "salary",
+          "from": null,
+          "to": 2,
+          "amount": 2000
+        }
+      ],
+      "assetChanges": null
+    },
+    {
+      "eventId": 76,
+      "version": 54,
+      "actor": 2,
+      "type": "move",
+      "text": "BIMA tiba di Dana Umum.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 77,
+      "version": 54,
+      "actor": 2,
+      "type": "card",
+      "text": "BIMA mengambil Dana Umum: Kunjungan dokter.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 78,
+      "version": 55,
+      "actor": 2,
+      "type": "money",
+      "text": "BIMA membayar ₦ 50 · Kunjungan dokter.",
+      "finance": [
+        {
+          "kind": "card",
+          "from": 2,
+          "to": null,
+          "amount": 500,
+          "card": {
+            "deck": "community",
+            "idx": 2,
+            "title": "Kunjungan dokter"
+          }
+        }
+      ],
+      "assetChanges": null
+    },
+    {
+      "eventId": 79,
+      "version": 56,
+      "actor": 2,
+      "type": "turn",
+      "text": "Giliran NUSA.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 80,
+      "version": 57,
+      "actor": 3,
+      "type": "dice",
+      "text": "NUSA melempar 2 + 1.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 81,
+      "version": 57,
+      "actor": 3,
+      "type": "move",
+      "text": "NUSA tiba di Raja Ampat.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 82,
+      "version": 58,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 83,
+      "version": 59,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 84,
+      "version": 60,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 85,
+      "version": 61,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 86,
+      "version": 62,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 87,
+      "version": 63,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 88,
+      "version": 64,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 89,
+      "version": 65,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 90,
+      "version": 66,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 91,
+      "version": 67,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 92,
+      "version": 68,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 93,
+      "version": 69,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 94,
+      "version": 70,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 95,
+      "version": 71,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 96,
+      "version": 72,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 97,
+      "version": 73,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 98,
+      "version": 74,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 99,
+      "version": 75,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 100,
+      "version": 76,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 101,
+      "version": 77,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 102,
+      "version": 78,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 103,
+      "version": 79,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 104,
+      "version": 80,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 105,
+      "version": 81,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 106,
+      "version": 82,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 107,
+      "version": 83,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 108,
+      "version": 84,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 109,
+      "version": 85,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Lombok: +₦ 110.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 1100,
+          "tile": 23
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 23,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 110,
+      "version": 86,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 111,
+      "version": 87,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 112,
+      "version": 88,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 113,
+      "version": 89,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 114,
+      "version": 90,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 115,
+      "version": 91,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 116,
+      "version": 92,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 117,
+      "version": 93,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 118,
+      "version": 94,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 119,
+      "version": 95,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 120,
+      "version": 96,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 121,
+      "version": 97,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 122,
+      "version": 98,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 123,
+      "version": 99,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 124,
+      "version": 100,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 125,
+      "version": 101,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 126,
+      "version": 102,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 127,
+      "version": 103,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 128,
+      "version": 104,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 129,
+      "version": 105,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 130,
+      "version": 106,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 131,
+      "version": 107,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 132,
+      "version": 108,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Malang · ₦ 99.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 990,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 133,
+      "version": 109,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Malang: +₦ 90.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 900,
+          "tile": 16
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 16,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 134,
+      "version": 110,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Stasiun Gambir: +₦ 100.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 1000,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 135,
+      "version": 111,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Stasiun Gambir · ₦ 110.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 1100,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 136,
+      "version": 112,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Stasiun Gambir: +₦ 100.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 1000,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 137,
+      "version": 113,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Stasiun Gambir · ₦ 110.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 1100,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 138,
+      "version": 114,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Stasiun Gambir: +₦ 100.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 1000,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 139,
+      "version": 115,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Stasiun Gambir · ₦ 110.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 1100,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 140,
+      "version": 116,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Stasiun Gambir: +₦ 100.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 1000,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 141,
+      "version": 117,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Stasiun Gambir · ₦ 110.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 1100,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 142,
+      "version": 118,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Stasiun Gambir: +₦ 100.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 1000,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 143,
+      "version": 119,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Stasiun Gambir · ₦ 110.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 1100,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 144,
+      "version": 120,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Stasiun Gambir: +₦ 100.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 1000,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 145,
+      "version": 121,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Stasiun Gambir · ₦ 110.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 1100,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 146,
+      "version": 122,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menggadaikan Stasiun Gambir: +₦ 100.",
+      "finance": [
+        {
+          "kind": "mortgage",
+          "from": null,
+          "to": 3,
+          "amount": 1000,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": true
+        }
+      ]
+    },
+    {
+      "eventId": 147,
+      "version": 123,
+      "actor": 3,
+      "type": "money",
+      "text": "NUSA menebus Stasiun Gambir · ₦ 110.",
+      "finance": [
+        {
+          "kind": "redeem",
+          "from": 3,
+          "to": null,
+          "amount": 1100,
+          "tile": 5
+        }
+      ],
+      "assetChanges": [
+        {
+          "tile": 5,
+          "owner": 3,
+          "level": 0,
+          "mortgaged": false
+        }
+      ]
+    },
+    {
+      "eventId": 148,
+      "version": 124,
+      "actor": 3,
+      "type": "auction",
+      "text": "Lelang Raja Ampat: mulai ₦ 5, kenaikan minimal ₦ 5.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 149,
+      "version": 125,
+      "actor": 1,
+      "type": "auction",
+      "text": "RAKA menawar ₦ 350.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 150,
+      "version": 126,
+      "actor": 2,
+      "type": "auction",
+      "text": "BIMA menawar ₦ 355.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 151,
+      "version": 127,
+      "actor": 1,
+      "type": "auction",
+      "text": "RAKA menawar ₦ 360.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 152,
+      "version": 128,
+      "actor": 2,
+      "type": "auction",
+      "text": "BIMA menawar ₦ 365.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 153,
+      "version": 129,
+      "actor": 1,
+      "type": "auction",
+      "text": "RAKA menawar ₦ 370.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 154,
+      "version": 130,
+      "actor": 2,
+      "type": "auction",
+      "text": "BIMA menawar ₦ 375.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 155,
+      "version": 131,
+      "actor": 1,
+      "type": "auction",
+      "text": "RAKA menawar ₦ 380.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 156,
+      "version": 132,
+      "actor": 2,
+      "type": "auction",
+      "text": "BIMA menawar ₦ 385.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 157,
+      "version": 133,
+      "actor": 1,
+      "type": "auction",
+      "text": "RAKA menawar ₦ 390.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 158,
+      "version": 134,
+      "actor": 2,
+      "type": "auction",
+      "text": "BIMA menawar ₦ 395.",
+      "finance": null,
+      "assetChanges": null
+    },
+    {
+      "eventId": 159,
+      "version": 135,
+      "actor": 1,
+      "type": "auction",
+      "text": "RAKA menawar ₦ 400.",
+      "finance": null,
+      "assetChanges": null
+    }
+  ]
+}

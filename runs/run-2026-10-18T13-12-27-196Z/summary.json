@@ -1,0 +1,48 @@
+{
+  "runId": "run-2026-10-18T13-12-27-196Z",
+  "completed": 2,
+  "requested": 2,
+  "endedAt": "2026-10-18T13:15:54.569Z",
+  "wins": {
+    "nusa": 0,
+    "kresna": 0,
+    "apex": 0,
+    "raka": 0,
+    "bima": 0,
+    "sari": 0
+  },
+  "finished": 0,
+  "resolved": 0,
+  "wealthWinners": 0,
+  "draws": 0,
+  "unfinished": 2,
+  "mode": "bankruptcy",
+  "illegal": 0,
+  "loopGames": 2,
+  "averageActions": 508.5,
+  "actionTotals": {
+    "ROLL": 141,
+    "BUY": 41,
+    "END": 113,
+    "ACK": 23,
+    "JAIL_PAY": 1,
+    "OFFER": 14,
+    "TRADE_ACCEPT": 13,
+    "BUILD": 52,
+    "AUCTION": 8,
+    "PASS": 257,
+    "BID": 310,
+    "MORTGAGE": 23,
+    "MORTGAGE_REDEEM": 4,
+    "SELL": 1,
+    "PAY": 5,
+    "SELL_SET": 1,
+    "REDEEM": 9,
+    "TRADE_REJECT": 1
+  },
+  "averageGameMs": 69768.5429035,
+  "byStopReason": {
+    "mortgage_redeem_oscillation": 2
+  },
+  "aborted": false
+}

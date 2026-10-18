@@ -1,0 +1,171 @@
+{
+  "matchId": "guard-smoke-6p-0001",
+  "seed": 20261018,
+  "players": [
+    "nusa",
+    "kresna",
+    "apex",
+    "raka",
+    "bima",
+    "sari"
+  ],
+  "actions": 1017,
+  "elapsedMs": 25053.530661,
+  "wallElapsedMs": 25053.530661,
+  "displayDelayMs": 0,
+  "victoryMode": "bankruptcy",
+  "finished": true,
+  "stopReason": "finished",
+  "error": null,
+  "illegal": 0,
+  "phase": "won",
+  "version": 1017,
+  "winner": "nusa",
+  "winnerSeat": 0,
+  "winnerType": "bankruptcy",
+  "resolved": true,
+  "draw": false,
+  "rankings": [
+    {
+      "persona": "nusa",
+      "seat": 0,
+      "name": "NUSA",
+      "cash": 16475,
+      "worth": 93275,
+      "bankrupt": false,
+      "rank": 1
+    },
+    {
+      "persona": "kresna",
+      "seat": 1,
+      "name": "KRESNA",
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true,
+      "rank": 2
+    },
+    {
+      "persona": "apex",
+      "seat": 2,
+      "name": "ARKA",
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true,
+      "rank": 2
+    },
+    {
+      "persona": "raka",
+      "seat": 3,
+      "name": "RAKA",
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true,
+      "rank": 2
+    },
+    {
+      "persona": "bima",
+      "seat": 4,
+      "name": "BIMA",
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true,
+      "rank": 2
+    },
+    {
+      "persona": "sari",
+      "seat": 5,
+      "name": "SARI",
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true,
+      "rank": 2
+    }
+  ],
+  "actionCounts": {
+    "ROLL": 165,
+    "BUY": 21,
+    "END": 140,
+    "ACK": 24,
+    "JAIL_PAY": 1,
+    "OFFER": 22,
+    "TRADE_ACCEPT": 13,
+    "BUILD": 113,
+    "TRADE_REJECT": 9,
+    "MORTGAGE": 45,
+    "SELL_SET": 8,
+    "PAY": 12,
+    "SELL": 18,
+    "REDEEM": 12,
+    "AUCTION": 7,
+    "PASS": 169,
+    "BID": 181,
+    "MORTGAGE_REDEEM": 22,
+    "JAIL_CARD": 1,
+    "COUNTER": 2,
+    "BANKRUPT": 5,
+    "BUILD_DECLINE": 25,
+    "MORTGAGE_KEEP": 2
+  },
+  "loops": [],
+  "thinkingMs": {
+    "p50": 10.466272000001482,
+    "p95": 55.8870539999989,
+    "max": 84.91276400000004
+  },
+  "wealth": [
+    {
+      "persona": "nusa",
+      "seat": 0,
+      "name": "NUSA",
+      "cash": 16475,
+      "worth": 93275,
+      "bankrupt": false,
+      "rank": 1
+    },
+    {
+      "persona": "kresna",
+      "seat": 1,
+      "name": "KRESNA",
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true,
+      "rank": 2
+    },
+    {
+      "persona": "apex",
+      "seat": 2,
+      "name": "ARKA",
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true,
+      "rank": 2
+    },
+    {
+      "persona": "raka",
+      "seat": 3,
+      "name": "RAKA",
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true,
+      "rank": 2
+    },
+    {
+      "persona": "bima",
+      "seat": 4,
+      "name": "BIMA",
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true,
+      "rank": 2
+    },
+    {
+      "persona": "sari",
+      "seat": 5,
+      "name": "SARI",
+      "cash": 0,
+      "worth": 0,
+      "bankrupt": true,
+      "rank": 2
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 2,
+  "presentationVersion": 1,
+  "rulepackVersion": "nusantara-c1009-2",
+  "rules": {
+    "preset": "digital",
+    "rent": "auto"
+  },
+  "matchId": "run-2026-10-18T12-57-32-875Z-0007",
+  "version": 0,
+  "players": [
+    {
+      "id": 0,
+      "name": "ARKA",
+      "controller": "bot",
+      "botPersona": "apex",
+      "botDifficulty": "hardcore",
+      "pawn": 0,
+      "cash": 15000,
+      "pos": 0,
+      "jail": 0,
+      "inJail": false,
+      "cards": [],
+      "out": false
+    },
+    {
+      "id": 1,
+      "name": "RAKA",
+      "controller": "bot",
+      "botPersona": "raka",
+      "botDifficulty": "hardcore",
+      "pawn": 1,
+      "cash": 15000,
+      "pos": 0,
+      "jail": 0,
+      "inJail": false,
+      "cards": [],
+      "out": false
+    },
+    {
+      "id": 2,
+      "name": "NUSA",
+      "controller": "bot",
+      "botPersona": "nusa",
+      "botDifficulty": "hardcore",
+      "pawn": 2,
+      "cash": 15000,
+      "pos": 0,
+      "jail": 0,
+      "inJail": false,
+      "cards": [],
+      "out": false
+    },
+    {
+      "id": 3,
+      "name": "KRESNA",
+      "controller": "bot",
+      "botPersona": "kresna",
+      "botDifficulty": "hardcore",
+      "pawn": 3,
+      "cash": 15000,
+      "pos": 0,
+      "jail": 0,
+      "inJail": false,
+      "cards": [],
+      "out": false
+    }
+  ],
+  "assets": {
+    "1": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "3": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "5": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "6": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "8": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "9": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "11": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "12": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "13": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "14": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "15": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "16": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "18": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "19": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "21": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "23": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "24": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "25": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "26": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "27": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "28": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "29": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "31": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "32": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "34": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "35": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "37": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    },
+    "39": {
+      "owner": null,
+      "level": 0,
+      "mortgaged": false
+    }
+  },
+  "turn": 0,
+  "startSeat": 0,
+  "turnSerial": 0,
+  "round": 1,
+  "phase": "roll",
+  "starting": {
+    "pending": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "scores": [],
+    "history": [],
+    "round": 1
+  },
+  "doubles": 0,
+  "extra": false,
+  "dice": [
+    1,
+    1
+  ],
+  "utilityDice": null,
+  "bank": {
+    "houses": 32,
+    "hotels": 12
+  },
+  "decks": {
+    "chance": [
+      12,
+      2,
+      4,
+      6,
+      5,
+      11,
+      1,
+      0,
+      3,
+      10,
+      7,
+      14,
+      15,
+      9,
+      8,
+      13
+    ],
+    "community": [
+      0,
+      8,
+      3,
+      10,
+      6,
+      11,
+      2,
+      1,
+      14,
+      9,
+      7,
+      12,
+      5,
+      15,
+      13,
+      4
+    ]
+  },
+  "queue": [],
+  "debt": null,
+  "auction": null,
+  "card": null,
+  "trade": null,
+  "mortgageDecision": null,
+  "buildOffer": null,
+  "rentClaims": [],
+  "log": [
+    {
+      "id": 1,
+      "text": "Modal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+      "type": "start",
+      "turn": 1,
+      "version": 0,
+      "actor": 0,
+      "audience": "public"
+    }
+  ],
+  "eventId": 1,
+  "seen": [],
+  "lastMove": null,
+  "aiStatus": "Bot lokal",
+  "aiComment": null,
+  "advisorEnabled": false,
+  "difficulty": "strategis",
+  "bankEconomy": {
+    "schema": 1,
+    "complete": true,
+    "fromVersion": 0,
+    "fromRound": 1,
+    "openingCirculation": 60000,
+    "issued": 0,
+    "absorbed": 0,
+    "transferred": 0,
+    "turnover": 0,
+    "count": 0,
+    "byKind": {},
+    "recent": []
+  }
+}
