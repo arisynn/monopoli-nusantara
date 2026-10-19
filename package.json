@@ -1,9 +1,9 @@
 {
   "name": "monopoli-nusantara",
-  "version": "4.11.2",
+  "version": "4.11.4",
   "private": true,
   "type": "module",
-  "description": "Nusantara \u2014 Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
+  "description": "Nusantara — Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
   "engines": {
     "node": "24.x"
   },
@@ -61,7 +61,11 @@
     "test:flash": "node scripts/flash-bots.mjs",
     "test:termux": "node --test tests/stability-guard.test.mjs tests/termux-worker.test.mjs tests/finance-auction-regression.test.mjs",
     "test:termux:postgres": "node scripts/test-termux-postgres.mjs",
-    "package:termux": "node scripts/model-manifest.mjs && npm run prepare:edge && npm run build && python3 scripts/package-termux.py"
+    "package:termux": "node scripts/verify-speed-model.mjs && npm run prepare:edge && npm run build && python3 scripts/package-termux.py",
+    "test:speed": "node --experimental-strip-types --import ./adapters/node/aliases.mjs --test tests/online-speed.test.mjs tests/online-speed-worker.test.mjs",
+    "benchmark:speed": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/benchmark-online-speed.mjs",
+    "test:ui:4114": "node --experimental-strip-types --import ./adapters/node/aliases.mjs --test tests/ui-4114.test.mjs",
+    "test:ui:4114:browser": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-ui-4114-browser.mjs"
   },
   "devDependencies": {
     "@types/node": "22.19.19",

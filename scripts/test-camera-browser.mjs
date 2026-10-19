@@ -58,7 +58,7 @@ try {
   const paused = await transform(page);
   await page.waitForTimeout(350);
   assert.equal(await transform(page), paused);
-  await page.locator(".popup-footer [data-action=close]").click();
+  await page.locator(".popup-dismiss").click();
   await page.waitForTimeout(350);
   assert.notEqual(await transform(page), paused);
   checks.push({

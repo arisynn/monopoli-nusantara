@@ -183,7 +183,7 @@ test("refresh/reconnect baseline does not replay old dice and finance", async (t
   assert.equal(s.head, null);
   assert.equal(dicePresentation(s.view, null).stage, "idle");
 });
-test("baseline pending card still exposes one legal ACK after refresh", () => {
+test("baseline pending card is read automatically after refresh, with explicit retry only on error", () => {
   const s = make();
   s.phase = "card";
   s.card = {
@@ -196,7 +196,7 @@ test("baseline pending card still exposes one legal ACK after refresh", () => {
   const popup = autoPopup(s, s, null, 0, "");
   assert.equal(popup.kind, "card");
   const html = renderPopup(c(s), {}, popup);
-  assert(html.footer.includes('data-type="ACK"'));
+  assert.equal(html.footer, "");
 });
 test("public event controls stay read-only for an observing client", () => {
   const s = make(),
@@ -212,7 +212,7 @@ test("public event controls stay read-only for an observing client", () => {
     { kind: "event", event, interactive: false },
   );
   assert(!html.footer.includes('data-type="ACK"'));
-  assert(html.footer.includes("dismissEvent"));
+  assert.equal(html.footer, "");
 });
 test("rent/tax popup acknowledges presentation rather than paying a committed transaction again", () => {
   const s = make();
@@ -594,8 +594,8 @@ for (const n of [2, 4, 6])
     assert.equal(snapshot.state.phase, "card");
     assert.deepEqual(snapshot.state.dice, [2, 2]);
     for (const s of clients) {
-      assert.equal(s.head.kind, "diceRolling");
-      assert.equal(dicePresentation(s.view, s.head).values, null);
+      if(s.seat===0)assert.equal(s.head.kind,"eventRevealing","the current human card bypasses decorative backlog");
+      else {assert.equal(s.head.kind,"diceRolling");assert.equal(dicePresentation(s.view,s.head).values,null);}
       while (s.head && s.head.kind !== "eventRevealing") s.complete(s.head.id);
       assert.equal(s.head.event.type, "card");
       const ids = s.model.queue.map((e) => e.id);
@@ -609,7 +609,7 @@ for (const n of [2, 4, 6])
         {},
         autoPopup(s.view, s.state, s.head, s.seat, ""),
       );
-      assert.equal(html.footer.includes('data-type="ACK"'), s.seat === 0);
+      assert.equal(html.footer, "");
     }
     assert.equal(await clients[1].act("ACK"), false);
     assert(await clients[0].act("ACK"));
@@ -1058,7 +1058,7 @@ test("compact card UI uses small raster illustration, exact engine text and corr
   assert(rendered.html.includes("Mundur 3 petak."));
   assert(rendered.html.includes('data-card-icon="1"'));
   assert(rendered.html.includes("header-icon"));
-  assert(rendered.footer.includes("ACK"));
+  assert.equal(rendered.footer, "");
   assert(!rendered.html.includes("archipelago"));
   assert.equal(cardIcon({ jail: true }), 2);
   assert.equal(cardIcon({ nearest: "utility" }), 7);
@@ -1594,7 +1594,9 @@ test("online multi-build sends individual intentions with revisions and IDs, whi
     ),
   );
   s.startBuilds(0, 4);
-  for (let i = 0; i < 20 && !s.head; i++) await tick();
+  const beforePause=requests.length;
+  for (let i = 0; i < 20 && requests.length===beforePause; i++) await tick();
+  assert.equal(s.assetPlan.status,"running");
   const count = requests.length;
   s.takeRoom({
     code: "ABCDEFGH",

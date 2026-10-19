@@ -1,0 +1,354 @@
+{
+  "version": "4.11.3",
+  "manifest": "f398a9793efd23c3c74e3e46d89aab0117a4c23c5102036d7e8f77a51c94e46d",
+  "userReportedBaseline": {
+    "room": "XKL5BY56",
+    "botActions": 174,
+    "uninterruptedIntervals": 134,
+    "medianCommitIntervalMs": 760,
+    "p90Ms": 960,
+    "maxMs": 3500,
+    "source": "User report; live logs were not accessible in this environment"
+  },
+  "method": {
+    "presentation": "Deterministic virtual-clock replay of confirmed engine states at 760 ms/commit; frozen 4.11.2 timeline vs adaptive 4.11.3. Includes all settlements and full ledger equality. Observer mode separates visual backlog from a particular seat decision.",
+    "backend": "Actual service calls with contract store and controlled 8 ms delay per database round trip; legacy 4.11.2-compatible RPC sequence vs batch RPC sequence. No AI or WAN delay in this measurement."
+  },
+  "presentations": [
+    {
+      "players": 2,
+      "commits": 174,
+      "before": {
+        "receiptToVisibleMs": {
+          "count": 174,
+          "p50": 12220,
+          "p95": 36500,
+          "max": 50200
+        },
+        "visualAgeAtReceiptMs": {
+          "count": 174,
+          "p50": 10640,
+          "p95": 23560,
+          "max": 26600
+        },
+        "decorativeInputWaitMs": {
+          "count": 174,
+          "p50": 17520,
+          "p95": 50780,
+          "max": 55110
+        },
+        "queueDepth": {
+          "count": 174,
+          "p50": 35,
+          "p95": 83,
+          "max": 94
+        },
+        "overflowResets": 1,
+        "finalLedgerAndHistoryIdentical": true
+      },
+      "after": {
+        "receiptToVisibleMs": {
+          "count": 174,
+          "p50": 700,
+          "p95": 1520,
+          "max": 2850
+        },
+        "visualAgeAtReceiptMs": {
+          "count": 174,
+          "p50": 760,
+          "p95": 1520,
+          "max": 3040
+        },
+        "decorativeInputWaitMs": {
+          "count": 174,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "queueDepth": {
+          "count": 174,
+          "p50": 2,
+          "p95": 7,
+          "max": 9
+        },
+        "overflowResets": 0,
+        "finalLedgerAndHistoryIdentical": true
+      }
+    },
+    {
+      "players": 3,
+      "commits": 174,
+      "before": {
+        "receiptToVisibleMs": {
+          "count": 174,
+          "p50": 5810,
+          "p95": 19500,
+          "max": 21330
+        },
+        "visualAgeAtReceiptMs": {
+          "count": 174,
+          "p50": 5320,
+          "p95": 19760,
+          "max": 22040
+        },
+        "decorativeInputWaitMs": {
+          "count": 174,
+          "p50": 8010,
+          "p95": 44320,
+          "max": 48530
+        },
+        "queueDepth": {
+          "count": 174,
+          "p50": 19,
+          "p95": 79,
+          "max": 94
+        },
+        "overflowResets": 1,
+        "finalLedgerAndHistoryIdentical": true
+      },
+      "after": {
+        "receiptToVisibleMs": {
+          "count": 174,
+          "p50": 0,
+          "p95": 1520,
+          "max": 2990
+        },
+        "visualAgeAtReceiptMs": {
+          "count": 174,
+          "p50": 0,
+          "p95": 1520,
+          "max": 3040
+        },
+        "decorativeInputWaitMs": {
+          "count": 174,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "queueDepth": {
+          "count": 174,
+          "p50": 0,
+          "p95": 7,
+          "max": 9
+        },
+        "overflowResets": 0,
+        "finalLedgerAndHistoryIdentical": true
+      }
+    },
+    {
+      "players": 4,
+      "commits": 174,
+      "before": {
+        "receiptToVisibleMs": {
+          "count": 174,
+          "p50": 23170,
+          "p95": 47630,
+          "max": 52380
+        },
+        "visualAgeAtReceiptMs": {
+          "count": 174,
+          "p50": 16720,
+          "p95": 47880,
+          "max": 52440
+        },
+        "decorativeInputWaitMs": {
+          "count": 174,
+          "p50": 24160,
+          "p95": 48180,
+          "max": 55210
+        },
+        "queueDepth": {
+          "count": 174,
+          "p50": 67,
+          "p95": 89,
+          "max": 93
+        },
+        "overflowResets": 0,
+        "finalLedgerAndHistoryIdentical": true
+      },
+      "after": {
+        "receiptToVisibleMs": {
+          "count": 174,
+          "p50": 0,
+          "p95": 1520,
+          "max": 2430
+        },
+        "visualAgeAtReceiptMs": {
+          "count": 174,
+          "p50": 0,
+          "p95": 1520,
+          "max": 2280
+        },
+        "decorativeInputWaitMs": {
+          "count": 174,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "queueDepth": {
+          "count": 174,
+          "p50": 0,
+          "p95": 7,
+          "max": 8
+        },
+        "overflowResets": 0,
+        "finalLedgerAndHistoryIdentical": true
+      }
+    },
+    {
+      "players": 5,
+      "commits": 174,
+      "before": {
+        "receiptToVisibleMs": {
+          "count": 174,
+          "p50": 11580,
+          "p95": 31910,
+          "max": 36600
+        },
+        "visualAgeAtReceiptMs": {
+          "count": 174,
+          "p50": 9880,
+          "p95": 20520,
+          "max": 22800
+        },
+        "decorativeInputWaitMs": {
+          "count": 174,
+          "p50": 26140,
+          "p95": 53650,
+          "max": 59630
+        },
+        "queueDepth": {
+          "count": 174,
+          "p50": 41,
+          "p95": 88,
+          "max": 95
+        },
+        "overflowResets": 3,
+        "finalLedgerAndHistoryIdentical": true
+      },
+      "after": {
+        "receiptToVisibleMs": {
+          "count": 174,
+          "p50": 700.0000000000146,
+          "p95": 1520,
+          "max": 2280
+        },
+        "visualAgeAtReceiptMs": {
+          "count": 174,
+          "p50": 760,
+          "p95": 1520,
+          "max": 2280
+        },
+        "decorativeInputWaitMs": {
+          "count": 174,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "queueDepth": {
+          "count": 174,
+          "p50": 5,
+          "p95": 7,
+          "max": 9
+        },
+        "overflowResets": 0,
+        "finalLedgerAndHistoryIdentical": true
+      }
+    },
+    {
+      "players": 6,
+      "commits": 174,
+      "before": {
+        "receiptToVisibleMs": {
+          "count": 174,
+          "p50": 8330,
+          "p95": 51590,
+          "max": 56740
+        },
+        "visualAgeAtReceiptMs": {
+          "count": 174,
+          "p50": 6080,
+          "p95": 19760,
+          "max": 22800
+        },
+        "decorativeInputWaitMs": {
+          "count": 174,
+          "p50": 11130,
+          "p95": 55150,
+          "max": 58390
+        },
+        "queueDepth": {
+          "count": 174,
+          "p50": 25,
+          "p95": 89,
+          "max": 96
+        },
+        "overflowResets": 1,
+        "finalLedgerAndHistoryIdentical": true
+      },
+      "after": {
+        "receiptToVisibleMs": {
+          "count": 174,
+          "p50": 700,
+          "p95": 1520,
+          "max": 2570
+        },
+        "visualAgeAtReceiptMs": {
+          "count": 174,
+          "p50": 760,
+          "p95": 1520,
+          "max": 3040
+        },
+        "decorativeInputWaitMs": {
+          "count": 174,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "queueDepth": {
+          "count": 174,
+          "p50": 2,
+          "p95": 7,
+          "max": 8
+        },
+        "overflowResets": 0,
+        "finalLedgerAndHistoryIdentical": true
+      }
+    }
+  ],
+  "backend": {
+    "before": {
+      "claimAndSubmitMs": {
+        "count": 18,
+        "p50": 75.19315199999983,
+        "p95": 83.34302700000012,
+        "max": 83.34302700000012
+      },
+      "databaseRoundTrips": {
+        "count": 18,
+        "p50": 9,
+        "p95": 9,
+        "max": 9
+      }
+    },
+    "after": {
+      "claimAndSubmitMs": {
+        "count": 18,
+        "p50": 50.37162800000033,
+        "p95": 51.15367100000003,
+        "max": 51.15367100000003
+      },
+      "databaseRoundTrips": {
+        "count": 18,
+        "p50": 6,
+        "p95": 6,
+        "max": 6
+      }
+    }
+  },
+  "limits": [
+    "These are reproducible controlled benchmarks, not production Vercel/Supabase latency or a reproduction of the private match trace.",
+    "Physical Android, live WAN, hosted Auth/Realtime, thermal load and device rendering require field measurements.",
+    "Decorative input wait is queue gating only; actual clicks still pay Auth/network/commit latency."
+  ]
+}

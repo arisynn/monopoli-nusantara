@@ -50,6 +50,7 @@ function render(s){
   `Model: ${clean(s.model)} | Slot: ${(s.active||[]).length}/${s.slots||0} | RAM: ${s.memoryMb||0} MB`,
   `Commit: ${s.committed||0} | Retry: ${s.retries||0} | Stale: ${s.stale||0}`,
   `Request: ${s.network?.requests||0} | Payload RX: ${Math.round((s.network?.receivedBytes||0)/1024)} KiB | RTT terakhir: ${s.network?.lastRttMs||0} ms`,
+  `P95 antrean: ${Math.round(s.performance?.['bot.queue']?.p95||0)} ms | AI: ${Math.round(s.performance?.['bot.compute']?.p95||0)} ms | commit: ${Math.round(s.performance?.['bot.commit']?.p95||0)} ms`,
   `Heartbeat: ${clean(s.heartbeatAt)} | Update: ${clean(s.updatedAt)}`,'',
   'ROOM AKTIF',...(s.rooms||[]).slice(0,8).map(r=>`${clean(r.code)} | ${clean(r.phase)} | actor ${r.actor??'manusia'} | v${r.sourceVersion}`),
   '', 'LIMA EVENT TERBARU',...events.map(e=>`${clean(e.at?.slice(11,19))} ${clean(e.text)}`),'','Ctrl+C menutup monitor; worker PM2 tetap berjalan.'];

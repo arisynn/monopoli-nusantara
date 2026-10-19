@@ -3,7 +3,7 @@
     "All migrations applied transactionally",
     "Two online rooms, two humans + three bots each; all six personas",
     "SQL scheduling actor matches production JS for auction, starting, rent, card, trade, debt, mortgage, buildOffer",
-    "Single-use pairing, RLS wake isolation, privileged RPC denial, old Edge claim fenced",
+    "Single-use pairing, RLS wake isolation, privileged RPC denial (including migration 008), old Edge claim fenced",
     "Concurrent SQL claims: one lease per room and scope enforced",
     "Atomic room/action/worker receipt; lost ACK replay has one effect",
     "Expired lease rejects stale action and is recoverable without browser wake",
@@ -15,7 +15,7 @@
     "Node/Linux; not physical Android/Termux."
   ],
   "actions": 180,
-  "botActions": 169,
-  "bids": 110,
+  "botActions": 154,
+  "bids": 34,
   "pass": true
 }

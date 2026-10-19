@@ -447,10 +447,11 @@ function event(c, p) {
       type = card.deck === "chance" ? "Kesempatan" : "Dana Umum";
     return {
       title: type,
-      html: `<article class="event-card retro-card ${card.deck === "chance" ? "chance" : "community"}"><header><h2 id="popup-title">${type.toUpperCase()}</h2>${card.deck === "chance" ? eventArt(5, "header-icon") : '<img src="/assets/cards/chest.png" alt="">'}</header><section class="retro-content"><span class="card-illustration" data-card-icon="${cardIcon(card)}" style="--card-x:${((cardIcon(card) % 4) * 100) / 3}%;--card-y:${(Math.floor(cardIcon(card) / 4) * 100) / 3}%" aria-hidden="true"></span><div><h3>${esc(card.title)}</h3><p>${esc(card.text)}</p></div></section><small>Untuk ${esc(c.s.players[card.player]?.name || "pemain")}</small></article>`,
-      footer: p.interactive
-        ? commandButton("Jalankan kartu", "ACK", c, {}, true)
-        : btn("Lanjut", "dismissEvent", { primary: true }),
+      html: `<article class="event-card retro-card ${card.deck === "chance" ? "chance" : "community"}"><header><h2 id="popup-title">${type.toUpperCase()}</h2>${card.deck === "chance" ? eventArt(5, "header-icon") : '<img src="/assets/cards/chest.png" alt="">'}</header><section class="retro-content"><span class="card-illustration" data-card-icon="${cardIcon(card)}" style="--card-x:${((cardIcon(card) % 4) * 100) / 3}%;--card-y:${(Math.floor(cardIcon(card) / 4) * 100) / 3}%" aria-hidden="true"></span><div><h3>${esc(card.title)}</h3><p>${esc(card.text)}</p></div></section><small>Untuk ${esc(c.s.players[card.player]?.name || "pemain")}</small>${p.interactive ? `<small class="card-auto-status" role="status">${c.session.cardReader?.failed ? "Kartu belum diproses. Coba lagi." : c.session.pending ? "Memproses kartu…" : "Efek kartu berjalan otomatis setelah dibaca."}</small>` : ""}</article>`,
+      footer:
+        p.interactive && c.session.cardReader?.failed
+          ? commandButton("Coba proses kartu lagi", "ACK", c, {}, true)
+          : "",
     };
   }
   if (e.auctionResult) {
@@ -624,7 +625,12 @@ function results(c) {
   };
 }
 export function renderPopup(session, ui, p) {
-  const c = { session, ui, s: session.view, seat: session.seat };
+  const c = {
+    session,
+    ui,
+    s: session.interactionState || session.view,
+    seat: session.seat,
+  };
   let content;
   switch (p.kind) {
     case "rentClaims":
@@ -828,6 +834,6 @@ export function renderPopup(session, ui, p) {
     default:
       return null;
   }
-  return { ...content, footer: content.footer || btn("Tutup", "close") };
+  return { ...content, footer: content.footer ?? btn("Tutup", "close") };
 }
 export { btn, lead };

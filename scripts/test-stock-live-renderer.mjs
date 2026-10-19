@@ -57,7 +57,7 @@ try {
             dialog.querySelector(".popup-footer").innerHTML = content.footer;
             dialog.dataset.kind = "buildOffer";
             dialog.dataset.density = "compact";
-            dialog.querySelector(".popup-close").hidden = true;
+            dialog.querySelector(".popup-dismiss").hidden = true;
             if (!dialog.open) dialog.showModal();
             return {
               text: dialog.textContent.trim(),

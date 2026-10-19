@@ -82,6 +82,7 @@ export function createOnlineService({store, clock = Date.now, rng = secureRandom
     room.connectivity = room.seats.map(s => Object.values(s.connections || {}).some(at => at > now - 35000));
     const meta = {userId, requestId: heartbeat ? null : body.requestId, hash, type: body.type,
      notify: !heartbeat || !wasConnected || room.status !== JSON.parse(before).status || room.host !== JSON.parse(before).host || JSON.stringify(room.vote) !== JSON.stringify(JSON.parse(before).vote) || JSON.stringify(room.pause) !== JSON.stringify(JSON.parse(before).pause) || JSON.stringify(room.connectivity) !== JSON.stringify(JSON.parse(before).connectivity)};
+    if(body.type==='ACTION')room.performance={trace:body.requestId,sourceVersion:row.data.state?.version-1,version:room.state?.version,kind:'human',commitStartedAt:clock()};
     const committed = await store.commit(row, room, meta);
     if (committed.duplicate) {
      check(committed.hash === hash, 'ID permintaan sudah dipakai untuk isi berbeda.', 409);

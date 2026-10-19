@@ -15,6 +15,15 @@ import { createPwa } from "./pwa.mjs";
 import { createLayerNavigation } from "../lib/layer-navigation.mjs";
 import { DiceView } from "./dice-view.mjs";
 import { GameSession } from "./session.mjs";
+import { renderBuildOrder, buildOrderSelection } from "./asset-panel.mjs";
+import { copyRoomCode, installSelectionGuard } from "./clipboard.mjs";
+import {
+  decisionFooter,
+  passivePopup,
+  readingCard,
+  dismissalAction,
+  dismissalLabel,
+} from "./popup-controls.mjs";
 import { BoardView } from "./board.mjs";
 import {
   esc,
@@ -88,7 +97,56 @@ const page = document.querySelector("#page"),
   dialogHeader = dialog.querySelector(".popup-header"),
   dialogBody = dialog.querySelector(".popup-body"),
   dialogFooter = dialog.querySelector(".popup-footer"),
-  dialogClose = dialog.querySelector("[data-action=close]");
+  dialogClose = dialog.querySelector(".popup-dismiss");
+installSelectionGuard();
+const assetViews = new Map(),
+  assetTabs = new Map();
+let renderedAssetKey = "",
+  assetRestore = null;
+const assetOwnerKey = (owner = ui.popup?.id ?? session.seat) =>
+  `${session.state?.matchId}:${session.seat}:${owner}`;
+const assetViewKey = () => `${assetOwnerKey()}:${ui.assetTab}`;
+function rememberAssetView() {
+  if (!renderedAssetKey || dialog.dataset.kind !== "assets") return;
+  assetViews.set(renderedAssetKey, {
+    query: dialogBody.querySelector('[name="assetSearch"]')?.value || "",
+    filter:
+      dialogBody.querySelector(
+        '[data-action="mortgageFilter"][aria-pressed="true"]',
+      )?.dataset.value || "available",
+    scroll: dialogBody.scrollTop,
+    details: [...dialogBody.querySelectorAll("[data-asset-key]")].map((n) => [
+      n.dataset.assetKey,
+      n.open,
+    ]),
+  });
+  while (assetViews.size > 48)
+    assetViews.delete(assetViews.keys().next().value);
+}
+function restoreAssetView() {
+  const saved = assetViews.get(assetViewKey());
+  ui.assetQuery = saved?.query || "";
+  ui.mortgageFilter = saved?.filter || "available";
+  assetRestore = saved || { scroll: 0, details: [] };
+}
+function returnFromBuild() {
+  const origin = ui.buildReturn;
+  const group = ui.popup?.group;
+  ui.buildReturn = null;
+  ui.popup =
+    origin?.match === session.state?.matchId
+      ? origin.popup
+      : { kind: "assets", id: session.seat };
+  ui.assetTab = "build";
+  assetRestore = origin?.view || { scroll: 0, details: [] };
+  session.setCovered(true, { assets: true });
+  queueRender();
+  requestAnimationFrame(() =>
+    dialogBody
+      .querySelector(`[data-action="buildOrder"][data-group="${group}"]`)
+      ?.focus({ preventScroll: true }),
+  );
+}
 const layers = createLayerNavigation(history, () => close());
 window.addEventListener("popstate", () => layers.pop());
 let board,
@@ -157,17 +215,17 @@ function lobbyContent() {
         players.every((p) => p.controller === "bot" || (p.ready && p.connected))
       : true;
   const slots = isRoom ? r.capacity : ui.count;
-  return `<div class="lobby-heading"><h1>Ruang Bermain</h1><span class="lobby-mode">${isRoom ? "ONLINE" : "VS BOT"}</span></div><div class="lobby-facts"><span>${icon("map", 19)}40 petak</span><span>${icon("people", 19)}${isRoom ? players.length + "/" + r.capacity : ui.count} peserta</span><span class="coin-label"><span class="nusa-token">₦</span> = Nusa</span></div>${isRoom ? `<button class="room-code" data-action="copyRoom"><small>KODE ROOM</small><b>${esc(r.code)}</b>${icon("copy", 18)}</button>` : `<button class="setup-summary" data-action="setup"><span>${esc(ui.name || "Atur nama di Profil")} · ${ui.count} peserta</span><b>Atur permainan ${icon("gear", 15)}</b></button>`}<div class="lobby-roster" style="--columns:${slots === 2 || slots === 4 ? 2 : 3}">${Array.from(
+  return `<div class="lobby-heading"><h1>Ruang Bermain</h1><span class="lobby-mode">${isRoom ? "ONLINE" : "VS BOT"}</span></div><div class="lobby-facts"><span>${icon("map", 19)}40 petak</span><span>${icon("people", 19)}${isRoom ? players.length + "/" + r.capacity : ui.count} peserta</span><span class="coin-label"><span class="nusa-token">₦</span> = Nusa</span></div>${isRoom ? `<div class="online-room-heading"><button class="room-code" data-action="copyRoom" aria-label="Salin kode room ${esc(r.code)}"><small>KODE ROOM</small><b>${esc(r.code)}</b><span>${icon("copy", 18)} Salin</span></button><div class="lobby-connection" data-connected="${session.connected}"><span>${session.connected ? "Terhubung" : "Menghubungkan kembali…"}</span><small>${players.filter((p) => p.controller === "human" && p.ready && p.connected).length}/${humanCount} manusia siap${r.worker?.status === "offline" ? " · Bot menunggu worker" : ""}</small></div></div>` : `<button class="setup-summary" data-action="setup"><span>${esc(ui.name || "Atur nama di Profil")} · ${ui.count} peserta</span><b>Atur permainan ${icon("gear", 15)}</b></button>`}<div class="lobby-roster" style="--columns:${slots === 2 || slots === 4 ? 2 : 3}">${Array.from(
     { length: slots },
     (_, i) => {
       const p = players[i];
       return p
-        ? `<button class="lobby-player ${i === (isRoom ? session.room.seat : 0) ? "own" : ""}" data-action="${isRoom ? "room" : "setup"}" style="--player:${colors[pawnFor(p)]}"><span class="player-number">P${i + 1}${isRoom && i === r.host ? " · HOST" : ""}</span><div class="roster-art">${playerAvatar(p, players)}${pawnArt(pawnFor(p), TOKENS[pawnFor(p)].name)}</div><b>${esc(p.name)}</b><small class="ready-pill ${p.ready || p.controller === "bot" ? "ready" : ""}">${p.controller === "bot" ? "Bot" : p.ready ? "Siap" : "Belum siap"}</small></button>`
+        ? `<button class="lobby-player ${i === (isRoom ? session.room.seat : 0) ? "own" : ""}" data-action="${isRoom ? "room" : "setup"}" style="--player:${colors[pawnFor(p)]}"><span class="player-number">P${i + 1}${isRoom && i === r.host ? " · HOST" : ""}</span><div class="roster-art">${playerAvatar(p, players)}${pawnArt(pawnFor(p), TOKENS[pawnFor(p)].name)}</div><b>${esc(p.name)}</b><small class="ready-pill ${p.ready || p.controller === "bot" ? "ready" : ""}">${p.controller === "bot" ? "Bot" : !p.connected ? "Terputus" : p.ready ? "Siap" : "Belum siap"}</small></button>`
         : `<div class="lobby-player empty-seat"><span>P${i + 1}</span>${icon("plus", 25)}<small>Kursi kosong</small></div>`;
     },
   ).join(
     "",
-  )}</div>${isRoom ? `<div class="lobby-tools">${btn(r.seats[r.seat]?.ready ? "Batalkan siap" : "Saya siap", "ready", { primary: true, disabled: session.pending || !session.connected })}${btn("Pilih pion", "pawn", { disabled: session.pending })}${host ? btn(session.config?.onlineBots ? "Tambah bot" : "Status bot", "addBotPopup", { disabled: session.pending || (session.config?.onlineBots && (players.filter((p) => p.controller === "bot").length >= 3 || players.length + 1 + Math.max(0, 2 - humanCount) > r.capacity)) }) : ""}</div>${host ? btn("Mulai permainan", "startRoom", { primary: true, disabled: session.pending || !canStart, sym: "play" }) : '<p class="inline-note">Menunggu host memulai pertandingan.</p>'}<div class="room-lobby-actions">${btn("Kelola room", "room", { sym: "people" })}${btn("Keluar room", "leaveRoomConfirm", { disabled: session.pending, sym: "home" })}</div><p class="lobby-hint">Minimal dua manusia. Semua manusia harus siap dan terhubung.</p>` : `${btn("Mulai VS Bot", "startLocal", { primary: true, disabled: session.pending, sym: "play" })}<div class="lobby-secondary">${btn("Main Online", "onlineEntry", { sym: "people" })}${btn("Lanjutkan", "resume", { sym: "save", disabled: (!session.saved?.room && !session.saved?.state) || session.pending })}</div>`}`;
+  )}</div>${isRoom ? `<div class="lobby-tools">${btn(r.seats[r.seat]?.ready ? "Batal siap" : "Saya siap", "ready", { primary: true, disabled: session.pending || !session.connected })}${btn("Pilih pion", "pawn", { disabled: session.pending })}${host ? btn(session.config?.onlineBots ? "Tambah bot" : "Status bot", "addBotPopup", { disabled: session.pending || (session.config?.onlineBots && (players.filter((p) => p.controller === "bot").length >= 3 || players.length + 1 + Math.max(0, 2 - humanCount) > r.capacity)) }) : ""}</div>${host ? btn("Mulai permainan", "startRoom", { primary: true, disabled: session.pending || !canStart, sym: "play" }) : '<p class="inline-note">Menunggu host memulai pertandingan.</p>'}<div class="room-lobby-actions">${btn("Kelola room", "room", { sym: "people" })}${btn("Keluar room", "leaveRoomConfirm", { disabled: session.pending, sym: "home" })}</div><p class="lobby-hint">Minimal dua manusia. Semua manusia harus siap dan terhubung.</p>` : `${btn("Mulai VS Bot", "startLocal", { primary: true, disabled: session.pending, sym: "play" })}<div class="lobby-secondary">${btn("Main Online", "onlineEntry", { sym: "people" })}${btn("Lanjutkan", "resume", { sym: "save", disabled: (!session.saved?.room && !session.saved?.state) || session.pending })}</div>`}`;
 }
 function playerCards() {
   const s = session.view,
@@ -203,11 +261,16 @@ function renderPlayers(roster) {
   }
 }
 function drawDice() {
-  diceView.update(dicePresentation(session.view, session.head), {
-    id: session.head?.id || "",
-    paused: session.covered || session.paused || session.hidden,
-    reduced: session.reduced,
-  });
+  diceView.update(
+    session.pendingRoll
+      ? { stage: "rolling", values: null, label: "Menunggu konfirmasi server" }
+      : dicePresentation(session.view, session.head),
+    {
+      id: session.pendingRoll || session.head?.id || "",
+      paused: session.covered || session.paused || session.hidden,
+      reduced: session.reduced,
+    },
+  );
 }
 function syncCameraButton() {
   const mode = board?.mode || ui.camera,
@@ -223,6 +286,7 @@ function syncCameraButton() {
   );
 }
 function render() {
+  const renderStarted = performance.now();
   renderQueued = false;
   try {
     const current = session.screen;
@@ -249,6 +313,9 @@ function render() {
       }
     }
     if (screen === "lobby") {
+      page
+        .querySelector(".lobby-panel")
+        .classList.toggle("online-lobby", !!session.room);
       page.querySelector("#lobby-content").innerHTML = lobbyContent();
     } else if (session.view) {
       const s = session.view,
@@ -269,9 +336,9 @@ function render() {
       );
       drawDice();
       const primary = primaryAction(
-          s,
+          session.interactionState,
           session.seat,
-          session.head,
+          session.interactionHead,
           session.paused,
         ),
         button = page.querySelector("[data-action=primary]");
@@ -284,7 +351,12 @@ function render() {
       page.querySelector(".tile-caption").innerHTML =
         `<i style="background:${t.color}"></i><b>${esc(t.name)}</b><span>${a?.owner != null ? "Milik " + esc(s.players[a.owner].name) : t.price ? esc(money(t.price)) : "Petak perjalanan"}</span>${icon("arrow", 14)}`;
       const activity = activitySummary(s, session.head);
-      page.querySelector("#activity-text").textContent = activity.action;
+      page.querySelector("#activity-text").textContent =
+        session.room &&
+        session.model?.catchup?.economicCount &&
+        performance.now() - session.model.catchup.at < 2500
+          ? `${session.model.catchup.economicCount} transaksi terkonfirmasi · lihat Riwayat`
+          : activity.action;
       page.querySelector("#activity-money").textContent = activity.money;
       page.querySelector(".activity").title =
         activity.action + "\n" + activity.money;
@@ -315,6 +387,7 @@ function render() {
     page.querySelector("#page-status").textContent = session.error || "";
     decorateCurrency(page);
     renderDialog();
+    renderNotice();
     document.documentElement.classList.toggle("reduced", session.reduced);
     document.documentElement.classList.toggle("playing", screen === "gameplay");
   } catch (e) {
@@ -326,6 +399,25 @@ function render() {
           "Tampilan belum dapat diperbarui. Buka ulang dari Simpanan.",
         ),
       );
+  } finally {
+    if (session.room) {
+      session.performance.record(
+        "render.dom",
+        performance.now() - renderStarted,
+        { version: session.state?.version },
+      );
+      if (!session.performanceFramePending && !session.hidden) {
+        session.performanceFramePending = true;
+        requestAnimationFrame(() => {
+          session.performanceFramePending = false;
+          session.performance.record(
+            "render.frame-opportunity",
+            performance.now() - renderStarted,
+            { version: session.state?.version },
+          );
+        });
+      }
+    }
   }
 }
 function queueRender() {
@@ -407,6 +499,8 @@ function selectTradeOpponent(to) {
   queueRender();
 }
 function open(p) {
+  rememberAssetView();
+  const explicitTab = ["development", "manage"].includes(p.kind);
   if (p.kind === "development") {
     ui.assetTab = "build";
     p = { kind: "assets", id: session.seat };
@@ -414,17 +508,22 @@ function open(p) {
     const t = BOARD[p.id],
       owner = session.state.assets[p.id]?.owner ?? session.seat;
     ui.assetFocus = p.id;
-    ui.assetTab = t.group >= 0 && owner === session.seat ? "build" : "all";
+    ui.assetTab = "all";
     ui.assetGroup = t.group;
     p = { kind: "assets", id: owner };
   }
   if (p.kind === "assets" && p.id !== undefined && p.id !== session.seat)
     ui.assetTab = "all";
   ui.popup = requestedPopup(p, session.state);
-  if (p.kind === "assets") ui.assetQuery = "";
+  if (p.kind === "assets") {
+    if (!explicitTab) ui.assetTab = assetTabs.get(assetOwnerKey()) || "all";
+    if ((p.id ?? session.seat) !== session.seat && ui.assetTab === "build")
+      ui.assetTab = "all";
+    restoreAssetView();
+  }
   session.setCovered(ui.popup.kind !== "tradeIncoming", {
     assets:
-      ["assets", "debt"].includes(ui.popup.kind) &&
+      ["assets", "debt", "buildOrder"].includes(ui.popup.kind) &&
       (ui.popup.id ?? session.seat) === session.seat,
   });
   if (p.kind === "saves")
@@ -446,14 +545,24 @@ function open(p) {
   queueRender();
 }
 function close() {
+  if (readingCard(currentPopup())) return;
+  rememberAssetView();
   persistTradeDraft();
+  if (ui.popup?.kind === "buildOrder") {
+    if (!session.pending) returnFromBuild();
+    return;
+  }
   if (ui.popup?.kind === "property" && ui.popup.preview) {
     const origin = ui.certificateReturn,
       tile = ui.popup.id,
       sameMatch = origin?.matchId === session.state?.matchId;
     ui.certificateReturn = null;
     ui.popup = sameMatch ? origin.popup : null;
-    session.setCovered(!!ui.popup);
+    session.setCovered(!!ui.popup, {
+      assets:
+        ["assets", "debt"].includes(ui.popup?.kind) &&
+        (ui.popup.id ?? session.seat) === session.seat,
+    });
     queueRender();
     if (sameMatch)
       requestAnimationFrame(() => {
@@ -481,6 +590,19 @@ function close() {
     return;
   }
   if (ui.popup) {
+    if (
+      [
+        "buy",
+        "debt",
+        "auction",
+        "jail",
+        "mortgage",
+        "tradeIncoming",
+        "buildOffer",
+        "won",
+      ].includes(ui.popup.kind)
+    )
+      ui.dismissed = dismissalKey(ui.popup, session.interactionState);
     ui.popup = null;
     session.setCovered(false);
   } else {
@@ -491,6 +613,15 @@ function close() {
   queueRender();
 }
 function currentPopup() {
+  if (
+    ui.popup?.kind === "buildOrder" &&
+    (ui.popup.matchId !== session.state?.matchId ||
+      ui.popup.owner !== session.seat)
+  ) {
+    ui.popup = null;
+    ui.buildReturn = null;
+    session.setCovered(false);
+  }
   if (
     ui.popup?.preview &&
     ui.certificateReturn?.matchId !== session.state?.matchId
@@ -529,9 +660,9 @@ function currentPopup() {
   if (ui.popup) return ui.popup;
   if (session.screen !== "gameplay" || session.paused) return null;
   const p = autoPopup(
-    session.view,
+    session.interactionState,
     session.state,
-    session.head,
+    session.interactionHead,
     session.seat,
     ui.dismissed,
   );
@@ -539,10 +670,12 @@ function currentPopup() {
   return p;
 }
 function auxiliary(p) {
-  const s = session.view,
+  const s = session.interactionState,
     r = session.online,
     own = session.seat;
   switch (p.kind) {
+    case "buildOrder":
+      return renderBuildOrder(session, ui, p, { btn, lead });
     case "profile":
       if (!s)
         return {
@@ -763,7 +896,7 @@ function auxiliary(p) {
         title: "Pengaturan",
         html:
           lead("gear", "Pengaturan") +
-          `${btn("Profil Saya · Atur nama", "myProfile", { sym: "people" })}<label class="toggle">Efek suara<input type="checkbox" name="sound" ${ui.sound ? "checked" : ""}></label><label class="toggle">Animasi cepat<input type="checkbox" name="fast" ${session.fast ? "checked" : ""}></label><label class="toggle">Kurangi gerakan<input type="checkbox" name="reduced" ${session.reduced ? "checked" : ""}></label><p class="inline-note">Pengaturan disimpan pada perangkat ini. Preferensi reduced motion sistem tetap dihormati.</p><div class="fact-row"><span>Versi</span><b>${APP_VERSION} · Papan Klasik</b></div><div class="pwa-tools">${!pwa.state.installed ? btn(pwa.state.installable ? "Pasang Nusantara" : "Cara memasang aplikasi", "installApp", { sym: "home" }) : "<span>Aplikasi terpasang</span>"}${pwa.state.updateAvailable ? btn("Perbarui aplikasi", "updateApp", { disabled: session.screen === "gameplay" || session.pending }) : ""}</div><p class="inline-note">${esc(pwa.state.message || (pwa.state.offline ? "Sedang offline. VS Bot dan simpanan lokal tetap tersedia setelah aplikasi tersimpan di perangkat." : pwa.state.updateAvailable ? "Versi baru tersedia. Kembali ke lobby untuk memperbarui. Permainan online membutuhkan koneksi." : "VS Bot tersedia offline setelah aplikasi tersimpan di perangkat. Permainan online membutuhkan koneksi."))}</p>`,
+          `${btn("Profil Saya · Atur nama", "myProfile", { sym: "people" })}<label class="toggle">Efek suara<input type="checkbox" name="sound" ${ui.sound ? "checked" : ""}></label><label class="toggle">Animasi cepat<input type="checkbox" name="fast" ${session.fast ? "checked" : ""}></label><label class="toggle">Kurangi gerakan<input type="checkbox" name="reduced" ${session.reduced ? "checked" : ""}></label>${session.room ? btn("Unduh diagnostik online", "onlinePerformance") : ""}<p class="inline-note">Pengaturan disimpan pada perangkat ini. Preferensi reduced motion sistem tetap dihormati.</p><div class="fact-row"><span>Versi</span><b>${APP_VERSION} · Papan Klasik</b></div><div class="pwa-tools">${!pwa.state.installed ? btn(pwa.state.installable ? "Pasang Nusantara" : "Cara memasang aplikasi", "installApp", { sym: "home" }) : "<span>Aplikasi terpasang</span>"}${pwa.state.updateAvailable ? btn("Perbarui aplikasi", "updateApp", { disabled: session.screen === "gameplay" || session.pending }) : ""}</div><p class="inline-note">${esc(pwa.state.message || (pwa.state.offline ? "Sedang offline. VS Bot dan simpanan lokal tetap tersedia setelah aplikasi tersimpan di perangkat." : pwa.state.updateAvailable ? "Versi baru tersedia. Kembali ke lobby untuk memperbarui. Permainan online membutuhkan koneksi." : "VS Bot tersedia offline setelah aplikasi tersimpan di perangkat. Permainan online membutuhkan koneksi."))}</p>`,
         footer: btn("Selesai", "close", { primary: true }),
       };
     case "rules":
@@ -897,8 +1030,26 @@ function auxiliary(p) {
   }
   return null;
 }
+function renderNotice() {
+  const el = document.querySelector("#game-notice"),
+    n = session.notices.current;
+  el.hidden =
+    !n ||
+    dialog.open ||
+    session.paused ||
+    session.hidden ||
+    session.screen !== "gameplay";
+  if (el.hidden) return;
+  const html = `<span class="notice-symbol">${icon(n.kind === "rent" ? "home" : "info", 24)}</span><div><b>${esc(n.title)}${n.amount ? ` <strong>+ ${esc(money(n.amount))}</strong>` : ""}</b><p>${esc(n.text)}</p></div>`;
+  if (el.innerHTML !== html) {
+    el.innerHTML = html;
+    decorateCurrency(el);
+  }
+  el.dataset.kind = n.kind;
+}
 function renderDialog() {
-  const p = currentPopup();
+  const candidate = currentPopup(),
+    p = passivePopup(candidate) ? null : candidate;
   layers.sync(!!p);
   if (!p) {
     if (dialog.open) {
@@ -908,10 +1059,11 @@ function renderDialog() {
     popupKey = "";
     popupHTML = "";
     footerHTML = "";
+    renderedAssetKey = "";
     return;
   }
   if (p.kind === "auction") {
-    const identity = auctionIdentity(session.view);
+    const identity = auctionIdentity(session.interactionState);
     if (ui.auctionId !== identity) {
       ui.auctionId = identity;
       ui.bid = 0;
@@ -947,24 +1099,25 @@ function renderDialog() {
   const key = p.key || p.kind + ":" + (p.id ?? ""),
     markup = `${content.html}${session.error && p.kind !== "auction" ? `<p class="dialog-status" role="status">${esc(session.error)}</p>` : ""}`;
   if (popupKey !== key) {
-    previousFocus = document.activeElement;
+    if (!dialog.open) previousFocus = document.activeElement;
     dialogBody.scrollTop = 0;
     popupKey = key;
   }
   const assetStates =
-    popupKey === key && ["assets", "bank"].includes(dialog.dataset.kind)
+    assetRestore?.details ||
+    (popupKey === key && ["assets", "bank"].includes(dialog.dataset.kind)
       ? [...dialogBody.querySelectorAll("[data-asset-key]")].map((n) => [
           n.dataset.assetKey,
           n.open,
         ])
-      : [];
+      : []);
   const focused = dialog.contains(document.activeElement)
       ? document.activeElement
       : null,
     name = focused?.dataset.selectionName || focused?.name,
     start = focused?.selectionStart,
     end = focused?.selectionEnd,
-    scroll = dialogBody.scrollTop;
+    scroll = assetRestore?.scroll ?? dialogBody.scrollTop;
   if (popupHTML !== markup || densityChanged) {
     const patched =
       p.kind === "auction"
@@ -984,12 +1137,9 @@ function renderDialog() {
     }
     dialogBody.scrollTop = scroll;
   }
-  let footer = content.footer || "";
-  if (
-    ui.popup &&
-    !/data-action="(?:close|saveTradeDraft|pickerDone)"/.test(footer)
-  )
-    footer += btn("Selesai", "close");
+  assetRestore = null;
+  renderedAssetKey = p.kind === "assets" ? assetViewKey() : "";
+  let footer = decisionFooter(content.footer || "");
   if (footerHTML !== footer || densityChanged) {
     dialogFooter.innerHTML = footer;
     decorateCurrency(dialogFooter);
@@ -1001,21 +1151,12 @@ function renderDialog() {
     "auction-static",
     p.kind === "auction" || !!p.event?.auctionResult,
   );
-  dialogClose.disabled = false;
-  const navigableDecision =
-    !ui.popup &&
-    [
-      "buy",
-      "debt",
-      "auction",
-      "buildOffer",
-      "jail",
-      "mortgage",
-      "trade",
-    ].includes(p.kind);
-  dialogClose.hidden =
-    !!dialogFooter.querySelector("button") && !navigableDecision;
-  dialog.classList.toggle("has-close", !dialogClose.hidden);
+  dialogClose.disabled = p.kind === "buildOrder" && session.pending;
+  dialogClose.hidden = readingCard(p);
+  dialogClose.textContent = dismissalLabel(p);
+  dialogClose.dataset.action = dismissalAction(p);
+  dialogFooter.hidden = !dialogFooter.querySelector("button");
+  dialog.classList.remove("has-close");
   dialogFooter.dataset.actions = String(
     dialogFooter.querySelectorAll(":scope > button").length,
   );
@@ -1065,6 +1206,21 @@ async function perform(action, el) {
         close();
         return;
       case "menu":
+        open({ kind: "menu" });
+        return;
+      case "onlinePerformance": {
+        const blob = new Blob(
+            [JSON.stringify(session.performance.export(), null, 2)],
+            { type: "application/json" },
+          ),
+          url = URL.createObjectURL(blob),
+          a = document.createElement("a");
+        a.href = url;
+        a.download = "NUSA-online-performance.json";
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        break;
+      }
       case "settings":
       case "setup":
       case "onlineEntry":
@@ -1273,10 +1429,16 @@ async function perform(action, el) {
         }
         break;
       case "copyRoom":
-        await navigator.clipboard.writeText(
-          `${location.origin}/?room=${session.room.code}`,
-        );
-        session.error = "Tautan room disalin.";
+        if (ui.copyingRoom) return;
+        ui.copyingRoom = true;
+        try {
+          const ok = await copyRoomCode(session.room?.code);
+          session.error = ok
+            ? "Kode room disalin."
+            : "Clipboard belum tersedia. Izinkan akses clipboard di browser, lalu coba lagi.";
+        } finally {
+          ui.copyingRoom = false;
+        }
         break;
       case "camera":
         ui.camera =
@@ -1295,13 +1457,17 @@ async function perform(action, el) {
           else session.setPaused(false);
           break;
         }
-        const a = primaryAction(session.view, session.seat, session.head);
+        const a = primaryAction(
+          session.interactionState,
+          session.seat,
+          session.interactionHead,
+        );
         if (a.disabled) break;
         if (a.type) await session.act(a.type, a.data || {});
         else {
           ui.dismissed = "";
           if (!currentPopup()) {
-            const actor = decisionActor(session.view);
+            const actor = decisionActor(session.interactionState);
             open({ kind: "profile", id: actor });
           }
         }
@@ -1381,14 +1547,72 @@ async function perform(action, el) {
         return;
       }
       case "assetTab":
+        rememberAssetView();
         ui.assetTab = el.dataset.value;
+        ui.assetConfirm = null;
+        assetTabs.set(assetOwnerKey(), ui.assetTab);
+        restoreAssetView();
         if (el.dataset.group !== undefined)
           ui.assetGroup = Number(el.dataset.group);
         queueRender();
         return;
-      case "buildMany":
-        session.startBuilds(Number(el.dataset.group), Number(el.dataset.count));
+      case "mortgageFilter":
+        rememberAssetView();
+        ui.mortgageFilter = el.dataset.value;
+        ui.assetConfirm = null;
+        assetRestore = { scroll: 0, details: [] };
+        queueRender();
         return;
+      case "buildOrder": {
+        if (
+          session.busy ||
+          ui.popup?.kind !== "assets" ||
+          (ui.popup.id ?? session.seat) !== session.seat
+        )
+          return;
+        rememberAssetView();
+        const group = Number(el.dataset.group);
+        ui.buildReturn = {
+          popup: { ...ui.popup },
+          match: session.state.matchId,
+          view: assetViews.get(renderedAssetKey),
+        };
+        ui.buildCounts[group] = 1;
+        ui.buildTargets ||= {};
+        delete ui.buildTargets[group];
+        open({
+          kind: "buildOrder",
+          group,
+          owner: session.seat,
+          matchId: session.state.matchId,
+        });
+        return;
+      }
+      case "submitBuildOrder": {
+        if (ui.popup?.kind !== "buildOrder" || session.busy) return;
+        const group = ui.popup.group,
+          order = buildOrderSelection(
+            session.interactionState,
+            session.seat,
+            group,
+            ui.buildCounts[group] || 1,
+            ui.buildTargets?.[group],
+          );
+        if (!order.valid) {
+          session.error = "Pilihan berubah. Periksa jumlah dan lokasi terbaru.";
+          queueRender();
+          return;
+        }
+        if (order.count === 1) {
+          if (await session.act("BUILD", { tile: order.tile }))
+            returnFromBuild();
+        } else {
+          returnFromBuild();
+          session.startBuilds(group, order.count);
+        }
+        queueRender();
+        return;
+      }
       case "stopBuilds":
         session.stopAssetPlan();
         session.notify();
@@ -1488,7 +1712,11 @@ async function perform(action, el) {
         return;
       case "submitTrade":
         {
-          const status = tradeDraftStatus(session.view, session.seat, ui.trade);
+          const status = tradeDraftStatus(
+            session.interactionState,
+            session.seat,
+            ui.trade,
+          );
           if (status.invalid || !status.hasValue)
             throw Error(status.reason || "Tawaran masih kosong.");
         }
@@ -1507,8 +1735,12 @@ async function perform(action, el) {
         break;
       case "bidStep":
         ui.bid = Math.max(
-          bidMinimum(session.view),
-          Math.ceil(((session.view.auction?.amount || 0) + Number(el.dataset.amount))/50)*50,
+          bidMinimum(session.interactionState),
+          Math.ceil(
+            ((session.interactionState.auction?.amount || 0) +
+              Number(el.dataset.amount)) /
+              50,
+          ) * 50,
         );
         ui.bidRaw = nusaInput(ui.bid);
         queueRender();
@@ -1606,6 +1838,31 @@ dialog.addEventListener("cancel", (e) => {
   e.preventDefault();
   close();
 });
+dialogBody.addEventListener(
+  "toggle",
+  (e) => {
+    const item = e.target;
+    if (
+      dialog.dataset.kind !== "assets" ||
+      !item.matches?.("details[data-asset-key]")
+    )
+      return;
+    if (item.open) {
+      const scroll = dialogBody.scrollTop;
+      for (const other of dialogBody.querySelectorAll(
+        "details[data-asset-key][open]",
+      ))
+        if (other !== item) other.open = false;
+      // Leave the newly selected heading visible after a large preceding item collapses.
+      dialogBody.scrollTop = Math.min(
+        scroll,
+        dialogBody.scrollHeight - dialogBody.clientHeight,
+      );
+    }
+    rememberAssetView();
+  },
+  true,
+);
 dialog.addEventListener("click", (e) => {
   if (e.target === dialog) {
     const r = dialog.getBoundingClientRect();
@@ -1647,17 +1904,23 @@ document.addEventListener("input", (e) => {
       ui.tradeInputs ||= {};
       ui.tradeInputs[name] = el.value;
       persistTradeDraft();
-      const status = tradeDraftStatus(session.view, session.seat, ui.trade),
+      const status = tradeDraftStatus(
+          session.interactionState,
+          session.seat,
+          ui.trade,
+        ),
         b = dialog.querySelector("[data-action=submitTrade]");
       if (b) b.disabled = status.invalid || !status.hasValue;
       const estimate = dialog.querySelector("[data-trade-estimate]");
       if (estimate) {
         const expanded = estimate.querySelector("details")?.open;
         estimate.innerHTML = tradeEstimateMarkup(
-          session.view,
+          session.interactionState,
           {
             ...ui.trade,
-            from: ui.tradeCounter ? session.view.trade?.to : session.seat,
+            from: ui.tradeCounter
+              ? session.interactionState.trade?.to
+              : session.seat,
           },
           session.seat,
         );
@@ -1677,6 +1940,10 @@ document.addEventListener("change", async (e) => {
   try {
     if (name?.startsWith("buildCount-")) {
       ui.buildCounts[Number(name.slice(11))] = Number(el.value);
+      queueRender();
+    } else if (name?.startsWith("buildTarget-")) {
+      ui.buildTargets ||= {};
+      ui.buildTargets[Number(name.slice(12))] = Number(el.value);
       queueRender();
     } else if (name?.startsWith("level-"))
       ui.levels[name.slice(6)] = "hardcore";
@@ -1755,9 +2022,9 @@ window.addEventListener("keydown", (e) => {
     )
   ) {
     const action = primaryAction(
-      session.view,
+      session.interactionState,
       session.seat,
-      session.head,
+      session.interactionHead,
       session.paused,
     );
     if (action.type) {

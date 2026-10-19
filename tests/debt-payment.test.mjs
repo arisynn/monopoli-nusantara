@@ -142,7 +142,7 @@ test("Assets exposes only owned portfolio, development and manual mortgage contr
   const s = debtFixture(),
     popup = renderPopup(
       { state: s, view: s, seat: 0, pending: false, paused: false },
-      { assetTab: "auto" },
+      { assetTab: "mortgage" },
       { kind: "assets", id: 0 },
     );
   assert(!popup.html.includes("Gadai otomatis"));

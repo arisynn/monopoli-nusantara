@@ -4900,3 +4900,439 @@ select[hidden] {
     column-gap: 18px;
   }
 }
+/* v4.11.4: one quiet dismissal, quick asset navigation, passive receipts. */
+html,
+body,
+button,
+dialog,
+.selection-options {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+input,
+textarea,
+[contenteditable="true"],
+.clipboard-helper {
+  -webkit-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default;
+}
+.clipboard-helper {
+  position: fixed;
+  top: 0;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.popup > .popup-dismiss {
+  display: block;
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 16px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #52778d;
+  font: inherit;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+}
+.popup > .popup-dismiss:hover {
+  color: #166d9e;
+  text-decoration: underline;
+}
+.popup > .popup-dismiss:focus-visible {
+  outline: 2px solid #1988c9;
+  outline-offset: -4px;
+}
+.popup-dismiss[hidden],
+.popup-footer[hidden],
+.game-notice[hidden] {
+  display: none !important;
+}
+.game-notice {
+  position: fixed;
+  top: max(64px, calc(env(safe-area-inset-top) + 20px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(390px, calc(100vw - 28px));
+  padding: 14px 18px;
+  border: 1px solid #d9e8ed;
+  border-radius: 16px;
+  background: #fcfffff5;
+  color: #284c5b;
+  box-shadow: 0 8px 28px #17445a22;
+  pointer-events: none;
+}
+.game-notice .notice-symbol {
+  color: #358b82;
+  flex-shrink: 0;
+}
+.game-notice b {
+  font-size: 14px;
+}
+.game-notice strong {
+  margin-left: 6px;
+  color: #13745d;
+  white-space: nowrap;
+}
+.game-notice p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+}
+.mortgage-filters {
+  display: flex;
+  gap: 6px;
+  margin: 12px 0 4px;
+}
+.popup[data-kind="assets"] .asset-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  padding: 8px 0;
+  background: #f3faff;
+}
+.mortgage-filters button {
+  flex: 1;
+  min-height: 40px;
+  border: 1px solid #d5e5ed;
+  border-radius: 10px;
+  background: transparent;
+  color: #52778d;
+}
+.mortgage-filters button[aria-pressed="true"] {
+  background: #e9f4f8;
+  border-color: #6ba7b8;
+  color: #23576b;
+}
+.mortgage-filters small {
+  margin-left: 4px;
+  opacity: 0.8;
+}
+.mortgage-values {
+  padding: 12px 0 4px;
+  color: #52778d;
+  font-size: 12px;
+}
+.mortgage-values span {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.mortgage-values b {
+  color: #23576b;
+  font-size: 15px;
+}
+.mortgage-values small {
+  display: block;
+  margin-top: 5px;
+}
+.asset-reason {
+  color: #8b6d45;
+  font-size: 12px;
+  padding: 0 8px 8px;
+}
+.development-row .asset-name {
+  min-height: 44px;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #23576b;
+  font-weight: 700;
+  text-align: left;
+}
+.development-row .asset-name:hover {
+  text-decoration: underline;
+}
+.group-sale {
+  padding: 6px;
+}
+.group-sale > button {
+  width: 100%;
+  font-size: 11px;
+}
+.asset-item[open] > :not(summary) {
+  animation: asset-reveal 120ms ease-out;
+}
+@keyframes asset-reveal {
+  from {
+    opacity: 0.3;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.online-room-heading {
+  margin: 16px 0;
+}
+.online-room-heading .room-code {
+  margin-bottom: 8px;
+}
+.room-code > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}
+.lobby-connection {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #40776b;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.lobby-connection small {
+  color: #688797;
+}
+.lobby-connection[data-connected="false"] {
+  color: #996d30;
+}
+html.reduced .asset-item[open] > :not(summary) {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .asset-item[open] > :not(summary) {
+    animation: none;
+  }
+}
+@media (max-width: 400px) {
+  .lobby-connection {
+    flex-wrap: wrap;
+  }
+  .mortgage-filters button {
+    font-size: 12px;
+  }
+}
+/* Compact online lobby: independent rows prevent adjacent controls overlapping. */
+.lobby-panel.online-lobby {
+  padding: 10px 12px;
+  flex-shrink: 0;
+}
+.online-lobby .lobby-heading {
+  margin-bottom: 4px;
+}
+.online-lobby .lobby-heading h1 {
+  font-size: 23px;
+}
+.online-lobby .lobby-facts {
+  min-height: 28px;
+  margin: 0;
+  padding-block: 4px;
+  font-size: 10px;
+}
+.online-lobby .online-room-heading {
+  margin: 8px 0;
+}
+.online-lobby .room-code {
+  margin: 0 0 3px;
+  padding: 4px 8px;
+  min-height: 44px;
+  border-radius: 9px;
+  font-size: 20px;
+}
+.online-lobby .lobby-connection {
+  font-size: 11px;
+  line-height: 16px;
+}
+.online-lobby .lobby-roster {
+  gap: 5px;
+  margin: 0 0 6px;
+}
+.online-lobby .lobby-player {
+  grid-template-columns: 30px minmax(0, 1fr);
+  grid-template-rows: 9px 14px 13px;
+  gap: 1px 6px;
+  min-height: 50px;
+  padding: 5px 6px;
+}
+.online-lobby .lobby-player > .player-number {
+  font-size: 8px;
+}
+.online-lobby .lobby-player > b {
+  font-size: 11px;
+}
+.online-lobby .lobby-player > .roster-art {
+  width: 30px;
+  height: 32px;
+}
+.online-lobby .lobby-player .roster-art > .avatar {
+  width: 27px;
+  height: 27px;
+}
+.online-lobby .lobby-player .roster-art > .pawn-sprite {
+  width: 14px;
+  height: 17px;
+}
+.online-lobby .lobby-player > .ready-pill {
+  padding: 0 3px;
+  font-size: 9px;
+}
+.online-lobby .lobby-player.empty-seat {
+  min-height: 50px;
+}
+.online-lobby .lobby-tools {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 0 6px;
+  gap: 5px;
+}
+.online-lobby .lobby-tools > button {
+  min-height: 44px;
+  margin: 0;
+  padding: 5px 4px;
+  font-size: 11px;
+}
+.online-lobby [data-action="startRoom"] {
+  display: flex;
+  clear: both;
+  min-height: 44px;
+  margin: 0;
+  font-size: 13px;
+}
+.online-lobby .room-lobby-actions {
+  margin: 3px 0 0;
+  gap: 6px;
+}
+.online-lobby .room-lobby-actions > button {
+  min-height: 44px;
+  padding: 4px;
+  background: transparent;
+  box-shadow: none;
+  border-color: transparent;
+  font-size: 11px;
+}
+.online-lobby .lobby-hint {
+  margin-top: 0;
+  font-size: 10px;
+  line-height: 1.3;
+}
+/* Dense construction list; no fixed empty action column or repeated set-sale. */
+.popup[data-kind="assets"] .portfolio-total {
+  min-height: 36px;
+  padding: 2px 0;
+  margin-bottom: 2px;
+}
+.popup[data-kind="assets"] .asset-tabs {
+  gap: 4px;
+  padding: 4px 0;
+  margin: 0 0 5px;
+}
+.popup[data-kind="assets"] .development-bank {
+  padding: 2px 0 5px;
+}
+.popup[data-kind="assets"] .development-row {
+  gap: 5px;
+  padding: 3px 6px;
+}
+.popup[data-kind="assets"] .development-row .asset-name {
+  width: 100%;
+  min-height: 44px;
+  padding: 2px 0;
+}
+.popup[data-kind="assets"] .asset-name b {
+  margin: 0 0 2px;
+}
+.popup[data-kind="assets"] .development-actions {
+  flex: 0 0 auto;
+  max-width: 76px;
+}
+.popup[data-kind="assets"] .development-actions .asset-tools {
+  display: flex;
+  padding: 0;
+}
+.popup[data-kind="assets"] .development-actions button {
+  min-height: 44px;
+  padding: 4px 9px;
+  white-space: nowrap;
+}
+.popup[data-kind="assets"] .build-order {
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 5px;
+  padding: 6px;
+}
+.popup[data-kind="assets"] .build-order label {
+  gap: 3px;
+}
+.popup[data-kind="assets"] .build-order .primary {
+  grid-column: 1 / -1;
+  min-height: 44px;
+}
+.popup[data-kind="assets"] .build-order[data-targets="false"] .primary {
+  grid-column: 2;
+  grid-row: 1;
+}
+.popup[data-kind="assets"] .build-order small {
+  margin: 0;
+  font-size: 10px;
+}
+.popup[data-kind="assets"] .group-sale {
+  padding: 4px 6px;
+}
+.popup[data-kind="assets"] .group-sale > button {
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.development-group > [data-action="buildOrder"] {
+  width: calc(100% - 12px);
+  margin: 5px 6px 6px;
+  min-height: 44px;
+}
+.popup[data-kind="assets"] .development-actions button {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.build-dialog-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #52778d;
+  margin-bottom: 8px;
+}
+.build-dialog-fields {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 8px;
+}
+.build-dialog-fields .field {
+  margin: 0 0 6px;
+}
+.build-dialog-fields > label:only-child {
+  grid-column: 1 / -1;
+}
+.build-dialog-preview {
+  margin: 4px 0 8px;
+  font-size: 12px;
+}
+.build-dialog-preview > summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #52778d;
+}
+.build-dialog-preview ol {
+  margin: 4px 0;
+  padding-left: 24px;
+  line-height: 1.6;
+}

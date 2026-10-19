@@ -24,9 +24,12 @@ try{
  docker('run','-d','--rm','--name',container,'-e','POSTGRES_HOST_AUTH_METHOD=trust','postgres:17-alpine','-c','wal_level=logical');started=true;
  for(let i=0;;i++){try{docker('exec',container,'pg_isready','-h','127.0.0.1','-U','postgres');break;}catch{if(i>100)throw Error('PostgreSQL startup failed');await new Promise(r=>setTimeout(r,100));}}
  sql(`create role anon;create role authenticated;create role service_role bypassrls;create schema auth;create table auth.users(id uuid primary key);create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema auth to authenticated;create schema extensions;create extension pgcrypto with schema extensions;create schema vault;create table vault.decrypted_secrets(name text,decrypted_secret text);create publication supabase_realtime;insert into auth.users values ${users.map(x=>`(${quote(x)})`).join(',')};`);
- for(const name of ['202610160001_persistent_online.sql','202610160002_hybrid_bot_jobs.sql','202610160003_nusa_mind_settings.sql','202610170004_bot_worker_vault_auth.sql','202610180006_online_room_management.sql','202610180007_termux_workers.sql'])sql(await readFile(new URL('../supabase/migrations/'+name,import.meta.url),'utf8'));
+ for(const name of ['202610160001_persistent_online.sql','202610160002_hybrid_bot_jobs.sql','202610160003_nusa_mind_settings.sql','202610170004_bot_worker_vault_auth.sql','202610180006_online_room_management.sql','202610180007_termux_workers.sql','202610190008_online_speed.sql'])sql(await readFile(new URL('../supabase/migrations/'+name,import.meta.url),'utf8'));
  checks.push('All migrations applied transactionally');
  const store={
+  async workerAccess(hash){return rpc('mn_worker_access',{p_hash:hash});},
+  async workerSnapshot(worker,job){return rpc('mn_termux_snapshot',{p_worker:worker.id,p_code:job.code,p_owner:job.lease,p_version:job.sourceVersion});},
+  async workerClaim(args){return rpc('mn_termux_claim_profiled',args);},
   async workerRpc(name,p){return rpc(name,p);},
   async onlineCapabilities(){return value('select mn_online_capabilities();');},
   async get(code){return value(`set role service_role;select coalesce((select to_jsonb(r) from(select code,data,revision from mn_rooms where code=${quote(code)})r),'null'::jsonb);`);},
@@ -73,7 +76,8 @@ try{
  assert.equal(value("select has_function_privilege('authenticated','mn_termux_claim(uuid,uuid,text)','execute');"),false);
  assert.equal(value(`set role authenticated;set request.jwt.claim.sub=${quote(users[0])};select count(*) from mn_worker_wake;`),0);
  assert.equal(value(`set role authenticated;set request.jwt.claim.sub=${quote(users[2])};select count(*) from mn_worker_wake;`),1);
- checks.push('Single-use pairing, RLS wake isolation, privileged RPC denial, old Edge claim fenced');
+ for(const fn of ['mn_worker_access(text)','mn_termux_snapshot(uuid,text,uuid,bigint)','mn_termux_claim_profiled(uuid,uuid,text)'])for(const role of ['anon','authenticated'])assert.equal(value(`select has_function_privilege('${role}','${fn}','execute');`),false);
+ checks.push('Single-use pairing, RLS wake isolation, privileged RPC denial (including migration 008), old Edge claim fenced');
  // Real concurrent SQL connections compete for one available scoped job.
  sql(`update mn_workers set allowed_codes=array['ABCDEFGH'] where id=${quote(pair.workerId)};`);
  const owners=[crypto.randomUUID(),crypto.randomUUID()];

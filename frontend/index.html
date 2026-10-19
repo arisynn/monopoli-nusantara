@@ -36,30 +36,21 @@
   <body>
     <div id="page"></div>
     <dialog id="popup" class="popup" aria-modal="true">
-      <button
-        class="popup-close"
-        type="button"
-        data-action="close"
-        aria-label="Tutup popup"
-      >
-        <svg
-          class="ui-icon lucide-icon"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          aria-hidden="true"
-        >
-          <path d="m6 6 12 12M18 6 6 18" />
-        </svg>
-      </button>
       <header class="popup-header" hidden></header>
       <section class="popup-body"></section>
       <footer class="popup-footer"></footer>
+      <button class="popup-dismiss" type="button" data-action="close">
+        Tutup
+      </button>
     </dialog>
+    <aside
+      id="game-notice"
+      class="game-notice"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      hidden
+    ></aside>
     <noscript
       ><p class="no-script">
         Aktifkan JavaScript untuk bermain Nusantara.

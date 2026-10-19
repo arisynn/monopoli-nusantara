@@ -36,11 +36,11 @@ try{
   if(v.width===390)await page.screenshot({path:folder+'/bank-rincian.png',animations:'disabled'});
   for(const method of ['button','escape','back']){
    await page.locator('[data-asset-key=bank-mortgages] [data-action=certificate]').click();await page.locator('dialog[data-kind=property] .deed').waitFor();assert.equal(await page.locator('dialog [data-type]').count(),0);
-   if(method==='button')await page.locator('.popup-footer [data-action=close]').click();else if(method==='escape')await page.keyboard.press('Escape');else await page.evaluate(()=>history.back());
+   if(method==='button')await page.locator('.popup-dismiss').click();else if(method==='escape')await page.keyboard.press('Escape');else await page.evaluate(()=>history.back());
    await page.locator('dialog[data-kind=bank]').waitFor();await settled(page);assert.equal(await page.locator('[data-asset-key=bank-mortgages]').getAttribute('open'),'');assert.equal(await page.locator('[data-asset-key=bank-flows]').getAttribute('open'),'');assert.deepEqual(await read(page),before);
   }
   await page.locator('[data-asset-key=bank-inventory] summary').click();await page.locator('[data-asset-key=bank-inventory] [data-action=certificate]').first().click();await page.locator('dialog .deed').waitFor();await page.keyboard.press('Escape');await page.locator('dialog[data-kind=bank]').waitFor();await bounds(page,v);
-  await page.locator('.popup-footer [data-action=close]').click();await page.locator('dialog[open]').waitFor({state:'hidden'});
+  await page.locator('.popup-dismiss').click();await page.locator('dialog[open]').waitFor({state:'hidden'});
   await page.locator('.bank-indicator').focus();await page.keyboard.press('Enter');await page.locator('dialog[open][data-kind=bank]').waitFor();await page.keyboard.press('Escape');assert.deepEqual(await read(page),before);
   await page.reload({waitUntil:'networkidle'});await page.locator('[data-action=resume]').click();await page.locator('.bank-indicator').click();await page.locator('dialog[data-kind=bank]').waitFor();assert.deepEqual((await read(page)).bankEconomy,before.bankEconomy);
   await page.keyboard.press('Escape');

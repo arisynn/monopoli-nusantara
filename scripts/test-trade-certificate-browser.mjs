@@ -17,7 +17,7 @@ async function fits(page,viewport){await ready(page);const m=await page.locator(
 async function peek(page,id,parent,way='button'){
  const before=await state(page),scroll=await page.locator('.popup-body').evaluate(n=>n.scrollTop);
  await page.locator(`dialog [data-action=certificate][data-id="${id}"]`).click();await page.locator('dialog[data-kind=property] .deed').waitFor();assert.equal(await page.locator('dialog [data-type]').count(),0);assert.equal(await page.locator('dialog [data-action=manage]').count(),0);
- if(way==='button')await page.locator('.popup-footer [data-action=close]').click();else if(way==='escape')await page.keyboard.press('Escape');else await page.evaluate(()=>history.back());
+ if(way==='button')await page.locator('.popup-dismiss').click();else if(way==='escape')await page.keyboard.press('Escape');else await page.evaluate(()=>history.back());
  await page.locator(`dialog[data-kind=${parent}] [data-action=certificate][data-id="${id}"]`).waitFor();await ready(page);assert.deepEqual(await state(page),before);return scroll;
 }
 try{

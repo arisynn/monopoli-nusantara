@@ -1,7 +1,8 @@
+import {OnlinePerformance} from '../lib/online-performance.mjs';
 import {saveConfig} from './config.mjs';
 import {MODEL_MANIFEST_ID,WORKER_PROTOCOL} from '../lib/bot/model-manifest.mjs';
 export class WorkerClient{
- constructor(config,{transport=fetch,persist=saveConfig}={}){this.config=config;this.transport=transport;this.persist=persist;this.refreshing=null;this.metrics={requests:0,sentBytes:0,receivedBytes:0,lastRttMs:0};}
+ constructor(config,{transport=fetch,persist=saveConfig}={}){this.config=config;this.transport=transport;this.persist=persist;this.refreshing=null;this.performance=new OnlinePerformance();this.metrics={requests:0,sentBytes:0,receivedBytes:0,lastRttMs:0};}
  async request(op,data={},timeout=12000){
   const body=JSON.stringify({...data,op,protocol:WORKER_PROTOCOL,manifest:MODEL_MANIFEST_ID}),started=performance.now();
   this.metrics.requests++;this.metrics.sentBytes+=new TextEncoder().encode(body).length;
@@ -10,6 +11,8 @@ export class WorkerClient{
   const text=await response.text();this.metrics.receivedBytes+=new TextEncoder().encode(text).length;this.metrics.lastRttMs=Math.round(performance.now()-started);
   let result;try{result=JSON.parse(text);}catch{throw Error('Backend mengirim respons worker yang tidak valid.');}
   if(!response.ok){const error=Error(result.error||`Worker HTTP ${response.status}`);error.status=response.status;throw error;}
+  this.performance.record("http."+op,performance.now()-started,{trace:result._performance?.trace});
+  if(result._performance)for(const [stage,ms]of Object.entries(result._performance.spans||{}))this.performance.record("backend."+stage,ms,{trace:result._performance.trace});
   return result;
  }
  async sessionToken(){

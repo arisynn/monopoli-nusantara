@@ -1,4 +1,4 @@
-# NUSA Online Worker 4.11.2 — instalasi dan operasi
+# NUSA Online Worker 4.11.4 — instalasi dan operasi
 
 Paket ini memindahkan **komputasi AI** ke Termux/Node 24+. API Node/Vercel tetap menjalankan engine resmi untuk memvalidasi intent; Supabase menyimpan state, lease, receipt, Auth/RLS dan Realtime. Jalur normal mode Termux tidak menjalankan Edge Function.
 
@@ -6,11 +6,15 @@ Model dasarnya adalah source V23 yang diaudit. Release `v23.2-guard-finance-auct
 
 Audit update guard dan penyesuaian terhadap host official dijelaskan di `docs/audits/GUARD_FIX_INTEGRATION.md`. Engine tetap sama dengan rilis official 4.11.1; update ini menambahkan penjagaan keputusan dan riwayat transaksi bot.
 
+Untuk update dari **4.11.2**, baca `docs/ONLINE_SPEED_UPDATE.md` terlebih dahulu. Rilis 4.11.3 memakai **model dan manifest V23.2 yang sama persis**; perubahan ada pada presentasi/sinkronisasi dan RPC server. Terapkan migration 008 sebelum deploy backend baru. Tidak perlu pairing ulang atau mengubah provider bila instalasi 4.11.2 sudah aktif.
+
+Untuk update **4.11.3 → 4.11.4**, baca `docs/UI_4114_UPDATE.md`. Perubahan ini pada UI: popup, lobby padat, Pegadaian, dan popup jumlah pembangunan. Tidak ada migration baru, pergantian manifest, pairing ulang, atau perubahan runtime Termux.
+
 ## A. Setup backend sekali oleh pemilik proyek
 
 1. Gunakan source lengkap di ZIP ini untuk memperbarui repo aplikasi. Backend ada di `app/api`, `lib/server`, `adapters`, `api` dan `vercel.json`; frontend ada di `frontend`. Jangan hanya menyalin folder `termux` ke backend lama.
 2. Di lingkungan deployment backend, pertahankan konfigurasi Supabase yang sudah berfungsi: URL, publishable/anon key, dan secret/service-role key **server-only**. Set `MN_ONLINE_BOTS_ENABLED=true`. Key administrator tidak pernah dimasukkan ke Termux atau browser.
-3. Untuk proyek yang sudah memiliki migration 001–006, terapkan `supabase/migrations/202610180007_termux_workers.sql` melalui SQL Editor sebagai operator. Migration ini tambahan, tidak mereset room atau ekonomi. Untuk database baru, terapkan 001, 002, 003, 004, 006, 007; migration 005 khusus penjadwalan Edge lama tidak diperlukan untuk mode Termux. Pastikan extension pgcrypto, Auth, dan publication Realtime Supabase tersedia.
+3. Untuk proyek yang sudah memiliki migration 001–006, terapkan `supabase/migrations/202610180007_termux_workers.sql`, lalu `supabase/migrations/202610190008_online_speed.sql` melalui SQL Editor sebagai operator. Migration ini tambahan, tidak mereset room atau ekonomi. Untuk database baru, terapkan 001, 002, 003, 004, 006, 007, 008; migration 005 khusus penjadwalan Edge lama tidak diperlukan untuk mode Termux. Pastikan extension pgcrypto, Auth, dan publication Realtime Supabase tersedia.
 4. Jalankan `npm ci`, `npm run typecheck`, `npm test`, lalu deploy build `npm run build`. Aplikasi ini memakai satu handler Vercel; rewrite `/api/worker` serta output `server-dist` sudah terintegrasi. URL `https://SITUS/api/worker` harus mengembalikan protocol 1 dan manifest yang sama dengan paket.
 5. Sebelum mengubah provider, uji di staging. Setelah backend cocok, jalankan `supabase/termux_enable.sql`. Ini memilih Termux, mengunci manifest, dan menonaktifkan cron wake Edge lama. Klaim serta commit Edge lama juga dibatasi di database; tidak ada fallback Edge otomatis. Lease lama dapat memerlukan sampai 30 detik untuk habis.
 6. Buat kode pairing lewat SQL Editor. Pilih salah satu scope di bawah; kode hanya berlaku 10 menit dan satu kali penggunaan:
@@ -39,7 +43,7 @@ Gunakan Termux yang mendukung Node 24+, lalu ekstrak ZIP ke direktori privat hom
 pkg update
 pkg install nodejs-lts unzip python -y
 mkdir -p ~/nusa-online
-unzip ~/storage/downloads/NUSA_ONLINE_TERMUX_4.11.2.zip -d ~/nusa-online
+unzip ~/storage/downloads/NUSA_ONLINE_TERMUX_4.11.4.zip -d ~/nusa-online
 cd ~/nusa-online
 bash nusa-online.sh --selftest
 bash nusa-online.sh

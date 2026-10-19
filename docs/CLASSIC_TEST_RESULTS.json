@@ -1,7 +1,10 @@
 {
-  "generatedAt": "2026-10-18T17:50:08.060Z",
+  "generatedAt": "2026-10-19T03:36:12.979Z",
   "node": "v24.19.0",
   "files": [
+    "tests/ui-4114.test.mjs",
+    "tests/online-speed-worker.test.mjs",
+    "tests/online-speed.test.mjs",
     "tests/stability-guard.test.mjs",
     "tests/finance-auction-regression.test.mjs",
     "tests/termux-worker.test.mjs",
@@ -47,8 +50,8 @@
     "tests/headless-package.test.mjs",
     "tests/frontend.test.mjs"
   ],
-  "tests": 645,
-  "passed": 645,
+  "tests": 678,
+  "passed": 678,
   "failed": 0,
   "skipped": 0,
   "failures": [],

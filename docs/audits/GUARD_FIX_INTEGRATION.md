@@ -1,5 +1,7 @@
 # Audit dan integrasi Guard Fix — official 4.11.2
 
+Catatan historis 4.11.2. Untuk update performa 4.11.3, baca `ONLINE_SPEED_AUDIT.md`; file tes dengan nama tetap memuat hasil pengujian terbaru.
+
 Input: `NUSA_MIND_BENCHMARK_LAB_V23_GUARD_FIX.zip`, lab 1.2.1, Stability Guard 2.0.0. Bukti checksum dan perbandingan source ada di `GUARD_FIX_INPUT_AUDIT.json`.
 
 ## Temuan audit

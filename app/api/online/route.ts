@@ -4,19 +4,21 @@ import {supabaseConfigurationStatus} from '@/lib/server/supabase-config.mjs';
 import {createOnlineService, digest} from '@/lib/server/online-service.mjs';
 import {RoomError, check} from '@/lib/server/online-room.mjs';
 import {roomWorkerStatus} from '@/lib/server/worker-capabilities.mjs';
+import {requestPerformance} from '@/lib/server/request-performance.mjs';
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 const json = (value: unknown, status = 200) => Response.json(value, {status, headers: {'Cache-Control': 'no-store', Vary: 'Authorization'}});
-function context() {
+function context(profile: ReturnType<typeof requestPerformance>) {
  const runtime = getRuntime(), config = supabaseConfig(runtime.env);
  check(config, 'Supabase online belum dikonfigurasi.', 503);
- const store = createSupabaseStore(config!);
+ const store = profile.wrap(createSupabaseStore(config!));
  return {config: config!, store, service: createOnlineService({store,botsEnabled:runtime.env.MN_ONLINE_BOTS_ENABLED==='true'}), runtime};
 }
-function failure(error: unknown) {
+function failure(error: unknown, json: (value: unknown,status?:number)=>Response) {
  return error instanceof RoomError ? json({error: error.message,code:error.code}, error.status) : json({error: 'Permintaan belum dapat diproses. Ambil kondisi terbaru lalu coba kembali.'}, 400);
 }
 export async function GET(request: Request) {
+ const profile=requestPerformance(),json=profile.response;
  try {
   const url = new URL(request.url);
   if (url.searchParams.has('config')) {
@@ -25,7 +27,7 @@ export async function GET(request: Request) {
    const config = supabaseConfig(getRuntime().env);
    return json(config ? {online: true, provider: 'supabase', onlineBots:getRuntime().env.MN_ONLINE_BOTS_ENABLED==='true', url: config.url, key: config.key} : {online: false, provider: 'supabase'});
   }
-  const {config, service, store} = context(), user = await authenticate(request, config);
+  const {config, service, store} = context(profile), user = await profile.measure('auth',()=>authenticate(request, config));
   check(await store.quota(`read:${user.id}`, 60) <= 120, 'Terlalu banyak pemuatan room. Coba lagi nanti.', 429);
   if(url.searchParams.has('diagnostics')){
    try{return json({onlineBots:getRuntime().env.MN_ONLINE_BOTS_ENABLED==='true',capabilities:await store.onlineCapabilities()});}
@@ -34,7 +36,7 @@ export async function GET(request: Request) {
   if (url.searchParams.has('rooms')) return json({rooms: await service.list(user.id)});
   const view=await service.read((url.searchParams.get('code') || '').toUpperCase(), user.id);
   try{return json({...view,worker:await roomWorkerStatus(store,view.code,config.url)});}catch{return json(view);}
- } catch (error) { return failure(error); }
+ } catch (error) { return failure(error,json); }
 }
 async function readBody(request: Request) {
  const reader = request.body?.getReader(); check(reader, 'Isi permintaan diperlukan.');
@@ -46,11 +48,12 @@ async function readBody(request: Request) {
  return JSON.parse(new TextDecoder().decode(all));
 }
 export async function POST(request: Request) {
+ const profile=requestPerformance(),json=profile.response;
  try {
   const origin = request.headers.get('Origin');
   check(!origin || origin === new URL(request.url).origin, 'Origin tidak diizinkan.', 403);
   check(request.headers.get('Content-Type')?.split(';')[0] === 'application/json', 'Gunakan JSON.');
-  const {config, service, store, runtime} = context(), user = await authenticate(request, config);
+  const {config, service, store, runtime} = context(profile), user = await profile.measure('auth',()=>authenticate(request, config));
   const body = await readBody(request);
   if(['LEAVE','KICK'].includes(body.type)||body.type==='ADD_BOT'&&runtime.env.MN_ONLINE_BOTS_ENABLED==='true'){
    let capabilities;
@@ -71,5 +74,5 @@ export async function POST(request: Request) {
    try{return json({...result,worker:await roomWorkerStatus(store,result.code,config.url)});}catch{/* safe status is optional */}
   }
   return json(result);
- } catch (error) { return failure(error); }
+ } catch (error) { return failure(error,json); }
 }

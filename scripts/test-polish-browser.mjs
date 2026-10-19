@@ -205,7 +205,7 @@ try {
           path: folder + "/build-390.png",
           animations: "disabled",
         });
-      await page.locator(".popup-footer [data-action=close]").click();
+      await page.locator(".popup-dismiss").click();
       await page.locator(".quick-actions [data-action=trade]").click();
       await popupBounds(page, viewport);
       assert.equal(await page.locator(".trade-cards").count(), 0);
@@ -220,7 +220,7 @@ try {
       assert.equal(await page.locator("[name=giveCash]").inputValue(), "12.3");
       await page.locator('[data-action=certificate][data-id="6"]').click();
       await popupBounds(page, viewport);
-      await page.locator(".popup-footer [data-action=close]").click();
+      await page.locator(".popup-dismiss").click();
       assert.equal(await page.locator("[name=giveCash]").inputValue(), "12.3");
       assert.equal(
         await page.locator('[data-action=tradeRemove][data-id="6"]').count(),
@@ -275,7 +275,7 @@ try {
       0,
     );
     assert.equal(await page.locator(".asset-tabs button").count(), 3);
-    await page.locator(".popup-footer [data-action=close]").click();
+    await page.locator(".popup-dismiss").click();
     const numeric = await page.evaluate(async () => {
       const { createGame, command } = await import("/lib/game.mjs");
       const { renderPopup } = await import("/frontend/popups.mjs");

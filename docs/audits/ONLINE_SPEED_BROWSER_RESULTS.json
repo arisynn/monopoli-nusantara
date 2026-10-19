@@ -1,0 +1,147 @@
+{
+  "environment": "Real Chromium, emulated mobile DOM, actual GameSession and DiceView; controlled 180 ms backend response",
+  "rows": [
+    {
+      "optimized": false,
+      "reduced": false,
+      "players": 2,
+      "requests": 1,
+      "clickToConfirmedStateMs": 184.09999999403954,
+      "responseToInputReadyMs": 2334.10000000149,
+      "clickToInputReadyMs": 2516.1999999955297
+    },
+    {
+      "optimized": false,
+      "reduced": false,
+      "players": 3,
+      "requests": 1,
+      "clickToConfirmedStateMs": 187.90000000596046,
+      "responseToInputReadyMs": 2332.89999999851,
+      "clickToInputReadyMs": 2515
+    },
+    {
+      "optimized": false,
+      "reduced": false,
+      "players": 4,
+      "requests": 1,
+      "clickToConfirmedStateMs": 184.5,
+      "responseToInputReadyMs": 2338.2000000029802,
+      "clickToInputReadyMs": 2520.60000000149
+    },
+    {
+      "optimized": false,
+      "reduced": false,
+      "players": 5,
+      "requests": 1,
+      "clickToConfirmedStateMs": 183.5,
+      "responseToInputReadyMs": 2329.89999999851,
+      "clickToInputReadyMs": 2511
+    },
+    {
+      "optimized": false,
+      "reduced": false,
+      "players": 6,
+      "requests": 1,
+      "clickToConfirmedStateMs": 184.30000000447035,
+      "responseToInputReadyMs": 2338,
+      "clickToInputReadyMs": 2519.5
+    },
+    {
+      "optimized": false,
+      "reduced": true,
+      "players": 2,
+      "requests": 1,
+      "clickToConfirmedStateMs": 184,
+      "responseToInputReadyMs": 542.6000000014901,
+      "clickToInputReadyMs": 723.5
+    },
+    {
+      "optimized": true,
+      "reduced": false,
+      "players": 2,
+      "requests": 1,
+      "clickToConfirmedStateMs": 193.10000000149012,
+      "responseToInputReadyMs": 5.300000004470348,
+      "clickToInputReadyMs": 193.10000000149012
+    },
+    {
+      "optimized": true,
+      "reduced": false,
+      "players": 3,
+      "requests": 1,
+      "clickToConfirmedStateMs": 183.89999999850988,
+      "responseToInputReadyMs": 2,
+      "clickToInputReadyMs": 183.89999999850988
+    },
+    {
+      "optimized": true,
+      "reduced": false,
+      "players": 4,
+      "requests": 1,
+      "clickToConfirmedStateMs": 186.29999999701977,
+      "responseToInputReadyMs": 4,
+      "clickToInputReadyMs": 186.29999999701977
+    },
+    {
+      "optimized": true,
+      "reduced": false,
+      "players": 5,
+      "requests": 1,
+      "clickToConfirmedStateMs": 185.79999999701977,
+      "responseToInputReadyMs": 2.2999999970197678,
+      "clickToInputReadyMs": 185.79999999701977
+    },
+    {
+      "optimized": true,
+      "reduced": false,
+      "players": 6,
+      "requests": 1,
+      "clickToConfirmedStateMs": 186.09999999403954,
+      "responseToInputReadyMs": 2.399999998509884,
+      "clickToInputReadyMs": 186.19999999552965
+    },
+    {
+      "optimized": true,
+      "reduced": true,
+      "players": 2,
+      "requests": 1,
+      "clickToConfirmedStateMs": 192.40000000596046,
+      "responseToInputReadyMs": 5.300000004470348,
+      "clickToInputReadyMs": 192.40000000596046
+    }
+  ],
+  "before": {
+    "clickToConfirmedStateMs": {
+      "p50": 184.09999999403954,
+      "p95": 187.90000000596046
+    },
+    "responseToInputReadyMs": {
+      "p50": 2332.89999999851,
+      "p95": 2338.2000000029802
+    },
+    "clickToInputReadyMs": {
+      "p50": 2515,
+      "p95": 2520.60000000149
+    }
+  },
+  "after": {
+    "clickToConfirmedStateMs": {
+      "p50": 186.09999999403954,
+      "p95": 193.10000000149012
+    },
+    "responseToInputReadyMs": {
+      "p50": 2.399999998509884,
+      "p95": 5.300000004470348
+    },
+    "clickToInputReadyMs": {
+      "p50": 186.19999999552965,
+      "p95": 193.10000000149012
+    }
+  },
+  "errors": [],
+  "pass": true,
+  "limits": [
+    "No hosted Supabase/Auth/Realtime or physical Android.",
+    "Legacy already-paid tax receipt is acknowledged immediately by the harness, giving the baseline an optimistic input-ready time."
+  ]
+}

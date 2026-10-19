@@ -210,6 +210,7 @@ export function roomView(row, userId, now) {
  if(seat<0||room.closed)throw new RoomError('Bukan peserta room. Kursi sudah tidak tersedia untuk identitas ini.',403,'room_membership_ended');
  return {provider: 'supabase', online: true, roomRevision: row.revision, code: room.code, mode: 'online', seat,
   capacity: room.capacity,advisorEnabled:room.advisorEnabled===true, host: room.host, status: room.status, rules: room.rules, created: room.created, serverNow: now,
+  performance: room.performance||null,
   held: room.status === 'playing' && gameplayHeld(room, now),
   seats: room.seats.map((s, i) => ({id: i, memberId:s.memberId, name: s.name, ready: s.ready, controller: s.controller, botPersona:s.botPersona,botDifficulty:s.botDifficulty, pawn: s.pawn,
    connected: s.controller==='bot'||isConnected(s, now), lastSeen: lastSeen(s), out: !!room.state?.players[i]?.out})),

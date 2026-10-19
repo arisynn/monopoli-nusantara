@@ -32,3 +32,8 @@ export class TermuxStore extends BotJobStore{
   if(key&&result.ok)this.workerReceipts.set(key,{request_hash:work.requestHash,revision:result.revision});return result;
  }
 }
+export class FastTermuxStore extends TermuxStore{
+ async workerAccess(hash){const worker=[...this.workers.values()].find(w=>w.hash===hash&&!w.revoked);return worker?{worker,requests:await this.quota(`worker:${worker.id}`,60)}:null;}
+ async workerSnapshot(worker,job){const w=this.workers.get(worker.id),j=this.jobs.get(job.code);if(!w||w.revoked||w.codes&&!w.codes.includes(job.code)||j?.worker!==w.id||j.owner!==job.lease||j.until<=this.clock()||j.version!==job.sourceVersion)return null;return this.get(job.code);}
+ async workerClaim(p){const result=await super.workerRpc('mn_termux_claim',p);return result?{...result,queue_wait_ms:Math.max(0,this.clock()-this.jobs.get(result.code).due)}:null;}
+}

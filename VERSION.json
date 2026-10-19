@@ -1,7 +1,9 @@
 {
-  "app": "4.11.2",
+  "app": "4.11.4",
   "protocol": 1,
   "modelManifest": "f398a9793efd23c3c74e3e46d89aab0117a4c23c5102036d7e8f77a51c94e46d",
   "baselineCommit": "af88d14a08815ee1d139bbf5a9b945a24126d348",
-  "scope": "Termux worker + complete matching backend/frontend source and prepared outputs"
+  "scope": "Compact popup/assets/online lobby UX + previous speed optimization; full backend/frontend/Termux source and prepared outputs",
+  "previousRelease": "4.11.3",
+  "modelUnchanged": true
 }

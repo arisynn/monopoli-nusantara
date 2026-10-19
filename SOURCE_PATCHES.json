@@ -1,6 +1,6 @@
 {
   "baselineCommit": "af88d14a08815ee1d139bbf5a9b945a24126d348",
-  "note": "Versioned Stability Guard 2.0.0 integration, finance-loop and N5 auction corrections; runtime migration is separate. Historical benchmarks are test fixtures, never runtime model imports.",
+  "note": "4.11.4 polishes popup/assets/lobby UX on top of 4.11.3 speed improvements; the V23.2 model, manifest and engine remain byte-identical to 4.11.2. No new migration or Termux runtime change. Baseline Git hashes also include previously approved Guard/finance/N5 corrections; migration 008 is separate. Historical benchmarks are test fixtures, never runtime model imports.",
   "changes": [
     {
       "file": "adapters/node/router.mjs",
@@ -15,7 +15,7 @@
     {
       "file": "app/api/online/route.ts",
       "baselineSha256": "d14b464038eb9903902976ed62a90c3b7ff308d05e14f10e00c93a24a04e70f8",
-      "sha256": "019188173e1b6a60bca7a313f6626c022c770d89ff0d48ee0b89fb98c16247e1"
+      "sha256": "6fa9c8f421b1b2261e835da49f82952d4b3d0110f821d5aedf7ed0d115015ee4"
     },
     {
       "file": "app/api/worker/route.ts",
@@ -25,7 +25,27 @@
     {
       "file": "frontend/app.mjs",
       "baselineSha256": "853e9b447daa18ecd0342cdf524c6b78320f53fbbaea2d1b6904c120a006d199",
-      "sha256": "34cf00028055f165571972afa7b4417a39fb5833e81faef656c53f47a5f83079"
+      "sha256": "2937267ad8fb393bc578d92168fc42fd6ddedd9cd8347228b6fa52e70750fd8d"
+    },
+    {
+      "file": "frontend/asset-panel.mjs",
+      "baselineSha256": "bfea3f992455ecf92ed991f4137a89ac33a8e269db31fb8807ab8c8884f6f17c",
+      "sha256": "c2a4f4bda91577f2427cb4acee125eae7f20f79c66c16fe592025fda11951f1b"
+    },
+    {
+      "file": "frontend/clipboard.mjs",
+      "baselineSha256": null,
+      "sha256": "e8c11e6c53e6110cc7dc0d9724bc667757c1cbc9f59b29b925b3531b3e30375d"
+    },
+    {
+      "file": "frontend/feedback.mjs",
+      "baselineSha256": null,
+      "sha256": "fa3712eecef4acb6805aa55e17c4f4c5ff629bbbbf55db706811de334e549db4"
+    },
+    {
+      "file": "frontend/index.html",
+      "baselineSha256": "eec97b69697b2218c50e83ede1ba1ba91e85a98fded0548a1e0e167afc67cde2",
+      "sha256": "0106f49d5af6736f59c33a0336eebb64bbd8ef3fa73340e912fddcfa06054d8e"
     },
     {
       "file": "frontend/online-status.mjs",
@@ -33,14 +53,24 @@
       "sha256": "765f834fb618df663d27a644ed8b3928b84aea3d92607f32b7a296c234d34f26"
     },
     {
+      "file": "frontend/popup-controls.mjs",
+      "baselineSha256": null,
+      "sha256": "e869ab06fc1ffe0046c40f275d8ee51ca4c1a8d48c4449373cf6afb8bcc0fab1"
+    },
+    {
       "file": "frontend/popups.mjs",
       "baselineSha256": "f5b2cf010c8d28629d1cd688b2612ad824a0656a71df765674218ed4523c732e",
-      "sha256": "cb36292c555e2996771a306018837de1ff29ed87f132a5cf8a66fd039d57121c"
+      "sha256": "52965c4a01d51dac3a432b8cb4355a8f8cc8249f81716b9f36106222016b008c"
     },
     {
       "file": "frontend/session.mjs",
       "baselineSha256": "89fb51a9f0fe8c4ce1e403555c76815f19b8229078d8e193bfd4dd70d04ed391",
-      "sha256": "32e6c9b7d4d16d96db31fd01e27631dfb2d583fba71289e9a337daa527dbdfef"
+      "sha256": "cdaea3d0bbc8e44d6735eaf84a52c7d473fb43f29c10258ef0b06fa0f25a0fc1"
+    },
+    {
+      "file": "frontend/styles.css",
+      "baselineSha256": "3e69a595755d8332da51b2cba231db3c1a5c21c61336f39cbebefdcf3e935c50",
+      "sha256": "829b3cdaddd925d5935d7a609a1abe167822787cc03c438e716dc5fb9f5f935e"
     },
     {
       "file": "lib/content.mjs",
@@ -58,9 +88,34 @@
       "sha256": "e03dae9100676a9eae78dd348f8546e4422fc672c34df6adfa8682b3b422d687"
     },
     {
+      "file": "lib/online-client.mjs",
+      "baselineSha256": "18c9ae679c90d73964dec18a264669916be36f899a5d2043ae92d19af143479f",
+      "sha256": "262abce2ddfa2d5c6e7a4851b765960680f00c1af9edd400ba0bbb98182a08e6"
+    },
+    {
+      "file": "lib/online-performance.mjs",
+      "baselineSha256": null,
+      "sha256": "1e1a13d315df05d595f71672843881a1858b3207bd8ac46f6dce71b4c3d3189c"
+    },
+    {
+      "file": "lib/online-presentation.mjs",
+      "baselineSha256": null,
+      "sha256": "d0589daea4d05f2a017e2e03c3383669b2e1d2fcbe573ddcdd61226e0691181c"
+    },
+    {
+      "file": "lib/presentation-timeline.mjs",
+      "baselineSha256": "2aad7f89f431d3b91fe4e7e69d82368f57072ab555e724c6d4366ad0617b90b7",
+      "sha256": "f09c381d0a3f27f2798cd442d1ee0fa350b4e594de1ef729f97d7c96c95464c4"
+    },
+    {
+      "file": "lib/presentation-types.ts",
+      "baselineSha256": "08b2025864c928a6817be54e7f4ff9c25f60bf4aa07f0daa9b6694fbe5bc29e8",
+      "sha256": "dd88dda6da6a1299b72e434cc19f00066d9c6440118f2b11c7af6fddb7a7860d"
+    },
+    {
       "file": "lib/version.mjs",
       "baselineSha256": "9b5ebc5b1d565b7db7cbdefa4774894d51eece4978cdb03484e8a7bd098bbe06",
-      "sha256": "ff208345e2563a721b8a0ba9e866b8d13918d971ea2b34980f8d4c2bac7cee32"
+      "sha256": "556f0a8ca6feab0ff0e4c250d308d3757eec6f0cf696ef4be57b46484716e218"
     },
     {
       "file": "lib/bot/candidates.mjs",
@@ -138,14 +193,29 @@
       "sha256": "47355be705c7211cf30ec7776c214bd4183539781ea38227ed13cfd4aa6ca327"
     },
     {
+      "file": "lib/server/online-room.mjs",
+      "baselineSha256": "5826cec517a73ce7c00e56ab7339f7dbba5f456c46f3947b886c7595298d977b",
+      "sha256": "9e14704cd1303991eea58438469f4726f600fd6ef7ebd0773b45c89a322d5d70"
+    },
+    {
+      "file": "lib/server/online-service.mjs",
+      "baselineSha256": "7d00b20ed21306382fa058f767aa6d216d1c7855cdd0d46d78452bab87a37c3e",
+      "sha256": "5528dc91ee8fd56ea07da2c657d34dd9ee5c6fe8ca2bea0d816dd4983dcba6a8"
+    },
+    {
+      "file": "lib/server/request-performance.mjs",
+      "baselineSha256": null,
+      "sha256": "4b4e9ec66b58431ecbb9291904fca156ee65e466652e06614e9e182831dfdced"
+    },
+    {
       "file": "lib/server/supabase-store.mjs",
       "baselineSha256": "152e271be47018417e57e8a07f81f95bc0ab6c88aedcba3664bfb206d0c21725",
-      "sha256": "0538e17c9aefbbf33dc5866051115649aa54be3a0c938a8d8affd27058b961bd"
+      "sha256": "7167d82bb85922406f48e56f0d13c01560d4ce8619939a7b6c115fc97bbb6db6"
     },
     {
       "file": "lib/server/termux-worker.mjs",
       "baselineSha256": null,
-      "sha256": "3de2970c1d7982546bbe9816f67553bbd6a28cef34839876b40a65ae58a333bc"
+      "sha256": "1ed82bc91f97a782faf3caa8d247b5f9db5e00322252865da8d3fc0bf5a91b20"
     },
     {
       "file": "lib/server/worker-capabilities.mjs",
@@ -155,7 +225,7 @@
     {
       "file": "lib/server/worker-handler.mjs",
       "baselineSha256": null,
-      "sha256": "629c61ea427c594d361a414a3bc7628cb40acb24e68af20c04a8d69b591e238f"
+      "sha256": "3ef02b9d35579fe5e276c9acbeb1f1ca363813c7bb21abe17638a6dd334bdcfa"
     },
     {
       "file": "supabase/termux_enable.sql",
@@ -258,9 +328,19 @@
       "sha256": "47355be705c7211cf30ec7776c214bd4183539781ea38227ed13cfd4aa6ca327"
     },
     {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/server/online-room.mjs",
+      "baselineSha256": "5826cec517a73ce7c00e56ab7339f7dbba5f456c46f3947b886c7595298d977b",
+      "sha256": "9e14704cd1303991eea58438469f4726f600fd6ef7ebd0773b45c89a322d5d70"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/server/online-service.mjs",
+      "baselineSha256": "7d00b20ed21306382fa058f767aa6d216d1c7855cdd0d46d78452bab87a37c3e",
+      "sha256": "5528dc91ee8fd56ea07da2c657d34dd9ee5c6fe8ca2bea0d816dd4983dcba6a8"
+    },
+    {
       "file": "supabase/functions/monopoli-bots/_shared/lib/server/supabase-store.mjs",
       "baselineSha256": "152e271be47018417e57e8a07f81f95bc0ab6c88aedcba3664bfb206d0c21725",
-      "sha256": "0538e17c9aefbbf33dc5866051115649aa54be3a0c938a8d8affd27058b961bd"
+      "sha256": "7167d82bb85922406f48e56f0d13c01560d4ce8619939a7b6c115fc97bbb6db6"
     },
     {
       "file": "supabase/migrations/202610180007_termux_workers.sql",
@@ -268,9 +348,14 @@
       "sha256": "52ded6cc92f89cb7a5781879ce3d7c720aa62421faa93078a235566762ed9f9a"
     },
     {
+      "file": "supabase/migrations/202610190008_online_speed.sql",
+      "baselineSha256": null,
+      "sha256": "684196b8a8f2367580f138cf2bac154bc804c6f0dcb3922514e9aec96a7476fa"
+    },
+    {
       "file": "termux/client.mjs",
       "baselineSha256": null,
-      "sha256": "f567f9fe6ae0878d72e813174ca81357397f9ed7c34711c4cf527230dccb3c9e"
+      "sha256": "2d31d3c55e5b84234befc1bf196db93fe239684709ddc7c91f3a75b81c29c787"
     },
     {
       "file": "termux/compute.mjs",
@@ -285,7 +370,7 @@
     {
       "file": "termux/daemon.mjs",
       "baselineSha256": null,
-      "sha256": "c0ad3b1db50d3fe936d9908eccaac32017715d2d27e97b1f90570454a3ce04d1"
+      "sha256": "33fe9f9ba2dde065b1c0c44c0f8dd51b30f6a035b191ca6fb558a8a6b88d2ee9"
     },
     {
       "file": "termux/ecosystem.config.cjs",
@@ -300,7 +385,7 @@
     {
       "file": "termux/manage.mjs",
       "baselineSha256": null,
-      "sha256": "b7b9d7b051e7479cd55c297dc89e809b84213ac4cc7a4bf0cce0d47f879dcd41"
+      "sha256": "bcb1e5da2bbbaa04fbaab32b937bde1ef88a49c143a798ea7eee3eaba1438f4a"
     },
     {
       "file": "termux/pool.mjs",

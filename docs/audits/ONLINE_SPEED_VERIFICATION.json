@@ -1,0 +1,81 @@
+{
+  "release": "4.11.3",
+  "manifest": "f398a9793efd23c3c74e3e46d89aab0117a4c23c5102036d7e8f77a51c94e46d",
+  "manifestFileSha256": "135a4360b9c278f06ccf793ac1fac1f660a907110d05d9f12c8e48eb7414cbe0",
+  "protectedFilesUnchanged": 51,
+  "tests": {
+    "tests": 664,
+    "passed": 664,
+    "failed": 0,
+    "skipped": 0
+  },
+  "typecheck": "PASS",
+  "sourceModules": 611,
+  "browser": {
+    "pass": true,
+    "scenarios": 12,
+    "before": {
+      "clickToConfirmedStateMs": {
+        "p50": 184.09999999403954,
+        "p95": 187.90000000596046
+      },
+      "responseToInputReadyMs": {
+        "p50": 2332.89999999851,
+        "p95": 2338.2000000029802
+      },
+      "clickToInputReadyMs": {
+        "p50": 2515,
+        "p95": 2520.60000000149
+      }
+    },
+    "after": {
+      "clickToConfirmedStateMs": {
+        "p50": 186.09999999403954,
+        "p95": 193.10000000149012
+      },
+      "responseToInputReadyMs": {
+        "p50": 2.399999998509884,
+        "p95": 5.300000004470348
+      },
+      "clickToInputReadyMs": {
+        "p50": 186.19999999552965,
+        "p95": 193.10000000149012
+      }
+    }
+  },
+  "postgres": {
+    "checks": [
+      "All migrations applied transactionally",
+      "Two online rooms, two humans + three bots each; all six personas",
+      "SQL scheduling actor matches production JS for auction, starting, rent, card, trade, debt, mortgage, buildOffer",
+      "Single-use pairing, RLS wake isolation, privileged RPC denial (including migration 008), old Edge claim fenced",
+      "Concurrent SQL claims: one lease per room and scope enforced",
+      "Atomic room/action/worker receipt; lost ACK replay has one effect",
+      "Expired lease rejects stale action and is recoverable without browser wake",
+      "180 online scheduling iterations, real model decisions, intensive auctions, N5 bid grid",
+      "Worker revoke stops claims and hint access without changing game state"
+    ],
+    "limits": [
+      "Isolated PostgreSQL; not hosted Supabase Auth/Realtime.",
+      "Node/Linux; not physical Android/Termux."
+    ],
+    "actions": 180,
+    "botActions": 154,
+    "bids": 34,
+    "pass": true
+  },
+  "pm2": {
+    "environment": "Linux Node 24 + actual PM2 6.0.14; mock HTTP backend",
+    "checks": [
+      "PM2 starts daemon and daemon performs outbound heartbeat and claim",
+      "PM2 restart starts a new daemon and recovers private configuration",
+      "Graceful PM2 stop releases process/lock without killing unrelated PM2 applications"
+    ],
+    "pass": true
+  },
+  "benchmark": "ONLINE_SPEED_BENCHMARK.json",
+  "limits": [
+    "Production room metrics are user-provided; private hosted logs not accessed.",
+    "No GitHub push, deployment, live database changes, physical Android or hosted Auth/Realtime testing."
+  ]
+}

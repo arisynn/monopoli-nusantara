@@ -1,0 +1,11 @@
+{
+  "release": "4.11.2",
+  "source": "lib/presentation-timeline.mjs",
+  "originalSha256": "2aad7f89f431d3b91fe4e7e69d82368f57072ab555e724c6d4366ad0617b90b7",
+  "adaptation": "Only three relative import paths redirected to the identical current content/finance/dice modules; no model or rule copy.",
+  "sessionTiming": {
+    "eventMinimumMs": 3200,
+    "pawnTailMs": 300,
+    "sourceSha256": "32e6c9b7d4d16d96db31fd01e27631dfb2d583fba71289e9a337daa527dbdfef"
+  }
+}

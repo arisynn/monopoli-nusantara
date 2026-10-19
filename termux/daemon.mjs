@@ -1,3 +1,4 @@
+import {OnlinePerformance} from '../lib/online-performance.mjs';
 import {writeFile,rename,open,readFile,rm,stat} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {loadConfig,DATA,initData} from './config.mjs';
@@ -7,21 +8,25 @@ import {createLog} from './log.mjs';
 import {MODEL_MANIFEST_ID,MODEL_RELEASE,WORKER_PROTOCOL} from '../lib/bot/model-manifest.mjs';
 
 export async function startDaemon(config,{client=new WorkerClient(config),pool=new ComputePool(config.slots),dataDir=DATA,realtime=true}={}){
+ const timings=new OnlinePerformance();
  const log=createLog(resolve(dataDir,'logs'));
  const state={pid:process.pid,startedAt:new Date().toISOString(),manifest:MODEL_MANIFEST_ID,model:MODEL_RELEASE,protocol:WORKER_PROTOCOL,connection:'starting',realtime:false,
   slots:config.slots,active:[],events:[],committed:0,retries:0,stale:0,rooms:[],heartbeatAt:null};
  let closed=false,pumping=false,kickAgain=false,poll,heart,snapshot,failures=0,emptyClaims=0,stopRealtime=()=>{};
  const inflight=new Set();
  async function event(kind,text,extra={}){state.events=[...state.events,{at:new Date().toISOString(),kind,text}].slice(-5);await log({kind,text,...extra});}
- async function persist(){state.memoryMb=Math.round(process.memoryUsage().rss/1048576);state.network=client.metrics;state.updatedAt=new Date().toISOString();await writeFile(resolve(dataDir,'status.tmp'),JSON.stringify(state,null,2),{mode:0o600});await rename(resolve(dataDir,'status.tmp'),resolve(dataDir,'status.json'));}
+ async function persist(){state.memoryMb=Math.round(process.memoryUsage().rss/1048576);state.network=client.metrics;state.performance=timings.summary();state.httpPerformance=client.performance?.summary();state.updatedAt=new Date().toISOString();await writeFile(resolve(dataDir,'status.tmp'),JSON.stringify(state,null,2),{mode:0o600});await rename(resolve(dataDir,'status.tmp'),resolve(dataDir,'status.json'));}
  async function work(job){
-  const commandId=crypto.randomUUID();state.active.push({code:job.code,actor:job.actor,phase:job.state.phase,version:job.sourceVersion});
+  const commandId=crypto.randomUUID(),claimedAt=performance.now();
+  if(Number.isFinite(job.queueWaitMs))timings.record('bot.queue',job.queueWaitMs,{version:job.sourceVersion});state.active.push({code:job.code,actor:job.actor,phase:job.state.phase,version:job.sourceVersion});
   let committed=false;
   try{
+   const computeStarted=performance.now();
    let plan=await pool.compute({state:job.state,actor:job.actor,budget:config.budget});
+   const computeMs=performance.now()-computeStarted;timings.record('bot.compute',computeMs,{version:job.sourceVersion});
    if(closed)return;
    let action=plan.action;if(!action)throw Error('Model tidak menghasilkan aksi.');
-   await log({kind:'decision',code:job.code,actor:job.actor,sourceVersion:job.sourceVersion,action,diagnostics:plan.diagnostics,candidates:plan.candidates,summary:plan.summary});
+   await log({kind:'decision',code:job.code,actor:job.actor,sourceVersion:job.sourceVersion,action,performance:{computeMs,queueWaitMs:job.queueWaitMs},diagnostics:plan.diagnostics,candidates:plan.candidates,summary:plan.summary});
    const jobRef={code:job.code,actor:job.actor,sourceVersion:job.sourceVersion,matchId:job.matchId,lease:job.lease};
    if(config.advisor&&job.advisorEnabled&&plan.shouldConsult){
     try{const advice=await client.request('advisor',{job:jobRef,commandId,plan:{action:plan.action,candidates:plan.candidates}},2500);action=advice.action||action;}
@@ -31,11 +36,11 @@ export async function startDaemon(config,{client=new WorkerClient(config),pool=n
    const payload={job:jobRef,commandId,action};
    for(let attempt=0;attempt<4&&!closed;attempt++){
     try{
-     const result=await client.request('submit',payload);committed=true;state.connection='online';
+     const submitStarted=performance.now(),result=await client.request('submit',payload);timings.record('bot.submit',performance.now()-submitStarted,{version:job.sourceVersion});timings.record('bot.claim-to-ack',performance.now()-claimedAt,{version:job.sourceVersion});if(result.performance)timings.record('bot.commit',result.performance.commitMs,{version:job.sourceVersion});committed=true;state.connection='online';
      if(!result.duplicate)state.committed++;
      for(const e of result.events||[])await event('game',e.text,{code:job.code,eventId:e.id,event:e});
      if(result.eventsUnavailable)await event('history','Receipt terkonfirmasi; event lama sudah di luar riwayat server.',{code:job.code,commandId});
-     await log({kind:'receipt',code:job.code,commandId,duplicate:!!result.duplicate,revision:result.revision});break;
+     await log({kind:'receipt',code:job.code,commandId,duplicate:!!result.duplicate,revision:result.revision,performance:result.performance,backend:result._performance});break;
     }catch(error){
      if(error.status===409){state.stale++;await event('stale','State/lease berubah; ambil pekerjaan terbaru.',{code:job.code});break;}
      if([400,401,403,413].includes(error.status))throw error;
@@ -45,7 +50,7 @@ export async function startDaemon(config,{client=new WorkerClient(config),pool=n
   }catch(error){await event('error',error.message,{code:job.code});}
   finally{
    if(!committed)await client.request('release',{job:{code:job.code,lease:job.lease,actor:job.actor,sourceVersion:job.sourceVersion,matchId:job.matchId}}).catch(()=>{});
-   state.active=state.active.filter(j=>j.code!==job.code);kick();
+   state.active=state.active.filter(j=>j.code!==job.code);
   }
  }
  async function pump(){

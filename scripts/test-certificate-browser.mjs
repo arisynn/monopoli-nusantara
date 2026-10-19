@@ -40,7 +40,7 @@ async function scenario(viewport,kind,tile=11){
   if(kind==='rent'){assert.equal(before.players[0].cash,15000-(before.players[1].cash-15000));assert(before.players[0].cash<15000);assert.equal(await page.locator('.settlement-label').textContent(),'Sewa dibayar');assert(await page.locator('.property-price-label').textContent());}
   for(const way of ['button','escape','back']){
    await page.locator('.mini-deed').click();await page.locator('dialog[data-kind=property] .deed').waitFor();const detail=await bounds(page,viewport);assert.equal(detail.density,'preserved');assert.equal(await page.locator('dialog [data-action=manage]').count(),0);assert.equal(await page.locator('dialog [data-type]').count(),0);assert((await page.locator('.deed header h2').textContent()).includes(BOARD[id].name.toUpperCase()));
-   if(way==='button')await page.locator('.popup-footer [data-action=close]').click();else if(way==='escape')await page.keyboard.press('Escape');else await page.evaluate(()=>history.back());
+   if(way==='button')await page.locator('.popup-dismiss').click();else if(way==='escape')await page.keyboard.press('Escape');else await page.evaluate(()=>history.back());
    await page.locator(`dialog[data-kind=${parent}] .mini-deed`).waitFor();await ready(page);assert.deepEqual(await read(page),before,`${kind}: ${way} must not execute any game action`);assert.equal(await page.locator('dialog').getAttribute('data-density'),'compact');
   }
   if(viewport.width===390){await page.mouse.move(0,0);await page.screenshot({path:`${folder}/${kind}-${tile}.png`,animations:'disabled'});}

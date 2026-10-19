@@ -1,6 +1,6 @@
 # Hasil implementasi 4.11.1
 
-Dokumen ini adalah catatan rilis 4.11.1. Untuk pembaruan dan hasil tes 4.11.2, baca `GUARD_FIX_INTEGRATION.md`; berkas hasil PostgreSQL/PM2 yang namanya tetap memuat hasil pengujian terbaru.
+Dokumen ini adalah catatan rilis 4.11.1. Update performa 4.11.3 dijelaskan di `ONLINE_SPEED_AUDIT.md`. Untuk pembaruan dan hasil tes 4.11.2, baca `GUARD_FIX_INTEGRATION.md`; berkas hasil PostgreSQL/PM2 yang namanya tetap memuat hasil pengujian terbaru.
 
 Paket ini melanjutkan audit historis `NUSA_V23_FINANCE_LOOP_AUDIT.md` dan rencana `TERMUX_ONLINE_WORKER_PLAN.md`. Laporan audit tersebut menggambarkan kondisi sebelum perbaikan.
 
