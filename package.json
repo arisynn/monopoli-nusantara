@@ -70,8 +70,8 @@
     "test:hold:batch:browser": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-hold-batch-browser.mjs",
     "audit:dice": "node scripts/audit-dice.mjs",
     "benchmark:build:batch": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/benchmark-build-batch.mjs",
-    "test:trade:result": "node --experimental-strip-types --import ./adapters/node/aliases.mjs --test tests/trade-result.test.mjs",
-    "test:trade:result:browser": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-trade-result-browser.mjs"
+    "test:trade:results": "node --experimental-strip-types --import ./adapters/node/aliases.mjs --test tests/trade-results.test.mjs",
+    "test:trade:results:browser": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-trade-results-browser.mjs"
   },
   "devDependencies": {
     "@types/node": "22.19.19",

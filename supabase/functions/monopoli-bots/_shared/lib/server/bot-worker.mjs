@@ -1,5 +1,5 @@
-import {commandWithTradeResult as command} from '../trade-result.mjs';
 import {decisionActor} from '../game.mjs';
+import {commandWithTradeResult as command} from '../trade-command.mjs';
 import {decidePersona} from '../bot/persona-router.mjs';
 import {brokerIntentMetadata} from '../bot/broker-intent.mjs';
 import {MODEL_MANIFEST_ID} from '../bot/model-manifest.mjs';

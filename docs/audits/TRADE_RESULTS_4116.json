@@ -1,0 +1,64 @@
+{
+  "version": "4.11.6",
+  "sourceArchive": "NUSA_ONLINE_TERMUX_4.11.5.zip",
+  "sourceArchiveSha256": "41c3c34ab396247759a3330fe3cc48d92a94f67a24ef89027a0c5bc51bfcc76b",
+  "core": {
+    "tests": 710,
+    "passed": 710,
+    "failed": 0
+  },
+  "tradeBrowser": {
+    "checks": [
+      {
+        "name": "320x568: confirmed details, no timer, refresh/read-once, existing shell, read-only close",
+        "passed": true
+      },
+      {
+        "name": "390x844: confirmed details, no timer, refresh/read-once, existing shell, read-only close",
+        "passed": true
+      },
+      {
+        "name": "844x390: confirmed details, no timer, refresh/read-once, existing shell, read-only close",
+        "passed": true
+      },
+      {
+        "name": "1280x800: confirmed details, no timer, refresh/read-once, existing shell, read-only close",
+        "passed": true
+      },
+      {
+        "name": "actual manual incoming TRADE_ACCEPT: result survives action handler and uses recipient perspective",
+        "passed": true
+      },
+      {
+        "name": "actual manual incoming TRADE_REJECT: result survives action handler and uses recipient perspective",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "limits": [
+      "Online HTTP/state transport is a test double; no live project or database was contacted."
+    ]
+  },
+  "existingUiBrowser": {
+    "checks": 41,
+    "passed": true
+  },
+  "typecheck": "passed",
+  "moduleVerification": {
+    "modules": 639,
+    "failures": 0
+  },
+  "protectedModelEngineFiles": {
+    "count": 51,
+    "unchanged": true
+  },
+  "boardPawnAssetsAndMigrations": {
+    "comparedFiles": 58,
+    "unchanged": true
+  },
+  "liveDeploymentPerformed": false,
+  "limits": [
+    "Browser online transport uses controlled state/HTTP doubles; no live Supabase, Vercel, Groq or Termux device test.",
+    "Mobile checks use Chromium emulation."
+  ]
+}

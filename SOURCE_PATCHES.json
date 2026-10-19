@@ -1,456 +1,71 @@
 {
-  "baselineCommit": "af88d14a08815ee1d139bbf5a9b945a24126d348",
-  "note": "4.11.6 records confirmed trade outcome metadata in the existing commit through human, offline-bot, Termux-server and optional Edge adapters; compact receipts and history review add no new polling. Earlier hold/release and atomic BUILD_BATCH remain. The V23.2 model, manifest, engine, Termux client and protocol remain unchanged. No new migration; deploy matching frontend and backend. Optional Edge provider deployments must also update their function bundle. Baseline Git hashes also include previously approved Guard/finance/N5 corrections; migration 008 is separate. Historical benchmarks are test fixtures, never runtime model imports.",
+  "baselineCommit": "30295e85ab417c2758c2a3d31162a19c0dba806e",
+  "note": "4.11.6 adds accepted/rejected/cancelled trade receipts through integration wrappers and the existing modal shell. Deploy matching frontend/backend and refresh the prepared Edge worker when used. Board, pawn assets, protected model and official engine are byte-identical to uploaded 4.11.5. No new migration, manifest or pairing change. Historical benchmarks remain fixtures",
   "changes": [
     {
-      "file": "adapters/node/router.mjs",
-      "baselineSha256": "3f738a36750c66fb8c4c396d421bd78316110398f4fb21ba93804a35ea4f1fa8",
-      "sha256": "df1e5c737fc9eb5accbeff405705951ba2a08882ac64111663d6d6c28afbaa07"
-    },
-    {
-      "file": "adapters/vercel/handler.ts",
-      "baselineSha256": "fda9bae88f54b3ca2eb275f87f63887efe7d93ddb94594579edbc970688aa19f",
-      "sha256": "3376f42b74b8ea6df727ab6242ec6b9e28800fe0366b65cf608735e20dd315c8"
-    },
-    {
-      "file": "app/api/online/route.ts",
-      "baselineSha256": "d14b464038eb9903902976ed62a90c3b7ff308d05e14f10e00c93a24a04e70f8",
-      "sha256": "6fa9c8f421b1b2261e835da49f82952d4b3d0110f821d5aedf7ed0d115015ee4"
-    },
-    {
-      "file": "app/api/worker/route.ts",
-      "baselineSha256": null,
-      "sha256": "b5e1b6e8c9c38b31b5ffe81957d6f7a53b59c5b42af68f673b34316b580b4a84"
-    },
-    {
       "file": "frontend/app.mjs",
-      "baselineSha256": "853e9b447daa18ecd0342cdf524c6b78320f53fbbaea2d1b6904c120a006d199",
-      "sha256": "e7ca3cd72a38ea245b759047c9bc6c0be486a1460488683a168bd742e7b76995"
-    },
-    {
-      "file": "frontend/asset-panel.mjs",
-      "baselineSha256": "bfea3f992455ecf92ed991f4137a89ac33a8e269db31fb8807ab8c8884f6f17c",
-      "sha256": "403d91f8c1d33231b8708e1dbfcddfaaf6ab989da873ebf5c32210d2c9978f53"
-    },
-    {
-      "file": "frontend/clipboard.mjs",
-      "baselineSha256": null,
-      "sha256": "e8c11e6c53e6110cc7dc0d9724bc667757c1cbc9f59b29b925b3531b3e30375d"
-    },
-    {
-      "file": "frontend/dice-log.mjs",
-      "baselineSha256": null,
-      "sha256": "42d9ba3df08158790f78ab22add944b435aa33a35b13c9265bc6d6e9de3d6a20"
-    },
-    {
-      "file": "frontend/dice-view.mjs",
-      "baselineSha256": "487159cf644519ef2f02aa2281b478014af80fdb04105413a19d990e2036f2f3",
-      "sha256": "fa1d77cc745d324ef2128f008b377a7facc5e91e41eb5260bacb0bd1092a98c2"
-    },
-    {
-      "file": "frontend/feedback.mjs",
-      "baselineSha256": null,
-      "sha256": "fa3712eecef4acb6805aa55e17c4f4c5ff629bbbbf55db706811de334e549db4"
-    },
-    {
-      "file": "frontend/index.html",
-      "baselineSha256": "eec97b69697b2218c50e83ede1ba1ba91e85a98fded0548a1e0e167afc67cde2",
-      "sha256": "0106f49d5af6736f59c33a0336eebb64bbd8ef3fa73340e912fddcfa06054d8e"
-    },
-    {
-      "file": "frontend/online-status.mjs",
-      "baselineSha256": "5a1edff41b57a5138fb4e977a123879673096ea6c17336946dcc5e7b96e6a147",
-      "sha256": "765f834fb618df663d27a644ed8b3928b84aea3d92607f32b7a296c234d34f26"
-    },
-    {
-      "file": "frontend/popup-controls.mjs",
-      "baselineSha256": null,
-      "sha256": "e869ab06fc1ffe0046c40f275d8ee51ca4c1a8d48c4449373cf6afb8bcc0fab1"
+      "baselineSha256": "03dc711bc71fe85e29ace6119ce1449af794036451de844422c2e35650ad9afd",
+      "sha256": "1bf77750b1cd5335c94a122f0c7aab2cddf849d358a57ac6bab578c9c986c78c"
     },
     {
       "file": "frontend/popups.mjs",
-      "baselineSha256": "f5b2cf010c8d28629d1cd688b2612ad824a0656a71df765674218ed4523c732e",
-      "sha256": "da505ea88611a6042293bac2882bae21217e887e825795d0f69d89f957099f71"
-    },
-    {
-      "file": "frontend/roll-input.mjs",
-      "baselineSha256": null,
-      "sha256": "28d5653cc908af257dddd107154da9103021baa14d1cb8f70f83dd156d77edb7"
+      "baselineSha256": "52965c4a01d51dac3a432b8cb4355a8f8cc8249f81716b9f36106222016b008c",
+      "sha256": "afb8a565b862041fde02791892e9220375a1825c210f2dd6016caef92888b1f3"
     },
     {
       "file": "frontend/session.mjs",
-      "baselineSha256": "89fb51a9f0fe8c4ce1e403555c76815f19b8229078d8e193bfd4dd70d04ed391",
-      "sha256": "d5f26f9efb884495f55097d100f79981083b16f905e5e47bf072845921d2d3e7"
+      "baselineSha256": "a7710913b030cafb5fe7f5d53f6f0838ba343ad0ea229ab9ac0da2600e8fd7e1",
+      "sha256": "2937288f971cb5a82f0c49ba860fd20b139093407352763a1ee18c83eb677eb3"
     },
     {
       "file": "frontend/styles.css",
-      "baselineSha256": "3e69a595755d8332da51b2cba231db3c1a5c21c61336f39cbebefdcf3e935c50",
-      "sha256": "38b44381886a49998acc64026bbeab6b4e1403d95475fd54b14c0ea11b630590"
-    },
-    {
-      "file": "frontend/trade-result-view.mjs",
-      "baselineSha256": null,
-      "sha256": "6e22da800ff93dcdd00b240a05fb70eb3dea8d64a40a77a87e3391112a972096"
+      "baselineSha256": "fec604ab12ad637a9f999180855bfe93b5557819e0f04f66ec6cb5963fe27f7c",
+      "sha256": "46411d4aae55052fc4d2168a7db5a8a85ba673dcd520237a4889bcea61b8f248"
     },
     {
       "file": "frontend/trade-results.mjs",
       "baselineSha256": null,
-      "sha256": "b07cdedf5860b1d82509b0f36e1ab9b3fddfa7c739d1d27f3ee14982f780922b"
+      "sha256": "c2af5b3a33d5cfd623265b06ce18b5d765df343e80df22d6c3f369fe674abbed"
     },
     {
-      "file": "lib/build-batch.mjs",
+      "file": "lib/trade-command.mjs",
       "baselineSha256": null,
-      "sha256": "0d129ef96221e54f2062aa72a9d1e555f453fd35dc98d367b549b3460d7199ad"
-    },
-    {
-      "file": "lib/content.mjs",
-      "baselineSha256": "7b686d7f359f5a463b244ad973d58996add7afe01891397ae32240668e4472f0",
-      "sha256": "899e5eab945b3866a4a30e7c4baa1553d3d4548fff60bf02b2d619013d8aa9b9"
-    },
-    {
-      "file": "lib/dice-audit.mjs",
-      "baselineSha256": null,
-      "sha256": "be201a5159319380f53805eb3eae67d15d0314c0421105f0f216565b01293551"
-    },
-    {
-      "file": "lib/game.mjs",
-      "baselineSha256": "da9d7703371c920033f9793e96616d51004090599a243d336c307f40311c302e",
-      "sha256": "4bed1f3c9ea9df0d1e981f090f155b68d89c9f0f6015b1e36eeff93b56271b1e"
-    },
-    {
-      "file": "lib/groq.ts",
-      "baselineSha256": "d6eaa2348517097ce8d1ef0b0dca39a9bc188d72d529e6dcbfd8ab58a0faad74",
-      "sha256": "e03dae9100676a9eae78dd348f8546e4422fc672c34df6adfa8682b3b422d687"
-    },
-    {
-      "file": "lib/online-client.mjs",
-      "baselineSha256": "18c9ae679c90d73964dec18a264669916be36f899a5d2043ae92d19af143479f",
-      "sha256": "262abce2ddfa2d5c6e7a4851b765960680f00c1af9edd400ba0bbb98182a08e6"
-    },
-    {
-      "file": "lib/online-performance.mjs",
-      "baselineSha256": null,
-      "sha256": "1e1a13d315df05d595f71672843881a1858b3207bd8ac46f6dce71b4c3d3189c"
-    },
-    {
-      "file": "lib/online-presentation.mjs",
-      "baselineSha256": null,
-      "sha256": "d0589daea4d05f2a017e2e03c3383669b2e1d2fcbe573ddcdd61226e0691181c"
-    },
-    {
-      "file": "lib/presentation-timeline.mjs",
-      "baselineSha256": "2aad7f89f431d3b91fe4e7e69d82368f57072ab555e724c6d4366ad0617b90b7",
-      "sha256": "0094357a5b0fc0f162287a1b002be7fdd8f346aaee5d042a92a3807fed2b9098"
-    },
-    {
-      "file": "lib/presentation-types.ts",
-      "baselineSha256": "08b2025864c928a6817be54e7f4ff9c25f60bf4aa07f0daa9b6694fbe5bc29e8",
-      "sha256": "dd88dda6da6a1299b72e434cc19f00066d9c6440118f2b11c7af6fddb7a7860d"
-    },
-    {
-      "file": "lib/trade-result.mjs",
-      "baselineSha256": null,
-      "sha256": "d69b4d85f73f3472eb394ae3287559fa6db0717f5a2df931c0f3870c5147767c"
+      "sha256": "492f1739fe25abd93f40af8f833b0d4f6abe489011cc7dcb0ef549907454b197"
     },
     {
       "file": "lib/version.mjs",
-      "baselineSha256": "9b5ebc5b1d565b7db7cbdefa4774894d51eece4978cdb03484e8a7bd098bbe06",
-      "sha256": "9f4e5c064e04e26e3f888067b2df8d2398388f615a808494e47c7c9758ed7c9f"
-    },
-    {
-      "file": "lib/bot/candidates.mjs",
-      "baselineSha256": "e517b51e1dca8d12df4da1c17d7ab9514024595ac5fb5ff0a5b431cef385fdc3",
-      "sha256": "067d148bd6c0bf854aa31bf3caca843004601cdec0336642157b838854a0739d"
-    },
-    {
-      "file": "lib/bot/contracts.ts",
-      "baselineSha256": "7d9240b914b4951e2854411c9535591b5ae7502a15adcedbb1b619e97ea7bbb7",
-      "sha256": "813fb1f392a2feaa4a99382be31d65e79d2686697e489747234831adc2d9eb24"
-    },
-    {
-      "file": "lib/bot/finance-guard.mjs",
-      "baselineSha256": null,
-      "sha256": "ec4e98802c0738494c9a831178c17c738f26835b8fe19ce9c1e883f2dca5faa9"
-    },
-    {
-      "file": "lib/bot/finance-history.mjs",
-      "baselineSha256": null,
-      "sha256": "edbac197dd3830ad6c14b3f8f0ff826f50e67dddfbe299ba38f302dccd980811"
-    },
-    {
-      "file": "lib/bot/kresna-policy.mjs",
-      "baselineSha256": "c325206ef0a682fba88b8b60534cbb49af2799af8b11704d944076f080ba8149",
-      "sha256": "c77582fa38513c8db19b25994e86c859014bf910f2845534d3a6319b24697711"
-    },
-    {
-      "file": "lib/bot/memory.mjs",
-      "baselineSha256": "b3153748ec582a527302614154410dd15f36aa307f48d43cb90874a621342605",
-      "sha256": "e615d686dad79d1b62c36f16e96a5aa3cbe38d0922f574907b3496bf5aca70d6"
-    },
-    {
-      "file": "lib/bot/mind.mjs",
-      "baselineSha256": "c95dbba8740c783f090e5aeae6c90728ad5946b18ccbdeac5fa056f757de4a56",
-      "sha256": "c9acd3c89f810070cc487b5150e32ae087ec161a0163f594c80935635dd2fb7f"
-    },
-    {
-      "file": "lib/bot/model-manifest.mjs",
-      "baselineSha256": null,
-      "sha256": "135a4360b9c278f06ccf793ac1fac1f660a907110d05d9f12c8e48eb7414cbe0"
-    },
-    {
-      "file": "lib/bot/persona-router.mjs",
-      "baselineSha256": "5c33550b7095ad78231cb2561513774d75ced598df8462f75845ef5f6f32f0ba",
-      "sha256": "9630b33181ad29702c5b88b5aa6a4ac75adf475c6e0e06bddfd9d48b49afa301"
-    },
-    {
-      "file": "lib/bot/stability-guard.mjs",
-      "baselineSha256": null,
-      "sha256": "504c28eef9564ec67f2c5be16423c34758690952660ca06069f4b1515d608847"
-    },
-    {
-      "file": "lib/bot/strategy.mjs",
-      "baselineSha256": "bbdd66e2bf1b36fd054cd8511953b2ead451c0e16e4257e5e34c578566265d45",
-      "sha256": "ac3467a7451c48002d8e2f67e4143e29add4b63944514d9964f38f31ff58121e"
-    },
-    {
-      "file": "lib/bot/nusa-v7/experts.mjs",
-      "baselineSha256": "9b27a6cae0ccaf75c81d77852ad80867c141b7b7ed61634aedff2ab8625fe567",
-      "sha256": "0fc144a25d51ad96050d836cb3243875a5aeda630a07c7e5e005cee8e326f213"
-    },
-    {
-      "file": "lib/bot/nusa-v7/index.mjs",
-      "baselineSha256": "f8a55ce0cbb58786fcb1237fcebb7d4d60178afe70dd9f066ed0553e76a66a91",
-      "sha256": "4927f08bec09d82f72006838bfeb23a8ad0022b3d2a8944e37078243976f1d78"
-    },
-    {
-      "file": "lib/bot/nusa-v7/reasoning.mjs",
-      "baselineSha256": "4a35139c5b38ef41391eca362d7e22c084c9db0ed70c734bb35664e002af945b",
-      "sha256": "f6d633f2d19bc54a28f7358abf31d7a9a474156c699651717cb58ff6a00bb028"
+      "baselineSha256": "41563804399ae26814cf284a0ba6b2a68a6262baed95129b6ef470ec46c0c2c9",
+      "sha256": "5bb0ba286df87b52962a19d407da7f92458bafd804ad38800e0ceca66a7b4aa8"
     },
     {
       "file": "lib/server/bot-worker.mjs",
-      "baselineSha256": "b904376d18b1001bf4ed4ac4c76cf93990cf1af8b1ee8f651cd69a89ab2fdd89",
-      "sha256": "7f2a1c5524c617fac019ee3d70024fc15bb6944dd876cc983fff1419d506932c"
+      "baselineSha256": "47355be705c7211cf30ec7776c214bd4183539781ea38227ed13cfd4aa6ca327",
+      "sha256": "a514a8259351e0fe5958cddbe64e9e39c6a719026f98d585852eaba40c9841c2"
     },
     {
       "file": "lib/server/online-room.mjs",
-      "baselineSha256": "5826cec517a73ce7c00e56ab7339f7dbba5f456c46f3947b886c7595298d977b",
-      "sha256": "7508b4de111b01ff11617c1dd8904dd9eed3b5e40734b80374f793b6e9dcd76f"
-    },
-    {
-      "file": "lib/server/online-service.mjs",
-      "baselineSha256": "7d00b20ed21306382fa058f767aa6d216d1c7855cdd0d46d78452bab87a37c3e",
-      "sha256": "300eac82e1f3b6ffb2ca1a73817397775db05fbe2e91d99525dccc664968b115"
-    },
-    {
-      "file": "lib/server/request-performance.mjs",
-      "baselineSha256": null,
-      "sha256": "4b4e9ec66b58431ecbb9291904fca156ee65e466652e06614e9e182831dfdced"
-    },
-    {
-      "file": "lib/server/supabase-store.mjs",
-      "baselineSha256": "152e271be47018417e57e8a07f81f95bc0ab6c88aedcba3664bfb206d0c21725",
-      "sha256": "7167d82bb85922406f48e56f0d13c01560d4ce8619939a7b6c115fc97bbb6db6"
+      "baselineSha256": "6821e1c8ea51581b89ffd7065fe9ef75c3cd921d415eb1712800603690904f93",
+      "sha256": "af38a9d4aaaafe72c39d7182ba5a28bfaa24618ab08caaae2a4a56039cfbf5a6"
     },
     {
       "file": "lib/server/termux-worker.mjs",
+      "baselineSha256": "1ed82bc91f97a782faf3caa8d247b5f9db5e00322252865da8d3fc0bf5a91b20",
+      "sha256": "e9805b2c26b2751669037f5f65b57b463105ac27a403d33b856dc70acc4003a7"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/trade-command.mjs",
       "baselineSha256": null,
-      "sha256": "31058c26e97b5b9c7c211509dbdb44a24b1ef2fd4037b314e5eff9e09222b628"
-    },
-    {
-      "file": "lib/server/worker-capabilities.mjs",
-      "baselineSha256": null,
-      "sha256": "bbb75fc9384af6ce2dcc11e269dab177600aea137ba9f78ba9ed54d0a0be4bc6"
-    },
-    {
-      "file": "lib/server/worker-handler.mjs",
-      "baselineSha256": null,
-      "sha256": "3ef02b9d35579fe5e276c9acbeb1f1ca363813c7bb21abe17638a6dd334bdcfa"
-    },
-    {
-      "file": "supabase/termux_enable.sql",
-      "baselineSha256": null,
-      "sha256": "76c590d94ff4fd4d339c04400e6c3a076aa4eda643d03d5e376b2f54b541e968"
-    },
-    {
-      "file": "supabase/termux_rollback.sql",
-      "baselineSha256": null,
-      "sha256": "6e0767c1219fd271b85a8df8f517bf5f63b4613ebaf507953f0c3613912aa2b8"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/build-batch.mjs",
-      "baselineSha256": null,
-      "sha256": "0d129ef96221e54f2062aa72a9d1e555f453fd35dc98d367b549b3460d7199ad"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/content.mjs",
-      "baselineSha256": "7b686d7f359f5a463b244ad973d58996add7afe01891397ae32240668e4472f0",
-      "sha256": "899e5eab945b3866a4a30e7c4baa1553d3d4548fff60bf02b2d619013d8aa9b9"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/game.mjs",
-      "baselineSha256": "da9d7703371c920033f9793e96616d51004090599a243d336c307f40311c302e",
-      "sha256": "4bed1f3c9ea9df0d1e981f090f155b68d89c9f0f6015b1e36eeff93b56271b1e"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/groq.ts",
-      "baselineSha256": "d6eaa2348517097ce8d1ef0b0dca39a9bc188d72d529e6dcbfd8ab58a0faad74",
-      "sha256": "e03dae9100676a9eae78dd348f8546e4422fc672c34df6adfa8682b3b422d687"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/trade-result.mjs",
-      "baselineSha256": null,
-      "sha256": "d69b4d85f73f3472eb394ae3287559fa6db0717f5a2df931c0f3870c5147767c"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/candidates.mjs",
-      "baselineSha256": "e517b51e1dca8d12df4da1c17d7ab9514024595ac5fb5ff0a5b431cef385fdc3",
-      "sha256": "067d148bd6c0bf854aa31bf3caca843004601cdec0336642157b838854a0739d"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/contracts.ts",
-      "baselineSha256": "7d9240b914b4951e2854411c9535591b5ae7502a15adcedbb1b619e97ea7bbb7",
-      "sha256": "813fb1f392a2feaa4a99382be31d65e79d2686697e489747234831adc2d9eb24"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/finance-guard.mjs",
-      "baselineSha256": null,
-      "sha256": "ec4e98802c0738494c9a831178c17c738f26835b8fe19ce9c1e883f2dca5faa9"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/finance-history.mjs",
-      "baselineSha256": null,
-      "sha256": "edbac197dd3830ad6c14b3f8f0ff826f50e67dddfbe299ba38f302dccd980811"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/kresna-policy.mjs",
-      "baselineSha256": "c325206ef0a682fba88b8b60534cbb49af2799af8b11704d944076f080ba8149",
-      "sha256": "c77582fa38513c8db19b25994e86c859014bf910f2845534d3a6319b24697711"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/memory.mjs",
-      "baselineSha256": "b3153748ec582a527302614154410dd15f36aa307f48d43cb90874a621342605",
-      "sha256": "e615d686dad79d1b62c36f16e96a5aa3cbe38d0922f574907b3496bf5aca70d6"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/mind.mjs",
-      "baselineSha256": "c95dbba8740c783f090e5aeae6c90728ad5946b18ccbdeac5fa056f757de4a56",
-      "sha256": "c9acd3c89f810070cc487b5150e32ae087ec161a0163f594c80935635dd2fb7f"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/model-manifest.mjs",
-      "baselineSha256": null,
-      "sha256": "135a4360b9c278f06ccf793ac1fac1f660a907110d05d9f12c8e48eb7414cbe0"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/persona-router.mjs",
-      "baselineSha256": "5c33550b7095ad78231cb2561513774d75ced598df8462f75845ef5f6f32f0ba",
-      "sha256": "9630b33181ad29702c5b88b5aa6a4ac75adf475c6e0e06bddfd9d48b49afa301"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/stability-guard.mjs",
-      "baselineSha256": null,
-      "sha256": "504c28eef9564ec67f2c5be16423c34758690952660ca06069f4b1515d608847"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/strategy.mjs",
-      "baselineSha256": "bbdd66e2bf1b36fd054cd8511953b2ead451c0e16e4257e5e34c578566265d45",
-      "sha256": "ac3467a7451c48002d8e2f67e4143e29add4b63944514d9964f38f31ff58121e"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/experts.mjs",
-      "baselineSha256": "9b27a6cae0ccaf75c81d77852ad80867c141b7b7ed61634aedff2ab8625fe567",
-      "sha256": "0fc144a25d51ad96050d836cb3243875a5aeda630a07c7e5e005cee8e326f213"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/index.mjs",
-      "baselineSha256": "f8a55ce0cbb58786fcb1237fcebb7d4d60178afe70dd9f066ed0553e76a66a91",
-      "sha256": "4927f08bec09d82f72006838bfeb23a8ad0022b3d2a8944e37078243976f1d78"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/bot/nusa-v7/reasoning.mjs",
-      "baselineSha256": "4a35139c5b38ef41391eca362d7e22c084c9db0ed70c734bb35664e002af945b",
-      "sha256": "f6d633f2d19bc54a28f7358abf31d7a9a474156c699651717cb58ff6a00bb028"
+      "sha256": "492f1739fe25abd93f40af8f833b0d4f6abe489011cc7dcb0ef549907454b197"
     },
     {
       "file": "supabase/functions/monopoli-bots/_shared/lib/server/bot-worker.mjs",
-      "baselineSha256": "b904376d18b1001bf4ed4ac4c76cf93990cf1af8b1ee8f651cd69a89ab2fdd89",
-      "sha256": "7f2a1c5524c617fac019ee3d70024fc15bb6944dd876cc983fff1419d506932c"
+      "baselineSha256": "47355be705c7211cf30ec7776c214bd4183539781ea38227ed13cfd4aa6ca327",
+      "sha256": "a514a8259351e0fe5958cddbe64e9e39c6a719026f98d585852eaba40c9841c2"
     },
     {
       "file": "supabase/functions/monopoli-bots/_shared/lib/server/online-room.mjs",
-      "baselineSha256": "5826cec517a73ce7c00e56ab7339f7dbba5f456c46f3947b886c7595298d977b",
-      "sha256": "7508b4de111b01ff11617c1dd8904dd9eed3b5e40734b80374f793b6e9dcd76f"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/server/online-service.mjs",
-      "baselineSha256": "7d00b20ed21306382fa058f767aa6d216d1c7855cdd0d46d78452bab87a37c3e",
-      "sha256": "300eac82e1f3b6ffb2ca1a73817397775db05fbe2e91d99525dccc664968b115"
-    },
-    {
-      "file": "supabase/functions/monopoli-bots/_shared/lib/server/supabase-store.mjs",
-      "baselineSha256": "152e271be47018417e57e8a07f81f95bc0ab6c88aedcba3664bfb206d0c21725",
-      "sha256": "7167d82bb85922406f48e56f0d13c01560d4ce8619939a7b6c115fc97bbb6db6"
-    },
-    {
-      "file": "supabase/migrations/202610180007_termux_workers.sql",
-      "baselineSha256": null,
-      "sha256": "52ded6cc92f89cb7a5781879ce3d7c720aa62421faa93078a235566762ed9f9a"
-    },
-    {
-      "file": "supabase/migrations/202610190008_online_speed.sql",
-      "baselineSha256": null,
-      "sha256": "684196b8a8f2367580f138cf2bac154bc804c6f0dcb3922514e9aec96a7476fa"
-    },
-    {
-      "file": "termux/client.mjs",
-      "baselineSha256": null,
-      "sha256": "2d31d3c55e5b84234befc1bf196db93fe239684709ddc7c91f3a75b81c29c787"
-    },
-    {
-      "file": "termux/compute.mjs",
-      "baselineSha256": null,
-      "sha256": "4de32c6ad063e044cf6bbb0a0a5875575935d8e0ce745d17f4f0834e5c74301c"
-    },
-    {
-      "file": "termux/config.mjs",
-      "baselineSha256": null,
-      "sha256": "b8c4860ada85299c242e0e8dba93bbb78ccc9aee027bbf5e07b5da873155235a"
-    },
-    {
-      "file": "termux/daemon.mjs",
-      "baselineSha256": null,
-      "sha256": "33fe9f9ba2dde065b1c0c44c0f8dd51b30f6a035b191ca6fb558a8a6b88d2ee9"
-    },
-    {
-      "file": "termux/ecosystem.config.cjs",
-      "baselineSha256": null,
-      "sha256": "3c389beab4781f711578a637a8406112b49ace3afab588bdad3095fbe6311666"
-    },
-    {
-      "file": "termux/log.mjs",
-      "baselineSha256": null,
-      "sha256": "977981475a4d12d767f5a5a0423c3260773970b8d855cc806b28d6d5b1259b22"
-    },
-    {
-      "file": "termux/manage.mjs",
-      "baselineSha256": null,
-      "sha256": "bcb1e5da2bbbaa04fbaab32b937bde1ef88a49c143a798ea7eee3eaba1438f4a"
-    },
-    {
-      "file": "termux/pool.mjs",
-      "baselineSha256": null,
-      "sha256": "8a8b3f25b71c6c04d7bcdc94d37bc045497490183bbe1f00e45c6cff32646b75"
-    },
-    {
-      "file": "termux/run.mjs",
-      "baselineSha256": null,
-      "sha256": "3cde342b7b0d8491013e8caface7476f17a534355a420aff3c59654a743f629e"
-    },
-    {
-      "file": "termux/selftest.mjs",
-      "baselineSha256": null,
-      "sha256": "52dbb384e371c505721e9172d7da4f73ecf69c8c3d2ed4fc3fe579fe262f832a"
+      "baselineSha256": "6821e1c8ea51581b89ffd7065fe9ef75c3cd921d415eb1712800603690904f93",
+      "sha256": "af38a9d4aaaafe72c39d7182ba5a28bfaa24618ab08caaae2a4a56039cfbf5a6"
     }
   ]
 }

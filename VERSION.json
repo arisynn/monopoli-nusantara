@@ -2,8 +2,8 @@
   "app": "4.11.6",
   "protocol": 1,
   "modelManifest": "f398a9793efd23c3c74e3e46d89aab0117a4c23c5102036d7e8f77a51c94e46d",
-  "baselineCommit": "af88d14a08815ee1d139bbf5a9b945a24126d348",
-  "scope": "Confirmed trade receipts, compact result popups and history review; full backend/frontend/Termux source and prepared outputs",
+  "baselineCommit": "30295e85ab417c2758c2a3d31162a19c0dba806e",
+  "scope": "Persistent trade result modals and transport-only receipt metadata; full backend/frontend/Termux source and prepared outputs",
   "previousRelease": "4.11.5",
   "modelUnchanged": true
 }

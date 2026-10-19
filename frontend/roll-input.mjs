@@ -163,7 +163,7 @@ export class RollInput {
     if (
       !button &&
       e.code === "Space" &&
-      !this.doc.querySelector('dialog[open]:not([data-mode="notice"])') &&
+      !this.doc.querySelector("dialog[open]") &&
       !e.target.closest?.(
         'input,textarea,select,[contenteditable="true"],[role="listbox"]',
       )

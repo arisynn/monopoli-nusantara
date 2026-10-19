@@ -1,11 +1,11 @@
-import { commandWithTradeResult } from "../lib/trade-result.mjs";
-import { TradeResults } from "./trade-results.mjs";
 import { LocalSessionLease } from "./local-session-lease.mjs";
 import { secureRandom } from "../lib/random.mjs";
 import { debtAdvice } from "./debt-advisor.mjs";
 import { assetPermission } from "./domain.mjs";
 import { buildPreview } from "./development.mjs";
-import { createGame, command, publicState } from "../lib/game.mjs";
+import { createGame, publicState } from "../lib/game.mjs";
+import { commandWithTradeResult as command } from "../lib/trade-command.mjs";
+import { TradeResults } from "./trade-results.mjs";
 import { localPlayers } from "../lib/bot/personas.mjs";
 import { createMindClient } from "../lib/bot/mind-client.mjs";
 import { strategyView } from "../lib/bot/memory.mjs";
@@ -38,11 +38,8 @@ import {
   requestJSON,
 } from "../lib/room-client.mjs";
 import { localBotActor, humanSeat } from "./domain.mjs";
-import { OnlinePerformance } from "../lib/online-performance.mjs";
-import {
-  adaptOnlineTimeline,
-  onlineInteractiveHead,
-} from "../lib/online-presentation.mjs";
+import {OnlinePerformance} from "../lib/online-performance.mjs";
+import {adaptOnlineTimeline,onlineInteractiveHead} from "../lib/online-presentation.mjs";
 import { GameNotices, CardReader } from "./feedback.mjs";
 import { canPresentDecision } from "../lib/gameplay-presentation.mjs";
 import { commandBuildBatch } from "../lib/build-batch.mjs";
@@ -68,10 +65,7 @@ export class GameSession extends EventTarget {
     });
     this.screen = "lobby";
     this.notices = new GameNotices({ clock, changed: () => this.notify() });
-    this.tradeResults = new TradeResults({
-      clock,
-      changed: () => this.notify(),
-    });
+    this.tradeResults = new TradeResults();
     this.cardReader = new CardReader({ clock, changed: () => this.notify() });
     this.state = null;
     this.model = null;
@@ -84,7 +78,6 @@ export class GameSession extends EventTarget {
     this.auth = null;
     this.epoch = 0;
     this.covered = false;
-    this.feedbackCovered = false;
     this.assetPanel = false;
     this.assetPresentation = null;
     this.assetPlan = null;
@@ -93,7 +86,7 @@ export class GameSession extends EventTarget {
     this.localPaused = false;
     this.performance = new OnlinePerformance();
     this.onlineReceivedAt = 0;
-    this.presentationReceipts = new Map();
+    this.presentationReceipts=new Map();
     this.readAgain = false;
     this.heartbeatAgain = false;
     this.pending = false;
@@ -122,16 +115,19 @@ export class GameSession extends EventTarget {
   get view() {
     return presentedState(this.model) || this.state;
   }
-  get interactionState() {
-    return this.room ? this.state : this.view;
-  }
-  get interactionHead() {
-    return this.room
-      ? onlineInteractiveHead(this.head, this.state, this.seat)
-      : this.head;
-  }
+  get interactionState() { return this.room ? this.state : this.view; }
+  get interactionHead() { return this.room ? onlineInteractiveHead(this.head,this.state,this.seat) : this.head; }
   get head() {
     return this.model?.queue[0] || null;
+  }
+  get tradeResultReady() {
+    return this.screen === "gameplay" && !this.pending && !this.paused && !this.head
+      ? this.tradeResults.current : null;
+  }
+  dismissTradeResult(id) {
+    if (!this.tradeResults.dismiss(id)) return false;
+    this.notify();
+    return true;
   }
   get seat() {
     return humanSeat(this.state, this.room);
@@ -205,11 +201,7 @@ export class GameSession extends EventTarget {
             this.auth.config.url !== this.config.url ||
             this.auth.config.key !== this.config.key
           )
-            this.auth = new OnlineAuth(
-              this.config,
-              this.transport,
-              (stage, ms, detail) => this.performance.record(stage, ms, detail),
-            );
+            this.auth = new OnlineAuth(this.config, this.transport,(stage,ms,detail)=>this.performance.record(stage,ms,detail));
           try {
             await this.auth.consumeRedirect();
           } catch {
@@ -229,7 +221,7 @@ export class GameSession extends EventTarget {
 
   ingest(s, { reset = false } = {}) {
     this.notices.ingest(s, humanSeat(s, this.room), reset);
-    this.tradeResults.ingest(s, humanSeat(s, this.room), reset);
+    this.tradeResults.ingest(s, humanSeat(s, this.room), { reset });
     if (s?.matchId !== this.state?.matchId) {
       this.stopAssetPlan("Pertandingan berubah.");
       this.assetPlan = null;
@@ -239,61 +231,25 @@ export class GameSession extends EventTarget {
       this.assetPresentation = null;
     }
     const receivedAt = this.performance.now();
-    if (s?.version !== this.state?.version) {
-      this.onlineReceivedAt = receivedAt;
-      if (this.room && !reset)
-        this.presentationReceipts.set(s.version, receivedAt);
-    }
-    if (reset) this.presentationReceipts.clear();
+    if (s?.version !== this.state?.version) {this.onlineReceivedAt = receivedAt;if(this.room&&!reset)this.presentationReceipts.set(s.version,receivedAt);}
+    if(reset)this.presentationReceipts.clear();
     this.state = s;
     this.model = ingestTimeline(this.model, s ? publicState(s) : null, {
       epoch: this.epoch,
       enabled: this.screen === "gameplay",
       reset: reset || this.paused,
     });
-    if (this.room && this.model) {
-      this.model = adaptOnlineTimeline(this.model, this.state, {
-        seat: this.seat,
-        now: receivedAt,
-        receivedAt: this.onlineReceivedAt,
-        fast: this.fast,
-        reduced: this.reduced,
-      });
-      this.performance.record(
-        "presentation.queue",
-        this.model.onlineLoad?.estimatedMs || 0,
-        {
-          depth: this.model.queue.length,
-          versions: this.model.onlineLoad?.versions || 0,
-          version: s.version,
-          mode: this.model.onlineMode,
-        },
-      );
+    if(this.room && this.model){
+      this.model=adaptOnlineTimeline(this.model,this.state,{seat:this.seat,now:receivedAt,receivedAt:this.onlineReceivedAt,fast:this.fast,reduced:this.reduced});
+      this.performance.record("presentation.queue",this.model.onlineLoad?.estimatedMs||0,{depth:this.model.queue.length,versions:this.model.onlineLoad?.versions||0,version:s.version,mode:this.model.onlineMode});
       this.measurePresentation();
-      if (this.model.catchup?.at === receivedAt)
-        this.performance.record("presentation.catchup", 0, {
-          count: this.model.catchup.count,
-          version: s.version,
-          mode: this.model.catchup.reason,
-        });
+      if(this.model.catchup?.at===receivedAt)this.performance.record("presentation.catchup",0,{count:this.model.catchup.count,version:s.version,mode:this.model.catchup.reason});
     }
   }
-  measurePresentation() {
-    const shown = this.model?.view?.version;
-    for (const [version, at] of this.presentationReceipts) {
-      if (version <= shown) {
-        this.performance.record(
-          "presentation.lag",
-          this.performance.now() - at,
-          { version },
-        );
-        this.presentationReceipts.delete(version);
-      }
-    }
-    while (this.presentationReceipts.size > 256)
-      this.presentationReceipts.delete(
-        this.presentationReceipts.keys().next().value,
-      );
+  measurePresentation(){
+    const shown=this.model?.view?.version;
+    for(const [version,at]of this.presentationReceipts){if(version<=shown){this.performance.record("presentation.lag",this.performance.now()-at,{version});this.presentationReceipts.delete(version);}}
+    while(this.presentationReceipts.size>256)this.presentationReceipts.delete(this.presentationReceipts.keys().next().value);
   }
   async saveCurrent(options = {}) {
     const value = structuredClone({ state: this.state, room: this.room });
@@ -664,13 +620,9 @@ export class GameSession extends EventTarget {
   }
   markAssetPresentation(state, type) {
     if (!state) return;
-    if (type === "BUILD_BATCH") {
-      const batch = state.log.find(
-        (e) => e.buildBatch && e.version === state.version,
-      )?.buildBatch;
-      this.batchResult = batch
-        ? { ...batch, match: state.matchId, version: state.version }
-        : null;
+    if(type === "BUILD_BATCH") {
+      const batch=state.log.find(e=>e.buildBatch&&e.version===state.version)?.buildBatch;
+      this.batchResult=batch?{...batch,match:state.matchId,version:state.version}:null;
     }
     if (
       this.assetPanel &&
@@ -681,14 +633,7 @@ export class GameSession extends EventTarget {
     if (
       this.assetPanel &&
       this.covered &&
-      [
-        "BUILD",
-        "BUILD_BATCH",
-        "SELL",
-        "SELL_SET",
-        "MORTGAGE",
-        "REDEEM",
-      ].includes(type)
+      ["BUILD", "BUILD_BATCH", "SELL", "SELL_SET", "MORTGAGE", "REDEEM"].includes(type)
     )
       this.assetPresentation = {
         match: state.matchId,
@@ -731,43 +676,21 @@ export class GameSession extends EventTarget {
   }
   schedule() {
     const head = this.head;
-    const active =
-      this.screen === "gameplay" &&
-      !this.hidden &&
-      !this.paused &&
-      !this.covered;
-    this.notices.sync(
-      active &&
-        !this.feedbackCovered &&
-        !canPresentDecision(this.state, this.seat),
-    );
-    if (!active) this.tradeResults.sync(false);
-    this.cardReader.sync(
-      this.state,
-      this.seat,
-      active &&
-        !this.pending &&
-        (!head || !!liveCardDecision(head.event, this.state, this.seat)),
-      () => this.act("ACK"),
-    );
+    const active = this.screen === "gameplay" && !this.hidden && !this.paused && !this.covered && !this.tradeResultReady;
+    this.notices.sync(active && !canPresentDecision(this.state, this.seat));
+    this.cardReader.sync(this.state, this.seat,
+      active && !this.pending && (!head || !!liveCardDecision(head.event, this.state, this.seat)),
+      () => this.act("ACK"));
     if (this.timerId !== head?.id) {
       this.cancelTimer();
       this.timerId = head?.id || "";
       this.remaining = head ? stepDuration(head, this) : 0;
       if (!this.room && head?.kind === "pawnMoving") this.remaining += 300;
-      if (
-        !this.room &&
-        head?.event &&
-        !liveCardDecision(head.event, this.state, this.seat)
-      )
+      if (!this.room && head?.event && !liveCardDecision(head.event, this.state, this.seat))
         this.remaining = Math.max(3200, this.remaining);
     }
-    if (this.room && head && this.remaining > stepDuration(head, this)) {
-      this.cancelTimer();
-      this.remaining = Math.min(this.remaining, stepDuration(head, this));
-    }
-    const interactive =
-      head?.event && liveCardDecision(head.event, this.state, this.seat);
+    if(this.room && head && this.remaining>stepDuration(head,this)){this.cancelTimer();this.remaining=Math.min(this.remaining,stepDuration(head,this));}
+    const interactive = head?.event && liveCardDecision(head.event, this.state, this.seat);
     if (
       head &&
       !this.timer &&
@@ -799,6 +722,7 @@ export class GameSession extends EventTarget {
     }
     if (
       !this.head &&
+      !this.tradeResults.current &&
       !this.covered &&
       !this.paused &&
       !this.hidden &&
@@ -827,14 +751,9 @@ export class GameSession extends EventTarget {
       (this.covered && !this.assetFeedback && !this.room)
     )
       return;
-    if (this.room)
-      this.performance.record(
-        "presentation.step",
-        Math.max(0, this.clock() - (this.timerStarted || this.clock())),
-        { kind: this.head.kind, version: this.head.source?.version },
-      );
+    if(this.room)this.performance.record("presentation.step",Math.max(0,this.clock()-(this.timerStarted||this.clock())),{kind:this.head.kind,version:this.head.source?.version});
     this.model = advanceTimeline(this.model, id);
-    if (this.room) this.measurePresentation();
+    if(this.room)this.measurePresentation();
     this.notify();
   }
   async act(type, data = {}, actor = this.seat) {
@@ -843,30 +762,17 @@ export class GameSession extends EventTarget {
       ack =
         type === "ACK" && liveCardDecision(head?.event, this.state, this.seat);
     if (!this.room && head && !ack) return false;
-    if (!this.room && this.view.version !== this.state.version && !ack)
-      return false;
+    if (!this.room && this.view.version !== this.state.version && !ack) return false;
     if (
       this.state.players[actor]?.controller !== "human" ||
       (this.room && actor !== this.room.seat)
     )
       return false;
-    const clickedAt = this.performance.now(),
-      actionEpoch = this.connectionEpoch,
-      actionRoom = this.room?.code;
-    if (this.room && this.model) {
-      this.cancelTimer();
-      this.model = adaptOnlineTimeline(this.model, this.state, {
-        seat: this.seat,
-        now: clickedAt,
-        force: true,
-      });
-    }
+    const clickedAt=this.performance.now(),actionEpoch=this.connectionEpoch,actionRoom=this.room?.code;
+    if(this.room&&this.model){this.cancelTimer();this.model=adaptOnlineTimeline(this.model,this.state,{seat:this.seat,now:clickedAt,force:true});}
     this.pending = true;
-    this.actionInFlight = !!this.room;
-    this.pendingRoll =
-      this.room && ["ROLL", "START_ROLL"].includes(type)
-        ? crypto.randomUUID()
-        : null;
+    this.actionInFlight=!!this.room;
+    this.pendingRoll=this.room&&["ROLL","START_ROLL"].includes(type)?crypto.randomUUID():null;
     this.error = "";
     this.errorCode = "";
     this.notify();
@@ -880,23 +786,13 @@ export class GameSession extends EventTarget {
             requestId: id,
             action: { type, ...data, id, expectedVersion: this.state.version },
           });
-        if (
-          this.connectionEpoch !== actionEpoch ||
-          this.room?.code !== actionRoom
-        )
-          return false;
+        if(this.connectionEpoch!==actionEpoch||this.room?.code!==actionRoom)return false;
         if (ack) this.model = advanceTimeline(this.model, head.id);
         this.markAssetPresentation(result.state, type);
         this.takeRoom(result);
-        this.performance.record(
-          "human.click-to-state",
-          this.performance.now() - clickedAt,
-          { trace: id, version: result.state?.version },
-        );
+        this.performance.record("human.click-to-state",this.performance.now()-clickedAt,{trace:id,version:result.state?.version});
       } else {
-        const next = (
-          type === "BUILD_BATCH" ? commandBuildBatch : commandWithTradeResult
-        )(
+        const next = (type === "BUILD_BATCH" ? commandBuildBatch : command)(
           this.state,
           actor,
           {
@@ -921,16 +817,8 @@ export class GameSession extends EventTarget {
       return false;
     } finally {
       this.pending = false;
-      this.pendingRoll = null;
-      this.actionInFlight = false;
-      if (this.readAfterAction) {
-        this.readAfterAction = false;
-        if (
-          !Number.isSafeInteger(this.lastRealtimeRevision) ||
-          this.lastRealtimeRevision > (this.online?.roomRevision ?? -1)
-        )
-          this.scheduleRoomRead();
-      }
+      this.pendingRoll=null;this.actionInFlight=false;
+      if(this.readAfterAction){this.readAfterAction=false;if(!Number.isSafeInteger(this.lastRealtimeRevision)||this.lastRealtimeRevision>(this.online?.roomRevision??-1))this.scheduleRoomRead();}
       this.notify();
     }
   }
@@ -1011,7 +899,7 @@ export class GameSession extends EventTarget {
       if (!action) throw Error("Bot belum mendapat tindakan legal.");
       const { actionId, ...intent } = action;
       this.ingest(
-        commandWithTradeResult(
+        command(
           this.state,
           actor,
           {
@@ -1175,7 +1063,6 @@ export class GameSession extends EventTarget {
     this.connected = false;
     this.screen = "lobby";
     this.covered = false;
-    this.feedbackCovered = false;
     this.assetPanel = false;
     this.epoch++;
     if (forget) {
@@ -1216,16 +1103,8 @@ export class GameSession extends EventTarget {
       provider: "supabase",
       userId: this.auth.session()?.user.id,
     };
-    this.online = { ...result, worker: result.worker || this.online?.worker };
-    if (
-      result.performance?.commitStartedAt &&
-      Number.isFinite(result.serverNow)
-    )
-      this.performance.record(
-        "server.commit-start-to-read",
-        Math.max(0, result.serverNow - result.performance.commitStartedAt),
-        { trace: result.performance.trace, version: result.state?.version },
-      );
+    this.online = {...result,worker:result.worker||this.online?.worker};
+    if(result.performance?.commitStartedAt&&Number.isFinite(result.serverNow))this.performance.record("server.commit-start-to-read",Math.max(0,result.serverNow-result.performance.commitStartedAt),{trace:result.performance.trace,version:result.state?.version});
     this.connected = true;
     this.localPaused = false;
     if (result.state) {
@@ -1268,70 +1147,35 @@ export class GameSession extends EventTarget {
       void this.persistNow();
     this.notify();
   }
-  scheduleRoomRead() {
-    if (this.debounce || !this.room) return;
-    const wait = Math.max(
-      25,
-      550 - (this.performance.now() - (this.lastRoomReadAt ?? -Infinity)),
-    );
-    this.debounce = setTimeout(() => {
-      this.debounce = null;
-      if (
-        Number.isSafeInteger(this.lastRealtimeRevision) &&
-        this.lastRealtimeRevision <= (this.online?.roomRevision ?? -1)
-      )
-        return;
+  scheduleRoomRead(){
+    if(this.debounce||!this.room)return;
+    const wait=Math.max(25,550-(this.performance.now()-(this.lastRoomReadAt??-Infinity)));
+    this.debounce=setTimeout(()=>{this.debounce=null;
+      if(Number.isSafeInteger(this.lastRealtimeRevision)&&this.lastRealtimeRevision<=(this.online?.roomRevision??-1))return;
       void this.readRoom();
-    }, wait);
+    },wait);
   }
   connectRoom() {
     this.disconnect();
     if (!this.room || !this.auth) return;
     const epoch = this.connectionEpoch,
       code = this.room.code;
-    const recovery = () => {
-      if (
-        this.recoveryRead ||
-        epoch !== this.connectionEpoch ||
-        this.realtimeReady
-      )
-        return;
-      this.recoveryRead = setTimeout(
-        async () => {
-          this.recoveryRead = null;
-          if (epoch !== this.connectionEpoch || this.realtimeReady) return;
-          if (!this.hidden) await this.readRoom();
-          recovery();
-        },
-        this.connected ? 3000 : 5000,
-      );
+    const recovery=()=>{
+      if(this.recoveryRead||epoch!==this.connectionEpoch||this.realtimeReady)return;
+      this.recoveryRead=setTimeout(async()=>{this.recoveryRead=null;if(epoch!==this.connectionEpoch||this.realtimeReady)return;if(!this.hidden)await this.readRoom();recovery();},this.connected?3000:5000);
     };
     this.unsubscribe = subscribeRoom(
       this.config,
       code,
       () => this.auth.token(),
-      (hint) => {
-        this.lastRealtimeAt = this.performance.now();
-        this.lastRealtimeRevision = Number.isSafeInteger(hint?.revision)
-          ? Math.max(this.lastRealtimeRevision ?? -1, hint.revision)
-          : null;
-        this.performance.record("realtime.hint", 0, {
-          version: hint?.revision,
-        });
-        if (
-          Number.isSafeInteger(hint?.revision) &&
-          hint.revision <= (this.online?.roomRevision ?? -1)
-        )
-          return;
+      hint => {
+        this.lastRealtimeAt=this.performance.now();
+        this.lastRealtimeRevision=Number.isSafeInteger(hint?.revision)?Math.max(this.lastRealtimeRevision??-1,hint.revision):null;
+        this.performance.record("realtime.hint",0,{version:hint?.revision});
+        if(Number.isSafeInteger(hint?.revision)&&hint.revision<=(this.online?.roomRevision??-1))return;
         this.scheduleRoomRead();
       },
-      (ready) => {
-        this.realtimeReady = ready;
-        if (ready) {
-          clearTimeout(this.recoveryRead);
-          this.recoveryRead = null;
-        } else recovery();
-      },
+      ready => {this.realtimeReady=ready;if(ready){clearTimeout(this.recoveryRead);this.recoveryRead=null;}else recovery();},
     );
     const pulse = async () => {
       if (epoch !== this.connectionEpoch) return;
@@ -1350,20 +1194,11 @@ export class GameSession extends EventTarget {
   }
   async readRoom(heartbeat = false) {
     if (!this.room) return;
-    if (this.actionInFlight && !heartbeat) {
-      this.readAfterAction = true;
-      return;
-    }
-    if (this.reading) {
-      this.readAgain = true;
-      this.heartbeatAgain ||= heartbeat;
-      return;
-    }
-    this.reading = true;
-    this.readingEpoch = this.connectionEpoch;
-    this.lastRoomReadAt = this.performance.now();
-    const hintAt = this.lastRealtimeAt;
-    const receivedStart = this.performance.now();
+    if(this.actionInFlight&&!heartbeat){this.readAfterAction=true;return;}
+    if(this.reading){this.readAgain=true;this.heartbeatAgain ||= heartbeat;return;}
+    this.reading = true;this.readingEpoch=this.connectionEpoch;this.lastRoomReadAt=this.performance.now();
+    const hintAt=this.lastRealtimeAt;
+    const receivedStart=this.performance.now();
     const code = this.room.code,
       epoch = this.connectionEpoch,
       user = this.auth?.session()?.user.id;
@@ -1378,17 +1213,8 @@ export class GameSession extends EventTarget {
       if (epoch !== this.connectionEpoch || this.room?.code !== code) return;
       const reconnect = !this.connected;
       this.takeRoom(result, { baseline: reconnect });
-      if (hintAt !== undefined)
-        this.performance.record(
-          "realtime.to-state",
-          this.performance.now() - hintAt,
-          { version: result.state?.version },
-        );
-      this.performance.record(
-        "sync.read-to-state",
-        this.performance.now() - receivedStart,
-        { version: result.state?.version },
-      );
+      if(hintAt!==undefined)this.performance.record("realtime.to-state",this.performance.now()-hintAt,{version:result.state?.version});
+      this.performance.record("sync.read-to-state",this.performance.now()-receivedStart,{version:result.state?.version});
     } catch (error) {
       if (epoch === this.connectionEpoch) {
         if (error.code === "room_membership_ended") {
@@ -1400,35 +1226,21 @@ export class GameSession extends EventTarget {
         this.notify();
       }
     } finally {
-      if (this.readingEpoch === epoch) this.reading = false;
-      if (this.readAgain && epoch === this.connectionEpoch) {
-        const pulse = this.heartbeatAgain;
-        this.readAgain = false;
-        this.heartbeatAgain = false;
-        if (pulse) queueMicrotask(() => void this.readRoom(true));
-        else this.scheduleRoomRead();
-      }
+      if(this.readingEpoch===epoch)this.reading = false;
+      if(this.readAgain&&epoch===this.connectionEpoch){const pulse=this.heartbeatAgain;this.readAgain=false;this.heartbeatAgain=false;if(pulse)queueMicrotask(()=>void this.readRoom(true));else this.scheduleRoomRead();}
     }
   }
   disconnect() {
     this.connectionEpoch++;
     clearTimeout(this.heartbeat);
-    clearTimeout(this.recoveryRead);
-    this.recoveryRead = null;
-    this.reading = false;
-    this.lastRealtimeRevision = null;
-    this.lastRealtimeAt = undefined;
-    this.readAfterAction = false;
+    clearTimeout(this.recoveryRead);this.recoveryRead=null;this.reading=false;this.lastRealtimeRevision=null;this.lastRealtimeAt=undefined;this.readAfterAction=false;
     clearTimeout(this.debounce);
-    this.debounce = null;
-    this.readAgain = false;
-    this.heartbeatAgain = false;
+    this.debounce=null;this.readAgain=false;this.heartbeatAgain=false;
     this.unsubscribe?.();
     this.unsubscribe = null;
   }
   dispose() {
     this.notices.dispose();
-    this.tradeResults.dispose();
     this.cardReader.dispose();
     this.localLease.release();
     this.stopAssetPlan("Sesi ditutup.");

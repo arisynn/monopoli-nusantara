@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-19T05:09:30.383Z",
+  "generatedAt": "2026-10-19T05:38:43.030Z",
   "node": "v24.19.0",
   "files": [
-    "tests/trade-result.test.mjs",
+    "tests/trade-results.test.mjs",
     "tests/hold-batch.test.mjs",
     "tests/dice-audit.test.mjs",
     "tests/ui-4114.test.mjs",
@@ -53,8 +53,8 @@
     "tests/headless-package.test.mjs",
     "tests/frontend.test.mjs"
   ],
-  "tests": 721,
-  "passed": 721,
+  "tests": 710,
+  "passed": 710,
   "failed": 0,
   "skipped": 0,
   "failures": [],

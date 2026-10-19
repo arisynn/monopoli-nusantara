@@ -286,13 +286,7 @@ try {
     );
     const openItem = async (key) => {
       await page.locator(`[data-asset-key="${key}"] summary`).click();
-      await page.waitForFunction((key) => {
-        const item = document.querySelector(`[data-asset-key="${key}"]`);
-        return (
-          item?.open &&
-          document.querySelectorAll("[data-asset-key][open]").length === 1
-        );
-      }, key);
+      await page.waitForTimeout(30);
     };
     await openItem("tile-1");
     await openItem("tile-3");

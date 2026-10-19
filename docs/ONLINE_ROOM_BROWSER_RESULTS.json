@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T05:05:13.488Z",
+  "generatedAt": "2026-10-19T04:16:48.834Z",
   "checks": [
     {
       "name": "320: bot disabled has clear status; refresh enables NUSA selection and synchronizes roster",
@@ -16,7 +16,7 @@
     {
       "name": "320: camera zoom transitions and follows pawn continuously across a corner",
       "passed": true,
-      "distinctCameraFrames": 16
+      "distinctCameraFrames": 18
     },
     {
       "name": "320: gameplay return releases lease, pauses room and resumes without replay",
@@ -45,7 +45,7 @@
     {
       "name": "390: camera zoom transitions and follows pawn continuously across a corner",
       "passed": true,
-      "distinctCameraFrames": 4
+      "distinctCameraFrames": 19
     },
     {
       "name": "390: gameplay return releases lease, pauses room and resumes without replay",

@@ -1,5 +1,7 @@
 # NUSA Online Worker 4.11.6 — instalasi dan operasi
 
+Untuk update **4.11.5 → 4.11.6**, baca `docs/TRADE_RESULTS_4116_UPDATE.md`. Perbarui frontend dan backend bersama agar event hasil barter lengkap; siapkan ulang/redeploy Edge worker bila masih digunakan. Tidak ada SQL migration, pergantian manifest atau pairing ulang.
+
 Paket ini memindahkan **komputasi AI** ke Termux/Node 24+. API Node/Vercel tetap menjalankan engine resmi untuk memvalidasi intent; Supabase menyimpan state, lease, receipt, Auth/RLS dan Realtime. Jalur normal mode Termux tidak menjalankan Edge Function.
 
 Model dasarnya adalah source V23 yang diaudit. Release `v23.2-guard-finance-auction` berisi integrasi Stability Guard 2.0.0, bugfix scorer/pendanaan/anti-loop dan validasi bid ₦5, bukan model V24 atau campuran file model lama. `lib/bot/model-manifest.mjs` dan `MODEL_MANIFEST.json` dalam ZIP mengunci 51 file model/engine. Checksum baseline dan file yang berubah dicatat dalam `SOURCE_PATCHES.json`.
@@ -8,7 +10,7 @@ Audit update guard dan penyesuaian terhadap host official dijelaskan di `docs/au
 
 Untuk update dari **4.11.2**, baca `docs/ONLINE_SPEED_UPDATE.md` terlebih dahulu. Rilis 4.11.3 memakai **model dan manifest V23.2 yang sama persis**; perubahan ada pada presentasi/sinkronisasi dan RPC server. Terapkan migration 008 sebelum deploy backend baru. Tidak perlu pairing ulang atau mengubah provider bila instalasi 4.11.2 sudah aktif.
 
-Untuk update **4.11.5 → 4.11.6**, baca `docs/TRADE_RESULT_4116_UPDATE.md`. Frontend dan backend perlu diperbarui bersama agar hasil barter bot/manusia menyertakan rincian terkonfirmasi. Tidak ada migration baru, pergantian manifest, pairing ulang, atau perubahan program Termux. Panduan dadu/bangun banyak 4.11.5 tetap tersedia di `docs/HOLD_BATCH_4115_UPDATE.md`.
+Untuk update **4.11.4 → 4.11.5**, baca `docs/HOLD_BATCH_4115_UPDATE.md`. Frontend dan backend harus diperbarui bersama untuk aksi bangun banyak atomik. Dadu manusia memakai tahan–lepas; CSPRNG dan lemparan bot tetap sama. Tidak ada migration baru, pergantian manifest, pairing ulang, atau perubahan runtime Termux. Riwayat update UI 4.11.4 tersedia di `docs/UI_4114_UPDATE.md`.
 
 ## A. Setup backend sekali oleh pemilik proyek
 

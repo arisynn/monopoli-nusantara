@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-19T05:10:29.259Z",
+  "generatedAt": "2026-10-19T05:39:55.407Z",
   "node": "v24.19.0",
   "check": "Native module syntax and import graph, not semantic TypeScript or browser layout",
-  "files": 642,
+  "files": 639,
   "failures": []
 }

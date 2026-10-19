@@ -1,8 +1,10 @@
 # Monopoli Nusantara 4.11.6
 
-Rilis aktif: popup hasil barter terkonfirmasi, rincian Anda menerima/Anda memberikan, penolakan/pembatalan otomatis, serta akses ulang dari Barter dan Riwayat. Dadu tahan–lepas, bangun banyak atomik, lobby padat, notifikasi sewa dan Pegadaian tetap tersedia. Panduan update GitHub/Vercel/Termux: [TRADE_RESULT_4116_UPDATE.md](docs/TRADE_RESULT_4116_UPDATE.md).
+Update 4.11.6 menambahkan modal hasil barter diterima, ditolak, atau dibatalkan, dengan rincian properti, uang dan kartu yang diterima/diberikan. Modal memakai komponen yang sudah ada dan menunggu ditutup. Board, pion, engine dan model V23.2 tetap sama. Panduan: [TRADE_RESULTS_4116_UPDATE.md](docs/TRADE_RESULTS_4116_UPDATE.md).
 
-Worker AI tetap memakai model V23.2 dan manifest yang sama. Instalasi: [TERMUX_ONLINE.md](docs/TERMUX_ONLINE.md). Deploy frontend dan backend bersama; adapter server memperkaya hasil barter manusia/bot, sedangkan program Termux dan protokolnya tidak berubah. Dari 4.11.5 lengkap, tidak perlu migration atau pairing ulang. Catatan dadu dan pembangunan: [HOLD_BATCH_4115_UPDATE.md](docs/HOLD_BATCH_4115_UPDATE.md).
+Rilis aktif: dadu tahan–lepas dengan CSPRNG yang tetap sama; bot tetap melempar otomatis. Bangun banyak kini memakai satu request dan satu commit atomik, dengan satu penyajian hasil. Jumlah satu tetap dapat diarahkan ke properti tertentu. Lobby padat, penutup popup teks, notifikasi sewa, dan Pegadaian tetap tersedia. Panduan update GitHub/Vercel/Termux beserta audit dan benchmark: [HOLD_BATCH_4115_UPDATE.md](docs/HOLD_BATCH_4115_UPDATE.md).
+
+Worker AI menggunakan Termux/PM2 dengan model V23.2 dan manifest yang sama dengan 4.11.3. Instalasi: [TERMUX_ONLINE.md](docs/TERMUX_ONLINE.md). Jika berasal dari 4.11.2, terapkan dahulu pembaruan [ONLINE_SPEED_UPDATE.md](docs/ONLINE_SPEED_UPDATE.md). Dari 4.11.4 lengkap, perbarui frontend dan backend bersama; tidak perlu migration atau pairing ulang.
 
 Catatan di bawah merekam perkembangan versi terdahulu; instruksi deployment aktif ada pada panduan di atas.
 

@@ -1,5 +1,3 @@
-import { tradeResultContent, latestTradeResult } from "./trade-result-view.mjs";
-import { canPresentDecision } from "../lib/gameplay-presentation.mjs";
 import { bankSnapshot } from "../lib/bank-economy.mjs";
 import { lucideIcon } from "./lucide-icons.mjs";
 import { updateAuctionBody } from "./auction-view.mjs";
@@ -343,7 +341,6 @@ function syncCameraButton() {
   );
 }
 function render() {
-  if (session.screen !== "gameplay") session.tradeResults.sync(false);
   const renderStarted = performance.now();
   renderQueued = false;
   try {
@@ -581,14 +578,11 @@ function open(p) {
       ui.assetTab = "all";
     restoreAssetView();
   }
-  session.setCovered(
-    !["tradeIncoming", "tradeResult"].includes(ui.popup.kind),
-    {
-      assets:
-        ["assets", "debt", "buildOrder"].includes(ui.popup.kind) &&
-        (ui.popup.id ?? session.seat) === session.seat,
-    },
-  );
+  session.setCovered(ui.popup.kind !== "tradeIncoming", {
+    assets:
+      ["assets", "debt", "buildOrder"].includes(ui.popup.kind) &&
+      (ui.popup.id ?? session.seat) === session.seat,
+  });
   if (p.kind === "saves")
     void listSaves().then((rows) => {
       ui.saves = rows;
@@ -608,23 +602,13 @@ function open(p) {
   queueRender();
 }
 function close() {
-  if (readingCard(currentPopup())) return;
-  const shownResult = currentPopup();
-  if (shownResult?.kind === "tradeResult") {
-    session.tradeResults.dismiss(shownResult.resultId);
-    const back = ui.tradeResultReturn;
-    ui.tradeResultReturn = null;
-    ui.popup = null;
-    session.setCovered(false);
-    if (
-      shownResult.manual &&
-      back?.match === session.state?.matchId &&
-      back.popup
-    )
-      open(back.popup);
-    else queueRender();
+  const receipt = currentPopup();
+  if (receipt?.kind === "tradeResult") {
+    session.dismissTradeResult(receipt.result.id);
+    queueRender();
     return;
   }
+  if (readingCard(currentPopup())) return;
   rememberAssetView();
   persistTradeDraft();
   if (ui.popup?.kind === "buildOrder") {
@@ -693,15 +677,6 @@ function close() {
 }
 function currentPopup() {
   if (
-    ui.popup?.kind === "tradeResult" &&
-    (ui.popup.match !== session.state?.matchId ||
-      canPresentDecision(session.state, session.seat))
-  ) {
-    ui.popup = null;
-    ui.tradeResultReturn = null;
-    session.setCovered(false);
-  }
-  if (
     ui.popup?.kind === "buildOrder" &&
     (ui.popup.matchId !== session.state?.matchId ||
       ui.popup.owner !== session.seat)
@@ -747,6 +722,8 @@ function currentPopup() {
   }
   if (ui.popup) return ui.popup;
   if (session.screen !== "gameplay" || session.paused) return null;
+  if (session.tradeResultReady)
+    return { kind: "tradeResult", key: session.tradeResultReady.id, result: session.tradeResultReady };
   const p = autoPopup(
     session.interactionState,
     session.state,
@@ -755,20 +732,6 @@ function currentPopup() {
     ui.dismissed,
   );
   if (p?.kind === "trade") p.kind = "tradeIncoming";
-  if (p && !passivePopup(p)) return p;
-  const result = session.tradeResults.current;
-  if (
-    result &&
-    !session.pending &&
-    !canPresentDecision(session.state, session.seat)
-  )
-    return {
-      kind: "tradeResult",
-      eventId: result.eventId,
-      resultId: result.id,
-      outcome: result.outcome,
-      key: `trade-result:${result.id}`,
-    };
   return p;
 }
 function auxiliary(p) {
@@ -776,8 +739,6 @@ function auxiliary(p) {
     r = session.online,
     own = session.seat;
   switch (p.kind) {
-    case "tradeResult":
-      return tradeResultContent(session.state, session.seat, p.eventId);
     case "buildOrder":
       return renderBuildOrder(session, ui, p, { btn, lead });
     case "profile":
@@ -1143,9 +1104,6 @@ function renderNotice() {
     session.paused ||
     session.hidden ||
     session.screen !== "gameplay";
-  session.notices.sync(
-    !el.hidden && !canPresentDecision(session.state, session.seat),
-  );
   if (el.hidden) return;
   const html = `<span class="notice-symbol">${icon(n.kind === "rent" ? "home" : "info", 24)}</span><div><b>${esc(n.title)}${n.amount ? ` <strong>+ ${esc(money(n.amount))}</strong>` : ""}</b><p>${esc(n.text)}</p></div>`;
   if (el.innerHTML !== html) {
@@ -1155,20 +1113,13 @@ function renderNotice() {
   el.dataset.kind = n.kind;
 }
 function renderDialog() {
-  session.tradeResults.sync(false);
   const candidate = currentPopup(),
-    p = passivePopup(candidate) ? null : candidate,
-    autoNotice =
-      p?.kind === "tradeResult" && !p.manual && p.outcome !== "accepted";
-  session.feedbackCovered = !!p;
-  layers.sync(!!p && !autoNotice);
+    p = passivePopup(candidate) ? null : candidate;
+  layers.sync(!!p);
   if (!p) {
     if (dialog.open) {
       dialog.close();
-      const target = previousFocus?.isConnected
-        ? previousFocus
-        : page.querySelector('[data-action="trade"]');
-      target?.focus?.({ preventScroll: true });
+      previousFocus?.focus?.({ preventScroll: true });
     }
     popupKey = "";
     popupHTML = "";
@@ -1266,9 +1217,7 @@ function renderDialog() {
     p.kind === "auction" || !!p.event?.auctionResult,
   );
   dialogClose.disabled = p.kind === "buildOrder" && session.pending;
-  dialogClose.hidden =
-    readingCard(p) ||
-    (p.kind === "tradeResult" && !p.manual && p.outcome !== "accepted");
+  dialogClose.hidden = readingCard(p);
   dialogClose.textContent = dismissalLabel(p);
   dialogClose.dataset.action = dismissalAction(p);
   dialogFooter.hidden = !dialogFooter.querySelector("button");
@@ -1276,30 +1225,7 @@ function renderDialog() {
   dialogFooter.dataset.actions = String(
     dialogFooter.querySelectorAll(":scope > button").length,
   );
-  const mode = autoNotice ? "notice" : "modal";
-  if (dialog.open && dialog.dataset.mode !== mode) dialog.close();
-  dialog.dataset.mode = mode;
-  dialog.setAttribute("aria-modal", String(!autoNotice));
-  if (!dialog.open) {
-    if (autoNotice) {
-      dialog.show();
-      // A passive result must not trap focus or delay the next legal action.
-      const target =
-        previousFocus?.isConnected && !dialog.contains(previousFocus)
-          ? previousFocus
-          : page.querySelector('[data-action="primary"]');
-      target?.focus?.({ preventScroll: true });
-    } else dialog.showModal();
-  }
-  if (p.kind === "tradeResult") {
-    dialog.dataset.outcome = p.outcome || "history";
-    session.tradeResults.sync(
-      !p.manual &&
-        !session.hidden &&
-        !session.paused &&
-        session.screen === "gameplay",
-    );
-  }
+  if (!dialog.open) dialog.showModal();
   if (name) {
     const replacement =
       dialog.querySelector(`[data-selection-name="${CSS.escape(name)}"]`) ||
@@ -1332,31 +1258,6 @@ async function perform(action, el) {
     chirp();
     const id = Number(el?.dataset.id);
     switch (action) {
-      case "tradeLatest":
-      case "tradeReceipt": {
-        const result =
-          action === "tradeLatest"
-            ? latestTradeResult(session.state, session.seat)
-            : null;
-        const eventId = result?.eventId ?? Number(el.dataset.eventId);
-        const event = session.state?.log.find(
-          (e) => e.id === eventId && e.type === "trade",
-        );
-        if (!event) return;
-        ui.tradeResultReturn = {
-          match: session.state.matchId,
-          popup: ui.popup,
-        };
-        open({
-          kind: "tradeResult",
-          eventId,
-          resultId: `${session.state.matchId}:${eventId}`,
-          manual: true,
-          match: session.state.matchId,
-          key: `trade-review:${session.state.matchId}:${eventId}`,
-        });
-        return;
-      }
       case "autoPayDebt":
         open({ kind: "debt" });
         session.startDebtPayment();
@@ -1850,13 +1751,13 @@ async function perform(action, el) {
             session.notify();
           } else if (
             manual &&
-            ["TRADE_ACCEPT", "TRADE_REJECT"].includes(type)
+            ["TRADE_ACCEPT", "TRADE_REJECT", "BANKRUPT"].includes(type)
           ) {
-            // Remove the proposal, without dismissing the newly queued receipt.
+            // Do not acknowledge the new result while closing the offer dialog.
             ui.popup = null;
             session.setCovered(false);
             queueRender();
-          } else if (manual && type === "BANKRUPT") close();
+          }
         }
         break;
       }
@@ -2213,7 +2114,7 @@ window.addEventListener("keydown", (e) => {
     !e.defaultPrevented &&
     !e.repeat &&
     e.code === "Space" &&
-    (!dialog.open || dialog.dataset.mode === "notice") &&
+    !dialog.open &&
     !["INPUT", "SELECT", "TEXTAREA", "BUTTON"].includes(
       document.activeElement.tagName,
     )
