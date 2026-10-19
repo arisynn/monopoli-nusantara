@@ -1,0 +1,5 @@
+
+> monopoli-nusantara@4.11.6 test:pwa:browser
+> node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-pwa-browser.mjs
+
+5 PWA browser scenarios passed.

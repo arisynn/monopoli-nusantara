@@ -1,0 +1,1689 @@
+[
+  {
+    "mode": "cold",
+    "lobbyReadyMs": 1809.884026,
+    "browser": {
+      "nav": [
+        {
+          "name": "https://monopoli-nusantara-eight.vercel.app/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 1863.4000000000233,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "h2",
+          "renderBlockingStatus": "non-blocking",
+          "contentEncoding": "br",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.19999999995343387,
+          "domainLookupStart": 0.19999999995343387,
+          "domainLookupEnd": 0.19999999995343387,
+          "connectStart": 5.099999999976717,
+          "secureConnectionStart": 47.59999999997672,
+          "connectEnd": 69.40000000002328,
+          "requestStart": 69.59999999997672,
+          "responseStart": 247.59999999997672,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 247.59999999997672,
+          "responseEnd": 248.59999999997672,
+          "transferSize": 1249,
+          "encodedBodySize": 949,
+          "decodedBodySize": 2088,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 255.90000000002328,
+          "domContentLoadedEventStart": 1711.3000000000466,
+          "domContentLoadedEventEnd": 1711.5,
+          "domComplete": 1863.4000000000233,
+          "loadEventStart": 1863.4000000000233,
+          "loadEventEnd": 1863.4000000000233,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        }
+      ],
+      "paints": [
+        {
+          "name": "first-paint",
+          "startTime": 572
+        },
+        {
+          "name": "first-contentful-paint",
+          "startTime": 1792
+        }
+      ],
+      "resources": [
+        {
+          "path": "/frontend/styles.css",
+          "duration": 272.0999999999767,
+          "transferSize": 22000,
+          "encodedBodySize": 21700,
+          "decodedBodySize": 102337
+        },
+        {
+          "path": "/frontend/app.mjs",
+          "duration": 208.79999999993015,
+          "transferSize": 24076,
+          "encodedBodySize": 23776,
+          "decodedBodySize": 83162
+        },
+        {
+          "path": "/frontend/lucide-icons.mjs",
+          "duration": 84,
+          "transferSize": 2026,
+          "encodedBodySize": 1726,
+          "decodedBodySize": 4595
+        },
+        {
+          "path": "/lib/bank-economy.mjs",
+          "duration": 185.60000000009313,
+          "transferSize": 1350,
+          "encodedBodySize": 1050,
+          "decodedBodySize": 2247
+        },
+        {
+          "path": "/frontend/auction-view.mjs",
+          "duration": 185.89999999990687,
+          "transferSize": 1015,
+          "encodedBodySize": 715,
+          "decodedBodySize": 1846
+        },
+        {
+          "path": "/frontend/trade-view.mjs",
+          "duration": 197.5,
+          "transferSize": 1128,
+          "encodedBodySize": 828,
+          "decodedBodySize": 2309
+        },
+        {
+          "path": "/frontend/number-input.mjs",
+          "duration": 234.29999999993015,
+          "transferSize": 822,
+          "encodedBodySize": 522,
+          "decodedBodySize": 522
+        },
+        {
+          "path": "/lib/auction-presentation.mjs",
+          "duration": 281.39999999990687,
+          "transferSize": 976,
+          "encodedBodySize": 676,
+          "decodedBodySize": 1437
+        },
+        {
+          "path": "/lib/version.mjs",
+          "duration": 240.5,
+          "transferSize": 548,
+          "encodedBodySize": 248,
+          "decodedBodySize": 248
+        },
+        {
+          "path": "/frontend/economy-view.mjs",
+          "duration": 306.69999999995343,
+          "transferSize": 1234,
+          "encodedBodySize": 934,
+          "decodedBodySize": 2084
+        },
+        {
+          "path": "/frontend/trade-drafts.mjs",
+          "duration": 247.09999999997672,
+          "transferSize": 1842,
+          "encodedBodySize": 1542,
+          "decodedBodySize": 3939
+        },
+        {
+          "path": "/frontend/currency-view.mjs",
+          "duration": 280.9000000000233,
+          "transferSize": 841,
+          "encodedBodySize": 541,
+          "decodedBodySize": 541
+        },
+        {
+          "path": "/frontend/selections.mjs",
+          "duration": 281.5999999999767,
+          "transferSize": 1598,
+          "encodedBodySize": 1298,
+          "decodedBodySize": 4185
+        },
+        {
+          "path": "/frontend/cache-migration.mjs",
+          "duration": 306.69999999995343,
+          "transferSize": 1093,
+          "encodedBodySize": 793,
+          "decodedBodySize": 793
+        },
+        {
+          "path": "/frontend/online-status.mjs",
+          "duration": 332.30000000004657,
+          "transferSize": 997,
+          "encodedBodySize": 697,
+          "decodedBodySize": 1578
+        },
+        {
+          "path": "/frontend/pwa.mjs",
+          "duration": 323.20000000006985,
+          "transferSize": 1308,
+          "encodedBodySize": 1008,
+          "decodedBodySize": 2542
+        },
+        {
+          "path": "/frontend/session.mjs",
+          "duration": 343.20000000006985,
+          "transferSize": 11159,
+          "encodedBodySize": 10859,
+          "decodedBodySize": 41047
+        },
+        {
+          "path": "/frontend/dice-view.mjs",
+          "duration": 388.9000000000233,
+          "transferSize": 1725,
+          "encodedBodySize": 1425,
+          "decodedBodySize": 3258
+        },
+        {
+          "path": "/lib/layer-navigation.mjs",
+          "duration": 488.70000000006985,
+          "transferSize": 1050,
+          "encodedBodySize": 750,
+          "decodedBodySize": 750
+        },
+        {
+          "path": "/frontend/roll-input.mjs",
+          "duration": 333.30000000004657,
+          "transferSize": 2118,
+          "encodedBodySize": 1818,
+          "decodedBodySize": 5587
+        },
+        {
+          "path": "/frontend/asset-panel.mjs",
+          "duration": 338.5,
+          "transferSize": 4781,
+          "encodedBodySize": 4481,
+          "decodedBodySize": 12861
+        },
+        {
+          "path": "/frontend/clipboard.mjs",
+          "duration": 346.9000000000233,
+          "transferSize": 1272,
+          "encodedBodySize": 972,
+          "decodedBodySize": 2115
+        },
+        {
+          "path": "/frontend/board.mjs",
+          "duration": 389.9000000000233,
+          "transferSize": 6251,
+          "encodedBodySize": 5951,
+          "decodedBodySize": 17492
+        },
+        {
+          "path": "/frontend/popup-controls.mjs",
+          "duration": 390.5,
+          "transferSize": 1137,
+          "encodedBodySize": 837,
+          "decodedBodySize": 837
+        },
+        {
+          "path": "/frontend/dice-log.mjs",
+          "duration": 416.60000000009313,
+          "transferSize": 835,
+          "encodedBodySize": 535,
+          "decodedBodySize": 1061
+        },
+        {
+          "path": "/frontend/domain.mjs",
+          "duration": 387.89999999990687,
+          "transferSize": 2974,
+          "encodedBodySize": 2674,
+          "decodedBodySize": 7094
+        },
+        {
+          "path": "/frontend/art.mjs",
+          "duration": 386.4000000000233,
+          "transferSize": 1657,
+          "encodedBodySize": 1357,
+          "decodedBodySize": 2734
+        },
+        {
+          "path": "/lib/bot/personas.mjs",
+          "duration": 388.29999999993015,
+          "transferSize": 1377,
+          "encodedBodySize": 1077,
+          "decodedBodySize": 2380
+        },
+        {
+          "path": "/lib/content.mjs",
+          "duration": 400.69999999995343,
+          "transferSize": 2925,
+          "encodedBodySize": 2625,
+          "decodedBodySize": 5875
+        },
+        {
+          "path": "/lib/pawns.mjs",
+          "duration": 400.9000000000233,
+          "transferSize": 1300,
+          "encodedBodySize": 1000,
+          "decodedBodySize": 2028
+        },
+        {
+          "path": "/frontend/popups.mjs",
+          "duration": 434.5,
+          "transferSize": 12909,
+          "encodedBodySize": 12609,
+          "decodedBodySize": 39564
+        },
+        {
+          "path": "/lib/game.mjs",
+          "duration": 389.0999999999767,
+          "transferSize": 11849,
+          "encodedBodySize": 11549,
+          "decodedBodySize": 35575
+        },
+        {
+          "path": "/lib/save-format.mjs",
+          "duration": 400.0999999999767,
+          "transferSize": 3536,
+          "encodedBodySize": 3236,
+          "decodedBodySize": 9173
+        },
+        {
+          "path": "/lib/storage.mjs",
+          "duration": 401.0999999999767,
+          "transferSize": 2572,
+          "encodedBodySize": 2272,
+          "decodedBodySize": 6955
+        },
+        {
+          "path": "/lib/preferences.mjs",
+          "duration": 416.5,
+          "transferSize": 1059,
+          "encodedBodySize": 759,
+          "decodedBodySize": 759
+        },
+        {
+          "path": "/lib/currency.mjs",
+          "duration": 488.80000000004657,
+          "transferSize": 902,
+          "encodedBodySize": 602,
+          "decodedBodySize": 1105
+        },
+        {
+          "path": "/lib/compact-ui.mjs",
+          "duration": 414.5,
+          "transferSize": 1391,
+          "encodedBodySize": 1091,
+          "decodedBodySize": 2263
+        },
+        {
+          "path": "/lib/player-name.mjs",
+          "duration": 486.0999999999767,
+          "transferSize": 843,
+          "encodedBodySize": 543,
+          "decodedBodySize": 1041
+        },
+        {
+          "path": "/lib/finance.mjs",
+          "duration": 239.09999999997672,
+          "transferSize": 1322,
+          "encodedBodySize": 1022,
+          "decodedBodySize": 1988
+        },
+        {
+          "path": "/frontend/property-display.mjs",
+          "duration": 148.90000000002328,
+          "transferSize": 925,
+          "encodedBodySize": 625,
+          "decodedBodySize": 1105
+        },
+        {
+          "path": "/frontend/development.mjs",
+          "duration": 150.20000000006985,
+          "transferSize": 1500,
+          "encodedBodySize": 1200,
+          "decodedBodySize": 2747
+        },
+        {
+          "path": "/frontend/local-session-lease.mjs",
+          "duration": 119.69999999995343,
+          "transferSize": 838,
+          "encodedBodySize": 538,
+          "decodedBodySize": 1165
+        },
+        {
+          "path": "/lib/random.mjs",
+          "duration": 152.30000000004657,
+          "transferSize": 940,
+          "encodedBodySize": 640,
+          "decodedBodySize": 1344
+        },
+        {
+          "path": "/lib/trade-command.mjs",
+          "duration": 152.90000000002328,
+          "transferSize": 1059,
+          "encodedBodySize": 759,
+          "decodedBodySize": 1857
+        },
+        {
+          "path": "/lib/bot/mind-client.mjs",
+          "duration": 202.80000000004657,
+          "transferSize": 1281,
+          "encodedBodySize": 981,
+          "decodedBodySize": 2051
+        },
+        {
+          "path": "/frontend/trade-results.mjs",
+          "duration": 211.30000000004657,
+          "transferSize": 2621,
+          "encodedBodySize": 2321,
+          "decodedBodySize": 6045
+        },
+        {
+          "path": "/frontend/debt-advisor.mjs",
+          "duration": 212,
+          "transferSize": 1080,
+          "encodedBodySize": 780,
+          "decodedBodySize": 1736
+        },
+        {
+          "path": "/lib/bot/memory.mjs",
+          "duration": 306,
+          "transferSize": 2021,
+          "encodedBodySize": 1721,
+          "decodedBodySize": 4903
+        },
+        {
+          "path": "/lib/bot/strategy.mjs",
+          "duration": 212.40000000002328,
+          "transferSize": 3605,
+          "encodedBodySize": 3305,
+          "decodedBodySize": 8592
+        },
+        {
+          "path": "/lib/presentation-timeline.mjs",
+          "duration": 405,
+          "transferSize": 3623,
+          "encodedBodySize": 3323,
+          "decodedBodySize": 8169
+        },
+        {
+          "path": "/lib/bot/broker-intent.mjs",
+          "duration": 452,
+          "transferSize": 973,
+          "encodedBodySize": 673,
+          "decodedBodySize": 673
+        },
+        {
+          "path": "/lib/online-client.mjs",
+          "duration": 499,
+          "transferSize": 3339,
+          "encodedBodySize": 3039,
+          "decodedBodySize": 7768
+        },
+        {
+          "path": "/lib/room-client.mjs",
+          "duration": 212.79999999993015,
+          "transferSize": 1042,
+          "encodedBodySize": 742,
+          "decodedBodySize": 1448
+        },
+        {
+          "path": "/lib/online-presentation.mjs",
+          "duration": 222.09999999997672,
+          "transferSize": 1633,
+          "encodedBodySize": 1333,
+          "decodedBodySize": 2929
+        },
+        {
+          "path": "/lib/online-performance.mjs",
+          "duration": 414,
+          "transferSize": 951,
+          "encodedBodySize": 651,
+          "decodedBodySize": 1138
+        },
+        {
+          "path": "/lib/gameplay-presentation.mjs",
+          "duration": 230,
+          "transferSize": 2500,
+          "encodedBodySize": 2200,
+          "decodedBodySize": 5288
+        },
+        {
+          "path": "/frontend/feedback.mjs",
+          "duration": 237.69999999995343,
+          "transferSize": 2483,
+          "encodedBodySize": 2183,
+          "decodedBodySize": 6228
+        },
+        {
+          "path": "/lib/build-batch.mjs",
+          "duration": 296.9000000000233,
+          "transferSize": 1582,
+          "encodedBodySize": 1282,
+          "decodedBodySize": 2630
+        },
+        {
+          "path": "/lib/bot/mind-config.mjs",
+          "duration": 288.29999999993015,
+          "transferSize": 1043,
+          "encodedBodySize": 743,
+          "decodedBodySize": 743
+        },
+        {
+          "path": "/lib/board-camera.mjs",
+          "duration": 304.4000000000233,
+          "transferSize": 2320,
+          "encodedBodySize": 2020,
+          "decodedBodySize": 5334
+        },
+        {
+          "path": "/frontend/board-camera.mjs",
+          "duration": 308.19999999995343,
+          "transferSize": 904,
+          "encodedBodySize": 604,
+          "decodedBodySize": 1583
+        },
+        {
+          "path": "/lib/game-v1.mjs",
+          "duration": 487.69999999995343,
+          "transferSize": 7690,
+          "encodedBodySize": 7390,
+          "decodedBodySize": 20902
+        },
+        {
+          "path": "/lib/pawn-layout.mjs",
+          "duration": 226.70000000006985,
+          "transferSize": 861,
+          "encodedBodySize": 561,
+          "decodedBodySize": 1030
+        },
+        {
+          "path": "/lib/pawn-animation.mjs",
+          "duration": 293.5999999999767,
+          "transferSize": 1456,
+          "encodedBodySize": 1156,
+          "decodedBodySize": 2678
+        },
+        {
+          "path": "/lib/content-v1.mjs",
+          "duration": 316.0999999999767,
+          "transferSize": 2725,
+          "encodedBodySize": 2425,
+          "decodedBodySize": 5422
+        },
+        {
+          "path": "/frontend/tile-info.mjs",
+          "duration": 280.60000000009313,
+          "transferSize": 1669,
+          "encodedBodySize": 1369,
+          "decodedBodySize": 3076
+        },
+        {
+          "path": "/frontend/bank-view.mjs",
+          "duration": 302.5,
+          "transferSize": 2171,
+          "encodedBodySize": 1871,
+          "decodedBodySize": 4242
+        },
+        {
+          "path": "/frontend/trade-value.mjs",
+          "duration": 348.30000000004657,
+          "transferSize": 900,
+          "encodedBodySize": 600,
+          "decodedBodySize": 1252
+        },
+        {
+          "path": "/frontend/card-icons.mjs",
+          "duration": 347.29999999993015,
+          "transferSize": 1004,
+          "encodedBodySize": 704,
+          "decodedBodySize": 1489
+        },
+        {
+          "path": "/lib/bot/mind.mjs",
+          "duration": 230.5,
+          "transferSize": 6594,
+          "encodedBodySize": 6294,
+          "decodedBodySize": 16081
+        },
+        {
+          "path": "/lib/bot/persona-router.mjs",
+          "duration": 245.19999999995343,
+          "transferSize": 1932,
+          "encodedBodySize": 1632,
+          "decodedBodySize": 4440
+        },
+        {
+          "path": "/lib/bot/foundation.mjs",
+          "duration": 292.20000000006985,
+          "transferSize": 1395,
+          "encodedBodySize": 1095,
+          "decodedBodySize": 2455
+        },
+        {
+          "path": "/lib/bot/analysis.mjs",
+          "duration": 235.89999999990687,
+          "transferSize": 3801,
+          "encodedBodySize": 3501,
+          "decodedBodySize": 8897
+        },
+        {
+          "path": "/lib/bot/candidates.mjs",
+          "duration": 296.69999999995343,
+          "transferSize": 2170,
+          "encodedBodySize": 1870,
+          "decodedBodySize": 4450
+        },
+        {
+          "path": "/lib/bot/liquidation.mjs",
+          "duration": 311.5,
+          "transferSize": 3143,
+          "encodedBodySize": 2843,
+          "decodedBodySize": 7063
+        },
+        {
+          "path": "/lib/bot/negotiation.mjs",
+          "duration": 313.19999999995343,
+          "transferSize": 4940,
+          "encodedBodySize": 4640,
+          "decodedBodySize": 13216
+        },
+        {
+          "path": "/lib/bot/development.mjs",
+          "duration": 279.0999999999767,
+          "transferSize": 1600,
+          "encodedBodySize": 1300,
+          "decodedBodySize": 3084
+        },
+        {
+          "path": "/lib/bot/concessions.mjs",
+          "duration": 287.5,
+          "transferSize": 1140,
+          "encodedBodySize": 840,
+          "decodedBodySize": 1608
+        },
+        {
+          "path": "/lib/bot/trade-memory.mjs",
+          "duration": 228.59999999997672,
+          "transferSize": 2405,
+          "encodedBodySize": 2105,
+          "decodedBodySize": 5649
+        },
+        {
+          "path": "/lib/bot/finance-history.mjs",
+          "duration": 247.40000000002328,
+          "transferSize": 1343,
+          "encodedBodySize": 1043,
+          "decodedBodySize": 2107
+        },
+        {
+          "path": "/lib/bot/observer.mjs",
+          "duration": 288.0999999999767,
+          "transferSize": 2303,
+          "encodedBodySize": 2003,
+          "decodedBodySize": 5125
+        },
+        {
+          "path": "/lib/bot/nusa-v7/broker-memory.mjs",
+          "duration": 288.4000000000233,
+          "transferSize": 1592,
+          "encodedBodySize": 1292,
+          "decodedBodySize": 3571
+        },
+        {
+          "path": "/lib/bot/stability-guard.mjs",
+          "duration": 289.0999999999767,
+          "transferSize": 5525,
+          "encodedBodySize": 5225,
+          "decodedBodySize": 14904
+        },
+        {
+          "path": "/lib/dice-timing.mjs",
+          "duration": 184,
+          "transferSize": 512,
+          "encodedBodySize": 212,
+          "decodedBodySize": 212
+        },
+        {
+          "path": "/lib/bot/learning.mjs",
+          "duration": 164.79999999993015,
+          "transferSize": 6371,
+          "encodedBodySize": 6071,
+          "decodedBodySize": 15640
+        },
+        {
+          "path": "/lib/bot/scenario-random.mjs",
+          "duration": 172.5,
+          "transferSize": 988,
+          "encodedBodySize": 688,
+          "decodedBodySize": 1269
+        },
+        {
+          "path": "/lib/bot/economy.mjs",
+          "duration": 182.69999999995343,
+          "transferSize": 1800,
+          "encodedBodySize": 1500,
+          "decodedBodySize": 3019
+        },
+        {
+          "path": "/lib/bot/finance-guard.mjs",
+          "duration": 189.59999999997672,
+          "transferSize": 907,
+          "encodedBodySize": 607,
+          "decodedBodySize": 1342
+        },
+        {
+          "path": "/lib/bot/risk.mjs",
+          "duration": 212.69999999995343,
+          "transferSize": 3050,
+          "encodedBodySize": 2750,
+          "decodedBodySize": 5968
+        },
+        {
+          "path": "/lib/bot/learned-model.mjs",
+          "duration": 213,
+          "transferSize": 509,
+          "encodedBodySize": 209,
+          "decodedBodySize": 209
+        },
+        {
+          "path": "/lib/bot/negotiation-guard.mjs",
+          "duration": 212.09999999997672,
+          "transferSize": 883,
+          "encodedBodySize": 583,
+          "decodedBodySize": 1344
+        },
+        {
+          "path": "/lib/bot/nusa-v7/index.mjs",
+          "duration": 245,
+          "transferSize": 1222,
+          "encodedBodySize": 922,
+          "decodedBodySize": 2095
+        },
+        {
+          "path": "/lib/bot/apex-policy.mjs",
+          "duration": 241,
+          "transferSize": 3694,
+          "encodedBodySize": 3394,
+          "decodedBodySize": 8954
+        },
+        {
+          "path": "/lib/bot/nusa-v7/council.mjs",
+          "duration": 240.59999999997672,
+          "transferSize": 12233,
+          "encodedBodySize": 11933,
+          "decodedBodySize": 44194
+        },
+        {
+          "path": "/lib/bot/kresna-policy.mjs",
+          "duration": 269.0999999999767,
+          "transferSize": 6561,
+          "encodedBodySize": 6261,
+          "decodedBodySize": 18738
+        },
+        {
+          "path": "/lib/bot/probability.mjs",
+          "duration": 291.4000000000233,
+          "transferSize": 2950,
+          "encodedBodySize": 2650,
+          "decodedBodySize": 6849
+        },
+        {
+          "path": "/lib/bot/allocation.mjs",
+          "duration": 224.70000000006985,
+          "transferSize": 2240,
+          "encodedBodySize": 1940,
+          "decodedBodySize": 4399
+        },
+        {
+          "path": "/lib/bot/nusa-v7/situation.mjs",
+          "duration": 99.40000000002328,
+          "transferSize": 6453,
+          "encodedBodySize": 6153,
+          "decodedBodySize": 19070
+        },
+        {
+          "path": "/lib/bot/nusa-v7/chronos-policy.mjs",
+          "duration": 94.09999999997672,
+          "transferSize": 4158,
+          "encodedBodySize": 3858,
+          "decodedBodySize": 9324
+        },
+        {
+          "path": "/lib/bot/nusa-v7/experts.mjs",
+          "duration": 113.09999999997672,
+          "transferSize": 17714,
+          "encodedBodySize": 17414,
+          "decodedBodySize": 58865
+        },
+        {
+          "path": "/lib/bot/nusa-v7/board-graph.mjs",
+          "duration": 89.90000000002328,
+          "transferSize": 4887,
+          "encodedBodySize": 4587,
+          "decodedBodySize": 13201
+        },
+        {
+          "path": "/lib/bot/nusa-v7/reasoning.mjs",
+          "duration": 90.20000000006985,
+          "transferSize": 6738,
+          "encodedBodySize": 6438,
+          "decodedBodySize": 18972
+        },
+        {
+          "path": "/lib/bot/nusa-v7/temporal.mjs",
+          "duration": 126.40000000002328,
+          "transferSize": 6671,
+          "encodedBodySize": 6371,
+          "decodedBodySize": 17967
+        },
+        {
+          "path": "/assets/brand/logo.png",
+          "duration": 116.5,
+          "transferSize": 95840,
+          "encodedBodySize": 95540,
+          "decodedBodySize": 95540
+        },
+        {
+          "path": "/assets/avatars/human.webp",
+          "duration": 86.09999999997672,
+          "transferSize": 18536,
+          "encodedBodySize": 18236,
+          "decodedBodySize": 18236
+        },
+        {
+          "path": "/assets/pawns/pawn-tokens.png",
+          "duration": 150.10000000009313,
+          "transferSize": 172637,
+          "encodedBodySize": 172337,
+          "decodedBodySize": 172337
+        },
+        {
+          "path": "/assets/avatars/raka.webp",
+          "duration": 141.90000000002328,
+          "transferSize": 19142,
+          "encodedBodySize": 18842,
+          "decodedBodySize": 18842
+        },
+        {
+          "path": "/assets/avatars/bima.webp",
+          "duration": 82.69999999995343,
+          "transferSize": 18714,
+          "encodedBodySize": 18414,
+          "decodedBodySize": 18414
+        },
+        {
+          "path": "/assets/avatars/sari.webp",
+          "duration": 138.90000000002328,
+          "transferSize": 18840,
+          "encodedBodySize": 18540,
+          "decodedBodySize": 18540
+        },
+        {
+          "path": "/api/online",
+          "duration": 319.19999999995343,
+          "transferSize": 613,
+          "encodedBodySize": 313,
+          "decodedBodySize": 313
+        },
+        {
+          "path": "/api/bot",
+          "duration": 329.30000000004657,
+          "transferSize": 371,
+          "encodedBodySize": 71,
+          "decodedBodySize": 71
+        }
+      ]
+    },
+    "heap": {
+      "usedSize": 2663992,
+      "totalSize": 5287936,
+      "embedderHeapUsedSize": 3071136,
+      "backingStorageSize": 789771
+    },
+    "dom": {
+      "documents": 3,
+      "nodes": 491,
+      "jsEventListeners": 57
+    },
+    "setupClickToVisibleMs": 394.9500420000004,
+    "cache": {
+      "names": [
+        "nusantara-classic-v4110-392170ce55b1d147"
+      ],
+      "controlled": true
+    },
+    "offlineLobby": true,
+    "errors": []
+  },
+  {
+    "mode": "slow-network",
+    "lobbyReadyMs": 4557.92167,
+    "browser": {
+      "nav": [
+        {
+          "name": "https://monopoli-nusantara-eight.vercel.app/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 0,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "h2",
+          "renderBlockingStatus": "non-blocking",
+          "contentEncoding": "br",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.09999999997671694,
+          "domainLookupStart": 0.09999999997671694,
+          "domainLookupEnd": 0.09999999997671694,
+          "connectStart": 0.8999999999068677,
+          "secureConnectionStart": 15.29999999993015,
+          "connectEnd": 45.89999999990687,
+          "requestStart": 46,
+          "responseStart": 238.19999999995343,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 238.19999999995343,
+          "responseEnd": 249.89999999990687,
+          "transferSize": 1249,
+          "encodedBodySize": 949,
+          "decodedBodySize": 2088,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 284.29999999993015,
+          "domContentLoadedEventStart": 4447.099999999977,
+          "domContentLoadedEventEnd": 4447.199999999953,
+          "domComplete": 0,
+          "loadEventStart": 0,
+          "loadEventEnd": 0,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        }
+      ],
+      "paints": [
+        {
+          "name": "first-paint",
+          "startTime": 888
+        },
+        {
+          "name": "first-contentful-paint",
+          "startTime": 4516
+        }
+      ],
+      "resources": [
+        {
+          "path": "/frontend/styles.css",
+          "duration": 522.1000000000931,
+          "transferSize": 22000,
+          "encodedBodySize": 21700,
+          "decodedBodySize": 102337
+        },
+        {
+          "path": "/frontend/app.mjs",
+          "duration": 609.4000000000233,
+          "transferSize": 24076,
+          "encodedBodySize": 23776,
+          "decodedBodySize": 83162
+        },
+        {
+          "path": "/lib/bank-economy.mjs",
+          "duration": 203.20000000006985,
+          "transferSize": 1350,
+          "encodedBodySize": 1050,
+          "decodedBodySize": 2247
+        },
+        {
+          "path": "/frontend/lucide-icons.mjs",
+          "duration": 381.20000000006985,
+          "transferSize": 2026,
+          "encodedBodySize": 1726,
+          "decodedBodySize": 4595
+        },
+        {
+          "path": "/frontend/trade-view.mjs",
+          "duration": 251.5,
+          "transferSize": 1128,
+          "encodedBodySize": 828,
+          "decodedBodySize": 2309
+        },
+        {
+          "path": "/frontend/auction-view.mjs",
+          "duration": 262.89999999990687,
+          "transferSize": 1015,
+          "encodedBodySize": 715,
+          "decodedBodySize": 1846
+        },
+        {
+          "path": "/lib/version.mjs",
+          "duration": 279,
+          "transferSize": 548,
+          "encodedBodySize": 248,
+          "decodedBodySize": 248
+        },
+        {
+          "path": "/lib/auction-presentation.mjs",
+          "duration": 291.29999999993015,
+          "transferSize": 976,
+          "encodedBodySize": 676,
+          "decodedBodySize": 1437
+        },
+        {
+          "path": "/frontend/number-input.mjs",
+          "duration": 306.69999999995343,
+          "transferSize": 822,
+          "encodedBodySize": 522,
+          "decodedBodySize": 522
+        },
+        {
+          "path": "/frontend/online-status.mjs",
+          "duration": 352.30000000004657,
+          "transferSize": 997,
+          "encodedBodySize": 697,
+          "decodedBodySize": 1578
+        },
+        {
+          "path": "/frontend/economy-view.mjs",
+          "duration": 352.4000000000233,
+          "transferSize": 1234,
+          "encodedBodySize": 934,
+          "decodedBodySize": 2084
+        },
+        {
+          "path": "/frontend/currency-view.mjs",
+          "duration": 365.69999999995343,
+          "transferSize": 841,
+          "encodedBodySize": 541,
+          "decodedBodySize": 541
+        },
+        {
+          "path": "/frontend/selections.mjs",
+          "duration": 554.8000000000466,
+          "transferSize": 1598,
+          "encodedBodySize": 1298,
+          "decodedBodySize": 4185
+        },
+        {
+          "path": "/frontend/trade-drafts.mjs",
+          "duration": 744.6999999999534,
+          "transferSize": 1842,
+          "encodedBodySize": 1542,
+          "decodedBodySize": 3939
+        },
+        {
+          "path": "/frontend/cache-migration.mjs",
+          "duration": 395.0999999999767,
+          "transferSize": 1093,
+          "encodedBodySize": 793,
+          "decodedBodySize": 793
+        },
+        {
+          "path": "/lib/layer-navigation.mjs",
+          "duration": 408.9000000000233,
+          "transferSize": 1050,
+          "encodedBodySize": 750,
+          "decodedBodySize": 750
+        },
+        {
+          "path": "/frontend/pwa.mjs",
+          "duration": 496.20000000006985,
+          "transferSize": 1308,
+          "encodedBodySize": 1008,
+          "decodedBodySize": 2542
+        },
+        {
+          "path": "/frontend/roll-input.mjs",
+          "duration": 759.2000000000698,
+          "transferSize": 2118,
+          "encodedBodySize": 1818,
+          "decodedBodySize": 5587
+        },
+        {
+          "path": "/frontend/dice-view.mjs",
+          "duration": 788.9000000000233,
+          "transferSize": 1725,
+          "encodedBodySize": 1425,
+          "decodedBodySize": 3258
+        },
+        {
+          "path": "/frontend/session.mjs",
+          "duration": 1418.6000000000931,
+          "transferSize": 11159,
+          "encodedBodySize": 10859,
+          "decodedBodySize": 41047
+        },
+        {
+          "path": "/frontend/clipboard.mjs",
+          "duration": 484.0999999999767,
+          "transferSize": 1272,
+          "encodedBodySize": 972,
+          "decodedBodySize": 2115
+        },
+        {
+          "path": "/frontend/popup-controls.mjs",
+          "duration": 548.6999999999534,
+          "transferSize": 1137,
+          "encodedBodySize": 837,
+          "decodedBodySize": 837
+        },
+        {
+          "path": "/frontend/dice-log.mjs",
+          "duration": 834.0999999999767,
+          "transferSize": 835,
+          "encodedBodySize": 535,
+          "decodedBodySize": 1061
+        },
+        {
+          "path": "/frontend/asset-panel.mjs",
+          "duration": 1082.0999999999767,
+          "transferSize": 4781,
+          "encodedBodySize": 4481,
+          "decodedBodySize": 12861
+        },
+        {
+          "path": "/frontend/art.mjs",
+          "duration": 510.69999999995343,
+          "transferSize": 1657,
+          "encodedBodySize": 1357,
+          "decodedBodySize": 2734
+        },
+        {
+          "path": "/frontend/domain.mjs",
+          "duration": 906.1999999999534,
+          "transferSize": 2974,
+          "encodedBodySize": 2674,
+          "decodedBodySize": 7094
+        },
+        {
+          "path": "/frontend/board.mjs",
+          "duration": 1197.9000000000233,
+          "transferSize": 6251,
+          "encodedBodySize": 5951,
+          "decodedBodySize": 17492
+        },
+        {
+          "path": "/lib/pawns.mjs",
+          "duration": 599.8000000000466,
+          "transferSize": 1300,
+          "encodedBodySize": 1000,
+          "decodedBodySize": 2028
+        },
+        {
+          "path": "/lib/bot/personas.mjs",
+          "duration": 700.6999999999534,
+          "transferSize": 1377,
+          "encodedBodySize": 1077,
+          "decodedBodySize": 2380
+        },
+        {
+          "path": "/lib/content.mjs",
+          "duration": 964,
+          "transferSize": 2925,
+          "encodedBodySize": 2625,
+          "decodedBodySize": 5875
+        },
+        {
+          "path": "/frontend/popups.mjs",
+          "duration": 1547.3000000000466,
+          "transferSize": 12909,
+          "encodedBodySize": 12609,
+          "decodedBodySize": 39564
+        },
+        {
+          "path": "/lib/currency.mjs",
+          "duration": 686.4000000000233,
+          "transferSize": 902,
+          "encodedBodySize": 602,
+          "decodedBodySize": 1105
+        },
+        {
+          "path": "/lib/game.mjs",
+          "duration": 1505.4000000000233,
+          "transferSize": 11849,
+          "encodedBodySize": 11549,
+          "decodedBodySize": 35575
+        },
+        {
+          "path": "/lib/preferences.mjs",
+          "duration": 643.1000000000931,
+          "transferSize": 1059,
+          "encodedBodySize": 759,
+          "decodedBodySize": 759
+        },
+        {
+          "path": "/lib/storage.mjs",
+          "duration": 861.5,
+          "transferSize": 2572,
+          "encodedBodySize": 2272,
+          "decodedBodySize": 6955
+        },
+        {
+          "path": "/lib/save-format.mjs",
+          "duration": 1067.4000000000233,
+          "transferSize": 3536,
+          "encodedBodySize": 3236,
+          "decodedBodySize": 9173
+        },
+        {
+          "path": "/lib/player-name.mjs",
+          "duration": 799,
+          "transferSize": 843,
+          "encodedBodySize": 543,
+          "decodedBodySize": 1041
+        },
+        {
+          "path": "/lib/compact-ui.mjs",
+          "duration": 711,
+          "transferSize": 1391,
+          "encodedBodySize": 1091,
+          "decodedBodySize": 2263
+        },
+        {
+          "path": "/lib/finance.mjs",
+          "duration": 570.3999999999069,
+          "transferSize": 1322,
+          "encodedBodySize": 1022,
+          "decodedBodySize": 1988
+        },
+        {
+          "path": "/lib/bot/mind-config.mjs",
+          "duration": 293.4000000000233,
+          "transferSize": 1043,
+          "encodedBodySize": 743,
+          "decodedBodySize": 743
+        },
+        {
+          "path": "/lib/gameplay-presentation.mjs",
+          "duration": 339.0999999999767,
+          "transferSize": 2500,
+          "encodedBodySize": 2200,
+          "decodedBodySize": 5288
+        },
+        {
+          "path": "/lib/presentation-timeline.mjs",
+          "duration": 451.20000000006985,
+          "transferSize": 3623,
+          "encodedBodySize": 3323,
+          "decodedBodySize": 8169
+        },
+        {
+          "path": "/lib/content-v1.mjs",
+          "duration": 335,
+          "transferSize": 2725,
+          "encodedBodySize": 2425,
+          "decodedBodySize": 5422
+        },
+        {
+          "path": "/frontend/property-display.mjs",
+          "duration": 267.80000000004657,
+          "transferSize": 925,
+          "encodedBodySize": 625,
+          "decodedBodySize": 1105
+        },
+        {
+          "path": "/frontend/development.mjs",
+          "duration": 267,
+          "transferSize": 1500,
+          "encodedBodySize": 1200,
+          "decodedBodySize": 2747
+        },
+        {
+          "path": "/lib/board-camera.mjs",
+          "duration": 319.4000000000233,
+          "transferSize": 2320,
+          "encodedBodySize": 2020,
+          "decodedBodySize": 5334
+        },
+        {
+          "path": "/frontend/board-camera.mjs",
+          "duration": 231.79999999993015,
+          "transferSize": 904,
+          "encodedBodySize": 604,
+          "decodedBodySize": 1583
+        },
+        {
+          "path": "/lib/pawn-layout.mjs",
+          "duration": 264.19999999995343,
+          "transferSize": 861,
+          "encodedBodySize": 561,
+          "decodedBodySize": 1030
+        },
+        {
+          "path": "/lib/pawn-animation.mjs",
+          "duration": 276.19999999995343,
+          "transferSize": 1456,
+          "encodedBodySize": 1156,
+          "decodedBodySize": 2678
+        },
+        {
+          "path": "/lib/dice-timing.mjs",
+          "duration": 196.40000000002328,
+          "transferSize": 512,
+          "encodedBodySize": 212,
+          "decodedBodySize": 212
+        },
+        {
+          "path": "/frontend/local-session-lease.mjs",
+          "duration": 174,
+          "transferSize": 838,
+          "encodedBodySize": 538,
+          "decodedBodySize": 1165
+        },
+        {
+          "path": "/lib/random.mjs",
+          "duration": 232.09999999997672,
+          "transferSize": 940,
+          "encodedBodySize": 640,
+          "decodedBodySize": 1344
+        },
+        {
+          "path": "/frontend/debt-advisor.mjs",
+          "duration": 188.29999999993015,
+          "transferSize": 1080,
+          "encodedBodySize": 780,
+          "decodedBodySize": 1736
+        },
+        {
+          "path": "/lib/trade-command.mjs",
+          "duration": 230.40000000002328,
+          "transferSize": 1059,
+          "encodedBodySize": 759,
+          "decodedBodySize": 1857
+        },
+        {
+          "path": "/frontend/trade-results.mjs",
+          "duration": 330.30000000004657,
+          "transferSize": 2621,
+          "encodedBodySize": 2321,
+          "decodedBodySize": 6045
+        },
+        {
+          "path": "/lib/bot/mind-client.mjs",
+          "duration": 330.0999999999767,
+          "transferSize": 1281,
+          "encodedBodySize": 981,
+          "decodedBodySize": 2051
+        },
+        {
+          "path": "/lib/bot/memory.mjs",
+          "duration": 398.5999999999767,
+          "transferSize": 2021,
+          "encodedBodySize": 1721,
+          "decodedBodySize": 4903
+        },
+        {
+          "path": "/lib/bot/broker-intent.mjs",
+          "duration": 291.4000000000233,
+          "transferSize": 973,
+          "encodedBodySize": 673,
+          "decodedBodySize": 673
+        },
+        {
+          "path": "/lib/bot/strategy.mjs",
+          "duration": 627.4000000000233,
+          "transferSize": 3605,
+          "encodedBodySize": 3305,
+          "decodedBodySize": 8592
+        },
+        {
+          "path": "/lib/room-client.mjs",
+          "duration": 341.69999999995343,
+          "transferSize": 1042,
+          "encodedBodySize": 742,
+          "decodedBodySize": 1448
+        },
+        {
+          "path": "/lib/online-performance.mjs",
+          "duration": 349.5,
+          "transferSize": 951,
+          "encodedBodySize": 651,
+          "decodedBodySize": 1138
+        },
+        {
+          "path": "/lib/online-client.mjs",
+          "duration": 583.0999999999767,
+          "transferSize": 3339,
+          "encodedBodySize": 3039,
+          "decodedBodySize": 7768
+        },
+        {
+          "path": "/lib/online-presentation.mjs",
+          "duration": 366,
+          "transferSize": 1633,
+          "encodedBodySize": 1333,
+          "decodedBodySize": 2929
+        },
+        {
+          "path": "/frontend/feedback.mjs",
+          "duration": 553.5999999999767,
+          "transferSize": 2483,
+          "encodedBodySize": 2183,
+          "decodedBodySize": 6228
+        },
+        {
+          "path": "/lib/build-batch.mjs",
+          "duration": 437.5,
+          "transferSize": 1582,
+          "encodedBodySize": 1282,
+          "decodedBodySize": 2630
+        },
+        {
+          "path": "/lib/game-v1.mjs",
+          "duration": 951.4000000000233,
+          "transferSize": 7690,
+          "encodedBodySize": 7390,
+          "decodedBodySize": 20902
+        },
+        {
+          "path": "/frontend/bank-view.mjs",
+          "duration": 518.4000000000233,
+          "transferSize": 2171,
+          "encodedBodySize": 1871,
+          "decodedBodySize": 4242
+        },
+        {
+          "path": "/frontend/trade-value.mjs",
+          "duration": 337.39999999990687,
+          "transferSize": 900,
+          "encodedBodySize": 600,
+          "decodedBodySize": 1252
+        },
+        {
+          "path": "/frontend/tile-info.mjs",
+          "duration": 399.69999999995343,
+          "transferSize": 1669,
+          "encodedBodySize": 1369,
+          "decodedBodySize": 3076
+        },
+        {
+          "path": "/frontend/card-icons.mjs",
+          "duration": 351.9000000000233,
+          "transferSize": 1004,
+          "encodedBodySize": 704,
+          "decodedBodySize": 1489
+        },
+        {
+          "path": "/lib/bot/liquidation.mjs",
+          "duration": 468.0999999999767,
+          "transferSize": 3143,
+          "encodedBodySize": 2843,
+          "decodedBodySize": 7063
+        },
+        {
+          "path": "/lib/bot/analysis.mjs",
+          "duration": 644,
+          "transferSize": 3801,
+          "encodedBodySize": 3501,
+          "decodedBodySize": 8897
+        },
+        {
+          "path": "/lib/bot/mind.mjs",
+          "duration": 899.1000000000931,
+          "transferSize": 6594,
+          "encodedBodySize": 6294,
+          "decodedBodySize": 16081
+        },
+        {
+          "path": "/lib/bot/persona-router.mjs",
+          "duration": 496.19999999995343,
+          "transferSize": 1932,
+          "encodedBodySize": 1632,
+          "decodedBodySize": 4440
+        },
+        {
+          "path": "/lib/bot/concessions.mjs",
+          "duration": 344.5999999999767,
+          "transferSize": 1140,
+          "encodedBodySize": 840,
+          "decodedBodySize": 1608
+        },
+        {
+          "path": "/lib/bot/trade-memory.mjs",
+          "duration": 461.89999999990687,
+          "transferSize": 2405,
+          "encodedBodySize": 2105,
+          "decodedBodySize": 5649
+        },
+        {
+          "path": "/lib/bot/nusa-v7/broker-memory.mjs",
+          "duration": 315,
+          "transferSize": 1592,
+          "encodedBodySize": 1292,
+          "decodedBodySize": 3571
+        },
+        {
+          "path": "/lib/bot/finance-history.mjs",
+          "duration": 334.69999999995343,
+          "transferSize": 1343,
+          "encodedBodySize": 1043,
+          "decodedBodySize": 2107
+        },
+        {
+          "path": "/lib/bot/observer.mjs",
+          "duration": 449,
+          "transferSize": 2303,
+          "encodedBodySize": 2003,
+          "decodedBodySize": 5125
+        },
+        {
+          "path": "/lib/bot/stability-guard.mjs",
+          "duration": 652.9000000000233,
+          "transferSize": 5525,
+          "encodedBodySize": 5225,
+          "decodedBodySize": 14904
+        },
+        {
+          "path": "/lib/bot/foundation.mjs",
+          "duration": 307.69999999995343,
+          "transferSize": 1395,
+          "encodedBodySize": 1095,
+          "decodedBodySize": 2455
+        },
+        {
+          "path": "/lib/bot/development.mjs",
+          "duration": 308.0999999999767,
+          "transferSize": 1600,
+          "encodedBodySize": 1300,
+          "decodedBodySize": 3084
+        },
+        {
+          "path": "/lib/bot/candidates.mjs",
+          "duration": 400.9000000000233,
+          "transferSize": 2170,
+          "encodedBodySize": 1870,
+          "decodedBodySize": 4450
+        },
+        {
+          "path": "/lib/bot/negotiation.mjs",
+          "duration": 700.5999999999767,
+          "transferSize": 4940,
+          "encodedBodySize": 4640,
+          "decodedBodySize": 13216
+        },
+        {
+          "path": "/lib/bot/negotiation-guard.mjs",
+          "duration": 240,
+          "transferSize": 883,
+          "encodedBodySize": 583,
+          "decodedBodySize": 1344
+        },
+        {
+          "path": "/lib/bot/nusa-v7/index.mjs",
+          "duration": 253.39999999990687,
+          "transferSize": 1222,
+          "encodedBodySize": 922,
+          "decodedBodySize": 2095
+        },
+        {
+          "path": "/lib/bot/apex-policy.mjs",
+          "duration": 631.5,
+          "transferSize": 3694,
+          "encodedBodySize": 3394,
+          "decodedBodySize": 8954
+        },
+        {
+          "path": "/lib/bot/nusa-v7/council.mjs",
+          "duration": 1202.8999999999069,
+          "transferSize": 12233,
+          "encodedBodySize": 11933,
+          "decodedBodySize": 44194
+        },
+        {
+          "path": "/lib/bot/finance-guard.mjs",
+          "duration": 352.29999999993015,
+          "transferSize": 907,
+          "encodedBodySize": 607,
+          "decodedBodySize": 1342
+        },
+        {
+          "path": "/lib/bot/kresna-policy.mjs",
+          "duration": 922.9000000000233,
+          "transferSize": 6561,
+          "encodedBodySize": 6261,
+          "decodedBodySize": 18738
+        },
+        {
+          "path": "/lib/bot/risk.mjs",
+          "duration": 447.80000000004657,
+          "transferSize": 3050,
+          "encodedBodySize": 2750,
+          "decodedBodySize": 5968
+        },
+        {
+          "path": "/lib/bot/economy.mjs",
+          "duration": 489.9000000000233,
+          "transferSize": 1800,
+          "encodedBodySize": 1500,
+          "decodedBodySize": 3019
+        },
+        {
+          "path": "/lib/bot/probability.mjs",
+          "duration": 494.20000000006985,
+          "transferSize": 2950,
+          "encodedBodySize": 2650,
+          "decodedBodySize": 6849
+        },
+        {
+          "path": "/lib/bot/allocation.mjs",
+          "duration": 405.5,
+          "transferSize": 2240,
+          "encodedBodySize": 1940,
+          "decodedBodySize": 4399
+        },
+        {
+          "path": "/lib/bot/nusa-v7/board-graph.mjs",
+          "duration": 726.1999999999534,
+          "transferSize": 4887,
+          "encodedBodySize": 4587,
+          "decodedBodySize": 13201
+        },
+        {
+          "path": "/lib/bot/nusa-v7/experts.mjs",
+          "duration": 1019.8000000000466,
+          "transferSize": 17714,
+          "encodedBodySize": 17414,
+          "decodedBodySize": 58865
+        },
+        {
+          "path": "/lib/bot/nusa-v7/reasoning.mjs",
+          "duration": 813.9000000000233,
+          "transferSize": 6738,
+          "encodedBodySize": 6438,
+          "decodedBodySize": 18972
+        },
+        {
+          "path": "/lib/bot/nusa-v7/situation.mjs",
+          "duration": 858.2000000000698,
+          "transferSize": 6453,
+          "encodedBodySize": 6153,
+          "decodedBodySize": 19070
+        },
+        {
+          "path": "/lib/bot/nusa-v7/temporal.mjs",
+          "duration": 799.0999999999767,
+          "transferSize": 6671,
+          "encodedBodySize": 6371,
+          "decodedBodySize": 17967
+        },
+        {
+          "path": "/lib/bot/nusa-v7/chronos-policy.mjs",
+          "duration": 638,
+          "transferSize": 4158,
+          "encodedBodySize": 3858,
+          "decodedBodySize": 9324
+        },
+        {
+          "path": "/lib/bot/learning.mjs",
+          "duration": 739.7999999999302,
+          "transferSize": 6371,
+          "encodedBodySize": 6071,
+          "decodedBodySize": 15640
+        },
+        {
+          "path": "/lib/bot/learned-model.mjs",
+          "duration": 314.9000000000233,
+          "transferSize": 509,
+          "encodedBodySize": 209,
+          "decodedBodySize": 209
+        },
+        {
+          "path": "/lib/bot/scenario-random.mjs",
+          "duration": 304,
+          "transferSize": 988,
+          "encodedBodySize": 688,
+          "decodedBodySize": 1269
+        },
+        {
+          "path": "/api/online",
+          "duration": 453.80000000004657,
+          "transferSize": 613,
+          "encodedBodySize": 313,
+          "decodedBodySize": 313
+        },
+        {
+          "path": "/api/bot",
+          "duration": 392.4000000000233,
+          "transferSize": 371,
+          "encodedBodySize": 71,
+          "decodedBodySize": 71
+        }
+      ]
+    },
+    "heap": {
+      "usedSize": 2638780,
+      "totalSize": 5550080,
+      "embedderHeapUsedSize": 3072664,
+      "backingStorageSize": 789209
+    },
+    "dom": {
+      "documents": 3,
+      "nodes": 491,
+      "jsEventListeners": 57
+    },
+    "setupClickToVisibleMs": 407.3238760000004,
+    "errors": []
+  }
+]

@@ -1,0 +1,90 @@
+{
+  "generatedAt": "2026-10-19T09:58:24.348Z",
+  "checks": [
+    {
+      "name": "bank 320x568",
+      "passed": true,
+      "metrics": {
+        "left": 19,
+        "right": 301,
+        "top": 68.15625,
+        "bottom": 499.828125,
+        "footer": 0,
+        "overflow": false
+      },
+      "readOnlyNavigation": true,
+      "detailsRestored": true,
+      "persistedTotals": true
+    },
+    {
+      "name": "bank 360x640",
+      "passed": true,
+      "metrics": {
+        "left": 19,
+        "right": 341,
+        "top": 85.734375,
+        "bottom": 554.265625,
+        "footer": 0,
+        "overflow": false
+      },
+      "readOnlyNavigation": true,
+      "detailsRestored": true,
+      "persistedTotals": true
+    },
+    {
+      "name": "bank 390x844",
+      "passed": true,
+      "metrics": {
+        "left": 19,
+        "right": 371,
+        "top": 187.734375,
+        "bottom": 656.265625,
+        "footer": 0,
+        "overflow": false
+      },
+      "readOnlyNavigation": true,
+      "detailsRestored": true,
+      "persistedTotals": true
+    },
+    {
+      "name": "bank 430x932",
+      "passed": true,
+      "metrics": {
+        "left": 19,
+        "right": 411,
+        "top": 231.734375,
+        "bottom": 700.265625,
+        "footer": 0,
+        "overflow": false
+      },
+      "readOnlyNavigation": true,
+      "detailsRestored": true,
+      "persistedTotals": true
+    },
+    {
+      "name": "bank 360x420",
+      "passed": true,
+      "metrics": {
+        "left": 19,
+        "right": 341,
+        "top": 50.40625,
+        "bottom": 369.59375,
+        "footer": 0,
+        "overflow": false
+      },
+      "readOnlyNavigation": true,
+      "detailsRestored": true,
+      "persistedTotals": true
+    },
+    {
+      "name": "failure",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nnull !== ''\n\n    at file:///workspace/monopoli-nusantara/scripts/test-bank-browser.mjs:40:86"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium emulation; no physical Android/iOS.",
+    "Local authoritative engine state. No live room/account/database modifications."
+  ]
+}

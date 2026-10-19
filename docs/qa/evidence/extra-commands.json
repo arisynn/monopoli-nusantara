@@ -1,0 +1,26 @@
+[
+  {
+    "command": "node --experimental-strip-types --import ./adapters/node/aliases.mjs --test --test-isolation=none tests/online.test.mjs tests/online-client.test.mjs tests/auth-proxy.test.mjs tests/online-api.test.mjs tests/online-bots.test.mjs",
+    "exitCode": 0,
+    "durationSeconds": 2.255,
+    "log": "docs/qa/evidence/extra-suite-00.log"
+  },
+  {
+    "command": "npm run test:hold:batch:browser",
+    "exitCode": 0,
+    "durationSeconds": 64.589,
+    "log": "docs/qa/evidence/extra-suite-01.log"
+  },
+  {
+    "command": "npm run test:online:rooms",
+    "exitCode": 0,
+    "durationSeconds": 65.896,
+    "log": "docs/qa/evidence/extra-suite-02.log"
+  },
+  {
+    "command": "node scripts/verify-speed-model.mjs",
+    "exitCode": 0,
+    "durationSeconds": 0.15,
+    "log": "docs/qa/evidence/extra-suite-03.log"
+  }
+]

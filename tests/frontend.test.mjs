@@ -594,8 +594,9 @@ for (const n of [2, 4, 6])
     assert.equal(snapshot.state.phase, "card");
     assert.deepEqual(snapshot.state.dice, [2, 2]);
     for (const s of clients) {
-      if(s.seat===0)assert.equal(s.head.kind,"eventRevealing","the current human card bypasses decorative backlog");
-      else {assert.equal(s.head.kind,"diceRolling");assert.equal(dicePresentation(s.view,s.head).values,null);}
+      assert.equal(s.head.kind,"diceRolling","every client finishes dice and walking before revealing a card");
+      assert.equal(dicePresentation(s.view,s.head).values,null);
+      assert.equal(await s.act("ACK"),false,"a card cannot resolve before its walk is presented");
       while (s.head && s.head.kind !== "eventRevealing") s.complete(s.head.id);
       assert.equal(s.head.event.type, "card");
       const ids = s.model.queue.map((e) => e.id);

@@ -1,0 +1,4 @@
+# Large raw Playwright traces stay in the downloadable audit packages.
+*.zip
+# Preserve audit command output despite the repository-wide *.log rule.
+!**/*.log

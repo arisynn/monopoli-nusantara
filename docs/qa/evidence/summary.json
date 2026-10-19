@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-10-19",
+  "commit": "6b237b4c7bc1cd133d74b7585ba011e1d8ba261c",
+  "branch": "qa/full-audit-2026-10-19",
+  "scores": {
+    "overall": 79,
+    "gameplay": 80,
+    "multiplayer": 70,
+    "botsLocal": 95,
+    "mobile": 70,
+    "performance": 75,
+    "securityEvidence": 80,
+    "securityConfidence": "moderate, scoped non-destructive audit"
+  },
+  "confirmedBugs": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 4,
+    "P3": 1
+  },
+  "browserNaturalMatches": 5,
+  "browserNaturalActions": 3175,
+  "browserHumanNaturalWins": 0,
+  "browserLegalEndingFixtures": 5,
+  "browserHumanFixtureWins": 3,
+  "headlessMatches": 100,
+  "headlessActions": 61365,
+  "headlessNormalWinners": 99,
+  "headlessTimeLimit": 1,
+  "headlessErrors": 0,
+  "commandCount": 20,
+  "commandPass": 14,
+  "commandFail": 6,
+  "sourceModified": false,
+  "productionDeployment": false
+}

@@ -1,4 +1,40 @@
 // Public UI states only. Presence of configuration is never a live connectivity claim.
+export function onlineBotAvailability(session, health) {
+  const capabilities = health?.capabilities;
+  if (!session.config?.onlineBots)
+    return { ready: false, message: "Bot online belum diaktifkan di server." };
+  if (
+    session.online?.worker?.status === "offline" ||
+    (capabilities?.workerProvider === "termux" && !capabilities.workerAlive)
+  )
+    return {
+      ready: false,
+      message:
+        "Bot online sedang offline. Coba periksa lagi nanti. Room tetap dapat dimainkan oleh manusia.",
+    };
+  if (
+    capabilities &&
+    (!capabilities.workerConfigured ||
+      (capabilities.workerProvider !== "termux" &&
+        !capabilities.schedulerConfigured))
+  )
+    return {
+      ready: false,
+      message:
+        "Layanan bot belum siap di server. Room tetap dapat dimainkan oleh manusia.",
+    };
+  if (!capabilities)
+    return {
+      ready: false,
+      message:
+        "Status bot belum dapat dipastikan. Periksa ulang sebelum menambahkan bot.",
+    };
+  return {
+    ready: true,
+    message:
+      "Bot tersedia. Pilih karakter untuk kursi kosong, tanpa duplikasi.",
+  };
+}
 export function onlineStatus(session) {
   if (session.configStatus === "error")
     return {
@@ -32,9 +68,16 @@ export function onlineStatus(session) {
       label: "Koneksi terputus",
       detail: "Mengambil state terbaru sebelum permainan dilanjutkan.",
     };
-  if(session.online?.worker?.provider==='termux'&&session.online.worker.status==='offline')return {
-    code:'worker-offline',label:'Bot menunggu worker',detail:'Worker bot sedang offline. Pertandingan tersimpan dan bot melanjutkan setelah worker terhubung.'
-  };
+  if (
+    session.online?.worker?.provider === "termux" &&
+    session.online.worker.status === "offline"
+  )
+    return {
+      code: "worker-offline",
+      label: "Bot menunggu worker",
+      detail:
+        "Worker bot sedang offline. Pertandingan tersimpan dan bot melanjutkan setelah worker terhubung.",
+    };
   return {
     code: "available",
     label: session.room ? "Room terhubung" : "Identitas tersedia",

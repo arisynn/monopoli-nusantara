@@ -1,0 +1,29 @@
+
+> monopoli-nusantara@4.11.6 test:stability
+> node --experimental-strip-types scripts/test-stability-browser.mjs
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   "Failed to read the 'localStorage' property from 'Window': Access is denied for this document.",
++   "Failed to read the 'localStorage' property from 'Window': Access is denied for this document.",
++   "Failed to read the 'localStorage' property from 'Window': Access is denied for this document.",
++   "Failed to read the 'localStorage' property from 'Window': Access is denied for this document.",
++   "Failed to read the 'localStorage' property from 'Window': Access is denied for this document.",
++   "Failed to read the 'localStorage' property from 'Window': Access is denied for this document.",
++   "Failed to read the 'localStorage' property from 'Window': Access is denied for this document.",
++   "Failed to read the 'localStorage' property from 'Window': Access is denied for this document.",
++   "Failed to read the 'localStorage' property from 'Window': Access is denied for this document.",
++   "Failed to read the 'localStorage' property from 'Window': Access is denied for this document."
++ ]
+- []
+
+    at file:///workspace/monopoli-nusantara/scripts/test-stability-browser.mjs:82:9 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [Array],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}

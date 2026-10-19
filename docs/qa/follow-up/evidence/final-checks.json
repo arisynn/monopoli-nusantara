@@ -1,0 +1,16 @@
+[
+  {
+    "command": "npm run test:portrait",
+    "exitCode": 0,
+    "durationSeconds": 156.735,
+    "timingMethod": "Node process start to report write; excludes npm startup",
+    "log": "docs/qa/follow-up/evidence/portrait-complete.log"
+  },
+  {
+    "command": "npm run test:stability",
+    "exitCode": 0,
+    "durationSeconds": 17.4,
+    "timingMethod": "Log creation to report write, approximately one second precision",
+    "log": "docs/qa/follow-up/evidence/stability-final.log"
+  }
+]

@@ -1,0 +1,16 @@
+
+> monopoli-nusantara@4.11.6 test:stability
+> node --experimental-strip-types scripts/test-stability-browser.mjs
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+2 !== 1
+
+    at file:///workspace/monopoli-nusantara/scripts/test-stability-browser.mjs:40:72 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 2,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

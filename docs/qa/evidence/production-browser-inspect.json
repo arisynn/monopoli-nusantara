@@ -1,0 +1,730 @@
+{
+  "errors": [],
+  "performance": {
+    "nav": [
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 2468.9000000000087,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.19999999999708962,
+        "domainLookupStart": 0.19999999999708962,
+        "domainLookupEnd": 0.19999999999708962,
+        "connectStart": 1,
+        "secureConnectionStart": 32.90000000000873,
+        "connectEnd": 49.10000000000582,
+        "requestStart": 49.19999999999709,
+        "responseStart": 416.5,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 416.5,
+        "responseEnd": 417.3000000000029,
+        "transferSize": 1249,
+        "encodedBodySize": 949,
+        "decodedBodySize": 2088,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 428,
+        "domContentLoadedEventStart": 2178.5,
+        "domContentLoadedEventEnd": 2178.600000000006,
+        "domComplete": 2468.9000000000087,
+        "loadEventStart": 2468.9000000000087,
+        "loadEventEnd": 2468.9000000000087,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      }
+    ],
+    "resources": [
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/styles.css?v=392170ce55b1d147",
+        "transferSize": 22000,
+        "decodedBodySize": 102337,
+        "duration": 413.1999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/app.mjs?v=392170ce55b1d147",
+        "transferSize": 24076,
+        "decodedBodySize": 83162,
+        "duration": 404.90000000000873
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bank-economy.mjs",
+        "transferSize": 1350,
+        "decodedBodySize": 2247,
+        "duration": 439.6000000000058
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/lucide-icons.mjs",
+        "transferSize": 2026,
+        "decodedBodySize": 4595,
+        "duration": 359.09999999999127
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/auction-view.mjs",
+        "transferSize": 1015,
+        "decodedBodySize": 1846,
+        "duration": 440.09999999999127
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/trade-view.mjs",
+        "transferSize": 1128,
+        "decodedBodySize": 2309,
+        "duration": 457.8999999999942
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/number-input.mjs",
+        "transferSize": 822,
+        "decodedBodySize": 522,
+        "duration": 239.8000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/auction-presentation.mjs",
+        "transferSize": 976,
+        "decodedBodySize": 1437,
+        "duration": 323.5
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/version.mjs",
+        "transferSize": 548,
+        "decodedBodySize": 248,
+        "duration": 420.90000000000873
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/online-status.mjs",
+        "transferSize": 997,
+        "decodedBodySize": 1578,
+        "duration": 199
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/pwa.mjs",
+        "transferSize": 1308,
+        "decodedBodySize": 2542,
+        "duration": 309.6999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/economy-view.mjs",
+        "transferSize": 1234,
+        "decodedBodySize": 2084,
+        "duration": 336.1999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/currency-view.mjs",
+        "transferSize": 841,
+        "decodedBodySize": 541,
+        "duration": 341
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/cache-migration.mjs",
+        "transferSize": 1093,
+        "decodedBodySize": 793,
+        "duration": 397.3000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/layer-navigation.mjs",
+        "transferSize": 1050,
+        "decodedBodySize": 750,
+        "duration": 467.59999999999127
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/trade-drafts.mjs",
+        "transferSize": 1842,
+        "decodedBodySize": 3939,
+        "duration": 492.59999999999127
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/selections.mjs",
+        "transferSize": 1598,
+        "decodedBodySize": 4185,
+        "duration": 553.5999999999913
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/roll-input.mjs",
+        "transferSize": 2118,
+        "decodedBodySize": 5587,
+        "duration": 245.70000000001164
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/session.mjs",
+        "transferSize": 11159,
+        "decodedBodySize": 41047,
+        "duration": 286
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/dice-view.mjs",
+        "transferSize": 1725,
+        "decodedBodySize": 3258,
+        "duration": 443.3000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/asset-panel.mjs",
+        "transferSize": 4781,
+        "decodedBodySize": 12861,
+        "duration": 370.1999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/popup-controls.mjs",
+        "transferSize": 1137,
+        "decodedBodySize": 837,
+        "duration": 392.1999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/clipboard.mjs",
+        "transferSize": 1272,
+        "decodedBodySize": 2115,
+        "duration": 411
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/board.mjs",
+        "transferSize": 6251,
+        "decodedBodySize": 17492,
+        "duration": 491.8999999999942
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/dice-log.mjs",
+        "transferSize": 835,
+        "decodedBodySize": 1061,
+        "duration": 503
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/domain.mjs",
+        "transferSize": 2974,
+        "decodedBodySize": 7094,
+        "duration": 521.5
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/pawns.mjs",
+        "transferSize": 1300,
+        "decodedBodySize": 2028,
+        "duration": 454.3000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/personas.mjs",
+        "transferSize": 1377,
+        "decodedBodySize": 2380,
+        "duration": 459.5
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/art.mjs",
+        "transferSize": 1657,
+        "decodedBodySize": 2734,
+        "duration": 479.3000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/content.mjs",
+        "transferSize": 2925,
+        "decodedBodySize": 5875,
+        "duration": 507.6999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/popups.mjs",
+        "transferSize": 12909,
+        "decodedBodySize": 39564,
+        "duration": 520.6999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/game.mjs",
+        "transferSize": 11849,
+        "decodedBodySize": 35575,
+        "duration": 475.3999999999942
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/preferences.mjs",
+        "transferSize": 1059,
+        "decodedBodySize": 759,
+        "duration": 484.59999999999127
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/save-format.mjs",
+        "transferSize": 3536,
+        "decodedBodySize": 9173,
+        "duration": 511.59999999999127
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/storage.mjs",
+        "transferSize": 2572,
+        "decodedBodySize": 6955,
+        "duration": 515.0999999999913
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/currency.mjs",
+        "transferSize": 902,
+        "decodedBodySize": 1105,
+        "duration": 528
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/player-name.mjs",
+        "transferSize": 843,
+        "decodedBodySize": 1041,
+        "duration": 508
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/compact-ui.mjs",
+        "transferSize": 1391,
+        "decodedBodySize": 2263,
+        "duration": 628.5
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/local-session-lease.mjs",
+        "transferSize": 838,
+        "decodedBodySize": 1165,
+        "duration": 212.39999999999418
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/random.mjs",
+        "transferSize": 940,
+        "decodedBodySize": 1344,
+        "duration": 208.3000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/debt-advisor.mjs",
+        "transferSize": 1080,
+        "decodedBodySize": 1736,
+        "duration": 241.90000000000873
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/development.mjs",
+        "transferSize": 1500,
+        "decodedBodySize": 2747,
+        "duration": 354.90000000000873
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/trade-command.mjs",
+        "transferSize": 1059,
+        "decodedBodySize": 1857,
+        "duration": 417.90000000000873
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/mind-client.mjs",
+        "transferSize": 1281,
+        "decodedBodySize": 2051,
+        "duration": 328.8999999999942
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/trade-results.mjs",
+        "transferSize": 2621,
+        "decodedBodySize": 6045,
+        "duration": 425.3000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/broker-intent.mjs",
+        "transferSize": 973,
+        "decodedBodySize": 673,
+        "duration": 235.90000000000873
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/memory.mjs",
+        "transferSize": 2021,
+        "decodedBodySize": 4903,
+        "duration": 278.8000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/strategy.mjs",
+        "transferSize": 3605,
+        "decodedBodySize": 8592,
+        "duration": 253.1999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/presentation-timeline.mjs",
+        "transferSize": 3623,
+        "decodedBodySize": 8169,
+        "duration": 469.1000000000058
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/online-client.mjs",
+        "transferSize": 3339,
+        "decodedBodySize": 7768,
+        "duration": 366.1999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/room-client.mjs",
+        "transferSize": 1042,
+        "decodedBodySize": 1448,
+        "duration": 423.5
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/online-presentation.mjs",
+        "transferSize": 1633,
+        "decodedBodySize": 2929,
+        "duration": 410.8999999999942
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/feedback.mjs",
+        "transferSize": 2483,
+        "decodedBodySize": 6228,
+        "duration": 426.5
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/online-performance.mjs",
+        "transferSize": 951,
+        "decodedBodySize": 1138,
+        "duration": 433.8000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/gameplay-presentation.mjs",
+        "transferSize": 2500,
+        "decodedBodySize": 5288,
+        "duration": 401.8000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/build-batch.mjs",
+        "transferSize": 1582,
+        "decodedBodySize": 2630,
+        "duration": 452.20000000001164
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/finance.mjs",
+        "transferSize": 1322,
+        "decodedBodySize": 1988,
+        "duration": 385.5
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/property-display.mjs",
+        "transferSize": 925,
+        "decodedBodySize": 1105,
+        "duration": 340.1000000000058
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/mind-config.mjs",
+        "transferSize": 1043,
+        "decodedBodySize": 743,
+        "duration": 284.6000000000058
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/game-v1.mjs",
+        "transferSize": 7690,
+        "decodedBodySize": 20902,
+        "duration": 284
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/board-camera.mjs",
+        "transferSize": 2320,
+        "decodedBodySize": 5334,
+        "duration": 321.90000000000873
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/board-camera.mjs",
+        "transferSize": 904,
+        "decodedBodySize": 1583,
+        "duration": 335.90000000000873
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/pawn-layout.mjs",
+        "transferSize": 861,
+        "decodedBodySize": 1030,
+        "duration": 346
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/pawn-animation.mjs",
+        "transferSize": 1456,
+        "decodedBodySize": 2678,
+        "duration": 340
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/content-v1.mjs",
+        "transferSize": 2725,
+        "decodedBodySize": 5422,
+        "duration": 401.5
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/bank-view.mjs",
+        "transferSize": 2171,
+        "decodedBodySize": 4242,
+        "duration": 375.1000000000058
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/tile-info.mjs",
+        "transferSize": 1669,
+        "decodedBodySize": 3076,
+        "duration": 340.59999999999127
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/trade-value.mjs",
+        "transferSize": 900,
+        "decodedBodySize": 1252,
+        "duration": 366.8999999999942
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/frontend/card-icons.mjs",
+        "transferSize": 1004,
+        "decodedBodySize": 1489,
+        "duration": 375.5
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/liquidation.mjs",
+        "transferSize": 3143,
+        "decodedBodySize": 7063,
+        "duration": 352.90000000000873
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/analysis.mjs",
+        "transferSize": 3801,
+        "decodedBodySize": 8897,
+        "duration": 370.1999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/foundation.mjs",
+        "transferSize": 1395,
+        "decodedBodySize": 2455,
+        "duration": 385.1999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/candidates.mjs",
+        "transferSize": 2170,
+        "decodedBodySize": 4450,
+        "duration": 379.29999999998836
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/negotiation.mjs",
+        "transferSize": 4940,
+        "decodedBodySize": 13216,
+        "duration": 341.1000000000058
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/development.mjs",
+        "transferSize": 1600,
+        "decodedBodySize": 3084,
+        "duration": 407.1999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/concessions.mjs",
+        "transferSize": 1140,
+        "decodedBodySize": 1608,
+        "duration": 367.8999999999942
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/observer.mjs",
+        "transferSize": 2303,
+        "decodedBodySize": 5125,
+        "duration": 333.3999999999942
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/trade-memory.mjs",
+        "transferSize": 2405,
+        "decodedBodySize": 5649,
+        "duration": 341.59999999999127
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/stability-guard.mjs",
+        "transferSize": 5525,
+        "decodedBodySize": 14904,
+        "duration": 368.1999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/finance-history.mjs",
+        "transferSize": 1343,
+        "decodedBodySize": 2107,
+        "duration": 385.1000000000058
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/nusa-v7/broker-memory.mjs",
+        "transferSize": 1592,
+        "decodedBodySize": 3571,
+        "duration": 394.6999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/mind.mjs",
+        "transferSize": 6594,
+        "decodedBodySize": 16081,
+        "duration": 356.20000000001164
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/persona-router.mjs",
+        "transferSize": 1932,
+        "decodedBodySize": 4440,
+        "duration": 307.8000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/dice-timing.mjs",
+        "transferSize": 512,
+        "decodedBodySize": 212,
+        "duration": 229.90000000000873
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/economy.mjs",
+        "transferSize": 1800,
+        "decodedBodySize": 3019,
+        "duration": 143.8000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/probability.mjs",
+        "transferSize": 2950,
+        "decodedBodySize": 6849,
+        "duration": 148.10000000000582
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/allocation.mjs",
+        "transferSize": 2240,
+        "decodedBodySize": 4399,
+        "duration": 150
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/risk.mjs",
+        "transferSize": 3050,
+        "decodedBodySize": 5968,
+        "duration": 132.10000000000582
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/negotiation-guard.mjs",
+        "transferSize": 883,
+        "decodedBodySize": 1344,
+        "duration": 162.89999999999418
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/apex-policy.mjs",
+        "transferSize": 3694,
+        "decodedBodySize": 8954,
+        "duration": 168.39999999999418
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/nusa-v7/council.mjs",
+        "transferSize": 12233,
+        "decodedBodySize": 44194,
+        "duration": 170.39999999999418
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/nusa-v7/index.mjs",
+        "transferSize": 1222,
+        "decodedBodySize": 2095,
+        "duration": 185
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/kresna-policy.mjs",
+        "transferSize": 6561,
+        "decodedBodySize": 18738,
+        "duration": 213.59999999999127
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/finance-guard.mjs",
+        "transferSize": 907,
+        "decodedBodySize": 1342,
+        "duration": 216.6999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/learning.mjs",
+        "transferSize": 6371,
+        "decodedBodySize": 15640,
+        "duration": 170.89999999999418
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/scenario-random.mjs",
+        "transferSize": 988,
+        "decodedBodySize": 1269,
+        "duration": 193.3000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/learned-model.mjs",
+        "transferSize": 509,
+        "decodedBodySize": 209,
+        "duration": 205.1999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/nusa-v7/situation.mjs",
+        "transferSize": 6453,
+        "decodedBodySize": 19070,
+        "duration": 166.8000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/nusa-v7/chronos-policy.mjs",
+        "transferSize": 4158,
+        "decodedBodySize": 9324,
+        "duration": 147.10000000000582
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/nusa-v7/experts.mjs",
+        "transferSize": 17714,
+        "decodedBodySize": 58865,
+        "duration": 211.3000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/nusa-v7/board-graph.mjs",
+        "transferSize": 4887,
+        "decodedBodySize": 13201,
+        "duration": 164.10000000000582
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/nusa-v7/temporal.mjs",
+        "transferSize": 6671,
+        "decodedBodySize": 17967,
+        "duration": 167.6999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/lib/bot/nusa-v7/reasoning.mjs",
+        "transferSize": 6738,
+        "decodedBodySize": 18972,
+        "duration": 177.90000000000873
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/assets/brand/logo.png",
+        "transferSize": 95840,
+        "decodedBodySize": 95540,
+        "duration": 239.8000000000029
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/assets/avatars/human.webp",
+        "transferSize": 18536,
+        "decodedBodySize": 18236,
+        "duration": 138.89999999999418
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/assets/pawns/pawn-tokens.png",
+        "transferSize": 172637,
+        "decodedBodySize": 172337,
+        "duration": 288.6999999999971
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/assets/avatars/raka.webp",
+        "transferSize": 19142,
+        "decodedBodySize": 18842,
+        "duration": 182.89999999999418
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/assets/avatars/sari.webp",
+        "transferSize": 18840,
+        "decodedBodySize": 18540,
+        "duration": 150.09999999999127
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/assets/avatars/bima.webp",
+        "transferSize": 18714,
+        "decodedBodySize": 18414,
+        "duration": 234.79999999998836
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/api/online?config=1",
+        "transferSize": 613,
+        "decodedBodySize": 313,
+        "duration": 977.6000000000058
+      },
+      {
+        "name": "https://monopoli-nusantara-eight.vercel.app/api/bot",
+        "transferSize": 371,
+        "decodedBodySize": 71,
+        "duration": 989.2999999999884
+      }
+    ],
+    "memory": {
+      "usedJSHeapSize": 10000000,
+      "totalJSHeapSize": 10000000
+    }
+  }
+}

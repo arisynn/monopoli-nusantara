@@ -1,0 +1,5 @@
+
+> monopoli-nusantara@4.11.6 test:online:rooms
+> node --experimental-strip-types scripts/test-online-room-browser.mjs
+
+14 online room browser scenarios passed.

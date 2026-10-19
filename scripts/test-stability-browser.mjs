@@ -13,7 +13,7 @@ const browser=await chromium.launch({executablePath:process.env.MN_CHROMIUM_PATH
 const checks=[],errors=[];
 const fixture=n=>createGame({players:Array.from({length:n},(_,i)=>({name:'P'+i,controller:'human'})),startingRoll:false},()=>.2);
 async function context({locks=true,viewport={width:390,height:844}}={}) {
- const ctx=await browser.newContext({viewport,serviceWorkers:'block'});
+ const ctx=await browser.newContext({viewport,serviceWorkers:'block'});await ctx.addInitScript(()=>{try{localStorage.setItem('nusantara-player-name','QA Pemain')}catch{}const original=crypto.getRandomValues.bind(crypto);crypto.getRandomValues=array=>{if(array instanceof Uint32Array&&array.length===1){array[0]=2;return array;}return original(array)};});
  if(!locks)await ctx.addInitScript(()=>Object.defineProperty(navigator,'locks',{value:undefined}));
  ctx.on('page',page=>page.on('pageerror',e=>errors.push(e.message)));
  return ctx;

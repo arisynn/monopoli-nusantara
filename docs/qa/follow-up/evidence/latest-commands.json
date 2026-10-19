@@ -1,0 +1,94 @@
+[
+  {
+    "command": "npm test",
+    "exitCode": 0,
+    "durationSeconds": 37.647,
+    "log": "docs/qa/follow-up/evidence/recheck-00.log"
+  },
+  {
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "durationSeconds": 2.09,
+    "log": "docs/qa/follow-up/evidence/recheck-05.log"
+  },
+  {
+    "command": "npm run check:source",
+    "exitCode": 0,
+    "durationSeconds": 0.922,
+    "log": "docs/qa/follow-up/evidence/recheck-06.log"
+  },
+  {
+    "command": "npm run test:online",
+    "exitCode": 0,
+    "durationSeconds": 0.616,
+    "log": "docs/qa/follow-up/evidence/check-03.log"
+  },
+  {
+    "command": "npm run test:browser",
+    "exitCode": 0,
+    "durationSeconds": 44.163,
+    "log": "docs/qa/follow-up/evidence/check-04.log"
+  },
+  {
+    "command": "npm run test:portrait",
+    "exitCode": 0,
+    "durationSeconds": 156.735,
+    "timingMethod": "Node process start to report write; excludes npm startup",
+    "log": "docs/qa/follow-up/evidence/portrait-complete.log"
+  },
+  {
+    "command": "npm run test:auction",
+    "exitCode": 0,
+    "durationSeconds": 51.392,
+    "log": "docs/qa/follow-up/evidence/recheck-02.log"
+  },
+  {
+    "command": "npm run test:stability",
+    "exitCode": 0,
+    "durationSeconds": 17.4,
+    "timingMethod": "Log creation to report write, approximately one second precision",
+    "log": "docs/qa/follow-up/evidence/stability-final.log"
+  },
+  {
+    "command": "npm run test:bank",
+    "exitCode": 0,
+    "durationSeconds": 25.367,
+    "log": "docs/qa/follow-up/evidence/recheck-04.log"
+  },
+  {
+    "command": "npm run test:ui:4114:browser",
+    "exitCode": 0,
+    "durationSeconds": 61.108,
+    "log": "docs/qa/follow-up/evidence/check-09.log"
+  },
+  {
+    "command": "npm run test:trade:results:browser",
+    "exitCode": 0,
+    "durationSeconds": 58.631,
+    "log": "docs/qa/follow-up/evidence/check-10.log"
+  },
+  {
+    "command": "npm run test:online:rooms",
+    "exitCode": 0,
+    "durationSeconds": 53.493,
+    "log": "docs/qa/follow-up/evidence/check-11.log"
+  },
+  {
+    "command": "npm run test:pwa:browser",
+    "exitCode": 0,
+    "durationSeconds": 7.157,
+    "log": "docs/qa/follow-up/evidence/check-12.log"
+  },
+  {
+    "command": "npm run test:hold:batch:browser",
+    "exitCode": 0,
+    "durationSeconds": 32.895,
+    "log": "docs/qa/follow-up/evidence/check-13.log"
+  },
+  {
+    "command": "node scripts/verify-speed-model.mjs",
+    "exitCode": 0,
+    "durationSeconds": 0.073,
+    "log": "docs/qa/follow-up/evidence/recheck-07.log"
+  }
+]

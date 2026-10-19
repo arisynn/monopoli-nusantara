@@ -1,0 +1,1059 @@
+diff --git a/README.md b/README.md
+index 46aec10..b4e5e77 100644
+--- a/README.md
++++ b/README.md
+@@ -1,5 +1,7 @@
+ # Monopoli Nusantara 4.11.6
+ 
++> **Perbaikan QA lokal (belum dipush/deploy):** notifikasi gaji, sewa, pajak, kartu dan hasil barter memakai modal bersama tanpa tombol Tutup, lalu menutup otomatis. Footer transaksi lama dan layout portrait pendek diperbaiki. Status worker diperiksa sebelum menambah bot. Rincian dan hasil verifikasi terbaru: [laporan perbaikan QA](docs/qa/follow-up/FIX_REPORT.md). Catatan rilis di bawah adalah riwayat basis 4.11.6.
++
+ Update 4.11.6 menambahkan modal hasil barter diterima, ditolak, atau dibatalkan, dengan rincian properti, uang dan kartu yang diterima/diberikan. Modal memakai komponen yang sudah ada dan menunggu ditutup. Board, pion, engine dan model V23.2 tetap sama. Panduan: [TRADE_RESULTS_4116_UPDATE.md](docs/TRADE_RESULTS_4116_UPDATE.md).
+ 
+ Rilis aktif: dadu tahan–lepas dengan CSPRNG yang tetap sama; bot tetap melempar otomatis. Bangun banyak kini memakai satu request dan satu commit atomik, dengan satu penyajian hasil. Jumlah satu tetap dapat diarahkan ke properti tertentu. Lobby padat, penutup popup teks, notifikasi sewa, dan Pegadaian tetap tersedia. Panduan update GitHub/Vercel/Termux beserta audit dan benchmark: [HOLD_BATCH_4115_UPDATE.md](docs/HOLD_BATCH_4115_UPDATE.md).
+diff --git a/docs/RULEPACK.md b/docs/RULEPACK.md
+index fdfd2e1..ad030b7 100644
+--- a/docs/RULEPACK.md
++++ b/docs/RULEPACK.md
+@@ -24,7 +24,7 @@ Pilihan ditetapkan saat membuat permainan/room. Pemain lain melihatnya di lobby.
+ | Sertifikat | 28 aset dengan harga, sewa, nilai gadai, tebus, dan biaya bangun jika kota | Hlm. 1–2; batas verifikasi di bawah |
+ | Dadu | Kembar memberi lempar ulang; kembar ketiga langsung penjara | Hlm. 2 |
+ | Beli / tolak | Beli pada harga sertifikat atau lelang untuk semua, termasuk pemain yang menolak | Hlm. 1 |
+-| Lelang properti | Terbuka: semua peserta boleh BID. Mulai Rp100; kelipatan Rp10; kenaikan minimal Rp10 | Hlm. 1 |
++| Lelang properti | Terbuka: semua peserta boleh BID. Mulai ₦5; kelipatan ₦5; kenaikan minimal ₦5 (50 unit dasar engine) | Hlm. 1 |
+ | Sewa kota | Sesuai tingkat bangunan; tanah kosong dalam set lengkap 2×; aset tergadai tidak menagih | Hlm. 1–2 |
+ | Stasiun | 1/2/3/4: Rp250/500/1.000/2.000 | Hlm. 2 |
+ | Utilitas | Dua dadu baru untuk sewa; 4× atau 10× jumlah ×Rp10. Dadu sewa terpisah dari dadu gerak | Hlm. 2 |
+@@ -55,7 +55,7 @@ Pilihan ditetapkan saat membuat permainan/room. Pemain lain melihatnya di lobby.
+ 4. **Cadangan lelang:** kas penawaran tertinggi tidak boleh dihabiskan melalui barter/tebus. Kelompok yang diperlukan untuk bangunan yang ditawar harus tetap memenuhi syarat. Penjualan dan gadai aset lain dapat menggalang kas.
+ 5. **Penjualan seluruh set:** tombol menjual semua bangunan sekaligus meringkas urutan penjualan merata. Untuk hotel ketika stok empat rumah tidak tersedia, digunakan klarifikasi penjualan hotel satu kelompok dari rulebook Hasbro 00009 hlm. 7; C1009 sendiri tidak merinci kasus tersebut. Sumber pembanding: https://www.hasbro.com/common/instruct/00009.pdf . Aturan pajak, utilitas, batas klaim sewa, dan lelang dari edisi lama tersebut tidak dipakai.
+ 6. **Pembayaran kepada beberapa pemain:** kartu diselesaikan berurutan menurut kursi. Rulebook ringkas tidak merinci distribusi saat insolven pada beberapa kreditur sekaligus.
+-7. **Bank:** pembukuan digital tanpa pecahan uang kertas; bank tidak dibatasi kas fisik. Satuan bid Rp10 setara satu unit dasar rulebook.
++7. **Bank:** pembukuan digital tanpa pecahan uang kertas; bank tidak dibatasi kas fisik. Nominal antarmuka memakai Nusa: 10 unit dasar engine = ₦1. Sejak pembaruan lelang aktif, pembuka dan kenaikan minimal adalah ₦5 (50 unit dasar engine); ini prosedur digital Nusantara yang disengaja.
+ 
+ ## Batas verifikasi yang tidak boleh disembunyikan
+ 
+diff --git a/docs/TRADE_RESULTS_4116_UPDATE.md b/docs/TRADE_RESULTS_4116_UPDATE.md
+index d5ce191..f76ca12 100644
+--- a/docs/TRADE_RESULTS_4116_UPDATE.md
++++ b/docs/TRADE_RESULTS_4116_UPDATE.md
+@@ -1,5 +1,7 @@
+ # NUSA 4.11.6 — Popup hasil barter
+ 
++> **Perilaku terbaru pada branch perbaikan QA:** hasil barter kini menutup otomatis setelah waktu baca 4,5–12 detik dan tidak memiliki tombol Tutup. Timer berhenti ketika tab tersembunyi atau modal tertutup layar lain; hasil yang belum ditampilkan tetap menunggu. Transfer tetap dilakukan sekali oleh engine. Bagian berikut mencatat perilaku rilis basis sebelum perubahan ini. Lihat [laporan perbaikan](qa/follow-up/FIX_REPORT.md).
++
+ Basis: paket NUSA_ONLINE_TERMUX_4.11.5.zip yang diunggah pengguna.
+ 
+ ## Perubahan
+diff --git a/frontend/app.mjs b/frontend/app.mjs
+index 8e89946..bb77d81 100644
+--- a/frontend/app.mjs
++++ b/frontend/app.mjs
+@@ -6,7 +6,7 @@ import { normalizeAmountInput } from "./number-input.mjs";
+ import { auctionIdentity } from "../lib/auction-presentation.mjs";
+ import { APP_VERSION } from "../lib/version.mjs";
+ import { activitySummary, capsuleFeedback } from "./economy-view.mjs";
+-import { onlineStatus } from "./online-status.mjs";
++import { onlineStatus, onlineBotAvailability } from "./online-status.mjs";
+ import { decorateCurrency } from "./currency-view.mjs";
+ import { enhanceSelections } from "./selections.mjs";
+ import { TradeDrafts, draftScope, emptyTrade } from "./trade-drafts.mjs";
+@@ -235,7 +235,7 @@ function lobbyHTML() {
+   return `${topbar()}<main class="lobby"><section class="lobby-panel" aria-label="Lobby permainan"><div id="lobby-content"></div></section><p class="version-line">Monopoli Nusantara · Klasik ${APP_VERSION}</p></main><div id="page-status" class="page-status" role="status"></div>`;
+ }
+ function gameplayHTML() {
+-  return `${topbar()}<main class="gameplay"><section class="players" aria-label="Pemain"></section><div class="connection-note" hidden></div><section class="board-stage" aria-label="Papan 40 petak"><div class="board-view" tabindex="0" aria-label="Papan Nusantara, ketuk petak, geser atau cubit untuk menjelajah"><svg role="group" aria-label="Papan permainan"><g></g></svg></div><button type="button" class="bank-indicator" data-action="bank" aria-label="Bank Nusantara, lihat rincian ekonomi">${lucideIcon("bank", 18)}<span><small>Nusa beredar</small><b id="bank-circulation"></b></span>${lucideIcon("arrow", 12)}</button></section><section class="gameplay-info" aria-label="Aktivitas, petak dan dadu"><button class="activity" data-action="history" aria-label="Riwayat aktivitas dan transaksi"><span id="activity-text"></span><span id="activity-money"></span></button><button class="tile-caption" data-action="selectedProperty"></button><div class="dice-tray" aria-live="polite"></div></section><section class="action-console" aria-label="Aksi permainan"><div class="turn-heading"></div><div class="console-row"><div class="quick-actions"><button class="property-button" data-action="ownAssets" aria-label="Properti Saya" title="Properti Saya">${icon("assets", 22)}<span>Aset</span></button><button class="property-button" data-action="trade" aria-label="Perdagangan dan barter" title="Barter">${icon("trade", 22)}<span>Barter</span></button></div><button class="roll-button primary" data-action="primary"></button></div><div id="page-status" class="page-status" role="status"></div></section></main>`;
++  return `${topbar()}<main class="gameplay"><section class="players" aria-label="Pemain"></section><div class="connection-note" hidden></div><div class="board-slot"><section class="board-stage" aria-label="Papan 40 petak"><div class="board-view" tabindex="0" aria-label="Papan Nusantara, ketuk petak, geser atau cubit untuk menjelajah"><svg role="group" aria-label="Papan permainan"><g></g></svg></div><button type="button" class="bank-indicator" data-action="bank" aria-label="Bank Nusantara, lihat rincian ekonomi">${lucideIcon("bank", 18)}<span><small>Nusa beredar</small><b id="bank-circulation"></b></span>${lucideIcon("arrow", 12)}</button></section></div><section class="gameplay-info" aria-label="Aktivitas, petak dan dadu"><button class="activity" data-action="history" aria-label="Riwayat aktivitas dan transaksi"><span id="activity-text"></span><span id="activity-money"></span></button><button class="tile-caption" data-action="selectedProperty"></button><div class="dice-tray" aria-live="polite"></div></section><section class="action-console" aria-label="Aksi permainan"><div class="turn-heading"></div><div class="console-row"><div class="quick-actions"><button class="property-button" data-action="ownAssets" aria-label="Properti Saya" title="Properti Saya">${icon("assets", 22)}<span>Aset</span></button><button class="property-button" data-action="trade" aria-label="Perdagangan dan barter" title="Barter">${icon("trade", 22)}<span>Barter</span></button></div><button class="roll-button primary" data-action="primary"></button></div><div id="page-status" class="page-status" role="status"></div></section></main>`;
+ }
+ function lobbyContent() {
+   const r = session.online,
+@@ -273,7 +273,7 @@ function lobbyContent() {
+     },
+   ).join(
+     "",
+-  )}</div>${isRoom ? `<div class="lobby-tools">${btn(r.seats[r.seat]?.ready ? "Batal siap" : "Saya siap", "ready", { primary: true, disabled: session.pending || !session.connected })}${btn("Pilih pion", "pawn", { disabled: session.pending })}${host ? btn(session.config?.onlineBots ? "Tambah bot" : "Status bot", "addBotPopup", { disabled: session.pending || (session.config?.onlineBots && (players.filter((p) => p.controller === "bot").length >= 3 || players.length + 1 + Math.max(0, 2 - humanCount) > r.capacity)) }) : ""}</div>${host ? btn("Mulai permainan", "startRoom", { primary: true, disabled: session.pending || !canStart, sym: "play" }) : '<p class="inline-note">Menunggu host memulai pertandingan.</p>'}<div class="room-lobby-actions">${btn("Kelola room", "room", { sym: "people" })}${btn("Keluar room", "leaveRoomConfirm", { disabled: session.pending, sym: "home" })}</div><p class="lobby-hint">Minimal dua manusia. Semua manusia harus siap dan terhubung.</p>` : `${btn("Mulai VS Bot", "startLocal", { primary: true, disabled: session.pending, sym: "play" })}<div class="lobby-secondary">${btn("Main Online", "onlineEntry", { sym: "people" })}${btn("Lanjutkan", "resume", { sym: "save", disabled: (!session.saved?.room && !session.saved?.state) || session.pending })}</div>`}`;
++  )}</div>${isRoom ? `<div class="lobby-tools">${btn(r.seats[r.seat]?.ready ? "Batal siap" : "Saya siap", "ready", { primary: true, disabled: session.pending || !session.connected })}${btn("Pilih pion", "pawn", { disabled: session.pending })}${host ? btn(session.config?.onlineBots && session.online?.worker?.status !== "offline" ? "Tambah bot" : "Status bot", "addBotPopup", { disabled: session.pending || (session.config?.onlineBots && (players.filter((p) => p.controller === "bot").length >= 3 || players.length + 1 + Math.max(0, 2 - humanCount) > r.capacity)) }) : ""}</div>${host ? btn("Mulai permainan", "startRoom", { primary: true, disabled: session.pending || !canStart, sym: "play" }) : '<p class="inline-note">Menunggu host memulai pertandingan.</p>'}<div class="room-lobby-actions">${btn("Kelola room", "room", { sym: "people" })}${btn("Keluar room", "leaveRoomConfirm", { disabled: session.pending, sym: "home" })}</div><p class="lobby-hint">Minimal dua manusia. Semua manusia harus siap dan terhubung.</p>` : `${btn("Mulai VS Bot", "startLocal", { primary: true, disabled: session.pending, sym: "play" })}<div class="lobby-secondary">${btn("Main Online", "onlineEntry", { sym: "people" })}${btn("Lanjutkan", "resume", { sym: "save", disabled: (!session.saved?.room && !session.saved?.state) || session.pending })}</div>`}`;
+ }
+ function playerCards() {
+   const s = session.view,
+@@ -443,7 +443,6 @@ function render() {
+     decorateCurrency(page);
+     renderDialog();
+     rollInput.sync();
+-    renderNotice();
+     document.documentElement.classList.toggle("reduced", session.reduced);
+     document.documentElement.classList.toggle("playing", screen === "gameplay");
+   } catch (e) {
+@@ -578,6 +577,14 @@ function open(p) {
+       ui.assetTab = "all";
+     restoreAssetView();
+   }
++  if (p.kind === "addBotPopup" && session.auth?.request) {
++    ui.botChecking = true;
++    ui.botHealth = null;
++    void session.auth.request("?diagnostics=1")
++      .then((health) => { ui.botHealth = health; })
++      .catch(() => { ui.botHealth = { unavailable: true }; })
++      .finally(() => { ui.botChecking = false; queueRender(); });
++  }
+   session.setCovered(ui.popup.kind !== "tradeIncoming", {
+     assets:
+       ["assets", "debt", "buildOrder"].includes(ui.popup.kind) &&
+@@ -603,6 +610,11 @@ function open(p) {
+ }
+ function close() {
+   const receipt = currentPopup();
++  if (receipt?.kind === "notice") {
++    session.dismissNotice(receipt.notice.id);
++    queueRender();
++    return;
++  }
+   if (receipt?.kind === "tradeResult") {
+     session.dismissTradeResult(receipt.result.id);
+     queueRender();
+@@ -724,6 +736,8 @@ function currentPopup() {
+   if (session.screen !== "gameplay" || session.paused) return null;
+   if (session.tradeResultReady)
+     return { kind: "tradeResult", key: session.tradeResultReady.id, result: session.tradeResultReady };
++  if (session.noticeReady)
++    return { kind: "notice", key: session.noticeReady.id, notice: session.noticeReady };
+   const p = autoPopup(
+     session.interactionState,
+     session.state,
+@@ -1022,7 +1036,8 @@ function auxiliary(p) {
+             : `<label class="field">Nama cadangan<input name="saveLabel" maxlength="48" value="${esc(ui.saveLabel)}"></label>${(ui.saves || []).map((x) => `<div class="save-slot"><div><b>${esc(x.label || x.id)}</b><small>${x.state ? "Ronde " + x.state.round + " · " + x.state.players.length + " peserta" : "Kosong"}</small></div>${x.id !== "previous" ? btn("Simpan", "saveSlot", { extra: `data-id="${x.id}"`, disabled: !session.state }) : ""}${btn("Muat", "loadSlot", { extra: `data-id="${x.id}"`, disabled: !x.state })}</div>`).join("")}<div class="lobby-tools">${btn("Ekspor JSON", "export", { disabled: !session.state })}${btn("Impor JSON", "import")}</div><input type="file" id="save-file" accept="application/json,.json" hidden>`),
+         footer: btn("Tutup", "close"),
+       };
+-    case "addBotPopup":
++    case "addBotPopup": {
++      const availability = onlineBotAvailability(session, ui.botHealth);
+       if (!session.config?.onlineBots)
+         return {
+           title: "Bot Online",
+@@ -1032,7 +1047,7 @@ function auxiliary(p) {
+               "Bot online belum aktif",
+               "Room ini tetap dapat dimainkan bersama pemain manusia.",
+             ) +
+-            `<p class="body-copy">${ui.botHealth?.capabilities ? (!ui.botHealth.capabilities.workerConfigured || !ui.botHealth.capabilities.schedulerConfigured ? "Layanan bot belum selesai disiapkan di server." : "Layanan sudah terpasang; bot online belum diaktifkan oleh server.") : ui.botHealth?.code === "online_migration_required" ? "Server room perlu diperbarui agar bot dan pengelolaan room tersedia." : ui.botHealth?.unavailable ? "Status layanan belum dapat diperiksa. Coba lagi." : "Layanan bot online belum tersedia di server. Periksa lagi setelah layanan diaktifkan."}</p>`,
++            `<p class="body-copy">${ui.botChecking ? "Memeriksa ketersediaan bot…" : esc(availability.message)}</p>`,
+           footer:
+             btn(
+               ui.botChecking ? "Memeriksa…" : "Periksa ulang",
+@@ -1046,14 +1061,15 @@ function auxiliary(p) {
+           lead(
+             "people",
+             "Bot di Room",
+-            "Pilih karakter untuk kursi kosong, tanpa duplikasi.",
++            ui.botChecking ? "Memeriksa ketersediaan bot…" : availability.message,
+           ) +
+           `<div class="bot-room-settings"><div><small>KARAKTER BOT</small><button type="button" class="bot-config-row" data-action="pickBotOnline">${esc(availableRoomPersona()?.name || "Tidak tersedia")}${icon("arrow", 16)}</button></div></div><p class="inline-note">Pilih salah satu dari enam model unik. Maksimal tiga bot per room, dan minimal dua pemain manusia.</p>`,
+         footer: btn("Tambahkan bot", "addBot", {
+           primary: true,
+-          disabled: session.pending,
+-        }),
++          disabled: session.pending || ui.botChecking || !availability.ready,
++        }) + btn("Periksa ulang", "retryOnline", { disabled: ui.botChecking }),
+       };
++    }
+     case "leaveRoomConfirm":
+       return {
+         title: "Keluar Room",
+@@ -1095,26 +1111,14 @@ function auxiliary(p) {
+   }
+   return null;
+ }
+-function renderNotice() {
+-  const el = document.querySelector("#game-notice"),
+-    n = session.notices.current;
+-  el.hidden =
+-    !n ||
+-    dialog.open ||
+-    session.paused ||
+-    session.hidden ||
+-    session.screen !== "gameplay";
+-  if (el.hidden) return;
+-  const html = `<span class="notice-symbol">${icon(n.kind === "rent" ? "home" : "info", 24)}</span><div><b>${esc(n.title)}${n.amount ? ` <strong>+ ${esc(money(n.amount))}</strong>` : ""}</b><p>${esc(n.text)}</p></div>`;
+-  if (el.innerHTML !== html) {
+-    el.innerHTML = html;
+-    decorateCurrency(el);
+-  }
+-  el.dataset.kind = n.kind;
+-}
+ function renderDialog() {
+   const candidate = currentPopup(),
+     p = passivePopup(candidate) ? null : candidate;
++  const receipt = session.tradeResults.current;
++  session.tradeResultAutoClose.sync(receipt?.id ?? null,
++    Math.min(12000, Math.max(4500, 1800 + (receipt?.text || "").split(/\s+/).length * 180)),
++    p?.kind === "tradeResult" && !session.hidden && !session.paused && !session.covered,
++    (id) => session.dismissTradeResult(id));
+   layers.sync(!!p);
+   if (!p) {
+     if (dialog.open) {
+@@ -1124,9 +1128,12 @@ function renderDialog() {
+     popupKey = "";
+     popupHTML = "";
+     footerHTML = "";
++    dialogFooter.replaceChildren();
++    dialogFooter.hidden = true;
+     renderedAssetKey = "";
+     return;
+   }
++  if (p.kind === "notice") session.notices.present(p.notice.id);
+   if (p.kind === "auction") {
+     const identity = auctionIdentity(session.interactionState);
+     if (ui.auctionId !== identity) {
+@@ -1217,7 +1224,7 @@ function renderDialog() {
+     p.kind === "auction" || !!p.event?.auctionResult,
+   );
+   dialogClose.disabled = p.kind === "buildOrder" && session.pending;
+-  dialogClose.hidden = readingCard(p);
++  dialogClose.hidden = readingCard(p) || ["notice", "tradeResult"].includes(p.kind);
+   dialogClose.textContent = dismissalLabel(p);
+   dialogClose.dataset.action = dismissalAction(p);
+   dialogFooter.hidden = !dialogFooter.querySelector("button");
+@@ -1226,6 +1233,8 @@ function renderDialog() {
+     dialogFooter.querySelectorAll(":scope > button").length,
+   );
+   if (!dialog.open) dialog.showModal();
++  if (p.kind === "notice")
++    session.notices.sync(!session.hidden && !session.paused && !session.covered);
+   if (name) {
+     const replacement =
+       dialog.querySelector(`[data-selection-name="${CSS.escape(name)}"]`) ||
+diff --git a/frontend/feedback.mjs b/frontend/feedback.mjs
+index 09f805c..f29cbfe 100644
+--- a/frontend/feedback.mjs
++++ b/frontend/feedback.mjs
+@@ -1,6 +1,7 @@
+-import { BOARD, money } from "../lib/content.mjs";
++import { BOARD } from "../lib/content.mjs";
+ import { gameplayDecision } from "../lib/gameplay-presentation.mjs";
+ import { nusaText } from "../lib/currency.mjs";
++import { AutoDismiss } from "./auto-dismiss.mjs";
+ 
+ // Presentation only: no transfers, claims or game decisions happen here.
+ export const readingTime = (text = "") =>
+@@ -12,13 +13,29 @@ export const readingTime = (text = "") =>
+ export class GameNotices {
+   constructor({ changed = () => {}, clock = Date.now } = {}) {
+     this.changed = changed;
+-    this.clock = clock;
++    this.autoClose = new AutoDismiss({ clock });
+     this.cursor = null;
+     this.queue = [];
++    this.presented = null;
+   }
+   get current() {
+     return this.queue[0] || null;
+   }
++  get displayed() {
++    return this.current?.id === this.presented ? this.current : null;
++  }
++  present(id) {
++    if (!id || this.current?.id !== id) return false;
++    this.presented = id;
++    return true;
++  }
++  dismiss(id) {
++    if (!id || this.current?.id !== id) return false;
++    this.autoClose.reset();
++    this.queue.shift();
++    this.presented = null;
++    return true;
++  }
+   ingest(state, seat, baseline = false) {
+     const next = state && {
+       match: state.matchId,
+@@ -48,6 +65,7 @@ export class GameNotices {
+             kind: "rent",
+             title: "Terima sewa",
+             amount: t.amount,
++            direction: "in",
+             count: 1,
+             text: `${state.players[t.from]?.name || "Pemain"} · ${BOARD[t.tile]?.name || "Properti"}`,
+             duration: 2800,
+@@ -57,7 +75,9 @@ export class GameNotices {
+             id,
+             kind: "payment",
+             title: t.kind === "rent" ? "Sewa dibayar" : "Pajak dibayar",
+-            text: `${money(t.amount)} · ${BOARD[t.tile]?.name || "Pembayaran tercatat"}`,
++            amount: t.amount,
++            direction: "out",
++            text: `${BOARD[t.tile]?.name || "Pembayaran tercatat"}${t.to !== null ? " · " + (state.players[t.to]?.name || "Pemain") : " · Bank"}`,
+             duration: 2600,
+           });
+         } else if (["salary", "card"].includes(t.kind) && t.to === seat) {
+@@ -65,7 +85,12 @@ export class GameNotices {
+             id,
+             kind: "bonus",
+             title: t.kind === "salary" ? "Melewati Mulai" : "Nusa diterima",
+-            text: `+ ${money(t.amount)}${t.card?.title ? " · " + t.card.title : ""}`,
++            amount: t.amount,
++            direction: "in",
++            text:
++              t.kind === "salary"
++                ? "Gaji melewati petak Mulai sudah diterima."
++                : t.card?.title || "Pembayaran kartu sudah tercatat.",
+             duration: 2800,
+           });
+         }
+@@ -109,32 +134,27 @@ export class GameNotices {
+       rent.text = `${rent.count} pembayaran sewa · detail di Riwayat`;
+       return;
+     }
+-    // A burst must never leave the player reading a long backlog of old alerts.
++    // Keep the open modal stable and bound bursts; full details stay in History.
+     if (this.queue.length >= 4) this.queue.splice(1, 1);
+-    this.queue.push({ ...notice, remaining: notice.duration });
++    this.queue.push({ ...notice });
+   }
+   sync(active) {
+-    if (this.timer && !active) {
+-      clearTimeout(this.timer);
+-      this.timer = null;
+-      if (this.current)
+-        this.current.remaining = Math.max(
+-          0,
+-          this.current.remaining - (this.clock() - this.started),
+-        );
+-    }
+-    if (!active || this.timer || !this.current) return;
+     const notice = this.current;
+-    this.started = this.clock();
+-    this.timer = setTimeout(() => {
+-      this.timer = null;
+-      if (this.current === notice) this.queue.shift();
+-      this.changed();
+-    }, notice.remaining);
++    this.autoClose.sync(
++      notice?.id ?? null,
++      notice?.duration ?? 0,
++      active && !!this.displayed,
++      (id) => {
++        this.dismiss(id);
++        this.changed();
++      },
++    );
+   }
+   dispose() {
+-    clearTimeout(this.timer);
+-    this.timer = null;
++    this.autoClose.reset();
++    this.queue = [];
++    this.cursor = null;
++    this.presented = null;
+   }
+ }
+ 
+diff --git a/frontend/index.html b/frontend/index.html
+index 2cc7110..26f4730 100644
+--- a/frontend/index.html
++++ b/frontend/index.html
+@@ -43,14 +43,6 @@
+         Tutup
+       </button>
+     </dialog>
+-    <aside
+-      id="game-notice"
+-      class="game-notice"
+-      role="status"
+-      aria-live="polite"
+-      aria-atomic="true"
+-      hidden
+-    ></aside>
+     <noscript
+       ><p class="no-script">
+         Aktifkan JavaScript untuk bermain Nusantara.
+diff --git a/frontend/online-status.mjs b/frontend/online-status.mjs
+index 78f11db..335b078 100644
+--- a/frontend/online-status.mjs
++++ b/frontend/online-status.mjs
+@@ -1,4 +1,40 @@
+ // Public UI states only. Presence of configuration is never a live connectivity claim.
++export function onlineBotAvailability(session, health) {
++  const capabilities = health?.capabilities;
++  if (!session.config?.onlineBots)
++    return { ready: false, message: "Bot online belum diaktifkan di server." };
++  if (
++    session.online?.worker?.status === "offline" ||
++    (capabilities?.workerProvider === "termux" && !capabilities.workerAlive)
++  )
++    return {
++      ready: false,
++      message:
++        "Bot online sedang offline. Coba periksa lagi nanti. Room tetap dapat dimainkan oleh manusia.",
++    };
++  if (
++    capabilities &&
++    (!capabilities.workerConfigured ||
++      (capabilities.workerProvider !== "termux" &&
++        !capabilities.schedulerConfigured))
++  )
++    return {
++      ready: false,
++      message:
++        "Layanan bot belum siap di server. Room tetap dapat dimainkan oleh manusia.",
++    };
++  if (!capabilities)
++    return {
++      ready: false,
++      message:
++        "Status bot belum dapat dipastikan. Periksa ulang sebelum menambahkan bot.",
++    };
++  return {
++    ready: true,
++    message:
++      "Bot tersedia. Pilih karakter untuk kursi kosong, tanpa duplikasi.",
++  };
++}
+ export function onlineStatus(session) {
+   if (session.configStatus === "error")
+     return {
+@@ -32,9 +68,16 @@ export function onlineStatus(session) {
+       label: "Koneksi terputus",
+       detail: "Mengambil state terbaru sebelum permainan dilanjutkan.",
+     };
+-  if(session.online?.worker?.provider==='termux'&&session.online.worker.status==='offline')return {
+-    code:'worker-offline',label:'Bot menunggu worker',detail:'Worker bot sedang offline. Pertandingan tersimpan dan bot melanjutkan setelah worker terhubung.'
+-  };
++  if (
++    session.online?.worker?.provider === "termux" &&
++    session.online.worker.status === "offline"
++  )
++    return {
++      code: "worker-offline",
++      label: "Bot menunggu worker",
++      detail:
++        "Worker bot sedang offline. Pertandingan tersimpan dan bot melanjutkan setelah worker terhubung.",
++    };
+   return {
+     code: "available",
+     label: session.room ? "Room terhubung" : "Identitas tersedia",
+diff --git a/frontend/popups.mjs b/frontend/popups.mjs
+index 2abfc88..12abfab 100644
+--- a/frontend/popups.mjs
++++ b/frontend/popups.mjs
+@@ -634,6 +634,21 @@ export function renderPopup(session, ui, p) {
+   };
+   let content;
+   switch (p.kind) {
++    case "notice": {
++      const n = p.notice,
++        incoming = n.direction === "in";
++      content = {
++        title: n.title,
++        html:
++          lead(n.kind === "rent" ? "home" : "info", n.title) +
++          (n.amount > 0
++            ? `<div class="big-amount ${incoming ? "positive" : "negative"}">${incoming ? "+" : "−"} ${amount(n.amount)}</div>`
++            : "") +
++          `<p class="body-copy">${esc(n.text)}</p>`,
++        footer: "",
++      };
++      break;
++    }
+     case "rentClaims":
+       content = {
+         title: "Tagih Sewa",
+diff --git a/frontend/session.mjs b/frontend/session.mjs
+index 90b0f9b..0d54ad7 100644
+--- a/frontend/session.mjs
++++ b/frontend/session.mjs
+@@ -41,7 +41,7 @@ import { localBotActor, humanSeat } from "./domain.mjs";
+ import {OnlinePerformance} from "../lib/online-performance.mjs";
+ import {adaptOnlineTimeline,onlineInteractiveHead} from "../lib/online-presentation.mjs";
+ import { GameNotices, CardReader } from "./feedback.mjs";
+-import { canPresentDecision } from "../lib/gameplay-presentation.mjs";
++import { AutoDismiss } from "./auto-dismiss.mjs";
+ import { commandBuildBatch } from "../lib/build-batch.mjs";
+ export class GameSession extends EventTarget {
+   constructor({
+@@ -66,6 +66,7 @@ export class GameSession extends EventTarget {
+     this.screen = "lobby";
+     this.notices = new GameNotices({ clock, changed: () => this.notify() });
+     this.tradeResults = new TradeResults();
++    this.tradeResultAutoClose = new AutoDismiss({ clock });
+     this.cardReader = new CardReader({ clock, changed: () => this.notify() });
+     this.state = null;
+     this.model = null;
+@@ -121,7 +122,11 @@ export class GameSession extends EventTarget {
+     return this.model?.queue[0] || null;
+   }
+   get tradeResultReady() {
+-    return this.screen === "gameplay" && !this.pending && !this.paused && !this.head
++    const showing =
++      this.tradeResultAutoClose.displayed &&
++      this.tradeResultAutoClose.key === this.tradeResults.current?.id;
++    return this.screen === "gameplay" && !this.pending && !this.paused &&
++      (!this.head || showing)
+       ? this.tradeResults.current : null;
+   }
+   dismissTradeResult(id) {
+@@ -129,6 +134,16 @@ export class GameSession extends EventTarget {
+     this.notify();
+     return true;
+   }
++  get noticeReady() {
++    return this.screen === "gameplay" && !this.pending && !this.paused &&
++      (!this.head || this.notices.displayed)
++      ? this.notices.current : null;
++  }
++  dismissNotice(id) {
++    if (!this.notices.dismiss(id)) return false;
++    this.notify();
++    return true;
++  }
+   get seat() {
+     return humanSeat(this.state, this.room);
+   }
+@@ -676,8 +691,10 @@ export class GameSession extends EventTarget {
+   }
+   schedule() {
+     const head = this.head;
+-    const active = this.screen === "gameplay" && !this.hidden && !this.paused && !this.covered && !this.tradeResultReady;
+-    this.notices.sync(active && !canPresentDecision(this.state, this.seat));
++    if (this.hidden || this.paused || this.covered) this.tradeResultAutoClose.pause();
++    const visible = this.screen === "gameplay" && !this.hidden && !this.paused && !this.covered;
++    this.notices.sync(visible && !this.tradeResultReady && !!this.noticeReady);
++    const active = visible && !this.tradeResultReady && !this.noticeReady;
+     this.cardReader.sync(this.state, this.seat,
+       active && !this.pending && (!head || !!liveCardDecision(head.event, this.state, this.seat)),
+       () => this.act("ACK"));
+@@ -723,6 +740,7 @@ export class GameSession extends EventTarget {
+     if (
+       !this.head &&
+       !this.tradeResults.current &&
++      !this.notices.current &&
+       !this.covered &&
+       !this.paused &&
+       !this.hidden &&
+@@ -1240,6 +1258,7 @@ export class GameSession extends EventTarget {
+     this.unsubscribe = null;
+   }
+   dispose() {
++    this.tradeResultAutoClose.reset();
+     this.notices.dispose();
+     this.cardReader.dispose();
+     this.localLease.release();
+diff --git a/frontend/styles.css b/frontend/styles.css
+index 7e72b62..ffd927d 100644
+--- a/frontend/styles.css
++++ b/frontend/styles.css
+@@ -4146,6 +4146,40 @@ select[hidden] {
+ .board-stage {
+   position: relative;
+ }
++.board-slot {
++  display: contents;
++}
++@media (orientation: portrait) and (max-width: 800px) {
++  .board-slot {
++    display: grid;
++    place-items: center;
++    flex: 1 1 0;
++    min-height: 0;
++    container-type: size;
++  }
++  .board-slot > .board-stage {
++    width: min(100%, max(0px, calc(var(--vh) - 300px)));
++    width: min(100cqw, 100cqh);
++    margin: 0;
++  }
++}
++@media (orientation: portrait) and (max-width: 800px) and (max-height: 480px) {
++  .board-stage .bank-indicator {
++    top: 50%;
++    transform: translate(-50%, -50%);
++  }
++}
++@media (orientation: portrait) and (max-width: 800px) and (max-height: 440px) {
++  .board-stage .bank-indicator {
++    width: 44px;
++    padding: 0;
++    justify-content: center;
++  }
++  .board-stage .bank-indicator > span,
++  .board-stage .bank-indicator > svg:last-child {
++    display: none;
++  }
++}
+ .bank-indicator {
+   position: absolute;
+   left: 50%;
+@@ -4952,46 +4986,9 @@ textarea,
+   outline-offset: -4px;
+ }
+ .popup-dismiss[hidden],
+-.popup-footer[hidden],
+-.game-notice[hidden] {
++.popup-footer[hidden] {
+   display: none !important;
+ }
+-.game-notice {
+-  position: fixed;
+-  top: max(64px, calc(env(safe-area-inset-top) + 20px));
+-  left: 50%;
+-  transform: translateX(-50%);
+-  z-index: 20;
+-  display: flex;
+-  align-items: center;
+-  gap: 12px;
+-  width: min(390px, calc(100vw - 28px));
+-  padding: 14px 18px;
+-  border: 1px solid #d9e8ed;
+-  border-radius: 16px;
+-  background: #fcfffff5;
+-  color: #284c5b;
+-  box-shadow: 0 8px 28px #17445a22;
+-  pointer-events: none;
+-}
+-.game-notice .notice-symbol {
+-  color: #358b82;
+-  flex-shrink: 0;
+-}
+-.game-notice b {
+-  font-size: 14px;
+-}
+-.game-notice strong {
+-  margin-left: 6px;
+-  color: #13745d;
+-  white-space: nowrap;
+-}
+-.game-notice p {
+-  font-size: 12px;
+-  line-height: 1.5;
+-  margin: 4px 0 0;
+-  overflow-wrap: anywhere;
+-}
+ .mortgage-filters {
+   display: flex;
+   gap: 6px;
+diff --git a/package.json b/package.json
+index 7233598..e08dc0f 100644
+--- a/package.json
++++ b/package.json
+@@ -12,7 +12,7 @@
+     "start": "node --env-file-if-exists=.env --experimental-strip-types --import ./adapters/node/aliases.mjs adapters/node/server.mjs",
+     "demo": "node examples/local-game.mjs",
+     "selfplay": "node examples/self-play.mjs",
+-    "test:online": "node --experimental-strip-types --test --test-isolation=none tests/online.test.mjs tests/online-client.test.mjs tests/auth-proxy.test.mjs tests/online-api.test.mjs tests/online-bots.test.mjs",
++    "test:online": "node --experimental-strip-types --import ./adapters/node/aliases.mjs --test --test-isolation=none tests/online.test.mjs tests/online-client.test.mjs tests/auth-proxy.test.mjs tests/online-api.test.mjs tests/online-bots.test.mjs",
+     "prepare:edge": "node scripts/prepare-edge-worker.mjs",
+     "benchmark:mind": "node scripts/benchmark-mind.mjs",
+     "benchmark:bots": "node scripts/benchmark-bots.mjs",
+diff --git a/scripts/test-auction-browser.mjs b/scripts/test-auction-browser.mjs
+index 855e2f0..dbe16fc 100644
+--- a/scripts/test-auction-browser.mjs
++++ b/scripts/test-auction-browser.mjs
+@@ -222,19 +222,16 @@ try {
+     await page
+       .locator("dialog[data-kind=auction] [name=bid]:disabled")
+       .waitFor();
+-    await page.locator("dialog[data-kind=event] .result-hero").waitFor();
+-    assert.equal(await page.evaluate(() => window.auctionHidden), 0);
++    await page.locator('dialog[data-kind=notice][open]').filter({hasText:'Lelang selesai'}).waitFor();
++    assert.equal(await page.locator('dialog[open] button:visible').count(), 0);
+     const done = await read(page);
+     assert.equal(done.players[1].cash, s.players[1].cash - 100);
+     assert.equal(done.assets[13].owner, 1);
+-    assert.equal(
+-      await page
+-        .locator("dialog")
+-        .evaluate((el) => getComputedStyle(el).animationName),
+-      "none",
+-    );
++    assert.equal(await page.locator("dialog").getAttribute("data-density"), "compact");
++    await page.locator('dialog[data-kind=notice][open]').waitFor({state:'hidden'});
++    assert.deepEqual(await read(page), done);
+     checks.push({
+-      name: "Winning payment keeps dialog open, charges once, and shows a still result",
++      name: "Winning payment charges once and uses the shared buttonless result modal",
+       passed: true,
+     });
+     await context.close();
+@@ -259,16 +256,17 @@ try {
+     await page.locator("[name=bid]").fill("999");
+     await watch(page);
+     await page.locator("[data-type=PASS]").click();
+-    await page.locator("dialog[data-kind=event] .result-hero").waitFor();
+-    assert.equal(await page.evaluate(() => window.auctionHidden), 0);
+-    await page.locator("[data-action=dismissEvent]").click();
++    await page.locator('dialog[data-kind=notice][open]').filter({hasText:'Lelang selesai'}).waitFor();
++    assert.equal(await page.locator('dialog[open] button:visible').count(), 0);
++    const settledState = await read(page);
++    await page.locator('dialog[data-kind=notice][open]').waitFor({state:'hidden'});
++    assert.deepEqual(await read(page), settledState);
+     await page
+       .locator(
+         'dialog[data-kind=auction] [data-action=certificate][data-id="15"]',
+       )
+       .waitFor();
+     assert.equal(await page.locator("[name=bid]").inputValue(), "5");
+-    assert.equal(await page.evaluate(() => window.auctionHidden), 0);
+     checks.push({
+       name: "Bankruptcy auction chain stays open and resets input to the new opening minimum",
+       passed: true,
+diff --git a/scripts/test-bank-browser.mjs b/scripts/test-bank-browser.mjs
+index 53f74d7..52662f0 100644
+--- a/scripts/test-bank-browser.mjs
++++ b/scripts/test-bank-browser.mjs
+@@ -37,7 +37,7 @@ try{
+   for(const method of ['button','escape','back']){
+    await page.locator('[data-asset-key=bank-mortgages] [data-action=certificate]').click();await page.locator('dialog[data-kind=property] .deed').waitFor();assert.equal(await page.locator('dialog [data-type]').count(),0);
+    if(method==='button')await page.locator('.popup-dismiss').click();else if(method==='escape')await page.keyboard.press('Escape');else await page.evaluate(()=>history.back());
+-   await page.locator('dialog[data-kind=bank]').waitFor();await settled(page);assert.equal(await page.locator('[data-asset-key=bank-mortgages]').getAttribute('open'),'');assert.equal(await page.locator('[data-asset-key=bank-flows]').getAttribute('open'),'');assert.deepEqual(await read(page),before);
++   await page.locator('dialog[data-kind=bank]').waitFor();await page.waitForFunction(()=>document.querySelector('[data-asset-key=bank-mortgages]')?.open&&document.querySelector('[data-asset-key=bank-flows]')?.open);await settled(page);assert.equal(await page.locator('[data-asset-key=bank-mortgages]').getAttribute('open'),'');assert.equal(await page.locator('[data-asset-key=bank-flows]').getAttribute('open'),'');assert.deepEqual(await read(page),before);
+   }
+   await page.locator('[data-asset-key=bank-inventory] summary').click();await page.locator('[data-asset-key=bank-inventory] [data-action=certificate]').first().click();await page.locator('dialog .deed').waitFor();await page.keyboard.press('Escape');await page.locator('dialog[data-kind=bank]').waitFor();await bounds(page,v);
+   await page.locator('.popup-dismiss').click();await page.locator('dialog[open]').waitFor({state:'hidden'});
+diff --git a/scripts/test-browser.mjs b/scripts/test-browser.mjs
+index 3b6cef5..7c31d17 100644
+--- a/scripts/test-browser.mjs
++++ b/scripts/test-browser.mjs
+@@ -9,13 +9,13 @@ assert.equal((await fetch(origin+'/build.json').then(r=>r.json())).version,APP_V
+ const browser=await chromium.launch({executablePath:process.env.MN_CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
+ const checks=[],errors=[];
+ const fixture=n=>{const names=['Jovan','Raka','Bima','Sari','Dewi','Bayu'];const state=createGame({players:names.slice(0,n).map(name=>({name,controller:'human'})),startingRoll:false},()=>.2);state.assets[1]={owner:0,level:2,mortgaged:false};state.assets[3]={owner:0,level:2,mortgaged:false};state.assets[6]={owner:n-1,level:0,mortgaged:true};state.bank=stock(state);return state;};
+-async function pageFor(viewport,state,{reduced=false}={}){const context=await browser.newContext({viewport,isMobile:viewport.width<800,hasTouch:viewport.width<800,deviceScaleFactor:2,reducedMotion:reduced?'reduce':'no-preference',serviceWorkers:'block'});const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});await page.goto(origin,{waitUntil:'networkidle'});if(state){await page.evaluate(s=>localStorage.setItem('nusantara-save-v1',JSON.stringify({state:s,room:null,persistedAt:Date.now()})),state);await page.reload({waitUntil:'networkidle'});await page.locator('[data-action=resume]').click();await page.locator('.board-stage').waitFor();}return {context,page};}
++async function pageFor(viewport,state,{reduced=false}={}){const context=await browser.newContext({viewport,isMobile:viewport.width<800,hasTouch:viewport.width<800,deviceScaleFactor:2,reducedMotion:reduced?'reduce':'no-preference',serviceWorkers:'block'});const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.addInitScript(()=>localStorage.setItem('nusantara-player-name','QA Pemain'));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});await page.goto(origin,{waitUntil:'networkidle'});if(state){await page.evaluate(s=>localStorage.setItem('nusantara-save-v1',JSON.stringify({state:s,room:null,persistedAt:Date.now()})),state);await page.reload({waitUntil:'networkidle'});await page.locator('[data-action=resume]').click();await page.locator('.board-stage').waitFor();}return {context,page};}
+ try{
+  for(const viewport of (process.env.MN_DICE_ONLY?[]:[{width:320,height:568},{width:360,height:640},{width:390,height:844},{width:430,height:932}]))for(const n of [2,4,6]){
+   const {context,page}=await pageFor(viewport,fixture(n));
+   const metrics=await page.evaluate(()=>{const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom,right:r.right}};return {board:rect('.board-stage'),console:rect('.action-console'),top:rect('.topbar'),overflow:document.documentElement.scrollWidth>innerWidth,mainOverflow:document.querySelector('.gameplay').scrollHeight>document.querySelector('.gameplay').clientHeight+1};});
+-  assert.equal(metrics.board.x,0);assert.equal(metrics.board.width,viewport.width);assert.equal(metrics.board.height,viewport.width);assert(metrics.console.bottom<=viewport.height+1);assert(!metrics.overflow);assert(!metrics.mainOverflow,JSON.stringify({viewport,n,metrics}));
+-  assert.equal(await page.locator('[data-tile]').count(),40);for(const [tile,angle] of [[1,0],[11,90],[21,180],[31,270]])assert.equal(await page.locator(`[data-tile="${tile}"] .tile-face`).getAttribute('data-angle'),String(angle));assert(await page.locator('.tile-name').evaluateAll(nodes=>nodes.every(n=>{const tile=n.closest('[data-tile]').querySelector('rect').getBoundingClientRect(),t=n.getBoundingClientRect();return t.x>=tile.x-1&&t.x+t.width<=tile.x+tile.width+1&&t.y>=tile.y-1&&t.y+t.height<=tile.y+tile.height+1})));assert.equal(await page.locator('.player-capsule').count(),n);assert.equal(await page.locator('[data-action=camera]').count(),1);assert.equal(await page.locator('.board-stage button').count(),0);assert.equal(await page.locator('.quick-actions [data-action=ownAssets]').count(),1);assert.equal(await page.locator('.quick-actions [data-action=trade]').count(),1);
++  assert(Math.abs(metrics.board.x-(viewport.width-metrics.board.width)/2)<1);assert(metrics.board.width<=viewport.width);assert(Math.abs(metrics.board.height-metrics.board.width)<1);assert(metrics.board.bottom<=metrics.console.y+1);assert(metrics.console.bottom<=viewport.height+1);assert(!metrics.overflow);assert(!metrics.mainOverflow,JSON.stringify({viewport,n,metrics}));
++  assert.equal(await page.locator('[data-tile]').count(),40);for(const [tile,angle] of [[1,0],[11,90],[21,180],[31,270]])assert.equal(await page.locator(`[data-tile="${tile}"] .tile-face`).getAttribute('data-angle'),String(angle));assert(await page.locator('.tile-name').evaluateAll(nodes=>nodes.every(n=>{const tile=n.closest('[data-tile]').querySelector('rect').getBoundingClientRect(),t=n.getBoundingClientRect();return t.x>=tile.x-1&&t.x+t.width<=tile.x+tile.width+1&&t.y>=tile.y-1&&t.y+t.height<=tile.y+tile.height+1})));assert.equal(await page.locator('.player-capsule').count(),n);assert.equal(await page.locator('[data-action=camera]').count(),1);assert.equal(await page.locator('.board-stage button:not(.bank-indicator)').count(),0);assert.equal(await page.locator('.board-stage .bank-indicator').count(),1);assert.equal(await page.locator('.quick-actions [data-action=ownAssets]').count(),1);assert.equal(await page.locator('.quick-actions [data-action=trade]').count(),1);
+   const labels=await page.locator('[data-tile="27"] .tile-name').allTextContents();assert.equal(labels.join(' '),'BANJARMASIN');assert.equal(await page.locator('[data-tile="6"] .tile-name').textContent(),'YOGYAKARTA');
+   await page.locator('[data-action=ownAssets]').click();await page.locator('dialog[open]').waitFor();const popup=await page.locator('dialog').boundingBox();assert(popup.x>=0&&popup.y>=0&&popup.x+popup.width<=viewport.width+1&&popup.y+popup.height<=viewport.height+1);await page.locator('dialog .popup-dismiss').click();
+   await page.locator('.quick-actions [data-action=trade]').click();await page.locator('[data-kind=trade][open]').waitFor();await page.locator('[data-action=saveTradeDraft]').click();
+diff --git a/scripts/test-portrait-browser.mjs b/scripts/test-portrait-browser.mjs
+index 1e49546..f6abdff 100644
+--- a/scripts/test-portrait-browser.mjs
++++ b/scripts/test-portrait-browser.mjs
+@@ -9,7 +9,7 @@ await mkdir(folder,{recursive:true});
+ const browser=await chromium.launch({executablePath:process.env.MN_CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox','--disable-dev-shm-usage']}),checks=[],errors=[];
+ async function metrics(page){return page.evaluate(()=>{
+  const dialog=document.querySelector('dialog[open]'),node=dialog||document.querySelector('.lobby-panel'),r=node.getBoundingClientRect(),body=dialog?.querySelector('.popup-body'),footer=dialog?.querySelector('.popup-footer'),f=footer?.getBoundingClientRect();
+- const bad=[...node.querySelectorAll('.lucide-icon')].filter(n=>{const b=n.getBoundingClientRect();return Math.abs(b.width-b.height)>.6||b.width===0}).length;
++ const bad=[...node.querySelectorAll('.lucide-icon')].filter(n=>{const b=n.getBoundingClientRect();return n.getClientRects().length>0&&(Math.abs(b.width-b.height)>.6||b.width===0)}).length;
+  return {width:r.width,height:r.height,x:r.x,y:r.y,bottom:r.bottom,right:r.right,footerBottom:f?.bottom,horizontalOverflow:document.documentElement.scrollWidth>innerWidth,bodyOverflow:body?body.scrollWidth>body.clientWidth+1:false,density:dialog?.dataset.density,nonSquareIcons:bad};
+ })}
+ async function checkView(page,name,viewport){
+@@ -22,14 +22,14 @@ async function selectCase(page,name){
+  else if(name==='pawn'){await page.locator('.setup-summary').click();await page.locator('dialog [data-action=pawn]').click();}
+  else if(name==='onlineEntry')await page.locator('.lobby-secondary [data-action=onlineEntry]').click();
+  else if(name==='auth'){await page.locator('.lobby-secondary [data-action=onlineEntry]').click();await page.locator('dialog [data-action=auth]').click();}
+- else if(['menu','settings','rules','saves','room','allTiles'].includes(name)){
++ else if(['menu','settings','rules','saves','room'].includes(name)){
+   await page.locator('[data-action=menu]').click();
+-  if(name==='allTiles'){await page.keyboard.press('Escape');await page.locator('[data-action=ownAssets]').click();await page.locator('dialog [data-action=allTiles]').click();}
+-  else if(name!=='menu')await page.locator(`dialog [data-action=${name}]`).click();
++  if(name!=='menu')await page.locator(`dialog [data-action=${name}]`).click();
+  }
+  else if(name==='profile')await page.locator('.player-capsule[data-id="0"]').click();
+  else if(['assets','build'].includes(name)){await page.locator('[data-action=ownAssets]').click();if(name!=='assets')await page.locator(`[data-action=assetTab][aria-pressed][data-value=${name}]`).click();}
+  else if(name==='trade')await page.locator('.quick-actions [data-action=trade]').click();
++ else if(name==='bankInventory'){await page.locator('[data-action=bank]').click();await page.locator('[data-asset-key=bank-inventory] summary').click();}
+  else if(name==='history')await page.locator('[data-action=history]').click();
+  else if(name==='tax'){await page.locator('[data-tile="4"]').focus();await page.keyboard.press('Enter');}
+  if(name!=='lobby'){await page.locator('dialog[open]').waitFor();await page.locator('dialog[open]').evaluate(async el=>{await Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{})))});}
+@@ -38,13 +38,13 @@ async function selectCase(page,name){
+ try{
+  for(const c of preservedCases){
+   const {context,page}=await fixturePage(browser,origin,c);page.on('pageerror',e=>errors.push(e.message));await page.mouse.move(0,0);
+-  if(!c.id.startsWith('game-')){assert.equal(await page.locator('dialog').getAttribute('data-density'),'preserved');assert.equal(await page.locator('dialog .lucide-icon').count(),0);}
++  if(!c.id.startsWith('game-')){assert.equal(await page.locator('dialog').getAttribute('data-density'),'preserved');assert.equal(await page.locator('dialog .deed .lucide-icon, dialog .retro-card .lucide-icon, dialog .deck-catalog .lucide-icon').count(),0);}
+   const png=await page.screenshot({path:`${folder}/${c.id}.png`,animations:'disabled'}),hash=createHash('sha256').update(png).digest('hex');
+   if(reference){const old=await readFile(`${reference}/${c.id}.png`);assert(png.equals(old),`Protected screenshot changed: ${c.id}`);}
+   checks.push({name:`preserved ${c.id}`,passed:true,sha256:hash,pixelCompared:!!reference});await context.close();
+  }
+  const viewports=[{width:320,height:568},{width:360,height:640},{width:390,height:844},{width:430,height:932}];
+- const allNames=['lobby','setup','pawn','onlineEntry','auth','menu','settings','rules','saves','profile','assets','build','trade','history','allTiles','tax','jail','debt','auction','won'];
++ const allNames=['lobby','setup','pawn','onlineEntry','auth','menu','settings','rules','saves','profile','assets','build','trade','history','bankInventory','tax','jail','debt','auction','won'];
+  const names=process.env.MN_PORTRAIT_CASES?allNames.filter(n=>process.env.MN_PORTRAIT_CASES.split(',').includes(n)):allNames;
+  for(const viewport of viewports)for(const name of names){
+   const kind=['jail','debt','auction','won'].includes(name)?name:'game',lobby=['lobby','setup','pawn','onlineEntry','auth'].includes(name);
+diff --git a/scripts/test-stability-browser.mjs b/scripts/test-stability-browser.mjs
+index 835c0f4..62e0020 100644
+--- a/scripts/test-stability-browser.mjs
++++ b/scripts/test-stability-browser.mjs
+@@ -13,7 +13,7 @@ const browser=await chromium.launch({executablePath:process.env.MN_CHROMIUM_PATH
+ const checks=[],errors=[];
+ const fixture=n=>createGame({players:Array.from({length:n},(_,i)=>({name:'P'+i,controller:'human'})),startingRoll:false},()=>.2);
+ async function context({locks=true,viewport={width:390,height:844}}={}) {
+- const ctx=await browser.newContext({viewport,serviceWorkers:'block'});
++ const ctx=await browser.newContext({viewport,serviceWorkers:'block'});await ctx.addInitScript(()=>{try{localStorage.setItem('nusantara-player-name','QA Pemain')}catch{}const original=crypto.getRandomValues.bind(crypto);crypto.getRandomValues=array=>{if(array instanceof Uint32Array&&array.length===1){array[0]=2;return array;}return original(array)};});
+  if(!locks)await ctx.addInitScript(()=>Object.defineProperty(navigator,'locks',{value:undefined}));
+  ctx.on('page',page=>page.on('pageerror',e=>errors.push(e.message)));
+  return ctx;
+diff --git a/scripts/test-trade-results-browser.mjs b/scripts/test-trade-results-browser.mjs
+index af36d8a..aa38649 100644
+--- a/scripts/test-trade-results-browser.mjs
++++ b/scripts/test-trade-results-browser.mjs
+@@ -120,13 +120,12 @@ async function bounds(page, width, height) {
+       box.y + box.height <= height + 1,
+     JSON.stringify(box),
+   );
+-  await page.locator(".popup-dismiss").scrollIntoViewIfNeeded();
+-  assert(await page.locator(".popup-dismiss").isVisible());
++  assert(await page.locator(".popup-dismiss").isHidden());
++  assert.equal(await page.locator('dialog[open] button:visible').count(), 0);
+   assert.equal(
+     await page.locator("dialog").getAttribute("data-density"),
+     "compact",
+   );
+-  assert.equal(await page.locator(".popup-dismiss").innerText(), "Tutup");
+ }
+ try {
+   browser = await chromium.launch({
+@@ -160,7 +159,7 @@ try {
+     assert((await sides.nth(0).innerText()).includes("Makassar"));
+     assert((await sides.nth(1).innerText()).includes("Bogor"));
+     assert.equal(await page.locator("dialog button[data-type]").count(), 0);
+-    // A result remains until the same shared Tutup control is used.
++    // A result gets reading time only while visible; reload preserves an unread result.
+     await page.waitForTimeout(3400);
+     assert(
+       await page.locator('dialog[data-kind="tradeResult"][open]').isVisible(),
+@@ -174,7 +173,7 @@ try {
+     await page.reload({ waitUntil: "networkidle" });
+     await mount(page, done, { online });
+     await page.locator('dialog[data-kind="tradeResult"][open]').waitFor();
+-    await page.locator(".popup-dismiss").click();
++    await page.locator('dialog[data-kind="tradeResult"][open]').waitFor({ state: "hidden" });
+     assert.equal(
+       await page.evaluate(() => JSON.stringify(qa.session.state)),
+       stateBefore,
+@@ -186,7 +185,7 @@ try {
+       0,
+     );
+     checks.push({
+-      name: `${width}x${height}: confirmed details, no timer, refresh/read-once, existing shell, read-only close`,
++      name: `${width}x${height}: confirmed details, buttonless automatic close, refresh/read-once, existing shell, no repeated transaction`,
+       passed: true,
+     });
+     await context.close();
+@@ -228,7 +227,8 @@ try {
+       1,
+       "closing the offer must not silently dismiss the result",
+     );
+-    await page.locator(".popup-dismiss").click();
++    assert.equal(await page.locator('dialog[open] button:visible').count(), 0);
++    await page.locator('dialog[data-kind="tradeResult"][open]').waitFor({ state: "hidden" });
+     assert.equal(
+       await page.evaluate(() => qa.session.tradeResults.queue.length),
+       0,
+diff --git a/scripts/test-ui-4114-browser.mjs b/scripts/test-ui-4114-browser.mjs
+index 095d59f..22c9b90 100644
+--- a/scripts/test-ui-4114-browser.mjs
++++ b/scripts/test-ui-4114-browser.mjs
+@@ -425,20 +425,13 @@ try {
+       qa.session.ingest(s);
+       qa.session.notify();
+     }, received);
+-    await page.locator("#game-notice:not([hidden])").waitFor();
++    await page.locator('dialog[data-kind="notice"][open]').waitFor();
+     assert(
+-      (await page.locator("#game-notice").innerText()).includes("Terima sewa"),
+-    );
+-    assert.equal(
+-      await page.evaluate(() => document.activeElement?.dataset.action),
+-      "primary",
+-    );
+-    assert.equal(
+-      await page
+-        .locator("#game-notice")
+-        .evaluate((n) => getComputedStyle(n).pointerEvents),
+-      "none",
++      (await page.locator('dialog[data-kind="notice"]').innerText()).includes("Terima sewa"),
+     );
++    assert(await page.locator('dialog[open] .popup-dismiss').isHidden());
++    assert.equal(await page.locator("#game-notice").count(), 0);
++    assert.equal(await page.locator('dialog .popup-footer button').count(), 0);
+     await page.evaluate((s) => {
+       for (let i = 0; i < 20; i++) qa.session.ingest(s);
+       qa.session.notify();
+@@ -468,13 +461,21 @@ try {
+       900,
+     );
+     await page.screenshot({ path: `${output}/rent-received-mobile.png` });
++    await page.locator('dialog[data-kind="notice"][open]').waitFor({ state: "hidden" });
++    assert.equal(await page.evaluate(() => qa.session.notices.current), null);
++    assert.equal(await page.evaluate(() => qa.session.state.version), burst.version);
++    await page.evaluate((s) => {
++      qa.session.ingest(s);
++      qa.session.notify();
++    }, burst);
++    assert.equal(await page.evaluate(() => qa.session.notices.current), null);
+     await page.evaluate((s) => {
+       qa.session.ingest(s, { reset: true });
+       qa.session.notify();
+     }, burst);
+     assert.equal(await page.evaluate(() => qa.session.notices.current), null);
+     checks.push({
+-      name: "committed rent only, duplicate snapshots, burst aggregation, no focus/input interception, reconnect without replay",
++      name: "committed rent uses a buttonless shared modal, deduplicates snapshots, aggregates bursts, expires without a transaction and reconnects without replay",
+       pass: true,
+     });
+     await context.close();
+diff --git a/tests/trade-results.test.mjs b/tests/trade-results.test.mjs
+index 93e71b5..e05dc22 100644
+--- a/tests/trade-results.test.mjs
++++ b/tests/trade-results.test.mjs
+@@ -276,7 +276,7 @@ test("missing storage, denied writes, corrupt entries and player name markup can
+   assert(n.dismiss(n.current.id));
+ });
+ 
+-test("local session waits for confirmed presentation, then holds bots without an auto-dismiss timer", () => {
++test("local session waits for confirmed presentation and holds bots until the result has been displayed", () => {
+   const s = make(),
+     session = new GameSession({
+       mind: { dispose() {} },
+diff --git a/tests/ui-4114.test.mjs b/tests/ui-4114.test.mjs
+index a2f2a1a..c2430ca 100644
+--- a/tests/ui-4114.test.mjs
++++ b/tests/ui-4114.test.mjs
+@@ -9,6 +9,8 @@ import {
+   readingCard,
+ } from "../frontend/popup-controls.mjs";
+ import { copyRoomCode } from "../frontend/clipboard.mjs";
++import { AutoDismiss } from "../frontend/auto-dismiss.mjs";
++import { onlineBotAvailability } from "../frontend/online-status.mjs";
+ import {
+   buildOrderSelection,
+   renderBuildOrder,
+@@ -40,6 +42,44 @@ const received = (s, id, from = 1, to = 0) => ({
+   ],
+ });
+ 
++test("automatic popup expiry cannot acknowledge a superseded message or consume hidden reading time", (t) => {
++  t.mock.timers.enable({ apis: ["setTimeout", "Date"], now: 100 });
++  const timer = new AutoDismiss(), dismissed = [];
++  const finish = (key) => dismissed.push(key);
++  timer.sync("old", 2800, true, finish);
++  t.mock.timers.tick(2000);
++  timer.sync("new", 4500, false, finish);
++  t.mock.timers.tick(20000);
++  assert.deepEqual(dismissed, []);
++  timer.sync("new", 4500, true, finish);
++  t.mock.timers.tick(4499);
++  assert.deepEqual(dismissed, []);
++  t.mock.timers.tick(1);
++  assert.deepEqual(dismissed, ["new"]);
++  timer.reset();
++  t.mock.timers.tick(10000);
++  assert.deepEqual(dismissed, ["new"]);
++});
++
++test("bot configuration is not mistaken for worker availability, and Termux does not need an Edge scheduler", () => {
++  const session = { config: { onlineBots: true } };
++  assert.equal(onlineBotAvailability(session).ready, false);
++  assert.equal(onlineBotAvailability(session, { capabilities: {
++    workerProvider: "termux", workerConfigured: true, workerAlive: false,
++    availableSlots: 0, schedulerConfigured: false,
++  } }).ready, false);
++  assert.equal(onlineBotAvailability(session, { capabilities: {
++    workerProvider: "termux", workerConfigured: true, workerAlive: true,
++    availableSlots: 0, schedulerConfigured: false,
++  } }).ready, true);
++  assert.equal(onlineBotAvailability(session, { capabilities: {
++    workerConfigured: true, schedulerConfigured: false,
++  } }).ready, false);
++  assert.equal(onlineBotAvailability({ ...session, online: { worker: { status: "offline" } } }, {
++    capabilities: { workerConfigured: true, schedulerConfigured: true },
++  }).ready, false);
++});
++
+ test("receipts deduplicate snapshots and aggregate bursts, without inventing a rent claim", () => {
+   const notices = new GameNotices(),
+     state = make();
+@@ -89,22 +129,35 @@ test("baseline, old revision, match changes and observers cannot replay received
+   assert.equal(n.current, null);
+   n.dispose();
+ });
+-test("notice time pauses while hidden or a decision covers it and remains bounded", (t) => {
++test("information modals expire only after being displayed, pause when covered and stay bounded", (t) => {
+   t.mock.timers.enable({ apis: ["setTimeout", "Date"], now: 100 });
+   const n = new GameNotices();
+   n.push({ id: "rent", kind: "rent", duration: 2800, amount: 100, count: 1 });
+   n.sync(true);
++  t.mock.timers.tick(20000);
++  assert.equal(n.current.id, "rent");
++  assert(n.present("rent"));
++  n.sync(true);
+   t.mock.timers.tick(1000);
+   n.sync(false);
+   t.mock.timers.tick(20000);
+-  assert.equal(n.current.remaining, 1800);
++  assert.equal(n.autoClose.remaining, 1800);
++  assert.equal(n.displayed, n.current);
++  assert.equal(n.dismiss("stale-id"), false);
+   n.sync(true);
+   t.mock.timers.tick(1799);
+-  assert(n.current);
++  assert.equal(n.current.id, "rent");
+   t.mock.timers.tick(1);
+   assert.equal(n.current, null);
++  n.push({ id: "next", kind: "event", duration: 2300 });
++  assert(n.present("next"));
+   for (let i = 0; i < 50; i++) n.push({ id: i, kind: "event", duration: 2300 });
+   assert.equal(n.queue.length, 4);
++  assert.equal(n.current.id, "next");
++  assert(n.dismiss("next"));
++  assert.equal(n.displayed, null);
++  assert.equal(n.dismiss("next"), false);
++  assert.equal(n.queue.length, 3);
+   n.dispose();
+ });
+ test("card reading time scales with text and a revealed card gets only one auto attempt", async (t) => {
+diff --git a/frontend/auto-dismiss.mjs b/frontend/auto-dismiss.mjs
+new file mode 100644
+index 0000000..88ea7bf
+--- /dev/null
++++ b/frontend/auto-dismiss.mjs
+@@ -0,0 +1,44 @@
++// Presentation time only: the callback acknowledges a displayed message, never a game action.
++export class AutoDismiss {
++  constructor({ clock = Date.now } = {}) {
++    this.clock = clock;
++    this.reset();
++  }
++  pause() {
++    if (!this.timer) return;
++    clearTimeout(this.timer);
++    this.timer = null;
++    this.remaining = Math.max(
++      0,
++      this.remaining - (this.clock() - this.started),
++    );
++  }
++  reset() {
++    clearTimeout(this.timer);
++    this.timer = null;
++    this.key = null;
++    this.remaining = 0;
++    this.displayed = false;
++  }
++  sync(key, duration, active, dismiss) {
++    if (key !== this.key) {
++      this.reset();
++      this.key = key;
++      this.remaining = duration;
++    }
++    if (!active) {
++      this.pause();
++      return;
++    }
++    if (!key || this.timer) return;
++    this.displayed = true;
++    this.started = this.clock();
++    this.timer = setTimeout(() => {
++      this.timer = null;
++      // A superseded popup cannot dismiss the next message.
++      if (this.key !== key) return;
++      this.reset();
++      dismiss(key);
++    }, this.remaining);
++  }
++}

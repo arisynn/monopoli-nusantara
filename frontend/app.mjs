@@ -6,7 +6,7 @@ import { normalizeAmountInput } from "./number-input.mjs";
 import { auctionIdentity } from "../lib/auction-presentation.mjs";
 import { APP_VERSION } from "../lib/version.mjs";
 import { activitySummary, capsuleFeedback } from "./economy-view.mjs";
-import { onlineStatus } from "./online-status.mjs";
+import { onlineStatus, onlineBotAvailability } from "./online-status.mjs";
 import { decorateCurrency } from "./currency-view.mjs";
 import { enhanceSelections } from "./selections.mjs";
 import { TradeDrafts, draftScope, emptyTrade } from "./trade-drafts.mjs";
@@ -235,7 +235,7 @@ function lobbyHTML() {
   return `${topbar()}<main class="lobby"><section class="lobby-panel" aria-label="Lobby permainan"><div id="lobby-content"></div></section><p class="version-line">Monopoli Nusantara · Klasik ${APP_VERSION}</p></main><div id="page-status" class="page-status" role="status"></div>`;
 }
 function gameplayHTML() {
-  return `${topbar()}<main class="gameplay"><section class="players" aria-label="Pemain"></section><div class="connection-note" hidden></div><section class="board-stage" aria-label="Papan 40 petak"><div class="board-view" tabindex="0" aria-label="Papan Nusantara, ketuk petak, geser atau cubit untuk menjelajah"><svg role="group" aria-label="Papan permainan"><g></g></svg></div><button type="button" class="bank-indicator" data-action="bank" aria-label="Bank Nusantara, lihat rincian ekonomi">${lucideIcon("bank", 18)}<span><small>Nusa beredar</small><b id="bank-circulation"></b></span>${lucideIcon("arrow", 12)}</button></section><section class="gameplay-info" aria-label="Aktivitas, petak dan dadu"><button class="activity" data-action="history" aria-label="Riwayat aktivitas dan transaksi"><span id="activity-text"></span><span id="activity-money"></span></button><button class="tile-caption" data-action="selectedProperty"></button><div class="dice-tray" aria-live="polite"></div></section><section class="action-console" aria-label="Aksi permainan"><div class="turn-heading"></div><div class="console-row"><div class="quick-actions"><button class="property-button" data-action="ownAssets" aria-label="Properti Saya" title="Properti Saya">${icon("assets", 22)}<span>Aset</span></button><button class="property-button" data-action="trade" aria-label="Perdagangan dan barter" title="Barter">${icon("trade", 22)}<span>Barter</span></button></div><button class="roll-button primary" data-action="primary"></button></div><div id="page-status" class="page-status" role="status"></div></section></main>`;
+  return `${topbar()}<main class="gameplay"><section class="players" aria-label="Pemain"></section><div class="connection-note" hidden></div><div class="board-slot"><section class="board-stage" aria-label="Papan 40 petak"><div class="board-view" tabindex="0" aria-label="Papan Nusantara, ketuk petak, geser atau cubit untuk menjelajah"><svg role="group" aria-label="Papan permainan"><g></g></svg></div><button type="button" class="bank-indicator" data-action="bank" aria-label="Bank Nusantara, lihat rincian ekonomi">${lucideIcon("bank", 18)}<span><small>Nusa beredar</small><b id="bank-circulation"></b></span>${lucideIcon("arrow", 12)}</button></section></div><section class="gameplay-info" aria-label="Aktivitas, petak dan dadu"><button class="activity" data-action="history" aria-label="Riwayat aktivitas dan transaksi"><span id="activity-text"></span><span id="activity-money"></span></button><button class="tile-caption" data-action="selectedProperty"></button><div class="dice-tray" aria-live="polite"></div></section><section class="action-console" aria-label="Aksi permainan"><div class="turn-heading"></div><div class="console-row"><div class="quick-actions"><button class="property-button" data-action="ownAssets" aria-label="Properti Saya" title="Properti Saya">${icon("assets", 22)}<span>Aset</span></button><button class="property-button" data-action="trade" aria-label="Perdagangan dan barter" title="Barter">${icon("trade", 22)}<span>Barter</span></button></div><button class="roll-button primary" data-action="primary"></button></div><div id="page-status" class="page-status" role="status"></div></section></main>`;
 }
 function lobbyContent() {
   const r = session.online,
@@ -273,7 +273,7 @@ function lobbyContent() {
     },
   ).join(
     "",
-  )}</div>${isRoom ? `<div class="lobby-tools">${btn(r.seats[r.seat]?.ready ? "Batal siap" : "Saya siap", "ready", { primary: true, disabled: session.pending || !session.connected })}${btn("Pilih pion", "pawn", { disabled: session.pending })}${host ? btn(session.config?.onlineBots ? "Tambah bot" : "Status bot", "addBotPopup", { disabled: session.pending || (session.config?.onlineBots && (players.filter((p) => p.controller === "bot").length >= 3 || players.length + 1 + Math.max(0, 2 - humanCount) > r.capacity)) }) : ""}</div>${host ? btn("Mulai permainan", "startRoom", { primary: true, disabled: session.pending || !canStart, sym: "play" }) : '<p class="inline-note">Menunggu host memulai pertandingan.</p>'}<div class="room-lobby-actions">${btn("Kelola room", "room", { sym: "people" })}${btn("Keluar room", "leaveRoomConfirm", { disabled: session.pending, sym: "home" })}</div><p class="lobby-hint">Minimal dua manusia. Semua manusia harus siap dan terhubung.</p>` : `${btn("Mulai VS Bot", "startLocal", { primary: true, disabled: session.pending, sym: "play" })}<div class="lobby-secondary">${btn("Main Online", "onlineEntry", { sym: "people" })}${btn("Lanjutkan", "resume", { sym: "save", disabled: (!session.saved?.room && !session.saved?.state) || session.pending })}</div>`}`;
+  )}</div>${isRoom ? `<div class="lobby-tools">${btn(r.seats[r.seat]?.ready ? "Batal siap" : "Saya siap", "ready", { primary: true, disabled: session.pending || !session.connected })}${btn("Pilih pion", "pawn", { disabled: session.pending })}${host ? btn(session.config?.onlineBots && session.online?.worker?.status !== "offline" ? "Tambah bot" : "Status bot", "addBotPopup", { disabled: session.pending || (session.config?.onlineBots && (players.filter((p) => p.controller === "bot").length >= 3 || players.length + 1 + Math.max(0, 2 - humanCount) > r.capacity)) }) : ""}</div>${host ? btn("Mulai permainan", "startRoom", { primary: true, disabled: session.pending || !canStart, sym: "play" }) : '<p class="inline-note">Menunggu host memulai pertandingan.</p>'}<div class="room-lobby-actions">${btn("Kelola room", "room", { sym: "people" })}${btn("Keluar room", "leaveRoomConfirm", { disabled: session.pending, sym: "home" })}</div><p class="lobby-hint">Minimal dua manusia. Semua manusia harus siap dan terhubung.</p>` : `${btn("Mulai VS Bot", "startLocal", { primary: true, disabled: session.pending, sym: "play" })}<div class="lobby-secondary">${btn("Main Online", "onlineEntry", { sym: "people" })}${btn("Lanjutkan", "resume", { sym: "save", disabled: (!session.saved?.room && !session.saved?.state) || session.pending })}</div>`}`;
 }
 function playerCards() {
   const s = session.view,
@@ -322,7 +322,7 @@ function drawDice() {
     {
       id:
         rollInput.current?.id || session.pendingRoll || session.head?.id || "",
-      paused: session.covered || session.paused || session.hidden,
+      paused: session.presentationHeld || session.paused || session.hidden,
       reduced: session.reduced,
     },
   );
@@ -347,6 +347,7 @@ function render() {
     const current = session.screen;
     if (current !== screen) {
       board?.dispose();
+      session.setPawnRenderer(false);
       diceView?.dispose();
       screen = current;
       page.innerHTML = current === "gameplay" ? gameplayHTML() : lobbyHTML();
@@ -361,6 +362,7 @@ function render() {
           (id) => session.complete(id),
           syncCameraButton,
         );
+        session.setPawnRenderer(true);
         board.setMode(ui.camera);
       } else {
         board = null;
@@ -381,7 +383,7 @@ function render() {
       );
       renderPlayers(roster);
       board.update(s, session.head, {
-        paused: session.covered || session.paused || session.hidden,
+        paused: session.presentationHeld || session.paused || session.hidden,
         fast: session.fast,
         reduced: session.reduced,
         selected: ui.selected,
@@ -443,7 +445,6 @@ function render() {
     decorateCurrency(page);
     renderDialog();
     rollInput.sync();
-    renderNotice();
     document.documentElement.classList.toggle("reduced", session.reduced);
     document.documentElement.classList.toggle("playing", screen === "gameplay");
   } catch (e) {
@@ -578,6 +579,14 @@ function open(p) {
       ui.assetTab = "all";
     restoreAssetView();
   }
+  if (p.kind === "addBotPopup" && session.auth?.request) {
+    ui.botChecking = true;
+    ui.botHealth = null;
+    void session.auth.request("?diagnostics=1")
+      .then((health) => { ui.botHealth = health; })
+      .catch(() => { ui.botHealth = { unavailable: true }; })
+      .finally(() => { ui.botChecking = false; queueRender(); });
+  }
   session.setCovered(ui.popup.kind !== "tradeIncoming", {
     assets:
       ["assets", "debt", "buildOrder"].includes(ui.popup.kind) &&
@@ -603,6 +612,11 @@ function open(p) {
 }
 function close() {
   const receipt = currentPopup();
+  if (receipt?.kind === "notice") {
+    session.dismissNotice(receipt.notice.id);
+    queueRender();
+    return;
+  }
   if (receipt?.kind === "tradeResult") {
     session.dismissTradeResult(receipt.result.id);
     queueRender();
@@ -724,6 +738,8 @@ function currentPopup() {
   if (session.screen !== "gameplay" || session.paused) return null;
   if (session.tradeResultReady)
     return { kind: "tradeResult", key: session.tradeResultReady.id, result: session.tradeResultReady };
+  if (session.noticeReady)
+    return { kind: "notice", key: session.noticeReady.id, notice: session.noticeReady };
   const p = autoPopup(
     session.interactionState,
     session.state,
@@ -1022,7 +1038,8 @@ function auxiliary(p) {
             : `<label class="field">Nama cadangan<input name="saveLabel" maxlength="48" value="${esc(ui.saveLabel)}"></label>${(ui.saves || []).map((x) => `<div class="save-slot"><div><b>${esc(x.label || x.id)}</b><small>${x.state ? "Ronde " + x.state.round + " · " + x.state.players.length + " peserta" : "Kosong"}</small></div>${x.id !== "previous" ? btn("Simpan", "saveSlot", { extra: `data-id="${x.id}"`, disabled: !session.state }) : ""}${btn("Muat", "loadSlot", { extra: `data-id="${x.id}"`, disabled: !x.state })}</div>`).join("")}<div class="lobby-tools">${btn("Ekspor JSON", "export", { disabled: !session.state })}${btn("Impor JSON", "import")}</div><input type="file" id="save-file" accept="application/json,.json" hidden>`),
         footer: btn("Tutup", "close"),
       };
-    case "addBotPopup":
+    case "addBotPopup": {
+      const availability = onlineBotAvailability(session, ui.botHealth);
       if (!session.config?.onlineBots)
         return {
           title: "Bot Online",
@@ -1032,7 +1049,7 @@ function auxiliary(p) {
               "Bot online belum aktif",
               "Room ini tetap dapat dimainkan bersama pemain manusia.",
             ) +
-            `<p class="body-copy">${ui.botHealth?.capabilities ? (!ui.botHealth.capabilities.workerConfigured || !ui.botHealth.capabilities.schedulerConfigured ? "Layanan bot belum selesai disiapkan di server." : "Layanan sudah terpasang; bot online belum diaktifkan oleh server.") : ui.botHealth?.code === "online_migration_required" ? "Server room perlu diperbarui agar bot dan pengelolaan room tersedia." : ui.botHealth?.unavailable ? "Status layanan belum dapat diperiksa. Coba lagi." : "Layanan bot online belum tersedia di server. Periksa lagi setelah layanan diaktifkan."}</p>`,
+            `<p class="body-copy">${ui.botChecking ? "Memeriksa ketersediaan bot…" : esc(availability.message)}</p>`,
           footer:
             btn(
               ui.botChecking ? "Memeriksa…" : "Periksa ulang",
@@ -1046,14 +1063,15 @@ function auxiliary(p) {
           lead(
             "people",
             "Bot di Room",
-            "Pilih karakter untuk kursi kosong, tanpa duplikasi.",
+            ui.botChecking ? "Memeriksa ketersediaan bot…" : availability.message,
           ) +
           `<div class="bot-room-settings"><div><small>KARAKTER BOT</small><button type="button" class="bot-config-row" data-action="pickBotOnline">${esc(availableRoomPersona()?.name || "Tidak tersedia")}${icon("arrow", 16)}</button></div></div><p class="inline-note">Pilih salah satu dari enam model unik. Maksimal tiga bot per room, dan minimal dua pemain manusia.</p>`,
         footer: btn("Tambahkan bot", "addBot", {
           primary: true,
-          disabled: session.pending,
-        }),
+          disabled: session.pending || ui.botChecking || !availability.ready,
+        }) + btn("Periksa ulang", "retryOnline", { disabled: ui.botChecking }),
       };
+    }
     case "leaveRoomConfirm":
       return {
         title: "Keluar Room",
@@ -1095,26 +1113,14 @@ function auxiliary(p) {
   }
   return null;
 }
-function renderNotice() {
-  const el = document.querySelector("#game-notice"),
-    n = session.notices.current;
-  el.hidden =
-    !n ||
-    dialog.open ||
-    session.paused ||
-    session.hidden ||
-    session.screen !== "gameplay";
-  if (el.hidden) return;
-  const html = `<span class="notice-symbol">${icon(n.kind === "rent" ? "home" : "info", 24)}</span><div><b>${esc(n.title)}${n.amount ? ` <strong>+ ${esc(money(n.amount))}</strong>` : ""}</b><p>${esc(n.text)}</p></div>`;
-  if (el.innerHTML !== html) {
-    el.innerHTML = html;
-    decorateCurrency(el);
-  }
-  el.dataset.kind = n.kind;
-}
 function renderDialog() {
   const candidate = currentPopup(),
     p = passivePopup(candidate) ? null : candidate;
+  const receipt = session.tradeResults.current;
+  session.tradeResultAutoClose.sync(receipt?.id ?? null,
+    Math.min(12000, Math.max(4500, 1800 + (receipt?.text || "").split(/\s+/).length * 180)),
+    p?.kind === "tradeResult" && !session.hidden && !session.paused && !session.covered,
+    (id) => session.dismissTradeResult(id));
   layers.sync(!!p);
   if (!p) {
     if (dialog.open) {
@@ -1124,9 +1130,12 @@ function renderDialog() {
     popupKey = "";
     popupHTML = "";
     footerHTML = "";
+    dialogFooter.replaceChildren();
+    dialogFooter.hidden = true;
     renderedAssetKey = "";
     return;
   }
+  if (p.kind === "notice") session.notices.present(p.notice.id);
   if (p.kind === "auction") {
     const identity = auctionIdentity(session.interactionState);
     if (ui.auctionId !== identity) {
@@ -1217,7 +1226,7 @@ function renderDialog() {
     p.kind === "auction" || !!p.event?.auctionResult,
   );
   dialogClose.disabled = p.kind === "buildOrder" && session.pending;
-  dialogClose.hidden = readingCard(p);
+  dialogClose.hidden = readingCard(p) || ["notice", "tradeResult"].includes(p.kind);
   dialogClose.textContent = dismissalLabel(p);
   dialogClose.dataset.action = dismissalAction(p);
   dialogFooter.hidden = !dialogFooter.querySelector("button");
@@ -1226,6 +1235,8 @@ function renderDialog() {
     dialogFooter.querySelectorAll(":scope > button").length,
   );
   if (!dialog.open) dialog.showModal();
+  if (p.kind === "notice")
+    session.notices.sync(!session.hidden && !session.paused && !session.covered);
   if (name) {
     const replacement =
       dialog.querySelector(`[data-selection-name="${CSS.escape(name)}"]`) ||

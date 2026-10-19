@@ -1,0 +1,93 @@
+{
+  "checks": [
+    {
+      "name": "salary",
+      "title": "Melewati Mulai",
+      "kind": "notice",
+      "autoCloseAfterObservedMs": 2857.167141,
+      "buttons": 0,
+      "stateUnchanged": true
+    },
+    {
+      "name": "rent-income",
+      "title": "Terima sewa",
+      "kind": "notice",
+      "autoCloseAfterObservedMs": 2827.5252459999992,
+      "buttons": 0,
+      "stateUnchanged": true
+    },
+    {
+      "name": "tax",
+      "title": "Pajak dibayar",
+      "kind": "notice",
+      "autoCloseAfterObservedMs": 2823.623356,
+      "buttons": 0,
+      "stateUnchanged": true
+    },
+    {
+      "name": "rent-payer-salary",
+      "title": "Melewati Mulai",
+      "kind": "notice",
+      "autoCloseAfterObservedMs": 2362.718650999999,
+      "buttons": 0,
+      "stateUnchanged": true
+    },
+    {
+      "name": "rent-payment",
+      "title": "Sewa dibayar",
+      "kind": "notice",
+      "autoCloseAfterObservedMs": 2820.6791040000026,
+      "buttons": 0,
+      "stateUnchanged": true
+    },
+    {
+      "name": "card-income",
+      "title": "Nusa diterima",
+      "kind": "notice",
+      "autoCloseAfterObservedMs": 2370.5645570000015,
+      "buttons": 0,
+      "stateUnchanged": true
+    },
+    {
+      "name": "jail",
+      "title": "Masuk penjara",
+      "kind": "notice",
+      "autoCloseAfterObservedMs": 2832.8387220000004,
+      "buttons": 0,
+      "stateUnchanged": true
+    },
+    {
+      "name": "release",
+      "title": "Bebas dari penjara",
+      "kind": "notice",
+      "autoCloseAfterObservedMs": 2362.877729,
+      "buttons": 0,
+      "stateUnchanged": true
+    },
+    {
+      "name": "trade-accepted",
+      "title": "Barter berhasil",
+      "kind": "tradeResult",
+      "autoCloseAfterObservedMs": 4433.323842000005,
+      "buttons": 0,
+      "stateUnchanged": true
+    },
+    {
+      "name": "trade-rejected",
+      "title": "Tawaran barter ditolak",
+      "kind": "tradeResult",
+      "autoCloseAfterObservedMs": 4841.955891000005,
+      "buttons": 0,
+      "stateUnchanged": true
+    },
+    {
+      "name": "trade-cancelled",
+      "title": "Tawaran barter dibatalkan",
+      "kind": "tradeResult",
+      "autoCloseAfterObservedMs": 4857.285937000001,
+      "buttons": 0,
+      "stateUnchanged": true
+    }
+  ],
+  "errors": []
+}

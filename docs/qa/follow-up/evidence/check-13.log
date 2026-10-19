@@ -1,0 +1,5 @@
+
+> monopoli-nusantara@4.11.6 test:hold:batch:browser
+> node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-hold-batch-browser.mjs
+
+22 hold/batch browser checks passed.

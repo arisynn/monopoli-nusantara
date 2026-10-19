@@ -222,19 +222,16 @@ try {
     await page
       .locator("dialog[data-kind=auction] [name=bid]:disabled")
       .waitFor();
-    await page.locator("dialog[data-kind=event] .result-hero").waitFor();
-    assert.equal(await page.evaluate(() => window.auctionHidden), 0);
+    await page.locator('dialog[data-kind=notice][open]').filter({hasText:'Lelang selesai'}).waitFor();
+    assert.equal(await page.locator('dialog[open] button:visible').count(), 0);
     const done = await read(page);
     assert.equal(done.players[1].cash, s.players[1].cash - 100);
     assert.equal(done.assets[13].owner, 1);
-    assert.equal(
-      await page
-        .locator("dialog")
-        .evaluate((el) => getComputedStyle(el).animationName),
-      "none",
-    );
+    assert.equal(await page.locator("dialog").getAttribute("data-density"), "compact");
+    await page.locator('dialog[data-kind=notice][open]').waitFor({state:'hidden'});
+    assert.deepEqual(await read(page), done);
     checks.push({
-      name: "Winning payment keeps dialog open, charges once, and shows a still result",
+      name: "Winning payment charges once and uses the shared buttonless result modal",
       passed: true,
     });
     await context.close();
@@ -259,16 +256,17 @@ try {
     await page.locator("[name=bid]").fill("999");
     await watch(page);
     await page.locator("[data-type=PASS]").click();
-    await page.locator("dialog[data-kind=event] .result-hero").waitFor();
-    assert.equal(await page.evaluate(() => window.auctionHidden), 0);
-    await page.locator("[data-action=dismissEvent]").click();
+    await page.locator('dialog[data-kind=notice][open]').filter({hasText:'Lelang selesai'}).waitFor();
+    assert.equal(await page.locator('dialog[open] button:visible').count(), 0);
+    const settledState = await read(page);
+    await page.locator('dialog[data-kind=notice][open]').waitFor({state:'hidden'});
+    assert.deepEqual(await read(page), settledState);
     await page
       .locator(
         'dialog[data-kind=auction] [data-action=certificate][data-id="15"]',
       )
       .waitFor();
     assert.equal(await page.locator("[name=bid]").inputValue(), "5");
-    assert.equal(await page.evaluate(() => window.auctionHidden), 0);
     checks.push({
       name: "Bankruptcy auction chain stays open and resets input to the new opening minimum",
       passed: true,

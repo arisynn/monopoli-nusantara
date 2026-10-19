@@ -24,7 +24,7 @@ Pilihan ditetapkan saat membuat permainan/room. Pemain lain melihatnya di lobby.
 | Sertifikat | 28 aset dengan harga, sewa, nilai gadai, tebus, dan biaya bangun jika kota | Hlm. 1–2; batas verifikasi di bawah |
 | Dadu | Kembar memberi lempar ulang; kembar ketiga langsung penjara | Hlm. 2 |
 | Beli / tolak | Beli pada harga sertifikat atau lelang untuk semua, termasuk pemain yang menolak | Hlm. 1 |
-| Lelang properti | Terbuka: semua peserta boleh BID. Mulai Rp100; kelipatan Rp10; kenaikan minimal Rp10 | Hlm. 1 |
+| Lelang properti | Terbuka: semua peserta boleh BID. Mulai ₦5; kelipatan ₦5; kenaikan minimal ₦5 (50 unit dasar engine) | Hlm. 1 |
 | Sewa kota | Sesuai tingkat bangunan; tanah kosong dalam set lengkap 2×; aset tergadai tidak menagih | Hlm. 1–2 |
 | Stasiun | 1/2/3/4: Rp250/500/1.000/2.000 | Hlm. 2 |
 | Utilitas | Dua dadu baru untuk sewa; 4× atau 10× jumlah ×Rp10. Dadu sewa terpisah dari dadu gerak | Hlm. 2 |
@@ -55,7 +55,7 @@ Pilihan ditetapkan saat membuat permainan/room. Pemain lain melihatnya di lobby.
 4. **Cadangan lelang:** kas penawaran tertinggi tidak boleh dihabiskan melalui barter/tebus. Kelompok yang diperlukan untuk bangunan yang ditawar harus tetap memenuhi syarat. Penjualan dan gadai aset lain dapat menggalang kas.
 5. **Penjualan seluruh set:** tombol menjual semua bangunan sekaligus meringkas urutan penjualan merata. Untuk hotel ketika stok empat rumah tidak tersedia, digunakan klarifikasi penjualan hotel satu kelompok dari rulebook Hasbro 00009 hlm. 7; C1009 sendiri tidak merinci kasus tersebut. Sumber pembanding: https://www.hasbro.com/common/instruct/00009.pdf . Aturan pajak, utilitas, batas klaim sewa, dan lelang dari edisi lama tersebut tidak dipakai.
 6. **Pembayaran kepada beberapa pemain:** kartu diselesaikan berurutan menurut kursi. Rulebook ringkas tidak merinci distribusi saat insolven pada beberapa kreditur sekaligus.
-7. **Bank:** pembukuan digital tanpa pecahan uang kertas; bank tidak dibatasi kas fisik. Satuan bid Rp10 setara satu unit dasar rulebook.
+7. **Bank:** pembukuan digital tanpa pecahan uang kertas; bank tidak dibatasi kas fisik. Nominal antarmuka memakai Nusa: 10 unit dasar engine = ₦1. Sejak pembaruan lelang aktif, pembuka dan kenaikan minimal adalah ₦5 (50 unit dasar engine); ini prosedur digital Nusantara yang disengaja.
 
 ## Batas verifikasi yang tidak boleh disembunyikan
 

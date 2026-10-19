@@ -1,0 +1,5 @@
+
+> monopoli-nusantara@4.11.6 test:trade:results:browser
+> node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-trade-results-browser.mjs
+
+{"checks":6,"passed":true,"output":"/workspace/monopoli-nusantara/docs/qa/evidence/suite-screenshots"}

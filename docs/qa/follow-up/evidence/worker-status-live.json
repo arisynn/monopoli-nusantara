@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-19T10:42:41.882Z",
+  "scope": "Read-only production diagnostics with a fresh QA guest identity; no room, pairing, migration or worker command",
+  "productionBuild": {
+    "version": "4.11.6",
+    "release": "Trade Result Receipts · Hold & Release Dice · V23.2",
+    "engineSchemaVersion": 2,
+    "rulepackVersion": "nusantara-c1009-2",
+    "frontend": "classic",
+    "build": "392170ce55b1d147",
+    "serverModulesExposed": false
+  },
+  "diagnostics": {
+    "onlineBots": true,
+    "capabilities": {
+      "botPersonas": [
+        "raka",
+        "bima",
+        "sari",
+        "nusa",
+        "apex",
+        "kresna"
+      ],
+      "workerAlive": false,
+      "schemaVersion": 7,
+      "availableSlots": 0,
+      "workerProvider": "termux",
+      "lobbyManagement": true,
+      "workerConfigured": true,
+      "schedulerConfigured": false
+    },
+    "_performance": {
+      "trace": "76f38313-4658-4801-b113-d17a94a3e72e",
+      "receivedAt": 1792406566435,
+      "sentAt": 1792406566609,
+      "totalMs": 174.1034969999455,
+      "spans": {
+        "auth": 39.886229999829084,
+        "quota": 60.78729300014675,
+        "onlineCapabilities": 73.08759699994698
+      }
+    }
+  }
+}

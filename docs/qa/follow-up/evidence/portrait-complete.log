@@ -1,0 +1,9 @@
+
+> monopoli-nusantara@4.11.6 test:portrait
+> node --experimental-strip-types scripts/test-portrait-browser.mjs
+
+Portrait 320: 20 scenarios passed.
+Portrait 360: 20 scenarios passed.
+Portrait 390: 20 scenarios passed.
+Portrait 430: 20 scenarios passed.
+92 portrait/protection scenarios passed.

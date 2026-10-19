@@ -1,0 +1,1458 @@
+{
+  "generatedAt": "2026-10-19T10:43:14.468Z",
+  "referenceUsed": false,
+  "checks": [
+    {
+      "name": "preserved game-320",
+      "passed": true,
+      "sha256": "b0a5a49867866cd19d2eacf0ded6ecf11c683b5863b7c985d4e85b6dd9459b10",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved game-360",
+      "passed": true,
+      "sha256": "8499c8ab9bae9810884230eed604b87a76f7191ae70d632a697c9ea75d985099",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved game-390",
+      "passed": true,
+      "sha256": "70ff1db8c2017c2d912da6b22b6155bb9d36b14eebef471f2425b68362e5887c",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved game-430",
+      "passed": true,
+      "sha256": "1a9ed14ef2be778b9fc6746a7359f499d9d603fb92f0807581ebff2820ba5f1b",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved chance",
+      "passed": true,
+      "sha256": "030d65097f113e583a12df8d0594b05c27b56a69d11ae511c5c1288a81686099",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved community",
+      "passed": true,
+      "sha256": "92d11e744d59f7ebc1ca806d67af545d24c8b5442cbd8b6d51a2a29487214da9",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved certificate",
+      "passed": true,
+      "sha256": "92e1cdd94dc04e3991688c4b88e369703f28b2258e43de0bdfc82f446835fa58",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved buy",
+      "passed": true,
+      "sha256": "b7e733253cbee32d0767483dec2ef320f27187d3f54bb38f7ea965b1e37ff84f",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved chance-catalog",
+      "passed": true,
+      "sha256": "602fdb3bf29a13304b6b867172812004c33474eba26c355ebf5fcaeaa87770ce",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved community-catalog",
+      "passed": true,
+      "sha256": "f9b0b9b96ae28a69adb6b64a5df1a1531f16bf34e5aac2604bbd5aa2e7ee149d",
+      "pixelCompared": false
+    },
+    {
+      "name": "lobby 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 300,
+        "height": 414.1875,
+        "x": 10,
+        "y": 83.40625,
+        "bottom": 497.59375,
+        "right": 310,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "setup 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "pawn 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 297,
+        "x": 19,
+        "y": 135.5,
+        "bottom": 432.5,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "onlineEntry 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 454.828125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auth 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 454.828125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "menu 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 323.96875,
+        "x": 19,
+        "y": 122.015625,
+        "bottom": 445.984375,
+        "right": 301,
+        "footerBottom": 400.984375,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "settings 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "rules 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "saves 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "profile 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 388.984375,
+        "x": 19,
+        "y": 89.5,
+        "bottom": 478.484375,
+        "right": 301,
+        "footerBottom": 433.484375,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "assets 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 318,
+        "x": 19,
+        "y": 125,
+        "bottom": 443,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "build 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "trade 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 454.828125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "history 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 268.234375,
+        "x": 19,
+        "y": 149.875,
+        "bottom": 418.109375,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "bankInventory 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "tax 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 330.1875,
+        "x": 19,
+        "y": 118.90625,
+        "bottom": 449.09375,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "jail 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 379.40625,
+        "x": 19,
+        "y": 94.296875,
+        "bottom": 473.703125,
+        "right": 301,
+        "footerBottom": 428.703125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "debt 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 454.828125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auction 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 454.828125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "won 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 454.828125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "lobby 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 340,
+        "height": 416.390625,
+        "x": 10,
+        "y": 120.296875,
+        "bottom": 536.6875,
+        "right": 350,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "setup 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 486.390625,
+        "x": 19,
+        "y": 76.796875,
+        "bottom": 563.1875,
+        "right": 341,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "pawn 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 297,
+        "x": 19,
+        "y": 171.5,
+        "bottom": 468.5,
+        "right": 341,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "onlineEntry 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 486.390625,
+        "x": 19,
+        "y": 76.796875,
+        "bottom": 563.1875,
+        "right": 341,
+        "footerBottom": 518.1875,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auth 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 419.625,
+        "x": 19,
+        "y": 110.1875,
+        "bottom": 529.8125,
+        "right": 341,
+        "footerBottom": 484.8125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "menu 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 320,
+        "x": 19,
+        "y": 160,
+        "bottom": 480,
+        "right": 341,
+        "footerBottom": 435,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "settings 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 486.390625,
+        "x": 19,
+        "y": 76.796875,
+        "bottom": 563.1875,
+        "right": 341,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "rules 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 442.84375,
+        "x": 19,
+        "y": 98.578125,
+        "bottom": 541.421875,
+        "right": 341,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "saves 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 486.390625,
+        "x": 19,
+        "y": 76.796875,
+        "bottom": 563.1875,
+        "right": 341,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "profile 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 373.984375,
+        "x": 19,
+        "y": 133,
+        "bottom": 506.984375,
+        "right": 341,
+        "footerBottom": 461.984375,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "assets 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 276.5,
+        "x": 19,
+        "y": 181.75,
+        "bottom": 458.25,
+        "right": 341,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "build 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 486.390625,
+        "x": 19,
+        "y": 76.796875,
+        "bottom": 563.1875,
+        "right": 341,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "trade 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 486.390625,
+        "x": 19,
+        "y": 76.796875,
+        "bottom": 563.1875,
+        "right": 341,
+        "footerBottom": 518.1875,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "history 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 251.4375,
+        "x": 19,
+        "y": 194.28125,
+        "bottom": 445.71875,
+        "right": 341,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "bankInventory 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 486.390625,
+        "x": 19,
+        "y": 76.796875,
+        "bottom": 563.1875,
+        "right": 341,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "tax 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 330.1875,
+        "x": 19,
+        "y": 154.90625,
+        "bottom": 485.09375,
+        "right": 341,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "jail 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 378.625,
+        "x": 19,
+        "y": 130.6875,
+        "bottom": 509.3125,
+        "right": 341,
+        "footerBottom": 464.3125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "debt 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 467.796875,
+        "x": 19,
+        "y": 86.09375,
+        "bottom": 553.890625,
+        "right": 341,
+        "footerBottom": 508.890625,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auction 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 486.390625,
+        "x": 19,
+        "y": 76.796875,
+        "bottom": 563.1875,
+        "right": 341,
+        "footerBottom": 518.1875,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "won 360x640",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 486.390625,
+        "x": 19,
+        "y": 76.796875,
+        "bottom": 563.1875,
+        "right": 341,
+        "footerBottom": 518.1875,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "lobby 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 370,
+        "height": 416.390625,
+        "x": 10,
+        "y": 225.296875,
+        "bottom": 641.6875,
+        "right": 380,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "setup 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 560,
+        "x": 19,
+        "y": 142,
+        "bottom": 702,
+        "right": 371,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "pawn 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 297,
+        "x": 19,
+        "y": 273.5,
+        "bottom": 570.5,
+        "right": 371,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "onlineEntry 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 523.59375,
+        "x": 19,
+        "y": 160.203125,
+        "bottom": 683.796875,
+        "right": 371,
+        "footerBottom": 638.796875,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auth 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 419.625,
+        "x": 19,
+        "y": 212.1875,
+        "bottom": 631.8125,
+        "right": 371,
+        "footerBottom": 586.8125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "menu 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 320,
+        "x": 19,
+        "y": 262,
+        "bottom": 582,
+        "right": 371,
+        "footerBottom": 537,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "settings 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 504.5625,
+        "x": 19,
+        "y": 169.71875,
+        "bottom": 674.28125,
+        "right": 371,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "rules 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 442.84375,
+        "x": 19,
+        "y": 200.578125,
+        "bottom": 643.421875,
+        "right": 371,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "saves 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 560,
+        "x": 19,
+        "y": 142,
+        "bottom": 702,
+        "right": 371,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "profile 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 373.984375,
+        "x": 19,
+        "y": 235,
+        "bottom": 608.984375,
+        "right": 371,
+        "footerBottom": 563.984375,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "assets 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 276.5,
+        "x": 19,
+        "y": 283.75,
+        "bottom": 560.25,
+        "right": 371,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "build 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 497,
+        "x": 19,
+        "y": 173.5,
+        "bottom": 670.5,
+        "right": 371,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "trade 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 555.46875,
+        "x": 19,
+        "y": 144.265625,
+        "bottom": 699.734375,
+        "right": 371,
+        "footerBottom": 654.734375,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "history 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 251.4375,
+        "x": 19,
+        "y": 296.28125,
+        "bottom": 547.71875,
+        "right": 371,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "bankInventory 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 560,
+        "x": 19,
+        "y": 142,
+        "bottom": 702,
+        "right": 371,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "tax 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 299.40625,
+        "x": 19,
+        "y": 272.296875,
+        "bottom": 571.703125,
+        "right": 371,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "jail 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 378.625,
+        "x": 19,
+        "y": 232.6875,
+        "bottom": 611.3125,
+        "right": 371,
+        "footerBottom": 566.3125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "debt 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 467.796875,
+        "x": 19,
+        "y": 188.09375,
+        "bottom": 655.890625,
+        "right": 371,
+        "footerBottom": 610.890625,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auction 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 560,
+        "x": 19,
+        "y": 142,
+        "bottom": 702,
+        "right": 371,
+        "footerBottom": 657,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "won 390x844",
+      "passed": true,
+      "metrics": {
+        "width": 352,
+        "height": 560,
+        "x": 19,
+        "y": 142,
+        "bottom": 702,
+        "right": 371,
+        "footerBottom": 657,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "lobby 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 410,
+        "height": 416.390625,
+        "x": 10,
+        "y": 269.296875,
+        "bottom": 685.6875,
+        "right": 420,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "setup 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 560,
+        "x": 19,
+        "y": 186,
+        "bottom": 746,
+        "right": 411,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "pawn 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 297,
+        "x": 19,
+        "y": 317.5,
+        "bottom": 614.5,
+        "right": 411,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "onlineEntry 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 508.203125,
+        "x": 19,
+        "y": 211.890625,
+        "bottom": 720.09375,
+        "right": 411,
+        "footerBottom": 675.09375,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auth 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 419.625,
+        "x": 19,
+        "y": 256.1875,
+        "bottom": 675.8125,
+        "right": 411,
+        "footerBottom": 630.8125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "menu 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 320,
+        "x": 19,
+        "y": 306,
+        "bottom": 626,
+        "right": 411,
+        "footerBottom": 581,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "settings 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 504.5625,
+        "x": 19,
+        "y": 213.71875,
+        "bottom": 718.28125,
+        "right": 411,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "rules 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 442.84375,
+        "x": 19,
+        "y": 244.578125,
+        "bottom": 687.421875,
+        "right": 411,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "saves 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 560,
+        "x": 19,
+        "y": 186,
+        "bottom": 746,
+        "right": 411,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "profile 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 373.984375,
+        "x": 19,
+        "y": 279,
+        "bottom": 652.984375,
+        "right": 411,
+        "footerBottom": 607.984375,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "assets 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 276.5,
+        "x": 19,
+        "y": 327.75,
+        "bottom": 604.25,
+        "right": 411,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "build 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 497,
+        "x": 19,
+        "y": 217.5,
+        "bottom": 714.5,
+        "right": 411,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "trade 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 555.46875,
+        "x": 19,
+        "y": 188.265625,
+        "bottom": 743.734375,
+        "right": 411,
+        "footerBottom": 698.734375,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "history 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 251.4375,
+        "x": 19,
+        "y": 340.28125,
+        "bottom": 591.71875,
+        "right": 411,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "bankInventory 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 560,
+        "x": 19,
+        "y": 186,
+        "bottom": 746,
+        "right": 411,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "tax 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 299.40625,
+        "x": 19,
+        "y": 316.296875,
+        "bottom": 615.703125,
+        "right": 411,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "jail 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 378.625,
+        "x": 19,
+        "y": 276.6875,
+        "bottom": 655.3125,
+        "right": 411,
+        "footerBottom": 610.3125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "debt 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 450.40625,
+        "x": 19,
+        "y": 240.796875,
+        "bottom": 691.203125,
+        "right": 411,
+        "footerBottom": 646.203125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auction 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 560,
+        "x": 19,
+        "y": 186,
+        "bottom": 746,
+        "right": 411,
+        "footerBottom": 701,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "won 430x932",
+      "passed": true,
+      "metrics": {
+        "width": 392,
+        "height": 520.84375,
+        "x": 19,
+        "y": 205.578125,
+        "bottom": 726.421875,
+        "right": 411,
+        "footerBottom": 681.421875,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auth with reduced viewport 360x420",
+      "passed": true,
+      "metrics": {
+        "width": 322,
+        "height": 319.1875,
+        "x": 19,
+        "y": 50.40625,
+        "bottom": 369.59375,
+        "right": 341,
+        "footerBottom": 324.59375,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "desktop setup 1280x800",
+      "passed": true,
+      "metrics": {
+        "width": 480,
+        "height": 560,
+        "x": 400,
+        "y": 120,
+        "bottom": 680,
+        "right": 880,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium mobile emulation; no physical Android or iOS device.",
+    "Online forms tested locally; no real account is created.",
+    "Pixel equality is compared only against a reference captured in the same environment."
+  ]
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "command": "npm test",
+    "exitCode": 0,
+    "durationSeconds": 37.647,
+    "log": "docs/qa/follow-up/evidence/recheck-00.log"
+  },
+  {
+    "command": "npm run test:portrait",
+    "exitCode": 1,
+    "durationSeconds": 74.084,
+    "log": "docs/qa/follow-up/evidence/recheck-01.log"
+  },
+  {
+    "command": "npm run test:auction",
+    "exitCode": 0,
+    "durationSeconds": 51.392,
+    "log": "docs/qa/follow-up/evidence/recheck-02.log"
+  },
+  {
+    "command": "npm run test:stability",
+    "exitCode": 1,
+    "durationSeconds": 19.085,
+    "log": "docs/qa/follow-up/evidence/recheck-03.log"
+  },
+  {
+    "command": "npm run test:bank",
+    "exitCode": 0,
+    "durationSeconds": 25.367,
+    "log": "docs/qa/follow-up/evidence/recheck-04.log"
+  },
+  {
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "durationSeconds": 2.09,
+    "log": "docs/qa/follow-up/evidence/recheck-05.log"
+  },
+  {
+    "command": "npm run check:source",
+    "exitCode": 0,
+    "durationSeconds": 0.922,
+    "log": "docs/qa/follow-up/evidence/recheck-06.log"
+  },
+  {
+    "command": "node scripts/verify-speed-model.mjs",
+    "exitCode": 0,
+    "durationSeconds": 0.073,
+    "log": "docs/qa/follow-up/evidence/recheck-07.log"
+  }
+]

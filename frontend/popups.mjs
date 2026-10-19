@@ -634,6 +634,21 @@ export function renderPopup(session, ui, p) {
   };
   let content;
   switch (p.kind) {
+    case "notice": {
+      const n = p.notice,
+        incoming = n.direction === "in";
+      content = {
+        title: n.title,
+        html:
+          lead(n.kind === "rent" ? "home" : "info", n.title) +
+          (n.amount > 0
+            ? `<div class="big-amount ${incoming ? "positive" : "negative"}">${incoming ? "+" : "−"} ${amount(n.amount)}</div>`
+            : "") +
+          `<p class="body-copy">${esc(n.text)}</p>`,
+        footer: "",
+      };
+      break;
+    }
     case "rentClaims":
       content = {
         title: "Tagih Sewa",

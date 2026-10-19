@@ -1,0 +1,18 @@
+{
+  "environment": "Chromium, two isolated browser contexts, real UI and authoritative online service; MemoryOnlineStore and websocket transport controlled locally",
+  "results": [
+    {
+      "passed": false,
+      "error": "page.waitForFunction: Timeout 10000ms exceeded.\n    at moving (/workspace/monopoli-nusantara/scripts/test-online-flow-browser.mjs:200:13)\n    at /workspace/monopoli-nusantara/scripts/test-online-flow-browser.mjs:214:69"
+    }
+  ],
+  "errors": [],
+  "actions": [
+    {
+      "at": 1792407312458,
+      "code": "ADPL8A8M",
+      "action": "ROLL"
+    }
+  ],
+  "pass": false
+}

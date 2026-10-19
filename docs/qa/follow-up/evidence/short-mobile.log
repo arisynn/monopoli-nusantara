@@ -1,0 +1,28 @@
+{
+  width: 360,
+  height: 420,
+  scale: 1,
+  metrics: {
+    viewport: { w: 360, h: 420 },
+    overflow: false,
+    board: {
+      x: 111,
+      y: 128,
+      width: 138,
+      height: 138,
+      right: 249,
+      bottom: 266
+    },
+    console: { x: 0, y: 340, width: 360, height: 80, right: 360, bottom: 420 },
+    primary: { x: 107, y: 366, width: 245, height: 46, right: 352, bottom: 412 },
+    smallButtons: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object]
+    ],
+    tileFont: '18px',
+    players: { x: 6, y: 42, width: 348, height: 84, right: 354, bottom: 126 }
+  }
+}

@@ -1,0 +1,12 @@
+
+> monopoli-nusantara@4.11.6 test:portrait
+> node --experimental-strip-types scripts/test-portrait-browser.mjs
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('dialog [data-action=allTiles]')[22m
+
+    at selectCase (/workspace/monopoli-nusantara/scripts/test-portrait-browser.mjs:27:167)
+    at async file:///workspace/monopoli-nusantara/scripts/test-portrait-browser.mjs:51:127 {
+  name: 'TimeoutError'
+}

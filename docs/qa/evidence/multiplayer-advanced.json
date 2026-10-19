@@ -1,0 +1,1593 @@
+{
+  "steps": [
+    {
+      "name": "add-bot",
+      "text": "Nusantara\nRuang Bermain\nONLINE\n40 petak\n2/3 peserta\n₦\n= Nusa\nKODE ROOM\nQHULEFJT\nSalin\nTerhubung\n0/2 manusia siap · Bot menunggu worker\nP1 · HOST\nQA Advanced Host\nBelum siap\nP2\nQA Advanced Guest\nBelum siap\nP3\nKursi kosong\nSaya siap\nPilih pion\nTambah bot\nMulai permainan\nKelola room\nKeluar room\n\nMinimal dua manusia. Semua manusia harus siap dan terhubung.\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBot online belum siap. Hubungkan worker terlebih dahulu.\nBot di Room\n\nPilih karakter untuk kursi kosong, tanpa duplikasi.\n\nKARAKTER BOT\nRAKA\n\nPilih salah satu dari enam model unik. Maksimal tiga bot per room, dan minimal dua pemain manusia.\n\nBot online belum siap. Hubungkan worker terlebih dahulu.\n\nTambahkan bot\nTutup"
+    },
+    {
+      "name": "started",
+      "text": "Nusantara\nQA Advanced Host\n₦ 1.500\nGiliran aktif\nQA Advanced Guest\n₦ 1.500\nP2\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\nSURABAYA\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 3.000\nModal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.\nBelum ada transaksi Nusa.\nMulai\nPetak perjalanan\nSiap melempar\nONLINE · RONDE 1\nQA Advanced Host\nAset\nBarter\nLempar awal\nTahan lalu lepas · ketuk juga bisa"
+    },
+    {
+      "name": "race-after",
+      "text": "Nusantara\nQA Advanced Host\n₦ 1.500\nGiliran aktif\nQA Advanced Guest\n₦ 1.500\nP2\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\nSURABAYA\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 3.000\nQA Advanced Host tiba di Semarang.\nBelum ada transaksi Nusa.\nMulai\nPetak perjalanan\nTerakhir 3 + 5\nONLINE · RONDE 1\nQA Advanced Host\nAset\nBarter\nBeli / lelang\nSERTIFIKAT KEPEMILIKAN\nSEMARANG\nSewa tanah\n₦ 6\nSet warna lengkap\n₦ 12\n1 rumah\n₦ 30\n2 rumah\n₦ 90\n3 rumah\n₦ 270\n4 rumah\n₦ 400\n1 hotel\n₦ 550\nHarga tanah\n₦ 100\nBiaya 1 rumah\n₦ 50\nBiaya 1 hotel\n₦ 50\nHotel menggantikan 4 rumah.\nNilai gadai\n₦ 50\nTersedia di bank\nSaldo Anda\n₦ 1.500\nBeli ₦ 100\nMulai lelang\nTutup"
+    },
+    {
+      "name": "trade-incoming",
+      "text": "Nusantara\nQA Advanced Host\n₦ 1.400\nP1\nQA Advanced Guest\n₦ 1.500\nGiliran aktif\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\n₦ 6\nSURABAYA\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 2.900\nQA Advanced Host menawarkan barter kepada QA Advanced Guest.\nQA Advanced Host − ₦ 100 · Pembelian\nMulai\nPetak perjalanan\nTerakhir 3 + 5\nONLINE · RONDE 1\nQA Advanced Guest\nAset\nBarter\nTinjau barter\nTawaran Barter\n\nQA Advanced Host → QA Advanced Guest\n\nAnda menerima\n₦ 10\nAnda memberi\nEstimasi laba\n+ ₦ 10\nNilai acuan untuk Anda\nDetail nilai barter\nTerima\nTawar balik\nTolak\nTutup"
+    },
+    {
+      "name": "trade-result-guest",
+      "text": "Nusantara\nQA Advanced Host\n₦ 1.390\nGiliran aktif\nQA Advanced Guest\n₦ 1.510\nP2\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\n₦ 6\nSURABAYA\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 2.900\nBarter selesai: QA Advanced Host memberikan ₦ 10; QA Advanced Guest memberikan tanpa aset.\nQA Advanced Host − ₦ 10 · QA Advanced Guest + ₦ 10 · Barter\nMulai\nPetak perjalanan\nTerakhir 3 + 5\nONLINE · RONDE 1\nQA Advanced Host\nAset\nBarter\nGiliran QA Advanced Host\nBarter berhasil\n\nTransaksi dengan QA Advanced Host sudah tercatat.\n\nAnda menerima\n₦ 10\nAnda memberi\n\nTidak ada.\n\nTerima\nTawar balik\nTolak\nTutup"
+    },
+    {
+      "name": "trade-result-host",
+      "text": "Nusantara\nQA Advanced Host\n₦ 1.390\nGiliran aktif\nQA Advanced Guest\n₦ 1.510\nP2\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\n₦ 6\nSURABAYA\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 2.900\n1 transaksi terkonfirmasi · lihat Riwayat\nQA Advanced Host − ₦ 10 · QA Advanced Guest + ₦ 10 · Barter\nMulai\nPetak perjalanan\nTerakhir 3 + 5\nONLINE · RONDE 1\nQA Advanced Host\nAset\nBarter\nAkhiri giliran\nBarter berhasil\n\nTransaksi dengan QA Advanced Guest sudah tercatat.\n\nAnda menerima\n\nTidak ada.\n\nAnda memberi\n₦ 10\nTutup"
+    },
+    {
+      "name": "refresh-resumed",
+      "text": "Nusantara\nQA Advanced Host\n₦ 1.390\nGiliran aktif\nQA Advanced Guest\n₦ 1.510\nP2\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\n₦ 6\nSURABAYA\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 2.900\nBarter selesai: QA Advanced Host memberikan ₦ 10; QA Advanced Guest memberikan tanpa aset.\nQA Advanced Host − ₦ 10 · QA Advanced Guest + ₦ 10 · Barter\nMulai\nPetak perjalanan\nTerakhir 3 + 5\nONLINE · RONDE 1\nQA Advanced Host\nAset\nBarter\nGiliran QA Advanced Host"
+    },
+    {
+      "name": "offline-short",
+      "text": "Nusantara\nQA Advanced Host\n₦ 1.390\nGiliran aktif\nQA Advanced Guest\n₦ 1.510\nP2\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\n₦ 6\nSURABAYA\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 2.900\nBarter selesai: QA Advanced Host memberikan ₦ 10; QA Advanced Guest memberikan tanpa aset.\nQA Advanced Host − ₦ 10 · QA Advanced Guest + ₦ 10 · Barter\nMulai\nPetak perjalanan\nTerakhir 3 + 5\nONLINE · RONDE 1\nQA Advanced Host\nAset\nBarter\nAkhiri giliran"
+    },
+    {
+      "name": "reconnected",
+      "text": "Nusantara\nQA Advanced Host\n₦ 1.390\nGiliran aktif\nQA Advanced Guest\n₦ 1.510\nP2\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\n₦ 6\nSURABAYA\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 2.900\nBarter selesai: QA Advanced Host memberikan ₦ 10; QA Advanced Guest memberikan tanpa aset.\nQA Advanced Host − ₦ 10 · QA Advanced Guest + ₦ 10 · Barter\nMulai\nPetak perjalanan\nTerakhir 3 + 5\nONLINE · RONDE 1\nQA Advanced Host\nAset\nBarter\nGiliran QA Advanced Host"
+    }
+  ],
+  "requests": [
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/bot",
+      "timing": {
+        "startTime": 1792404395965.894,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.208,
+        "responseStart": 310.569,
+        "responseEnd": 312.72
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404395965.689,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.376,
+        "responseStart": 371.151,
+        "responseEnd": 373.362
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/auth",
+      "timing": {
+        "startTime": 1792404398080.928,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.686,
+        "responseStart": 456.269,
+        "responseEnd": 457.565
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404398645.9438,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.372,
+        "responseStart": 322.762,
+        "responseEnd": 330.887
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/bot",
+      "timing": {
+        "startTime": 1792404401255.276,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.119,
+        "responseStart": 306.261,
+        "responseEnd": 312.343
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404401251.365,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.842,
+        "responseStart": 341.277,
+        "responseEnd": 345.632
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/auth",
+      "timing": {
+        "startTime": 1792404402778.1301,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.213,
+        "responseStart": 361.756,
+        "responseEnd": 365.226
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404403261.7012,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.202,
+        "responseStart": 335.942,
+        "responseEnd": 342.682
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404403681.791,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.188,
+        "responseStart": 556.164,
+        "responseEnd": 566.491
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404404753.659,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.184,
+        "responseStart": 694.948,
+        "responseEnd": 698.796
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404405590.722,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.13,
+        "responseStart": 698.654,
+        "responseEnd": 701.356
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404405882.943,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.155,
+        "responseStart": 654.377,
+        "responseEnd": 660.484
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404406318.609,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.217,
+        "responseStart": 772.744,
+        "responseEnd": 774.08
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404406681.641,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.149,
+        "responseStart": 494.48,
+        "responseEnd": 504.119
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404407242.861,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.204,
+        "responseStart": 453.025,
+        "responseEnd": 457.18
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404407533.471,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.312,
+        "responseStart": 705.226,
+        "responseEnd": 752.787
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404409561.659,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.194,
+        "responseStart": 415.887,
+        "responseEnd": 417.833
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404410165.9539,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.186,
+        "responseStart": 578.542,
+        "responseEnd": 585.271
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404410949.6738,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.161,
+        "responseStart": 696.474,
+        "responseEnd": 699.179
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404411139.631,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.22,
+        "responseStart": 596.736,
+        "responseEnd": 598.757
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404412171.337,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.269,
+        "responseStart": 422.158,
+        "responseEnd": 423.65
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404412849.599,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.178,
+        "responseStart": 519.961,
+        "responseEnd": 523.659
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404413670.569,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.163,
+        "responseStart": 519.296,
+        "responseEnd": 529.577
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404414951.312,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 1.894,
+        "responseStart": 419.377,
+        "responseEnd": 429.008
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404415452.067,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.171,
+        "responseStart": 429.07,
+        "responseEnd": 435.607
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404415985.964,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.217,
+        "responseStart": 757.03,
+        "responseEnd": 767.366
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404416345.995,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.214,
+        "responseStart": 603.95,
+        "responseEnd": 619.385
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404416944.598,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.212,
+        "responseStart": 417.695,
+        "responseEnd": 423.03
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404417182.7449,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.679,
+        "responseStart": 706.824,
+        "responseEnd": 709.329
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404417385.8809,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.177,
+        "responseStart": 549.417,
+        "responseEnd": 554.066
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404417994.889,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.147,
+        "responseStart": 545.506,
+        "responseEnd": 553.221
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404418797.773,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.194,
+        "responseStart": 448.787,
+        "responseEnd": 459.782
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404418757.5999,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.258,
+        "responseStart": 496.003,
+        "responseEnd": 504.424
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404418775.4941,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.176,
+        "responseStart": 603.745,
+        "responseEnd": 605.825
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404419335.8572,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.148,
+        "responseStart": 618.221,
+        "responseEnd": 662.643
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404419971.4949,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.28,
+        "responseStart": 762.184,
+        "responseEnd": 767.278
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404420802.518,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 1.743,
+        "responseStart": 486.039,
+        "responseEnd": 488.017
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404420945.663,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.218,
+        "responseStart": 439.879,
+        "responseEnd": 449.012
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404420800.298,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.3,
+        "responseStart": 633.331,
+        "responseEnd": 638.614
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404421565.8691,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.146,
+        "responseStart": 516.045,
+        "responseEnd": 519.932
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404422144.153,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.235,
+        "responseStart": 521.331,
+        "responseEnd": 526.493
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404422854.2612,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.23,
+        "responseStart": 487.371,
+        "responseEnd": 490.054
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404422879.3699,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 1.648,
+        "responseStart": 488.519,
+        "responseEnd": 493.537
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404422877.6873,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 1.54,
+        "responseStart": 557.544,
+        "responseEnd": 561.289
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404423355.6501,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.225,
+        "responseStart": 511.336,
+        "responseEnd": 515.401
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404423891.205,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.192,
+        "responseStart": 502.01,
+        "responseEnd": 503.507
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404424454.8582,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.178,
+        "responseStart": 518.047,
+        "responseEnd": 519.795
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404424999.801,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.151,
+        "responseStart": 435.794,
+        "responseEnd": 452.992
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404425475.566,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.87,
+        "responseStart": 459.286,
+        "responseEnd": 462.556
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404425472.1382,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.823,
+        "responseStart": 561.233,
+        "responseEnd": 567.422
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404425980.4338,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.263,
+        "responseStart": 552.908,
+        "responseEnd": 561.101
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404426054.54,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 2.131,
+        "responseStart": 616.924,
+        "responseEnd": 618.649
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404426679.388,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.208,
+        "responseStart": 466.565,
+        "responseEnd": 468.165
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404426935.878,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.669,
+        "responseStart": 439.784,
+        "responseEnd": 442.738
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404426936.6548,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 1.285,
+        "responseStart": 508.926,
+        "responseEnd": 510.678
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404427174.558,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.18,
+        "responseStart": 467.101,
+        "responseEnd": 470.755
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404427736.03,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.151,
+        "responseStart": 401.704,
+        "responseEnd": 443.15
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404428176.226,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.198,
+        "responseStart": 479.18,
+        "responseEnd": 487.741
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404428672.683,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.221,
+        "responseStart": 717.719,
+        "responseEnd": 719.548
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404429655.009,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.204,
+        "responseStart": 531.257,
+        "responseEnd": 538.013
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404430251.956,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.135,
+        "responseStart": 549.587,
+        "responseEnd": 554.288
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404430811.754,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.153,
+        "responseStart": 725.17,
+        "responseEnd": 726.394
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404432050.125,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.182,
+        "responseStart": 523.663,
+        "responseEnd": 528.571
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404431861.694,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.181,
+        "responseStart": 814.963,
+        "responseEnd": 820.63
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404432054.269,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.14,
+        "responseStart": 679.834,
+        "responseEnd": 683.262
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404432690.0818,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.149,
+        "responseStart": 452.523,
+        "responseEnd": 456.842
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404433151.37,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.882,
+        "responseStart": 486.493,
+        "responseEnd": 489.555
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404433693.6572,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.235,
+        "responseStart": 553.366,
+        "responseEnd": 559.009
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404434587.2888,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.149,
+        "responseStart": 460.832,
+        "responseEnd": 462.76
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404434588.682,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.113,
+        "responseStart": 464.848,
+        "responseEnd": 466.949
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404435695.2688,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.238,
+        "responseStart": 791.344,
+        "responseEnd": 793.102
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404436594.904,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.182,
+        "responseStart": 442.294,
+        "responseEnd": 445.821
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404437642.2788,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.173,
+        "responseStart": 615.248,
+        "responseEnd": 617.351
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404437356.879,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.151,
+        "responseStart": 908.034,
+        "responseEnd": 911.489
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404437947.206,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.148,
+        "responseStart": 478.386,
+        "responseEnd": 479.678
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404438397.748,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.167,
+        "responseStart": 438.867,
+        "responseEnd": 440.795
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404438856.962,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.196,
+        "responseStart": 682.654,
+        "responseEnd": 688.531
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404440084.357,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.148,
+        "responseStart": 286.605,
+        "responseEnd": 288.355
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/bot",
+      "timing": {
+        "startTime": 1792404440091.2302,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.137,
+        "responseStart": 334.798,
+        "responseEnd": 340.632
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404441000.3938,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.225,
+        "responseStart": 742.069,
+        "responseEnd": 745.815
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404441985.6318,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.201,
+        "responseStart": 568.31,
+        "responseEnd": 573.579
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404442259.022,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.228,
+        "responseStart": 314.236,
+        "responseEnd": 317.835
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404442246.074,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.282,
+        "responseStart": 432.4,
+        "responseEnd": 481.534
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "GET",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404442591.75,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.149,
+        "responseStart": 522.11,
+        "responseEnd": 527.175
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404446837.5,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 2.912,
+        "responseStart": 870.206,
+        "responseEnd": 907.991
+      }
+    },
+    {
+      "client": "QA Advanced Guest",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404449821.76,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.21,
+        "responseStart": 633.089,
+        "responseEnd": 636.65
+      }
+    },
+    {
+      "client": "QA Advanced Host",
+      "method": "POST",
+      "path": "/api/online",
+      "timing": {
+        "startTime": 1792404450463.823,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.218,
+        "responseStart": 770.833,
+        "responseEnd": 773.182
+      }
+    }
+  ],
+  "sockets": [
+    {
+      "client": "QA Advanced Host",
+      "host": "ymunfgclqfdqaczluqti.supabase.co",
+      "received": 16,
+      "errors": 0
+    },
+    {
+      "client": "QA Advanced Guest",
+      "host": "ymunfgclqfdqaczluqti.supabase.co",
+      "received": 14,
+      "errors": 0
+    },
+    {
+      "client": "QA Advanced Guest",
+      "host": "ymunfgclqfdqaczluqti.supabase.co",
+      "received": 2,
+      "errors": 0
+    }
+  ],
+  "errors": [],
+  "cases": [
+    {
+      "name": "wrong_turn_roll",
+      "result": {
+        "ok": false,
+        "message": "Belum waktunya melempar.",
+        "status": 400
+      }
+    },
+    {
+      "name": "same_request_concurrent_roll",
+      "responses": [
+        {
+          "ok": true,
+          "version": 5
+        },
+        {
+          "ok": true,
+          "version": 5
+        }
+      ],
+      "versionBefore": 4,
+      "versionAfter": 5,
+      "dice": [
+        3,
+        5
+      ]
+    },
+    {
+      "name": "changed_payload_same_request_id",
+      "result": {
+        "ok": false,
+        "message": "ID permintaan sudah dipakai untuk isi berbeda.",
+        "status": 409
+      }
+    },
+    {
+      "name": "late_previous_version",
+      "result": {
+        "ok": false,
+        "message": "State berubah. Ambil kondisi terbaru lalu coba lagi.",
+        "status": 409
+      }
+    },
+    {
+      "name": "human_trade_offer",
+      "ok": true
+    },
+    {
+      "name": "authoritative_snapshot_agreement",
+      "same": true,
+      "hostVersion": 8,
+      "guestVersion": 8
+    },
+    {
+      "name": "QA Advanced Guest leave own QA room",
+      "ok": false,
+      "error": "Peserta hanya dapat dikeluarkan sebelum permainan dimulai."
+    },
+    {
+      "name": "QA Advanced Host leave own QA room",
+      "ok": false,
+      "error": "Peserta hanya dapat dikeluarkan sebelum permainan dimulai."
+    }
+  ],
+  "diagnostics": {
+    "onlineBots": true,
+    "capabilities": {
+      "botPersonas": [
+        "raka",
+        "bima",
+        "sari",
+        "nusa",
+        "apex",
+        "kresna"
+      ],
+      "workerAlive": false,
+      "schemaVersion": 7,
+      "availableSlots": 0,
+      "workerProvider": "termux",
+      "lobbyManagement": true,
+      "workerConfigured": true,
+      "schedulerConfigured": false
+    },
+    "_performance": {
+      "trace": "53f98e26-87e2-443a-8d95-6f91615fdede",
+      "receivedAt": 1792404403842,
+      "sentAt": 1792404404058,
+      "totalMs": 216.13409800000954,
+      "spans": {
+        "auth": 35.504008999909274,
+        "quota": 81.25361699995119,
+        "onlineCapabilities": 98.7782400000142
+      }
+    }
+  },
+  "qaRoom": "QHULEFJT",
+  "botAdded": false,
+  "tradeAfter": {
+    "version": 8,
+    "cash": [
+      13900,
+      15100
+    ],
+    "results": [
+      {
+        "id": 12,
+        "text": "Barter selesai: QA Advanced Host memberikan ₦ 10; QA Advanced Guest memberikan tanpa aset.",
+        "turn": 1,
+        "type": "trade",
+        "actor": 1,
+        "finance": [
+          {
+            "to": 1,
+            "from": 0,
+            "kind": "trade",
+            "amount": 100
+          }
+        ],
+        "version": 8,
+        "audience": "public",
+        "tradeResult": {
+          "to": 1,
+          "from": 0,
+          "give": [],
+          "take": [],
+          "actor": 1,
+          "status": "accepted",
+          "offerId": "b8609921-5814-4ad4-b5b5-c0c618191acc:offer:11",
+          "giveCash": 100,
+          "takeCash": 0,
+          "giveCards": 0,
+          "takeCards": 0
+        },
+        "assetChanges": []
+      }
+    ]
+  }
+}

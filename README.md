@@ -1,5 +1,7 @@
 # Monopoli Nusantara 4.11.6
 
+> **Perbaikan QA lokal (belum dipush/deploy):** notifikasi gaji, sewa, pajak, kartu dan hasil barter memakai modal bersama tanpa tombol Tutup, lalu menutup otomatis. Footer transaksi lama dan layout portrait pendek diperbaiki. Status worker diperiksa sebelum menambah bot. Rincian dan hasil verifikasi terbaru: [laporan perbaikan QA](docs/qa/follow-up/FIX_REPORT.md). Catatan rilis di bawah adalah riwayat basis 4.11.6.
+
 Update 4.11.6 menambahkan modal hasil barter diterima, ditolak, atau dibatalkan, dengan rincian properti, uang dan kartu yang diterima/diberikan. Modal memakai komponen yang sudah ada dan menunggu ditutup. Board, pion, engine dan model V23.2 tetap sama. Panduan: [TRADE_RESULTS_4116_UPDATE.md](docs/TRADE_RESULTS_4116_UPDATE.md).
 
 Rilis aktif: dadu tahan–lepas dengan CSPRNG yang tetap sama; bot tetap melempar otomatis. Bangun banyak kini memakai satu request dan satu commit atomik, dengan satu penyajian hasil. Jumlah satu tetap dapat diarahkan ke properti tertentu. Lobby padat, penutup popup teks, notifikasi sewa, dan Pegadaian tetap tersedia. Panduan update GitHub/Vercel/Termux beserta audit dan benchmark: [HOLD_BATCH_4115_UPDATE.md](docs/HOLD_BATCH_4115_UPDATE.md).

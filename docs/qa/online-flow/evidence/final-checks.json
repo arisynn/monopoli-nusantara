@@ -1,0 +1,32 @@
+[
+  {
+    "command": "npm run test:speed",
+    "exitCode": 0,
+    "durationSeconds": 0.756,
+    "log": "speed-final.log"
+  },
+  {
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "durationSeconds": 2.132,
+    "log": "typecheck-final.log"
+  },
+  {
+    "command": "npm run check:source",
+    "exitCode": 0,
+    "durationSeconds": 0.668,
+    "log": "check-source-final.log"
+  },
+  {
+    "command": "node scripts/verify-speed-model.mjs",
+    "exitCode": 0,
+    "durationSeconds": 0.066,
+    "log": "model-final.log"
+  },
+  {
+    "command": "git diff --check",
+    "exitCode": 0,
+    "durationSeconds": 0.015,
+    "log": "diff-check.log"
+  }
+]

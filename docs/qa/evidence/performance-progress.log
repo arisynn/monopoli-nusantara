@@ -1,0 +1,28 @@
+{
+  mode: 'cold',
+  lobbyReadyMs: 1809.884026,
+  setupClickToVisibleMs: 394.9500420000004,
+  offline: true,
+  error: undefined,
+  heap: {
+    usedSize: 2663992,
+    totalSize: 5287936,
+    embedderHeapUsedSize: 3071136,
+    backingStorageSize: 789771
+  },
+  dom: { documents: 3, nodes: 491, jsEventListeners: 57 }
+}
+{
+  mode: 'slow-network',
+  lobbyReadyMs: 4557.92167,
+  setupClickToVisibleMs: 407.3238760000004,
+  offline: undefined,
+  error: undefined,
+  heap: {
+    usedSize: 2638780,
+    totalSize: 5550080,
+    embedderHeapUsedSize: 3072664,
+    backingStorageSize: 789209
+  },
+  dom: { documents: 3, nodes: 491, jsEventListeners: 57 }
+}

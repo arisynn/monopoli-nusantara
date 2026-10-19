@@ -1,0 +1,41 @@
+{
+  "errors": [],
+  "requests": [
+    {
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "path": "/api/bot",
+      "status": 200
+    }
+  ],
+  "steps": [
+    {
+      "name": "onlineEntry",
+      "text": "Bermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nBelum masuk\nMasuk / Tamu\nPerlu masuk\n\nGunakan akun atau tamu untuk membuat dan bergabung ke room.\n\nPeriksa ulang\nBuat Room\nTutup"
+    },
+    {
+      "name": "auth",
+      "text": "Identitas Online\n\nGunakan akun untuk pemulihan lintas perangkat.\n\nEmail\nPassword\n\nTamu dipulihkan di browser yang sama. Jangan berbagi token atau kode akun.\n\nMasuk\nDaftar / tautkan akun\nMain sebagai tamu\nTutup",
+      "buttons": [
+        {
+          "text": "Masuk",
+          "action": "login"
+        },
+        {
+          "text": "Daftar / tautkan akun",
+          "action": "signup"
+        },
+        {
+          "text": "Main sebagai tamu",
+          "action": "guest"
+        },
+        {
+          "text": "Tutup",
+          "action": "close"
+        }
+      ]
+    }
+  ]
+}

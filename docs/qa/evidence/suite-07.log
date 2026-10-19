@@ -1,0 +1,22 @@
+
+> monopoli-nusantara@4.11.6 test:trade:results
+> node --experimental-strip-types --import ./adapters/node/aliases.mjs --test tests/trade-results.test.mjs
+
+✔ trade wrapper adds metadata only; official economy, memory, RNG and versions are unchanged (12.027879ms)
+✔ accepted receipt includes both directions, cash, jail cards and the original mortgage status (2.166429ms)
+✔ counteroffers resolve from the new sender perspective, not as rejected original offers (1.038216ms)
+✔ reject and sender cancellation are distinct, with no invented transfer or bot explanation (0.828299ms)
+✔ both humans receive one result; spectators, bots, offers, stale polls and private entries do not (1.355826ms)
+✔ unread results survive refresh/reset, are read once, and never replay future receipts on a save rewind (0.995903ms)
+✔ a batched online poll can skip the active offer and still deliver its exact receipt (4.236262ms)
+✔ missing storage, denied writes, corrupt entries and player name markup cannot break a result (0.682009ms)
+✔ local session waits for confirmed presentation, then holds bots without an auto-dismiss timer (35.27464ms)
+✔ online ACTION wraps the same engine and returns structured results through public state (1.402336ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 384.146724

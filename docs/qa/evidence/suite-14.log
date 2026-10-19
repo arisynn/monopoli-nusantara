@@ -1,0 +1,21 @@
+
+> monopoli-nusantara@4.11.6 test:bank
+> node --experimental-strip-types scripts/test-bank-browser.mjs
+
+Bank 320x568 passed.
+Bank 360x640 passed.
+Bank 390x844 passed.
+Bank 430x932 passed.
+Bank 360x420 passed.
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+null !== ''
+
+    at file:///workspace/monopoli-nusantara/scripts/test-bank-browser.mjs:40:86 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: null,
+  expected: '',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "i": 0,
+    "n": 2,
+    "humanWins": true,
+    "fixture": true,
+    "durationMs": 7500.80898,
+    "uiActions": 0,
+    "engineActions": 1,
+    "winner": 0,
+    "wonModal": 1,
+    "text": "Nusantara\nQA Final\n₦ 1.501\nP1\nraka\n₦ 0\nBangkrut\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\n₦ 550\nKESEMPATAN\nSEMARANG\n₦ 550\nSURABAYA\n₦ 600\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 1.501\nraka bangkrut kepada QA Final.\nraka − ₦ 1 · QA Final + ₦ 1 · Penyelesaian bangkrut\nMulai\nPetak perjalanan\nTerakhir 3 + 3\nVS BOT · RONDE 1\nraka\nAset\nBarter\nHasil pertandingan\nHasil Akhir\n\nPetualangan Nusantara telah selesai.\n\nQA Final menang!\nQA Final\nPemenang\n₦ 2.571\nraka\nBangkrut\n₦ 0\nKembali ke lobby\nTutup",
+    "errors": []
+  },
+  {
+    "i": 1,
+    "n": 3,
+    "humanWins": false,
+    "fixture": true,
+    "durationMs": 7333.979599999999,
+    "uiActions": 2,
+    "engineActions": 1,
+    "winner": 2,
+    "wonModal": 1,
+    "text": "Nusantara\nQA Final\n₦ 0\nBangkrut\nraka\n₦ 0\nBangkrut\nbima\n₦ 1.501\nBot\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\n₦ 550\nKESEMPATAN\nSEMARANG\n₦ 550\nSURABAYA\n₦ 600\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 1.501\nQA Final bangkrut kepada bima.\nQA Final − ₦ 1 · bima + ₦ 1 · Penyelesaian bangkrut\nMulai\nPetak perjalanan\nTerakhir 3 + 3\nVS BOT · RONDE 1\nQA Final\nAset\nBarter\nHasil pertandingan\nHasil Akhir\n\nPetualangan Nusantara telah selesai.\n\nbima menang!\nbima\nPemenang\n₦ 2.571\nQA Final\nBangkrut\n₦ 0\nraka\nBangkrut\n₦ 0\nKembali ke lobby\nTutup",
+    "errors": []
+  },
+  {
+    "i": 2,
+    "n": 4,
+    "humanWins": true,
+    "fixture": true,
+    "durationMs": 6631.760102,
+    "uiActions": 0,
+    "engineActions": 1,
+    "winner": 0,
+    "wonModal": 1,
+    "text": "Nusantara\nQA Final\n₦ 1.501\nP1\nraka\n₦ 0\nBangkrut\nbima\n₦ 0\nBangkrut\nsari\n₦ 0\nBangkrut\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\n₦ 550\nKESEMPATAN\nSEMARANG\n₦ 550\nSURABAYA\n₦ 600\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 1.501\nsari bangkrut kepada QA Final.\nsari − ₦ 1 · QA Final + ₦ 1 · Penyelesaian bangkrut\nMulai\nPetak perjalanan\nTerakhir 3 + 3\nVS BOT · RONDE 1\nsari\nAset\nBarter\nHasil pertandingan\nHasil Akhir\n\nPetualangan Nusantara telah selesai.\n\nQA Final menang!\nQA Final\nPemenang\n₦ 2.571\nraka\nBangkrut\n₦ 0\nbima\nBangkrut\n₦ 0\nsari\nBangkrut\n₦ 0\nKembali ke lobby\nTutup",
+    "errors": []
+  },
+  {
+    "i": 3,
+    "n": 5,
+    "humanWins": false,
+    "fixture": true,
+    "durationMs": 5455.990886,
+    "uiActions": 2,
+    "engineActions": 1,
+    "winner": 4,
+    "wonModal": 1,
+    "text": "Nusantara\nQA Final\n₦ 0\nBangkrut\nraka\n₦ 0\nBangkrut\nbima\n₦ 0\nBangkrut\nsari\n₦ 0\nBangkrut\nnusa\n₦ 1.501\nBot\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\n₦ 550\nKESEMPATAN\nSEMARANG\n₦ 550\nSURABAYA\n₦ 600\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 1.501\nQA Final bangkrut kepada nusa.\nQA Final − ₦ 1 · nusa + ₦ 1 · Penyelesaian bangkrut\nTerakhir 3 + 3\nVS BOT · RONDE 1\nQA Final\nAset\nBarter\nHasil pertandingan\nHasil Akhir\n\nPetualangan Nusantara telah selesai.\n\nnusa menang!\nnusa\nPemenang\n₦ 2.571\nQA Final\nBangkrut\n₦ 0\nraka\nBangkrut\n₦ 0\nbima\nBangkrut\n₦ 0\nsari\nBangkrut\n₦ 0\nKembali ke lobby\nTutup",
+    "errors": []
+  },
+  {
+    "i": 4,
+    "n": 6,
+    "humanWins": true,
+    "fixture": true,
+    "durationMs": 6379.126945,
+    "uiActions": 0,
+    "engineActions": 1,
+    "winner": 0,
+    "wonModal": 1,
+    "text": "Nusantara\nQA Final\n₦ 1.501\nP1\nraka\n₦ 0\nBangkrut\nbima\n₦ 0\nBangkrut\nsari\n₦ 0\nBangkrut\nnusa\n₦ 0\nBangkrut\nkresna\n₦ 0\nBangkrut\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\n₦ 550\nKESEMPATAN\nSEMARANG\n₦ 550\nSURABAYA\n₦ 600\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 1.501\nkresna bangkrut kepada QA Final.\nkresna − ₦ 1 · QA Final + ₦ 1 · Penyelesaian bangkrut\nMulai\nPetak perjalanan\nTerakhir 3 + 3\nVS BOT · RONDE 1\nkresna\nAset\nBarter\nHasil pertandingan\nHasil Akhir\n\nPetualangan Nusantara telah selesai.\n\nQA Final menang!\nQA Final\nPemenang\n₦ 2.571\nraka\nBangkrut\n₦ 0\nbima\nBangkrut\n₦ 0\nsari\nBangkrut\n₦ 0\nnusa\nBangkrut\n₦ 0\nkresna\nBangkrut\n₦ 0\nKembali ke lobby\nTutup",
+    "errors": []
+  }
+]

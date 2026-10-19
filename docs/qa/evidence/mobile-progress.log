@@ -1,0 +1,173 @@
+{
+  width: 360,
+  height: 800,
+  scale: 1,
+  metrics: {
+    viewport: { w: 360, h: 800 },
+    overflow: false,
+    board: {
+      x: 0,
+      y: 211.5,
+      width: 360,
+      height: 360,
+      right: 360,
+      bottom: 571.5
+    },
+    console: { x: 0, y: 709, width: 360, height: 91, right: 360, bottom: 800 },
+    primary: { x: 107, y: 738, width: 245, height: 50, right: 352, bottom: 788 },
+    smallButtons: [ [Object], [Object], [Object] ],
+    tileFont: '18px',
+    players: { x: 8, y: 49, width: 344, height: 98, right: 352, bottom: 147 }
+  }
+}
+{
+  width: 393,
+  height: 873,
+  scale: 1,
+  metrics: {
+    viewport: { w: 393, h: 873 },
+    overflow: false,
+    board: {
+      x: 0,
+      y: 231.5,
+      width: 393,
+      height: 393,
+      right: 393,
+      bottom: 624.5
+    },
+    console: { x: 0, y: 782, width: 393, height: 91, right: 393, bottom: 873 },
+    primary: { x: 107, y: 811, width: 278, height: 50, right: 385, bottom: 861 },
+    smallButtons: [ [Object], [Object], [Object] ],
+    tileFont: '18px',
+    players: { x: 8, y: 49, width: 377, height: 98, right: 385, bottom: 147 }
+  }
+}
+{
+  width: 412,
+  height: 915,
+  scale: 1,
+  metrics: {
+    viewport: { w: 412, h: 915 },
+    overflow: false,
+    board: { x: 0, y: 243, width: 412, height: 412, right: 412, bottom: 655 },
+    console: { x: 0, y: 824, width: 412, height: 91, right: 412, bottom: 915 },
+    primary: { x: 107, y: 853, width: 297, height: 50, right: 404, bottom: 903 },
+    smallButtons: [ [Object], [Object], [Object] ],
+    tileFont: '18px',
+    players: { x: 8, y: 49, width: 396, height: 98, right: 404, bottom: 147 }
+  }
+}
+{
+  width: 360,
+  height: 480,
+  scale: 1,
+  metrics: {
+    viewport: { w: 360, h: 480 },
+    overflow: false,
+    board: { x: 0, y: 128, width: 360, height: 360, right: 360, bottom: 488 },
+    console: { x: 0, y: 400, width: 360, height: 80, right: 360, bottom: 480 },
+    primary: { x: 107, y: 426, width: 245, height: 46, right: 352, bottom: 472 },
+    smallButtons: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object]
+    ],
+    tileFont: '18px',
+    players: { x: 6, y: 42, width: 348, height: 84, right: 354, bottom: 126 }
+  }
+}
+{
+  width: 360,
+  height: 800,
+  scale: 1.5,
+  metrics: {
+    viewport: { w: 360, h: 800 },
+    overflow: false,
+    board: {
+      x: 0,
+      y: 211.5,
+      width: 360,
+      height: 360,
+      right: 360,
+      bottom: 571.5
+    },
+    console: { x: 0, y: 709, width: 360, height: 91, right: 360, bottom: 800 },
+    primary: { x: 107, y: 738, width: 245, height: 50, right: 352, bottom: 788 },
+    smallButtons: [ [Object], [Object], [Object] ],
+    tileFont: '18px',
+    players: { x: 8, y: 49, width: 344, height: 98, right: 352, bottom: 147 }
+  }
+}
+{
+  width: 393,
+  height: 873,
+  scale: 2,
+  metrics: {
+    viewport: { w: 393, h: 873 },
+    overflow: false,
+    board: {
+      x: 0,
+      y: 231.5,
+      width: 393,
+      height: 393,
+      right: 393,
+      bottom: 624.5
+    },
+    console: { x: 0, y: 782, width: 393, height: 91, right: 393, bottom: 873 },
+    primary: { x: 107, y: 811, width: 278, height: 50, right: 385, bottom: 861 },
+    smallButtons: [ [Object], [Object], [Object] ],
+    tileFont: '18px',
+    players: { x: 8, y: 49, width: 377, height: 98, right: 385, bottom: 147 }
+  }
+}
+{
+  width: 800,
+  height: 360,
+  scale: 1,
+  metrics: {
+    viewport: { w: 800, h: 360 },
+    overflow: false,
+    board: {
+      x: 74.359375,
+      y: 39,
+      width: 312,
+      height: 312,
+      right: 386.359375,
+      bottom: 351
+    },
+    console: {
+      x: 462.734375,
+      y: 231,
+      width: 329.265625,
+      height: 80,
+      right: 792,
+      bottom: 311
+    },
+    primary: {
+      x: 553.734375,
+      y: 258,
+      width: 234.265625,
+      height: 46,
+      right: 788,
+      bottom: 304
+    },
+    smallButtons: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object]
+    ],
+    tileFont: '18px',
+    players: {
+      x: 462.734375,
+      y: 36,
+      width: 329.265625,
+      height: 116,
+      right: 792,
+      bottom: 152
+    }
+  }
+}

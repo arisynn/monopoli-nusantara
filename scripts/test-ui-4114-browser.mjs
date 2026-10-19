@@ -425,20 +425,13 @@ try {
       qa.session.ingest(s);
       qa.session.notify();
     }, received);
-    await page.locator("#game-notice:not([hidden])").waitFor();
+    await page.locator('dialog[data-kind="notice"][open]').waitFor();
     assert(
-      (await page.locator("#game-notice").innerText()).includes("Terima sewa"),
+      (await page.locator('dialog[data-kind="notice"]').innerText()).includes("Terima sewa"),
     );
-    assert.equal(
-      await page.evaluate(() => document.activeElement?.dataset.action),
-      "primary",
-    );
-    assert.equal(
-      await page
-        .locator("#game-notice")
-        .evaluate((n) => getComputedStyle(n).pointerEvents),
-      "none",
-    );
+    assert(await page.locator('dialog[open] .popup-dismiss').isHidden());
+    assert.equal(await page.locator("#game-notice").count(), 0);
+    assert.equal(await page.locator('dialog .popup-footer button').count(), 0);
     await page.evaluate((s) => {
       for (let i = 0; i < 20; i++) qa.session.ingest(s);
       qa.session.notify();
@@ -468,13 +461,21 @@ try {
       900,
     );
     await page.screenshot({ path: `${output}/rent-received-mobile.png` });
+    await page.locator('dialog[data-kind="notice"][open]').waitFor({ state: "hidden" });
+    assert.equal(await page.evaluate(() => qa.session.notices.current), null);
+    assert.equal(await page.evaluate(() => qa.session.state.version), burst.version);
+    await page.evaluate((s) => {
+      qa.session.ingest(s);
+      qa.session.notify();
+    }, burst);
+    assert.equal(await page.evaluate(() => qa.session.notices.current), null);
     await page.evaluate((s) => {
       qa.session.ingest(s, { reset: true });
       qa.session.notify();
     }, burst);
     assert.equal(await page.evaluate(() => qa.session.notices.current), null);
     checks.push({
-      name: "committed rent only, duplicate snapshots, burst aggregation, no focus/input interception, reconnect without replay",
+      name: "committed rent uses a buttonless shared modal, deduplicates snapshots, aggregates bursts, expires without a transaction and reconnects without replay",
       pass: true,
     });
     await context.close();

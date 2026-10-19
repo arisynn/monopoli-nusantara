@@ -1,0 +1,17 @@
+
+> monopoli-nusantara@4.11.6 test:bank
+> node --experimental-strip-types scripts/test-bank-browser.mjs
+
+Bank 320x568 passed.
+Bank 360x640 passed.
+Bank 390x844 passed.
+Bank 430x932 passed.
+AssertionError [ERR_ASSERTION]: false == true
+    at file:///workspace/monopoli-nusantara/scripts/test-bank-browser.mjs:30:3 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

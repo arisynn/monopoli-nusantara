@@ -1,0 +1,5 @@
+
+> monopoli-nusantara@4.11.6 test:auction
+> node --experimental-strip-types scripts/test-auction-browser.mjs
+
+21 auction layout/rules/input/transition scenarios passed.

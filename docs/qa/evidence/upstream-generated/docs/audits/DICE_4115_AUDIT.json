@@ -1,0 +1,588 @@
+{
+  "generatedAt": "2026-10-19T09:57:21.085Z",
+  "source": "User-supplied committed logs; generator not established by this tool.",
+  "logs": null,
+  "baseline": {
+    "source": "Current Web Crypto rejection sampling, independent of hold duration and persona.",
+    "generatedMs": 576.831727,
+    "checkpoints": {
+      "100": {
+        "rolls": 100,
+        "faces": [
+          [
+            19,
+            13,
+            15,
+            11,
+            22,
+            20
+          ],
+          [
+            21,
+            16,
+            12,
+            17,
+            18,
+            16
+          ]
+        ],
+        "pairs": [
+          6,
+          2,
+          3,
+          3,
+          3,
+          2,
+          3,
+          1,
+          2,
+          2,
+          4,
+          1,
+          3,
+          2,
+          0,
+          3,
+          4,
+          3,
+          3,
+          1,
+          1,
+          2,
+          3,
+          1,
+          2,
+          6,
+          5,
+          4,
+          2,
+          3,
+          4,
+          4,
+          1,
+          3,
+          2,
+          6
+        ],
+        "sums": [
+          6,
+          5,
+          7,
+          10,
+          8,
+          20,
+          16,
+          11,
+          6,
+          5,
+          6
+        ],
+        "doubles": {
+          "count": 17,
+          "rate": 0.17,
+          "expected": 0.16666666666666666,
+          "ci95": [
+            0.10893566114059931,
+            0.25548004767601123
+          ]
+        },
+        "sum6to8": {
+          "count": 44,
+          "rate": 0.44,
+          "expected": 0.4444444444444444,
+          "ci95": [
+            0.34672026630160796,
+            0.5377189534832302
+          ]
+        },
+        "tests": {
+          "faces": [
+            {
+              "statistic": 5.6,
+              "df": 5,
+              "p": 0.34710506828171694,
+              "minimumExpected": 16.666666666666668,
+              "note": "Exploratory; multiple comparisons are not independent proof of bias."
+            },
+            {
+              "statistic": 2.6,
+              "df": 5,
+              "p": 0.7613652678450145,
+              "minimumExpected": 16.666666666666668,
+              "note": "Exploratory; multiple comparisons are not independent proof of bias."
+            }
+          ],
+          "pairsUniform": {
+            "statistic": 27.439999999999998,
+            "df": 35,
+            "p": null,
+            "minimumExpected": 2.7777777777777777,
+            "note": "Too few expected samples for asymptotic p-value."
+          },
+          "sums": {
+            "statistic": 12.049999999999999,
+            "df": 10,
+            "p": null,
+            "minimumExpected": 2.7777777777777777,
+            "note": "Too few expected samples for asymptotic p-value."
+          },
+          "pairIndependence": {
+            "statistic": 19.335173841752788,
+            "df": 25,
+            "p": null,
+            "minimumExpected": 1.32,
+            "note": "Too few expected samples for asymptotic p-value."
+          }
+        },
+        "correlation": {
+          "samples": 100,
+          "value": 0.06697559965234932
+        },
+        "lagOne": [
+          {
+            "samples": 99,
+            "value": -0.027023687725825914
+          },
+          {
+            "samples": 99,
+            "value": -0.14335822745495877
+          }
+        ]
+      },
+      "1000": {
+        "rolls": 1000,
+        "faces": [
+          [
+            181,
+            153,
+            157,
+            160,
+            190,
+            159
+          ],
+          [
+            179,
+            168,
+            172,
+            139,
+            163,
+            179
+          ]
+        ],
+        "pairs": [
+          29,
+          31,
+          33,
+          23,
+          28,
+          37,
+          22,
+          27,
+          31,
+          21,
+          20,
+          32,
+          35,
+          17,
+          23,
+          28,
+          25,
+          29,
+          31,
+          24,
+          22,
+          25,
+          31,
+          27,
+          38,
+          38,
+          35,
+          26,
+          26,
+          27,
+          24,
+          31,
+          28,
+          16,
+          33,
+          27
+        ],
+        "sums": [
+          29,
+          53,
+          95,
+          102,
+          134,
+          169,
+          148,
+          114,
+          69,
+          60,
+          27
+        ],
+        "doubles": {
+          "count": 157,
+          "rate": 0.157,
+          "expected": 0.16666666666666666,
+          "ci95": [
+            0.1357693269808853,
+            0.18085582934020553
+          ]
+        },
+        "sum6to8": {
+          "count": 451,
+          "rate": 0.451,
+          "expected": 0.4444444444444444,
+          "ci95": [
+            0.42040542652712193,
+            0.48196959580446247
+          ]
+        },
+        "tests": {
+          "faces": [
+            {
+              "statistic": 6.800000000000001,
+              "df": 5,
+              "p": 0.23594453769452295,
+              "minimumExpected": 166.66666666666666,
+              "note": "Exploratory; multiple comparisons are not independent proof of bias."
+            },
+            {
+              "statistic": 6.680000000000001,
+              "df": 5,
+              "p": 0.24554736129582855,
+              "minimumExpected": 166.66666666666666,
+              "note": "Exploratory; multiple comparisons are not independent proof of bias."
+            }
+          ],
+          "pairsUniform": {
+            "statistic": 37.88000000000001,
+            "df": 35,
+            "p": 0.3392642538848726,
+            "minimumExpected": 27.77777777777778,
+            "note": "Exploratory; multiple comparisons are not independent proof of bias."
+          },
+          "sums": {
+            "statistic": 6.272,
+            "df": 10,
+            "p": 0.7919167174338158,
+            "minimumExpected": 27.77777777777778,
+            "note": "Exploratory; multiple comparisons are not independent proof of bias."
+          },
+          "pairIndependence": {
+            "statistic": 24.635135045509056,
+            "df": 25,
+            "p": 0.48296366235515276,
+            "minimumExpected": 21.267,
+            "note": "Exploratory; multiple comparisons are not independent proof of bias."
+          }
+        },
+        "correlation": {
+          "samples": 1000,
+          "value": -0.03411919544794666
+        },
+        "lagOne": [
+          {
+            "samples": 999,
+            "value": 0.016921433073775582
+          },
+          {
+            "samples": 999,
+            "value": -0.025452145638662476
+          }
+        ]
+      },
+      "10000": {
+        "rolls": 10000,
+        "faces": [
+          [
+            1728,
+            1669,
+            1637,
+            1638,
+            1701,
+            1627
+          ],
+          [
+            1618,
+            1701,
+            1668,
+            1644,
+            1667,
+            1702
+          ]
+        ],
+        "pairs": [
+          276,
+          261,
+          298,
+          285,
+          302,
+          306,
+          275,
+          278,
+          280,
+          284,
+          261,
+          291,
+          290,
+          255,
+          259,
+          264,
+          288,
+          281,
+          267,
+          305,
+          267,
+          273,
+          265,
+          261,
+          251,
+          329,
+          274,
+          282,
+          284,
+          281,
+          259,
+          273,
+          290,
+          256,
+          267,
+          282
+        ],
+        "sums": [
+          276,
+          536,
+          866,
+          1087,
+          1401,
+          1686,
+          1399,
+          1118,
+          801,
+          548,
+          282
+        ],
+        "doubles": {
+          "count": 1652,
+          "rate": 0.1652,
+          "expected": 0.16666666666666666,
+          "ci95": [
+            0.15805028371660543,
+            0.1726068415923996
+          ]
+        },
+        "sum6to8": {
+          "count": 4486,
+          "rate": 0.4486,
+          "expected": 0.4444444444444444,
+          "ci95": [
+            0.43887368837296886,
+            0.4583657866595366
+          ]
+        },
+        "tests": {
+          "faces": [
+            {
+              "statistic": 4.932799999999999,
+              "df": 5,
+              "p": 0.4241363603355074,
+              "minimumExpected": 1666.6666666666667,
+              "note": "Exploratory; multiple comparisons are not independent proof of bias."
+            },
+            {
+              "statistic": 3.1868,
+              "df": 5,
+              "p": 0.6712120058304893,
+              "minimumExpected": 1666.6666666666667,
+              "note": "Exploratory; multiple comparisons are not independent proof of bias."
+            }
+          ],
+          "pairsUniform": {
+            "statistic": 35.8496,
+            "df": 35,
+            "p": 0.4284326317243591,
+            "minimumExpected": 277.77777777777777,
+            "note": "Exploratory; multiple comparisons are not independent proof of bias."
+          },
+          "sums": {
+            "statistic": 4.371139999999996,
+            "df": 10,
+            "p": 0.9290550929583631,
+            "minimumExpected": 277.77777777777777,
+            "note": "Exploratory; multiple comparisons are not independent proof of bias."
+          },
+          "pairIndependence": {
+            "statistic": 27.356492104082662,
+            "df": 25,
+            "p": 0.3383136199548364,
+            "minimumExpected": 263.2486,
+            "note": "Exploratory; multiple comparisons are not independent proof of bias."
+          }
+        },
+        "correlation": {
+          "samples": 10000,
+          "value": -0.010304334929556262
+        },
+        "lagOne": [
+          {
+            "samples": 9999,
+            "value": -0.010909878065740062
+          },
+          {
+            "samples": 9999,
+            "value": -0.007425430665348222
+          }
+        ]
+      },
+      "100000": {
+        "rolls": 100000,
+        "faces": [
+          [
+            16752,
+            16938,
+            16536,
+            16651,
+            16555,
+            16568
+          ],
+          [
+            16452,
+            16774,
+            16643,
+            16700,
+            16731,
+            16700
+          ]
+        ],
+        "pairs": [
+          2728,
+          2770,
+          2791,
+          2830,
+          2856,
+          2777,
+          2801,
+          2882,
+          2774,
+          2850,
+          2815,
+          2816,
+          2728,
+          2780,
+          2819,
+          2698,
+          2746,
+          2765,
+          2695,
+          2727,
+          2796,
+          2786,
+          2841,
+          2806,
+          2712,
+          2789,
+          2775,
+          2824,
+          2698,
+          2757,
+          2788,
+          2826,
+          2688,
+          2712,
+          2775,
+          2779
+        ],
+        "sums": [
+          2728,
+          5571,
+          8401,
+          11079,
+          13964,
+          16663,
+          13949,
+          11118,
+          8216,
+          5532,
+          2779
+        ],
+        "doubles": {
+          "count": 16692,
+          "rate": 0.16692,
+          "expected": 0.16666666666666666,
+          "ci95": [
+            0.1646215604863522,
+            0.16924402879272613
+          ]
+        },
+        "sum6to8": {
+          "count": 44576,
+          "rate": 0.44576,
+          "expected": 0.4444444444444444,
+          "ci95": [
+            0.442681455024781,
+            0.44884271202967213
+          ]
+        },
+        "tests": {
+          "faces": [
+            {
+              "statistic": 7.22564,
+              "df": 5,
+              "p": 0.20439275087394157,
+              "minimumExpected": 16666.666666666668,
+              "note": "Exploratory; multiple comparisons are not independent proof of bias."
+            },
+            {
+              "statistic": 3.8714000000000004,
+              "df": 5,
+              "p": 0.5680759500475501,
+              "minimumExpected": 16666.666666666668,
+              "note": "Exploratory; multiple comparisons are not independent proof of bias."
+            }
+          ],
+          "pairsUniform": {
+            "statistic": 30.816079999999985,
+            "df": 35,
+            "p": 0.6703606377209146,
+            "minimumExpected": 2777.777777777778,
+            "note": "Exploratory; multiple comparisons are not independent proof of bias."
+          },
+          "sums": {
+            "statistic": 4.0011140000000145,
+            "df": 10,
+            "p": 0.9472967141585679,
+            "minimumExpected": 2777.777777777778,
+            "note": "Exploratory; multiple comparisons are not independent proof of bias."
+          },
+          "pairIndependence": {
+            "statistic": 19.73472862071924,
+            "df": 25,
+            "p": 0.760598419104357,
+            "minimumExpected": 2720.50272,
+            "note": "Exploratory; multiple comparisons are not independent proof of bias."
+          }
+        },
+        "correlation": {
+          "samples": 100000,
+          "value": -0.0021269018314471057
+        },
+        "lagOne": [
+          {
+            "samples": 99999,
+            "value": 0.0006088065795818348
+          },
+          {
+            "samples": 99999,
+            "value": 0.0025069902424245446
+          }
+        ]
+      }
+    }
+  },
+  "limits": [
+    "Baseline is a fresh local CSPRNG sample, not production online latency or a proof of fairness.",
+    "Checkpoint samples are nested; they are not independent experiments.",
+    "No production Supabase/Auth/Realtime service was contacted."
+  ]
+}

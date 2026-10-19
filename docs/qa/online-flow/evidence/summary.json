@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-19",
+  "branch": "fix/qa-stability-and-modals",
+  "build": "6ceda48468a89463",
+  "status": "FIXED_LOCAL_NOT_DEPLOYED",
+  "coreTests": {
+    "passed": 713,
+    "failed": 0
+  },
+  "onlineFlowBrowser": {
+    "passed": 4,
+    "independentSessionsPerScenario": 2,
+    "javascriptErrors": []
+  },
+  "otherBrowser": {
+    "rooms": 14,
+    "gameplay": 16,
+    "tradeResults": 6
+  },
+  "protectedModelEngineFiles": 51,
+  "productionOnlineBotMatch": "BLOCKED_WORKER_OFFLINE",
+  "networkScope": "Local service and controlled transport; not live Supabase"
+}

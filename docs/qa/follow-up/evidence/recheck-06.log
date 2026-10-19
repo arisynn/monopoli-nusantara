@@ -1,0 +1,8 @@
+
+> monopoli-nusantara@4.11.6 check:source
+> node --experimental-vm-modules scripts/verify-web.mjs
+
+(node:15489) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15489) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+646 source/output modules checked; 0 failures.

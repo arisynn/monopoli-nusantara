@@ -1,0 +1,55 @@
+{
+  "mode": "live-production-two-independent-contexts",
+  "steps": [
+    {
+      "name": "QA Host-authenticated",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Host · 4 peserta\nAtur permainan\nP1\nQA Host\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nIdentitas tersedia\nAkun\nIdentitas tersedia\n\nSiap meminta room. Koneksi database diperiksa saat room dibuka.\n\nPeriksa ulang\nBuat Room\nTutup"
+    },
+    {
+      "name": "QA Guest-authenticated",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Guest · 4 peserta\nAtur permainan\nP1\nQA Guest\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nIdentitas tersedia\nAkun\nIdentitas tersedia\n\nSiap meminta room. Koneksi database diperiksa saat room dibuka.\n\nPeriksa ulang\nBuat Room\nTutup"
+    },
+    {
+      "name": "host-failure",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Host · 4 peserta\nAtur permainan\nP1\nQA Host\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n2 peserta\n3 peserta\n4 peserta\n5 peserta\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nIdentitas tersedia\nAkun\nIdentitas tersedia\n\nSiap meminta room. Koneksi database diperiksa saat room dibuka.\n\nPeriksa ulang\nBuat Room\nTutup"
+    },
+    {
+      "name": "guest-failure",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Guest · 4 peserta\nAtur permainan\nP1\nQA Guest\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nIdentitas tersedia\nAkun\nIdentitas tersedia\n\nSiap meminta room. Koneksi database diperiksa saat room dibuka.\n\nPeriksa ulang\nBuat Room\nTutup"
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/bot",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/auth",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/bot",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/auth",
+      "status": 200
+    }
+  ],
+  "failure": "locator.click: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': '[data-value=3]' is not a valid selector.\n    at query (<anonymous>:5288:41)\n    at <anonymous>:5298:7\n    at SelectorEvaluatorImpl._cached (<anonymous>:5075:20)\n    at SelectorEvaluatorImpl._queryCSS (<anonymous>:5285:17)\n    at SelectorEvaluatorImpl._querySimple (<anonymous>:5165:19)\n    at <anonymous>:5113:29\n    at SelectorEvaluatorImpl._cached (<anonymous>:5075:20)\n    at SelectorEvaluatorImpl.query (<anonymous>:5106:19)\n    at Object.query (<anonymous>:5320:44)\n    at <anonymous>:5278:21\nCall log:\n\u001b[2m  - waiting for locator('.selection-options [data-value=3]')\u001b[22m\n\n    at /workspace/monopoli-nusantara/docs/qa/scripts/multiplayer-browser.mjs:9:123"
+}

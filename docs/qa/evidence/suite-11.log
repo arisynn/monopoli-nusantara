@@ -1,0 +1,21 @@
+
+> monopoli-nusantara@4.11.6 audit:dice
+> node scripts/audit-dice.mjs
+
+{
+  "output": "docs/audits/DICE_4115_AUDIT.json",
+  "logs": null,
+  "baseline": {
+    "rolls": 100000,
+    "milliseconds": 576.831727,
+    "sum6to8": {
+      "count": 44576,
+      "rate": 0.44576,
+      "expected": 0.4444444444444444,
+      "ci95": [
+        0.442681455024781,
+        0.44884271202967213
+      ]
+    }
+  }
+}

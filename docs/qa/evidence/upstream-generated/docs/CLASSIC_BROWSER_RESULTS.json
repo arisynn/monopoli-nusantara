@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-10-19T09:55:25.369Z",
+  "engine": "System Chromium via Playwright, real DOM and local HTTP server",
+  "checks": [
+    {
+      "name": "browser failure",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at file:///workspace/monopoli-nusantara/scripts/test-browser.mjs:18:663"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Emulated mobile viewports, not physical Android hardware.",
+    "Local save fixtures include six human seats solely to exercise UI, not a new hotseat mode.",
+    "No real Supabase/Groq service contacted."
+  ]
+}

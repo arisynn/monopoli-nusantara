@@ -1,0 +1,199 @@
+{
+  "cases": [
+    {
+      "name": "invalid auction amount -1",
+      "pass": true,
+      "rejectedWith": "Tawaran awal minimal ₦ 5; naik minimal ₦ 5, kelipatan ₦ 5."
+    },
+    {
+      "name": "invalid auction amount NaN",
+      "pass": true,
+      "rejectedWith": "Tawaran awal minimal ₦ 5; naik minimal ₦ 5, kelipatan ₦ 5."
+    },
+    {
+      "name": "invalid auction amount Infinity",
+      "pass": true,
+      "rejectedWith": "Tawaran awal minimal ₦ 5; naik minimal ₦ 5, kelipatan ₦ 5."
+    },
+    {
+      "name": "invalid auction amount 9007199254740992",
+      "pass": true,
+      "rejectedWith": "Tawaran awal minimal ₦ 5; naik minimal ₦ 5, kelipatan ₦ 5."
+    },
+    {
+      "name": "invalid auction amount 100",
+      "pass": true,
+      "rejectedWith": "Tawaran awal minimal ₦ 5; naik minimal ₦ 5, kelipatan ₦ 5."
+    },
+    {
+      "name": "invalid auction amount 0",
+      "pass": true,
+      "rejectedWith": "Tawaran awal minimal ₦ 5; naik minimal ₦ 5, kelipatan ₦ 5."
+    },
+    {
+      "name": "invalid auction amount 49",
+      "pass": true,
+      "rejectedWith": "Tawaran awal minimal ₦ 5; naik minimal ₦ 5, kelipatan ₦ 5."
+    },
+    {
+      "name": "invalid auction amount 51",
+      "pass": true,
+      "rejectedWith": "Tawaran awal minimal ₦ 5; naik minimal ₦ 5, kelipatan ₦ 5."
+    },
+    {
+      "name": "invalid trade giveCash -1",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade giveCash NaN",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade giveCash Infinity",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade giveCash 9007199254740992",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade takeCash -1",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade takeCash NaN",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade takeCash Infinity",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade takeCash 9007199254740992",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade giveCards -1",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade giveCards NaN",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade giveCards Infinity",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade giveCards 9007199254740992",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade takeCards -1",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade takeCards NaN",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade takeCards Infinity",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "invalid trade takeCards 9007199254740992",
+      "pass": true,
+      "rejectedWith": "Nilai penawaran tidak valid."
+    },
+    {
+      "name": "fake dice",
+      "pass": true,
+      "rejectedWith": "Nilai tambahan tidak boleh dikirim pada aksi."
+    },
+    {
+      "name": "fake actor",
+      "pass": true,
+      "rejectedWith": "Nilai tambahan tidak boleh dikirim pada aksi."
+    },
+    {
+      "name": "negative card index",
+      "pass": true,
+      "rejectedWith": "Pilihan kartu tidak valid."
+    },
+    {
+      "name": "negative tile",
+      "pass": true,
+      "rejectedWith": "Petak tidak valid."
+    },
+    {
+      "name": "NaN bid",
+      "pass": true,
+      "rejectedWith": "Jumlah tidak valid."
+    },
+    {
+      "name": "context injection",
+      "pass": true,
+      "rejectedWith": "Isi barter tidak valid."
+    },
+    {
+      "name": "wrong turn ROLL",
+      "pass": true,
+      "rejectedWith": "Belum waktunya melempar."
+    },
+    {
+      "name": "unowned BUILD",
+      "pass": true,
+      "rejectedWith": "Ini bukan asetmu."
+    },
+    {
+      "name": "incomplete monopoly BUILD",
+      "pass": true,
+      "rejectedWith": "Lengkapi kelompok warna dahulu."
+    },
+    {
+      "name": "mortgaged group BUILD",
+      "pass": true,
+      "rejectedWith": "Tebus seluruh aset dalam kelompok."
+    },
+    {
+      "name": "uneven BUILD",
+      "pass": true,
+      "rejectedWith": "Bangun secara merata."
+    },
+    {
+      "name": "mortgage with buildings",
+      "pass": true,
+      "rejectedWith": "Jual semua bangunan kelompok dahulu."
+    },
+    {
+      "name": "duplicate command id returns identical state without RNG consumption",
+      "pass": true
+    },
+    {
+      "name": "stale version new id",
+      "pass": true,
+      "rejectedWith": "State berubah. Coba lagi."
+    }
+  ],
+  "passed": 38,
+  "failed": 0,
+  "limits": [
+    "Non-destructive local reducers/validators only; live authorization and duplicate requests separately in multiplayer-advanced.json.",
+    "No credentials, third-party rooms, data deletion, or production state fixtures."
+  ]
+}

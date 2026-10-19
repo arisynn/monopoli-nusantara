@@ -1,0 +1,15 @@
+{
+  steps: [
+    'baseline',
+    'built-hotels',
+    'mortgaged',
+    'redeemed',
+    'trade-result',
+    'trade-refreshed',
+    'trade-dismissed'
+  ],
+  failure: undefined,
+  refreshSameText: false,
+  closeNoTransaction: true,
+  resultNotRepeated: true
+}

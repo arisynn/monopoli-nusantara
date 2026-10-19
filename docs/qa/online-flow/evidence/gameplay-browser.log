@@ -1,0 +1,5 @@
+
+> monopoli-nusantara@4.11.6 test:browser
+> node --experimental-strip-types scripts/test-browser.mjs
+
+16 browser scenarios passed.

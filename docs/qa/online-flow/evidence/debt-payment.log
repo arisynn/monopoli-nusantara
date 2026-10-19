@@ -1,0 +1,14 @@
+✔ automatic rent payment protects full sets, raises only necessary funds and pays exactly once (103.701014ms)
+✔ automatic payment handles hotel shortage with legal set liquidation (101.675582ms)
+✔ unfundable bills do not liquidate partially or declare bankruptcy automatically (19.853076ms)
+✔ close, hidden page and changed revision stop automatic funding before new commands (50.29142ms)
+✔ online auto-payment sends legal individual commands, fresh versions and unique IDs (19.101953ms)
+✔ Assets exposes only owned portfolio, development and manual mortgage controls (3.536086ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 677.593302

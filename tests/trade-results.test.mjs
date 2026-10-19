@@ -276,7 +276,7 @@ test("missing storage, denied writes, corrupt entries and player name markup can
   assert(n.dismiss(n.current.id));
 });
 
-test("local session waits for confirmed presentation, then holds bots without an auto-dismiss timer", () => {
+test("local session waits for confirmed presentation and holds bots until the result has been displayed", () => {
   const s = make(),
     session = new GameSession({
       mind: { dispose() {} },

@@ -41,7 +41,7 @@ import { localBotActor, humanSeat } from "./domain.mjs";
 import {OnlinePerformance} from "../lib/online-performance.mjs";
 import {adaptOnlineTimeline,onlineInteractiveHead} from "../lib/online-presentation.mjs";
 import { GameNotices, CardReader } from "./feedback.mjs";
-import { canPresentDecision } from "../lib/gameplay-presentation.mjs";
+import { AutoDismiss } from "./auto-dismiss.mjs";
 import { commandBuildBatch } from "../lib/build-batch.mjs";
 export class GameSession extends EventTarget {
   constructor({
@@ -66,6 +66,7 @@ export class GameSession extends EventTarget {
     this.screen = "lobby";
     this.notices = new GameNotices({ clock, changed: () => this.notify() });
     this.tradeResults = new TradeResults();
+    this.tradeResultAutoClose = new AutoDismiss({ clock });
     this.cardReader = new CardReader({ clock, changed: () => this.notify() });
     this.state = null;
     this.model = null;
@@ -115,17 +116,31 @@ export class GameSession extends EventTarget {
   get view() {
     return presentedState(this.model) || this.state;
   }
-  get interactionState() { return this.room ? this.state : this.view; }
+  get interactionState() { return this.view; }
   get interactionHead() { return this.room ? onlineInteractiveHead(this.head,this.state,this.seat) : this.head; }
   get head() {
     return this.model?.queue[0] || null;
   }
   get tradeResultReady() {
-    return this.screen === "gameplay" && !this.pending && !this.paused && !this.head
+    const showing =
+      this.tradeResultAutoClose.displayed &&
+      this.tradeResultAutoClose.key === this.tradeResults.current?.id;
+    return this.screen === "gameplay" && !this.pending && !this.paused &&
+      (!this.head || showing)
       ? this.tradeResults.current : null;
   }
   dismissTradeResult(id) {
     if (!this.tradeResults.dismiss(id)) return false;
+    this.notify();
+    return true;
+  }
+  get noticeReady() {
+    return this.screen === "gameplay" && !this.pending && !this.paused &&
+      (!this.head || this.notices.displayed)
+      ? this.notices.current : null;
+  }
+  dismissNotice(id) {
+    if (!this.notices.dismiss(id)) return false;
     this.notify();
     return true;
   }
@@ -143,11 +158,23 @@ export class GameSession extends EventTarget {
       )
     );
   }
+  get presentationHeld() {
+    return (this.covered && !this.assetFeedback) || !!this.notices.displayed ||
+      (this.tradeResultAutoClose.displayed &&
+        this.tradeResultAutoClose.key === this.tradeResults.current?.id);
+  }
+  setPawnRenderer(active) {
+    this.pawnRenderer = active;
+    this.schedule();
+  }
   get busy() {
     return (
       this.pending ||
       this.botThinking ||
-      (!this.room && !!this.head) ||
+      !!this.head ||
+      !!this.notices.displayed ||
+      (this.tradeResultAutoClose.displayed &&
+        this.tradeResultAutoClose.key === this.tradeResults.current?.id) ||
       this.paused ||
       this.assetPlan?.status === "running"
     );
@@ -676,8 +703,10 @@ export class GameSession extends EventTarget {
   }
   schedule() {
     const head = this.head;
-    const active = this.screen === "gameplay" && !this.hidden && !this.paused && !this.covered && !this.tradeResultReady;
-    this.notices.sync(active && !canPresentDecision(this.state, this.seat));
+    if (this.hidden || this.paused || this.covered) this.tradeResultAutoClose.pause();
+    const visible = this.screen === "gameplay" && !this.hidden && !this.paused && !this.covered;
+    this.notices.sync(visible && !this.tradeResultReady && !!this.noticeReady);
+    const active = visible && !this.tradeResultReady && !this.noticeReady;
     this.cardReader.sync(this.state, this.seat,
       active && !this.pending && (!head || !!liveCardDecision(head.event, this.state, this.seat)),
       () => this.act("ACK"));
@@ -689,13 +718,15 @@ export class GameSession extends EventTarget {
       if (!this.room && head?.event && !liveCardDecision(head.event, this.state, this.seat))
         this.remaining = Math.max(3200, this.remaining);
     }
-    if(this.room && head && this.remaining>stepDuration(head,this)){this.cancelTimer();this.remaining=Math.min(this.remaining,stepDuration(head,this));}
+    const renderedMove = head?.kind === "pawnMoving" && this.pawnRenderer && !this.reduced;
+    if (this.presentationHeld || renderedMove) this.cancelTimer();
     const interactive = head?.event && liveCardDecision(head.event, this.state, this.seat);
     if (
       head &&
       !this.timer &&
       !interactive &&
-      (!this.covered || this.assetFeedback || !!this.room) &&
+      !renderedMove &&
+      !this.presentationHeld &&
       !this.paused &&
       !this.hidden
     ) {
@@ -723,6 +754,7 @@ export class GameSession extends EventTarget {
     if (
       !this.head &&
       !this.tradeResults.current &&
+      !this.notices.current &&
       !this.covered &&
       !this.paused &&
       !this.hidden &&
@@ -748,7 +780,7 @@ export class GameSession extends EventTarget {
       !this.head ||
       this.head.id !== id ||
       this.paused ||
-      (this.covered && !this.assetFeedback && !this.room)
+      this.presentationHeld
     )
       return;
     if(this.room)this.performance.record("presentation.step",Math.max(0,this.clock()-(this.timerStarted||this.clock())),{kind:this.head.kind,version:this.head.source?.version});
@@ -761,7 +793,9 @@ export class GameSession extends EventTarget {
     const head = this.head,
       ack =
         type === "ACK" && liveCardDecision(head?.event, this.state, this.seat);
-    if (!this.room && head && !ack) return false;
+    if (head && !ack) return false;
+    if (this.notices.displayed || (this.tradeResultAutoClose.displayed &&
+      this.tradeResultAutoClose.key === this.tradeResults.current?.id)) return false;
     if (!this.room && this.view.version !== this.state.version && !ack) return false;
     if (
       this.state.players[actor]?.controller !== "human" ||
@@ -769,7 +803,6 @@ export class GameSession extends EventTarget {
     )
       return false;
     const clickedAt=this.performance.now(),actionEpoch=this.connectionEpoch,actionRoom=this.room?.code;
-    if(this.room&&this.model){this.cancelTimer();this.model=adaptOnlineTimeline(this.model,this.state,{seat:this.seat,now:clickedAt,force:true});}
     this.pending = true;
     this.actionInFlight=!!this.room;
     this.pendingRoll=this.room&&["ROLL","START_ROLL"].includes(type)?crypto.randomUUID():null;
@@ -1240,6 +1273,7 @@ export class GameSession extends EventTarget {
     this.unsubscribe = null;
   }
   dispose() {
+    this.tradeResultAutoClose.reset();
     this.notices.dispose();
     this.cardReader.dispose();
     this.localLease.release();

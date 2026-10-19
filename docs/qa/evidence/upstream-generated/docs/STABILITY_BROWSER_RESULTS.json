@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-10-19T09:57:56.464Z",
+  "checks": [
+    {
+      "name": "stability browser failure",
+      "passed": false,
+      "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText(/sedang dibuka di tab lain/) to be visible\u001b[22m\n\n    at /workspace/monopoli-nusantara/scripts/test-stability-browser.mjs:37:102"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Local Chromium emulation; not a physical mobile device.",
+    "No Supabase or Groq is called by this browser suite."
+  ]
+}

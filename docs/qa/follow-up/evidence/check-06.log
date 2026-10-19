@@ -1,0 +1,18 @@
+
+> monopoli-nusantara@4.11.6 test:auction
+> node --experimental-strip-types scripts/test-auction-browser.mjs
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'popup-in' !== 'none'
+
+    at file:///workspace/monopoli-nusantara/scripts/test-auction-browser.mjs:230:12
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:502:9) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'popup-in',
+  expected: 'none',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

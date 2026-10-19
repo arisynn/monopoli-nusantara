@@ -19,17 +19,17 @@ test('V23.2 manifest and every protected model/engine file are unchanged',()=>{
  assert.equal(MODEL_MANIFEST_ID,'f398a9793efd23c3c74e3e46d89aab0117a4c23c5102036d7e8f77a51c94e46d');
  for(const [file,hash]of Object.entries(MODEL_FILES))assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),hash,file);
 });
-for(const n of [2,3,4,5,6])test(`${n} players: catch-up preserves all confirmed payments, assets, history and final state`,()=>{
+for(const n of [2,3,4,5,6])test(`${n} players: queued presentation preserves all confirmed payments, assets, history and final state`,()=>{
  let s=game(n);s.assets[1].owner=0;s.assets[3].owner=0;
  let model=ingestTimeline(null,publicState(s));
  for(const [type,data]of [['BUILD',{tile:1}],['SELL',{tile:1}],['MORTGAGE',{tile:3}],['REDEEM',{tile:3}]]){
   s=commit(s,0,type,data);model=ingestTimeline(model,publicState(s));
  }
  const before=structuredClone(s),adapted=adaptOnlineTimeline(model,publicState(s),{seat:0,now:100});
- assert.equal(adapted.queue.length,0);assert.deepEqual(adapted.view,publicState(s));assert.deepEqual(s,before);
- assert.deepEqual(adapted.view.log,s.log);assert.equal(adapted.view.players[0].cash,s.players[0].cash);
+ assert(adapted.queue.length>0);const final=settleConfirmed(adapted).model.view;assert.deepEqual(final,publicState(s));assert.deepEqual(s,before);
+ assert.deepEqual(final.log,s.log);assert.equal(final.players[0].cash,s.players[0].cash);
 });
-test('healthy online animation keeps normal timing; backlog folds older confirmed work and bounds the tail',()=>{
+test('healthy animation keeps normal timing; backlog preserves every walk and the active step',()=>{
  let s=game(3);s.turn=2;
  let model=ingestTimeline(null,publicState(s));s=commit(s,2,'ROLL');model=ingestTimeline(model,publicState(s));
  const healthy=adaptOnlineTimeline(model,s,{seat:0,now:0});assert.equal(healthy.onlineMode,'normal');assert.equal(stepDuration(healthy.queue[0]),900);
@@ -37,7 +37,9 @@ test('healthy online animation keeps normal timing; backlog folds older confirme
  // Add a second confirmed roll if END itself has no animated event.
  if(s.phase==='roll'){s=commit(s,s.turn,'ROLL');model=ingestTimeline(model,publicState(s));}
  const caught=adaptOnlineTimeline(model,s,{seat:-1,now:2000,receivedAt:0});
- assert(caught.catchup);assert(caught.queue.reduce((n,h)=>n+stepDuration(h),0)<=701);
+ assert(caught.catchup);assert.equal(caught.queue[0],model.queue[0]);
+ assert.deepEqual(caught.queue.map(h=>h.id),model.queue.map(h=>h.id));
+ for(const step of model.queue.filter(h=>h.kind==='pawnMoving'))assert.equal(stepDuration(caught.queue.find(h=>h.id===step.id)),stepDuration(step));
  assert.deepEqual(settleConfirmed(caught).model.view,publicState(s));
 });
 test('human decisions in auction, trade, build, mortgage, debt, card and starting remain explicit',()=>{
@@ -49,12 +51,13 @@ test('human decisions in auction, trade, build, mortgage, debt, card and startin
   assert.equal(adapted.view.phase,phase);assert.equal(adapted.view.version,next.version);
  }
 });
-test('decorative backlog cannot block an online human click; dice stay unconfirmed until response and double clicks send once',async t=>{
+test('online clicks wait for presentation; dice stay unconfirmed until response and double clicks send once',async t=>{
  const state=game(3),s=onlineSession(t,state);let resolve,requests=0,payload;
  s.auth.request=async(path,body)=>{requests++;payload=body;return new Promise(r=>resolve=r);};
  // Real committed finance presentation with stale visual version.
  state.assets[1].owner=0;const next=commit(state,0,'MORTGAGE',{tile:1});s.state=next;s.model=ingestTimeline(ingestTimeline(null,state),next);
- assert(s.head);assert.equal(s.busy,false);
+ assert(s.head);assert.equal(s.busy,true);assert.equal(await s.act('ROLL'),false);assert.equal(requests,0);
+ while(s.head)s.complete(s.head.id);
  const action=s.act('ROLL');assert(s.pendingRoll);assert.equal(s.state.version,1);assert.equal(await s.act('ROLL'),false);assert.equal(requests,1);assert.equal(payload.action.expectedVersion,1);
  const confirmed=command(next,0,payload.action,()=>.2);
  resolve({code:'ABCDEFGH',seat:0,roomRevision:2,status:'playing',held:false,state:confirmed,seats:confirmed.players});
@@ -104,4 +107,23 @@ test('a late action response cannot resurrect a disconnected room',async t=>{
  const action=s.act('ROLL');s.disconnect();s.room=null;
  resolve({code:'ABCDEFGH',seat:0,roomRevision:1,status:'playing',state:commit(state,0,'ROLL')});
  assert.equal(await action,false);assert.equal(s.room,null);
+});
+
+
+test('a human buy waits for walking; visible notifications hold new online steps',async t=>{
+ const state=game(2);state.players[0].pos=2;const s=onlineSession(t,state);let requests=0;
+ s.auth.request=async()=>{requests++;throw Error('Must not send while moving');};
+ s.hidden=false;s.setPawnRenderer(true);s.ingest(commit(state,0,'ROLL'));s.notify();
+ while(s.head&&s.head.kind!=='pawnMoving')s.complete(s.head.id);
+ assert.equal(s.head.kind,'pawnMoving');assert.equal(s.timer,null);
+ const id=s.head.id,before=structuredClone(s.state);
+ assert.equal(await s.act('BUY'),false);assert.equal(requests,0);assert.deepEqual(s.state,before);
+ s.setCovered(true);s.complete(id);assert.equal(s.head.id,id);assert.equal(s.timer,null);
+ s.setCovered(false);assert.equal(s.timer,null);s.complete(id);assert.notEqual(s.head?.id,id);
+ while(s.head)s.complete(s.head.id);
+ s.notices.push({id:'read-first',title:'Info',duration:2800});s.notices.present('read-first');
+ const rolled=commit(s.state,0,'BUY');s.ingest(rolled);s.notify();
+ assert(s.presentationHeld);assert.equal(s.timer,null);assert.equal(await s.act('ROLL'),false);
+ const held=s.head.id;s.complete(held);assert.equal(s.head.id,held);
+ s.dismissNotice('read-first');assert(!s.presentationHeld);s.complete(held);assert.notEqual(s.head?.id,held);
 });

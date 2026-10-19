@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-10-19T09:55:36.642Z",
+  "referenceUsed": false,
+  "checks": [
+    {
+      "name": "preserved game-320",
+      "passed": true,
+      "sha256": "b0a5a49867866cd19d2eacf0ded6ecf11c683b5863b7c985d4e85b6dd9459b10",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved game-360",
+      "passed": true,
+      "sha256": "6df9c032cc9df72f2397c04be09268bc510bd45d546ec128ba27bc347cf5ff4a",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved game-390",
+      "passed": true,
+      "sha256": "70ff1db8c2017c2d912da6b22b6155bb9d36b14eebef471f2425b68362e5887c",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved game-430",
+      "passed": true,
+      "sha256": "1a9ed14ef2be778b9fc6746a7359f499d9d603fb92f0807581ebff2820ba5f1b",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved chance",
+      "passed": true,
+      "sha256": "030d65097f113e583a12df8d0594b05c27b56a69d11ae511c5c1288a81686099",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved community",
+      "passed": true,
+      "sha256": "92d11e744d59f7ebc1ca806d67af545d24c8b5442cbd8b6d51a2a29487214da9",
+      "pixelCompared": false
+    },
+    {
+      "name": "portrait failure",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at file:///workspace/monopoli-nusantara/scripts/test-portrait-browser.mjs:41:124"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium mobile emulation; no physical Android or iOS device.",
+    "Online forms tested locally; no real account is created.",
+    "Pixel equality is compared only against a reference captured in the same environment."
+  ]
+}

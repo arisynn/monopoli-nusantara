@@ -9,6 +9,8 @@ import {
   readingCard,
 } from "../frontend/popup-controls.mjs";
 import { copyRoomCode } from "../frontend/clipboard.mjs";
+import { AutoDismiss } from "../frontend/auto-dismiss.mjs";
+import { onlineBotAvailability } from "../frontend/online-status.mjs";
 import {
   buildOrderSelection,
   renderBuildOrder,
@@ -38,6 +40,44 @@ const received = (s, id, from = 1, to = 0) => ({
     },
     ...s.log,
   ],
+});
+
+test("automatic popup expiry cannot acknowledge a superseded message or consume hidden reading time", (t) => {
+  t.mock.timers.enable({ apis: ["setTimeout", "Date"], now: 100 });
+  const timer = new AutoDismiss(), dismissed = [];
+  const finish = (key) => dismissed.push(key);
+  timer.sync("old", 2800, true, finish);
+  t.mock.timers.tick(2000);
+  timer.sync("new", 4500, false, finish);
+  t.mock.timers.tick(20000);
+  assert.deepEqual(dismissed, []);
+  timer.sync("new", 4500, true, finish);
+  t.mock.timers.tick(4499);
+  assert.deepEqual(dismissed, []);
+  t.mock.timers.tick(1);
+  assert.deepEqual(dismissed, ["new"]);
+  timer.reset();
+  t.mock.timers.tick(10000);
+  assert.deepEqual(dismissed, ["new"]);
+});
+
+test("bot configuration is not mistaken for worker availability, and Termux does not need an Edge scheduler", () => {
+  const session = { config: { onlineBots: true } };
+  assert.equal(onlineBotAvailability(session).ready, false);
+  assert.equal(onlineBotAvailability(session, { capabilities: {
+    workerProvider: "termux", workerConfigured: true, workerAlive: false,
+    availableSlots: 0, schedulerConfigured: false,
+  } }).ready, false);
+  assert.equal(onlineBotAvailability(session, { capabilities: {
+    workerProvider: "termux", workerConfigured: true, workerAlive: true,
+    availableSlots: 0, schedulerConfigured: false,
+  } }).ready, true);
+  assert.equal(onlineBotAvailability(session, { capabilities: {
+    workerConfigured: true, schedulerConfigured: false,
+  } }).ready, false);
+  assert.equal(onlineBotAvailability({ ...session, online: { worker: { status: "offline" } } }, {
+    capabilities: { workerConfigured: true, schedulerConfigured: true },
+  }).ready, false);
 });
 
 test("receipts deduplicate snapshots and aggregate bursts, without inventing a rent claim", () => {
@@ -89,22 +129,35 @@ test("baseline, old revision, match changes and observers cannot replay received
   assert.equal(n.current, null);
   n.dispose();
 });
-test("notice time pauses while hidden or a decision covers it and remains bounded", (t) => {
+test("information modals expire only after being displayed, pause when covered and stay bounded", (t) => {
   t.mock.timers.enable({ apis: ["setTimeout", "Date"], now: 100 });
   const n = new GameNotices();
   n.push({ id: "rent", kind: "rent", duration: 2800, amount: 100, count: 1 });
   n.sync(true);
+  t.mock.timers.tick(20000);
+  assert.equal(n.current.id, "rent");
+  assert(n.present("rent"));
+  n.sync(true);
   t.mock.timers.tick(1000);
   n.sync(false);
   t.mock.timers.tick(20000);
-  assert.equal(n.current.remaining, 1800);
+  assert.equal(n.autoClose.remaining, 1800);
+  assert.equal(n.displayed, n.current);
+  assert.equal(n.dismiss("stale-id"), false);
   n.sync(true);
   t.mock.timers.tick(1799);
-  assert(n.current);
+  assert.equal(n.current.id, "rent");
   t.mock.timers.tick(1);
   assert.equal(n.current, null);
+  n.push({ id: "next", kind: "event", duration: 2300 });
+  assert(n.present("next"));
   for (let i = 0; i < 50; i++) n.push({ id: i, kind: "event", duration: 2300 });
   assert.equal(n.queue.length, 4);
+  assert.equal(n.current.id, "next");
+  assert(n.dismiss("next"));
+  assert.equal(n.displayed, null);
+  assert.equal(n.dismiss("next"), false);
+  assert.equal(n.queue.length, 3);
   n.dispose();
 });
 test("card reading time scales with text and a revealed card gets only one auto attempt", async (t) => {

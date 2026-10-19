@@ -1,0 +1,5 @@
+
+> monopoli-nusantara@4.11.6 test:stability
+> node --experimental-strip-types scripts/test-stability-browser.mjs
+
+7 stability browser scenarios passed.

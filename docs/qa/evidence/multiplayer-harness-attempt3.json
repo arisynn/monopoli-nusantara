@@ -1,0 +1,122 @@
+{
+  "mode": "live-production-two-independent-contexts",
+  "steps": [
+    {
+      "name": "QA Host-authenticated",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Host · 4 peserta\nAtur permainan\nP1\nQA Host\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nIdentitas tersedia\nAkun\nIdentitas tersedia\n\nSiap meminta room. Koneksi database diperiksa saat room dibuka.\n\nPeriksa ulang\nBuat Room\nTutup"
+    },
+    {
+      "name": "QA Guest-authenticated",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Guest · 4 peserta\nAtur permainan\nP1\nQA Guest\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nIdentitas tersedia\nAkun\nIdentitas tersedia\n\nSiap meminta room. Koneksi database diperiksa saat room dibuka.\n\nPeriksa ulang\nBuat Room\nTutup"
+    },
+    {
+      "name": "host-room",
+      "text": "Nusantara\nRuang Bermain\nONLINE\n40 petak\n1/3 peserta\n₦\n= Nusa\nKODE ROOM\nSD8978FX\nSalin\nTerhubung\n0/1 manusia siap\nP1 · HOST\nQA Host\nBelum siap\nP2\nKursi kosong\nP3\nKursi kosong\nSaya siap\nPilih pion\nTambah bot\nMulai permainan\nKelola room\nKeluar room\n\nMinimal dua manusia. Semua manusia harus siap dan terhubung.\n\nMonopoli Nusantara · Klasik 4.11.6"
+    },
+    {
+      "name": "guest-joined",
+      "text": "Nusantara\nRuang Bermain\nONLINE\n40 petak\n2/3 peserta\n₦\n= Nusa\nKODE ROOM\nSD8978FX\nSalin\nTerhubung\n0/2 manusia siap\nP1 · HOST\nQA Host\nBelum siap\nP2\nQA Guest\nBelum siap\nP3\nKursi kosong\nSaya siap\nPilih pion\n\nMenunggu host memulai pertandingan.\n\nKelola room\nKeluar room\n\nMinimal dua manusia. Semua manusia harus siap dan terhubung.\n\nMonopoli Nusantara · Klasik 4.11.6"
+    },
+    {
+      "name": "host-ready",
+      "text": "Nusantara\nRuang Bermain\nONLINE\n40 petak\n1/3 peserta\n₦\n= Nusa\nKODE ROOM\nSD8978FX\nSalin\nTerhubung\n0/1 manusia siap · Bot menunggu worker\nP1 · HOST\nQA Host\nBelum siap\nP2\nKursi kosong\nP3\nKursi kosong\nSaya siap\nPilih pion\nTambah bot\nMulai permainan\nKelola room\nKeluar room\n\nMinimal dua manusia. Semua manusia harus siap dan terhubung.\n\nMonopoli Nusantara · Klasik 4.11.6"
+    },
+    {
+      "name": "guest-ready",
+      "text": "Nusantara\nRuang Bermain\nONLINE\n40 petak\n2/3 peserta\n₦\n= Nusa\nKODE ROOM\nSD8978FX\nSalin\nTerhubung\n0/2 manusia siap\nP1 · HOST\nQA Host\nBelum siap\nP2\nQA Guest\nBelum siap\nP3\nKursi kosong\nSaya siap\nPilih pion\n\nMenunggu host memulai pertandingan.\n\nKelola room\nKeluar room\n\nMinimal dua manusia. Semua manusia harus siap dan terhubung.\n\nMonopoli Nusantara · Klasik 4.11.6"
+    },
+    {
+      "name": "guest-leave-unavailable",
+      "message": "locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-action=room]').first()\u001b[22m\n\u001b[2m    - locator resolved to <button data-action=\"room\" class=\"lobby-player \">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <button type=\"button\" class=\"secondary\" data-action=\"saves\">…</button> from <dialog open=\"\" id=\"popup\" class=\"popup\" data-kind=\"menu\" aria-modal=\"true\" data-density=\"compact\" aria-label=\"Menu Permainan\">…</dialog> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <button type=\"button\" class=\"secondary\" data-action=\"saves\">…</button> from <dialog open=\"\" id=\"popup\" class=\"popup\" data-kind=\"menu\" aria-modal=\"true\" data-density=\"compact\" aria-label=\"Menu Permainan\">…</dialog> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <button type=\"button\" class=\"secondary\" data-action=\"saves\">…</button> from <dialog open=\"\" id=\"popup\" class=\"popup\" data-kind=\"menu\" aria-modal=\"true\" data-density=\"compact\" aria-label=\"Menu Permainan\">…</dialog> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m  - element was detached from the DOM, retrying\u001b[22m\n\u001b[2m    - locator resolved to <button data-action=\"room\" class=\"lobby-player \">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <button type=\"button\" class=\"secondary\" data-action=\"saves\">…</button> from <dialog open=\"\" id=\"popup\" class=\"popup\" data-kind=\"menu\" aria-modal=\"true\" data-density=\"compact\" aria-label=\"Menu Permainan\">…</dialog> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not stable\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m  - element was detached from the DOM, retrying\u001b[22m\n\u001b[2m    - locator resolved to <button data-action=\"room\" class=\"lobby-player \">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <button type=\"button\" class=\"secondary\" data-action=\"saves\">…</button> from <dialog open=\"\" id=\"popup\" class=\"popup\" data-kind=\"menu\" aria-modal=\"true\" data-density=\"compact\" aria-label=\"Menu Permainan\">…</dialog> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <button type=\"button\" class=\"secondary\" data-action=\"saves\">…</button> from <dialog open=\"\" id=\"popup\" class=\"popup\" data-kind=\"menu\" aria-modal=\"true\" data-density=\"compact\" aria-label=\"Menu Permainan\">…</dialog> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    17 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <button type=\"button\" class=\"secondary\" data-action=\"saves\">…</button> from <dialog open=\"\" id=\"popup\" class=\"popup\" data-kind=\"menu\" aria-modal=\"true\" data-density=\"compact\" aria-label=\"Menu Permainan\">…</dialog> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+    },
+    {
+      "name": "host-leave-unavailable",
+      "message": "locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-action=room]').first()\u001b[22m\n\u001b[2m    - locator resolved to <button data-action=\"room\" class=\"lobby-player own\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <button type=\"button\" class=\"secondary\" data-action=\"saves\">…</button> from <dialog open=\"\" id=\"popup\" class=\"popup\" data-kind=\"menu\" aria-modal=\"true\" data-density=\"compact\" aria-label=\"Menu Permainan\">…</dialog> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <button type=\"button\" class=\"secondary\" data-action=\"saves\">…</button> from <dialog open=\"\" id=\"popup\" class=\"popup\" data-kind=\"menu\" aria-modal=\"true\" data-density=\"compact\" aria-label=\"Menu Permainan\">…</dialog> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <button type=\"button\" class=\"secondary\" data-action=\"saves\">…</button> from <dialog open=\"\" id=\"popup\" class=\"popup\" data-kind=\"menu\" aria-modal=\"true\" data-density=\"compact\" aria-label=\"Menu Permainan\">…</dialog> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "client": "QA Host",
+      "path": "/api/bot",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/auth",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/bot",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/auth",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    }
+  ],
+  "qaRoom": "SD8978FX",
+  "startEnabled": false
+}

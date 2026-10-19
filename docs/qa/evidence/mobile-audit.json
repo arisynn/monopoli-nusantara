@@ -1,0 +1,1140 @@
+[
+  {
+    "width": 360,
+    "height": 800,
+    "fontScale": 1,
+    "metrics": {
+      "viewport": {
+        "w": 360,
+        "h": 800
+      },
+      "overflow": false,
+      "board": {
+        "x": 0,
+        "y": 211.5,
+        "width": 360,
+        "height": 360,
+        "right": 360,
+        "bottom": 571.5
+      },
+      "console": {
+        "x": 0,
+        "y": 709,
+        "width": 360,
+        "height": 91,
+        "right": 360,
+        "bottom": 800
+      },
+      "primary": {
+        "x": 107,
+        "y": 738,
+        "width": 245,
+        "height": 50,
+        "right": 352,
+        "bottom": 788
+      },
+      "smallButtons": [
+        {
+          "action": "menu",
+          "label": "Menu permainan",
+          "x": 8,
+          "y": 3,
+          "width": 40,
+          "height": 40,
+          "right": 48,
+          "bottom": 43
+        },
+        {
+          "action": "camera",
+          "label": "Kamera: ikuti pion",
+          "x": 312,
+          "y": 3,
+          "width": 40,
+          "height": 40,
+          "right": 352,
+          "bottom": 43
+        },
+        {
+          "action": "selectedProperty",
+          "label": "Mulai\nPetak perjalanan",
+          "x": 0,
+          "y": 686,
+          "width": 226.40625,
+          "height": 23,
+          "right": 226.40625,
+          "bottom": 709
+        }
+      ],
+      "tileFont": "18px",
+      "players": {
+        "x": 8,
+        "y": 49,
+        "width": 344,
+        "height": 98,
+        "right": 352,
+        "bottom": 147
+      }
+    },
+    "modals": [
+      {
+        "action": "ownAssets",
+        "bounds": {
+          "x": 19,
+          "y": 189.25,
+          "width": 322,
+          "height": 421.5
+        },
+        "close": {
+          "x": 20,
+          "y": 565.75,
+          "width": 320,
+          "height": 44
+        },
+        "text": "Aset Saya\nQA Mobile\n5 properti\n₦ 1.500\nProperti\nBangun\nPegadaian\nBogor\nPriangan · Tanah\n₦ 4\nBandung\nPriangan · Tanah\n₦ 8\nYogyakarta\nJawa · Tanah\n₦ 12\nSemarang\nJawa · Tanah\n₦ 12\nSurabaya\nJawa · Tanah\n₦ 16\nTutup"
+      },
+      {
+        "action": "trade",
+        "bounds": {
+          "x": 19,
+          "y": 120,
+          "width": 322,
+          "height": 560
+        },
+        "close": {
+          "x": 20,
+          "y": 635,
+          "width": 320,
+          "height": 44
+        },
+        "text": "Perdagangan\n\nAtur aset dan uang pada kedua sisi tawaran.\n\nPemain tujuan\nBOT 1\nAnda memberi\nProperti\nUang (₦)\nAnda menerima\nTidak ada properti untuk ditukar\nUang (₦)\n\nTambahkan aset atau uang yang valid untuk melihat estimasi.\n\nKosongkan draft\n\nDraft "
+      },
+      {
+        "action": "bank",
+        "bounds": {
+          "x": 19,
+          "y": 135.234375,
+          "width": 322,
+          "height": 529.53125
+        },
+        "close": {
+          "x": 20,
+          "y": 619.765625,
+          "width": 320,
+          "height": 44
+        },
+        "text": "Bank Nusantara\n\nCatatan ekonomi pertandingan.\n\nNusa beredar\n₦ 9.000\nUang tunai seluruh pemain\nPerputaran tercatat\n₦ 0\nPokok gadai aktif\n₦ 0\nArus Nusa\n0 transaksi\nAset tergadai\n0 aset\nPersediaan bank\n32 rumah · 12 hotel\nTransaksi terakhir\n0 ditampilka"
+      },
+      {
+        "action": "history",
+        "bounds": {
+          "x": 19,
+          "y": 243.78125,
+          "width": 322,
+          "height": 312.4375
+        },
+        "close": {
+          "x": 20,
+          "y": 511.21875,
+          "width": 320,
+          "height": 44
+        },
+        "text": "Riwayat Aktivitas\n\nLangkah, properti, dan aliran Nusa yang sah.\n\nSemua\nNusa\nProperti\nRONDE 1\n\nModal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.\n\nAjukan tawaran\nTutup"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 393,
+    "height": 873,
+    "fontScale": 1,
+    "metrics": {
+      "viewport": {
+        "w": 393,
+        "h": 873
+      },
+      "overflow": false,
+      "board": {
+        "x": 0,
+        "y": 231.5,
+        "width": 393,
+        "height": 393,
+        "right": 393,
+        "bottom": 624.5
+      },
+      "console": {
+        "x": 0,
+        "y": 782,
+        "width": 393,
+        "height": 91,
+        "right": 393,
+        "bottom": 873
+      },
+      "primary": {
+        "x": 107,
+        "y": 811,
+        "width": 278,
+        "height": 50,
+        "right": 385,
+        "bottom": 861
+      },
+      "smallButtons": [
+        {
+          "action": "menu",
+          "label": "Menu permainan",
+          "x": 8,
+          "y": 3,
+          "width": 40,
+          "height": 40,
+          "right": 48,
+          "bottom": 43
+        },
+        {
+          "action": "camera",
+          "label": "Kamera: ikuti pion",
+          "x": 345,
+          "y": 3,
+          "width": 40,
+          "height": 40,
+          "right": 385,
+          "bottom": 43
+        },
+        {
+          "action": "selectedProperty",
+          "label": "Mulai\nPetak perjalanan",
+          "x": 0,
+          "y": 759,
+          "width": 247.53125,
+          "height": 23,
+          "right": 247.53125,
+          "bottom": 782
+        }
+      ],
+      "tileFont": "18px",
+      "players": {
+        "x": 8,
+        "y": 49,
+        "width": 377,
+        "height": 98,
+        "right": 385,
+        "bottom": 147
+      }
+    },
+    "modals": [
+      {
+        "action": "ownAssets",
+        "bounds": {
+          "x": 19,
+          "y": 225.75,
+          "width": 355,
+          "height": 421.5
+        },
+        "close": {
+          "x": 20,
+          "y": 602.25,
+          "width": 353,
+          "height": 44
+        },
+        "text": "Aset Saya\nQA Mobile\n5 properti\n₦ 1.500\nProperti\nBangun\nPegadaian\nBogor\nPriangan · Tanah\n₦ 4\nBandung\nPriangan · Tanah\n₦ 8\nYogyakarta\nJawa · Tanah\n₦ 12\nSemarang\nJawa · Tanah\n₦ 12\nSurabaya\nJawa · Tanah\n₦ 16\nTutup"
+      },
+      {
+        "action": "trade",
+        "bounds": {
+          "x": 19,
+          "y": 158.765625,
+          "width": 355,
+          "height": 555.46875
+        },
+        "close": {
+          "x": 20,
+          "y": 669.234375,
+          "width": 353,
+          "height": 44
+        },
+        "text": "Perdagangan\n\nAtur aset dan uang pada kedua sisi tawaran.\n\nPemain tujuan\nBOT 1\nAnda memberi\nProperti\nUang (₦)\nAnda menerima\nTidak ada properti untuk ditukar\nUang (₦)\n\nTambahkan aset atau uang yang valid untuk melihat estimasi.\n\nKosongkan draft\n\nDraft "
+      },
+      {
+        "action": "bank",
+        "bounds": {
+          "x": 19,
+          "y": 171.734375,
+          "width": 355,
+          "height": 529.53125
+        },
+        "close": {
+          "x": 20,
+          "y": 656.265625,
+          "width": 353,
+          "height": 44
+        },
+        "text": "Bank Nusantara\n\nCatatan ekonomi pertandingan.\n\nNusa beredar\n₦ 9.000\nUang tunai seluruh pemain\nPerputaran tercatat\n₦ 0\nPokok gadai aktif\n₦ 0\nArus Nusa\n0 transaksi\nAset tergadai\n0 aset\nPersediaan bank\n32 rumah · 12 hotel\nTransaksi terakhir\n0 ditampilka"
+      },
+      {
+        "action": "history",
+        "bounds": {
+          "x": 19,
+          "y": 280.28125,
+          "width": 355,
+          "height": 312.4375
+        },
+        "close": {
+          "x": 20,
+          "y": 547.71875,
+          "width": 353,
+          "height": 44
+        },
+        "text": "Riwayat Aktivitas\n\nLangkah, properti, dan aliran Nusa yang sah.\n\nSemua\nNusa\nProperti\nRONDE 1\n\nModal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.\n\nAjukan tawaran\nTutup"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 412,
+    "height": 915,
+    "fontScale": 1,
+    "metrics": {
+      "viewport": {
+        "w": 412,
+        "h": 915
+      },
+      "overflow": false,
+      "board": {
+        "x": 0,
+        "y": 243,
+        "width": 412,
+        "height": 412,
+        "right": 412,
+        "bottom": 655
+      },
+      "console": {
+        "x": 0,
+        "y": 824,
+        "width": 412,
+        "height": 91,
+        "right": 412,
+        "bottom": 915
+      },
+      "primary": {
+        "x": 107,
+        "y": 853,
+        "width": 297,
+        "height": 50,
+        "right": 404,
+        "bottom": 903
+      },
+      "smallButtons": [
+        {
+          "action": "menu",
+          "label": "Menu permainan",
+          "x": 8,
+          "y": 3,
+          "width": 40,
+          "height": 40,
+          "right": 48,
+          "bottom": 43
+        },
+        {
+          "action": "camera",
+          "label": "Kamera: ikuti pion",
+          "x": 364,
+          "y": 3,
+          "width": 40,
+          "height": 40,
+          "right": 404,
+          "bottom": 43
+        },
+        {
+          "action": "selectedProperty",
+          "label": "Mulai\nPetak perjalanan",
+          "x": 0,
+          "y": 801,
+          "width": 259.6875,
+          "height": 23,
+          "right": 259.6875,
+          "bottom": 824
+        }
+      ],
+      "tileFont": "18px",
+      "players": {
+        "x": 8,
+        "y": 49,
+        "width": 396,
+        "height": 98,
+        "right": 404,
+        "bottom": 147
+      }
+    },
+    "modals": [
+      {
+        "action": "ownAssets",
+        "bounds": {
+          "x": 19,
+          "y": 246.75,
+          "width": 374,
+          "height": 421.5
+        },
+        "close": {
+          "x": 20,
+          "y": 623.25,
+          "width": 372,
+          "height": 44
+        },
+        "text": "Aset Saya\nQA Mobile\n5 properti\n₦ 1.500\nProperti\nBangun\nPegadaian\nBogor\nPriangan · Tanah\n₦ 4\nBandung\nPriangan · Tanah\n₦ 8\nYogyakarta\nJawa · Tanah\n₦ 12\nSemarang\nJawa · Tanah\n₦ 12\nSurabaya\nJawa · Tanah\n₦ 16\nTutup"
+      },
+      {
+        "action": "trade",
+        "bounds": {
+          "x": 19,
+          "y": 179.765625,
+          "width": 374,
+          "height": 555.46875
+        },
+        "close": {
+          "x": 20,
+          "y": 690.234375,
+          "width": 372,
+          "height": 44
+        },
+        "text": "Perdagangan\n\nAtur aset dan uang pada kedua sisi tawaran.\n\nPemain tujuan\nBOT 1\nAnda memberi\nProperti\nUang (₦)\nAnda menerima\nTidak ada properti untuk ditukar\nUang (₦)\n\nTambahkan aset atau uang yang valid untuk melihat estimasi.\n\nKosongkan draft\n\nDraft "
+      },
+      {
+        "action": "bank",
+        "bounds": {
+          "x": 19,
+          "y": 192.734375,
+          "width": 374,
+          "height": 529.53125
+        },
+        "close": {
+          "x": 20,
+          "y": 677.265625,
+          "width": 372,
+          "height": 44
+        },
+        "text": "Bank Nusantara\n\nCatatan ekonomi pertandingan.\n\nNusa beredar\n₦ 9.000\nUang tunai seluruh pemain\nPerputaran tercatat\n₦ 0\nPokok gadai aktif\n₦ 0\nArus Nusa\n0 transaksi\nAset tergadai\n0 aset\nPersediaan bank\n32 rumah · 12 hotel\nTransaksi terakhir\n0 ditampilka"
+      },
+      {
+        "action": "history",
+        "bounds": {
+          "x": 19,
+          "y": 301.28125,
+          "width": 374,
+          "height": 312.4375
+        },
+        "close": {
+          "x": 20,
+          "y": 568.71875,
+          "width": 372,
+          "height": 44
+        },
+        "text": "Riwayat Aktivitas\n\nLangkah, properti, dan aliran Nusa yang sah.\n\nSemua\nNusa\nProperti\nRONDE 1\n\nModal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.\n\nAjukan tawaran\nTutup"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 360,
+    "height": 480,
+    "fontScale": 1,
+    "metrics": {
+      "viewport": {
+        "w": 360,
+        "h": 480
+      },
+      "overflow": false,
+      "board": {
+        "x": 0,
+        "y": 128,
+        "width": 360,
+        "height": 360,
+        "right": 360,
+        "bottom": 488
+      },
+      "console": {
+        "x": 0,
+        "y": 400,
+        "width": 360,
+        "height": 80,
+        "right": 360,
+        "bottom": 480
+      },
+      "primary": {
+        "x": 107,
+        "y": 426,
+        "width": 245,
+        "height": 46,
+        "right": 352,
+        "bottom": 472
+      },
+      "smallButtons": [
+        {
+          "action": "menu",
+          "label": "Menu permainan",
+          "x": 8,
+          "y": 2,
+          "width": 40,
+          "height": 36,
+          "right": 48,
+          "bottom": 38
+        },
+        {
+          "action": "camera",
+          "label": "Kamera: ikuti pion",
+          "x": 312,
+          "y": 2,
+          "width": 40,
+          "height": 36,
+          "right": 352,
+          "bottom": 38
+        },
+        {
+          "action": "profile",
+          "label": "QA Mobile, ₦ 1.500, giliran aktif",
+          "x": 6,
+          "y": 42,
+          "width": 113.328125,
+          "height": 40,
+          "right": 119.328125,
+          "bottom": 82
+        },
+        {
+          "action": "profile",
+          "label": "BOT 1, ₦ 1.500",
+          "x": 123.328125,
+          "y": 42,
+          "width": 113.328125,
+          "height": 40,
+          "right": 236.65625,
+          "bottom": 82
+        },
+        {
+          "action": "profile",
+          "label": "BOT 2, ₦ 1.500",
+          "x": 240.65625,
+          "y": 42,
+          "width": 113.34375,
+          "height": 40,
+          "right": 354,
+          "bottom": 82
+        },
+        {
+          "action": "profile",
+          "label": "BOT 3, ₦ 1.500",
+          "x": 6,
+          "y": 86,
+          "width": 113.328125,
+          "height": 40,
+          "right": 119.328125,
+          "bottom": 126
+        },
+        {
+          "action": "profile",
+          "label": "BOT 4, ₦ 1.500",
+          "x": 123.328125,
+          "y": 86,
+          "width": 113.328125,
+          "height": 40,
+          "right": 236.65625,
+          "bottom": 126
+        },
+        {
+          "action": "profile",
+          "label": "BOT 5, ₦ 1.500",
+          "x": 240.65625,
+          "y": 86,
+          "width": 113.34375,
+          "height": 40,
+          "right": 354,
+          "bottom": 126
+        },
+        {
+          "action": "history",
+          "label": "Riwayat aktivitas dan transaksi",
+          "x": 0,
+          "y": 505,
+          "width": 226.40625,
+          "height": 40,
+          "right": 226.40625,
+          "bottom": 545
+        }
+      ],
+      "tileFont": "18px",
+      "players": {
+        "x": 6,
+        "y": 42,
+        "width": 348,
+        "height": 84,
+        "right": 354,
+        "bottom": 126
+      }
+    },
+    "modals": [
+      {
+        "action": "ownAssets",
+        "bounds": {
+          "x": 19,
+          "y": 57.59375,
+          "width": 322,
+          "height": 364.796875
+        },
+        "close": {
+          "x": 20,
+          "y": 377.390625,
+          "width": 320,
+          "height": 44
+        },
+        "text": "Aset Saya\nQA Mobile\n5 properti\n₦ 1.500\nProperti\nBangun\nPegadaian\nBogor\nPriangan · Tanah\n₦ 4\nBandung\nPriangan · Tanah\n₦ 8\nYogyakarta\nJawa · Tanah\n₦ 12\nSemarang\nJawa · Tanah\n₦ 12\nSurabaya\nJawa · Tanah\n₦ 16\nTutup"
+      },
+      {
+        "action": "trade",
+        "bounds": {
+          "x": 19,
+          "y": 57.59375,
+          "width": 322,
+          "height": 364.796875
+        },
+        "close": {
+          "x": 20,
+          "y": 377.390625,
+          "width": 320,
+          "height": 44
+        },
+        "text": "Perdagangan\n\nAtur aset dan uang pada kedua sisi tawaran.\n\nPemain tujuan\nBOT 1\nAnda memberi\nProperti\nUang (₦)\nAnda menerima\nTidak ada properti untuk ditukar\nUang (₦)\n\nTambahkan aset atau uang yang valid untuk melihat estimasi.\n\nKosongkan draft\n\nDraft "
+      },
+      {
+        "action": "bank",
+        "bounds": {
+          "x": 19,
+          "y": 57.59375,
+          "width": 322,
+          "height": 364.796875
+        },
+        "close": {
+          "x": 20,
+          "y": 377.390625,
+          "width": 320,
+          "height": 44
+        },
+        "text": "Bank Nusantara\n\nCatatan ekonomi pertandingan.\n\nNusa beredar\n₦ 9.000\nUang tunai seluruh pemain\nPerputaran tercatat\n₦ 0\nPokok gadai aktif\n₦ 0\nArus Nusa\n0 transaksi\nAset tergadai\n0 aset\nPersediaan bank\n32 rumah · 12 hotel\nTransaksi terakhir\n0 ditampilka"
+      },
+      {
+        "action": "history",
+        "bounds": {
+          "x": 19,
+          "y": 83.78125,
+          "width": 322,
+          "height": 312.4375
+        },
+        "close": {
+          "x": 20,
+          "y": 351.21875,
+          "width": 320,
+          "height": 44
+        },
+        "text": "Riwayat Aktivitas\n\nLangkah, properti, dan aliran Nusa yang sah.\n\nSemua\nNusa\nProperti\nRONDE 1\n\nModal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.\n\nAjukan tawaran\nTutup"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 360,
+    "height": 800,
+    "fontScale": 1.5,
+    "metrics": {
+      "viewport": {
+        "w": 360,
+        "h": 800
+      },
+      "overflow": false,
+      "board": {
+        "x": 0,
+        "y": 211.5,
+        "width": 360,
+        "height": 360,
+        "right": 360,
+        "bottom": 571.5
+      },
+      "console": {
+        "x": 0,
+        "y": 709,
+        "width": 360,
+        "height": 91,
+        "right": 360,
+        "bottom": 800
+      },
+      "primary": {
+        "x": 107,
+        "y": 738,
+        "width": 245,
+        "height": 50,
+        "right": 352,
+        "bottom": 788
+      },
+      "smallButtons": [
+        {
+          "action": "menu",
+          "label": "Menu permainan",
+          "x": 8,
+          "y": 3,
+          "width": 40,
+          "height": 40,
+          "right": 48,
+          "bottom": 43
+        },
+        {
+          "action": "camera",
+          "label": "Kamera: ikuti pion",
+          "x": 312,
+          "y": 3,
+          "width": 40,
+          "height": 40,
+          "right": 352,
+          "bottom": 43
+        },
+        {
+          "action": "selectedProperty",
+          "label": "Mulai\nPetak perjalanan",
+          "x": 0,
+          "y": 686,
+          "width": 226.40625,
+          "height": 23,
+          "right": 226.40625,
+          "bottom": 709
+        }
+      ],
+      "tileFont": "18px",
+      "players": {
+        "x": 8,
+        "y": 49,
+        "width": 344,
+        "height": 98,
+        "right": 352,
+        "bottom": 147
+      }
+    },
+    "modals": [
+      {
+        "action": "ownAssets",
+        "bounds": {
+          "x": 27,
+          "y": 189.25,
+          "width": 306,
+          "height": 421.5
+        },
+        "close": {
+          "x": 28,
+          "y": 565.75,
+          "width": 304,
+          "height": 44
+        },
+        "text": "Aset Saya\nQA Mobile\n5 properti\n₦ 1.500\nProperti\nBangun\nPegadaian\nBogor\nPriangan · Tanah\n₦ 4\nBandung\nPriangan · Tanah\n₦ 8\nYogyakarta\nJawa · Tanah\n₦ 12\nSemarang\nJawa · Tanah\n₦ 12\nSurabaya\nJawa · Tanah\n₦ 16\nTutup"
+      },
+      {
+        "action": "trade",
+        "bounds": {
+          "x": 27,
+          "y": 120,
+          "width": 306,
+          "height": 560
+        },
+        "close": {
+          "x": 28,
+          "y": 635,
+          "width": 304,
+          "height": 44
+        },
+        "text": "Perdagangan\n\nAtur aset dan uang pada kedua sisi tawaran.\n\nPemain tujuan\nBOT 1\nAnda memberi\nProperti\nUang (₦)\nAnda menerima\nTidak ada properti untuk ditukar\nUang (₦)\n\nTambahkan aset atau uang yang valid untuk melihat estimasi.\n\nKosongkan draft\n\nDraft "
+      },
+      {
+        "action": "bank",
+        "bounds": {
+          "x": 27,
+          "y": 135.234375,
+          "width": 306,
+          "height": 529.53125
+        },
+        "close": {
+          "x": 28,
+          "y": 619.765625,
+          "width": 304,
+          "height": 44
+        },
+        "text": "Bank Nusantara\n\nCatatan ekonomi pertandingan.\n\nNusa beredar\n₦ 9.000\nUang tunai seluruh pemain\nPerputaran tercatat\n₦ 0\nPokok gadai aktif\n₦ 0\nArus Nusa\n0 transaksi\nAset tergadai\n0 aset\nPersediaan bank\n32 rumah · 12 hotel\nTransaksi terakhir\n0 ditampilka"
+      },
+      {
+        "action": "history",
+        "bounds": {
+          "x": 27,
+          "y": 230.375,
+          "width": 306,
+          "height": 339.234375
+        },
+        "close": {
+          "x": 28,
+          "y": 524.609375,
+          "width": 304,
+          "height": 44
+        },
+        "text": "Riwayat Aktivitas\n\nLangkah, properti, dan aliran Nusa yang sah.\n\nSemua\nNusa\nProperti\nRONDE 1\n\nModal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.\n\nAjukan tawaran\nTutup"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 393,
+    "height": 873,
+    "fontScale": 2,
+    "metrics": {
+      "viewport": {
+        "w": 393,
+        "h": 873
+      },
+      "overflow": false,
+      "board": {
+        "x": 0,
+        "y": 231.5,
+        "width": 393,
+        "height": 393,
+        "right": 393,
+        "bottom": 624.5
+      },
+      "console": {
+        "x": 0,
+        "y": 782,
+        "width": 393,
+        "height": 91,
+        "right": 393,
+        "bottom": 873
+      },
+      "primary": {
+        "x": 107,
+        "y": 811,
+        "width": 278,
+        "height": 50,
+        "right": 385,
+        "bottom": 861
+      },
+      "smallButtons": [
+        {
+          "action": "menu",
+          "label": "Menu permainan",
+          "x": 8,
+          "y": 3,
+          "width": 40,
+          "height": 40,
+          "right": 48,
+          "bottom": 43
+        },
+        {
+          "action": "camera",
+          "label": "Kamera: ikuti pion",
+          "x": 345,
+          "y": 3,
+          "width": 40,
+          "height": 40,
+          "right": 385,
+          "bottom": 43
+        },
+        {
+          "action": "selectedProperty",
+          "label": "Mulai\nPetak perjalanan",
+          "x": 0,
+          "y": 759,
+          "width": 247.53125,
+          "height": 23,
+          "right": 247.53125,
+          "bottom": 782
+        }
+      ],
+      "tileFont": "18px",
+      "players": {
+        "x": 8,
+        "y": 49,
+        "width": 377,
+        "height": 98,
+        "right": 385,
+        "bottom": 147
+      }
+    },
+    "modals": [
+      {
+        "action": "ownAssets",
+        "bounds": {
+          "x": 35,
+          "y": 222.25,
+          "width": 323,
+          "height": 428.5
+        },
+        "close": {
+          "x": 36,
+          "y": 605.75,
+          "width": 321,
+          "height": 44
+        },
+        "text": "Aset Saya\nQA Mobile\n5 properti\n₦ 1.500\nProperti\nBangun\nPegadaian\nBogor\nPriangan · Tanah\n₦ 4\nBandung\nPriangan · Tanah\n₦ 8\nYogyakarta\nJawa · Tanah\n₦ 12\nSemarang\nJawa · Tanah\n₦ 12\nSurabaya\nJawa · Tanah\n₦ 16\nTutup"
+      },
+      {
+        "action": "trade",
+        "bounds": {
+          "x": 35,
+          "y": 156.5,
+          "width": 323,
+          "height": 560
+        },
+        "close": {
+          "x": 36,
+          "y": 671.5,
+          "width": 321,
+          "height": 44
+        },
+        "text": "Perdagangan\n\nAtur aset dan uang pada kedua sisi tawaran.\n\nPemain tujuan\nBOT 1\nAnda memberi\nProperti\nUang (₦)\nAnda menerima\nTidak ada properti untuk ditukar\nUang (₦)\n\nTambahkan aset atau uang yang valid untuk melihat estimasi.\n\nKosongkan draft\n\nDraft "
+      },
+      {
+        "action": "bank",
+        "bounds": {
+          "x": 35,
+          "y": 171.734375,
+          "width": 323,
+          "height": 529.53125
+        },
+        "close": {
+          "x": 36,
+          "y": 656.265625,
+          "width": 321,
+          "height": 44
+        },
+        "text": "Bank Nusantara\n\nCatatan ekonomi pertandingan.\n\nNusa beredar\n₦ 9.000\nUang tunai seluruh pemain\nPerputaran tercatat\n₦ 0\nPokok gadai aktif\n₦ 0\nArus Nusa\n0 transaksi\nAset tergadai\n0 aset\nPersediaan bank\n32 rumah · 12 hotel\nTransaksi terakhir\n0 ditampilka"
+      },
+      {
+        "action": "history",
+        "bounds": {
+          "x": 35,
+          "y": 270.78125,
+          "width": 323,
+          "height": 331.4375
+        },
+        "close": {
+          "x": 36,
+          "y": 557.21875,
+          "width": 321,
+          "height": 44
+        },
+        "text": "Riwayat Aktivitas\n\nLangkah, properti, dan aliran Nusa yang sah.\n\nSemua\nNusa\nProperti\nRONDE 1\n\nModal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.\n\nAjukan tawaran\nTutup"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 800,
+    "height": 360,
+    "fontScale": 1,
+    "metrics": {
+      "viewport": {
+        "w": 800,
+        "h": 360
+      },
+      "overflow": false,
+      "board": {
+        "x": 74.359375,
+        "y": 39,
+        "width": 312,
+        "height": 312,
+        "right": 386.359375,
+        "bottom": 351
+      },
+      "console": {
+        "x": 462.734375,
+        "y": 231,
+        "width": 329.265625,
+        "height": 80,
+        "right": 792,
+        "bottom": 311
+      },
+      "primary": {
+        "x": 553.734375,
+        "y": 258,
+        "width": 234.265625,
+        "height": 46,
+        "right": 788,
+        "bottom": 304
+      },
+      "smallButtons": [
+        {
+          "action": "menu",
+          "label": "Menu permainan",
+          "x": 8,
+          "y": 0,
+          "width": 40,
+          "height": 36,
+          "right": 48,
+          "bottom": 36
+        },
+        {
+          "action": "camera",
+          "label": "Kamera: ikuti pion",
+          "x": 752,
+          "y": 0,
+          "width": 40,
+          "height": 36,
+          "right": 792,
+          "bottom": 36
+        },
+        {
+          "action": "profile",
+          "label": "QA Mobile, ₦ 1.500, giliran aktif",
+          "x": 462.734375,
+          "y": 36,
+          "width": 162.625,
+          "height": 36,
+          "right": 625.359375,
+          "bottom": 72
+        },
+        {
+          "action": "profile",
+          "label": "BOT 1, ₦ 1.500",
+          "x": 629.359375,
+          "y": 36,
+          "width": 162.640625,
+          "height": 36,
+          "right": 792,
+          "bottom": 72
+        },
+        {
+          "action": "profile",
+          "label": "BOT 2, ₦ 1.500",
+          "x": 462.734375,
+          "y": 76,
+          "width": 162.625,
+          "height": 36,
+          "right": 625.359375,
+          "bottom": 112
+        },
+        {
+          "action": "profile",
+          "label": "BOT 3, ₦ 1.500",
+          "x": 629.359375,
+          "y": 76,
+          "width": 162.640625,
+          "height": 36,
+          "right": 792,
+          "bottom": 112
+        },
+        {
+          "action": "profile",
+          "label": "BOT 4, ₦ 1.500",
+          "x": 462.734375,
+          "y": 116,
+          "width": 162.625,
+          "height": 36,
+          "right": 625.359375,
+          "bottom": 152
+        },
+        {
+          "action": "profile",
+          "label": "BOT 5, ₦ 1.500",
+          "x": 629.359375,
+          "y": 116,
+          "width": 162.640625,
+          "height": 36,
+          "right": 792,
+          "bottom": 152
+        },
+        {
+          "action": "history",
+          "label": "Riwayat aktivitas dan transaksi",
+          "x": 462.734375,
+          "y": 168,
+          "width": 201.265625,
+          "height": 40,
+          "right": 664,
+          "bottom": 208
+        },
+        {
+          "action": "selectedProperty",
+          "label": "Mulai\nPetak perjalanan",
+          "x": 462.734375,
+          "y": 208,
+          "width": 201.265625,
+          "height": 23,
+          "right": 664,
+          "bottom": 231
+        }
+      ],
+      "tileFont": "18px",
+      "players": {
+        "x": 462.734375,
+        "y": 36,
+        "width": 329.265625,
+        "height": 116,
+        "right": 792,
+        "bottom": 152
+      }
+    },
+    "modals": [
+      {
+        "action": "ownAssets",
+        "bounds": {
+          "x": 60,
+          "y": 43.203125,
+          "width": 680,
+          "height": 273.59375
+        },
+        "close": {
+          "x": 61,
+          "y": 271.796875,
+          "width": 678,
+          "height": 44
+        },
+        "text": "Aset Saya\nQA Mobile\n5 properti\n₦ 1.500\nProperti\nBangun\nPegadaian\nBogor\nPriangan · Tanah\n₦ 4\nBandung\nPriangan · Tanah\n₦ 8\nYogyakarta\nJawa · Tanah\n₦ 12\nSemarang\nJawa · Tanah\n₦ 12\nSurabaya\nJawa · Tanah\n₦ 16\nTutup"
+      },
+      {
+        "action": "trade",
+        "bounds": {
+          "x": 110,
+          "y": 43.203125,
+          "width": 580,
+          "height": 273.59375
+        },
+        "close": {
+          "x": 111,
+          "y": 271.796875,
+          "width": 578,
+          "height": 44
+        },
+        "text": "Perdagangan\n\nAtur aset dan uang pada kedua sisi tawaran.\n\nPemain tujuan\nBOT 1\nAnda memberi\nProperti\nUang (₦)\nAnda menerima\nTidak ada properti untuk ditukar\nUang (₦)\n\nTambahkan aset atau uang yang valid untuk melihat estimasi.\n\nKosongkan draft\n\nDraft "
+      },
+      {
+        "action": "bank",
+        "bounds": {
+          "x": 160,
+          "y": 43.203125,
+          "width": 480,
+          "height": 273.59375
+        },
+        "close": {
+          "x": 161,
+          "y": 271.796875,
+          "width": 478,
+          "height": 44
+        },
+        "text": "Bank Nusantara\n\nCatatan ekonomi pertandingan.\n\nNusa beredar\n₦ 9.000\nUang tunai seluruh pemain\nPerputaran tercatat\n₦ 0\nPokok gadai aktif\n₦ 0\nArus Nusa\n0 transaksi\nAset tergadai\n0 aset\nPersediaan bank\n32 rumah · 12 hotel\nTransaksi terakhir\n0 ditampilka"
+      },
+      {
+        "action": "history",
+        "bounds": {
+          "x": 160,
+          "y": 43.203125,
+          "width": 480,
+          "height": 273.59375
+        },
+        "close": {
+          "x": 161,
+          "y": 271.796875,
+          "width": 478,
+          "height": 44
+        },
+        "text": "Riwayat Aktivitas\n\nLangkah, properti, dan aliran Nusa yang sah.\n\nSemua\nNusa\nProperti\nRONDE 1\n\nModal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.\n\nAjukan tawaran\nTutup"
+      }
+    ],
+    "errors": []
+  }
+]

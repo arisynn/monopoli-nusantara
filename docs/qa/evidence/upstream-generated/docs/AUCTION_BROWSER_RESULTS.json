@@ -1,0 +1,85 @@
+{
+  "checks": [
+    {
+      "name": "2 participants 320: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "4 participants 320: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "6 participants 320: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "2 participants 360: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "4 participants 360: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "6 participants 360: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "2 participants 390: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "4 participants 390: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "6 participants 390: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "2 participants 430: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "4 participants 430: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "6 participants 430: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "2 participants 1280: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "4 participants 1280: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "6 participants 1280: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "human-reentry",
+      "passed": true
+    },
+    {
+      "name": "bot-reentry",
+      "passed": true
+    },
+    {
+      "name": "Invalid bids blocked; real bot update preserves raw input, focus, DOM nodes and panel positions",
+      "passed": true
+    },
+    {
+      "passed": false,
+      "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('dialog[data-kind=event] .result-hero') to be visible\u001b[22m\n\n    at /workspace/monopoli-nusantara/scripts/test-auction-browser.mjs:225:64"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Local engine/save and real bot worker in Chromium; not a live online room.",
+    "Bot idle scheduling is held in fixtures and explicitly released for the incoming-bid check."
+  ]
+}

@@ -1,0 +1,11 @@
+
+> monopoli-nusantara@4.11.6 test:stability
+> node --experimental-strip-types scripts/test-stability-browser.mjs
+
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByText(/sedang dibuka di tab lain/) to be visible[22m
+
+    at /workspace/monopoli-nusantara/scripts/test-stability-browser.mjs:37:102 {
+  name: 'TimeoutError'
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "match": 0,
+    "version": 588,
+    "winner": 1,
+    "winnerName": "NUSA",
+    "players": 2,
+    "source": "Read-only UI resume of exact terminal autosave produced by natural UI continuation",
+    "popupText": "Hasil Akhir\n\nPetualangan Nusantara telah selesai.\n\nNUSA menang!\nNUSA\nPemenang\n₦ 7.876\nQA Pemain 0\nBangkrut\n₦ 0\nKembali ke lobby\nTutup"
+  },
+  {
+    "match": 1,
+    "version": 383,
+    "winner": 1,
+    "winnerName": "ARKA",
+    "players": 3,
+    "source": "Read-only UI resume of exact terminal autosave produced by natural UI continuation",
+    "popupText": "Hasil Akhir\n\nPetualangan Nusantara telah selesai.\n\nARKA menang!\nARKA\nPemenang\n₦ 7.949,5\nQA Pemain 1\nBangkrut\n₦ 0\nBIMA\nBangkrut\n₦ 0\nKembali ke lobby\nTutup"
+  },
+  {
+    "match": 2,
+    "version": 880,
+    "winner": 2,
+    "winnerName": "BIMA",
+    "players": 4,
+    "source": "Read-only UI resume of exact terminal autosave produced by natural UI continuation",
+    "popupText": "Hasil Akhir\n\nPetualangan Nusantara telah selesai.\n\nBIMA menang!\nBIMA\nPemenang\n₦ 11.004\nQA Pemain 2\nBangkrut\n₦ 0\nKRESNA\nBangkrut\n₦ 0\nSARI\nBangkrut\n₦ 0\nKembali ke lobby\nTutup"
+  },
+  {
+    "match": 3,
+    "version": 719,
+    "winner": 4,
+    "winnerName": "NUSA",
+    "players": 5,
+    "source": "Read-only UI resume of exact terminal autosave produced by natural UI continuation",
+    "popupText": "Hasil Akhir\n\nPetualangan Nusantara telah selesai.\n\nNUSA menang!\nNUSA\nPemenang\n₦ 10.326\nQA Pemain 3\nBangkrut\n₦ 0\nARKA\nBangkrut\n₦ 0\nBIMA\nBangkrut\n₦ 0\nSARI\nBangkrut\n₦ 0\nKembali ke lobby\nTutup"
+  },
+  {
+    "match": 4,
+    "version": 605,
+    "winner": 3,
+    "winnerName": "SARI",
+    "players": 6,
+    "source": "Read-only UI resume of exact terminal autosave produced by natural UI continuation",
+    "popupText": "Hasil Akhir\n\nPetualangan Nusantara telah selesai.\n\nSARI menang!\nSARI\nPemenang\n₦ 9.942\nQA Pemain 4\nBangkrut\n₦ 0\nKRESNA\nBangkrut\n₦ 0\nBIMA\nBangkrut\n₦ 0\nNUSA\nBangkrut\n₦ 0\nARKA\nBangkrut\n₦ 0\nKembali ke lobby\nTutup"
+  }
+]

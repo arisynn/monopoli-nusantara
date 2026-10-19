@@ -120,13 +120,12 @@ async function bounds(page, width, height) {
       box.y + box.height <= height + 1,
     JSON.stringify(box),
   );
-  await page.locator(".popup-dismiss").scrollIntoViewIfNeeded();
-  assert(await page.locator(".popup-dismiss").isVisible());
+  assert(await page.locator(".popup-dismiss").isHidden());
+  assert.equal(await page.locator('dialog[open] button:visible').count(), 0);
   assert.equal(
     await page.locator("dialog").getAttribute("data-density"),
     "compact",
   );
-  assert.equal(await page.locator(".popup-dismiss").innerText(), "Tutup");
 }
 try {
   browser = await chromium.launch({
@@ -160,7 +159,7 @@ try {
     assert((await sides.nth(0).innerText()).includes("Makassar"));
     assert((await sides.nth(1).innerText()).includes("Bogor"));
     assert.equal(await page.locator("dialog button[data-type]").count(), 0);
-    // A result remains until the same shared Tutup control is used.
+    // A result gets reading time only while visible; reload preserves an unread result.
     await page.waitForTimeout(3400);
     assert(
       await page.locator('dialog[data-kind="tradeResult"][open]').isVisible(),
@@ -174,7 +173,7 @@ try {
     await page.reload({ waitUntil: "networkidle" });
     await mount(page, done, { online });
     await page.locator('dialog[data-kind="tradeResult"][open]').waitFor();
-    await page.locator(".popup-dismiss").click();
+    await page.locator('dialog[data-kind="tradeResult"][open]').waitFor({ state: "hidden" });
     assert.equal(
       await page.evaluate(() => JSON.stringify(qa.session.state)),
       stateBefore,
@@ -186,7 +185,7 @@ try {
       0,
     );
     checks.push({
-      name: `${width}x${height}: confirmed details, no timer, refresh/read-once, existing shell, read-only close`,
+      name: `${width}x${height}: confirmed details, buttonless automatic close, refresh/read-once, existing shell, no repeated transaction`,
       passed: true,
     });
     await context.close();
@@ -228,7 +227,8 @@ try {
       1,
       "closing the offer must not silently dismiss the result",
     );
-    await page.locator(".popup-dismiss").click();
+    assert.equal(await page.locator('dialog[open] button:visible').count(), 0);
+    await page.locator('dialog[data-kind="tradeResult"][open]').waitFor({ state: "hidden" });
     assert.equal(
       await page.evaluate(() => qa.session.tradeResults.queue.length),
       0,

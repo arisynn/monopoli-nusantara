@@ -1,0 +1,71 @@
+[
+  {
+    mode: 'reject',
+    steps: [],
+    errors: [],
+    resultText: 'Tawaran barter ditolak\n' +
+      '\n' +
+      'Anda menolak tawaran barter.\n' +
+      '\n' +
+      'Tidak ada uang, properti, atau kartu yang berpindah dari tawaran ini.\n' +
+      '\n' +
+      'Terima\n' +
+      'Tawar balik\n' +
+      'Tolak\n' +
+      'Tutup',
+    staleButtons: [ [Object], [Object], [Object] ],
+    errorAfterStaleClick: 'Tawaran barter ditolak\n' +
+      '\n' +
+      'Anda menolak tawaran barter.\n' +
+      '\n' +
+      'Tidak ada uang, properti, atau kartu yang berpindah dari tawaran ini.\n' +
+      '\n' +
+      'Bukan keputusan bartermu.\n' +
+      '\n' +
+      'Terima\n' +
+      'Tawar balik\n' +
+      'Tolak\n' +
+      'Tutup',
+    noStateMutation: true,
+    recoveredAfterClose: true,
+    finalVersion: 3
+  },
+  {
+    mode: 'accept',
+    steps: [],
+    errors: [],
+    resultText: 'Barter berhasil\n' +
+      '\n' +
+      'Transaksi dengan ARKA sudah tercatat.\n' +
+      '\n' +
+      'Anda menerima\n' +
+      'Balikpapan\n' +
+      '₦ 200\n' +
+      'Anda memberi\n' +
+      'Banyuwangi\n' +
+      'Terima\n' +
+      'Tawar balik\n' +
+      'Tolak\n' +
+      'Tutup',
+    staleButtons: [ [Object], [Object], [Object] ],
+    errorAfterStaleClick: 'Barter berhasil\n' +
+      '\n' +
+      'Transaksi dengan ARKA sudah tercatat.\n' +
+      '\n' +
+      'Anda menerima\n' +
+      'Balikpapan\n' +
+      '₦ 200\n' +
+      'Anda memberi\n' +
+      'Banyuwangi\n' +
+      '\n' +
+      'Bukan keputusan bartermu.\n' +
+      '\n' +
+      'Terima\n' +
+      'Tawar balik\n' +
+      'Tolak\n' +
+      'Tutup',
+    noStateMutation: true,
+    recoveredAfterClose: true,
+    finalVersion: 3
+  }
+]

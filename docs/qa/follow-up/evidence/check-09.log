@@ -1,0 +1,5 @@
+
+> monopoli-nusantara@4.11.6 test:ui:4114:browser
+> node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-ui-4114-browser.mjs
+
+41 UI 4.11.4 browser checks passed.

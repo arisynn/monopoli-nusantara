@@ -1,0 +1,9 @@
+{
+  "version": "4.11.6",
+  "release": "Trade Result Receipts · Hold & Release Dice · V23.2",
+  "engineSchemaVersion": 2,
+  "rulepackVersion": "nusantara-c1009-2",
+  "frontend": "classic",
+  "build": "392170ce55b1d147",
+  "serverModulesExposed": false
+}

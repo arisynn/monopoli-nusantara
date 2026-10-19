@@ -1,0 +1,34 @@
+
+> monopoli-nusantara@4.11.6 test:hold:batch
+> node --experimental-strip-types --import ./adapters/node/aliases.mjs --test tests/hold-batch.test.mjs tests/dice-audit.test.mjs
+
+✔ 36 equally weighted pairs give the exact expected middle sum and double frequency (3.638029ms)
+✔ overlapping snapshots, opening ties and utility rolls do not double count a match/event (2.648657ms)
+✔ same IDs in different matches remain independent; bad pairs and conflicting records are reported (0.408977ms)
+✔ public dice export contains only a labeled log window, without hidden state, finance or account identity (1.063074ms)
+✔ atomic six-build result matches official commands, ledger, balanced assets and has one visual settlement (13.305447ms)
+✔ batch cash failure publishes no partial purchase or ledger entries (1.099008ms)
+✔ batch mortgage failure publishes no partial purchase or ledger entries (0.455688ms)
+✔ batch owner failure publishes no partial purchase or ledger entries (0.423059ms)
+✔ batch stock failure publishes no partial purchase or ledger entries (1.627406ms)
+✔ scarce stock is rolled back and single BUILD still opens the official multi-player offer (1.134482ms)
+✔ hotel transitions return houses to the bank using the original rules (0.724623ms)
+✔ public batch metadata never exposes the private user prefix of a command ID (1.45143ms)
+✔ batch input rejects invalid groups, counts, injected properties, bot actors, stale version and forbidden phase (0.993208ms)
+✔ 2 players: one database commit/notification, receipt deduplication and concurrent double submission (14.989599ms)
+✔ 3 players: one database commit/notification, receipt deduplication and concurrent double submission (4.140458ms)
+✔ 4 players: one database commit/notification, receipt deduplication and concurrent double submission (8.181226ms)
+✔ 5 players: one database commit/notification, receipt deduplication and concurrent double submission (12.149102ms)
+✔ 6 players: one database commit/notification, receipt deduplication and concurrent double submission (26.52206ms)
+✔ separate racing batches with the same source version cannot overspend or partially commit (2.619753ms)
+✔ batch reuses membership, controller and lease checks (1.49143ms)
+✔ offline session sends one batch, settles every asset at once and retains the ledger (5.312687ms)
+✔ legacy offline saves retain their own engine validation during a batch (1.666435ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 408.226747

@@ -1,5 +1,7 @@
 # NUSA 4.11.6 — Popup hasil barter
 
+> **Perilaku terbaru pada branch perbaikan QA:** hasil barter kini menutup otomatis setelah waktu baca 4,5–12 detik dan tidak memiliki tombol Tutup. Timer berhenti ketika tab tersembunyi atau modal tertutup layar lain; hasil yang belum ditampilkan tetap menunggu. Transfer tetap dilakukan sekali oleh engine. Bagian berikut mencatat perilaku rilis basis sebelum perubahan ini. Lihat [laporan perbaikan](qa/follow-up/FIX_REPORT.md).
+
 Basis: paket NUSA_ONLINE_TERMUX_4.11.5.zip yang diunggah pengguna.
 
 ## Perubahan

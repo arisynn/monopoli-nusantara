@@ -1,0 +1,33 @@
+
+> monopoli-nusantara@4.11.6 diagnose:deployment
+> node --use-env-proxy scripts/diagnose-deployment.mjs --origin=https://monopoli-nusantara-eight.vercel.app
+
+{
+  "generatedAt": "2026-10-19T09:57:22.729Z",
+  "origin": "https://monopoli-nusantara-eight.vercel.app",
+  "checks": [
+    {
+      "path": "/build.json",
+      "status": 200,
+      "json": true,
+      "version": "4.11.6",
+      "build": "392170ce55b1d147"
+    },
+    {
+      "path": "/api/online?config=1",
+      "status": 200,
+      "json": true,
+      "online": true,
+      "onlineBots": true,
+      "publicKeyPresent": true
+    },
+    {
+      "path": "/api/bot",
+      "status": 200,
+      "json": true,
+      "configured": true,
+      "model": "openai/gpt-oss-120b"
+    }
+  ],
+  "credentialsPrinted": false
+}

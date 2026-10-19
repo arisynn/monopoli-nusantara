@@ -1,6 +1,7 @@
-import { BOARD, money } from "../lib/content.mjs";
+import { BOARD } from "../lib/content.mjs";
 import { gameplayDecision } from "../lib/gameplay-presentation.mjs";
 import { nusaText } from "../lib/currency.mjs";
+import { AutoDismiss } from "./auto-dismiss.mjs";
 
 // Presentation only: no transfers, claims or game decisions happen here.
 export const readingTime = (text = "") =>
@@ -12,12 +13,28 @@ export const readingTime = (text = "") =>
 export class GameNotices {
   constructor({ changed = () => {}, clock = Date.now } = {}) {
     this.changed = changed;
-    this.clock = clock;
+    this.autoClose = new AutoDismiss({ clock });
     this.cursor = null;
     this.queue = [];
+    this.presented = null;
   }
   get current() {
     return this.queue[0] || null;
+  }
+  get displayed() {
+    return this.current?.id === this.presented ? this.current : null;
+  }
+  present(id) {
+    if (!id || this.current?.id !== id) return false;
+    this.presented = id;
+    return true;
+  }
+  dismiss(id) {
+    if (!id || this.current?.id !== id) return false;
+    this.autoClose.reset();
+    this.queue.shift();
+    this.presented = null;
+    return true;
   }
   ingest(state, seat, baseline = false) {
     const next = state && {
@@ -48,6 +65,7 @@ export class GameNotices {
             kind: "rent",
             title: "Terima sewa",
             amount: t.amount,
+            direction: "in",
             count: 1,
             text: `${state.players[t.from]?.name || "Pemain"} · ${BOARD[t.tile]?.name || "Properti"}`,
             duration: 2800,
@@ -57,7 +75,9 @@ export class GameNotices {
             id,
             kind: "payment",
             title: t.kind === "rent" ? "Sewa dibayar" : "Pajak dibayar",
-            text: `${money(t.amount)} · ${BOARD[t.tile]?.name || "Pembayaran tercatat"}`,
+            amount: t.amount,
+            direction: "out",
+            text: `${BOARD[t.tile]?.name || "Pembayaran tercatat"}${t.to !== null ? " · " + (state.players[t.to]?.name || "Pemain") : " · Bank"}`,
             duration: 2600,
           });
         } else if (["salary", "card"].includes(t.kind) && t.to === seat) {
@@ -65,7 +85,12 @@ export class GameNotices {
             id,
             kind: "bonus",
             title: t.kind === "salary" ? "Melewati Mulai" : "Nusa diterima",
-            text: `+ ${money(t.amount)}${t.card?.title ? " · " + t.card.title : ""}`,
+            amount: t.amount,
+            direction: "in",
+            text:
+              t.kind === "salary"
+                ? "Gaji melewati petak Mulai sudah diterima."
+                : t.card?.title || "Pembayaran kartu sudah tercatat.",
             duration: 2800,
           });
         }
@@ -109,32 +134,27 @@ export class GameNotices {
       rent.text = `${rent.count} pembayaran sewa · detail di Riwayat`;
       return;
     }
-    // A burst must never leave the player reading a long backlog of old alerts.
+    // Keep the open modal stable and bound bursts; full details stay in History.
     if (this.queue.length >= 4) this.queue.splice(1, 1);
-    this.queue.push({ ...notice, remaining: notice.duration });
+    this.queue.push({ ...notice });
   }
   sync(active) {
-    if (this.timer && !active) {
-      clearTimeout(this.timer);
-      this.timer = null;
-      if (this.current)
-        this.current.remaining = Math.max(
-          0,
-          this.current.remaining - (this.clock() - this.started),
-        );
-    }
-    if (!active || this.timer || !this.current) return;
     const notice = this.current;
-    this.started = this.clock();
-    this.timer = setTimeout(() => {
-      this.timer = null;
-      if (this.current === notice) this.queue.shift();
-      this.changed();
-    }, notice.remaining);
+    this.autoClose.sync(
+      notice?.id ?? null,
+      notice?.duration ?? 0,
+      active && !!this.displayed,
+      (id) => {
+        this.dismiss(id);
+        this.changed();
+      },
+    );
   }
   dispose() {
-    clearTimeout(this.timer);
-    this.timer = null;
+    this.autoClose.reset();
+    this.queue = [];
+    this.cursor = null;
+    this.presented = null;
   }
 }
 

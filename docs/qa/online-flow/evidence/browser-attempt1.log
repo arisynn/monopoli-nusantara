@@ -1,0 +1,9 @@
+
+> monopoli-nusantara@4.11.6 test:online:flow
+> node --experimental-strip-types scripts/test-online-flow-browser.mjs
+
+page.waitForFunction: Timeout 10000ms exceeded.
+    at moving (/workspace/monopoli-nusantara/scripts/test-online-flow-browser.mjs:200:13)
+    at /workspace/monopoli-nusantara/scripts/test-online-flow-browser.mjs:214:69 {
+  name: 'TimeoutError'
+}

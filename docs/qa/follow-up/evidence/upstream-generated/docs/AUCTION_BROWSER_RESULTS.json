@@ -1,0 +1,93 @@
+{
+  "checks": [
+    {
+      "name": "2 participants 320: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "4 participants 320: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "6 participants 320: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "2 participants 360: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "4 participants 360: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "6 participants 360: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "2 participants 390: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "4 participants 390: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "6 participants 390: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "2 participants 430: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "4 participants 430: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "6 participants 430: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "2 participants 1280: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "4 participants 1280: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "6 participants 1280: fixed leader panel, no portraits or motion",
+      "passed": true
+    },
+    {
+      "name": "human-reentry",
+      "passed": true
+    },
+    {
+      "name": "bot-reentry",
+      "passed": true
+    },
+    {
+      "name": "Invalid bids blocked; real bot update preserves raw input, focus, DOM nodes and panel positions",
+      "passed": true
+    },
+    {
+      "name": "Winning payment charges once and uses the shared buttonless result modal",
+      "passed": true
+    },
+    {
+      "name": "Bankruptcy auction chain stays open and resets input to the new opening minimum",
+      "passed": true
+    },
+    {
+      "name": "Naira symbol normalizes older currency text while preserving NUSA and input values",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Local engine/save and real bot worker in Chromium; not a live online room.",
+    "Bot idle scheduling is held in fixtures and explicitly released for the incoming-bid check."
+  ]
+}

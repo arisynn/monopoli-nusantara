@@ -1,0 +1,6 @@
+# Keep Markdown hard line breaks and byte-identical archived command output.
+*.md whitespace=-blank-at-eol
+*.log -whitespace
+*.patch -whitespace
+scripts/generate-reports.py whitespace=-blank-at-eol
+follow-up/scripts/report.py whitespace=-blank-at-eol

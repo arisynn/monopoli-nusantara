@@ -1,0 +1,77 @@
+{
+  "generatedAt": "2026-10-19T10:42:14.399Z",
+  "checks": [
+    {
+      "name": "one writer tab; rejected resume/start; closing owner releases lock and latest revision resumes",
+      "passed": true
+    },
+    {
+      "name": "without Web Locks, stale-tab lobby save cannot overwrite latest progress and can recover",
+      "passed": true
+    },
+    {
+      "name": "real IndexedDB transaction allows only one simultaneous branch without Web Locks",
+      "passed": true
+    },
+    {
+      "name": "explicit restore permits older local state without changing engine schema",
+      "passed": true
+    },
+    {
+      "name": "landscape 667x375, six players, board and controls fit",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 28.296875,
+          "y": 39,
+          "right": 355.296875,
+          "bottom": 366,
+          "width": 327,
+          "height": 327
+        },
+        "consoleBottom": 311,
+        "internalOverflow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "landscape 568x320, six players, board and controls fit",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 27.078125,
+          "y": 39,
+          "right": 299.078125,
+          "bottom": 311,
+          "width": 272,
+          "height": 272
+        },
+        "consoleBottom": 312.890625,
+        "internalOverflow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "landscape 740x360, six players, board and controls fit",
+      "passed": true,
+      "metrics": {
+        "board": {
+          "x": 56.953125,
+          "y": 39,
+          "right": 368.953125,
+          "bottom": 351,
+          "width": 312,
+          "height": 312
+        },
+        "consoleBottom": 311,
+        "internalOverflow": false,
+        "horizontalOverflow": false
+      }
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Local Chromium emulation; not a physical mobile device.",
+    "No Supabase or Groq is called by this browser suite."
+  ]
+}

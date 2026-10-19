@@ -1,0 +1,65 @@
+[
+  {
+    "path": "/frontend/app.mjs",
+    "status": 200,
+    "remoteSha256": "f416ac2e83e8fe6a0ff2905f7a530c0e6cae8185cd21a27f022e0bdb07c1b22c",
+    "localSha256": "f416ac2e83e8fe6a0ff2905f7a530c0e6cae8185cd21a27f022e0bdb07c1b22c",
+    "equal": true,
+    "bytes": 83162,
+    "cacheControl": "public, max-age=0, must-revalidate"
+  },
+  {
+    "path": "/frontend/session.mjs",
+    "status": 200,
+    "remoteSha256": "79281bb1104f3ed46310b514075ff8c8738066ed91635c07d734d15b729bfb33",
+    "localSha256": "79281bb1104f3ed46310b514075ff8c8738066ed91635c07d734d15b729bfb33",
+    "equal": true,
+    "bytes": 41047,
+    "cacheControl": "public, max-age=0, must-revalidate"
+  },
+  {
+    "path": "/frontend/styles.css",
+    "status": 200,
+    "remoteSha256": "46411d4aae55052fc4d2168a7db5a8a85ba673dcd520237a4889bcea61b8f248",
+    "localSha256": "46411d4aae55052fc4d2168a7db5a8a85ba673dcd520237a4889bcea61b8f248",
+    "equal": true,
+    "bytes": 102337,
+    "cacheControl": "public, max-age=0, must-revalidate"
+  },
+  {
+    "path": "/frontend/trade-results.mjs",
+    "status": 200,
+    "remoteSha256": "c2af5b3a33d5cfd623265b06ce18b5d765df343e80df22d6c3f369fe674abbed",
+    "localSha256": "c2af5b3a33d5cfd623265b06ce18b5d765df343e80df22d6c3f369fe674abbed",
+    "equal": true,
+    "bytes": 6045,
+    "cacheControl": "public, max-age=0, must-revalidate"
+  },
+  {
+    "path": "/lib/game.mjs",
+    "status": 200,
+    "remoteSha256": "4bed1f3c9ea9df0d1e981f090f155b68d89c9f0f6015b1e36eeff93b56271b1e",
+    "localSha256": "4bed1f3c9ea9df0d1e981f090f155b68d89c9f0f6015b1e36eeff93b56271b1e",
+    "equal": true,
+    "bytes": 35575,
+    "cacheControl": "public, max-age=0, must-revalidate"
+  },
+  {
+    "path": "/lib/trade-command.mjs",
+    "status": 200,
+    "remoteSha256": "492f1739fe25abd93f40af8f833b0d4f6abe489011cc7dcb0ef549907454b197",
+    "localSha256": "492f1739fe25abd93f40af8f833b0d4f6abe489011cc7dcb0ef549907454b197",
+    "equal": true,
+    "bytes": 1857,
+    "cacheControl": "public, max-age=0, must-revalidate"
+  },
+  {
+    "path": "/nusantara-sw.js",
+    "status": 200,
+    "remoteSha256": "d8e67baf66a9dd8066940b51db981bef0137a904aa0f3d96ba1407df1bd59bd4",
+    "localSha256": "d8e67baf66a9dd8066940b51db981bef0137a904aa0f3d96ba1407df1bd59bd4",
+    "equal": true,
+    "bytes": 3193,
+    "cacheControl": "no-cache"
+  }
+]

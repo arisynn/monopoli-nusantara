@@ -1,0 +1,34 @@
+{
+  code: 'QHULEFJT',
+  botAdded: false,
+  cases: [
+    { name: 'wrong_turn_roll', result: [Object] },
+    {
+      name: 'same_request_concurrent_roll',
+      responses: [Array],
+      versionBefore: 4,
+      versionAfter: 5,
+      dice: [Array]
+    },
+    { name: 'changed_payload_same_request_id', result: [Object] },
+    { name: 'late_previous_version', result: [Object] },
+    { name: 'human_trade_offer', ok: true, error: undefined },
+    {
+      name: 'authoritative_snapshot_agreement',
+      same: true,
+      hostVersion: 8,
+      guestVersion: 8
+    },
+    {
+      name: 'QA Advanced Guest leave own QA room',
+      ok: false,
+      error: 'Peserta hanya dapat dikeluarkan sebelum permainan dimulai.'
+    },
+    {
+      name: 'QA Advanced Host leave own QA room',
+      ok: false,
+      error: 'Peserta hanya dapat dikeluarkan sebelum permainan dimulai.'
+    }
+  ],
+  failure: undefined
+}

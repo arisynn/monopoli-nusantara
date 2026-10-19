@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-10-19T10:46:50.258826+00:00",
+  "branch": "fix/qa-stability-and-modals",
+  "baseCommit": "6b237b4c7bc1cd133d74b7585ba011e1d8ba261c",
+  "localBuild": {
+    "version": "4.11.6",
+    "release": "Trade Result Receipts \u00b7 Hold & Release Dice \u00b7 V23.2",
+    "engineSchemaVersion": 2,
+    "rulepackVersion": "nusantara-c1009-2",
+    "frontend": "classic",
+    "build": "dcd4074bfe6f9c21",
+    "serverModulesExposed": false
+  },
+  "productionBuild": {
+    "version": "4.11.6",
+    "release": "Trade Result Receipts \u00b7 Hold & Release Dice \u00b7 V23.2",
+    "engineSchemaVersion": 2,
+    "rulepackVersion": "nusantara-c1009-2",
+    "frontend": "classic",
+    "build": "392170ce55b1d147",
+    "serverModulesExposed": false
+  },
+  "productionDeployed": false,
+  "pushed": false,
+  "protectedModelFilesVerified": 51,
+  "confirmedIssuesFixedLocally": [
+    "QA-001",
+    "QA-002",
+    "QA-004",
+    "QA-005",
+    "QA-006"
+  ],
+  "blockedOperationalIssues": [
+    "QA-003"
+  ],
+  "latestCommandsPassed": 15,
+  "latestCommandsFailed": 0,
+  "coreTestsPassed": 712,
+  "browserInfoScenarios": 11,
+  "shortBrowserMatches": 2,
+  "shortBrowserActions": 161,
+  "naturalFullMatchesAfterFix": 0,
+  "workerAlive": false
+}

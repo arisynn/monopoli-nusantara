@@ -1,0 +1,287 @@
+
+> monopoli-nusantara@4.11.6 pretest
+> npm run build
+
+
+> monopoli-nusantara@4.11.6 build
+> node scripts/build-web.mjs
+
+(node:17517) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Built private server-dist — 74 reachable native ESM modules.
+Built /workspace/monopoli-nusantara/dist/ — 104 reachable browser modules; no server secrets/modules or dependency install.
+
+> monopoli-nusantara@4.11.6 test
+> node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-headless.mjs
+
+(node:17538) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL automatic rent payment protects full sets, raises only necessary funds and pays exactly once [Error [ERR_TEST_FAILURE]: The expression evaluated to a falsy value:
+
+  assert(s.startDebtPayment())
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(s.startDebtPayment())
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/debt-payment.test.mjs:38:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+}
+FAIL close, hidden page and changed revision stop automatic funding before new commands [Error [ERR_TEST_FAILURE]: The expression evaluated to a falsy value:
+
+  assert(s.startDebtPayment())
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(s.startDebtPayment())
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/debt-payment.test.mjs:87:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+}
+FAIL online auto-payment sends legal individual commands, fresh versions and unique IDs [Error [ERR_TEST_FAILURE]: The expression evaluated to a falsy value:
+
+  assert(s.startDebtPayment())
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(s.startDebtPayment())
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/debt-payment.test.mjs:128:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+}
+FAIL 2 real frontend sessions: public cards ordered once, controls bound to actor, pause and reconnect preserve state [Error [ERR_TEST_FAILURE]: the current human card bypasses decorative backlog
++ actual - expected
+
++ 'diceRolling'
+- 'eventRevealing'
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: the current human card bypasses decorative backlog
+  + actual - expected
+  
+  + 'diceRolling'
+  - 'eventRevealing'
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/frontend.test.mjs:597:28)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'diceRolling',
+    expected: 'eventRevealing',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+FAIL 4 real frontend sessions: public cards ordered once, controls bound to actor, pause and reconnect preserve state [Error [ERR_TEST_FAILURE]: the current human card bypasses decorative backlog
++ actual - expected
+
++ 'diceRolling'
+- 'eventRevealing'
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: the current human card bypasses decorative backlog
+  + actual - expected
+  
+  + 'diceRolling'
+  - 'eventRevealing'
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/frontend.test.mjs:597:28)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'diceRolling',
+    expected: 'eventRevealing',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+FAIL 6 real frontend sessions: public cards ordered once, controls bound to actor, pause and reconnect preserve state [Error [ERR_TEST_FAILURE]: the current human card bypasses decorative backlog
++ actual - expected
+
++ 'diceRolling'
+- 'eventRevealing'
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: the current human card bypasses decorative backlog
+  + actual - expected
+  
+  + 'diceRolling'
+  - 'eventRevealing'
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/frontend.test.mjs:597:28)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'diceRolling',
+    expected: 'eventRevealing',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+FAIL multi-build queue uses fresh legal commands, distributes evenly, rejects double starts and is not in snapshots [Error [ERR_TEST_FAILURE]: The expression evaluated to a falsy value:
+
+  assert(s.startBuilds(0, 3))
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(s.startBuilds(0, 3))
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/frontend.test.mjs:1496:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+}
+FAIL closing, pause, visibility loss and unexpected revisions stop queued work without replaying it [Error [ERR_TEST_FAILURE]: The expression evaluated to a falsy value:
+
+  assert(s.head)
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(s.head)
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/frontend.test.mjs:1513:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+}
+FAIL an asset queue yields when bank stock requires other players to decide, without claiming a building was purchased [Error [ERR_TEST_FAILURE]: Expected values to be strictly equal:
++ actual - expected
+
++ 'roll'
+- 'buildOffer'
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'roll'
+  - 'buildOffer'
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/frontend.test.mjs:1548:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'roll',
+    expected: 'buildOffer',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+FAIL online multi-build sends individual intentions with revisions and IDs, while pause cancels the rest [Error [ERR_TEST_FAILURE]: The expression evaluated to a falsy value:
+
+  assert(s.startBuilds(0, 2))
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(s.startBuilds(0, 2))
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/frontend.test.mjs:1580:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+}
+FAIL a failed server asset command stops the queue and never retries a transaction with a new ID [Error [ERR_TEST_FAILURE]: Expected values to be strictly equal:
+
+0 !== 1
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/frontend.test.mjs:1644:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+Core + frontend results: 702/713, failed 11, skipped 0.

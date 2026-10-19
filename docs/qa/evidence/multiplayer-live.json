@@ -1,0 +1,292 @@
+{
+  "mode": "live-production-two-independent-contexts",
+  "steps": [
+    {
+      "name": "QA Host-authenticated",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Host · 4 peserta\nAtur permainan\nP1\nQA Host\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nIdentitas tersedia\nAkun\nIdentitas tersedia\n\nSiap meminta room. Koneksi database diperiksa saat room dibuka.\n\nPeriksa ulang\nBuat Room\nTutup"
+    },
+    {
+      "name": "QA Guest-authenticated",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Guest · 4 peserta\nAtur permainan\nP1\nQA Guest\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nIdentitas tersedia\nAkun\nIdentitas tersedia\n\nSiap meminta room. Koneksi database diperiksa saat room dibuka.\n\nPeriksa ulang\nBuat Room\nTutup"
+    },
+    {
+      "name": "host-room",
+      "text": "Nusantara\nRuang Bermain\nONLINE\n40 petak\n1/3 peserta\n₦\n= Nusa\nKODE ROOM\n39EQNR4C\nSalin\nTerhubung\n0/1 manusia siap\nP1 · HOST\nQA Host\nBelum siap\nP2\nKursi kosong\nP3\nKursi kosong\nSaya siap\nPilih pion\nTambah bot\nMulai permainan\nKelola room\nKeluar room\n\nMinimal dua manusia. Semua manusia harus siap dan terhubung.\n\nMonopoli Nusantara · Klasik 4.11.6"
+    },
+    {
+      "name": "guest-joined",
+      "text": "Nusantara\nRuang Bermain\nONLINE\n40 petak\n2/3 peserta\n₦\n= Nusa\nKODE ROOM\n39EQNR4C\nSalin\nTerhubung\n0/2 manusia siap\nP1 · HOST\nQA Host\nBelum siap\nP2\nQA Guest\nBelum siap\nP3\nKursi kosong\nSaya siap\nPilih pion\n\nMenunggu host memulai pertandingan.\n\nKelola room\nKeluar room\n\nMinimal dua manusia. Semua manusia harus siap dan terhubung.\n\nMonopoli Nusantara · Klasik 4.11.6"
+    },
+    {
+      "name": "host-ready",
+      "text": "Nusantara\nRuang Bermain\nONLINE\n40 petak\n2/3 peserta\n₦\n= Nusa\nKODE ROOM\n39EQNR4C\nSalin\nTerhubung\n1/2 manusia siap · Bot menunggu worker\nP1 · HOST\nQA Host\nSiap\nP2\nQA Guest\nBelum siap\nP3\nKursi kosong\nBatal siap\nPilih pion\nTambah bot\nMulai permainan\nKelola room\nKeluar room\n\nMinimal dua manusia. Semua manusia harus siap dan terhubung.\n\nMonopoli Nusantara · Klasik 4.11.6"
+    },
+    {
+      "name": "guest-ready",
+      "text": "Nusantara\nRuang Bermain\nONLINE\n40 petak\n2/3 peserta\n₦\n= Nusa\nKODE ROOM\n39EQNR4C\nSalin\nTerhubung\n2/2 manusia siap · Bot menunggu worker\nP1 · HOST\nQA Host\nSiap\nP2\nQA Guest\nSiap\nP3\nKursi kosong\nBatal siap\nPilih pion\n\nMenunggu host memulai pertandingan.\n\nKelola room\nKeluar room\n\nMinimal dua manusia. Semua manusia harus siap dan terhubung.\n\nMonopoli Nusantara · Klasik 4.11.6"
+    },
+    {
+      "name": "started",
+      "text": "Nusantara\nQA Host\n₦ 1.500\nGiliran aktif\nQA Guest\n₦ 1.500\nP2\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\nSURABAYA\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 3.000\nModal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.\nBelum ada transaksi Nusa.\nMulai\nPetak perjalanan\nSiap melempar\nONLINE · RONDE 1\nQA Host\nAset\nBarter\nLempar awal\nTahan lalu lepas · ketuk juga bisa"
+    },
+    {
+      "name": "host-gameplay",
+      "text": "Nusantara\nQA Host\n₦ 1.240\nGiliran aktif\nQA Guest\n₦ 1.700\nP2\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\nSURABAYA\n₦ 8\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\n₦ 10\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 2.940\n1 transaksi terkonfirmasi · lihat Riwayat\nQA Host − ₦ 140 · Pembelian\nMulai\nPetak perjalanan\nTerakhir 1 + 3\nONLINE · RONDE 2\nQA Host\nAset\nBarter\nAkhiri giliran"
+    },
+    {
+      "name": "guest-gameplay",
+      "text": "Nusantara\nQA Host\n₦ 1.380\nGiliran aktif\nQA Guest\n₦ 1.700\nP2\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\nSURABAYA\n₦ 8\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 3.080\nQA Host tiba di Padang.\nQA Guest + ₦ 200 · Melewati Mulai\nMulai\nPetak perjalanan\nTerakhir 1 + 3\nONLINE · RONDE 2\nQA Host\nAset\nBarter\nGiliran QA Host"
+    },
+    {
+      "name": "refresh",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Guest · 4 peserta\nAtur permainan\nP1\nQA Guest\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6"
+    },
+    {
+      "name": "guest-offline-3s",
+      "text": "Nusantara\nQA Host\n₦ 1.240\nGiliran aktif\nQA Guest\n₦ 1.700\nP2\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\nSURABAYA\n₦ 8\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\n₦ 10\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 2.940\nQA Host membeli Padang · ₦ 140.\nQA Host − ₦ 140 · Pembelian\nMulai\nPetak perjalanan\nTerakhir 1 + 3\nONLINE · RONDE 2\nQA Host\nAset\nBarter\nAkhiri giliran"
+    },
+    {
+      "name": "reconnected",
+      "text": "Nusantara\nQA Host\n₦ 1.240\nGiliran aktif\nQA Guest\n₦ 1.700\nP2\nNUSANTARA\nJELAJAH · MILIKI · BANGUN\nMULAI\nAMBIL ₦ 200\nBOGOR\nDANA\nUMUM\nBANDUNG\nPAJAK\nPENGHASILAN\n₦ 200\nSTASIUN\nGAMBIR\nYOGYAKARTA\nKESEMPATAN\nSEMARANG\nSURABAYA\n₦ 8\nPENJARA\nMEDAN\nENERGI\nNUSANTARA\nPADANG\n₦ 10\nPALEMBANG\nSTASIUN\nTAWANG\nMALANG\nDANA\nUMUM\nSOLO\nBANYUWANGI\nPARKIR\nBEBAS\nDENPASAR\nKESEMPATAN\nLOMBOK\nLABUAN\nBAJO\nSTASIUN\nGUBENG\nPONTIANAK\nBANJARMASIN\nAIR\nNUSANTARA\nBALIKPAPAN\nMASUK\nPENJARA\nMAKASSAR\nMANADO\nDANA\nUMUM\nAMBON\nSTASIUN\nTUGU\nKESEMPATAN\nRAJA\nAMPAT\nPAJAK\nKEMEWAHAN\n₦ 100\nJAKARTA\nSCBD\nNusa beredar\n₦ 2.940\nQA Host membeli Padang · ₦ 140.\nQA Host − ₦ 140 · Pembelian\nMulai\nPetak perjalanan\nTerakhir 1 + 3\nONLINE · RONDE 2\nQA Host\nAset\nBarter\nGiliran QA Host"
+    },
+    {
+      "name": "guest-leave-unavailable",
+      "message": "locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-action=room]').first()\u001b[22m\n\u001b[2m    - locator resolved to <button data-action=\"room\" aria-label=\"Menghubungkan kembali…. Lihat detail room\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "client": "QA Host",
+      "path": "/api/bot",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/auth",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/bot",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/auth",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/bot",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    }
+  ],
+  "qaRoom": "39EQNR4C",
+  "startEnabled": true
+}

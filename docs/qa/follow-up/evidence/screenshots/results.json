@@ -1,0 +1,32 @@
+{
+  "checks": [
+    {
+      "name": "320x568: confirmed details, buttonless automatic close, refresh/read-once, existing shell, no repeated transaction",
+      "passed": true
+    },
+    {
+      "name": "390x844: confirmed details, buttonless automatic close, refresh/read-once, existing shell, no repeated transaction",
+      "passed": true
+    },
+    {
+      "name": "844x390: confirmed details, buttonless automatic close, refresh/read-once, existing shell, no repeated transaction",
+      "passed": true
+    },
+    {
+      "name": "1280x800: confirmed details, buttonless automatic close, refresh/read-once, existing shell, no repeated transaction",
+      "passed": true
+    },
+    {
+      "name": "actual manual incoming TRADE_ACCEPT: result survives action handler and uses recipient perspective",
+      "passed": true
+    },
+    {
+      "name": "actual manual incoming TRADE_REJECT: result survives action handler and uses recipient perspective",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Online HTTP/state transport is a test double; no live project or database was contacted."
+  ]
+}

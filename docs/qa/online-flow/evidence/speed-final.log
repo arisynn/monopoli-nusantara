@@ -1,0 +1,32 @@
+
+> monopoli-nusantara@4.11.6 test:speed
+> node --experimental-strip-types --import ./adapters/node/aliases.mjs --test tests/online-speed.test.mjs tests/online-speed-worker.test.mjs
+
+✔ batched worker path reduces round trips while preserving canonical dice and receipt events (24.065313ms)
+✔ fast snapshot rejects expired, revoked, wrong scope and wrong version leases before state exposure (12.595136ms)
+✔ batch access applies the same 600/min quota on every call and never caches revocation (6.122048ms)
+✔ profile responses expose timings and trace but no worker token or arguments (38.899517ms)
+✔ V23.2 manifest and every protected model/engine file are unchanged (2.839585ms)
+✔ 2 players: queued presentation preserves all confirmed payments, assets, history and final state (10.467911ms)
+✔ 3 players: queued presentation preserves all confirmed payments, assets, history and final state (2.755328ms)
+✔ 4 players: queued presentation preserves all confirmed payments, assets, history and final state (4.859643ms)
+✔ 5 players: queued presentation preserves all confirmed payments, assets, history and final state (2.364008ms)
+✔ 6 players: queued presentation preserves all confirmed payments, assets, history and final state (2.047019ms)
+✔ healthy animation keeps normal timing; backlog preserves every walk and the active step (5.017551ms)
+✔ human decisions in auction, trade, build, mortgage, debt, card and starting remain explicit (0.689961ms)
+✔ online clicks wait for presentation; dice stay unconfirmed until response and double clicks send once (9.25786ms)
+✔ Realtime arriving during a read queues one follow-up and does not lose a due heartbeat (9.978647ms)
+✔ stale callbacks cannot consume a new timeline; reconnect and offline never invent actions (1.539583ms)
+✔ diagnostics are bounded, redact unknown details, and report local P50/P95 (0.383549ms)
+✔ Realtime bursts use a leading read and discard revisions already covered by the response (85.555183ms)
+✔ an old response cannot clear a newer reconnect read or replace its state (1.150366ms)
+✔ a late action response cannot resurrect a disconnected room (0.923533ms)
+✔ a human buy waits for walking; visible notifications hold new online steps (6.43507ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 572.50723

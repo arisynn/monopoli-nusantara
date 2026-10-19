@@ -1,0 +1,55 @@
+{
+  "mode": "live-production-two-independent-contexts",
+  "steps": [
+    {
+      "name": "QA Host-authenticated",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Host · 4 peserta\nAtur permainan\nP1\nQA Host\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nIdentitas tersedia\nAkun\nIdentitas tersedia\n\nSiap meminta room. Koneksi database diperiksa saat room dibuka.\n\nPeriksa ulang\nBuat Room\nTutup"
+    },
+    {
+      "name": "QA Guest-authenticated",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Guest · 4 peserta\nAtur permainan\nP1\nQA Guest\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nIdentitas tersedia\nAkun\nIdentitas tersedia\n\nSiap meminta room. Koneksi database diperiksa saat room dibuka.\n\nPeriksa ulang\nBuat Room\nTutup"
+    },
+    {
+      "name": "host-failure",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Host · 4 peserta\nAtur permainan\nP1\nQA Host\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nIdentitas tersedia\nAkun\nIdentitas tersedia\n\nSiap meminta room. Koneksi database diperiksa saat room dibuka.\n\nPeriksa ulang\nBuat Room\nTutup"
+    },
+    {
+      "name": "guest-failure",
+      "text": "Nusantara\nRuang Bermain\nVS BOT\n40 petak\n4 peserta\n₦\n= Nusa\nQA Guest · 4 peserta\nAtur permainan\nP1\nQA Guest\nSiap\nP2\nRAKA\nBot\nP3\nBIMA\nBot\nP4\nSARI\nBot\nMulai VS Bot\nMain Online\nLanjutkan\n\nMonopoli Nusantara · Klasik 4.11.6\n\nBermain Bersama\n\n2–6 peserta · minimal dua manusia.\n\nBuat Room\nGabung\nLanjutkan\nKapasitas room\n6 peserta\n\nBagikan kode setelah room dibuat. Tiap pemain memakai identitas sendiri.\n\nIdentitas tersedia\nAkun\nIdentitas tersedia\n\nSiap meminta room. Koneksi database diperiksa saat room dibuka.\n\nPeriksa ulang\nBuat Room\nTutup"
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "client": "QA Host",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/bot",
+      "status": 200
+    },
+    {
+      "client": "QA Host",
+      "path": "/api/auth",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/online",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/bot",
+      "status": 200
+    },
+    {
+      "client": "QA Guest",
+      "path": "/api/auth",
+      "status": 200
+    }
+  ],
+  "failure": "locator.selectOption: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[name=capacity]')\u001b[22m\n\u001b[2m    - locator resolved to <select hidden=\"\" tabindex=\"-1\" name=\"capacity\" aria-hidden=\"true\" data-enhanced=\"true\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    20 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying select option action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /workspace/monopoli-nusantara/docs/qa/scripts/multiplayer-browser.mjs:9:42"
+}

@@ -1,0 +1,598 @@
+{
+  i: 0,
+  n: 2,
+  humanWins: true,
+  fixture: true,
+  durationMs: 7500.80898,
+  uiActions: 0,
+  engineActions: 1,
+  winner: 0,
+  wonModal: 1,
+  text: 'Nusantara\n' +
+    'QA Final\n' +
+    '₦ 1.501\n' +
+    'P1\n' +
+    'raka\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'NUSANTARA\n' +
+    'JELAJAH · MILIKI · BANGUN\n' +
+    'MULAI\n' +
+    'AMBIL ₦ 200\n' +
+    'BOGOR\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'BANDUNG\n' +
+    'PAJAK\n' +
+    'PENGHASILAN\n' +
+    '₦ 200\n' +
+    'STASIUN\n' +
+    'GAMBIR\n' +
+    'YOGYAKARTA\n' +
+    '₦ 550\n' +
+    'KESEMPATAN\n' +
+    'SEMARANG\n' +
+    '₦ 550\n' +
+    'SURABAYA\n' +
+    '₦ 600\n' +
+    'PENJARA\n' +
+    'MEDAN\n' +
+    'ENERGI\n' +
+    'NUSANTARA\n' +
+    'PADANG\n' +
+    'PALEMBANG\n' +
+    'STASIUN\n' +
+    'TAWANG\n' +
+    'MALANG\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'SOLO\n' +
+    'BANYUWANGI\n' +
+    'PARKIR\n' +
+    'BEBAS\n' +
+    'DENPASAR\n' +
+    'KESEMPATAN\n' +
+    'LOMBOK\n' +
+    'LABUAN\n' +
+    'BAJO\n' +
+    'STASIUN\n' +
+    'GUBENG\n' +
+    'PONTIANAK\n' +
+    'BANJARMASIN\n' +
+    'AIR\n' +
+    'NUSANTARA\n' +
+    'BALIKPAPAN\n' +
+    'MASUK\n' +
+    'PENJARA\n' +
+    'MAKASSAR\n' +
+    'MANADO\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'AMBON\n' +
+    'STASIUN\n' +
+    'TUGU\n' +
+    'KESEMPATAN\n' +
+    'RAJA\n' +
+    'AMPAT\n' +
+    'PAJAK\n' +
+    'KEMEWAHAN\n' +
+    '₦ 100\n' +
+    'JAKARTA\n' +
+    'SCBD\n' +
+    'Nusa beredar\n' +
+    '₦ 1.501\n' +
+    'raka bangkrut kepada QA Final.\n' +
+    'raka − ₦ 1 · QA Final + ₦ 1 · Penyelesaian bangkrut\n' +
+    'Mulai\n' +
+    'Petak perjalanan\n' +
+    'Terakhir 3 + 3\n' +
+    'VS BOT · RONDE 1\n' +
+    'raka\n' +
+    'Aset\n' +
+    'Barter\n' +
+    'Hasil pertandingan\n' +
+    'Hasil Akhir\n' +
+    '\n' +
+    'Petualangan Nusantara telah selesai.\n' +
+    '\n' +
+    'QA Final menang!\n' +
+    'QA Final\n' +
+    'Pemenang\n' +
+    '₦ 2.571\n' +
+    'raka\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'Kembali ke lobby\n' +
+    'Tutup',
+  errors: []
+}
+{
+  i: 1,
+  n: 3,
+  humanWins: false,
+  fixture: true,
+  durationMs: 7333.979599999999,
+  uiActions: 2,
+  engineActions: 1,
+  winner: 2,
+  wonModal: 1,
+  text: 'Nusantara\n' +
+    'QA Final\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'raka\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'bima\n' +
+    '₦ 1.501\n' +
+    'Bot\n' +
+    'NUSANTARA\n' +
+    'JELAJAH · MILIKI · BANGUN\n' +
+    'MULAI\n' +
+    'AMBIL ₦ 200\n' +
+    'BOGOR\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'BANDUNG\n' +
+    'PAJAK\n' +
+    'PENGHASILAN\n' +
+    '₦ 200\n' +
+    'STASIUN\n' +
+    'GAMBIR\n' +
+    'YOGYAKARTA\n' +
+    '₦ 550\n' +
+    'KESEMPATAN\n' +
+    'SEMARANG\n' +
+    '₦ 550\n' +
+    'SURABAYA\n' +
+    '₦ 600\n' +
+    'PENJARA\n' +
+    'MEDAN\n' +
+    'ENERGI\n' +
+    'NUSANTARA\n' +
+    'PADANG\n' +
+    'PALEMBANG\n' +
+    'STASIUN\n' +
+    'TAWANG\n' +
+    'MALANG\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'SOLO\n' +
+    'BANYUWANGI\n' +
+    'PARKIR\n' +
+    'BEBAS\n' +
+    'DENPASAR\n' +
+    'KESEMPATAN\n' +
+    'LOMBOK\n' +
+    'LABUAN\n' +
+    'BAJO\n' +
+    'STASIUN\n' +
+    'GUBENG\n' +
+    'PONTIANAK\n' +
+    'BANJARMASIN\n' +
+    'AIR\n' +
+    'NUSANTARA\n' +
+    'BALIKPAPAN\n' +
+    'MASUK\n' +
+    'PENJARA\n' +
+    'MAKASSAR\n' +
+    'MANADO\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'AMBON\n' +
+    'STASIUN\n' +
+    'TUGU\n' +
+    'KESEMPATAN\n' +
+    'RAJA\n' +
+    'AMPAT\n' +
+    'PAJAK\n' +
+    'KEMEWAHAN\n' +
+    '₦ 100\n' +
+    'JAKARTA\n' +
+    'SCBD\n' +
+    'Nusa beredar\n' +
+    '₦ 1.501\n' +
+    'QA Final bangkrut kepada bima.\n' +
+    'QA Final − ₦ 1 · bima + ₦ 1 · Penyelesaian bangkrut\n' +
+    'Mulai\n' +
+    'Petak perjalanan\n' +
+    'Terakhir 3 + 3\n' +
+    'VS BOT · RONDE 1\n' +
+    'QA Final\n' +
+    'Aset\n' +
+    'Barter\n' +
+    'Hasil pertandingan\n' +
+    'Hasil Akhir\n' +
+    '\n' +
+    'Petualangan Nusantara telah selesai.\n' +
+    '\n' +
+    'bima menang!\n' +
+    'bima\n' +
+    'Pemenang\n' +
+    '₦ 2.571\n' +
+    'QA Final\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'raka\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'Kembali ke lobby\n' +
+    'Tutup',
+  errors: []
+}
+{
+  i: 2,
+  n: 4,
+  humanWins: true,
+  fixture: true,
+  durationMs: 6631.760102,
+  uiActions: 0,
+  engineActions: 1,
+  winner: 0,
+  wonModal: 1,
+  text: 'Nusantara\n' +
+    'QA Final\n' +
+    '₦ 1.501\n' +
+    'P1\n' +
+    'raka\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'bima\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'sari\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'NUSANTARA\n' +
+    'JELAJAH · MILIKI · BANGUN\n' +
+    'MULAI\n' +
+    'AMBIL ₦ 200\n' +
+    'BOGOR\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'BANDUNG\n' +
+    'PAJAK\n' +
+    'PENGHASILAN\n' +
+    '₦ 200\n' +
+    'STASIUN\n' +
+    'GAMBIR\n' +
+    'YOGYAKARTA\n' +
+    '₦ 550\n' +
+    'KESEMPATAN\n' +
+    'SEMARANG\n' +
+    '₦ 550\n' +
+    'SURABAYA\n' +
+    '₦ 600\n' +
+    'PENJARA\n' +
+    'MEDAN\n' +
+    'ENERGI\n' +
+    'NUSANTARA\n' +
+    'PADANG\n' +
+    'PALEMBANG\n' +
+    'STASIUN\n' +
+    'TAWANG\n' +
+    'MALANG\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'SOLO\n' +
+    'BANYUWANGI\n' +
+    'PARKIR\n' +
+    'BEBAS\n' +
+    'DENPASAR\n' +
+    'KESEMPATAN\n' +
+    'LOMBOK\n' +
+    'LABUAN\n' +
+    'BAJO\n' +
+    'STASIUN\n' +
+    'GUBENG\n' +
+    'PONTIANAK\n' +
+    'BANJARMASIN\n' +
+    'AIR\n' +
+    'NUSANTARA\n' +
+    'BALIKPAPAN\n' +
+    'MASUK\n' +
+    'PENJARA\n' +
+    'MAKASSAR\n' +
+    'MANADO\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'AMBON\n' +
+    'STASIUN\n' +
+    'TUGU\n' +
+    'KESEMPATAN\n' +
+    'RAJA\n' +
+    'AMPAT\n' +
+    'PAJAK\n' +
+    'KEMEWAHAN\n' +
+    '₦ 100\n' +
+    'JAKARTA\n' +
+    'SCBD\n' +
+    'Nusa beredar\n' +
+    '₦ 1.501\n' +
+    'sari bangkrut kepada QA Final.\n' +
+    'sari − ₦ 1 · QA Final + ₦ 1 · Penyelesaian bangkrut\n' +
+    'Mulai\n' +
+    'Petak perjalanan\n' +
+    'Terakhir 3 + 3\n' +
+    'VS BOT · RONDE 1\n' +
+    'sari\n' +
+    'Aset\n' +
+    'Barter\n' +
+    'Hasil pertandingan\n' +
+    'Hasil Akhir\n' +
+    '\n' +
+    'Petualangan Nusantara telah selesai.\n' +
+    '\n' +
+    'QA Final menang!\n' +
+    'QA Final\n' +
+    'Pemenang\n' +
+    '₦ 2.571\n' +
+    'raka\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'bima\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'sari\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'Kembali ke lobby\n' +
+    'Tutup',
+  errors: []
+}
+{
+  i: 3,
+  n: 5,
+  humanWins: false,
+  fixture: true,
+  durationMs: 5455.990886,
+  uiActions: 2,
+  engineActions: 1,
+  winner: 4,
+  wonModal: 1,
+  text: 'Nusantara\n' +
+    'QA Final\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'raka\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'bima\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'sari\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'nusa\n' +
+    '₦ 1.501\n' +
+    'Bot\n' +
+    'NUSANTARA\n' +
+    'JELAJAH · MILIKI · BANGUN\n' +
+    'MULAI\n' +
+    'AMBIL ₦ 200\n' +
+    'BOGOR\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'BANDUNG\n' +
+    'PAJAK\n' +
+    'PENGHASILAN\n' +
+    '₦ 200\n' +
+    'STASIUN\n' +
+    'GAMBIR\n' +
+    'YOGYAKARTA\n' +
+    '₦ 550\n' +
+    'KESEMPATAN\n' +
+    'SEMARANG\n' +
+    '₦ 550\n' +
+    'SURABAYA\n' +
+    '₦ 600\n' +
+    'PENJARA\n' +
+    'MEDAN\n' +
+    'ENERGI\n' +
+    'NUSANTARA\n' +
+    'PADANG\n' +
+    'PALEMBANG\n' +
+    'STASIUN\n' +
+    'TAWANG\n' +
+    'MALANG\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'SOLO\n' +
+    'BANYUWANGI\n' +
+    'PARKIR\n' +
+    'BEBAS\n' +
+    'DENPASAR\n' +
+    'KESEMPATAN\n' +
+    'LOMBOK\n' +
+    'LABUAN\n' +
+    'BAJO\n' +
+    'STASIUN\n' +
+    'GUBENG\n' +
+    'PONTIANAK\n' +
+    'BANJARMASIN\n' +
+    'AIR\n' +
+    'NUSANTARA\n' +
+    'BALIKPAPAN\n' +
+    'MASUK\n' +
+    'PENJARA\n' +
+    'MAKASSAR\n' +
+    'MANADO\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'AMBON\n' +
+    'STASIUN\n' +
+    'TUGU\n' +
+    'KESEMPATAN\n' +
+    'RAJA\n' +
+    'AMPAT\n' +
+    'PAJAK\n' +
+    'KEMEWAHAN\n' +
+    '₦ 100\n' +
+    'JAKARTA\n' +
+    'SCBD\n' +
+    'Nusa beredar\n' +
+    '₦ 1.501\n' +
+    'QA Final bangkrut kepada nusa.\n' +
+    'QA Final − ₦ 1 · nusa + ₦ 1 · Penyelesaian bangkrut\n' +
+    'Terakhir 3 + 3\n' +
+    'VS BOT · RONDE 1\n' +
+    'QA Final\n' +
+    'Aset\n' +
+    'Barter\n' +
+    'Hasil pertandingan\n' +
+    'Hasil Akhir\n' +
+    '\n' +
+    'Petualangan Nusantara telah selesai.\n' +
+    '\n' +
+    'nusa menang!\n' +
+    'nusa\n' +
+    'Pemenang\n' +
+    '₦ 2.571\n' +
+    'QA Final\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'raka\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'bima\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'sari\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'Kembali ke lobby\n' +
+    'Tutup',
+  errors: []
+}
+{
+  i: 4,
+  n: 6,
+  humanWins: true,
+  fixture: true,
+  durationMs: 6379.126945,
+  uiActions: 0,
+  engineActions: 1,
+  winner: 0,
+  wonModal: 1,
+  text: 'Nusantara\n' +
+    'QA Final\n' +
+    '₦ 1.501\n' +
+    'P1\n' +
+    'raka\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'bima\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'sari\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'nusa\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'kresna\n' +
+    '₦ 0\n' +
+    'Bangkrut\n' +
+    'NUSANTARA\n' +
+    'JELAJAH · MILIKI · BANGUN\n' +
+    'MULAI\n' +
+    'AMBIL ₦ 200\n' +
+    'BOGOR\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'BANDUNG\n' +
+    'PAJAK\n' +
+    'PENGHASILAN\n' +
+    '₦ 200\n' +
+    'STASIUN\n' +
+    'GAMBIR\n' +
+    'YOGYAKARTA\n' +
+    '₦ 550\n' +
+    'KESEMPATAN\n' +
+    'SEMARANG\n' +
+    '₦ 550\n' +
+    'SURABAYA\n' +
+    '₦ 600\n' +
+    'PENJARA\n' +
+    'MEDAN\n' +
+    'ENERGI\n' +
+    'NUSANTARA\n' +
+    'PADANG\n' +
+    'PALEMBANG\n' +
+    'STASIUN\n' +
+    'TAWANG\n' +
+    'MALANG\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'SOLO\n' +
+    'BANYUWANGI\n' +
+    'PARKIR\n' +
+    'BEBAS\n' +
+    'DENPASAR\n' +
+    'KESEMPATAN\n' +
+    'LOMBOK\n' +
+    'LABUAN\n' +
+    'BAJO\n' +
+    'STASIUN\n' +
+    'GUBENG\n' +
+    'PONTIANAK\n' +
+    'BANJARMASIN\n' +
+    'AIR\n' +
+    'NUSANTARA\n' +
+    'BALIKPAPAN\n' +
+    'MASUK\n' +
+    'PENJARA\n' +
+    'MAKASSAR\n' +
+    'MANADO\n' +
+    'DANA\n' +
+    'UMUM\n' +
+    'AMBON\n' +
+    'STASIUN\n' +
+    'TUGU\n' +
+    'KESEMPATAN\n' +
+    'RAJA\n' +
+    'AMPAT\n' +
+    'PAJAK\n' +
+    'KEMEWAHAN\n' +
+    '₦ 100\n' +
+    'JAKARTA\n' +
+    'SCBD\n' +
+    'Nusa beredar\n' +
+    '₦ 1.501\n' +
+    'kresna bangkrut kepada QA Final.\n' +
+    'kresna − ₦ 1 · QA Final + ₦ 1 · Penyelesaian bangkrut\n' +
+    'Mulai\n' +
+    'Petak perjalanan\n' +
+    'Terakhir 3 + 3\n' +
+    'VS BOT · RONDE 1\n' +
+    'kresna\n' +
+    'Aset\n' +
+    'Barter\n' +
+    'Hasil pertandingan\n' +
+    'Hasil Akhir\n' +
+    '\n' +
+    'Petualangan Nusantara telah selesai.\n' +
+    '\n' +
+    'QA Final menang!\n' +
+    'QA Final\n' +
+    'Pemenang\n' +
+    '₦ 2.571\n' +
+    'raka\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'bima\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'sari\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'nusa\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'kresna\n' +
+    'Bangkrut\n' +
+    '₦ 0\n' +
+    'Kembali ke lobby\n' +
+    'Tutup',
+  errors: []
+}

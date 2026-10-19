@@ -1,0 +1,54 @@
+[
+  {
+    "mode": "reject",
+    "steps": [],
+    "errors": [],
+    "resultText": "Tawaran barter ditolak\n\nAnda menolak tawaran barter.\n\nTidak ada uang, properti, atau kartu yang berpindah dari tawaran ini.\n\nTerima\nTawar balik\nTolak\nTutup",
+    "staleButtons": [
+      {
+        "action": "command",
+        "type": "TRADE_ACCEPT",
+        "text": "Terima"
+      },
+      {
+        "action": "counter",
+        "text": "Tawar balik"
+      },
+      {
+        "action": "command",
+        "type": "TRADE_REJECT",
+        "text": "Tolak"
+      }
+    ],
+    "errorAfterStaleClick": "Tawaran barter ditolak\n\nAnda menolak tawaran barter.\n\nTidak ada uang, properti, atau kartu yang berpindah dari tawaran ini.\n\nBukan keputusan bartermu.\n\nTerima\nTawar balik\nTolak\nTutup",
+    "noStateMutation": true,
+    "recoveredAfterClose": true,
+    "finalVersion": 3
+  },
+  {
+    "mode": "accept",
+    "steps": [],
+    "errors": [],
+    "resultText": "Barter berhasil\n\nTransaksi dengan ARKA sudah tercatat.\n\nAnda menerima\nBalikpapan\n₦ 200\nAnda memberi\nBanyuwangi\nTerima\nTawar balik\nTolak\nTutup",
+    "staleButtons": [
+      {
+        "action": "command",
+        "type": "TRADE_ACCEPT",
+        "text": "Terima"
+      },
+      {
+        "action": "counter",
+        "text": "Tawar balik"
+      },
+      {
+        "action": "command",
+        "type": "TRADE_REJECT",
+        "text": "Tolak"
+      }
+    ],
+    "errorAfterStaleClick": "Barter berhasil\n\nTransaksi dengan ARKA sudah tercatat.\n\nAnda menerima\nBalikpapan\n₦ 200\nAnda memberi\nBanyuwangi\n\nBukan keputusan bartermu.\n\nTerima\nTawar balik\nTolak\nTutup",
+    "noStateMutation": true,
+    "recoveredAfterClose": true,
+    "finalVersion": 3
+  }
+]

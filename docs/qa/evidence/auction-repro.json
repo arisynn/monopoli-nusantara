@@ -1,0 +1,868 @@
+{
+  "errors": [],
+  "frames": [
+    {
+      "phase": "end",
+      "viewPhase": "auction",
+      "head": {
+        "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:5:financialSettlement:0",
+        "kind": "financialSettlement",
+        "source": {
+          "id": 5,
+          "text": "QA B memenangkan Padang seharga ₦ 10.",
+          "type": "buy",
+          "turn": 1,
+          "version": 3,
+          "actor": 0,
+          "audience": "public",
+          "finance": [
+            {
+              "kind": "auction",
+              "from": 1,
+              "to": null,
+              "amount": 100,
+              "tile": 13
+            }
+          ],
+          "assetChanges": [
+            {
+              "tile": 13,
+              "owner": 1,
+              "level": 0,
+              "mortgaged": false
+            }
+          ]
+        },
+        "finance": {
+          "kind": "auction",
+          "from": 1,
+          "to": null,
+          "amount": 100,
+          "tile": 13
+        },
+        "assetChanges": [
+          {
+            "tile": 13,
+            "owner": 1,
+            "level": 0,
+            "mortgaged": false
+          }
+        ]
+      },
+      "covered": false,
+      "paused": false,
+      "timer": 7,
+      "kind": "auction",
+      "uiPopup": null,
+      "text": "Lelang Properti\n\nMulai ₦ 5 · naik minimal ₦ 5\n\nSERTIFIKAT\nPADANG\nSewa\n₦ 10\n1 rumah\n₦ 50\nGadai\n₦ 70\nLihat detail\nSumatra\nPadang\n\nTersedia di bank\n\nHarga tanah\n₦ 140\nHARGA TERTINGGI\n₦ 10\nPemegang tawaran\nQA B\nTawaran Anda\n₦\n\nMinimal berikutnya\n₦ 15\n\n+ ₦ 5\n+ ₦ 10\n+ ₦ 50\nSaldo Anda\n₦ 1.500\n\nTawaran ditutup. Menyelesaikan pembayaran pemenang.\n\nTawar\nLewati\nTutup"
+    },
+    {
+      "phase": "end",
+      "viewPhase": "auction",
+      "head": {
+        "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6:eventRevealing:0",
+        "kind": "eventRevealing",
+        "source": {
+          "id": 6,
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "type": "auctionResult",
+          "turn": 1,
+          "version": 3,
+          "actor": 0,
+          "audience": "public",
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "event": {
+          "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6",
+          "logId": 6,
+          "type": "auctionResult",
+          "title": "Hasil lelang",
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "actor": 0,
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "actor": 0
+      },
+      "covered": false,
+      "paused": false,
+      "timer": 9,
+      "uiPopup": null
+    },
+    {
+      "phase": "end",
+      "viewPhase": "auction",
+      "head": {
+        "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6:eventRevealing:0",
+        "kind": "eventRevealing",
+        "source": {
+          "id": 6,
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "type": "auctionResult",
+          "turn": 1,
+          "version": 3,
+          "actor": 0,
+          "audience": "public",
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "event": {
+          "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6",
+          "logId": 6,
+          "type": "auctionResult",
+          "title": "Hasil lelang",
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "actor": 0,
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "actor": 0
+      },
+      "covered": false,
+      "paused": false,
+      "timer": 9,
+      "uiPopup": null
+    },
+    {
+      "phase": "end",
+      "viewPhase": "auction",
+      "head": {
+        "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6:eventRevealing:0",
+        "kind": "eventRevealing",
+        "source": {
+          "id": 6,
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "type": "auctionResult",
+          "turn": 1,
+          "version": 3,
+          "actor": 0,
+          "audience": "public",
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "event": {
+          "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6",
+          "logId": 6,
+          "type": "auctionResult",
+          "title": "Hasil lelang",
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "actor": 0,
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "actor": 0
+      },
+      "covered": false,
+      "paused": false,
+      "timer": 9,
+      "uiPopup": null
+    },
+    {
+      "phase": "end",
+      "viewPhase": "auction",
+      "head": {
+        "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6:eventRevealing:0",
+        "kind": "eventRevealing",
+        "source": {
+          "id": 6,
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "type": "auctionResult",
+          "turn": 1,
+          "version": 3,
+          "actor": 0,
+          "audience": "public",
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "event": {
+          "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6",
+          "logId": 6,
+          "type": "auctionResult",
+          "title": "Hasil lelang",
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "actor": 0,
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "actor": 0
+      },
+      "covered": false,
+      "paused": false,
+      "timer": 9,
+      "uiPopup": null
+    },
+    {
+      "phase": "end",
+      "viewPhase": "auction",
+      "head": {
+        "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6:eventRevealing:0",
+        "kind": "eventRevealing",
+        "source": {
+          "id": 6,
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "type": "auctionResult",
+          "turn": 1,
+          "version": 3,
+          "actor": 0,
+          "audience": "public",
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "event": {
+          "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6",
+          "logId": 6,
+          "type": "auctionResult",
+          "title": "Hasil lelang",
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "actor": 0,
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "actor": 0
+      },
+      "covered": false,
+      "paused": false,
+      "timer": 9,
+      "uiPopup": null
+    },
+    {
+      "phase": "end",
+      "viewPhase": "auction",
+      "head": {
+        "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6:eventRevealing:0",
+        "kind": "eventRevealing",
+        "source": {
+          "id": 6,
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "type": "auctionResult",
+          "turn": 1,
+          "version": 3,
+          "actor": 0,
+          "audience": "public",
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "event": {
+          "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6",
+          "logId": 6,
+          "type": "auctionResult",
+          "title": "Hasil lelang",
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "actor": 0,
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "actor": 0
+      },
+      "covered": false,
+      "paused": false,
+      "timer": 9,
+      "uiPopup": null
+    },
+    {
+      "phase": "end",
+      "viewPhase": "auction",
+      "head": {
+        "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6:eventRevealing:0",
+        "kind": "eventRevealing",
+        "source": {
+          "id": 6,
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "type": "auctionResult",
+          "turn": 1,
+          "version": 3,
+          "actor": 0,
+          "audience": "public",
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "event": {
+          "id": "8011e1ed-f03d-4390-a705-b9638ec6dba2:6",
+          "logId": 6,
+          "type": "auctionResult",
+          "title": "Hasil lelang",
+          "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+          "actor": 0,
+          "auctionResult": {
+            "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+            "kind": "property",
+            "building": null,
+            "tile": 13,
+            "winner": 1,
+            "amount": 100,
+            "participants": [
+              0,
+              1
+            ]
+          }
+        },
+        "actor": 0
+      },
+      "covered": false,
+      "paused": false,
+      "timer": 9,
+      "uiPopup": null
+    },
+    {
+      "phase": "end",
+      "viewPhase": "end",
+      "head": null,
+      "covered": false,
+      "paused": false,
+      "timer": null,
+      "uiPopup": null
+    },
+    {
+      "phase": "end",
+      "viewPhase": "end",
+      "head": null,
+      "covered": false,
+      "paused": false,
+      "timer": null,
+      "uiPopup": null
+    },
+    {
+      "phase": "end",
+      "viewPhase": "end",
+      "head": null,
+      "covered": false,
+      "paused": false,
+      "timer": null,
+      "uiPopup": null
+    },
+    {
+      "phase": "end",
+      "viewPhase": "end",
+      "head": null,
+      "covered": false,
+      "paused": false,
+      "timer": null,
+      "uiPopup": null
+    }
+  ],
+  "state": {
+    "schemaVersion": 2,
+    "presentationVersion": 1,
+    "rulepackVersion": "nusantara-c1009-2",
+    "rules": {
+      "preset": "digital",
+      "rent": "auto"
+    },
+    "matchId": "8011e1ed-f03d-4390-a705-b9638ec6dba2",
+    "version": 3,
+    "players": [
+      {
+        "id": 0,
+        "name": "QA A",
+        "controller": "human",
+        "pawn": 0,
+        "cash": 15000,
+        "pos": 0,
+        "jail": 0,
+        "inJail": false,
+        "cards": [],
+        "out": false
+      },
+      {
+        "id": 1,
+        "name": "QA B",
+        "controller": "human",
+        "pawn": 1,
+        "cash": 14900,
+        "pos": 0,
+        "jail": 0,
+        "inJail": false,
+        "cards": [],
+        "out": false
+      }
+    ],
+    "assets": {
+      "1": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "3": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "5": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "6": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "8": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "9": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "11": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "12": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "13": {
+        "owner": 1,
+        "level": 0,
+        "mortgaged": false
+      },
+      "14": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "15": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "16": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "18": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "19": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "21": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "23": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "24": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "25": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "26": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "27": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "28": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "29": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "31": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "32": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "34": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "35": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "37": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      },
+      "39": {
+        "owner": null,
+        "level": 0,
+        "mortgaged": false
+      }
+    },
+    "turn": 0,
+    "startSeat": 0,
+    "turnSerial": 0,
+    "round": 1,
+    "phase": "end",
+    "starting": {
+      "pending": [
+        0,
+        1
+      ],
+      "scores": [],
+      "history": [],
+      "round": 1
+    },
+    "doubles": 0,
+    "extra": false,
+    "dice": [
+      1,
+      1
+    ],
+    "utilityDice": null,
+    "bank": {
+      "houses": 32,
+      "hotels": 12
+    },
+    "decks": {
+      "chance": [
+        4,
+        9,
+        14,
+        0,
+        5,
+        6,
+        7,
+        8,
+        1,
+        10,
+        11,
+        12,
+        13,
+        2,
+        15,
+        3
+      ],
+      "community": [
+        4,
+        9,
+        14,
+        0,
+        5,
+        6,
+        7,
+        8,
+        1,
+        10,
+        11,
+        12,
+        13,
+        2,
+        15,
+        3
+      ]
+    },
+    "queue": [],
+    "debt": null,
+    "auction": null,
+    "card": null,
+    "trade": null,
+    "mortgageDecision": null,
+    "buildOffer": null,
+    "rentClaims": [],
+    "log": [
+      {
+        "id": 6,
+        "text": "Lelang selesai: QA B memenangkan Padang · ₦ 10.",
+        "type": "auctionResult",
+        "turn": 1,
+        "version": 3,
+        "actor": 0,
+        "audience": "public",
+        "auctionResult": {
+          "auctionId": "8011e1ed-f03d-4390-a705-b9638ec6dba2:auction:2",
+          "kind": "property",
+          "building": null,
+          "tile": 13,
+          "winner": 1,
+          "amount": 100,
+          "participants": [
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": 5,
+        "text": "QA B memenangkan Padang seharga ₦ 10.",
+        "type": "buy",
+        "turn": 1,
+        "version": 3,
+        "actor": 0,
+        "audience": "public",
+        "finance": [
+          {
+            "kind": "auction",
+            "from": 1,
+            "to": null,
+            "amount": 100,
+            "tile": 13
+          }
+        ],
+        "assetChanges": [
+          {
+            "tile": 13,
+            "owner": 1,
+            "level": 0,
+            "mortgaged": false
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "text": "QA A tidak menaikkan tawaran saat ini.",
+        "type": "auction",
+        "turn": 1,
+        "version": 3,
+        "actor": 0,
+        "audience": "public"
+      },
+      {
+        "id": 3,
+        "text": "QA B menawar ₦ 10.",
+        "type": "auction",
+        "turn": 1,
+        "version": 2,
+        "actor": 1,
+        "audience": "public"
+      },
+      {
+        "id": 2,
+        "text": "Lelang Padang: mulai ₦ 5, kenaikan minimal ₦ 5.",
+        "type": "auction",
+        "turn": 1,
+        "version": 1,
+        "actor": 0,
+        "audience": "public"
+      },
+      {
+        "id": 1,
+        "text": "Modal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+        "type": "start",
+        "turn": 1,
+        "version": 0,
+        "actor": 0,
+        "audience": "public"
+      }
+    ],
+    "eventId": 6,
+    "seen": [
+      "7a284d3f-615b-48ce-922f-9db8b6a1e905"
+    ],
+    "lastMove": null,
+    "aiStatus": "Bot lokal",
+    "aiComment": null,
+    "advisorEnabled": false,
+    "difficulty": "strategis",
+    "bankEconomy": {
+      "schema": 1,
+      "complete": true,
+      "fromVersion": 0,
+      "fromRound": 1,
+      "openingCirculation": 30000,
+      "issued": 0,
+      "absorbed": 100,
+      "transferred": 0,
+      "turnover": 100,
+      "count": 1,
+      "byKind": {
+        "auction": {
+          "issued": 0,
+          "absorbed": 100,
+          "transferred": 0,
+          "total": 100,
+          "count": 1
+        }
+      },
+      "recent": [
+        {
+          "id": "5:0",
+          "round": 1,
+          "kind": "auction",
+          "from": 1,
+          "to": null,
+          "amount": 100,
+          "tile": 13
+        }
+      ]
+    },
+    "buy": 13,
+    "botMemory": {
+      "version": 1,
+      "players": {
+        "1": {
+          "lastOfferSerial": -100,
+          "lastSignature": "",
+          "rejections": {}
+        }
+      },
+      "opponents": {
+        "1": {
+          "aggression": 0.07142857142857142,
+          "observations": 1
+        }
+      },
+      "negotiation": null
+    }
+  }
+}

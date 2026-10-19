@@ -1,0 +1,11 @@
+
+> monopoli-nusantara@4.11.6 test:auction
+> node --experimental-strip-types scripts/test-auction-browser.mjs
+
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('dialog[data-kind=event] .result-hero') to be visible[22m
+
+    at /workspace/monopoli-nusantara/scripts/test-auction-browser.mjs:225:64 {
+  name: 'TimeoutError'
+}

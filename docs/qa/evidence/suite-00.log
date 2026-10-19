@@ -1,0 +1,19 @@
+
+> monopoli-nusantara@4.11.6 pretest
+> npm run build
+
+
+> monopoli-nusantara@4.11.6 build
+> node scripts/build-web.mjs
+
+(node:777) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Built private server-dist — 74 reachable native ESM modules.
+Built /workspace/monopoli-nusantara/dist/ — 103 reachable browser modules; no server secrets/modules or dependency install.
+
+> monopoli-nusantara@4.11.6 test
+> node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-headless.mjs
+
+(node:790) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Core + frontend results: 710/710, failed 0, skipped 0.

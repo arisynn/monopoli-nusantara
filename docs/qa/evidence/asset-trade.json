@@ -1,0 +1,5652 @@
+{
+  "steps": [
+    {
+      "name": "baseline",
+      "state": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+        "version": 0,
+        "players": [
+          {
+            "id": 0,
+            "name": "QA Aset",
+            "controller": "human",
+            "pawn": 0,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 1,
+            "name": "RAKA",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": 1,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "roll",
+        "starting": {
+          "pending": [
+            0,
+            1
+          ],
+          "scores": [],
+          "history": [],
+          "round": 1
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          1,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 12
+        },
+        "decks": {
+          "chance": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ],
+          "community": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ]
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 1,
+            "text": "Modal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 1,
+        "seen": [],
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "bankEconomy": {
+          "schema": 1,
+          "complete": true,
+          "fromVersion": 0,
+          "fromRound": 1,
+          "openingCirculation": 30000,
+          "issued": 0,
+          "absorbed": 0,
+          "transferred": 0,
+          "turnover": 0,
+          "count": 0,
+          "byKind": {},
+          "recent": []
+        }
+      },
+      "text": ""
+    },
+    {
+      "name": "built-hotels",
+      "state": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+        "version": 10,
+        "players": [
+          {
+            "id": 0,
+            "name": "QA Aset",
+            "controller": "human",
+            "pawn": 0,
+            "cash": 10000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 1,
+            "name": "RAKA",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": 0,
+            "level": 5,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": 0,
+            "level": 5,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": 1,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "roll",
+        "starting": {
+          "pending": [
+            0,
+            1
+          ],
+          "scores": [],
+          "history": [],
+          "round": 1
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          1,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 10
+        },
+        "decks": {
+          "chance": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ],
+          "community": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ]
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 11,
+            "text": "QA Aset membangun hotel di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 10,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 5,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 10,
+            "text": "QA Aset membangun hotel di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 9,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 5,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 9,
+            "text": "QA Aset membangun rumah ke-4 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 8,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 4,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 8,
+            "text": "QA Aset membangun rumah ke-4 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 7,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 4,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 7,
+            "text": "QA Aset membangun rumah ke-3 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 6,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 3,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 6,
+            "text": "QA Aset membangun rumah ke-3 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 5,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 3,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 5,
+            "text": "QA Aset membangun rumah ke-2 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 4,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 2,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 4,
+            "text": "QA Aset membangun rumah ke-2 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 3,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 2,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 3,
+            "text": "QA Aset membangun rumah ke-1 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 2,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 1,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 2,
+            "text": "QA Aset membangun rumah ke-1 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 1,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 1,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 1,
+            "text": "Modal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 11,
+        "seen": [
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#0",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#1",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#2",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#3",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#4",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#5",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#6",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#7",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#8",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#9",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304"
+        ],
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "bankEconomy": {
+          "schema": 1,
+          "complete": true,
+          "fromVersion": 0,
+          "fromRound": 1,
+          "openingCirculation": 30000,
+          "issued": 0,
+          "absorbed": 5000,
+          "transferred": 0,
+          "turnover": 5000,
+          "count": 10,
+          "byKind": {
+            "build": {
+              "issued": 0,
+              "absorbed": 5000,
+              "transferred": 0,
+              "total": 5000,
+              "count": 10
+            }
+          },
+          "recent": [
+            {
+              "id": "11:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "10:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "9:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "8:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "7:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "6:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "5:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "4:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "3:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "2:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            }
+          ]
+        },
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "0": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {},
+              "stabilityGuard": {
+                "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+                "turnSerial": 0,
+                "lastVersion": 10,
+                "flips": {},
+                "mortgaged": [],
+                "redeemed": [],
+                "built": [
+                  1,
+                  3
+                ],
+                "sold": []
+              }
+            }
+          },
+          "opponents": {},
+          "negotiation": null
+        }
+      },
+      "text": "Aset Saya\nQA Aset\n3 properti\n₦ 1.000\nProperti\nBangun\nPegadaian\n\n10 bangunan selesai · ₦ 500\n\n32 rumah\n10 hotel\nPriangan · 2/2\nHotel lengkap\nBogor\nHotel · Sewa ₦ 250\nJual 1\nBandung\nHotel · Sewa ₦ 450\nJual 1\nJual seluruh bangunan kelompok\nBangun\nJawa · 1/3\nKurang 2 properti\nTutup"
+    },
+    {
+      "name": "mortgaged",
+      "state": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+        "version": 11,
+        "players": [
+          {
+            "id": 0,
+            "name": "QA Aset",
+            "controller": "human",
+            "pawn": 0,
+            "cash": 10500,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 1,
+            "name": "RAKA",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": 0,
+            "level": 5,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": 0,
+            "level": 5,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": true
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": 1,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "roll",
+        "starting": {
+          "pending": [
+            0,
+            1
+          ],
+          "scores": [],
+          "history": [],
+          "round": 1
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          1,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 10
+        },
+        "decks": {
+          "chance": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ],
+          "community": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ]
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 12,
+            "text": "QA Aset menggadaikan Yogyakarta: +₦ 50.",
+            "type": "money",
+            "turn": 1,
+            "version": 11,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "mortgage",
+                "from": null,
+                "to": 0,
+                "amount": 500,
+                "tile": 6
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 6,
+                "owner": 0,
+                "level": 0,
+                "mortgaged": true
+              }
+            ]
+          },
+          {
+            "id": 11,
+            "text": "QA Aset membangun hotel di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 10,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 5,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 10,
+            "text": "QA Aset membangun hotel di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 9,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 5,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 9,
+            "text": "QA Aset membangun rumah ke-4 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 8,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 4,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 8,
+            "text": "QA Aset membangun rumah ke-4 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 7,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 4,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 7,
+            "text": "QA Aset membangun rumah ke-3 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 6,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 3,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 6,
+            "text": "QA Aset membangun rumah ke-3 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 5,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 3,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 5,
+            "text": "QA Aset membangun rumah ke-2 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 4,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 2,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 4,
+            "text": "QA Aset membangun rumah ke-2 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 3,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 2,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 3,
+            "text": "QA Aset membangun rumah ke-1 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 2,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 1,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 2,
+            "text": "QA Aset membangun rumah ke-1 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 1,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 1,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 1,
+            "text": "Modal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 12,
+        "seen": [
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#0",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#1",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#2",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#3",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#4",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#5",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#6",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#7",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#8",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#9",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+          "837364da-1f97-4886-9676-af98d7f4d26b"
+        ],
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "bankEconomy": {
+          "schema": 1,
+          "complete": true,
+          "fromVersion": 0,
+          "fromRound": 1,
+          "openingCirculation": 30000,
+          "issued": 500,
+          "absorbed": 5000,
+          "transferred": 0,
+          "turnover": 5500,
+          "count": 11,
+          "byKind": {
+            "build": {
+              "issued": 0,
+              "absorbed": 5000,
+              "transferred": 0,
+              "total": 5000,
+              "count": 10
+            },
+            "mortgage": {
+              "issued": 500,
+              "absorbed": 0,
+              "transferred": 0,
+              "total": 500,
+              "count": 1
+            }
+          },
+          "recent": [
+            {
+              "id": "12:0",
+              "round": 1,
+              "kind": "mortgage",
+              "from": null,
+              "to": 0,
+              "amount": 500,
+              "tile": 6
+            },
+            {
+              "id": "11:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "10:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "9:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "8:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "7:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "6:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "5:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "4:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "3:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "2:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            }
+          ]
+        },
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "0": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {},
+              "stabilityGuard": {
+                "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+                "turnSerial": 0,
+                "lastVersion": 11,
+                "flips": {
+                  "6": {
+                    "count": 1,
+                    "turnSerial": 0
+                  }
+                },
+                "mortgaged": [
+                  6
+                ],
+                "redeemed": [],
+                "built": [
+                  1,
+                  3
+                ],
+                "sold": []
+              }
+            }
+          },
+          "opponents": {},
+          "negotiation": null
+        }
+      },
+      "text": "Aset Saya\nQA Aset\n3 properti\n₦ 1.050\nProperti\nBangun\nPegadaian\n\nTransaksi tersimpan · memperbarui aset…\n\nBisa digadai 2\nSedang digadai 1\n\nBangunan dalam kelompok harus dijual sebelum properti dapat digadai.\n\nBogor\nPriangan · Hotel\n₦ 250\nBandung\nPriangan · Hotel\n₦ 450\nTutup"
+    },
+    {
+      "name": "redeemed",
+      "state": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+        "version": 12,
+        "players": [
+          {
+            "id": 0,
+            "name": "QA Aset",
+            "controller": "human",
+            "pawn": 0,
+            "cash": 9950,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          },
+          {
+            "id": 1,
+            "name": "RAKA",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 15000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": 0,
+            "level": 5,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": 0,
+            "level": 5,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": 1,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "roll",
+        "starting": {
+          "pending": [
+            0,
+            1
+          ],
+          "scores": [],
+          "history": [],
+          "round": 1
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          1,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 10
+        },
+        "decks": {
+          "chance": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ],
+          "community": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ]
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 13,
+            "text": "QA Aset menebus Yogyakarta · ₦ 55.",
+            "type": "money",
+            "turn": 1,
+            "version": 12,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "redeem",
+                "from": 0,
+                "to": null,
+                "amount": 550,
+                "tile": 6
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 6,
+                "owner": 0,
+                "level": 0,
+                "mortgaged": false
+              }
+            ]
+          },
+          {
+            "id": 12,
+            "text": "QA Aset menggadaikan Yogyakarta: +₦ 50.",
+            "type": "money",
+            "turn": 1,
+            "version": 11,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "mortgage",
+                "from": null,
+                "to": 0,
+                "amount": 500,
+                "tile": 6
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 6,
+                "owner": 0,
+                "level": 0,
+                "mortgaged": true
+              }
+            ]
+          },
+          {
+            "id": 11,
+            "text": "QA Aset membangun hotel di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 10,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 5,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 10,
+            "text": "QA Aset membangun hotel di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 9,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 5,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 9,
+            "text": "QA Aset membangun rumah ke-4 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 8,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 4,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 8,
+            "text": "QA Aset membangun rumah ke-4 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 7,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 4,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 7,
+            "text": "QA Aset membangun rumah ke-3 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 6,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 3,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 6,
+            "text": "QA Aset membangun rumah ke-3 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 5,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 3,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 5,
+            "text": "QA Aset membangun rumah ke-2 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 4,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 2,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 4,
+            "text": "QA Aset membangun rumah ke-2 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 3,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 2,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 3,
+            "text": "QA Aset membangun rumah ke-1 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 2,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 1,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 2,
+            "text": "QA Aset membangun rumah ke-1 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 1,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 1,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 1,
+            "text": "Modal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 13,
+        "seen": [
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#0",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#1",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#2",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#3",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#4",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#5",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#6",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#7",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#8",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#9",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+          "837364da-1f97-4886-9676-af98d7f4d26b",
+          "91b2a3d5-0e33-44e7-b439-5367a6061356"
+        ],
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "bankEconomy": {
+          "schema": 1,
+          "complete": true,
+          "fromVersion": 0,
+          "fromRound": 1,
+          "openingCirculation": 30000,
+          "issued": 500,
+          "absorbed": 5550,
+          "transferred": 0,
+          "turnover": 6050,
+          "count": 12,
+          "byKind": {
+            "build": {
+              "issued": 0,
+              "absorbed": 5000,
+              "transferred": 0,
+              "total": 5000,
+              "count": 10
+            },
+            "mortgage": {
+              "issued": 500,
+              "absorbed": 0,
+              "transferred": 0,
+              "total": 500,
+              "count": 1
+            },
+            "redeem": {
+              "issued": 0,
+              "absorbed": 550,
+              "transferred": 0,
+              "total": 550,
+              "count": 1
+            }
+          },
+          "recent": [
+            {
+              "id": "13:0",
+              "round": 1,
+              "kind": "redeem",
+              "from": 0,
+              "to": null,
+              "amount": 550,
+              "tile": 6
+            },
+            {
+              "id": "12:0",
+              "round": 1,
+              "kind": "mortgage",
+              "from": null,
+              "to": 0,
+              "amount": 500,
+              "tile": 6
+            },
+            {
+              "id": "11:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "10:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "9:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "8:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "7:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "6:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "5:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "4:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "3:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "2:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            }
+          ]
+        },
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "0": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {},
+              "stabilityGuard": {
+                "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+                "turnSerial": 0,
+                "lastVersion": 12,
+                "flips": {
+                  "6": {
+                    "count": 2,
+                    "turnSerial": 0
+                  }
+                },
+                "mortgaged": [
+                  6
+                ],
+                "redeemed": [
+                  6
+                ],
+                "built": [
+                  1,
+                  3
+                ],
+                "sold": []
+              }
+            }
+          },
+          "opponents": {},
+          "negotiation": null
+        }
+      },
+      "text": "Aset Saya\nQA Aset\n3 properti\n₦ 995\nProperti\nBangun\nPegadaian\n\nTransaksi tersimpan · memperbarui aset…\n\nBisa digadai 3\nSedang digadai 0\n\nTebus beserta bunga untuk mengaktifkan sewa kembali.\n\nBelum ada properti pada pilihan ini.\n\nTutup"
+    },
+    {
+      "name": "trade-result",
+      "state": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+        "version": 14,
+        "players": [
+          {
+            "id": 0,
+            "name": "QA Aset",
+            "controller": "human",
+            "pawn": 0,
+            "cash": 8950,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false,
+            "lastOfferRound": 1
+          },
+          {
+            "id": 1,
+            "name": "RAKA",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 16000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": 0,
+            "level": 5,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": 0,
+            "level": 5,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": 1,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "roll",
+        "starting": {
+          "pending": [
+            0,
+            1
+          ],
+          "scores": [],
+          "history": [],
+          "round": 1
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          1,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 10
+        },
+        "decks": {
+          "chance": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ],
+          "community": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ]
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 15,
+            "text": "Barter selesai: QA Aset memberikan ₦ 100; RAKA memberikan tanpa aset.",
+            "type": "trade",
+            "turn": 1,
+            "version": 14,
+            "actor": 1,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "trade",
+                "from": 0,
+                "to": 1,
+                "amount": 1000
+              }
+            ],
+            "assetChanges": [],
+            "tradeResult": {
+              "from": 0,
+              "to": 1,
+              "give": [],
+              "take": [],
+              "giveCash": 1000,
+              "takeCash": 0,
+              "giveCards": 0,
+              "takeCards": 0,
+              "offerId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:offer:14",
+              "status": "accepted",
+              "actor": 1
+            }
+          },
+          {
+            "id": 14,
+            "text": "QA Aset menawarkan barter kepada RAKA.",
+            "type": "trade",
+            "turn": 1,
+            "version": 13,
+            "actor": 0,
+            "audience": "public",
+            "tradeOffer": {
+              "from": 0,
+              "to": 1,
+              "give": [],
+              "take": [],
+              "giveCash": 1000,
+              "takeCash": 0,
+              "giveCards": 0,
+              "takeCards": 0,
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:offer:14"
+            }
+          },
+          {
+            "id": 13,
+            "text": "QA Aset menebus Yogyakarta · ₦ 55.",
+            "type": "money",
+            "turn": 1,
+            "version": 12,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "redeem",
+                "from": 0,
+                "to": null,
+                "amount": 550,
+                "tile": 6
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 6,
+                "owner": 0,
+                "level": 0,
+                "mortgaged": false
+              }
+            ]
+          },
+          {
+            "id": 12,
+            "text": "QA Aset menggadaikan Yogyakarta: +₦ 50.",
+            "type": "money",
+            "turn": 1,
+            "version": 11,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "mortgage",
+                "from": null,
+                "to": 0,
+                "amount": 500,
+                "tile": 6
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 6,
+                "owner": 0,
+                "level": 0,
+                "mortgaged": true
+              }
+            ]
+          },
+          {
+            "id": 11,
+            "text": "QA Aset membangun hotel di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 10,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 5,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 10,
+            "text": "QA Aset membangun hotel di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 9,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 5,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 9,
+            "text": "QA Aset membangun rumah ke-4 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 8,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 4,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 8,
+            "text": "QA Aset membangun rumah ke-4 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 7,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 4,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 7,
+            "text": "QA Aset membangun rumah ke-3 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 6,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 3,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 6,
+            "text": "QA Aset membangun rumah ke-3 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 5,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 3,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 5,
+            "text": "QA Aset membangun rumah ke-2 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 4,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 2,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 4,
+            "text": "QA Aset membangun rumah ke-2 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 3,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 2,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 3,
+            "text": "QA Aset membangun rumah ke-1 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 2,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 1,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 2,
+            "text": "QA Aset membangun rumah ke-1 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 1,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 1,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 1,
+            "text": "Modal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 15,
+        "seen": [
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#0",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#1",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#2",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#3",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#4",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#5",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#6",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#7",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#8",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#9",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+          "837364da-1f97-4886-9676-af98d7f4d26b",
+          "91b2a3d5-0e33-44e7-b439-5367a6061356",
+          "8751bf7f-ab2a-4c5f-9738-77b35cd5d135",
+          "05ba65a4-8d53-434f-b703-0b47599e23ca"
+        ],
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "bankEconomy": {
+          "schema": 1,
+          "complete": true,
+          "fromVersion": 0,
+          "fromRound": 1,
+          "openingCirculation": 30000,
+          "issued": 500,
+          "absorbed": 5550,
+          "transferred": 1000,
+          "turnover": 7050,
+          "count": 13,
+          "byKind": {
+            "build": {
+              "issued": 0,
+              "absorbed": 5000,
+              "transferred": 0,
+              "total": 5000,
+              "count": 10
+            },
+            "mortgage": {
+              "issued": 500,
+              "absorbed": 0,
+              "transferred": 0,
+              "total": 500,
+              "count": 1
+            },
+            "redeem": {
+              "issued": 0,
+              "absorbed": 550,
+              "transferred": 0,
+              "total": 550,
+              "count": 1
+            },
+            "trade": {
+              "issued": 0,
+              "absorbed": 0,
+              "transferred": 1000,
+              "total": 1000,
+              "count": 1
+            }
+          },
+          "recent": [
+            {
+              "id": "15:0",
+              "round": 1,
+              "kind": "trade",
+              "from": 0,
+              "to": 1,
+              "amount": 1000
+            },
+            {
+              "id": "13:0",
+              "round": 1,
+              "kind": "redeem",
+              "from": 0,
+              "to": null,
+              "amount": 550,
+              "tile": 6
+            },
+            {
+              "id": "12:0",
+              "round": 1,
+              "kind": "mortgage",
+              "from": null,
+              "to": 0,
+              "amount": 500,
+              "tile": 6
+            },
+            {
+              "id": "11:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "10:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "9:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "8:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "7:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "6:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "5:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "4:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "3:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "2:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            }
+          ]
+        },
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "0": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {},
+              "stabilityGuard": {
+                "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+                "turnSerial": 0,
+                "lastVersion": 12,
+                "flips": {
+                  "6": {
+                    "count": 2,
+                    "turnSerial": 0
+                  }
+                },
+                "mortgaged": [
+                  6
+                ],
+                "redeemed": [
+                  6
+                ],
+                "built": [
+                  1,
+                  3
+                ],
+                "sold": []
+              },
+              "tradeHistory": [
+                {
+                  "version": 14,
+                  "serial": 0,
+                  "partner": 1,
+                  "signature": "[\"[1,[],[],0,0]\",1000]",
+                  "bundle": "[1,[],[],0,0]",
+                  "context": "457294a9",
+                  "trade": {
+                    "to": 1,
+                    "give": [],
+                    "take": [],
+                    "giveCash": 1000,
+                    "takeCash": 0,
+                    "giveCards": 0,
+                    "takeCards": 0
+                  },
+                  "outcome": "accepted",
+                  "reason": null,
+                  "confidence": "observed"
+                }
+              ]
+            },
+            "1": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {},
+              "finance": {
+                "version": 1,
+                "context": "[\"1aa34c85-4a94-49d9-ad8d-990f3363c55e\",0,\"roll\",0,null,null,null,null,null,null,[],[[0,false,0,false,8950],[1,false,0,false,null]],[[0,5],[0,5],[null,0],[0,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[1,0],[null,0],[null,0],[null,0],[null,0],[null,0]]]",
+                "tiles": {},
+                "pending": []
+              }
+            }
+          },
+          "opponents": {
+            "0": {
+              "aggression": 1,
+              "observations": 0,
+              "groups": {}
+            },
+            "1": {
+              "aggression": 1,
+              "observations": 0,
+              "concessions": {
+                "early": [
+                  {
+                    "accepted": 0,
+                    "rejected": 0
+                  },
+                  {
+                    "accepted": 0,
+                    "rejected": 0
+                  },
+                  {
+                    "accepted": 0,
+                    "rejected": 0
+                  },
+                  {
+                    "accepted": 1,
+                    "rejected": 0
+                  }
+                ]
+              },
+              "tradeAccepted": 1,
+              "tradeRejected": 0
+            }
+          },
+          "negotiation": null
+        }
+      },
+      "text": "Barter berhasil\n\nTransaksi dengan RAKA sudah tercatat.\n\nAnda menerima\n\nTidak ada.\n\nAnda memberi\n₦ 100\nAjukan tawaran\nTutup"
+    },
+    {
+      "name": "trade-refreshed",
+      "state": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+        "version": 14,
+        "players": [
+          {
+            "id": 0,
+            "name": "QA Aset",
+            "controller": "human",
+            "pawn": 0,
+            "cash": 8950,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false,
+            "lastOfferRound": 1
+          },
+          {
+            "id": 1,
+            "name": "RAKA",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 16000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": 0,
+            "level": 5,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": 0,
+            "level": 5,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": 1,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "roll",
+        "starting": {
+          "pending": [
+            0,
+            1
+          ],
+          "scores": [],
+          "history": [],
+          "round": 1
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          1,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 10
+        },
+        "decks": {
+          "chance": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ],
+          "community": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ]
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 15,
+            "text": "Barter selesai: QA Aset memberikan ₦ 100; RAKA memberikan tanpa aset.",
+            "type": "trade",
+            "turn": 1,
+            "version": 14,
+            "actor": 1,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "trade",
+                "from": 0,
+                "to": 1,
+                "amount": 1000
+              }
+            ],
+            "assetChanges": [],
+            "tradeResult": {
+              "from": 0,
+              "to": 1,
+              "give": [],
+              "take": [],
+              "giveCash": 1000,
+              "takeCash": 0,
+              "giveCards": 0,
+              "takeCards": 0,
+              "offerId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:offer:14",
+              "status": "accepted",
+              "actor": 1
+            }
+          },
+          {
+            "id": 14,
+            "text": "QA Aset menawarkan barter kepada RAKA.",
+            "type": "trade",
+            "turn": 1,
+            "version": 13,
+            "actor": 0,
+            "audience": "public",
+            "tradeOffer": {
+              "from": 0,
+              "to": 1,
+              "give": [],
+              "take": [],
+              "giveCash": 1000,
+              "takeCash": 0,
+              "giveCards": 0,
+              "takeCards": 0,
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:offer:14"
+            }
+          },
+          {
+            "id": 13,
+            "text": "QA Aset menebus Yogyakarta · ₦ 55.",
+            "type": "money",
+            "turn": 1,
+            "version": 12,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "redeem",
+                "from": 0,
+                "to": null,
+                "amount": 550,
+                "tile": 6
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 6,
+                "owner": 0,
+                "level": 0,
+                "mortgaged": false
+              }
+            ]
+          },
+          {
+            "id": 12,
+            "text": "QA Aset menggadaikan Yogyakarta: +₦ 50.",
+            "type": "money",
+            "turn": 1,
+            "version": 11,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "mortgage",
+                "from": null,
+                "to": 0,
+                "amount": 500,
+                "tile": 6
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 6,
+                "owner": 0,
+                "level": 0,
+                "mortgaged": true
+              }
+            ]
+          },
+          {
+            "id": 11,
+            "text": "QA Aset membangun hotel di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 10,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 5,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 10,
+            "text": "QA Aset membangun hotel di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 9,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 5,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 9,
+            "text": "QA Aset membangun rumah ke-4 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 8,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 4,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 8,
+            "text": "QA Aset membangun rumah ke-4 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 7,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 4,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 7,
+            "text": "QA Aset membangun rumah ke-3 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 6,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 3,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 6,
+            "text": "QA Aset membangun rumah ke-3 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 5,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 3,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 5,
+            "text": "QA Aset membangun rumah ke-2 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 4,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 2,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 4,
+            "text": "QA Aset membangun rumah ke-2 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 3,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 2,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 3,
+            "text": "QA Aset membangun rumah ke-1 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 2,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 1,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 2,
+            "text": "QA Aset membangun rumah ke-1 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 1,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 1,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 1,
+            "text": "Modal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 15,
+        "seen": [
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#0",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#1",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#2",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#3",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#4",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#5",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#6",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#7",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#8",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#9",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+          "837364da-1f97-4886-9676-af98d7f4d26b",
+          "91b2a3d5-0e33-44e7-b439-5367a6061356",
+          "8751bf7f-ab2a-4c5f-9738-77b35cd5d135",
+          "05ba65a4-8d53-434f-b703-0b47599e23ca"
+        ],
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "bankEconomy": {
+          "schema": 1,
+          "complete": true,
+          "fromVersion": 0,
+          "fromRound": 1,
+          "openingCirculation": 30000,
+          "issued": 500,
+          "absorbed": 5550,
+          "transferred": 1000,
+          "turnover": 7050,
+          "count": 13,
+          "byKind": {
+            "build": {
+              "issued": 0,
+              "absorbed": 5000,
+              "transferred": 0,
+              "total": 5000,
+              "count": 10
+            },
+            "mortgage": {
+              "issued": 500,
+              "absorbed": 0,
+              "transferred": 0,
+              "total": 500,
+              "count": 1
+            },
+            "redeem": {
+              "issued": 0,
+              "absorbed": 550,
+              "transferred": 0,
+              "total": 550,
+              "count": 1
+            },
+            "trade": {
+              "issued": 0,
+              "absorbed": 0,
+              "transferred": 1000,
+              "total": 1000,
+              "count": 1
+            }
+          },
+          "recent": [
+            {
+              "id": "15:0",
+              "round": 1,
+              "kind": "trade",
+              "from": 0,
+              "to": 1,
+              "amount": 1000
+            },
+            {
+              "id": "13:0",
+              "round": 1,
+              "kind": "redeem",
+              "from": 0,
+              "to": null,
+              "amount": 550,
+              "tile": 6
+            },
+            {
+              "id": "12:0",
+              "round": 1,
+              "kind": "mortgage",
+              "from": null,
+              "to": 0,
+              "amount": 500,
+              "tile": 6
+            },
+            {
+              "id": "11:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "10:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "9:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "8:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "7:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "6:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "5:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "4:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "3:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "2:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            }
+          ]
+        },
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "0": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {},
+              "stabilityGuard": {
+                "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+                "turnSerial": 0,
+                "lastVersion": 12,
+                "flips": {
+                  "6": {
+                    "count": 2,
+                    "turnSerial": 0
+                  }
+                },
+                "mortgaged": [
+                  6
+                ],
+                "redeemed": [
+                  6
+                ],
+                "built": [
+                  1,
+                  3
+                ],
+                "sold": []
+              },
+              "tradeHistory": [
+                {
+                  "version": 14,
+                  "serial": 0,
+                  "partner": 1,
+                  "signature": "[\"[1,[],[],0,0]\",1000]",
+                  "bundle": "[1,[],[],0,0]",
+                  "context": "457294a9",
+                  "trade": {
+                    "to": 1,
+                    "give": [],
+                    "take": [],
+                    "giveCash": 1000,
+                    "takeCash": 0,
+                    "giveCards": 0,
+                    "takeCards": 0
+                  },
+                  "outcome": "accepted",
+                  "reason": null,
+                  "confidence": "observed"
+                }
+              ]
+            },
+            "1": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {},
+              "finance": {
+                "version": 1,
+                "context": "[\"1aa34c85-4a94-49d9-ad8d-990f3363c55e\",0,\"roll\",0,null,null,null,null,null,null,[],[[0,false,0,false,8950],[1,false,0,false,null]],[[0,5],[0,5],[null,0],[0,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[1,0],[null,0],[null,0],[null,0],[null,0],[null,0]]]",
+                "tiles": {},
+                "pending": []
+              }
+            }
+          },
+          "opponents": {
+            "0": {
+              "aggression": 1,
+              "observations": 0,
+              "groups": {}
+            },
+            "1": {
+              "aggression": 1,
+              "observations": 0,
+              "concessions": {
+                "early": [
+                  {
+                    "accepted": 0,
+                    "rejected": 0
+                  },
+                  {
+                    "accepted": 0,
+                    "rejected": 0
+                  },
+                  {
+                    "accepted": 0,
+                    "rejected": 0
+                  },
+                  {
+                    "accepted": 1,
+                    "rejected": 0
+                  }
+                ]
+              },
+              "tradeAccepted": 1,
+              "tradeRejected": 0
+            }
+          },
+          "negotiation": null
+        }
+      },
+      "text": "Barter berhasil\n\nTransaksi dengan RAKA sudah tercatat.\n\nAnda menerima\n\nTidak ada.\n\nAnda memberi\n₦ 100\nTutup"
+    },
+    {
+      "name": "trade-dismissed",
+      "state": {
+        "schemaVersion": 2,
+        "presentationVersion": 1,
+        "rulepackVersion": "nusantara-c1009-2",
+        "rules": {
+          "preset": "digital",
+          "rent": "auto"
+        },
+        "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+        "version": 14,
+        "players": [
+          {
+            "id": 0,
+            "name": "QA Aset",
+            "controller": "human",
+            "pawn": 0,
+            "cash": 8950,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false,
+            "lastOfferRound": 1
+          },
+          {
+            "id": 1,
+            "name": "RAKA",
+            "controller": "bot",
+            "botPersona": "raka",
+            "botDifficulty": "medium",
+            "pawn": 1,
+            "cash": 16000,
+            "pos": 0,
+            "jail": 0,
+            "inJail": false,
+            "cards": [],
+            "out": false
+          }
+        ],
+        "assets": {
+          "1": {
+            "owner": 0,
+            "level": 5,
+            "mortgaged": false
+          },
+          "3": {
+            "owner": 0,
+            "level": 5,
+            "mortgaged": false
+          },
+          "5": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "6": {
+            "owner": 0,
+            "level": 0,
+            "mortgaged": false
+          },
+          "8": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "9": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "11": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "12": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "13": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "14": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "15": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "16": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "18": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "19": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "21": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "23": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "24": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "25": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "26": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "27": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "28": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "29": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "31": {
+            "owner": 1,
+            "level": 0,
+            "mortgaged": false
+          },
+          "32": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "34": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "35": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "37": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          },
+          "39": {
+            "owner": null,
+            "level": 0,
+            "mortgaged": false
+          }
+        },
+        "turn": 0,
+        "startSeat": 0,
+        "turnSerial": 0,
+        "round": 1,
+        "phase": "roll",
+        "starting": {
+          "pending": [
+            0,
+            1
+          ],
+          "scores": [],
+          "history": [],
+          "round": 1
+        },
+        "doubles": 0,
+        "extra": false,
+        "dice": [
+          1,
+          1
+        ],
+        "utilityDice": null,
+        "bank": {
+          "houses": 32,
+          "hotels": 10
+        },
+        "decks": {
+          "chance": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ],
+          "community": [
+            4,
+            9,
+            14,
+            0,
+            5,
+            6,
+            7,
+            8,
+            1,
+            10,
+            11,
+            12,
+            13,
+            2,
+            15,
+            3
+          ]
+        },
+        "queue": [],
+        "debt": null,
+        "auction": null,
+        "card": null,
+        "trade": null,
+        "mortgageDecision": null,
+        "buildOffer": null,
+        "rentClaims": [],
+        "log": [
+          {
+            "id": 15,
+            "text": "Barter selesai: QA Aset memberikan ₦ 100; RAKA memberikan tanpa aset.",
+            "type": "trade",
+            "turn": 1,
+            "version": 14,
+            "actor": 1,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "trade",
+                "from": 0,
+                "to": 1,
+                "amount": 1000
+              }
+            ],
+            "assetChanges": [],
+            "tradeResult": {
+              "from": 0,
+              "to": 1,
+              "give": [],
+              "take": [],
+              "giveCash": 1000,
+              "takeCash": 0,
+              "giveCards": 0,
+              "takeCards": 0,
+              "offerId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:offer:14",
+              "status": "accepted",
+              "actor": 1
+            }
+          },
+          {
+            "id": 14,
+            "text": "QA Aset menawarkan barter kepada RAKA.",
+            "type": "trade",
+            "turn": 1,
+            "version": 13,
+            "actor": 0,
+            "audience": "public",
+            "tradeOffer": {
+              "from": 0,
+              "to": 1,
+              "give": [],
+              "take": [],
+              "giveCash": 1000,
+              "takeCash": 0,
+              "giveCards": 0,
+              "takeCards": 0,
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:offer:14"
+            }
+          },
+          {
+            "id": 13,
+            "text": "QA Aset menebus Yogyakarta · ₦ 55.",
+            "type": "money",
+            "turn": 1,
+            "version": 12,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "redeem",
+                "from": 0,
+                "to": null,
+                "amount": 550,
+                "tile": 6
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 6,
+                "owner": 0,
+                "level": 0,
+                "mortgaged": false
+              }
+            ]
+          },
+          {
+            "id": 12,
+            "text": "QA Aset menggadaikan Yogyakarta: +₦ 50.",
+            "type": "money",
+            "turn": 1,
+            "version": 11,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "mortgage",
+                "from": null,
+                "to": 0,
+                "amount": 500,
+                "tile": 6
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 6,
+                "owner": 0,
+                "level": 0,
+                "mortgaged": true
+              }
+            ]
+          },
+          {
+            "id": 11,
+            "text": "QA Aset membangun hotel di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 10,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 5,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 10,
+            "text": "QA Aset membangun hotel di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 9,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 5,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 9,
+            "text": "QA Aset membangun rumah ke-4 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 8,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 4,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 8,
+            "text": "QA Aset membangun rumah ke-4 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 7,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 4,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 7,
+            "text": "QA Aset membangun rumah ke-3 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 6,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 3,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 6,
+            "text": "QA Aset membangun rumah ke-3 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 5,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 3,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 5,
+            "text": "QA Aset membangun rumah ke-2 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 4,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 2,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 4,
+            "text": "QA Aset membangun rumah ke-2 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 3,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 2,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 3,
+            "text": "QA Aset membangun rumah ke-1 di Bandung · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 2,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 3
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 3,
+                "owner": 0,
+                "level": 1,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 2,
+            "text": "QA Aset membangun rumah ke-1 di Bogor · ₦ 50.",
+            "type": "build",
+            "turn": 1,
+            "version": 1,
+            "actor": 0,
+            "audience": "public",
+            "finance": [
+              {
+                "kind": "build",
+                "from": 0,
+                "to": null,
+                "amount": 500,
+                "tile": 1
+              }
+            ],
+            "assetChanges": [
+              {
+                "tile": 1,
+                "owner": 0,
+                "level": 1,
+                "mortgaged": false
+              }
+            ],
+            "buildBatch": {
+              "id": "1aa34c85-4a94-49d9-ad8d-990f3363c55e:2:f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+              "player": 0,
+              "count": 10,
+              "group": 0,
+              "cost": 5000
+            }
+          },
+          {
+            "id": 1,
+            "text": "Modal setiap pemain ₦ 1.500. Aturan dasar mengacu C1009; sewa dibukukan otomatis.",
+            "type": "start",
+            "turn": 1,
+            "version": 0,
+            "actor": 0,
+            "audience": "public"
+          }
+        ],
+        "eventId": 15,
+        "seen": [
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#0",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#1",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#2",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#3",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#4",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#5",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#6",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#7",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#8",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304#9",
+          "f9f2e995-34ed-4190-a8e4-135ab3ed7304",
+          "837364da-1f97-4886-9676-af98d7f4d26b",
+          "91b2a3d5-0e33-44e7-b439-5367a6061356",
+          "8751bf7f-ab2a-4c5f-9738-77b35cd5d135",
+          "05ba65a4-8d53-434f-b703-0b47599e23ca"
+        ],
+        "lastMove": null,
+        "aiStatus": "Bot lokal",
+        "aiComment": null,
+        "advisorEnabled": false,
+        "difficulty": "strategis",
+        "bankEconomy": {
+          "schema": 1,
+          "complete": true,
+          "fromVersion": 0,
+          "fromRound": 1,
+          "openingCirculation": 30000,
+          "issued": 500,
+          "absorbed": 5550,
+          "transferred": 1000,
+          "turnover": 7050,
+          "count": 13,
+          "byKind": {
+            "build": {
+              "issued": 0,
+              "absorbed": 5000,
+              "transferred": 0,
+              "total": 5000,
+              "count": 10
+            },
+            "mortgage": {
+              "issued": 500,
+              "absorbed": 0,
+              "transferred": 0,
+              "total": 500,
+              "count": 1
+            },
+            "redeem": {
+              "issued": 0,
+              "absorbed": 550,
+              "transferred": 0,
+              "total": 550,
+              "count": 1
+            },
+            "trade": {
+              "issued": 0,
+              "absorbed": 0,
+              "transferred": 1000,
+              "total": 1000,
+              "count": 1
+            }
+          },
+          "recent": [
+            {
+              "id": "15:0",
+              "round": 1,
+              "kind": "trade",
+              "from": 0,
+              "to": 1,
+              "amount": 1000
+            },
+            {
+              "id": "13:0",
+              "round": 1,
+              "kind": "redeem",
+              "from": 0,
+              "to": null,
+              "amount": 550,
+              "tile": 6
+            },
+            {
+              "id": "12:0",
+              "round": 1,
+              "kind": "mortgage",
+              "from": null,
+              "to": 0,
+              "amount": 500,
+              "tile": 6
+            },
+            {
+              "id": "11:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "10:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "9:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "8:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "7:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "6:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "5:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "4:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            },
+            {
+              "id": "3:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 3
+            },
+            {
+              "id": "2:0",
+              "round": 1,
+              "kind": "build",
+              "from": 0,
+              "to": null,
+              "amount": 500,
+              "tile": 1
+            }
+          ]
+        },
+        "botMemory": {
+          "version": 1,
+          "players": {
+            "0": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {},
+              "stabilityGuard": {
+                "matchId": "1aa34c85-4a94-49d9-ad8d-990f3363c55e",
+                "turnSerial": 0,
+                "lastVersion": 12,
+                "flips": {
+                  "6": {
+                    "count": 2,
+                    "turnSerial": 0
+                  }
+                },
+                "mortgaged": [
+                  6
+                ],
+                "redeemed": [
+                  6
+                ],
+                "built": [
+                  1,
+                  3
+                ],
+                "sold": []
+              },
+              "tradeHistory": [
+                {
+                  "version": 14,
+                  "serial": 0,
+                  "partner": 1,
+                  "signature": "[\"[1,[],[],0,0]\",1000]",
+                  "bundle": "[1,[],[],0,0]",
+                  "context": "457294a9",
+                  "trade": {
+                    "to": 1,
+                    "give": [],
+                    "take": [],
+                    "giveCash": 1000,
+                    "takeCash": 0,
+                    "giveCards": 0,
+                    "takeCards": 0
+                  },
+                  "outcome": "accepted",
+                  "reason": null,
+                  "confidence": "observed"
+                }
+              ]
+            },
+            "1": {
+              "lastOfferSerial": -100,
+              "lastSignature": "",
+              "rejections": {},
+              "finance": {
+                "version": 1,
+                "context": "[\"1aa34c85-4a94-49d9-ad8d-990f3363c55e\",0,\"roll\",0,null,null,null,null,null,null,[],[[0,false,0,false,8950],[1,false,0,false,null]],[[0,5],[0,5],[null,0],[0,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[null,0],[1,0],[null,0],[null,0],[null,0],[null,0],[null,0]]]",
+                "tiles": {},
+                "pending": []
+              }
+            }
+          },
+          "opponents": {
+            "0": {
+              "aggression": 1,
+              "observations": 0,
+              "groups": {}
+            },
+            "1": {
+              "aggression": 1,
+              "observations": 0,
+              "concessions": {
+                "early": [
+                  {
+                    "accepted": 0,
+                    "rejected": 0
+                  },
+                  {
+                    "accepted": 0,
+                    "rejected": 0
+                  },
+                  {
+                    "accepted": 0,
+                    "rejected": 0
+                  },
+                  {
+                    "accepted": 1,
+                    "rejected": 0
+                  }
+                ]
+              },
+              "tradeAccepted": 1,
+              "tradeRejected": 0
+            }
+          },
+          "negotiation": null
+        }
+      },
+      "text": ""
+    }
+  ],
+  "errors": [],
+  "refreshSameText": false,
+  "closeNoTransaction": true,
+  "resultNotRepeated": true
+}

@@ -1,0 +1,31 @@
+{
+  "trackedChangedFiles": [
+    "README.md",
+    "docs/RULEPACK.md",
+    "docs/TRADE_RESULTS_4116_UPDATE.md",
+    "frontend/app.mjs",
+    "frontend/feedback.mjs",
+    "frontend/index.html",
+    "frontend/online-status.mjs",
+    "frontend/popups.mjs",
+    "frontend/session.mjs",
+    "frontend/styles.css",
+    "package.json",
+    "scripts/test-auction-browser.mjs",
+    "scripts/test-bank-browser.mjs",
+    "scripts/test-browser.mjs",
+    "scripts/test-portrait-browser.mjs",
+    "scripts/test-stability-browser.mjs",
+    "scripts/test-trade-results-browser.mjs",
+    "scripts/test-ui-4114-browser.mjs",
+    "tests/trade-results.test.mjs",
+    "tests/ui-4114.test.mjs"
+  ],
+  "newSourceFiles": [
+    "frontend/auto-dismiss.mjs"
+  ],
+  "protectedFiles": 51,
+  "patchReverseCheck": true,
+  "baselineArtifactHashesIntact": true,
+  "sourceCommit": "6b237b4c7bc1cd133d74b7585ba011e1d8ba261c"
+}

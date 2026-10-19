@@ -37,7 +37,7 @@ try{
   for(const method of ['button','escape','back']){
    await page.locator('[data-asset-key=bank-mortgages] [data-action=certificate]').click();await page.locator('dialog[data-kind=property] .deed').waitFor();assert.equal(await page.locator('dialog [data-type]').count(),0);
    if(method==='button')await page.locator('.popup-dismiss').click();else if(method==='escape')await page.keyboard.press('Escape');else await page.evaluate(()=>history.back());
-   await page.locator('dialog[data-kind=bank]').waitFor();await settled(page);assert.equal(await page.locator('[data-asset-key=bank-mortgages]').getAttribute('open'),'');assert.equal(await page.locator('[data-asset-key=bank-flows]').getAttribute('open'),'');assert.deepEqual(await read(page),before);
+   await page.locator('dialog[data-kind=bank]').waitFor();await page.waitForFunction(()=>document.querySelector('[data-asset-key=bank-mortgages]')?.open&&document.querySelector('[data-asset-key=bank-flows]')?.open);await settled(page);assert.equal(await page.locator('[data-asset-key=bank-mortgages]').getAttribute('open'),'');assert.equal(await page.locator('[data-asset-key=bank-flows]').getAttribute('open'),'');assert.deepEqual(await read(page),before);
   }
   await page.locator('[data-asset-key=bank-inventory] summary').click();await page.locator('[data-asset-key=bank-inventory] [data-action=certificate]').first().click();await page.locator('dialog .deed').waitFor();await page.keyboard.press('Escape');await page.locator('dialog[data-kind=bank]').waitFor();await bounds(page,v);
   await page.locator('.popup-dismiss').click();await page.locator('dialog[open]').waitFor({state:'hidden'});

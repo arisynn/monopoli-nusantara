@@ -1,0 +1,313 @@
+{
+  "generatedAt": "2026-10-19T10:40:00.240Z",
+  "referenceUsed": false,
+  "checks": [
+    {
+      "name": "preserved game-320",
+      "passed": true,
+      "sha256": "b0a5a49867866cd19d2eacf0ded6ecf11c683b5863b7c985d4e85b6dd9459b10",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved game-360",
+      "passed": true,
+      "sha256": "8499c8ab9bae9810884230eed604b87a76f7191ae70d632a697c9ea75d985099",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved game-390",
+      "passed": true,
+      "sha256": "70ff1db8c2017c2d912da6b22b6155bb9d36b14eebef471f2425b68362e5887c",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved game-430",
+      "passed": true,
+      "sha256": "1a9ed14ef2be778b9fc6746a7359f499d9d603fb92f0807581ebff2820ba5f1b",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved chance",
+      "passed": true,
+      "sha256": "030d65097f113e583a12df8d0594b05c27b56a69d11ae511c5c1288a81686099",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved community",
+      "passed": true,
+      "sha256": "92d11e744d59f7ebc1ca806d67af545d24c8b5442cbd8b6d51a2a29487214da9",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved certificate",
+      "passed": true,
+      "sha256": "92e1cdd94dc04e3991688c4b88e369703f28b2258e43de0bdfc82f446835fa58",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved buy",
+      "passed": true,
+      "sha256": "b7e733253cbee32d0767483dec2ef320f27187d3f54bb38f7ea965b1e37ff84f",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved chance-catalog",
+      "passed": true,
+      "sha256": "602fdb3bf29a13304b6b867172812004c33474eba26c355ebf5fcaeaa87770ce",
+      "pixelCompared": false
+    },
+    {
+      "name": "preserved community-catalog",
+      "passed": true,
+      "sha256": "f9b0b9b96ae28a69adb6b64a5df1a1531f16bf34e5aac2604bbd5aa2e7ee149d",
+      "pixelCompared": false
+    },
+    {
+      "name": "lobby 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 300,
+        "height": 414.1875,
+        "x": 10,
+        "y": 83.40625,
+        "bottom": 497.59375,
+        "right": 310,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "setup 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "pawn 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 297,
+        "x": 19,
+        "y": 135.5,
+        "bottom": 432.5,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "onlineEntry 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 454.828125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "auth 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 454.828125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "menu 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 323.96875,
+        "x": 19,
+        "y": 122.015625,
+        "bottom": 445.984375,
+        "right": 301,
+        "footerBottom": 400.984375,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "settings 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "rules 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "saves 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "profile 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 388.984375,
+        "x": 19,
+        "y": 89.5,
+        "bottom": 478.484375,
+        "right": 301,
+        "footerBottom": 433.484375,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "assets 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 318,
+        "x": 19,
+        "y": 125,
+        "bottom": 443,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "build 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "trade 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 431.671875,
+        "x": 19,
+        "y": 68.15625,
+        "bottom": 499.828125,
+        "right": 301,
+        "footerBottom": 454.828125,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "history 320x568",
+      "passed": true,
+      "metrics": {
+        "width": 282,
+        "height": 268.234375,
+        "x": 19,
+        "y": 149.875,
+        "bottom": 418.109375,
+        "right": 301,
+        "footerBottom": 0,
+        "horizontalOverflow": false,
+        "bodyOverflow": false,
+        "density": "compact",
+        "nonSquareIcons": 0
+      }
+    },
+    {
+      "name": "portrait failure",
+      "passed": false,
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('dialog [data-action=allTiles]')\u001b[22m\n\n    at selectCase (/workspace/monopoli-nusantara/scripts/test-portrait-browser.mjs:27:167)\n    at async file:///workspace/monopoli-nusantara/scripts/test-portrait-browser.mjs:51:127"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium mobile emulation; no physical Android or iOS device.",
+    "Online forms tested locally; no real account is created.",
+    "Pixel equality is compared only against a reference captured in the same environment."
+  ]
+}

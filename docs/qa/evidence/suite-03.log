@@ -1,0 +1,112 @@
+
+> monopoli-nusantara@4.11.6 test:online
+> node --experimental-strip-types --test --test-isolation=none tests/online.test.mjs tests/online-client.test.mjs tests/auth-proxy.test.mjs tests/online-api.test.mjs tests/online-bots.test.mjs
+
+✖ tests/auth-proxy.test.mjs (1.784062ms)
+✔ configuration exposes only the public project URL/key, and handles an unconfigured server (24.37439ms)
+✔ API rejects unauthenticated, invalid-session, cross-origin and oversized requests (3.70465ms)
+(node:910) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ online diagnostics are authenticated and bot preflight rejects an unavailable worker (12.830942ms)
+✔ actual route: 2 human identities, ready/start, dice validation and cross-room access (17.841892ms)
+✔ actual route: 3 human identities, ready/start, dice validation and cross-room access (13.880185ms)
+✔ actual route: 6 human identities, ready/start, dice validation and cross-room access (22.204135ms)
+✔ room composition 2 humans + 0 bots (2.443568ms)
+✔ room composition 2 humans + 1 bots (1.939066ms)
+✔ room composition 2 humans + 3 bots (2.877082ms)
+✔ room composition 3 humans + 3 bots (2.363697ms)
+✔ room composition 6 humans + 0 bots (2.666794ms)
+✔ only host can add at Waiting; no duplicate personas, fourth bot, or participant overflow (3.420721ms)
+✔ two humans required even with three bots and joining after a bot preserves human seat identity (4.12265ms)
+✔ bot voting/Ready are excluded and resume needs only all active humans (3.904602ms)
+✔ human client cannot execute bot turn, claim bot actor, or post fake dice/balance (3.202283ms)
+✔ concurrent backend invocations fence and commit at most one action per state version (3.471328ms)
+✔ paused or disconnected human prevents worker mutation, without replacing that human with a bot (1.541957ms)
+✔ pause arriving while Groq is in flight discards the stale recommendation (2.718692ms)
+✔ game version change during advisor work is discarded and requeued (3.361552ms)
+✔ expired worker lease after process failure can be recovered by a different worker (40.354593ms)
+✔ lease expiry during consultation rejects commit even when game version remains unchanged (3.085936ms)
+✔ bot responses work outside the main turn in auctions, trade and scarce building interest (16.423433ms)
+✔ worker is bounded and its authorization rejects browser tokens and absent/short secrets (11.959497ms)
+✔ short disconnect blocks a bot job and heartbeat recovery requeues without host action (3.649327ms)
+✔ manual rent owed to a bot is claimed before the next human roll can expire it (3.142522ms)
+✔ online bot advisor outage continues with local NUSA MIND, without duplicate commits (3.118115ms)
+✔ invalid online bot suggestion falls back to a legal local decision (2.772023ms)
+✔ NUSA V23 runs through the online job worker and commits one legal purchase (16.987323ms)
+✔ human actions persist NUSA observations without a separate bot commit or gameplay version (8.016326ms)
+✔ default Edge invocation commits one action and records recovery from an invalid advisor (6.844468ms)
+✔ guest Auth is persistent in browser; connection IDs survive refresh and identify one tab (1.315445ms)
+✔ expired access token uses rotating refresh token and never sends a room snapshot to Auth (0.405872ms)
+✔ Auth provider and connection failures stay distinct and do not destroy an existing identity (0.598964ms)
+✔ room requests authenticate with current user bearer, not the service secret or seat name (0.680336ms)
+✔ Supabase backend validates identity remotely; browser self-asserted user ID is insufficient (0.691454ms)
+✔ server store scopes queries and commits through a backend-only RPC with expected revision (0.646145ms)
+✔ Supabase config requires server credentials and rejects unsafe destinations (0.27824ms)
+✔ Realtime joins a room-scoped, authenticated revision-only channel and disposes resources (0.922062ms)
+✔ late responses for a different authenticated identity cannot replace the current seat (0.098518ms)
+✔ email confirmation verifies callback identity and removes tokens from the URL (0.66958ms)
+✔ reconnect replaces an untrusted browser cache even when its stored version is higher (0.198639ms)
+✔ email login and signup use same-origin relay and show provider errors (0.457941ms)
+✔ browser transport errors distinguish timeout without treating Auth 400 as connection loss (0.246622ms)
+✔ Auth transport invokes browser fetch without an illegal this receiver (0.445222ms)
+✔ pause majority 2/2, offline electorate retained (2.202454ms)
+✔ pause majority 2/3, offline electorate retained (2.031665ms)
+✔ pause majority 3/4, offline electorate retained (2.881698ms)
+✔ pause majority 3/5, offline electorate retained (3.739893ms)
+✔ pause majority 4/6, offline electorate retained (4.398618ms)
+✔ persistent Auth seat rejoin works after start, duplicate tabs and host loss never move seats (2.374823ms)
+✔ non-members cannot read, mutate or take a seat by display name after start (1.309275ms)
+✔ concurrent purchases commit once; same command receipt returns current snapshot (3.897141ms)
+✔ concurrent duplicate creates and duplicate joins keep one room and one seat (0.612053ms)
+✔ simultaneous final seat join respects capacity (1.076805ms)
+✔ forged dice, balances, bot commands, wrong actor and stale revision are rejected (3.136302ms)
+✔ duplicate trade accept does not transfer cash or assets twice (3.859905ms)
+✔ lost connection immediately holds critical decisions after lease detection and reconnect under 90s keeps phase (4.489434ms)
+✔ all clients offline overnight auto-pauses BEFORE returning heartbeat, full snapshot survives service restart (1.734006ms)
+✔ a rejected stale gameplay command still persists overdue auto-pause (1.714817ms)
+✔ one live tab keeps the same seat online when another tab disappears (1.885585ms)
+✔ offline voters keep their vote entitlement, expired votes cannot pass, duplicate votes rejected (2.961529ms)
+✔ concurrent pause requests create one open vote; impossible majority rejects and spam is limited (3.706543ms)
+✔ bankrupt spectators neither vote, block connection, nor count toward unanimous resume (3.968198ms)
+✔ resume requires every active identity; host cannot force it and ready resets after a disconnect (5.980915ms)
+✔ two concurrent final resume commands are idempotent and preserve the game snapshot (2.554655ms)
+✔ pause/restart/resume preserves auction, decks, queue, ownership and phase exactly (2.455114ms)
+✔ pause/restart/resume preserves trade, decks, queue, ownership and phase exactly (2.644891ms)
+✔ pause/restart/resume preserves debt, decks, queue, ownership and phase exactly (2.427794ms)
+✔ pause/restart/resume preserves card, decks, queue, ownership and phase exactly (2.234923ms)
+✔ pause/restart/resume preserves jail, decks, queue, ownership and phase exactly (3.940296ms)
+✔ pause/restart/resume preserves mortgage, decks, queue, ownership and phase exactly (2.300722ms)
+✔ pause/restart/resume preserves buildOffer, decks, queue, ownership and phase exactly (2.6976ms)
+✔ snapshots and revision hints never include Auth IDs, connections, decks, receipts or seat tokens (1.176055ms)
+✔ list finds persistent rooms by identity and reconciles overnight absence (0.955341ms)
+✔ VS Bot supports one human and one to five bots with the unchanged shared engine (27.246614ms)
+✔ numeric strings and injected trade contexts cannot corrupt ownership types (4.422584ms)
+✔ human names are mandatory when creating and joining a new online seat (0.622729ms)
+✔ participant can rename while playing and paused without rewriting turn, assets, or game version (3.143373ms)
+✔ online service enforces five-Nusa opening and minimum increases before committing (4.610938ms)
+ℹ tests 80
+ℹ suites 0
+ℹ pass 79
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 492.794548
+
+✖ failing tests:
+
+test at tests/auth-proxy.test.mjs:1:1
+✖ tests/auth-proxy.test.mjs (1.784062ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@/lib' imported from /workspace/monopoli-nusantara/app/api/auth/route.ts
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:768:81)
+      at moduleResolve (node:internal/modules/esm/resolve:859:18)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }

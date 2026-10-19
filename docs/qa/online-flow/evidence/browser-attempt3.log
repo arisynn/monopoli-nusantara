@@ -1,0 +1,13 @@
+
+> monopoli-nusantara@4.11.6 test:online:flow
+> node --experimental-strip-types scripts/test-online-flow-browser.mjs
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-action=onlineEntry]')[22m
+
+    at client (/workspace/monopoli-nusantara/scripts/test-online-flow-browser.mjs:146:51)
+    at async room (/workspace/monopoli-nusantara/scripts/test-online-flow-browser.mjs:178:13)
+    at async file:///workspace/monopoli-nusantara/scripts/test-online-flow-browser.mjs:402:35 {
+  name: 'TimeoutError'
+}

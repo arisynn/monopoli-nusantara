@@ -1,0 +1,176 @@
+{
+  "generatedAt": "2026-10-19T10:35:42.283Z",
+  "environment": "Real Chromium and actual application DOM; controlled authoritative state and transport",
+  "checks": [
+    {
+      "name": "2 players: small-screen lobby, no text selection, actual pure-code clipboard",
+      "pass": true
+    },
+    {
+      "name": "3 players: small-screen lobby, no text selection, actual pure-code clipboard",
+      "pass": true
+    },
+    {
+      "name": "4 players: small-screen lobby, no text selection, actual pure-code clipboard",
+      "pass": true
+    },
+    {
+      "name": "5 players: small-screen lobby, no text selection, actual pure-code clipboard",
+      "pass": true
+    },
+    {
+      "name": "6 players: small-screen lobby, no text selection, actual pure-code clipboard",
+      "pass": true
+    },
+    {
+      "name": "clipboard permission denial, real fallback, honest failure and modal dismissal",
+      "pass": true
+    },
+    {
+      "name": "assets: one accordion, per-tab search/scroll, Pegadaian-only transactions, single/multiple builds, double-tap guards",
+      "pass": true
+    },
+    {
+      "name": "committed rent uses a buttonless shared modal, deduplicates snapshots, aggregates bursts, expires without a transaction and reconnects without replay",
+      "pass": true
+    },
+    {
+      "name": "card has no close, Escape cannot skip effect, menu pauses read timer, one confirmed ACK, reduced motion",
+      "pass": true
+    },
+    {
+      "name": "assets: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "development: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "buildOrder: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "property: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "history: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "profile: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "trade: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "picker: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "buy: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "debt: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "auction: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "jail: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "mortgage: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "buildOffer: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "won: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "confirmAsset: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "bankrupt: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "menu: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "settings: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "rules: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "saves: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "room: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "pawn: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "setup: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "botChoice: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "onlineEntry: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "auth: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "myProfile: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "bank: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "savedRooms: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "addBotPopup: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    },
+    {
+      "name": "leaveRoomConfirm: one bottom text dismissal, no duplicate boxed close, bounded 320px dialog",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Mobile emulation, not physical Android.",
+    "No hosted Supabase/Auth/Realtime/Vercel or Termux device.",
+    "Test server exports application handles for controlled fixtures; deployed source does not."
+  ]
+}

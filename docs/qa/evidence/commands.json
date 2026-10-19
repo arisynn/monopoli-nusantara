@@ -1,0 +1,98 @@
+[
+  {
+    "command": "npm test",
+    "exitCode": 0,
+    "durationSeconds": 35.728,
+    "log": "docs/qa/evidence/suite-00.log"
+  },
+  {
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "durationSeconds": 1.39,
+    "log": "docs/qa/evidence/suite-01.log"
+  },
+  {
+    "command": "npm run check:source",
+    "exitCode": 0,
+    "durationSeconds": 0.577,
+    "log": "docs/qa/evidence/suite-02.log"
+  },
+  {
+    "command": "npm run test:online",
+    "exitCode": 1,
+    "durationSeconds": 0.669,
+    "log": "docs/qa/evidence/suite-03.log"
+  },
+  {
+    "command": "npm run test:browser",
+    "exitCode": 1,
+    "durationSeconds": 2.124,
+    "log": "docs/qa/evidence/suite-04.log"
+  },
+  {
+    "command": "npm run test:portrait",
+    "exitCode": 1,
+    "durationSeconds": 11.281,
+    "log": "docs/qa/evidence/suite-05.log"
+  },
+  {
+    "command": "npm run test:auction",
+    "exitCode": 1,
+    "durationSeconds": 64.361,
+    "log": "docs/qa/evidence/suite-06.log"
+  },
+  {
+    "command": "npm run test:trade:results",
+    "exitCode": 0,
+    "durationSeconds": 0.641,
+    "log": "docs/qa/evidence/suite-07.log"
+  },
+  {
+    "command": "npm run test:trade:results:browser",
+    "exitCode": 0,
+    "durationSeconds": 31.297,
+    "log": "docs/qa/evidence/suite-08.log"
+  },
+  {
+    "command": "npm run test:hold:batch",
+    "exitCode": 0,
+    "durationSeconds": 0.593,
+    "log": "docs/qa/evidence/suite-09.log"
+  },
+  {
+    "command": "npm run test:pwa:browser",
+    "exitCode": 0,
+    "durationSeconds": 6.749,
+    "log": "docs/qa/evidence/suite-10.log"
+  },
+  {
+    "command": "npm run audit:dice",
+    "exitCode": 0,
+    "durationSeconds": 1.046,
+    "log": "docs/qa/evidence/suite-11.log"
+  },
+  {
+    "command": "npm run diagnose:deployment -- --origin=https://monopoli-nusantara-eight.vercel.app",
+    "exitCode": 0,
+    "durationSeconds": 1.402,
+    "log": "docs/qa/evidence/suite-12.log"
+  },
+  {
+    "command": "npm run test:stability",
+    "exitCode": 1,
+    "durationSeconds": 33.9,
+    "log": "docs/qa/evidence/suite-13.log"
+  },
+  {
+    "command": "npm run test:bank",
+    "exitCode": 1,
+    "durationSeconds": 27.698,
+    "log": "docs/qa/evidence/suite-14.log"
+  },
+  {
+    "command": "npm run test:termux",
+    "exitCode": 0,
+    "durationSeconds": 5.3,
+    "log": "docs/qa/evidence/suite-15.log"
+  }
+]

@@ -1,0 +1,94 @@
+
+> monopoli-nusantara@4.11.6 pretest
+> npm run build
+
+
+> monopoli-nusantara@4.11.6 build
+> node scripts/build-web.mjs
+
+(node:18283) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Built private server-dist — 74 reachable native ESM modules.
+Built /workspace/monopoli-nusantara/dist/ — 104 reachable browser modules; no server secrets/modules or dependency install.
+
+> monopoli-nusantara@4.11.6 test
+> node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-headless.mjs
+
+(node:18295) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL 2 real frontend sessions: public cards ordered once, controls bound to actor, pause and reconnect preserve state [Error [ERR_TEST_FAILURE]: the current human card bypasses decorative backlog
++ actual - expected
+
++ 'diceRolling'
+- 'eventRevealing'
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: the current human card bypasses decorative backlog
+  + actual - expected
+  
+  + 'diceRolling'
+  - 'eventRevealing'
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/frontend.test.mjs:597:28)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'diceRolling',
+    expected: 'eventRevealing',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+FAIL 4 real frontend sessions: public cards ordered once, controls bound to actor, pause and reconnect preserve state [Error [ERR_TEST_FAILURE]: the current human card bypasses decorative backlog
++ actual - expected
+
++ 'diceRolling'
+- 'eventRevealing'
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: the current human card bypasses decorative backlog
+  + actual - expected
+  
+  + 'diceRolling'
+  - 'eventRevealing'
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/frontend.test.mjs:597:28)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'diceRolling',
+    expected: 'eventRevealing',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+FAIL 6 real frontend sessions: public cards ordered once, controls bound to actor, pause and reconnect preserve state [Error [ERR_TEST_FAILURE]: the current human card bypasses decorative backlog
++ actual - expected
+
++ 'diceRolling'
+- 'eventRevealing'
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: the current human card bypasses decorative backlog
+  + actual - expected
+  
+  + 'diceRolling'
+  - 'eventRevealing'
+  
+      at TestContext.<anonymous> (file:///workspace/monopoli-nusantara/tests/frontend.test.mjs:597:28)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'diceRolling',
+    expected: 'eventRevealing',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+Core + frontend results: 710/713, failed 3, skipped 0.
