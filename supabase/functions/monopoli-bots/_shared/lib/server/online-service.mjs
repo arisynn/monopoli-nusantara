@@ -57,7 +57,7 @@ export function createOnlineService({store, clock = Date.now, rng = secureRandom
     const code = body.type === 'CREATE' ? generateCode() : body.code;
     const row = body.type === 'CREATE' ? {code, revision: -1, data: newRoom(body, code, userId, body.clientId, now)} : await store.get(code);
     check(row, 'Room tidak ditemukan.', 404);
-    const room = row.data;
+    const room = row.data, sourceVersion = room.state?.version;
     let seat = seatFor(room, userId);
     if (body.type !== 'CREATE' && body.type !== 'JOIN' && seat<0)throw new RoomError('Bukan peserta room. Kursi sudah tidak tersedia untuk identitas ini.',403,'room_membership_ended');
     // Reconcile BEFORE accepting a returning heartbeat. All-offline expiry must survive reconnect.
@@ -82,7 +82,7 @@ export function createOnlineService({store, clock = Date.now, rng = secureRandom
     room.connectivity = room.seats.map(s => Object.values(s.connections || {}).some(at => at > now - 35000));
     const meta = {userId, requestId: heartbeat ? null : body.requestId, hash, type: body.type,
      notify: !heartbeat || !wasConnected || room.status !== JSON.parse(before).status || room.host !== JSON.parse(before).host || JSON.stringify(room.vote) !== JSON.stringify(JSON.parse(before).vote) || JSON.stringify(room.pause) !== JSON.stringify(JSON.parse(before).pause) || JSON.stringify(room.connectivity) !== JSON.stringify(JSON.parse(before).connectivity)};
-    if(body.type==='ACTION')room.performance={trace:body.requestId,sourceVersion:row.data.state?.version-1,version:room.state?.version,kind:'human',commitStartedAt:clock()};
+    if(body.type==='ACTION')room.performance={trace:body.requestId,sourceVersion,version:room.state?.version,kind:'human',commitStartedAt:clock()};
     const committed = await store.commit(row, room, meta);
     if (committed.duplicate) {
      check(committed.hash === hash, 'ID permintaan sudah dipakai untuk isi berbeda.', 409);

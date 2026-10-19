@@ -1,0 +1,42 @@
+{
+  "release": "4.11.5",
+  "generatedAt": "2026-10-19T04:17:08.799223+00:00",
+  "core": {
+    "passed": 700,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "holdBatch": {
+      "passed": 22,
+      "failed": 0,
+      "report": "docs/audits/HOLD_BATCH_BROWSER_RESULTS.json"
+    },
+    "priorUI": {
+      "passed": 41,
+      "failed": 0,
+      "report": "docs/audits/UI_4114_BROWSER_RESULTS.json"
+    },
+    "onlineRoom": {
+      "passed": 14,
+      "failed": 0,
+      "report": "docs/ONLINE_ROOM_BROWSER_RESULTS.json"
+    }
+  },
+  "typecheck": "pass",
+  "sourceOutput": {
+    "checked": 632,
+    "failed": 0
+  },
+  "protectedModelEngine": {
+    "checked": 51,
+    "changed": 0
+  },
+  "runtimeLock": "docs/audits/HOLD_BATCH_RUNTIME_LOCK.json",
+  "termuxSelftest": "pass: 6 persona, compute thread, engine legality, bid increments N5",
+  "limitations": [
+    "Local Chromium and touch emulation; no physical Android measurement.",
+    "Authenticated service, receipt/CAS and isolated Auth/Realtime doubles were tested locally; hosted production was not accessed.",
+    "Build speed benchmark uses controlled 180 ms request delay, not measured production latency."
+  ]
+}

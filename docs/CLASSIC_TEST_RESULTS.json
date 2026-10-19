@@ -1,7 +1,9 @@
 {
-  "generatedAt": "2026-10-19T03:36:12.979Z",
+  "generatedAt": "2026-10-19T04:12:35.679Z",
   "node": "v24.19.0",
   "files": [
+    "tests/hold-batch.test.mjs",
+    "tests/dice-audit.test.mjs",
     "tests/ui-4114.test.mjs",
     "tests/online-speed-worker.test.mjs",
     "tests/online-speed.test.mjs",
@@ -50,8 +52,8 @@
     "tests/headless-package.test.mjs",
     "tests/frontend.test.mjs"
   ],
-  "tests": 678,
-  "passed": 678,
+  "tests": 700,
+  "passed": 700,
   "failed": 0,
   "skipped": 0,
   "failures": [],

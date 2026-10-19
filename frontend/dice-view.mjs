@@ -59,7 +59,11 @@ export class DiceView {
     this.element.classList.toggle("rolling", result.stage === "rolling");
     this.element.setAttribute("aria-label", result.label);
     this.element.querySelector("small").textContent =
-      result.stage === "rolling" ? "Mengacak…" : result.label;
+      result.stage === "rolling"
+        ? result.label === "Lepas untuk melempar"
+          ? result.label
+          : "Mengacak…"
+        : result.label;
     if (result.stage !== "rolling") {
       this.stop();
       this.paint(result.values || (result.stage === "idle" ? [1, 1] : null));

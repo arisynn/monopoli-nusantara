@@ -63,8 +63,8 @@ for name, data in files.items():
 
 generated = {
     'MODEL_MANIFEST.json': {'id': model_id, 'release': 'v23.2-guard-finance-auction', 'files': model_files},
-    'VERSION.json': {'app': VERSION, 'protocol': 1, 'modelManifest': model_id, 'baselineCommit': baseline, 'scope': 'Compact popup/assets/online lobby UX + previous speed optimization; full backend/frontend/Termux source and prepared outputs', 'previousRelease': '4.11.3', 'modelUnchanged': True},
-    'SOURCE_PATCHES.json': {'baselineCommit': baseline, 'note': '4.11.4 polishes popup/assets/lobby UX on top of 4.11.3 speed improvements; the V23.2 model, manifest and engine remain byte-identical to 4.11.2. No new migration or Termux runtime change. Baseline Git hashes also include previously approved Guard/finance/N5 corrections; migration 008 is separate. Historical benchmarks are test fixtures, never runtime model imports.', 'changes': changes},
+    'VERSION.json': {'app': VERSION, 'protocol': 1, 'modelManifest': model_id, 'baselineCommit': baseline, 'scope': 'CSPRNG hold/release input and atomic human build batches; full backend/frontend/Termux source and prepared outputs', 'previousRelease': '4.11.4', 'modelUnchanged': True},
+    'SOURCE_PATCHES.json': {'baselineCommit': baseline, 'note': '4.11.5 adds hold/release input and a shared atomic BUILD wrapper on top of 4.11.4 UI and 4.11.3 speed improvements; the V23.2 model, manifest and engine remain byte-identical to 4.11.2. No new migration or Termux runtime change; deploy matching frontend and backend for BUILD_BATCH. Baseline Git hashes also include previously approved Guard/finance/N5 corrections; migration 008 is separate. Historical benchmarks are test fixtures, never runtime model imports.', 'changes': changes},
 }
 for name, value in generated.items():
     files[name] = (json.dumps(value, indent=2) + '\n').encode()

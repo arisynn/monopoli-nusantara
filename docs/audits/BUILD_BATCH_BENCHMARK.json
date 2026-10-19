@@ -1,0 +1,226 @@
+{
+  "generatedAt": "2026-10-19T04:05:31.380Z",
+  "rows": [
+    {
+      "players": 2,
+      "batch": false,
+      "trial": 0,
+      "requests": 6,
+      "commits": 6,
+      "responseMs": 1097.540653,
+      "computeMs": 14.95277299999998
+    },
+    {
+      "players": 2,
+      "batch": false,
+      "trial": 1,
+      "requests": 6,
+      "commits": 6,
+      "responseMs": 1100.5958239999998,
+      "computeMs": 17.702443999999332
+    },
+    {
+      "players": 2,
+      "batch": true,
+      "trial": 0,
+      "requests": 1,
+      "commits": 1,
+      "responseMs": 189.89802899999995,
+      "computeMs": 7.514044000000013
+    },
+    {
+      "players": 2,
+      "batch": true,
+      "trial": 1,
+      "requests": 1,
+      "commits": 1,
+      "responseMs": 186.2387130000002,
+      "computeMs": 5.63662099999965
+    },
+    {
+      "players": 3,
+      "batch": false,
+      "trial": 0,
+      "requests": 6,
+      "commits": 6,
+      "responseMs": 1093.7496810000002,
+      "computeMs": 9.761438000000453
+    },
+    {
+      "players": 3,
+      "batch": false,
+      "trial": 1,
+      "requests": 6,
+      "commits": 6,
+      "responseMs": 1122.4614139999999,
+      "computeMs": 37.65017800000078
+    },
+    {
+      "players": 3,
+      "batch": true,
+      "trial": 0,
+      "requests": 1,
+      "commits": 1,
+      "responseMs": 188.42294399999992,
+      "computeMs": 7.657038000000284
+    },
+    {
+      "players": 3,
+      "batch": true,
+      "trial": 1,
+      "requests": 1,
+      "commits": 1,
+      "responseMs": 181.85997399999997,
+      "computeMs": 1.9944379999997182
+    },
+    {
+      "players": 4,
+      "batch": false,
+      "trial": 0,
+      "requests": 6,
+      "commits": 6,
+      "responseMs": 1112.6661290000002,
+      "computeMs": 19.034576000000925
+    },
+    {
+      "players": 4,
+      "batch": false,
+      "trial": 1,
+      "requests": 6,
+      "commits": 6,
+      "responseMs": 1092.9887040000003,
+      "computeMs": 10.443249000001742
+    },
+    {
+      "players": 4,
+      "batch": true,
+      "trial": 0,
+      "requests": 1,
+      "commits": 1,
+      "responseMs": 182.8565580000004,
+      "computeMs": 2.3794550000002346
+    },
+    {
+      "players": 4,
+      "batch": true,
+      "trial": 1,
+      "requests": 1,
+      "commits": 1,
+      "responseMs": 184.03526599999987,
+      "computeMs": 3.570818999999574
+    },
+    {
+      "players": 5,
+      "batch": false,
+      "trial": 0,
+      "requests": 6,
+      "commits": 6,
+      "responseMs": 1095.8300149999995,
+      "computeMs": 11.554006999998819
+    },
+    {
+      "players": 5,
+      "batch": false,
+      "trial": 1,
+      "requests": 6,
+      "commits": 6,
+      "responseMs": 1096.0548199999994,
+      "computeMs": 13.268358999997872
+    },
+    {
+      "players": 5,
+      "batch": true,
+      "trial": 0,
+      "requests": 1,
+      "commits": 1,
+      "responseMs": 183.99165999999968,
+      "computeMs": 3.371573000000353
+    },
+    {
+      "players": 5,
+      "batch": true,
+      "trial": 1,
+      "requests": 1,
+      "commits": 1,
+      "responseMs": 184.4268350000002,
+      "computeMs": 3.9478409999992436
+    },
+    {
+      "players": 6,
+      "batch": false,
+      "trial": 0,
+      "requests": 6,
+      "commits": 6,
+      "responseMs": 1094.3177350000005,
+      "computeMs": 11.70043799999985
+    },
+    {
+      "players": 6,
+      "batch": false,
+      "trial": 1,
+      "requests": 6,
+      "commits": 6,
+      "responseMs": 1092.566365999999,
+      "computeMs": 9.357531000001472
+    },
+    {
+      "players": 6,
+      "batch": true,
+      "trial": 0,
+      "requests": 1,
+      "commits": 1,
+      "responseMs": 183.7782040000002,
+      "computeMs": 3.2676490000012564
+    },
+    {
+      "players": 6,
+      "batch": true,
+      "trial": 1,
+      "requests": 1,
+      "commits": 1,
+      "responseMs": 193.31397900000047,
+      "computeMs": 10.29621600000064
+    }
+  ],
+  "before": {
+    "responseMs": {
+      "p50": 1095.8300149999995,
+      "p95": 1122.4614139999999
+    },
+    "computeMs": {
+      "p50": 11.70043799999985,
+      "p95": 37.65017800000078
+    },
+    "requests": {
+      "p50": 6,
+      "p95": 6
+    },
+    "commits": {
+      "p50": 6,
+      "p95": 6
+    }
+  },
+  "after": {
+    "responseMs": {
+      "p50": 184.03526599999987,
+      "p95": 193.31397900000047
+    },
+    "computeMs": {
+      "p50": 3.570818999999574,
+      "p95": 10.29621600000064
+    },
+    "requests": {
+      "p50": 1,
+      "p95": 1
+    },
+    "commits": {
+      "p50": 1,
+      "p95": 1
+    }
+  },
+  "limits": [
+    "Local authoritative service with memory store and controlled 180 ms delay per request.",
+    "Before uses the old six sequential official BUILD requests without extra animation waiting; after uses one atomic batch.",
+    "Not production Vercel/Supabase/Android latency; no held game traffic, model or RNG changes."
+  ]
+}

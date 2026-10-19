@@ -126,11 +126,14 @@ export function renderAssetPanel(c, { btn, lead, amount }) {
       .join("") ||
     '<p class="empty">Belum ada tanah milik Anda untuk dibangun.</p>';
   const planStatus =
-    plan?.kind === "build"
-      ? `<div class="build-progress" role="status"><span>${plan.completed}/${plan.requested} bangunan · ${esc(plan.status === "running" ? "Sedang membangun…" : plan.reason)}</span>${plan.status === "running" ? btn("Hentikan", "stopBuilds") : ""}</div>`
-      : c.session.assetFeedback
-        ? '<p class="build-progress" role="status">Transaksi tersimpan · memperbarui aset…</p>'
-        : "";
+    c.session.batchResult?.match === c.s.matchId &&
+    c.session.batchResult?.version === c.session.state?.version
+      ? `<p class="build-progress" role="status">${c.session.batchResult.count} bangunan selesai · ${esc(money(c.session.batchResult.cost))}</p>`
+      : plan?.kind === "build"
+        ? `<div class="build-progress" role="status"><span>${plan.completed}/${plan.requested} bangunan · ${esc(plan.status === "running" ? "Sedang membangun…" : plan.reason)}</span>${plan.status === "running" ? btn("Hentikan", "stopBuilds") : ""}</div>`
+        : c.session.assetFeedback
+          ? '<p class="build-progress" role="status">Transaksi tersimpan · memperbarui aset…</p>'
+          : "";
   return {
     title: own ? "Aset Saya" : `Aset ${player.name}`,
     html:
@@ -209,11 +212,15 @@ export function renderBuildOrder(session, ui, popup, { btn, lead }) {
     title: `Bangun · ${group.name}`,
     html:
       lead("home", `Bangun · ${group.name}`) +
-      `<div class="build-dialog-facts"><span>${bank.houses} rumah · ${bank.hotels} hotel tersedia</span><b>Saldo ${esc(money(s.players[session.seat].cash))}</b></div><div class="build-dialog-fields"><label class="field">Jumlah bangunan<select name="buildCount-${popup.group}" ${session.busy ? "disabled" : ""}>${options.map((n) => `<option value="${n}" ${n === count ? "selected" : ""} ${n > max ? "disabled" : ""}>${n}${n > max ? " · tidak tersedia" : ""}</option>`).join("")}</select></label>${count === 1 ? `<label class="field">Properti tujuan<select name="buildTarget-${popup.group}" ${session.busy ? "disabled" : ""}>${[...new Set([...eligible, ...(tile === undefined ? [] : [tile])])].map((id) => `<option value="${id}" ${id === tile ? "selected" : ""} ${!eligible.includes(id) ? "disabled" : ""}>${esc(BOARD[id]?.name)}${!eligible.includes(id) ? " · tidak tersedia" : ""}</option>`).join("")}</select></label>` : ""}</div><div class="fact-row"><span>Total biaya</span><b>${valid ? esc(money(cost)) : "—"}</b></div>${count > 1 && valid ? `<details class="build-dialog-preview"><summary>Rincian ${count} bangunan</summary><ol>${tiles.map((id) => `<li>${esc(BOARD[id].name)} · ${esc(money(BOARD[id].build))}</li>`).join("")}</ol></details>` : ""}<p class="inline-note">${!valid ? "Pilihan tidak lagi tersedia. Periksa jumlah, lokasi, saldo, atau stok terbaru." : "Pembangunan mengikuti aturan merata. Setiap bangunan divalidasi kembali sebelum dibayar."}</p>`,
-    footer: btn(
-      "Bangun " + count + (valid ? " · " + money(cost) : ""),
-      "submitBuildOrder",
-      { primary: true, disabled: session.busy || !valid },
-    ),
+      `<div class="build-dialog-facts"><span>${bank.houses} rumah · ${bank.hotels} hotel tersedia</span><b>Saldo ${esc(money(s.players[session.seat].cash))}</b></div><div class="build-dialog-fields"><label class="field">Jumlah bangunan<select name="buildCount-${popup.group}" ${session.busy ? "disabled" : ""}>${options.map((n) => `<option value="${n}" ${n === count ? "selected" : ""} ${n > max ? "disabled" : ""}>${n}${n > max ? " · tidak tersedia" : ""}</option>`).join("")}</select></label>${count === 1 ? `<label class="field">Properti tujuan<select name="buildTarget-${popup.group}" ${session.busy ? "disabled" : ""}>${[...new Set([...eligible, ...(tile === undefined ? [] : [tile])])].map((id) => `<option value="${id}" ${id === tile ? "selected" : ""} ${!eligible.includes(id) ? "disabled" : ""}>${esc(BOARD[id]?.name)}${!eligible.includes(id) ? " · tidak tersedia" : ""}</option>`).join("")}</select></label>` : ""}</div><div class="fact-row"><span>Total biaya</span><b>${valid ? esc(money(cost)) : "—"}</b></div>${count > 1 && valid ? `<details class="build-dialog-preview"><summary>Rincian ${count} bangunan</summary><ol>${tiles.map((id) => `<li>${esc(BOARD[id].name)} · ${esc(money(BOARD[id].build))}</li>`).join("")}</ol></details>` : ""}<p class="inline-note">${!valid ? "Pilihan tidak lagi tersedia. Periksa jumlah, lokasi, saldo, atau stok terbaru." : "Pesanan dibangun sekaligus sesuai aturan merata. Saldo dan stok diperiksa saat konfirmasi."}</p>`,
+    footer:
+      (session.errorCode === "build_batch_stock"
+        ? btn("Pemesanan stok · jumlah 1", "buildStockSingle")
+        : "") +
+      btn(
+        "Bangun " + count + (valid ? " · " + money(cost) : ""),
+        "submitBuildOrder",
+        { primary: true, disabled: session.busy || !valid },
+      ),
   };
 }

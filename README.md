@@ -1,8 +1,8 @@
-# Monopoli Nusantara 4.11.4
+# Monopoli Nusantara 4.11.5
 
-Rilis aktif: lobby online padat, popup dengan penutup teks, notifikasi penerimaan sewa, dan Aset Saya dengan tab Properti/Bangun/Pegadaian. Tombol Bangun membuka popup jumlah; jumlah satu dapat diarahkan ke properti tertentu. Panduan update GitHub/Vercel/Termux: [UI_4114_UPDATE.md](docs/UI_4114_UPDATE.md).
+Rilis aktif: dadu tahan–lepas dengan CSPRNG yang tetap sama; bot tetap melempar otomatis. Bangun banyak kini memakai satu request dan satu commit atomik, dengan satu penyajian hasil. Jumlah satu tetap dapat diarahkan ke properti tertentu. Lobby padat, penutup popup teks, notifikasi sewa, dan Pegadaian tetap tersedia. Panduan update GitHub/Vercel/Termux beserta audit dan benchmark: [HOLD_BATCH_4115_UPDATE.md](docs/HOLD_BATCH_4115_UPDATE.md).
 
-Worker AI menggunakan Termux/PM2 dengan model V23.2 dan manifest yang sama dengan 4.11.3. Instalasi: [TERMUX_ONLINE.md](docs/TERMUX_ONLINE.md). Jika berasal dari 4.11.2, terapkan dahulu pembaruan [ONLINE_SPEED_UPDATE.md](docs/ONLINE_SPEED_UPDATE.md). Pembaruan UI 4.11.4 tidak memerlukan migration atau pairing ulang.
+Worker AI menggunakan Termux/PM2 dengan model V23.2 dan manifest yang sama dengan 4.11.3. Instalasi: [TERMUX_ONLINE.md](docs/TERMUX_ONLINE.md). Jika berasal dari 4.11.2, terapkan dahulu pembaruan [ONLINE_SPEED_UPDATE.md](docs/ONLINE_SPEED_UPDATE.md). Dari 4.11.4 lengkap, perbarui frontend dan backend bersama; tidak perlu migration atau pairing ulang.
 
 Catatan di bawah merekam perkembangan versi terdahulu; instruksi deployment aktif ada pada panduan di atas.
 

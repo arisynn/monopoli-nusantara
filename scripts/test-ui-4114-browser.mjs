@@ -390,7 +390,7 @@ try {
       n.click();
     });
     await page.waitForFunction(
-      () => qa.session.assetPlan?.status === "complete",
+      () => qa.session.state.version === 5 && !qa.session.pending,
     );
     assert.equal(await version(page), 5);
     assert.equal(

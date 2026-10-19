@@ -1,0 +1,7 @@
+{
+  "baseline": "NUSA_ONLINE_TERMUX_4.11.4.zip",
+  "checked": 64,
+  "scope": "Protected model/engine, manifest, Termux worker and CLI; online service/room and frontend intentionally updated",
+  "changed": [],
+  "result": "pass"
+}

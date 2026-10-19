@@ -40,6 +40,7 @@ import {OnlinePerformance} from "../lib/online-performance.mjs";
 import {adaptOnlineTimeline,onlineInteractiveHead} from "../lib/online-presentation.mjs";
 import { GameNotices, CardReader } from "./feedback.mjs";
 import { canPresentDecision } from "../lib/gameplay-presentation.mjs";
+import { commandBuildBatch } from "../lib/build-batch.mjs";
 export class GameSession extends EventTarget {
   constructor({
     persist = saveGame,
@@ -606,6 +607,10 @@ export class GameSession extends EventTarget {
   }
   markAssetPresentation(state, type) {
     if (!state) return;
+    if(type === "BUILD_BATCH") {
+      const batch=state.log.find(e=>e.buildBatch&&e.version===state.version)?.buildBatch;
+      this.batchResult=batch?{...batch,match:state.matchId,version:state.version}:null;
+    }
     if (
       this.assetPanel &&
       type === "BUILD" &&
@@ -615,7 +620,7 @@ export class GameSession extends EventTarget {
     if (
       this.assetPanel &&
       this.covered &&
-      ["BUILD", "SELL", "SELL_SET", "MORTGAGE", "REDEEM"].includes(type)
+      ["BUILD", "BUILD_BATCH", "SELL", "SELL_SET", "MORTGAGE", "REDEEM"].includes(type)
     )
       this.assetPresentation = {
         match: state.matchId,
@@ -755,6 +760,7 @@ export class GameSession extends EventTarget {
     this.actionInFlight=!!this.room;
     this.pendingRoll=this.room&&["ROLL","START_ROLL"].includes(type)?crypto.randomUUID():null;
     this.error = "";
+    this.errorCode = "";
     this.notify();
     try {
       if (this.room) {
@@ -772,7 +778,7 @@ export class GameSession extends EventTarget {
         this.takeRoom(result);
         this.performance.record("human.click-to-state",this.performance.now()-clickedAt,{trace:id,version:result.state?.version});
       } else {
-        const next = command(
+        const next = (type === "BUILD_BATCH" ? commandBuildBatch : command)(
           this.state,
           actor,
           {
@@ -792,6 +798,7 @@ export class GameSession extends EventTarget {
       return true;
     } catch (e) {
       this.error = e.message;
+      this.errorCode = e.code || "";
       if (this.room) void this.readRoom();
       return false;
     } finally {

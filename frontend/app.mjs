@@ -15,6 +15,8 @@ import { createPwa } from "./pwa.mjs";
 import { createLayerNavigation } from "../lib/layer-navigation.mjs";
 import { DiceView } from "./dice-view.mjs";
 import { GameSession } from "./session.mjs";
+import { RollInput } from "./roll-input.mjs";
+import { diceLogExport } from "./dice-log.mjs";
 import { renderBuildOrder, buildOrderSelection } from "./asset-panel.mjs";
 import { copyRoomCode, installSelectionGuard } from "./clipboard.mjs";
 import {
@@ -99,6 +101,52 @@ const page = document.querySelector("#page"),
   dialogFooter = dialog.querySelector(".popup-footer"),
   dialogClose = dialog.querySelector(".popup-dismiss");
 installSelectionGuard();
+function rollIntent(button) {
+  if (
+    !button ||
+    button.disabled ||
+    session.screen !== "gameplay" ||
+    session.busy ||
+    session.hidden
+  )
+    return null;
+  const s = session.interactionState,
+    seat = session.seat;
+  if (!s || s.players[seat]?.controller !== "human" || s.players[seat].out)
+    return null;
+  const type =
+    button.dataset.action === "primary"
+      ? primaryAction(s, seat, session.interactionHead, session.paused).type
+      : button.dataset.action === "command"
+        ? button.dataset.type
+        : null;
+  if (!["ROLL", "START_ROLL"].includes(type) || decisionActor(s) !== seat)
+    return null;
+  if (
+    (type === "ROLL" && !["roll", "jail"].includes(s.phase)) ||
+    (type === "START_ROLL" && s.phase !== "starting")
+  )
+    return null;
+  return {
+    type,
+    token: JSON.stringify([
+      s.matchId,
+      s.version,
+      seat,
+      type,
+      session.connectionEpoch,
+    ]),
+  };
+}
+const rollInput = new RollInput({
+  document,
+  resolve: rollIntent,
+  commit: (intent) => {
+    chirp();
+    return session.act(intent.type);
+  },
+  changed: queueRender,
+});
 const assetViews = new Map(),
   assetTabs = new Map();
 let renderedAssetKey = "",
@@ -262,11 +310,18 @@ function renderPlayers(roster) {
 }
 function drawDice() {
   diceView.update(
-    session.pendingRoll
-      ? { stage: "rolling", values: null, label: "Menunggu konfirmasi server" }
+    rollInput.holding || session.pendingRoll
+      ? {
+          stage: "rolling",
+          values: null,
+          label: rollInput.holding
+            ? "Lepas untuk melempar"
+            : "Menunggu konfirmasi server",
+        }
       : dicePresentation(session.view, session.head),
     {
-      id: session.pendingRoll || session.head?.id || "",
+      id:
+        rollInput.current?.id || session.pendingRoll || session.head?.id || "",
       paused: session.covered || session.paused || session.hidden,
       reduced: session.reduced,
     },
@@ -342,7 +397,7 @@ function render() {
           session.paused,
         ),
         button = page.querySelector("[data-action=primary]");
-      button.innerHTML = `${icon(primary.type === "ROLL" || primary.type === "START_ROLL" ? "dice" : primary.type === "END" ? "arrow" : "info", 22)}<span>${esc(primary.label)}</span>`;
+      button.innerHTML = `${icon(primary.type === "ROLL" || primary.type === "START_ROLL" ? "dice" : primary.type === "END" ? "arrow" : "info", 22)}<span>${esc(primary.label)}${["ROLL", "START_ROLL"].includes(primary.type) ? '<small class="roll-gesture-hint">Tahan lalu lepas · ketuk juga bisa</small>' : ""}</span>`;
       button.disabled = !!primary.disabled || session.pending;
       page.querySelector(".turn-heading").innerHTML =
         `<b>${session.room ? "ONLINE" : "VS BOT"} · RONDE ${s.round}</b><span>${session.botThinking ? "Bot sedang berpikir…" : esc(s.players[decisionActor(s)]?.name || "")} ${session.botStatus === "hybrid" ? "· Groq berhasil" : session.botStatus === "fallback" ? "· Lokal cadangan" : ""}</span>`;
@@ -387,6 +442,7 @@ function render() {
     page.querySelector("#page-status").textContent = session.error || "";
     decorateCurrency(page);
     renderDialog();
+    rollInput.sync();
     renderNotice();
     document.documentElement.classList.toggle("reduced", session.reduced);
     document.documentElement.classList.toggle("playing", screen === "gameplay");
@@ -499,6 +555,7 @@ function selectTradeOpponent(to) {
   queueRender();
 }
 function open(p) {
+  rollInput.cancel();
   rememberAssetView();
   const explicitTab = ["development", "manage"].includes(p.kind);
   if (p.kind === "development") {
@@ -896,7 +953,7 @@ function auxiliary(p) {
         title: "Pengaturan",
         html:
           lead("gear", "Pengaturan") +
-          `${btn("Profil Saya · Atur nama", "myProfile", { sym: "people" })}<label class="toggle">Efek suara<input type="checkbox" name="sound" ${ui.sound ? "checked" : ""}></label><label class="toggle">Animasi cepat<input type="checkbox" name="fast" ${session.fast ? "checked" : ""}></label><label class="toggle">Kurangi gerakan<input type="checkbox" name="reduced" ${session.reduced ? "checked" : ""}></label>${session.room ? btn("Unduh diagnostik online", "onlinePerformance") : ""}<p class="inline-note">Pengaturan disimpan pada perangkat ini. Preferensi reduced motion sistem tetap dihormati.</p><div class="fact-row"><span>Versi</span><b>${APP_VERSION} · Papan Klasik</b></div><div class="pwa-tools">${!pwa.state.installed ? btn(pwa.state.installable ? "Pasang Nusantara" : "Cara memasang aplikasi", "installApp", { sym: "home" }) : "<span>Aplikasi terpasang</span>"}${pwa.state.updateAvailable ? btn("Perbarui aplikasi", "updateApp", { disabled: session.screen === "gameplay" || session.pending }) : ""}</div><p class="inline-note">${esc(pwa.state.message || (pwa.state.offline ? "Sedang offline. VS Bot dan simpanan lokal tetap tersedia setelah aplikasi tersimpan di perangkat." : pwa.state.updateAvailable ? "Versi baru tersedia. Kembali ke lobby untuk memperbarui. Permainan online membutuhkan koneksi." : "VS Bot tersedia offline setelah aplikasi tersimpan di perangkat. Permainan online membutuhkan koneksi."))}</p>`,
+          `${btn("Profil Saya · Atur nama", "myProfile", { sym: "people" })}<label class="toggle">Efek suara<input type="checkbox" name="sound" ${ui.sound ? "checked" : ""}></label><label class="toggle">Animasi cepat<input type="checkbox" name="fast" ${session.fast ? "checked" : ""}></label><label class="toggle">Kurangi gerakan<input type="checkbox" name="reduced" ${session.reduced ? "checked" : ""}></label>${session.room ? btn("Unduh diagnostik online", "onlinePerformance") : ""}${session.state ? btn("Unduh log dadu", "diceLog") : ""}<p class="inline-note">Pengaturan disimpan pada perangkat ini. Preferensi reduced motion sistem tetap dihormati.</p><div class="fact-row"><span>Versi</span><b>${APP_VERSION} · Papan Klasik</b></div><div class="pwa-tools">${!pwa.state.installed ? btn(pwa.state.installable ? "Pasang Nusantara" : "Cara memasang aplikasi", "installApp", { sym: "home" }) : "<span>Aplikasi terpasang</span>"}${pwa.state.updateAvailable ? btn("Perbarui aplikasi", "updateApp", { disabled: session.screen === "gameplay" || session.pending }) : ""}</div><p class="inline-note">${esc(pwa.state.message || (pwa.state.offline ? "Sedang offline. VS Bot dan simpanan lokal tetap tersedia setelah aplikasi tersimpan di perangkat." : pwa.state.updateAvailable ? "Versi baru tersedia. Kembali ke lobby untuk memperbarui. Permainan online membutuhkan koneksi." : "VS Bot tersedia offline setelah aplikasi tersimpan di perangkat. Permainan online membutuhkan koneksi."))}</p>`,
         footer: btn("Selesai", "close", { primary: true }),
       };
     case "rules":
@@ -1189,6 +1246,7 @@ function chirp() {
 async function perform(action, el) {
   try {
     session.error = "";
+    session.errorCode = "";
     chirp();
     const id = Number(el?.dataset.id);
     switch (action) {
@@ -1217,6 +1275,20 @@ async function perform(action, el) {
           a = document.createElement("a");
         a.href = url;
         a.download = "NUSA-online-performance.json";
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        break;
+      }
+      case "diceLog": {
+        if (!session.state) return;
+        const url = URL.createObjectURL(
+          new Blob([JSON.stringify(diceLogExport(session.state), null, 2)], {
+            type: "application/json",
+          }),
+        );
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "NUSA-dice-log.json";
         a.click();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
         break;
@@ -1607,12 +1679,21 @@ async function perform(action, el) {
           if (await session.act("BUILD", { tile: order.tile }))
             returnFromBuild();
         } else {
-          returnFromBuild();
-          session.startBuilds(group, order.count);
+          if (await session.act("BUILD_BATCH", { group, count: order.count }))
+            returnFromBuild();
         }
         queueRender();
         return;
       }
+      case "buildStockSingle":
+        if (ui.popup?.kind === "buildOrder") {
+          ui.buildCounts[ui.popup.group] = 1;
+          delete ui.buildTargets?.[ui.popup.group];
+          session.error = "";
+          session.errorCode = "";
+          queueRender();
+        }
+        return;
       case "stopBuilds":
         session.stopAssetPlan();
         session.notify();
@@ -1991,7 +2072,10 @@ document.addEventListener("change", async (e) => {
     queueRender();
   }
 });
-session.addEventListener("change", queueRender);
+session.addEventListener("change", () => {
+  rollInput.sync();
+  queueRender();
+});
 document.addEventListener("visibilitychange", () =>
   session.setVisible(!document.hidden),
 );
@@ -2015,6 +2099,8 @@ window.addEventListener("pageshow", (e) => {
 });
 window.addEventListener("keydown", (e) => {
   if (
+    !e.defaultPrevented &&
+    !e.repeat &&
     e.code === "Space" &&
     !dialog.open &&
     !["INPUT", "SELECT", "TEXTAREA", "BUTTON"].includes(
@@ -2027,7 +2113,7 @@ window.addEventListener("keydown", (e) => {
       session.interactionHead,
       session.paused,
     );
-    if (action.type) {
+    if (action.type && !["ROLL", "START_ROLL"].includes(action.type)) {
       e.preventDefault();
       void session.act(action.type, action.data || {});
     }

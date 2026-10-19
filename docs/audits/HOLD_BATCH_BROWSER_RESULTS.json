@@ -1,0 +1,98 @@
+{
+  "generatedAt": "2026-10-19T04:15:00.749Z",
+  "checks": [
+    {
+      "name": "2 players: hold sends nothing; release sends once; late confirmation and synthetic click cannot reroll",
+      "pass": true
+    },
+    {
+      "name": "3 players: hold sends nothing; release sends once; late confirmation and synthetic click cannot reroll",
+      "pass": true
+    },
+    {
+      "name": "4 players: hold sends nothing; release sends once; late confirmation and synthetic click cannot reroll",
+      "pass": true
+    },
+    {
+      "name": "5 players: hold sends nothing; release sends once; late confirmation and synthetic click cannot reroll",
+      "pass": true
+    },
+    {
+      "name": "6 players: hold sends nothing; release sends once; late confirmation and synthetic click cannot reroll",
+      "pass": true
+    },
+    {
+      "name": "actual touch hold/release sends nothing before release",
+      "pass": true
+    },
+    {
+      "name": "actual touch tap sends once",
+      "pass": true
+    },
+    {
+      "name": "outside: gesture and trailing click cancel without a game action",
+      "pass": true
+    },
+    {
+      "name": "pointercancel: gesture and trailing click cancel without a game action",
+      "pass": true
+    },
+    {
+      "name": "blur: gesture and trailing click cancel without a game action",
+      "pass": true
+    },
+    {
+      "name": "escape: gesture and trailing click cancel without a game action",
+      "pass": true
+    },
+    {
+      "name": "hidden: gesture and trailing click cancel without a game action",
+      "pass": true
+    },
+    {
+      "name": "state-change: gesture and trailing click cancel without a game action",
+      "pass": true
+    },
+    {
+      "name": "roll: Space hold/release, repeat suppression, reduced motion=false",
+      "pass": true
+    },
+    {
+      "name": "starting: Enter hold/release, repeat suppression, reduced motion=false",
+      "pass": true
+    },
+    {
+      "name": "jail: Space hold/release, repeat suppression, reduced motion=true",
+      "pass": true
+    },
+    {
+      "name": "global Space shortcut shares the gesture controller and sends once",
+      "pass": true
+    },
+    {
+      "name": "2 players: six buildings, one request/commit/notification, one final state and no per-building waiting",
+      "pass": true
+    },
+    {
+      "name": "6 players: six buildings, one request/commit/notification, one final state and no per-building waiting",
+      "pass": true
+    },
+    {
+      "name": "bot roll uses confirmed engine dice and automatic presentation without any hold input",
+      "pass": true
+    },
+    {
+      "name": "stock contention rejects whole batch, explains it, and explicit single order opens official stock decision",
+      "pass": true
+    },
+    {
+      "name": "settings exports a public dice log window without private game/account state or extra API requests",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Real Chromium, mobile emulation, local authoritative engine/service and controlled 150 ms response.",
+    "No physical Android or hosted Supabase/Auth/Realtime was used."
+  ]
+}

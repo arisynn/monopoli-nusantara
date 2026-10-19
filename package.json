@@ -1,6 +1,6 @@
 {
   "name": "monopoli-nusantara",
-  "version": "4.11.4",
+  "version": "4.11.5",
   "private": true,
   "type": "module",
   "description": "Nusantara — Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
@@ -65,7 +65,11 @@
     "test:speed": "node --experimental-strip-types --import ./adapters/node/aliases.mjs --test tests/online-speed.test.mjs tests/online-speed-worker.test.mjs",
     "benchmark:speed": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/benchmark-online-speed.mjs",
     "test:ui:4114": "node --experimental-strip-types --import ./adapters/node/aliases.mjs --test tests/ui-4114.test.mjs",
-    "test:ui:4114:browser": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-ui-4114-browser.mjs"
+    "test:ui:4114:browser": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-ui-4114-browser.mjs",
+    "test:hold:batch": "node --experimental-strip-types --import ./adapters/node/aliases.mjs --test tests/hold-batch.test.mjs tests/dice-audit.test.mjs",
+    "test:hold:batch:browser": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-hold-batch-browser.mjs",
+    "audit:dice": "node scripts/audit-dice.mjs",
+    "benchmark:build:batch": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/benchmark-build-batch.mjs"
   },
   "devDependencies": {
     "@types/node": "22.19.19",

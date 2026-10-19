@@ -1,4 +1,4 @@
-# NUSA Online Worker 4.11.4 — instalasi dan operasi
+# NUSA Online Worker 4.11.5 — instalasi dan operasi
 
 Paket ini memindahkan **komputasi AI** ke Termux/Node 24+. API Node/Vercel tetap menjalankan engine resmi untuk memvalidasi intent; Supabase menyimpan state, lease, receipt, Auth/RLS dan Realtime. Jalur normal mode Termux tidak menjalankan Edge Function.
 
@@ -8,7 +8,7 @@ Audit update guard dan penyesuaian terhadap host official dijelaskan di `docs/au
 
 Untuk update dari **4.11.2**, baca `docs/ONLINE_SPEED_UPDATE.md` terlebih dahulu. Rilis 4.11.3 memakai **model dan manifest V23.2 yang sama persis**; perubahan ada pada presentasi/sinkronisasi dan RPC server. Terapkan migration 008 sebelum deploy backend baru. Tidak perlu pairing ulang atau mengubah provider bila instalasi 4.11.2 sudah aktif.
 
-Untuk update **4.11.3 → 4.11.4**, baca `docs/UI_4114_UPDATE.md`. Perubahan ini pada UI: popup, lobby padat, Pegadaian, dan popup jumlah pembangunan. Tidak ada migration baru, pergantian manifest, pairing ulang, atau perubahan runtime Termux.
+Untuk update **4.11.4 → 4.11.5**, baca `docs/HOLD_BATCH_4115_UPDATE.md`. Frontend dan backend harus diperbarui bersama untuk aksi bangun banyak atomik. Dadu manusia memakai tahan–lepas; CSPRNG dan lemparan bot tetap sama. Tidak ada migration baru, pergantian manifest, pairing ulang, atau perubahan runtime Termux. Riwayat update UI 4.11.4 tersedia di `docs/UI_4114_UPDATE.md`.
 
 ## A. Setup backend sekali oleh pemilik proyek
 
@@ -43,7 +43,7 @@ Gunakan Termux yang mendukung Node 24+, lalu ekstrak ZIP ke direktori privat hom
 pkg update
 pkg install nodejs-lts unzip python -y
 mkdir -p ~/nusa-online
-unzip ~/storage/downloads/NUSA_ONLINE_TERMUX_4.11.4.zip -d ~/nusa-online
+unzip ~/storage/downloads/NUSA_ONLINE_TERMUX_4.11.5.zip -d ~/nusa-online
 cd ~/nusa-online
 bash nusa-online.sh --selftest
 bash nusa-online.sh

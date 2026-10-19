@@ -337,22 +337,24 @@ try {
     const pawnBefore = await host
       .locator('[data-pawn="0"]')
       .getAttribute("transform");
-    await host.locator("[data-action=primary]:enabled").click();
-    await host.waitForFunction(
-      (before) =>
-        document.querySelector('[data-pawn="0"]')?.getAttribute("transform") !==
-        before,
-      pawnBefore,
-    );
-    const samples = await host.evaluate(
-      () =>
-        new Promise((resolve) => {
-          const out = [],
-            start = performance.now();
-          const frame = () => {
-            const world = document.querySelector(".board-view>svg>g"),
-              pawn = document.querySelector('[data-pawn="0"]'),
-              r = pawn.getBoundingClientRect(),
+    // Observe frames before clicking. Starting observation after a driver-side
+    // wait can miss the entire short movement on a busy/headless machine.
+    await host.evaluate((before) => {
+      window.cameraSamples = new Promise((resolve) => {
+        const out = [],
+          start = performance.now();
+        let movedAt;
+        const frame = () => {
+          const world = document.querySelector(".board-view>svg>g"),
+            pawn = document.querySelector('[data-pawn="0"]'),
+            now = performance.now();
+          if (
+            movedAt === undefined &&
+            pawn.getAttribute("transform") !== before
+          )
+            movedAt = now;
+          if (movedAt !== undefined) {
+            const r = pawn.getBoundingClientRect(),
               b = document
                 .querySelector(".board-stage")
                 .getBoundingClientRect();
@@ -364,12 +366,19 @@ try {
                 r.y + r.height / 2 >= b.y - 2 &&
                 r.y + r.height / 2 <= b.bottom + 2,
             });
-            if (performance.now() - start > 500) resolve(out);
-            else requestAnimationFrame(frame);
-          };
-          frame();
-        }),
-    );
+          }
+          if (
+            (movedAt !== undefined && now - movedAt > 500) ||
+            now - start > 8000
+          )
+            resolve(out);
+          else requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
+      });
+    }, pawnBefore);
+    await host.locator("[data-action=primary]:enabled").click();
+    const samples = await host.evaluate(() => window.cameraSamples);
     assert(new Set(samples.map((s) => s.camera)).size > 3);
     assert(samples.every((s) => s.inside));
     checks.push({
