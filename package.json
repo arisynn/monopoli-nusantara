@@ -1,9 +1,9 @@
 {
   "name": "monopoli-nusantara",
-  "version": "4.11.5",
+  "version": "4.11.6",
   "private": true,
   "type": "module",
-  "description": "Nusantara — Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
+  "description": "Nusantara \u2014 Classic 2D UI, shared rules, local NUSA MIND and persistent Supabase multiplayer",
   "engines": {
     "node": "24.x"
   },
@@ -69,7 +69,9 @@
     "test:hold:batch": "node --experimental-strip-types --import ./adapters/node/aliases.mjs --test tests/hold-batch.test.mjs tests/dice-audit.test.mjs",
     "test:hold:batch:browser": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-hold-batch-browser.mjs",
     "audit:dice": "node scripts/audit-dice.mjs",
-    "benchmark:build:batch": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/benchmark-build-batch.mjs"
+    "benchmark:build:batch": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/benchmark-build-batch.mjs",
+    "test:trade:result": "node --experimental-strip-types --import ./adapters/node/aliases.mjs --test tests/trade-result.test.mjs",
+    "test:trade:result:browser": "node --experimental-strip-types --import ./adapters/node/aliases.mjs scripts/test-trade-result-browser.mjs"
   },
   "devDependencies": {
     "@types/node": "22.19.19",

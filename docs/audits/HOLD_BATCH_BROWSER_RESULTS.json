@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T04:15:00.749Z",
+  "generatedAt": "2026-10-19T05:09:26.257Z",
   "checks": [
     {
       "name": "2 players: hold sends nothing; release sends once; late confirmation and synthetic click cannot reroll",

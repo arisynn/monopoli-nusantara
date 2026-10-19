@@ -1,0 +1,54 @@
+{
+  "release": "4.11.6",
+  "generatedAt": "2026-10-19T05:11:29.234379+00:00",
+  "core": {
+    "passed": 721,
+    "failed": 0,
+    "skipped": 0,
+    "report": "docs/CLASSIC_TEST_RESULTS.json"
+  },
+  "tradeRegression": {
+    "passed": 21,
+    "failed": 0,
+    "includedInCore": true
+  },
+  "browser": {
+    "tradeResults": {
+      "passed": 17,
+      "failed": 0,
+      "report": "docs/audits/TRADE_RESULT_BROWSER_RESULTS.json"
+    },
+    "priorUI": {
+      "passed": 41,
+      "failed": 0,
+      "report": "docs/audits/UI_4114_BROWSER_RESULTS.json"
+    },
+    "holdAndBuildBatch": {
+      "passed": 22,
+      "failed": 0,
+      "report": "docs/audits/HOLD_BATCH_BROWSER_RESULTS.json"
+    },
+    "onlineRoom": {
+      "passed": 14,
+      "failed": 0,
+      "report": "docs/ONLINE_ROOM_BROWSER_RESULTS.json"
+    }
+  },
+  "browserChecks": 94,
+  "typecheck": "pass",
+  "sourceOutput": {
+    "checked": 642,
+    "failed": 0
+  },
+  "protectedModelEngine": {
+    "checked": 51,
+    "changed": 0
+  },
+  "runtimeLock": "docs/audits/TRADE_RESULT_RUNTIME_LOCK.json",
+  "termuxSelftest": "pass: six persona, compute thread, engine legality and bid increments N5",
+  "deployment": "Deploy matching frontend and server adapters; no new SQL migration, Termux client or pairing changes. Optional Edge deployments must deploy their updated bundle.",
+  "limitations": [
+    "Local Chromium, mobile/touch emulation and contract doubles; no production Supabase/Vercel or physical Android.",
+    "Receipts are available only while their public events remain inside the engine log window."
+  ]
+}

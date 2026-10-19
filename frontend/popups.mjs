@@ -1,3 +1,4 @@
+import { latestTradeLink } from "./trade-result-view.mjs";
 import { bankContent } from "./bank-view.mjs";
 import { debtAdvice } from "./debt-advisor.mjs";
 import { estimateTrade } from "./trade-value.mjs";
@@ -217,6 +218,7 @@ function trade(c, p) {
         p.counter ? "Tawaran Balik" : "Perdagangan",
         "Atur aset dan uang pada kedua sisi tawaran.",
       ) +
+      latestTradeLink(c.session.state || c.s, c.seat) +
       `<label class="field">Pemain tujuan<select name="tradeOpponent" ${p.counter ? "disabled" : ""}>${c.s.players
         .filter((x) => x.id !== from && !x.out)
         .map(
@@ -264,6 +266,7 @@ function incoming(c) {
         "Tawaran Barter",
         `${c.s.players[t.from].name} → ${c.s.players[t.to].name}`,
       ) +
+      latestTradeLink(c.session.state || c.s, c.seat) +
       `<div class="trade-columns"><section class="trade-side"><h3>${own ? "Anda menerima" : "Pengirim memberi"}</h3>${side(t.give, t.giveCash, t.giveCards)}</section><section class="trade-side"><h3>${own ? "Anda memberi" : "Pengirim meminta"}</h3>${side(t.take, t.takeCash, t.takeCards)}</section></div><section class="trade-estimate" data-trade-estimate>${tradeEstimateMarkup(c.s, t, c.seat)}</section>`,
     footer: own
       ? commandButton("Terima", "TRADE_ACCEPT", c, {}, true) +
@@ -498,7 +501,8 @@ function history(c) {
     (e) =>
       filter === "all" ||
       (filter === "money" && e.finance?.length) ||
-      (filter === "property" && e.assetChanges?.length),
+      (filter === "property" && e.assetChanges?.length) ||
+      (filter === "trade" && e.type === "trade"),
   );
   return {
     title: "Riwayat Aktivitas",
@@ -512,6 +516,7 @@ function history(c) {
         ["all", "Semua"],
         ["money", "Nusa"],
         ["property", "Properti"],
+        ["trade", "Barter"],
       ]
         .map(
           ([v, l]) =>
@@ -533,7 +538,7 @@ function history(c) {
                       )
                       .join("")}</details>`
                   : ""
-              }</div></article>`,
+              }${e.type === "trade" ? `<button type="button" class="link-button trade-receipt-link" data-action="tradeReceipt" data-event-id="${e.id}">${e.tradeResult ? "Lihat hasil barter" : "Lihat catatan barter"}</button>` : ""}</div></article>`,
           )
           .join("") || '<p class="empty">Belum ada aktivitas.</p>'
       }</div>`,

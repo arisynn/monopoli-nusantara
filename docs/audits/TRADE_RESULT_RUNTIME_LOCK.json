@@ -1,0 +1,12 @@
+{
+  "baseline": "NUSA_ONLINE_TERMUX_4.11.5.zip",
+  "scope": "Protected model/engine, manifest, Termux client/CLI and existing SQL migrations",
+  "checked": 71,
+  "changed": [],
+  "intentionallyChangedServerAdapters": [
+    "lib/server/bot-worker.mjs",
+    "lib/server/online-room.mjs",
+    "lib/server/termux-worker.mjs"
+  ],
+  "result": "pass"
+}

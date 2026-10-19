@@ -1,6 +1,6 @@
 {
   "baselineCommit": "af88d14a08815ee1d139bbf5a9b945a24126d348",
-  "note": "4.11.5 adds hold/release input and a shared atomic BUILD wrapper on top of 4.11.4 UI and 4.11.3 speed improvements; the V23.2 model, manifest and engine remain byte-identical to 4.11.2. No new migration or Termux runtime change; deploy matching frontend and backend for BUILD_BATCH. Baseline Git hashes also include previously approved Guard/finance/N5 corrections; migration 008 is separate. Historical benchmarks are test fixtures, never runtime model imports.",
+  "note": "4.11.6 records confirmed trade outcome metadata in the existing commit through human, offline-bot, Termux-server and optional Edge adapters; compact receipts and history review add no new polling. Earlier hold/release and atomic BUILD_BATCH remain. The V23.2 model, manifest, engine, Termux client and protocol remain unchanged. No new migration; deploy matching frontend and backend. Optional Edge provider deployments must also update their function bundle. Baseline Git hashes also include previously approved Guard/finance/N5 corrections; migration 008 is separate. Historical benchmarks are test fixtures, never runtime model imports.",
   "changes": [
     {
       "file": "adapters/node/router.mjs",
@@ -25,7 +25,7 @@
     {
       "file": "frontend/app.mjs",
       "baselineSha256": "853e9b447daa18ecd0342cdf524c6b78320f53fbbaea2d1b6904c120a006d199",
-      "sha256": "03dc711bc71fe85e29ace6119ce1449af794036451de844422c2e35650ad9afd"
+      "sha256": "e7ca3cd72a38ea245b759047c9bc6c0be486a1460488683a168bd742e7b76995"
     },
     {
       "file": "frontend/asset-panel.mjs",
@@ -70,22 +70,32 @@
     {
       "file": "frontend/popups.mjs",
       "baselineSha256": "f5b2cf010c8d28629d1cd688b2612ad824a0656a71df765674218ed4523c732e",
-      "sha256": "52965c4a01d51dac3a432b8cb4355a8f8cc8249f81716b9f36106222016b008c"
+      "sha256": "da505ea88611a6042293bac2882bae21217e887e825795d0f69d89f957099f71"
     },
     {
       "file": "frontend/roll-input.mjs",
       "baselineSha256": null,
-      "sha256": "cfb918f169501722f22e312527bdbafd828827ab6a5e3ede51421de35f9c8b7f"
+      "sha256": "28d5653cc908af257dddd107154da9103021baa14d1cb8f70f83dd156d77edb7"
     },
     {
       "file": "frontend/session.mjs",
       "baselineSha256": "89fb51a9f0fe8c4ce1e403555c76815f19b8229078d8e193bfd4dd70d04ed391",
-      "sha256": "a7710913b030cafb5fe7f5d53f6f0838ba343ad0ea229ab9ac0da2600e8fd7e1"
+      "sha256": "d5f26f9efb884495f55097d100f79981083b16f905e5e47bf072845921d2d3e7"
     },
     {
       "file": "frontend/styles.css",
       "baselineSha256": "3e69a595755d8332da51b2cba231db3c1a5c21c61336f39cbebefdcf3e935c50",
-      "sha256": "fec604ab12ad637a9f999180855bfe93b5557819e0f04f66ec6cb5963fe27f7c"
+      "sha256": "38b44381886a49998acc64026bbeab6b4e1403d95475fd54b14c0ea11b630590"
+    },
+    {
+      "file": "frontend/trade-result-view.mjs",
+      "baselineSha256": null,
+      "sha256": "6e22da800ff93dcdd00b240a05fb70eb3dea8d64a40a77a87e3391112a972096"
+    },
+    {
+      "file": "frontend/trade-results.mjs",
+      "baselineSha256": null,
+      "sha256": "b07cdedf5860b1d82509b0f36e1ab9b3fddfa7c739d1d27f3ee14982f780922b"
     },
     {
       "file": "lib/build-batch.mjs",
@@ -138,9 +148,14 @@
       "sha256": "dd88dda6da6a1299b72e434cc19f00066d9c6440118f2b11c7af6fddb7a7860d"
     },
     {
+      "file": "lib/trade-result.mjs",
+      "baselineSha256": null,
+      "sha256": "d69b4d85f73f3472eb394ae3287559fa6db0717f5a2df931c0f3870c5147767c"
+    },
+    {
       "file": "lib/version.mjs",
       "baselineSha256": "9b5ebc5b1d565b7db7cbdefa4774894d51eece4978cdb03484e8a7bd098bbe06",
-      "sha256": "41563804399ae26814cf284a0ba6b2a68a6262baed95129b6ef470ec46c0c2c9"
+      "sha256": "9f4e5c064e04e26e3f888067b2df8d2398388f615a808494e47c7c9758ed7c9f"
     },
     {
       "file": "lib/bot/candidates.mjs",
@@ -215,12 +230,12 @@
     {
       "file": "lib/server/bot-worker.mjs",
       "baselineSha256": "b904376d18b1001bf4ed4ac4c76cf93990cf1af8b1ee8f651cd69a89ab2fdd89",
-      "sha256": "47355be705c7211cf30ec7776c214bd4183539781ea38227ed13cfd4aa6ca327"
+      "sha256": "7f2a1c5524c617fac019ee3d70024fc15bb6944dd876cc983fff1419d506932c"
     },
     {
       "file": "lib/server/online-room.mjs",
       "baselineSha256": "5826cec517a73ce7c00e56ab7339f7dbba5f456c46f3947b886c7595298d977b",
-      "sha256": "6821e1c8ea51581b89ffd7065fe9ef75c3cd921d415eb1712800603690904f93"
+      "sha256": "7508b4de111b01ff11617c1dd8904dd9eed3b5e40734b80374f793b6e9dcd76f"
     },
     {
       "file": "lib/server/online-service.mjs",
@@ -240,7 +255,7 @@
     {
       "file": "lib/server/termux-worker.mjs",
       "baselineSha256": null,
-      "sha256": "1ed82bc91f97a782faf3caa8d247b5f9db5e00322252865da8d3fc0bf5a91b20"
+      "sha256": "31058c26e97b5b9c7c211509dbdb44a24b1ef2fd4037b314e5eff9e09222b628"
     },
     {
       "file": "lib/server/worker-capabilities.mjs",
@@ -281,6 +296,11 @@
       "file": "supabase/functions/monopoli-bots/_shared/lib/groq.ts",
       "baselineSha256": "d6eaa2348517097ce8d1ef0b0dca39a9bc188d72d529e6dcbfd8ab58a0faad74",
       "sha256": "e03dae9100676a9eae78dd348f8546e4422fc672c34df6adfa8682b3b422d687"
+    },
+    {
+      "file": "supabase/functions/monopoli-bots/_shared/lib/trade-result.mjs",
+      "baselineSha256": null,
+      "sha256": "d69b4d85f73f3472eb394ae3287559fa6db0717f5a2df931c0f3870c5147767c"
     },
     {
       "file": "supabase/functions/monopoli-bots/_shared/lib/bot/candidates.mjs",
@@ -355,12 +375,12 @@
     {
       "file": "supabase/functions/monopoli-bots/_shared/lib/server/bot-worker.mjs",
       "baselineSha256": "b904376d18b1001bf4ed4ac4c76cf93990cf1af8b1ee8f651cd69a89ab2fdd89",
-      "sha256": "47355be705c7211cf30ec7776c214bd4183539781ea38227ed13cfd4aa6ca327"
+      "sha256": "7f2a1c5524c617fac019ee3d70024fc15bb6944dd876cc983fff1419d506932c"
     },
     {
       "file": "supabase/functions/monopoli-bots/_shared/lib/server/online-room.mjs",
       "baselineSha256": "5826cec517a73ce7c00e56ab7339f7dbba5f456c46f3947b886c7595298d977b",
-      "sha256": "6821e1c8ea51581b89ffd7065fe9ef75c3cd921d415eb1712800603690904f93"
+      "sha256": "7508b4de111b01ff11617c1dd8904dd9eed3b5e40734b80374f793b6e9dcd76f"
     },
     {
       "file": "supabase/functions/monopoli-bots/_shared/lib/server/online-service.mjs",

@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-10-19T05:09:43.327Z",
+  "checks": [
+    {
+      "name": "320px: both participants get confirmed, correctly oriented compact receipts; manual proposal close cannot swallow them",
+      "pass": true
+    },
+    {
+      "name": "latest receipt opens from Barter and History and returns to the unchanged draft/filter",
+      "pass": true
+    },
+    {
+      "name": "390px: both participants get confirmed, correctly oriented compact receipts; manual proposal close cannot swallow them",
+      "pass": true
+    },
+    {
+      "name": "duplicate state delivery does not duplicate a receipt; authoritative play continues while receipt is open",
+      "pass": true
+    },
+    {
+      "name": "reconnect baseline does not replay completed transaction popups",
+      "pass": true
+    },
+    {
+      "name": "430px: both participants get confirmed, correctly oriented compact receipts; manual proposal close cannot swallow them",
+      "pass": true
+    },
+    {
+      "name": "900px: both participants get confirmed, correctly oriented compact receipts; manual proposal close cannot swallow them",
+      "pass": true
+    },
+    {
+      "name": "mortgage decision has priority; queued receipt retains transfer-time status after redeeming",
+      "pass": true
+    },
+    {
+      "name": "rejection never locks legal input, identifies the actor, pauses behind another modal and auto-closes after visible time",
+      "pass": true
+    },
+    {
+      "name": "sender cancellation is distinct from refusal; uninvolved humans receive history only",
+      "pass": true
+    },
+    {
+      "name": "counter-offer remains pending and acceptance displays only its final terms",
+      "pass": true
+    },
+    {
+      "name": "six-player fixture: confirmed bot response gets a receipt without frontend commands or extra polling",
+      "pass": true
+    },
+    {
+      "name": "old incomplete logs show an escaped confirmed note without invented details",
+      "pass": true
+    },
+    {
+      "name": "28 properties fit a 320px screen with body-only scrolling, accessible dismissal and a single bottom close text",
+      "pass": true
+    },
+    {
+      "name": "offline participant prevents acceptance; a failed server request cannot show a success receipt",
+      "pass": true
+    },
+    {
+      "name": "offline bot decision uses the same confirmed receipt without pausing local bot computation",
+      "pass": true
+    },
+    {
+      "name": "global Space hold/release remains usable during a passive rejection without choosing or revealing dice locally",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Real Chromium and touch/mobile emulation, local authoritative engine/service; Auth and Realtime delivery use isolated doubles.",
+    "Actual Termux fenced-submit and optional Edge adapters are tested separately in trade-result.test.mjs; no production database or physical Android was used."
+  ]
+}

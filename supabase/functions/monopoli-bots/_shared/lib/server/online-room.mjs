@@ -1,3 +1,4 @@
+import {commandWithTradeResult} from '../trade-result.mjs';
 import {validDifficulty} from '../bot/mind-config.mjs';
 import {requirePlayerName} from '../player-name.mjs';
 import {createGame, command, publicState} from '../game.mjs';
@@ -170,7 +171,7 @@ export function applyOperation(room, seat, body, now, rng, options={botsEnabled:
   check(action.type!=='ROLL'||!(room.state.rentClaims||[]).some(c=>room.state.players[c.to].controller==='bot'&&c.turnSerial<room.state.turnSerial),'Tunggu bot menagih sewa sebelum melempar.',409);
   // Persistent request receipts handle retries; never trust a client-provided dedup entry.
   check(action.expectedVersion === room.state.version, 'State berubah. Ambil kondisi terbaru lalu coba lagi.', 409);
-  try { room.state = (action.type === 'BUILD_BATCH' ? commandBuildBatch : command)(room.state, seat, {...action, id: `${room.seats[seat].userId}:${action.id}`}, rng); }
+  try { room.state = (action.type === 'BUILD_BATCH' ? commandBuildBatch : commandWithTradeResult)(room.state, seat, {...action, id: `${room.seats[seat].userId}:${action.id}`}, rng); }
   catch (error) { if (error?.constructor === Error || error instanceof BuildBatchError) throw new RoomError(error.message,400,error.code); throw error; }
   if (room.vote?.status === 'open' && room.vote.eligible.some(i => room.state.players[i].out)) room.vote.status = 'cancelled';
   if (room.state.phase === 'won') room.status = 'finished';
